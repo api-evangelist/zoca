@@ -1,8 +1,29 @@
 aid: zoca
 name: Zoca
-description: 'Zoca is a company surfaced as a portfolio company of accel and added to the API Evangelist
-  network as a stub for enrichment. Sector: ai. This profile is a lead awaiting the enrichment pipeline.'
+description: >-
+  Zoca is an AI-powered marketing platform built specifically for local beauty and
+  wellness businesses such as salons, spas, and clinics. It packages its automation as
+  three AI agents: a Discovery Agent that improves online ranking and visibility, a Win
+  Agent that converts inquiries and leads into confirmed appointments, and a Loyalty
+  Agent that drives repeat bookings and client retention. Zoca also offers free
+  self-serve tools including a Local Business Demand Tracker, a Local Website Grader, and
+  a Google Business Profile Optimizer. The company reports serving 1,000+ businesses,
+  facilitating 120,000+ appointments, and generating $10M+ in customer revenue. Zoca is
+  a portfolio company of Accel. As of this enrichment pass it publishes no public
+  developer portal, API reference, SDK, or documented API surface.
 url: https://raw.githubusercontent.com/api-evangelist/zoca/refs/heads/main/apis.yml
+accessModel:
+  pricing: unknown
+  onboarding: unknown
+  trial: false
+  try_now: false
+  public: false
+  label: Unknown
+  confidence: low
+  source: []
+  generated: '2026-07-22'
+  method: derived
+image: https://cdn.prod.website-files.com/68137618ce08fc7361daa786/6824fbebce901ed009a1e222_3.avif
 x-type: company
 x-source: vc-portfolio
 x-backed-by:
@@ -11,10 +32,16 @@ x-tier: stub
 x-tier-reason: portfolio-lead
 specificationVersion: '0.20'
 created: '2026-07-17'
-modified: '2026-07-17'
+modified: '2026-07-21'
 tags:
 - Company
 - Ai
+- Marketing
+- Beauty and Wellness
+- Local Business
+- AI Agents
+- Appointments
+- SaaS
 apis: []
 maintainers:
 - FN: Kin Lane
@@ -22,5 +49,26 @@ maintainers:
 - FN: APIs.json
   email: info@apis.io
 common:
+- type: DomainSecurity
+  url: security/zoca-domain-security.yml
 - type: Website
   url: https://zoca.com/
+- type: Pricing
+  url: https://zoca.com/pricing
+- type: Blog
+  url: https://zoca.com/blog
+- type: TermsOfService
+  url: https://zoca.com/terms-of-use
+- type: PrivacyPolicy
+  url: https://zoca.com/privacy
+- type: SignUp
+  url: https://zoca.com/demo
+- type: Login
+  url: https://app.zoca.com/login
+- type: Support
+  url: https://zoca.com/contact-us
+x-enrichment:
+  date: '2026-07-21'
+  status: minimal
+  artifacts_added: 1
+  pass: local-v1
