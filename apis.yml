@@ -1,60 +1,160 @@
 aid: zoca
 name: Zoca
-description: >-
-  Zoca is an AI-powered marketing platform built specifically for local beauty and
-  wellness businesses such as salons, spas, and clinics. It packages its automation as
-  three AI agents: a Discovery Agent that improves online ranking and visibility, a Win
-  Agent that converts inquiries and leads into confirmed appointments, and a Loyalty
-  Agent that drives repeat bookings and client retention. Zoca also offers free
-  self-serve tools including a Local Business Demand Tracker, a Local Website Grader, and
-  a Google Business Profile Optimizer. The company reports serving 1,000+ businesses,
-  facilitating 120,000+ appointments, and generating $10M+ in customer revenue. Zoca is
-  a portfolio company of Accel. As of this enrichment pass it publishes no public
-  developer portal, API reference, SDK, or documented API surface.
+description: 'Zoca is an AI-powered marketing platform built for local beauty and wellness businesses — salons,
+  spas, med spas and wellness clinics. It packages its automation as agents: a Discovery Agent that improves local
+  ranking and Google Business Profile visibility, a Win Agent that converts inquiries into confirmed appointments
+  over chat, SMS and voice, a Loyalty Agent that drives rebooking and retention, and a Social Agent that produces
+  Instagram, TikTok and Facebook content. Zoca also runs free self-serve tools including a Local Business Demand
+  Tracker, a Local Website Grader and a Google Business Profile Optimizer. Zoca is operated by ZOCAAI TECHNOLOGIES
+  PRIVATE LIMITED, was founded in 2021, and is an Accel portfolio company. Zoca runs no developer program — no portal,
+  no API reference, no SDK and no documented API — but it serves three real OpenAPI 3.0.0 documents publicly and
+  unauthenticated at api.zoca.ai/swagger.json, tasks.zoca.ai/swagger.json and public.zoca.com/swagger.json, together
+  describing 2,624 operations across 2,267 paths. Those are the application''s own backend contracts rather than
+  a product, and they ship with minified operationIds and untyped schemas.'
 url: https://raw.githubusercontent.com/api-evangelist/zoca/refs/heads/main/apis.yml
 accessModel:
-  pricing: unknown
-  onboarding: unknown
+  pricing: subscription
+  onboarding: sales
   trial: false
-  try_now: false
+  try_now: true
   public: false
-  label: Unknown
-  confidence: low
-  source: []
-  generated: '2026-07-22'
-  method: derived
+  label: Demo-gated SaaS with an unauthenticated public lead-magnet API
+  confidence: medium
+  source:
+  - https://zoca.com/pricing
+  - https://public.zoca.com/swagger.json
+  generated: '2026-08-13'
+  method: searched
+  note: No prices are published on any tier; every plan CTA is "Book a demo". There is no developer sign-up and
+    no API plan. try_now is true only because the free tools at zoca.com/free-tools/* run against public.zoca.com
+    without an account.
 image: https://cdn.prod.website-files.com/68137618ce08fc7361daa786/6824fbebce901ed009a1e222_3.avif
 x-type: company
 x-source: vc-portfolio
 x-backed-by:
 - accel
-x-tier: stub
-x-tier-reason: portfolio-lead
+x-tier: profiled
+x-tier-reason: three published OpenAPI documents harvested from the provider hosts
 specificationVersion: '0.20'
 created: '2026-07-17'
-modified: '2026-07-21'
+modified: '2026-08-13'
 tags:
 - Company
-- Ai
+- Artificial Intelligence
 - Marketing
 - Beauty and Wellness
 - Local Business
 - AI Agents
 - Appointments
+- Scheduling
+- Booking
+- Local SEO
+- Google Business Profile
+- Social Media
+- Salon Software
+- Spa
 - SaaS
-apis: []
+- Lead Generation
+- Customer Retention
+- Small Business
+apis:
+- aid: zoca:zoca-platform-api
+  name: Zoca Platform API
+  slug: zoca-platform-api
+  description: The Zoca platform API — the backend the Zoca web application and the iOS/Android apps call. 1,413
+    paths and 1,700 operations covering scheduling and bookings, website generation and custom domains, Google Business
+    Profile management, discovery and local SEO, social media, services, staff and clients, offers and packages,
+    booking enquiries, inventory, Chargebee billing, and the Zoca "brain" agent layer. Served publicly and unauthenticated
+    as an OpenAPI 3.0.0 document at https://api.zoca.ai/swagger.json with no accompanying documentation. Auth is
+    a bearer JWT.
+  humanURL: https://app.zoca.com/
+  baseURL: https://api.zoca.ai
+  image: https://cdn.prod.website-files.com/68137618ce08fc7361daa786/6824fbebce901ed009a1e222_3.avif
+  tags:
+  - Scheduling
+  - Bookings
+  - Local SEO
+  - Google Business Profile
+  - Social Media
+  - Billing
+  - Websites
+  properties:
+  - type: OpenAPI
+    url: openapi/zoca-platform-openapi.yml
+  - type: OpenAPI
+    url: openapi/_original/zoca-platform-swagger.json
+    name: Original as served by Zoca
+  - type: Overlay
+    url: overlays/zoca-platform-overlay.yaml
+- aid: zoca:zoca-tasks-api
+  name: Zoca Tasks API
+  slug: zoca-tasks-api
+  description: The Zoca tasks and automation service. 785 paths and 855 operations under /tasks/api/v1 covering
+    the AI content queue and content planning, FrontDesk voice and SMS agent onboarding on Retell and Twilio, the
+    embeddable FrontDesk booking widget, local-SEO grid scans, WIN conversion triggers, and 25 inbound webhook receivers
+    for Zoca's own vendors. Served publicly and unauthenticated as an OpenAPI 3.0.0 document at https://tasks.zoca.ai/swagger.json.
+    Auth is a bearer JWT.
+  humanURL: https://app.zoca.com/
+  baseURL: https://tasks.zoca.ai
+  image: https://cdn.prod.website-files.com/68137618ce08fc7361daa786/6824fbebce901ed009a1e222_3.avif
+  tags:
+  - Content
+  - Automation
+  - Booking Widget
+  - Voice Agents
+  - SMS
+  - Local SEO
+  - Webhooks
+  properties:
+  - type: OpenAPI
+    url: openapi/zoca-tasks-openapi.yml
+  - type: OpenAPI
+    url: openapi/_original/zoca-tasks-swagger.json
+    name: Original as served by Zoca
+  - type: Overlay
+    url: overlays/zoca-tasks-overlay.yaml
+  - type: Components
+    url: components/zoca-components.yml
+- aid: zoca:zoca-public-api
+  name: Zoca Public API
+  slug: zoca-public-api
+  description: Zoca's unauthenticated public surface — the 69 operations behind the free self-serve tools on zoca.com.
+    Covers the Local Business Demand Tracker (keyword demand and keyword intelligence), Google Business Profile
+    competitor analysis, place metrics and keyword tables, website strategy grading, pricing benchmarks and menu
+    analysis, plus short-link and app-link redirects. Served as an OpenAPI 3.0.0 document at https://public.zoca.com/swagger.json.
+    This is the only Zoca surface reachable without a Zoca account.
+  humanURL: https://zoca.com/free-tools/keywords-analysis
+  baseURL: https://public.zoca.com
+  image: https://cdn.prod.website-files.com/68137618ce08fc7361daa786/6824fbebce901ed009a1e222_3.avif
+  tags:
+  - Lead Generation
+  - Keyword Research
+  - Local SEO
+  - Google Business Profile
+  - Website Audit
+  - Public API
+  properties:
+  - type: OpenAPI
+    url: openapi/zoca-public-openapi.yml
+  - type: OpenAPI
+    url: openapi/_original/zoca-public-swagger.json
+    name: Original as served by Zoca
+  - type: Overlay
+    url: overlays/zoca-public-overlay.yaml
 maintainers:
 - FN: Kin Lane
   email: kin@apievangelist.com
 - FN: APIs.json
   email: info@apis.io
 common:
-- type: DomainSecurity
-  url: security/zoca-domain-security.yml
+- type: AgenticAccess
+  url: agentic-access/zoca-agentic-access.yml
 - type: Website
   url: https://zoca.com/
 - type: Pricing
   url: https://zoca.com/pricing
+- type: Plans
+  url: plans/zoca-plans-pricing.yml
 - type: Blog
   url: https://zoca.com/blog
 - type: TermsOfService
@@ -67,8 +167,42 @@ common:
   url: https://app.zoca.com/login
 - type: Support
   url: https://zoca.com/contact-us
+- type: GitHubOrganization
+  url: https://github.com/zoca-ai
+- type: TrustCenter
+  url: https://trust.zoca.com/
+- type: Compliance
+  url: https://trust.zoca.com/
+- type: Authentication
+  url: authentication/zoca-authentication.yml
+- type: Conventions
+  url: conventions/zoca-conventions.yml
+- type: Idempotency
+  url: conventions/zoca-conventions.yml
+- type: ErrorCatalog
+  url: errors/zoca-problem-types.yml
+- type: RateLimits
+  url: rate-limits/zoca-rate-limits.yml
+- type: DataModel
+  url: data-model/zoca-data-model.yml
+- type: Conformance
+  url: conformance/zoca-conformance.yml
+- type: Lifecycle
+  url: lifecycle/zoca-lifecycle.yml
+- type: Packages
+  url: packages/zoca-packages.yml
+- type: MCPServer
+  url: mcp/zoca-mcp.yml
+- type: AgentSkill
+  url: skills/_index.yml
+- type: LLMsTxt
+  url: llms/zoca-llms.txt
+- type: Components
+  url: components/zoca-components.yml
+- type: DomainSecurity
+  url: security/zoca-domain-security.yml
 x-enrichment:
-  date: '2026-07-21'
-  status: minimal
-  artifacts_added: 1
+  date: '2026-08-13'
+  status: enriched
+  artifacts_added: 31
   pass: local-v1
