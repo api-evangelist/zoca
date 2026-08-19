@@ -1,0 +1,44 @@
+generated: '2026-08-13'
+method: derived
+source: openapi/zoca-platform-openapi.yml, openapi/zoca-tasks-openapi.yml, openapi/zoca-public-openapi.yml + live
+  probes
+versioning:
+  scheme: semver in info.version; a /tasks/api/v1 path prefix on the tasks service only
+  current:
+    zoca-platform-api: 3.20.10
+    zoca-tasks-api: 3.20.9
+    zoca-public-api: 3.20.9
+  docs: null
+  policy_published: false
+  note: info.version tracks the internal application release train (all three services sit on 3.20.x), not an API
+    contract version. The platform and public services expose unversioned paths; only the tasks service carries
+    /api/v1.
+deprecation:
+  policy_url: null
+  policy_published: false
+  sunset_header: false
+  deprecation_header: false
+  note: 'No deprecated: true operation in any of the 2,624 published operations; no Sunset/Deprecation header declared.
+    RFC 8594 not implemented.'
+deprecated_operations: []
+sla:
+  url: null
+  uptime_target: null
+  published: false
+status_page: null
+status_page_probes:
+- url: https://status.zoca.com/
+  http_status: 404
+- url: https://zoca.com/status
+  http_status: 404
+changelog:
+  published: false
+  probes:
+  - url: https://zoca.com/changelog
+    http_status: 404
+  note: No dated changelog anywhere on zoca.com or zoca.ai; the sitemap lists only marketing, blog, case-study and
+    free-tool pages.
+note: 'Zoca ships no operational-transparency surface: no status page, no SLA, no deprecation policy, no changelog
+  and no developer portal. Because there is no published contract-stability commitment, the three swagger.json documents
+  can change under consumers without notice — they are the live application build, and their info.version moved
+  between services during this pass (platform 3.20.10 vs tasks/public 3.20.9).'

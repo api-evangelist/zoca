@@ -1,0 +1,47 @@
+overlay: 1.0.0
+info:
+  title: API Evangelist enhancements for Zoca Platform API
+  version: 1.0.0
+extends: openapi/zoca-platform-openapi.yml
+x-generated: '2026-08-13'
+x-method: generated
+x-source: openapi/_original/zoca-platform-swagger.json
+x-note: Captures every change API Evangelist made to the document Zoca serves at https://api.zoca.ai/swagger.json.
+  The unmodified original is preserved at openapi/_original/zoca-platform-swagger.json. Zoca ships the default NestJS
+  Swagger scaffold metadata — info.title "API Documentation", info.description "The API description", an empty contact
+  object and an EMPTY servers[] array, which means the published contract does not name the host it describes. The
+  base URL below was established from the host the document was fetched from and from the Zoca application bundle
+  at https://app.zoca.com/assets/index-D9-9Rcsf.js, which names it as a backend endpoint.
+actions:
+- target: $.info
+  description: Name the service and the product it belongs to; the published title is the NestJS default.
+  update:
+    title: Zoca Platform API
+    description: 'The Zoca platform API behind the Zoca web app and mobile apps: scheduling, website generation,
+      Google Business Profile, discovery/local SEO, social media, booking enquiries, offers, clients, staff, billing
+      and the Zoca "brain" agent layer.'
+    x-apievangelist-original-title: API Documentation
+    x-apievangelist-original-description: The API description
+- target: $
+  description: Supply the servers[] block the published document omits.
+  update:
+    servers:
+    - url: https://api.zoca.ai
+      description: Production
+- target: $.info
+  description: Record the two contract defects that block every operationId-keyed toolchain.
+  update:
+    x-apievangelist-contract-defects:
+    - defect: minified-operation-ids
+      detail: operationId is the literal string "t_value" on 2,621 of the 2,624 operations across Zoca's three published
+        documents. SDK generators, Arazzo, MCP tool forges and Agent Skills all key on operationId and cannot consume
+        these specs as published.
+      remedy: Set explicit @ApiOperation({operationId}) or disable controller-method mangling in the production
+        build.
+    - defect: anonymous-minified-schemas
+      detail: components.schemas contains only anonymous single-letter schemas (e, t, Object) and every response
+        $refs one of them, so no request or response body is typed and there is no entity graph.
+      remedy: Emit DTO classes with @ApiProperty so NestJS/Swagger names the schemas.
+    - defect: no-published-servers
+      detail: servers[] is empty, so the document does not state which host it describes.
+      remedy: Configure the Swagger document builder addServer().

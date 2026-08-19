@@ -1,0 +1,101 @@
+generated: '2026-08-13'
+method: derived
+source: openapi/zoca-platform-openapi.yml, openapi/zoca-tasks-openapi.yml, openapi/zoca-public-openapi.yml + live
+  probes
+note: Zoca publishes no developer portal, so nothing here could be SEARCHED from documentation — every convention
+  below is derived from the three OpenAPI documents Zoca serves at <host>/swagger.json and from live unauthenticated
+  probes.
+authentication:
+  style: bearer JWT
+  header: 'Authorization: Bearer <token>'
+  scheme_name: access-token
+  see: authentication/zoca-authentication.yml
+  note: Single scheme across all three services. public.zoca.com declares the scheme but its lead-magnet operations
+    are reachable unauthenticated.
+idempotency:
+  supported: true
+  mechanism: per-operation, documented in prose
+  header: null
+  idempotency_key:
+    declared_as_parameter: false
+    documented_on:
+    - POST /tasks/api/v1/win-conversion/triggers/booking-enquiry
+    behaviour: repeat calls with the same idempotency key return alreadyEnqueued=true
+  idempotent_by_design_operations: 24
+  operations:
+  - DELETE /staff/invites/{inviteId}
+  - DELETE /staff/roles/assignments/{userRoleId}
+  - POST /billing/admin/cancellation-faqs/bulk
+  - POST /billing/admin/cancellation-reasons/bulk
+  - POST /billing/customers/ensure
+  - POST /billing/subscription/renew
+  - POST /custom-domains/{id}/connect-cname
+  - POST /custom-domains/{id}/connect-delegation
+  - POST /scheduling/bookings/{id}/confirm-attendance
+  - POST /services/{entityId}/categories/backfill
+  - POST /services/{entityId}/online-booking/backfill
+  - POST /services/{entityId}/variations/backfill
+  - POST /staff/invites/{token}/accept
+  - POST /tasks/api/v1/frontdesk/onboarding/agent-context
+  - POST /tasks/api/v1/frontdesk/onboarding/dnd/enable
+  - POST /tasks/api/v1/frontdesk/onboarding/{entityId}/import-from-provider
+  - POST /tasks/api/v1/frontdesk/onboarding/{entityId}/release
+  - POST /tasks/api/v1/frontdesk/onboarding/{entityId}/repair-agent-webhook
+  - POST /tasks/api/v1/frontdesk/onboarding/{entityId}/state-rules/seed-defaults
+  - POST /tasks/api/v1/frontdesk/onboarding/{entityId}/sync
+  - POST /tasks/api/v1/frontdesk/onboarding/{entityId}/twilio-webhooks/sync
+  - POST /tasks/api/v1/frontdesk/onboarding/{entityId}/twilio/attach
+  - POST /tasks/api/v1/win-conversion/triggers/booking-enquiry
+  - PUT /tasks/api/v1/frontdesk/onboarding/{entityId}/twilio/messaging-service/enrollment
+  gap: There is no service-wide Idempotency-Key header contract. Idempotency is asserted per operation in free-text
+    summaries and descriptions; an agent cannot discover it mechanically from parameters, and cannot safely retry
+    an undocumented write.
+pagination:
+  style: offset
+  params:
+  - page
+  - limit
+  - pageSize
+  - offset
+  - sortBy
+  cursor:
+    supported: true
+    param: cursor
+    operations: 3
+    note: cursor appears on 3 platform operations only; the dominant style is page/limit
+  response_fields: null
+  note: Response envelopes are not typed (schemas are minified), so page-metadata field names are not discoverable
+    from the spec.
+field_expansion:
+  supported: false
+metadata:
+  supported: false
+request_tracing:
+  request_id_header: null
+  note: No correlation/request-id header is declared on any operation or response.
+versioning:
+  scheme: service-level semver in info.version + a /tasks/api/v1 path prefix on the tasks service
+  current:
+    platform: 3.20.10
+    tasks: 3.20.9
+    public: 3.20.9
+  note: The platform and public services carry no version prefix in the path; only the tasks service does (/tasks/api/v1/...).
+  see: lifecycle/zoca-lifecycle.yml
+error_envelope:
+  format: NestJS HttpException
+  fields:
+  - statusCode
+  - message
+  - error
+  see: errors/zoca-problem-types.yml
+rate_limit_signalling:
+  headers: null
+  status: 429
+  see: rate-limits/zoca-rate-limits.yml
+  note: 429 is declared on 11 operations; no RateLimit-*/Retry-After header is declared anywhere.
+operation_identity:
+  operation_id_usable: false
+  note: operationId is the literal string "t_value" on 2,621 of 2,624 operations — the NestJS build minified controller
+    method names before emitting Swagger. Tools that key on operationId (SDK generators, Arazzo, Agent Skills, MCP
+    tool forges) cannot use these specs as-is; METHOD + path is the only stable operation identity Zoca publishes.
+    This is the single highest-value fix available to Zoca on its contract.

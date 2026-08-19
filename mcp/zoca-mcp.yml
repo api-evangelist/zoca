@@ -1,0 +1,121 @@
+generated: '2026-08-13'
+method: derived
+status: candidate
+source: openapi/zoca-platform-openapi.yml, openapi/zoca-tasks-openapi.yml, openapi/zoca-public-openapi.yml
+deployment:
+  mode: none
+  endpoint: null
+  install: null
+  package: null
+  auth: unknown
+  verified: derived
+note: 'Zoca ships NO MCP server, remote or local. Searched: no mention on zoca.com or in any Zoca material; no npm
+  package (registry search for "zoca" returns 0); the GitHub org github.com/zoca-ai has 2 public repos and neither
+  is an MCP server; https://api.zoca.ai/mcp returns 404 and no /.well-known/oauth-protected-resource or oauth-authorization-server
+  is served on any Zoca host. The tools below are a CANDIDATE surface DERIVED by API Evangelist from operations
+  that genuinely exist in the three contracts Zoca serves — no endpoint URL is asserted because none exists. Note
+  that these tools cannot inherit an operationId: Zoca''s build minified them to the literal string "t_value" on
+  2,621 of 2,624 operations, so each candidate tool binds to METHOD + path instead. Zoca is an unusually good MCP
+  candidate — its whole product is agent-shaped (booking, discovery, retention agents) and its booking widget already
+  exposes a conversational turn endpoint.'
+probes:
+- url: https://api.zoca.ai/mcp
+  http_status: 404
+- url: https://api.zoca.ai/.well-known/oauth-authorization-server
+  http_status: 404
+- url: https://registry.npmjs.org/-/v1/search?text=zoca
+  results: 0
+server:
+  name: zoca
+  transport: null
+  url: null
+auth:
+  method: bearer JWT (Authorization header) — the only scheme the contracts declare
+  see: authentication/zoca-authentication.yml
+tool_count: 17
+tools:
+- name: list_available_slots
+  category: scheduling
+  description: Booking-widget available slots for a service + date
+  source_operation: openapi/zoca-tasks-openapi.yml#GET /tasks/api/v1/frontdesk/widget/{entityId}/slots
+  operation_id_usable: false
+- name: list_booking_availability
+  category: scheduling
+  description: 'Booking-widget: dates with openings (grouped by date) for a service'
+  source_operation: openapi/zoca-tasks-openapi.yml#GET /tasks/api/v1/frontdesk/widget/{entityId}/availability
+  operation_id_usable: false
+- name: list_services
+  category: catalog
+  description: 'Booking-widget: paginated/searchable services'
+  source_operation: openapi/zoca-tasks-openapi.yml#GET /tasks/api/v1/frontdesk/widget/{entityId}/services
+  operation_id_usable: false
+- name: list_staff
+  category: catalog
+  description: Booking-widget staff/providers for an entity
+  source_operation: openapi/zoca-tasks-openapi.yml#GET /tasks/api/v1/frontdesk/widget/{entityId}/staff
+  operation_id_usable: false
+- name: quote_price
+  category: catalog
+  description: 'Booking-widget: display-only price quote (never charges)'
+  source_operation: openapi/zoca-tasks-openapi.yml#POST /tasks/api/v1/frontdesk/widget/{entityId}/price
+  operation_id_usable: false
+- name: hold_slot
+  category: scheduling
+  description: 'Booking-widget: hold a slot (reserve timer)'
+  source_operation: openapi/zoca-tasks-openapi.yml#POST /tasks/api/v1/frontdesk/widget/{entityId}/hold
+  operation_id_usable: false
+- name: create_booking
+  category: scheduling
+  description: 'Booking-widget: create an appointment'
+  source_operation: openapi/zoca-tasks-openapi.yml#POST /tasks/api/v1/frontdesk/widget/{entityId}/book
+  operation_id_usable: false
+- name: confirm_attendance
+  category: scheduling
+  description: Confirm attendance for a booking
+  source_operation: openapi/zoca-platform-openapi.yml#POST /scheduling/bookings/{id}/confirm-attendance
+  operation_id_usable: false
+- name: create_booking_enquiry
+  category: leads
+  description: 'Booking-widget: create a booking inquiry (engages lead follow-up)'
+  source_operation: openapi/zoca-tasks-openapi.yml#POST /tasks/api/v1/frontdesk/widget/{entityId}/lead
+  operation_id_usable: false
+- name: trigger_win_conversion
+  category: leads
+  description: Enqueue a booking-enquiry trigger for the WIN conversion agent
+  source_operation: openapi/zoca-tasks-openapi.yml#POST /tasks/api/v1/win-conversion/triggers/booking-enquiry
+  operation_id_usable: false
+- name: get_keyword_demand
+  category: discovery
+  description: Get keyword demand data
+  source_operation: openapi/zoca-public-openapi.yml#GET /lead-magnet/keyword/demand
+  operation_id_usable: false
+- name: get_place_details
+  category: discovery
+  description: Get all lead magnet data for a place
+  source_operation: openapi/zoca-public-openapi.yml#GET /lead-magnet/place/details
+  operation_id_usable: false
+- name: get_gbp_competitors
+  category: discovery
+  description: Get GBP competitor data
+  source_operation: openapi/zoca-public-openapi.yml#GET /lead-magnet/gbp/competitor
+  operation_id_usable: false
+- name: get_website_strategy
+  category: discovery
+  description: Get website strategy analysis
+  source_operation: openapi/zoca-public-openapi.yml#GET /lead-magnet/website-strategy
+  operation_id_usable: false
+- name: list_content_queue
+  category: content
+  description: null
+  source_operation: openapi/zoca-tasks-openapi.yml#GET /tasks/api/v1/content-queue/{entityId}/items
+  operation_id_usable: false
+- name: generate_content_item
+  category: content
+  description: null
+  source_operation: openapi/zoca-tasks-openapi.yml#POST /tasks/api/v1/content-queue/{entityId}/items/{itemId}/generate
+  operation_id_usable: false
+- name: get_billing_state
+  category: billing
+  description: Get the unified billing state for a location
+  source_operation: openapi/zoca-platform-openapi.yml#GET /billing/subscription
+  operation_id_usable: false

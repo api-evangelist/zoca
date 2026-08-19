@@ -1,0 +1,67 @@
+generated: '2026-08-13'
+method: searched
+source: https://zoca.com/pricing
+plan_count: 3
+currency: null
+billing_period: monthly and annual (selectable on the page; no figures shown for either)
+prices_published: false
+note: 'Zoca names three tiers on its public pricing page but publishes NO price for any of them — every tier ends
+  in "Book a demo". The page states "No setup fee, no contracts, cancel anytime." Zoca has publicly described its
+  model as commission-based (paid on delivered bookings), but no rate is published. There is no API/developer plan
+  of any kind: these are SaaS plans for salon and spa owners, not API pricing, and the harvested contracts are the
+  product''s own backend, not a metered developer product. Billing is run on Chargebee (46 /billing/* operations
+  in the platform contract; a /chargebee/webhooks receiver in the tasks contract).'
+plans:
+- name: Essential
+  price: null
+  currency: null
+  period: null
+  quota: null
+  overage: null
+  includes:
+  - 'Discovery Agent: Local SEO & listings'
+  - Google Business Profile optimization
+  - Starter website hosting
+  - 'Win Agent (Basic): AI chat & SMS response, business hours'
+  - Email support
+  cta: Book a demo
+- name: Grow
+  price: null
+  currency: null
+  period: null
+  quota: null
+  overage: null
+  badge: Most popular
+  includes:
+  - Everything in Essential
+  - Advanced SEO & neighborhood targeting
+  - 'Win Agent: 24/7 AI booking assistant (chat, SMS, voice)'
+  - Calendar sync
+  - 'Loyalty Agent: automated rebooking campaigns'
+  - Upsell & referral management
+  - Quarterly optimization calls
+  cta: Book a demo
+- name: Thrive
+  price: null
+  currency: null
+  period: null
+  quota: null
+  overage: null
+  includes:
+  - Everything in Grow
+  - Multi-location visibility strategy
+  - Comprehensive booking ecosystem
+  - Advanced retention optimization
+  - 'Social Agent: Instagram, TikTok & Facebook content creation'
+  - Reel planning & weekly content calendar
+  - 'AI Optimization Suite: conversion tracking, smart content suggestions, multi-location management, executive
+    reporting dashboard, custom analytics'
+  cta: Book a demo
+terms:
+  setup_fee: none (stated)
+  contract: none (stated)
+  cancellation: anytime (stated)
+  free_trial: null
+evidence:
+- url: https://zoca.com/pricing
+  http_status: 200

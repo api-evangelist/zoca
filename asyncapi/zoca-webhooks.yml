@@ -1,0 +1,367 @@
+generated: '2026-08-13'
+method: derived
+source: openapi/zoca-platform-openapi.yml, openapi/zoca-tasks-openapi.yml, openapi/zoca-public-openapi.yml
+spec_type: null
+asyncapi_published: false
+direction: inbound-only
+consumer_facing_webhooks: false
+note: 'IMPORTANT — READ BEFORE SCORING. Zoca publishes NO AsyncAPI document and NO customer-facing webhook subscription
+  surface. The 41 webhook/callback endpoints catalogued below are INBOUND RECEIVERS: HTTP endpoints Zoca exposes
+  so that ITS OWN vendors (Stripe, Twilio, Chargebee, Square, Pipedrive, Retell, CallHippo, Sybill, Instantly, Boulevard,
+  Mindbody) and its own OAuth providers can call Zoca. A Zoca customer cannot register a callback URL, there is
+  no event catalogue, no subscription endpoint, no signature-verification documentation and no delivery-retry contract.
+  This artifact therefore does NOT earn a Webhooks pointer in apis.yml: doing so would credit Zoca with an event
+  surface its consumers cannot use. It is recorded as evidence of the integration graph, and as the honest measurement
+  of an absent outbound event surface.'
+no_outbound_evidence:
+- no /webhooks subscription or registration operation in any of the 2,624 operations
+- no events/event-types catalogue endpoint
+- no signing-secret or signature-header documentation
+- openapi 3.0.0 documents carry no top-level webhooks object (3.1 feature, and the specs are 3.0.0)
+inbound_receiver_count: 50
+inbound_by_vendor:
+- vendor: internal
+  endpoints: 19
+- vendor: hubspot
+  endpoints: 4
+- vendor: pipedrive
+  endpoints: 3
+- vendor: retell
+  endpoints: 3
+- vendor: square
+  endpoints: 2
+- vendor: callhippo
+  endpoints: 2
+- vendor: twilio
+  endpoints: 2
+- vendor: chargebee
+  endpoints: 2
+- vendor: meta
+  endpoints: 1
+- vendor: instagram
+  endpoints: 1
+- vendor: tiktok
+  endpoints: 1
+- vendor: acuity
+  endpoints: 1
+- vendor: optexity
+  endpoints: 1
+- vendor: linear
+  endpoints: 1
+- vendor: stripe
+  endpoints: 1
+- vendor: google
+  endpoints: 1
+- vendor: lambda
+  endpoints: 1
+- vendor: sybill
+  endpoints: 1
+- vendor: boulevard
+  endpoints: 1
+- vendor: mindbody
+  endpoints: 1
+- vendor: instantly
+  endpoints: 1
+inbound_receivers:
+- method: GET
+  path: /auth/square/callback
+  spec: openapi/zoca-platform-openapi.yml
+  summary: Square OAuth callback
+  tags:
+  - auth
+- method: GET
+  path: /auth/meta/callback
+  spec: openapi/zoca-platform-openapi.yml
+  summary: Meta OAuth callback
+  tags:
+  - auth
+- method: GET
+  path: /auth/instagram/callback
+  spec: openapi/zoca-platform-openapi.yml
+  summary: Instagram OAuth Callback
+  tags:
+  - auth
+- method: GET
+  path: /auth/tiktok/callback
+  spec: openapi/zoca-platform-openapi.yml
+  summary: TikTok OAuth Callback
+  tags:
+  - auth
+- method: GET
+  path: /auth/acuity/callback
+  spec: openapi/zoca-platform-openapi.yml
+  summary: Acuity OAuth callback
+  tags:
+  - auth
+- method: POST
+  path: /entities/optexity/callback
+  spec: openapi/zoca-platform-openapi.yml
+  summary: Receive callback from Optexity when scraping task completes
+  tags:
+  - Entities
+- method: POST
+  path: /linear/webhook
+  spec: openapi/zoca-platform-openapi.yml
+  summary: Linear Webhook
+  tags:
+  - Linear
+- method: GET
+  path: /pipedrive/lead/callback
+  spec: openapi/zoca-platform-openapi.yml
+  summary: Requested a callback
+  tags:
+  - Pipedrive Webhook
+  - App
+- method: POST
+  path: /webhooks/stripe/health
+  spec: openapi/zoca-platform-openapi.yml
+  summary: Webhook health check
+  tags:
+  - Webhooks
+- method: GET
+  path: /tasks/api/v1/auth/google/callback
+  spec: openapi/zoca-tasks-openapi.yml
+  summary: Google OAuth callback
+  tags:
+  - Auth
+- method: POST
+  path: /tasks/api/v1/media/lambda/callback
+  spec: openapi/zoca-tasks-openapi.yml
+  summary: Handle media processing callback
+  tags:
+  - Media
+- method: POST
+  path: /tasks/api/v1/pipedrive/person-webhook
+  spec: openapi/zoca-tasks-openapi.yml
+  summary: Process Pipedrive webhook
+  tags:
+  - Pipedrive Webhook
+- method: POST
+  path: /tasks/api/v1/pipedrive/webhook
+  spec: openapi/zoca-tasks-openapi.yml
+  summary: Process Pipedrive webhook
+  tags:
+  - Pipedrive Webhook
+- method: POST
+  path: /tasks/api/v1/callhippo/webhook
+  spec: openapi/zoca-tasks-openapi.yml
+  summary: Process Callhippo webhook
+  tags:
+  - Callhippo
+- method: POST
+  path: /tasks/api/v1/sybill/webhook
+  spec: openapi/zoca-tasks-openapi.yml
+  summary: Process Sybill webhook
+  tags:
+  - Sybill Webhook
+- method: POST
+  path: /tasks/api/v1/square/webhook
+  spec: openapi/zoca-tasks-openapi.yml
+  summary: Handle Square webhooks for payment and booking updates
+  tags:
+  - Square
+- method: POST
+  path: /tasks/api/v1/chatbot/callhippo-sms-webhook
+  spec: openapi/zoca-tasks-openapi.yml
+  summary: Handle incoming SMS messages from CallHippo
+  tags:
+  - chatbot
+- method: POST
+  path: /tasks/api/v1/chatbot/event-webhook
+  spec: openapi/zoca-tasks-openapi.yml
+  summary: Handle various application events
+  tags:
+  - chatbot
+- method: POST
+  path: /tasks/api/v1/chatbot/webhooks/incoming-call
+  spec: openapi/zoca-tasks-openapi.yml
+  summary: Handle incoming call webhook and events from Retell
+  tags:
+  - chatbot
+- method: POST
+  path: /tasks/api/v1/chatbot/webhooks/call-events
+  spec: openapi/zoca-tasks-openapi.yml
+  summary: Handle all call events webhook from Retell (unified endpoint)
+  tags:
+  - chatbot
+- method: GET
+  path: /tasks/api/v1/chatbot/business/{entityId}/webhook-data
+  spec: openapi/zoca-tasks-openapi.yml
+  summary: Get formatted webhook data for a business entity
+  tags:
+  - chatbot
+- method: POST
+  path: /tasks/api/v1/chatbot/webhook-data
+  spec: openapi/zoca-tasks-openapi.yml
+  summary: Upsert webhook data for a phone number
+  tags:
+  - chatbot
+- method: POST
+  path: /tasks/api/v1/frontdesk/webhooks/card-complete
+  spec: openapi/zoca-tasks-openapi.yml
+  summary: Card-on-file completion callback (PCI → mononest, all platforms)
+  tags:
+  - frontdesk
+- method: POST
+  path: /tasks/api/v1/frontdesk/webhooks/boulevard/card-complete
+  spec: openapi/zoca-tasks-openapi.yml
+  summary: Card-on-file completion callback (PCI → mononest, all platforms)
+  tags:
+  - frontdesk
+- method: POST
+  path: /tasks/api/v1/frontdesk/webhooks/mindbody/card-complete
+  spec: openapi/zoca-tasks-openapi.yml
+  summary: Card-on-file completion callback (PCI → mononest, all platforms)
+  tags:
+  - frontdesk
+- method: POST
+  path: /tasks/api/v1/frontdesk/webhooks/sms
+  spec: openapi/zoca-tasks-openapi.yml
+  summary: Inbound SMS → Frontdesk agent (generic)
+  tags:
+  - frontdesk
+- method: POST
+  path: /tasks/api/v1/frontdesk/webhooks/twilio/sms
+  spec: openapi/zoca-tasks-openapi.yml
+  summary: Twilio inbound-SMS webhook (JSON mode) → Frontdesk agent
+  tags:
+  - frontdesk
+- method: POST
+  path: /tasks/api/v1/frontdesk/webhooks/retell/incoming-call
+  spec: openapi/zoca-tasks-openapi.yml
+  summary: Retell call_inbound webhook → dynamic_variables envelope
+  tags:
+  - frontdesk
+- method: POST
+  path: /tasks/api/v1/frontdesk/webhooks/retell/call-events
+  spec: openapi/zoca-tasks-openapi.yml
+  summary: Retell unified call-events webhook
+  tags:
+  - frontdesk
+- method: POST
+  path: /tasks/api/v1/frontdesk/onboarding/{entityId}/repair-agent-webhook
+  spec: openapi/zoca-tasks-openapi.yml
+  summary: Stamp the canonical Frontdesk call-events webhook on the entity's Retell agent
+  tags:
+  - Frontdesk Onboarding
+- method: POST
+  path: /tasks/api/v1/frontdesk/onboarding/{entityId}/twilio-webhooks/sync
+  spec: openapi/zoca-tasks-openapi.yml
+  summary: Repoint Twilio inbound-SMS webhook at the Frontdesk path
+  tags:
+  - Frontdesk Onboarding
+- method: POST
+  path: /tasks/api/v1/instantly/webhook
+  spec: openapi/zoca-tasks-openapi.yml
+  summary: Process Instantly webhook
+  tags:
+  - Instantly Webhook
+- method: POST
+  path: /tasks/api/v1/chargebee/webhooks
+  spec: openapi/zoca-tasks-openapi.yml
+  summary: Handle all Chargebee webhooks
+  tags:
+  - Chargebee
+- method: POST
+  path: /tasks/api/v1/chargebee/webhook
+  spec: openapi/zoca-tasks-openapi.yml
+  summary: Handle all Chargebee webhooks
+  tags:
+  - Chargebee
+- method: POST
+  path: /tasks/api/v1/gmail/webhook
+  spec: openapi/zoca-tasks-openapi.yml
+  summary: Handle Gmail webhook
+  tags:
+  - gmail
+- method: POST
+  path: /tasks/api/v1/fireflies/webhook/{entityId}
+  spec: openapi/zoca-tasks-openapi.yml
+  summary: Handle Fireflies webhook event
+  tags:
+  - fireflies
+- method: POST
+  path: /tasks/api/v1/salesforce/webhook
+  spec: openapi/zoca-tasks-openapi.yml
+  summary: Process Salesforce webhook
+  tags:
+  - Salesforce
+- method: POST
+  path: /tasks/api/v1/moengage/webhook
+  spec: openapi/zoca-tasks-openapi.yml
+  summary: Handle MoEngage webhook events
+  tags:
+  - moengage
+- method: POST
+  path: /tasks/api/v1/platform-scraper/callback
+  spec: openapi/zoca-tasks-openapi.yml
+  summary: Receive callback from scraper test suite Lambda
+  tags:
+  - Platform Scraper
+- method: POST
+  path: /tasks/api/v1/hubspot/webhook
+  spec: openapi/zoca-tasks-openapi.yml
+  summary: null
+  tags:
+  - HubSpot
+- method: GET
+  path: /tasks/api/v1/hubspot/webhook/{jobId}/status
+  spec: openapi/zoca-tasks-openapi.yml
+  summary: null
+  tags:
+  - HubSpot
+- method: POST
+  path: /tasks/api/v1/hubspot/webhook/ticket-chat
+  spec: openapi/zoca-tasks-openapi.yml
+  summary: Handle HubSpot ticket chat webhook
+  tags:
+  - HubSpot
+- method: POST
+  path: /tasks/api/v1/hubspot/webhook/ticket-update
+  spec: openapi/zoca-tasks-openapi.yml
+  summary: Handle HubSpot ticket update webhook
+  tags:
+  - HubSpot
+- method: POST
+  path: /tasks/api/v1/justcall/webhook
+  spec: openapi/zoca-tasks-openapi.yml
+  summary: Process JustCall webhook
+  tags:
+  - JustCall
+- method: PUT
+  path: /tasks/api/v1/win-onboarding/callback/status
+  spec: openapi/zoca-tasks-openapi.yml
+  summary: Update callback status
+  tags:
+  - Win Onboarding
+  - App
+- method: GET
+  path: /tasks/api/v1/win-onboarding/callback/statuses
+  spec: openapi/zoca-tasks-openapi.yml
+  summary: Get available callback statuses
+  tags:
+  - Win Onboarding
+- method: GET
+  path: /tasks/api/v1/win-onboarding/callbacks/{entityId}
+  spec: openapi/zoca-tasks-openapi.yml
+  summary: Get all callbacks for entity
+  tags:
+  - Win Onboarding
+- method: POST
+  path: /lead-magnet/website-strategy/callback
+  spec: openapi/zoca-public-openapi.yml
+  summary: Website strategy callback
+  tags:
+  - lead-magnet
+- method: POST
+  path: /lead-magnet/retell-demo/webhook
+  spec: openapi/zoca-public-openapi.yml
+  summary: Retell webhook for Hear Your Receptionist demo calls
+  tags:
+  - lead-magnet
+- method: POST
+  path: /lead-magnet/pricing/callback
+  spec: openapi/zoca-public-openapi.yml
+  summary: Record a callback request from the pricing-benchmark result page
+  tags:
+  - lead-magnet

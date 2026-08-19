@@ -1,0 +1,55 @@
+generated: '2026-08-13'
+method: derived
+source: openapi/zoca-platform-openapi.yml, openapi/zoca-tasks-openapi.yml, openapi/zoca-public-openapi.yml + live
+  probes
+standards:
+- id: openapi-3.0
+  conforms: true
+  evidence: 'three documents declare openapi: 3.0.0 and parse; 2,624 operations across 2,267 paths'
+- id: openapi-3.1
+  conforms: false
+  evidence: all three documents are 3.0.0
+- id: oauth2
+  conforms: false
+  evidence: no oauth2 securityScheme in any spec; the only scheme is an http bearer JWT
+- id: oidc
+  conforms: false
+  evidence: /.well-known/openid-configuration returns 404 on every zoca.com / zoca.ai host probed
+- id: jwt-bearer
+  conforms: true
+  evidence: 'securitySchemes.access-token: {type: http, scheme: bearer, bearerFormat: JWT} in all three specs'
+- id: rfc9457-problem-details
+  conforms: false
+  evidence: no application/problem+json response anywhere; errors use the NestJS {statusCode,message,error} envelope
+- id: rfc9116-security-txt
+  conforms: false
+  evidence: /.well-known/security.txt 404 on zoca.com, www.zoca.com, zoca.ai, api.zoca.ai, tasks.zoca.ai, public.zoca.com
+- id: rfc8615-well-known
+  conforms: false
+  evidence: every /.well-known/* path probed returned 404 (or an SPA HTML shell on app.zoca.com)
+- id: rfc8594-sunset-header
+  conforms: false
+  evidence: 'no Sunset or Deprecation header declared; no deprecated: true operation in any spec'
+- id: a2a-agent-card
+  conforms: false
+  evidence: /.well-known/agent-card.json and /.well-known/agent.json 404 on all six hosts
+- id: mcp
+  conforms: false
+  evidence: no hosted MCP server found; https://api.zoca.ai/mcp returns 404
+- id: llms-txt
+  conforms: false
+  evidence: /llms.txt 404 on zoca.com, zoca.ai, api.zoca.ai, tasks.zoca.ai, public.zoca.com
+- id: graphql
+  conforms: false
+  evidence: /graphql 404 on api.zoca.ai and tasks.zoca.ai
+- id: pagination
+  conforms: true
+  evidence: page/limit/pageSize offset pagination on 140 operations; cursor on 3 (platform spec)
+- id: idempotency
+  conforms: true
+  evidence: 27 operations are documented as idempotent by design; POST /tasks/api/v1/win-conversion/triggers/booking-enquiry
+    documents an idempotency key. No Idempotency-Key header is declared as a parameter on any operation.
+compliance_program:
+  published: false
+  note: No trust centre, no SOC 2 / ISO 27001 / HIPAA / PCI claim found on zoca.com. trust.zoca.com returns 403,
+    /security /trust /compliance all 404.

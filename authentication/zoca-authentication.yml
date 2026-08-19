@@ -1,0 +1,16 @@
+generated: '2026-08-13'
+method: derived
+source: openapi/zoca-platform-openapi.yml, openapi/zoca-public-openapi.yml, openapi/zoca-tasks-openapi.yml
+summary:
+  types:
+  - http
+schemes:
+- name: access-token
+  type: http
+  scheme: bearer
+  bearerFormat: JWT
+  description: Enter JWT token in the format Bearer <token>
+  sources:
+  - openapi/zoca-platform-openapi.yml
+  - openapi/zoca-public-openapi.yml
+  - openapi/zoca-tasks-openapi.yml

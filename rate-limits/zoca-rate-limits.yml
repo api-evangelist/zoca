@@ -1,0 +1,97 @@
+generated: '2026-08-13'
+method: derived
+source: openapi/zoca-platform-openapi.yml, openapi/zoca-tasks-openapi.yml, openapi/zoca-public-openapi.yml
+note: Zoca publishes no developer portal and no rate-limit documentation page, so nothing could be SEARCHED. These
+  limits are derived from the 429 responses declared in the three OpenAPI documents Zoca serves at <host>/swagger.json.
+  Exactly one concrete numeric limit is published anywhere in the contract (the magic-link request throttle); every
+  other throttled operation declares a 429 with no number and no window. No RateLimit-* / X-RateLimit-* / Retry-After
+  response headers are declared or documented on any operation, so an agent gets no runtime budget signal — only
+  the terminal 429.
+headers:
+  ratelimit_headers_declared: false
+  retry_after_declared: false
+  checked: all 2,624 operations across the three harvested specs; no response headers object declares any rate-limit
+    header
+status_code_on_exhaustion: 429
+limit_count: 11
+documented_numeric_limits: 1
+limits:
+- scope: per-endpoint
+  operation: POST /staff/invites
+  spec: openapi/zoca-platform-openapi.yml
+  summary: Send a staff invite to an existing or prospective user.
+  declared_429_description: Send rate limit exceeded.
+  limit: null
+  window: null
+- scope: per-email
+  operation: POST /auth/magic-link/request
+  spec: openapi/zoca-platform-openapi.yml
+  summary: Request a magic link for passwordless login
+  declared_429_description: Rate limit exceeded
+  limit: 5 requests
+  window: 5 minutes
+  source_text: Rate limited to 5 requests per email per 5-minute window.
+- scope: per-account-daily
+  operation: POST /tasks/api/v1/local-seo/grid/request
+  spec: openapi/zoca-tasks-openapi.yml
+  summary: Enqueue an on-demand 7×7 grid scan
+  declared_429_description: Daily limit reached
+  limit: null
+  window: null
+  source_text: Daily limit reached
+- scope: per-endpoint
+  operation: POST /lead-magnet/pricing/benchmark
+  spec: openapi/zoca-public-openapi.yml
+  summary: Benchmark the local price for a service (web-searched + LLM)
+  declared_429_description: Too many requests
+  limit: null
+  window: null
+- scope: per-endpoint
+  operation: POST /lead-magnet/pricing/services
+  spec: openapi/zoca-public-openapi.yml
+  summary: Discover a business's actual services (for personalized suggestions)
+  declared_429_description: Too many requests
+  limit: null
+  window: null
+- scope: per-endpoint
+  operation: POST /lead-magnet/pricing/recommend
+  spec: openapi/zoca-public-openapi.yml
+  summary: Recommend a realistic price band from experience + local market
+  declared_429_description: Too many requests
+  limit: null
+  window: null
+- scope: per-endpoint
+  operation: POST /lead-magnet/pricing/menu-analysis
+  spec: openapi/zoca-public-openapi.yml
+  summary: Count under/over-priced services across the menu vs the local market
+  declared_429_description: Too many requests
+  limit: null
+  window: null
+- scope: per-endpoint
+  operation: POST /lead-magnet/pricing/callback
+  spec: openapi/zoca-public-openapi.yml
+  summary: Record a callback request from the pricing-benchmark result page
+  declared_429_description: Too many requests
+  limit: null
+  window: null
+- scope: per-endpoint
+  operation: POST /lead-magnet/pricing/report-unlocked
+  spec: openapi/zoca-public-openapi.yml
+  summary: Record a full-report-unlock from the pricing-benchmark gate
+  declared_429_description: Too many requests
+  limit: null
+  window: null
+- scope: per-endpoint
+  operation: POST /lead-magnet/pricing/search-notify
+  spec: openapi/zoca-public-openapi.yml
+  summary: Notify (Slack) that a visitor searched a business in the pricing tool
+  declared_429_description: Too many requests
+  limit: null
+  window: null
+- scope: per-endpoint
+  operation: POST /lead-magnet/pricing/feedback
+  spec: openapi/zoca-public-openapi.yml
+  summary: Record "did you like the report?" feedback from the pricing tool
+  declared_429_description: Too many requests
+  limit: null
+  window: null

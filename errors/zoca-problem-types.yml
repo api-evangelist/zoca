@@ -1,0 +1,157 @@
+generated: '2026-08-13'
+method: derived
+source: openapi/zoca-platform-openapi.yml, openapi/zoca-tasks-openapi.yml, openapi/zoca-public-openapi.yml
+format: nest-http-exception
+note: Derived from the 4xx/5xx responses declared across all three harvested Zoca OpenAPI documents. Zoca does NOT
+  use RFC 9457 application/problem+json. The envelope is the NestJS default HttpException body — {"statusCode":<int>,"message":<string>,"error":<reason
+  phrase>} — observed live on every unrouted path (e.g. GET https://api.zoca.ai/ returns {"statusCode":404,"error":"Not
+  Found","message":"Cannot GET /"}) and in the 429 example published on POST /auth/magic-link/request. There is
+  no published error-code registry and no machine-readable problem "type" URIs; error identity is the HTTP status
+  plus a free-text message. Zoca publishes no public error reference to enrich these from.
+envelope:
+  content_type: application/json
+  fields:
+  - name: statusCode
+    type: integer
+    description: HTTP status code, repeated in the body.
+  - name: message
+    type: string | string[]
+    description: Human-readable message; an array of strings on class-validator failures.
+  - name: error
+    type: string
+    description: HTTP reason phrase (e.g. "Not Found", "Too Many Requests").
+  evidence:
+  - url: https://api.zoca.ai/nonexistent
+    http_status: 404
+    body: '{"statusCode":404,"error":"Not Found","message":"Cannot GET /nonexistent"}'
+  - source: openapi/zoca-platform-openapi.yml#/paths/~1auth~1magic-link~1request/post/responses/429
+problem_count: 12
+problems:
+- status: 400
+  title: Bad Request
+  occurrences: 373
+  common_descriptions:
+  - Invalid request parameters
+  - Invalid input data
+  - Invalid request data
+  - Invalid query parameters
+  - Bad request - validation failed
+  example_operations:
+  - DELETE /billing/subscription (platform)
+  - PATCH /billing/state (platform)
+  - POST /staff/invites (platform)
+- status: 401
+  title: Unauthorized
+  occurrences: 47
+  common_descriptions:
+  - Unauthenticated.
+  - Unauthorized - Invalid or missing JWT token or API key
+  - No authenticated staff actor
+  - Missing or invalid JWT authentication
+  - Unauthorized
+  example_operations:
+  - POST /staff/invites (platform)
+  - GET /staff/invites (platform)
+  - GET /staff/invites/{token}/email-match (platform)
+- status: 403
+  title: Forbidden
+  occurrences: 31
+  common_descriptions:
+  - Missing `manageStaffPermissions` scope.
+  - Access denied
+  - Missing scope OR built-in role.
+  - Missing `staff:read` scope.
+  - Denied `staff:member.read` action.
+  example_operations:
+  - POST /staff/invites (platform)
+  - GET /staff/invites (platform)
+  - PATCH /staff/invites/{inviteId} (platform)
+- status: 404
+  title: Not Found
+  occurrences: 337
+  common_descriptions:
+  - Entity not found
+  - Template not found
+  - Booking not found
+  - Bundle not found
+  - Custom domain not found
+  example_operations:
+  - GET /billing/cancellation-stats (platform)
+  - GET /billing/state (platform)
+  - GET /staff/invites/{token} (platform)
+- status: 409
+  title: Conflict
+  occurrences: 30
+  common_descriptions:
+  - Sale is settled
+  - Package is not ACTIVE
+  - (templateId, themeId) pair already exists
+  - Invite already accepted by another user.
+  - Invite is not PENDING (cannot edit role).
+  example_operations:
+  - POST /staff/invites/{token}/accept (platform)
+  - PATCH /staff/invites/{inviteId} (platform)
+  - DELETE /staff/invites/{inviteId} (platform)
+- status: 410
+  title: Gone
+  occurrences: 2
+  common_descriptions:
+  - Invite expired.
+  example_operations:
+  - GET /staff/invites/{token} (platform)
+  - POST /staff/invites/{token}/accept (platform)
+- status: 412
+  title: Precondition Failed
+  occurrences: 1
+  common_descriptions:
+  - Stale version — reload and retry
+  example_operations:
+  - PATCH /inventory/products/entity/{entityId}/{id} (platform)
+- status: 422
+  title: '422'
+  occurrences: 1
+  common_descriptions:
+  - Redeemed items lack a frozen à-la-carte price
+  example_operations:
+  - GET /packages/{entityId}/purchased/{id}/refund-quote (platform)
+- status: 428
+  title: '428'
+  occurrences: 1
+  common_descriptions:
+  - If-Match header missing
+  example_operations:
+  - PATCH /inventory/products/entity/{entityId}/{id} (platform)
+- status: 429
+  title: Too Many Requests
+  occurrences: 11
+  common_descriptions:
+  - Too many requests
+  - Send rate limit exceeded.
+  - Rate limit exceeded
+  - Daily limit reached
+  example_operations:
+  - POST /staff/invites (platform)
+  - POST /auth/magic-link/request (platform)
+  - POST /tasks/api/v1/local-seo/grid/request (tasks)
+- status: 500
+  title: Internal Server Error
+  occurrences: 213
+  common_descriptions:
+  - Internal server error
+  - Failed to enqueue job
+  - Internal server error.
+  - Agent execution failed
+  - Internal server error while generating hosted page.
+  example_operations:
+  - POST /app-blocker/templates (platform)
+  - GET /app-blocker/templates (platform)
+  - GET /chatbot/human-handovers/{clientId} (platform)
+- status: 503
+  title: Service Unavailable
+  occurrences: 20
+  common_descriptions:
+  - Feature disabled (killswitch).
+  example_operations:
+  - POST /staff/invites (platform)
+  - GET /staff/invites (platform)
+  - POST /staff/invites/{token}/accept (platform)

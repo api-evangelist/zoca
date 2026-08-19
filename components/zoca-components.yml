@@ -1,0 +1,137 @@
+generated: '2026-08-13'
+method: derived
+source: openapi/zoca-tasks-openapi.yml
+note: 'Derived from Zoca''s own contract, not from documentation — Zoca publishes no developer docs and no embed
+  guide. The tasks service carries a fully-specified embeddable BOOKING WIDGET surface (29 operations tagged frontdesk-widget,
+  every one summarised "Booking-widget: ..."), which is the prebuilt client-side component Zoca drops onto the salon
+  websites it generates. NO public loader script or embed snippet could be found: widget.zoca.com, widget.zoca.ai,
+  cdn.zoca.com and public.zoca.com/widget.js all 404, and app.zoca.com/widget.js returns HTTP 200 only because that
+  host is an Angular SPA catch-all that serves index.html for every path — it is not a script. The component is
+  real; a third party cannot embed it.'
+families:
+- name: FrontDesk booking widget
+  kind: hosted-prebuilt
+  embeddable_by_third_party: false
+  loader: null
+  operation_count: 29
+  capabilities:
+  - conversational booking agent turn (SSE stream)
+  - service + staff + add-on catalogue
+  - availability and slot search
+  - slot hold with reserve timer
+  - multi-service cart and checkout
+  - promo-code verification
+  - display-only price quote
+  - card-on-file via Stripe SetupIntent
+  - lead capture and funnel-step reporting
+  operations:
+  - method: GET
+    path: /tasks/api/v1/frontdesk/widget/{entityId}/agent/turn
+    summary: Conversational booking-agent turn (SSE stream)
+  - method: GET
+    path: /tasks/api/v1/frontdesk/widget/{entityId}/home-suggestions
+    summary: Quick-book suggestion cards for the widget home
+  - method: GET
+    path: /tasks/api/v1/frontdesk/widget/{entityId}/service-slots
+    summary: On-demand slot options for one home-card service
+  - method: POST
+    path: /tasks/api/v1/frontdesk/widget/{entityId}/card/setup-intent
+    summary: Create a Stripe SetupIntent to vault a card in the widget
+  - method: POST
+    path: /tasks/api/v1/frontdesk/widget/{entityId}/client/identity
+    summary: Attach name + phone to a web client before a card-on-file booking
+  - method: GET
+    path: /tasks/api/v1/frontdesk/widget/{entityId}/card-on-file
+    summary: Whether the widget's client already has a saved card
+  - method: POST
+    path: /tasks/api/v1/frontdesk/widget/{entityId}/quick-book
+    summary: One-click deterministic booking for a quick-book slot
+  - method: POST
+    path: /tasks/api/v1/frontdesk/widget/{entityId}/learn
+    summary: Ingest a business website into the agent knowledge base (internal)
+  - method: GET
+    path: /tasks/api/v1/frontdesk/widget/{entityId}/config
+    summary: 'Booking-widget config: first page of services + categories + prefs'
+  - method: GET
+    path: /tasks/api/v1/frontdesk/widget/{entityId}/services
+    summary: 'Booking-widget: paginated/searchable services'
+  - method: GET
+    path: /tasks/api/v1/frontdesk/widget/{entityId}/staff
+    summary: Booking-widget staff/providers for an entity
+  - method: GET
+    path: /tasks/api/v1/frontdesk/widget/{entityId}/addons
+    summary: Booking-widget add-ons (suggestable extras + staff surcharges)
+  - method: GET
+    path: /tasks/api/v1/frontdesk/widget/{entityId}/slots
+    summary: Booking-widget available slots for a service + date
+  - method: GET
+    path: /tasks/api/v1/frontdesk/widget/{entityId}/availability
+    summary: 'Booking-widget: dates with openings (grouped by date) for a service'
+  - method: POST
+    path: /tasks/api/v1/frontdesk/widget/{entityId}/client
+    summary: 'Booking-widget: find-or-create the platform client'
+  - method: POST
+    path: /tasks/api/v1/frontdesk/widget/{entityId}/identify
+    summary: 'Booking-widget: resolve the customer pricing tier'
+  - method: POST
+    path: /tasks/api/v1/frontdesk/widget/{entityId}/price
+    summary: 'Booking-widget: display-only price quote (never charges)'
+  - method: POST
+    path: /tasks/api/v1/frontdesk/widget/{entityId}/verify-promo
+    summary: 'Booking-widget: verify a promo code (no charge, no redemption)'
+  - method: POST
+    path: /tasks/api/v1/frontdesk/widget/{entityId}/lead
+    summary: 'Booking-widget: create a booking inquiry (engages lead follow-up)'
+  - method: POST
+    path: /tasks/api/v1/frontdesk/widget/{entityId}/funnel
+    summary: 'Booking-widget: report a funnel step (service/slot selected)'
+  - method: POST
+    path: /tasks/api/v1/frontdesk/widget/{entityId}/card-status
+    summary: 'Booking-widget: card-on-file requirement + on-file status'
+  - method: POST
+    path: /tasks/api/v1/frontdesk/widget/{entityId}/collect-card
+    summary: 'Booking-widget: mint a secure card-collection link'
+  - method: POST
+    path: /tasks/api/v1/frontdesk/widget/{entityId}/book
+    summary: 'Booking-widget: create an appointment'
+  - method: POST
+    path: /tasks/api/v1/frontdesk/widget/{entityId}/hold
+    summary: 'Booking-widget: hold a slot (reserve timer)'
+  - method: POST
+    path: /tasks/api/v1/frontdesk/widget/{entityId}/cart/items
+    summary: 'Booking-widget: add a service (its own slot + staff) to the cart'
+  - method: PATCH
+    path: /tasks/api/v1/frontdesk/widget/{entityId}/cart/items/{itemId}
+    summary: 'Booking-widget: re-slot / re-staff a cart item'
+  - method: DELETE
+    path: /tasks/api/v1/frontdesk/widget/{entityId}/cart/items/{itemId}
+    summary: 'Booking-widget: remove a cart item'
+  - method: GET
+    path: /tasks/api/v1/frontdesk/widget/{entityId}/cart
+    summary: 'Booking-widget: read the cached cart'
+  - method: POST
+    path: /tasks/api/v1/frontdesk/widget/{entityId}/cart/checkout
+    summary: 'Booking-widget: book the whole cart as one multi-service appointment'
+- name: FrontDesk chat / SMS / voice agent
+  kind: hosted-agent
+  embeddable_by_third_party: false
+  loader: null
+  operation_count: 88
+  note: Backed by Retell (voice) and Twilio (SMS); provisioned per entity through the frontdesk onboarding operations.
+    Not embeddable by a third party.
+  sample_paths:
+  - /tasks/api/v1/chatbot/callhippo-sms-webhook
+  - /tasks/api/v1/chatbot/continue-conversation
+  - /tasks/api/v1/chatbot/soft-delete-messages
+  - /tasks/api/v1/chatbot/start-conversation
+  - /tasks/api/v1/chatbot/start-conversation-production
+  - /tasks/api/v1/chatbot/process-followups
+  - /tasks/api/v1/chatbot/deactivate-handover/{clientId}
+  - /tasks/api/v1/chatbot/activate-handover/{clientId}
+  - /tasks/api/v1/chatbot/followups/due
+  - /tasks/api/v1/chatbot/followups/{clientId}
+  - /tasks/api/v1/chatbot/{clientId}/next-followup
+  - /tasks/api/v1/chatbot/event-webhook
+  - /tasks/api/v1/chatbot/sp-context/{locationEntityId}
+  - /tasks/api/v1/chatbot/booking-requests/update
+  - /tasks/api/v1/chatbot/booking-requests/pending

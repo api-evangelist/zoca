@@ -1,0 +1,68 @@
+generated: '2026-08-13'
+method: searched
+source: npm registry search + registry metadata endpoints, PyPI, RubyGems, crates.io, pkg.go.dev, Maven Central,
+  NuGet, Packagist, github.com/zoca-ai, zoca.com
+package_count: 0
+official_sdk_count: 0
+packages: []
+note: Zoca publishes NO first-party client library in any public package registry. This was searched, not assumed.
+  registry.npmjs.org search for "zoca" returns 0 results; pypi.org/pypi/zoca/json 404; rubygems 404; crates.io 403/absent;
+  the GitHub organisation github.com/zoca-ai holds 2 public repos (localstack-ui, zoca-training) and neither is
+  an SDK. The only internal package scope referenced in the harvested contracts, @mononest/win, is private (npm
+  404). Zoca has 2,624 published operations and zero client libraries.
+registries_checked:
+- registry: npm
+  query: https://registry.npmjs.org/-/v1/search?text=zoca
+  results: 0
+  version: null
+  published: null
+- registry: npm
+  name: '@mononest/win'
+  url: https://registry.npmjs.org/@mononest%2Fwin
+  status: 404
+  version: null
+  published: null
+  note: Referenced by name in the tasks OpenAPI descriptions; private/unpublished.
+- registry: pypi
+  name: zoca
+  status: 404
+  version: null
+  published: null
+- registry: rubygems
+  name: zoca
+  status: 404
+  version: null
+  published: null
+- registry: crates.io
+  name: zoca
+  status: 403
+  version: null
+  published: null
+  note: crates.io rejected the unauthenticated request; no crate is referenced by Zoca anywhere.
+- registry: github
+  org: zoca-ai
+  url: https://github.com/zoca-ai
+  public_repos: 2
+  sdks: 0
+first_party_applications:
+- kind: mobile-app
+  platform: ios
+  name: 'Zoca: Grow your local business'
+  bundle_id: com.zoca.ai
+  publisher: ZOCAAI TECHNOLOGIES PRIVATE LIMITED
+  url: https://apps.apple.com/us/app/zoca-grow-your-local-business/id6738140998
+  registry: app-store
+  version: 4.0.9
+  published: '2026-07-13'
+  official: true
+  note: Not an SDK. Recorded because it is the consumer of the "App" tag (289 operations) in the platform contract.
+- kind: mobile-app
+  platform: android
+  name: 'Zoca: Grow your local business'
+  package: com.zoca.ai
+  url: https://play.google.com/store/apps/details?id=com.zoca.ai
+  registry: google-play
+  version: null
+  published: null
+  official: true
+  note: Google Play exposes no unauthenticated metadata endpoint; version not recorded rather than guessed.
