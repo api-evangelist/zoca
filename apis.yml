@@ -50,6 +50,25 @@ tags:
 - Booking
 - Local SEO
 - Google Business Profile
+- Social-Media
+- Salon Software
+- Spa
+- Software-as-a-Service
+- Lead Generation
+- Customer Retention
+- Small Business
+tags_raw:
+- Company
+- Artificial Intelligence
+- Marketing
+- Beauty and Wellness
+- Local Business
+- AI Agents
+- Appointments
+- Scheduling
+- Booking
+- Local SEO
+- Google Business Profile
 - Social Media
 - Salon Software
 - Spa
@@ -71,6 +90,14 @@ apis:
   baseURL: https://api.zoca.ai
   image: https://cdn.prod.website-files.com/68137618ce08fc7361daa786/6824fbebce901ed009a1e222_3.avif
   tags:
+  - Scheduling
+  - Bookings
+  - Local SEO
+  - Google Business Profile
+  - Social-Media
+  - Billing
+  - Websites
+  tags_raw:
   - Scheduling
   - Bookings
   - Local SEO
@@ -98,6 +125,14 @@ apis:
   baseURL: https://tasks.zoca.ai
   image: https://cdn.prod.website-files.com/68137618ce08fc7361daa786/6824fbebce901ed009a1e222_3.avif
   tags:
+  - Content
+  - Automation
+  - Booking Widget
+  - Voice Agents
+  - SMS
+  - Local SEO
+  - Webhook
+  tags_raw:
   - Content
   - Automation
   - Booking Widget
