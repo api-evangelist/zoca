@@ -77,111 +77,2351 @@ tags_raw:
 - Customer Retention
 - Small Business
 apis:
-- aid: zoca:zoca-platform-api
-  name: Zoca Platform API
-  slug: zoca-platform-api
-  description: The Zoca platform API — the backend the Zoca web application and the iOS/Android apps call. 1,413
-    paths and 1,700 operations covering scheduling and bookings, website generation and custom domains, Google Business
-    Profile management, discovery and local SEO, social media, services, staff and clients, offers and packages,
-    booking enquiries, inventory, Chargebee billing, and the Zoca "brain" agent layer. Served publicly and unauthenticated
-    as an OpenAPI 3.0.0 document at https://api.zoca.ai/swagger.json with no accompanying documentation. Auth is
-    a bearer JWT.
+- aid: zoca:zoca-acm-api
+  name: Zoca ACM API
+  description: The ACM API from Zoca — 8 operation(s) for acm.
   humanURL: https://app.zoca.com/
   baseURL: https://api.zoca.ai
-  image: https://cdn.prod.website-files.com/68137618ce08fc7361daa786/6824fbebce901ed009a1e222_3.avif
   tags:
-  - Scheduling
-  - Bookings
-  - Local SEO
-  - Google Business Profile
-  - Social-Media
-  - Billing
-  - Websites
-  tags_raw:
-  - Scheduling
-  - Bookings
-  - Local SEO
-  - Google Business Profile
-  - Social Media
-  - Billing
-  - Websites
+  - ACM
   properties:
   - type: OpenAPI
-    url: openapi/zoca-platform-openapi.yml
-  - type: OpenAPI
-    url: openapi/_original/zoca-platform-swagger.json
-    name: Original as served by Zoca
-  - type: Overlay
-    url: overlays/zoca-platform-overlay.yaml
-- aid: zoca:zoca-tasks-api
-  name: Zoca Tasks API
-  slug: zoca-tasks-api
-  description: The Zoca tasks and automation service. 785 paths and 855 operations under /tasks/api/v1 covering
-    the AI content queue and content planning, FrontDesk voice and SMS agent onboarding on Retell and Twilio, the
-    embeddable FrontDesk booking widget, local-SEO grid scans, WIN conversion triggers, and 25 inbound webhook receivers
-    for Zoca's own vendors. Served publicly and unauthenticated as an OpenAPI 3.0.0 document at https://tasks.zoca.ai/swagger.json.
-    Auth is a bearer JWT.
+    url: openapi/zoca-acm-api-openapi.yml
+  - type: Components
+    url: components/zoca-components.yml
+- aid: zoca:zoca-acuity-api
+  name: Zoca Acuity API
+  description: The Acuity API from Zoca — 8 operation(s) for acuity.
   humanURL: https://app.zoca.com/
-  baseURL: https://tasks.zoca.ai
-  image: https://cdn.prod.website-files.com/68137618ce08fc7361daa786/6824fbebce901ed009a1e222_3.avif
+  baseURL: https://api.zoca.ai
+  tags:
+  - Acuity
+  properties:
+  - type: OpenAPI
+    url: openapi/zoca-acuity-api-openapi.yml
+  - type: Components
+    url: components/zoca-components.yml
+- aid: zoca:zoca-addongroups-api
+  name: Zoca Addon Groups API
+  description: The AddonGroups API from Zoca — 9 operation(s) for addongroups.
+  humanURL: https://app.zoca.com/
+  baseURL: https://api.zoca.ai
+  tags:
+  - AddonGroups
+  properties:
+  - type: OpenAPI
+    url: openapi/zoca-addongroups-api-openapi.yml
+  - type: Components
+    url: components/zoca-components.yml
+- aid: zoca:zoca-addons-api
+  name: Zoca Addons API
+  description: The Addons API from Zoca — 8 operation(s) for addons.
+  humanURL: https://app.zoca.com/
+  baseURL: https://api.zoca.ai
+  tags:
+  - Addons
+  properties:
+  - type: OpenAPI
+    url: openapi/zoca-addons-api-openapi.yml
+  - type: Components
+    url: components/zoca-components.yml
+- aid: zoca:zoca-aeo-lead-magnet-api
+  name: Zoca Aeo Lead Magnet API
+  description: The aeo-lead-magnet API from Zoca — 3 operation(s) for aeo-lead-magnet.
+  humanURL: https://app.zoca.com/
+  baseURL: https://api.zoca.ai
+  tags:
+  - aeo-lead-magnet
+  properties:
+  - type: OpenAPI
+    url: openapi/zoca-aeo-lead-magnet-api-openapi.yml
+  - type: Components
+    url: components/zoca-components.yml
+- aid: zoca:zoca-agents-api
+  name: Zoca Agents API
+  description: The Agents API from Zoca — 5 operation(s) for agents.
+  humanURL: https://app.zoca.com/
+  baseURL: https://api.zoca.ai
+  tags:
+  - Agents
+  properties:
+  - type: OpenAPI
+    url: openapi/zoca-agents-api-openapi.yml
+  - type: Components
+    url: components/zoca-components.yml
+- aid: zoca:zoca-api-keys-api
+  name: Zoca API Keys API
+  description: The API Keys API from Zoca — 3 operation(s) for api keys.
+  humanURL: https://app.zoca.com/
+  baseURL: https://api.zoca.ai
+  tags:
+  - API Keys
+  properties:
+  - type: OpenAPI
+    url: openapi/zoca-api-keys-api-openapi.yml
+  - type: Components
+    url: components/zoca-components.yml
+- aid: zoca:zoca-app-api
+  name: Zoca App API
+  description: Endpoints consumed by the mobile App
+  humanURL: https://app.zoca.com/
+  baseURL: https://api.zoca.ai
+  tags:
+  - App
+  properties:
+  - type: OpenAPI
+    url: openapi/zoca-app-api-openapi.yml
+  - type: Components
+    url: components/zoca-components.yml
+- aid: zoca:zoca-app-blocker-api
+  name: Zoca App Blocker API
+  description: The app-blocker API from Zoca — 2 operation(s) for app-blocker.
+  humanURL: https://app.zoca.com/
+  baseURL: https://api.zoca.ai
+  tags:
+  - app-blocker
+  properties:
+  - type: OpenAPI
+    url: openapi/zoca-app-blocker-api-openapi.yml
+  - type: Components
+    url: components/zoca-components.yml
+- aid: zoca:zoca-app-blocker-updates-api
+  name: Zoca App Blocker Updates API
+  description: The App Blocker Updates API from Zoca — 4 operation(s) for app blocker updates.
+  humanURL: https://app.zoca.com/
+  baseURL: https://api.zoca.ai
+  tags:
+  - App Blocker Updates
+  properties:
+  - type: OpenAPI
+    url: openapi/zoca-app-blocker-updates-api-openapi.yml
+  - type: Components
+    url: components/zoca-components.yml
+- aid: zoca:zoca-approvals-api
+  name: Zoca Approvals API
+  description: The Approvals API from Zoca — 2 operation(s) for approvals.
+  humanURL: https://app.zoca.com/
+  baseURL: https://api.zoca.ai
+  tags:
+  - Approvals
+  properties:
+  - type: OpenAPI
+    url: openapi/zoca-approvals-api-openapi.yml
+  - type: Components
+    url: components/zoca-components.yml
+- aid: zoca:zoca-auth-api
+  name: Zoca Auth API
+  description: The auth API from Zoca — 41 operation(s) for auth.
+  humanURL: https://app.zoca.com/
+  baseURL: https://api.zoca.ai
+  tags:
+  - auth
+  properties:
+  - type: OpenAPI
+    url: openapi/zoca-auth-api-openapi.yml
+  - type: Components
+    url: components/zoca-components.yml
+- aid: zoca:zoca-billing-api
+  name: Zoca Billing API
+  description: The billing API from Zoca — 46 operation(s) for billing.
+  humanURL: https://app.zoca.com/
+  baseURL: https://api.zoca.ai
+  tags:
+  - billing
+  properties:
+  - type: OpenAPI
+    url: openapi/zoca-billing-api-openapi.yml
+  - type: Components
+    url: components/zoca-components.yml
+- aid: zoca:zoca-booking-enquiries-api
+  name: Zoca Booking Enquiries API
+  description: The booking-enquiries API from Zoca — 33 operation(s) for booking-enquiries.
+  humanURL: https://app.zoca.com/
+  baseURL: https://api.zoca.ai
+  tags:
+  - booking-enquiries
+  properties:
+  - type: OpenAPI
+    url: openapi/zoca-booking-enquiries-api-openapi.yml
+  - type: Components
+    url: components/zoca-components.yml
+- aid: zoca:zoca-booking-enquiries-config-api
+  name: Zoca Booking Enquiries Config API
+  description: >-
+    The booking-enquiries-config API from Zoca — 10 operation(s) for booking-enquiries-config.
+  humanURL: https://app.zoca.com/
+  baseURL: https://api.zoca.ai
+  tags:
+  - booking-enquiries-config
+  properties:
+  - type: OpenAPI
+    url: openapi/zoca-booking-enquiries-config-api-openapi.yml
+  - type: Components
+    url: components/zoca-components.yml
+- aid: zoca:zoca-booking-search-api
+  name: Zoca Booking Search API
+  description: The Booking Search API from Zoca — 5 operation(s) for booking search.
+  humanURL: https://app.zoca.com/
+  baseURL: https://api.zoca.ai
+  tags:
+  - Booking Search
+  properties:
+  - type: OpenAPI
+    url: openapi/zoca-booking-search-api-openapi.yml
+  - type: Components
+    url: components/zoca-components.yml
+- aid: zoca:zoca-bookings-api
+  name: Zoca Bookings API
+  description: The Bookings API from Zoca — 39 operation(s) for bookings.
+  humanURL: https://app.zoca.com/
+  baseURL: https://api.zoca.ai
+  tags:
+  - Bookings
+  properties:
+  - type: OpenAPI
+    url: openapi/zoca-bookings-api-openapi.yml
+  - type: Components
+    url: components/zoca-components.yml
+- aid: zoca:zoca-booksy-api
+  name: Zoca Booksy API
+  description: The Booksy API from Zoca — 5 operation(s) for booksy.
+  humanURL: https://app.zoca.com/
+  baseURL: https://api.zoca.ai
+  tags:
+  - Booksy
+  properties:
+  - type: OpenAPI
+    url: openapi/zoca-booksy-api-openapi.yml
+  - type: Components
+    url: components/zoca-components.yml
+- aid: zoca:zoca-brain-agent-api
+  name: Zoca Brain Agent API
+  description: The Brain Agent API from Zoca — 6 operation(s) for brain agent.
+  humanURL: https://app.zoca.com/
+  baseURL: https://api.zoca.ai
+  tags:
+  - Brain Agent
+  properties:
+  - type: OpenAPI
+    url: openapi/zoca-brain-agent-api-openapi.yml
+  - type: Components
+    url: components/zoca-components.yml
+- aid: zoca:zoca-bulk-sms-api
+  name: Zoca Bulk Sms API
+  description: The bulk-sms API from Zoca — 3 operation(s) for bulk-sms.
+  humanURL: https://app.zoca.com/
+  baseURL: https://api.zoca.ai
+  tags:
+  - bulk-sms
+  properties:
+  - type: OpenAPI
+    url: openapi/zoca-bulk-sms-api-openapi.yml
+  - type: Components
+    url: components/zoca-components.yml
+- aid: zoca:zoca-bundles-api
+  name: Zoca Bundles API
+  description: The Bundles API from Zoca — 12 operation(s) for bundles.
+  humanURL: https://app.zoca.com/
+  baseURL: https://api.zoca.ai
+  tags:
+  - Bundles
+  properties:
+  - type: OpenAPI
+    url: openapi/zoca-bundles-api-openapi.yml
+  - type: Components
+    url: components/zoca-components.yml
+- aid: zoca:zoca-business-enrichment-api
+  name: Zoca Business Enrichment API
+  description: The business-enrichment API from Zoca — 1 operation(s) for business-enrichment.
+  humanURL: https://app.zoca.com/
+  baseURL: https://api.zoca.ai
+  tags:
+  - business-enrichment
+  properties:
+  - type: OpenAPI
+    url: openapi/zoca-business-enrichment-api-openapi.yml
+  - type: Components
+    url: components/zoca-components.yml
+- aid: zoca:zoca-business-profile-api
+  name: Zoca Business Profile API
+  description: The business-profile API from Zoca — 14 operation(s) for business-profile.
+  humanURL: https://app.zoca.com/
+  baseURL: https://api.zoca.ai
+  tags:
+  - business-profile
+  properties:
+  - type: OpenAPI
+    url: openapi/zoca-business-profile-api-openapi.yml
+  - type: Components
+    url: components/zoca-components.yml
+- aid: zoca:zoca-calendar-feed-api
+  name: Zoca Calendar Feed API
+  description: The Calendar Feed API from Zoca — 9 operation(s) for calendar feed.
+  humanURL: https://app.zoca.com/
+  baseURL: https://api.zoca.ai
+  tags:
+  - Calendar Feed
+  properties:
+  - type: OpenAPI
+    url: openapi/zoca-calendar-feed-api-openapi.yml
+  - type: Components
+    url: components/zoca-components.yml
+- aid: zoca:zoca-callhippo-api
+  name: Zoca Callhippo API
+  description: The Callhippo API from Zoca — 5 operation(s) for callhippo.
+  humanURL: https://app.zoca.com/
+  baseURL: https://api.zoca.ai
+  tags:
+  - Callhippo
+  properties:
+  - type: OpenAPI
+    url: openapi/zoca-callhippo-api-openapi.yml
+  - type: Components
+    url: components/zoca-components.yml
+- aid: zoca:zoca-campaigns-api
+  name: Zoca Campaigns API
+  description: The Campaigns API from Zoca — 12 operation(s) for campaigns.
+  humanURL: https://app.zoca.com/
+  baseURL: https://api.zoca.ai
+  tags:
+  - Campaigns
+  properties:
+  - type: OpenAPI
+    url: openapi/zoca-campaigns-api-openapi.yml
+  - type: Components
+    url: components/zoca-components.yml
+- aid: zoca:zoca-chargebee-api
+  name: Zoca Chargebee API
+  description: The chargebee API from Zoca — 11 operation(s) for chargebee.
+  humanURL: https://app.zoca.com/
+  baseURL: https://api.zoca.ai
+  tags:
+  - chargebee
+  properties:
+  - type: OpenAPI
+    url: openapi/zoca-chargebee-api-openapi.yml
+  - type: Components
+    url: components/zoca-components.yml
+- aid: zoca:zoca-chat-api
+  name: Zoca Chat API
+  description: The Chat API from Zoca — 17 operation(s) for chat.
+  humanURL: https://app.zoca.com/
+  baseURL: https://api.zoca.ai
+  tags:
+  - Chat
+  properties:
+  - type: OpenAPI
+    url: openapi/zoca-chat-api-openapi.yml
+  - type: Components
+    url: components/zoca-components.yml
+- aid: zoca:zoca-chatbot-api
+  name: Zoca Chatbot API
+  description: The chatbot API from Zoca — 82 operation(s) for chatbot.
+  humanURL: https://app.zoca.com/
+  baseURL: https://api.zoca.ai
+  tags:
+  - chatbot
+  properties:
+  - type: OpenAPI
+    url: openapi/zoca-chatbot-api-openapi.yml
+  - type: Components
+    url: components/zoca-components.yml
+- aid: zoca:zoca-chatbot-test-data-api
+  name: Zoca Chatbot Test Data API
+  description: The Chatbot Test Data API from Zoca — 5 operation(s) for chatbot test data.
+  humanURL: https://app.zoca.com/
+  baseURL: https://api.zoca.ai
+  tags:
+  - Chatbot Test Data
+  properties:
+  - type: OpenAPI
+    url: openapi/zoca-chatbot-test-data-api-openapi.yml
+  - type: Components
+    url: components/zoca-components.yml
+- aid: zoca:zoca-checkout-api
+  name: Zoca Checkout API
+  description: The Checkout API from Zoca — 14 operation(s) for checkout.
+  humanURL: https://app.zoca.com/
+  baseURL: https://api.zoca.ai
+  tags:
+  - Checkout
+  properties:
+  - type: OpenAPI
+    url: openapi/zoca-checkout-api-openapi.yml
+  - type: Components
+    url: components/zoca-components.yml
+- aid: zoca:zoca-clients-api
+  name: Zoca Clients API
+  description: The Clients API from Zoca — 24 operation(s) for clients.
+  humanURL: https://app.zoca.com/
+  baseURL: https://api.zoca.ai
+  tags:
+  - Clients
+  properties:
+  - type: OpenAPI
+    url: openapi/zoca-clients-api-openapi.yml
+  - type: Components
+    url: components/zoca-components.yml
+- aid: zoca:zoca-cloudfront-api
+  name: Zoca Cloud Front API
+  description: The CloudFront API from Zoca — 7 operation(s) for cloudfront.
+  humanURL: https://app.zoca.com/
+  baseURL: https://api.zoca.ai
+  tags:
+  - CloudFront
+  properties:
+  - type: OpenAPI
+    url: openapi/zoca-cloudfront-api-openapi.yml
+  - type: Components
+    url: components/zoca-components.yml
+- aid: zoca:zoca-cohorts-api
+  name: Zoca Cohorts API
+  description: The cohorts API from Zoca — 12 operation(s) for cohorts.
+  humanURL: https://app.zoca.com/
+  baseURL: https://api.zoca.ai
+  tags:
+  - cohorts
+  properties:
+  - type: OpenAPI
+    url: openapi/zoca-cohorts-api-openapi.yml
+  - type: Components
+    url: components/zoca-components.yml
+- aid: zoca:zoca-command-center-api
+  name: Zoca Command Center API
+  description: The Command Center API from Zoca — 8 operation(s) for command center.
+  humanURL: https://app.zoca.com/
+  baseURL: https://api.zoca.ai
+  tags:
+  - Command Center
+  properties:
+  - type: OpenAPI
+    url: openapi/zoca-command-center-api-openapi.yml
+  - type: Components
+    url: components/zoca-components.yml
+- aid: zoca:zoca-comms-api
+  name: Zoca Comms API
+  description: The comms API from Zoca — 12 operation(s) for comms.
+  humanURL: https://app.zoca.com/
+  baseURL: https://api.zoca.ai
+  tags:
+  - comms
+  properties:
+  - type: OpenAPI
+    url: openapi/zoca-comms-api-openapi.yml
+  - type: Components
+    url: components/zoca-components.yml
+- aid: zoca:zoca-comms-inbox-api
+  name: Zoca Comms Inbox API
+  description: The Comms Inbox API from Zoca — 10 operation(s) for comms inbox.
+  humanURL: https://app.zoca.com/
+  baseURL: https://api.zoca.ai
+  tags:
+  - Comms Inbox
+  properties:
+  - type: OpenAPI
+    url: openapi/zoca-comms-inbox-api-openapi.yml
+  - type: Components
+    url: components/zoca-components.yml
+- aid: zoca:zoca-compensation-api
+  name: Zoca Compensation API
+  description: The Compensation API from Zoca — 9 operation(s) for compensation.
+  humanURL: https://app.zoca.com/
+  baseURL: https://api.zoca.ai
+  tags:
+  - Compensation
+  properties:
+  - type: OpenAPI
+    url: openapi/zoca-compensation-api-openapi.yml
+  - type: Components
+    url: components/zoca-components.yml
+- aid: zoca:zoca-content-api
+  name: Zoca Content API
+  description: The Content API from Zoca — 43 operation(s) for content.
+  humanURL: https://app.zoca.com/
+  baseURL: https://api.zoca.ai
   tags:
   - Content
-  - Automation
-  - Booking Widget
-  - Voice Agents
-  - SMS
+  properties:
+  - type: OpenAPI
+    url: openapi/zoca-content-api-openapi.yml
+  - type: Components
+    url: components/zoca-components.yml
+- aid: zoca:zoca-content-keywords-api
+  name: Zoca Content Keywords API
+  description: The Content Keywords API from Zoca — 6 operation(s) for content keywords.
+  humanURL: https://app.zoca.com/
+  baseURL: https://api.zoca.ai
+  tags:
+  - Content Keywords
+  properties:
+  - type: OpenAPI
+    url: openapi/zoca-content-keywords-api-openapi.yml
+  - type: Components
+    url: components/zoca-components.yml
+- aid: zoca:zoca-content-queue-api
+  name: Zoca Content Queue API
+  description: The Content Queue API from Zoca — 46 operation(s) for content queue.
+  humanURL: https://app.zoca.com/
+  baseURL: https://api.zoca.ai
+  tags:
+  - Content Queue
+  properties:
+  - type: OpenAPI
+    url: openapi/zoca-content-queue-api-openapi.yml
+  - type: Components
+    url: components/zoca-components.yml
+- aid: zoca:zoca-context-scraper-api
+  name: Zoca Context Scraper API
+  description: The Context Scraper API from Zoca — 12 operation(s) for context scraper.
+  humanURL: https://app.zoca.com/
+  baseURL: https://api.zoca.ai
+  tags:
+  - Context Scraper
+  properties:
+  - type: OpenAPI
+    url: openapi/zoca-context-scraper-api-openapi.yml
+  - type: Components
+    url: components/zoca-components.yml
+- aid: zoca:zoca-contract-payment-api
+  name: Zoca Contract Payment API
+  description: The contract-payment API from Zoca — 1 operation(s) for contract-payment.
+  humanURL: https://app.zoca.com/
+  baseURL: https://api.zoca.ai
+  tags:
+  - contract-payment
+  properties:
+  - type: OpenAPI
+    url: openapi/zoca-contract-payment-api-openapi.yml
+  - type: Components
+    url: components/zoca-components.yml
+- aid: zoca:zoca-contracts-api
+  name: Zoca Contracts API
+  description: The Contracts API from Zoca — 1 operation(s) for contracts.
+  humanURL: https://app.zoca.com/
+  baseURL: https://api.zoca.ai
+  tags:
+  - Contracts
+  properties:
+  - type: OpenAPI
+    url: openapi/zoca-contracts-api-openapi.yml
+  - type: Components
+    url: components/zoca-components.yml
+- aid: zoca:zoca-copilot-api
+  name: Zoca Copilot API
+  description: The copilot API from Zoca — 8 operation(s) for copilot.
+  humanURL: https://app.zoca.com/
+  baseURL: https://api.zoca.ai
+  tags:
+  - copilot
+  properties:
+  - type: OpenAPI
+    url: openapi/zoca-copilot-api-openapi.yml
+  - type: Components
+    url: components/zoca-components.yml
+- aid: zoca:zoca-copilot-monitor-api
+  name: Zoca Copilot Monitor API
+  description: The Copilot Monitor API from Zoca — 9 operation(s) for copilot monitor.
+  humanURL: https://app.zoca.com/
+  baseURL: https://api.zoca.ai
+  tags:
+  - Copilot Monitor
+  properties:
+  - type: OpenAPI
+    url: openapi/zoca-copilot-monitor-api-openapi.yml
+  - type: Components
+    url: components/zoca-components.yml
+- aid: zoca:zoca-coupons-api
+  name: Zoca Coupons API
+  description: The Coupons API from Zoca — 11 operation(s) for coupons.
+  humanURL: https://app.zoca.com/
+  baseURL: https://api.zoca.ai
+  tags:
+  - Coupons
+  properties:
+  - type: OpenAPI
+    url: openapi/zoca-coupons-api-openapi.yml
+  - type: Components
+    url: components/zoca-components.yml
+- aid: zoca:zoca-custom-domains-api
+  name: Zoca Custom Domains API
+  description: The Custom Domains API from Zoca — 13 operation(s) for custom domains.
+  humanURL: https://app.zoca.com/
+  baseURL: https://api.zoca.ai
+  tags:
+  - Custom Domains
+  properties:
+  - type: OpenAPI
+    url: openapi/zoca-custom-domains-api-openapi.yml
+  - type: Components
+    url: components/zoca-components.yml
+- aid: zoca:zoca-customer-experience-api
+  name: Zoca Customer Experience API
+  description: The Customer Experience API from Zoca — 8 operation(s) for customer experience.
+  humanURL: https://app.zoca.com/
+  baseURL: https://api.zoca.ai
+  tags:
+  - Customer Experience
+  properties:
+  - type: OpenAPI
+    url: openapi/zoca-customer-experience-api-openapi.yml
+  - type: Components
+    url: components/zoca-components.yml
+- aid: zoca:zoca-demo-call-tracker-api
+  name: Zoca Demo Call Tracker API
+  description: The Demo Call Tracker API from Zoca — 1 operation(s) for demo call tracker.
+  humanURL: https://app.zoca.com/
+  baseURL: https://api.zoca.ai
+  tags:
+  - Demo Call Tracker
+  properties:
+  - type: OpenAPI
+    url: openapi/zoca-demo-call-tracker-api-openapi.yml
+  - type: Components
+    url: components/zoca-components.yml
+- aid: zoca:zoca-discovery-api
+  name: Zoca Discovery API
+  description: The Discovery API from Zoca — 35 operation(s) for discovery.
+  humanURL: https://app.zoca.com/
+  baseURL: https://api.zoca.ai
+  tags:
+  - Discovery
+  properties:
+  - type: OpenAPI
+    url: openapi/zoca-discovery-api-openapi.yml
+  - type: Components
+    url: components/zoca-components.yml
+- aid: zoca:zoca-domain-transfer-api
+  name: Zoca Domain Transfer API
+  description: The Domain Transfer API from Zoca — 5 operation(s) for domain transfer.
+  humanURL: https://app.zoca.com/
+  baseURL: https://api.zoca.ai
+  tags:
+  - Domain Transfer
+  properties:
+  - type: OpenAPI
+    url: openapi/zoca-domain-transfer-api-openapi.yml
+  - type: Components
+    url: components/zoca-components.yml
+- aid: zoca:zoca-domains-api
+  name: Zoca Domains API
+  description: The Domains API from Zoca — 5 operation(s) for domains.
+  humanURL: https://app.zoca.com/
+  baseURL: https://api.zoca.ai
+  tags:
+  - Domains
+  properties:
+  - type: OpenAPI
+    url: openapi/zoca-domains-api-openapi.yml
+  - type: Components
+    url: components/zoca-components.yml
+- aid: zoca:zoca-e-api
+  name: Zoca E API
+  description: The e API from Zoca — 7 operation(s) for e.
+  humanURL: https://app.zoca.com/
+  baseURL: https://api.zoca.ai
+  tags:
+  - e
+  properties:
+  - type: OpenAPI
+    url: openapi/zoca-e-api-openapi.yml
+  - type: Components
+    url: components/zoca-components.yml
+- aid: zoca:zoca-employees-api
+  name: Zoca Employees API
+  description: The Employees API from Zoca — 5 operation(s) for employees.
+  humanURL: https://app.zoca.com/
+  baseURL: https://api.zoca.ai
+  tags:
+  - Employees
+  properties:
+  - type: OpenAPI
+    url: openapi/zoca-employees-api-openapi.yml
+  - type: Components
+    url: components/zoca-components.yml
+- aid: zoca:zoca-entities-api
+  name: Zoca Entities API
+  description: The Entities API from Zoca — 66 operation(s) for entities.
+  humanURL: https://app.zoca.com/
+  baseURL: https://api.zoca.ai
+  tags:
+  - Entities
+  properties:
+  - type: OpenAPI
+    url: openapi/zoca-entities-api-openapi.yml
+  - type: Components
+    url: components/zoca-components.yml
+- aid: zoca:zoca-eval-api
+  name: Zoca Eval API
+  description: The eval API from Zoca — 3 operation(s) for eval.
+  humanURL: https://app.zoca.com/
+  baseURL: https://api.zoca.ai
+  tags:
+  - eval
+  properties:
+  - type: OpenAPI
+    url: openapi/zoca-eval-api-openapi.yml
+  - type: Components
+    url: components/zoca-components.yml
+- aid: zoca:zoca-events-api
+  name: Zoca Events API
+  description: The Events API from Zoca — 1 operation(s) for events.
+  humanURL: https://app.zoca.com/
+  baseURL: https://api.zoca.ai
+  tags:
+  - Events
+  properties:
+  - type: OpenAPI
+    url: openapi/zoca-events-api-openapi.yml
+  - type: Components
+    url: components/zoca-components.yml
+- aid: zoca:zoca-feature-flags-api
+  name: Zoca Feature Flags API
+  description: The Feature Flags API from Zoca — 3 operation(s) for feature flags.
+  humanURL: https://app.zoca.com/
+  baseURL: https://api.zoca.ai
+  tags:
+  - Feature Flags
+  properties:
+  - type: OpenAPI
+    url: openapi/zoca-feature-flags-api-openapi.yml
+  - type: Components
+    url: components/zoca-components.yml
+- aid: zoca:zoca-features-api
+  name: Zoca Features API
+  description: The Features API from Zoca — 2 operation(s) for features.
+  humanURL: https://app.zoca.com/
+  baseURL: https://api.zoca.ai
+  tags:
+  - Features
+  properties:
+  - type: OpenAPI
+    url: openapi/zoca-features-api-openapi.yml
+  - type: Components
+    url: components/zoca-components.yml
+- aid: zoca:zoca-figma-api
+  name: Zoca Figma API
+  description: The figma API from Zoca — 2 operation(s) for figma.
+  humanURL: https://app.zoca.com/
+  baseURL: https://api.zoca.ai
+  tags:
+  - figma
+  properties:
+  - type: OpenAPI
+    url: openapi/zoca-figma-api-openapi.yml
+  - type: Components
+    url: components/zoca-components.yml
+- aid: zoca:zoca-firecrawl-api
+  name: Zoca Firecrawl API
+  description: The Firecrawl API from Zoca — 10 operation(s) for firecrawl.
+  humanURL: https://app.zoca.com/
+  baseURL: https://api.zoca.ai
+  tags:
+  - Firecrawl
+  properties:
+  - type: OpenAPI
+    url: openapi/zoca-firecrawl-api-openapi.yml
+  - type: Components
+    url: components/zoca-components.yml
+- aid: zoca:zoca-fireflies-api
+  name: Zoca Fireflies API
+  description: The fireflies API from Zoca — 2 operation(s) for fireflies.
+  humanURL: https://app.zoca.com/
+  baseURL: https://api.zoca.ai
+  tags:
+  - fireflies
+  properties:
+  - type: OpenAPI
+    url: openapi/zoca-fireflies-api-openapi.yml
+  - type: Components
+    url: components/zoca-components.yml
+- aid: zoca:zoca-frontdesk-activity-api
+  name: Zoca FrontDesk Activity API
+  description: The FrontDesk Activity API from Zoca — 2 operation(s) for frontdesk activity.
+  humanURL: https://app.zoca.com/
+  baseURL: https://api.zoca.ai
+  tags:
+  - FrontDesk Activity
+  properties:
+  - type: OpenAPI
+    url: openapi/zoca-frontdesk-activity-api-openapi.yml
+  - type: Components
+    url: components/zoca-components.yml
+- aid: zoca:zoca-frontdesk-api
+  name: Zoca Frontdesk API
+  description: The Frontdesk API from Zoca — 27 operation(s) for frontdesk.
+  humanURL: https://app.zoca.com/
+  baseURL: https://api.zoca.ai
+  tags:
+  - Frontdesk
+  properties:
+  - type: OpenAPI
+    url: openapi/zoca-frontdesk-api-openapi.yml
+  - type: Components
+    url: components/zoca-components.yml
+- aid: zoca:zoca-frontdesk-onboarding-api
+  name: Zoca Frontdesk Onboarding API
+  description: The Frontdesk Onboarding API from Zoca — 48 operation(s) for frontdesk onboarding.
+  humanURL: https://app.zoca.com/
+  baseURL: https://api.zoca.ai
+  tags:
+  - Frontdesk Onboarding
+  properties:
+  - type: OpenAPI
+    url: openapi/zoca-frontdesk-onboarding-api-openapi.yml
+  - type: Components
+    url: components/zoca-components.yml
+- aid: zoca:zoca-frontdesk-review-api
+  name: Zoca Frontdesk Review API
+  description: The Frontdesk Review API from Zoca — 3 operation(s) for frontdesk review.
+  humanURL: https://app.zoca.com/
+  baseURL: https://api.zoca.ai
+  tags:
+  - Frontdesk Review
+  properties:
+  - type: OpenAPI
+    url: openapi/zoca-frontdesk-review-api-openapi.yml
+  - type: Components
+    url: components/zoca-components.yml
+- aid: zoca:zoca-frontdesk-widget-api
+  name: Zoca Frontdesk Widget API
+  description: The frontdesk-widget API from Zoca — 28 operation(s) for frontdesk-widget.
+  humanURL: https://app.zoca.com/
+  baseURL: https://api.zoca.ai
+  tags:
+  - frontdesk-widget
+  properties:
+  - type: OpenAPI
+    url: openapi/zoca-frontdesk-widget-api-openapi.yml
+  - type: Components
+    url: components/zoca-components.yml
+- aid: zoca:zoca-gbp-location-api
+  name: Zoca Gbp Location API
+  description: The gbp-location API from Zoca — 39 operation(s) for gbp-location.
+  humanURL: https://app.zoca.com/
+  baseURL: https://api.zoca.ai
+  tags:
+  - gbp-location
+  properties:
+  - type: OpenAPI
+    url: openapi/zoca-gbp-location-api-openapi.yml
+  - type: Components
+    url: components/zoca-components.yml
+- aid: zoca:zoca-gbp-media-api
+  name: Zoca GBP Media API
+  description: The GBP Media API from Zoca — 4 operation(s) for gbp media.
+  humanURL: https://app.zoca.com/
+  baseURL: https://api.zoca.ai
+  tags:
+  - GBP Media
+  properties:
+  - type: OpenAPI
+    url: openapi/zoca-gbp-media-api-openapi.yml
+  - type: Components
+    url: components/zoca-components.yml
+- aid: zoca:zoca-gbp-reviews-api
+  name: Zoca GBP Reviews API
+  description: The GBP Reviews API from Zoca — 5 operation(s) for gbp reviews.
+  humanURL: https://app.zoca.com/
+  baseURL: https://api.zoca.ai
+  tags:
+  - GBP Reviews
+  properties:
+  - type: OpenAPI
+    url: openapi/zoca-gbp-reviews-api-openapi.yml
+  - type: Components
+    url: components/zoca-components.yml
+- aid: zoca:zoca-gift-card-designs-api
+  name: Zoca Gift Card Designs API
+  description: The Gift Card Designs API from Zoca — 2 operation(s) for gift card designs.
+  humanURL: https://app.zoca.com/
+  baseURL: https://api.zoca.ai
+  tags:
+  - Gift Card Designs
+  properties:
+  - type: OpenAPI
+    url: openapi/zoca-gift-card-designs-api-openapi.yml
+  - type: Components
+    url: components/zoca-components.yml
+- aid: zoca:zoca-gift-card-settings-api
+  name: Zoca Gift Card Settings API
+  description: The Gift Card Settings API from Zoca — 1 operation(s) for gift card settings.
+  humanURL: https://app.zoca.com/
+  baseURL: https://api.zoca.ai
+  tags:
+  - Gift Card Settings
+  properties:
+  - type: OpenAPI
+    url: openapi/zoca-gift-card-settings-api-openapi.yml
+  - type: Components
+    url: components/zoca-components.yml
+- aid: zoca:zoca-gift-cards-api
+  name: Zoca Gift Cards API
+  description: The Gift Cards API from Zoca — 10 operation(s) for gift cards.
+  humanURL: https://app.zoca.com/
+  baseURL: https://api.zoca.ai
+  tags:
+  - Gift Cards
+  properties:
+  - type: OpenAPI
+    url: openapi/zoca-gift-cards-api-openapi.yml
+  - type: Components
+    url: components/zoca-components.yml
+- aid: zoca:zoca-glossgenius-api
+  name: Zoca Glossgenius API
+  description: The glossgenius API from Zoca — 1 operation(s) for glossgenius.
+  humanURL: https://app.zoca.com/
+  baseURL: https://api.zoca.ai
+  tags:
+  - glossgenius
+  properties:
+  - type: OpenAPI
+    url: openapi/zoca-glossgenius-api-openapi.yml
+  - type: Components
+    url: components/zoca-components.yml
+- aid: zoca:zoca-gmail-api
+  name: Zoca Gmail API
+  description: The gmail API from Zoca — 4 operation(s) for gmail.
+  humanURL: https://app.zoca.com/
+  baseURL: https://api.zoca.ai
+  tags:
+  - gmail
+  properties:
+  - type: OpenAPI
+    url: openapi/zoca-gmail-api-openapi.yml
+  - type: Components
+    url: components/zoca-components.yml
+- aid: zoca:zoca-google-business-profile-api
+  name: Zoca Google Business Profile API
+  description: The Google Business Profile API from Zoca — 27 operation(s) for google business profile.
+  humanURL: https://app.zoca.com/
+  baseURL: https://api.zoca.ai
+  tags:
+  - Google Business Profile
+  properties:
+  - type: OpenAPI
+    url: openapi/zoca-google-business-profile-api-openapi.yml
+  - type: Components
+    url: components/zoca-components.yml
+- aid: zoca:zoca-google-maps-api
+  name: Zoca Google Maps API
+  description: The Google Maps API from Zoca — 4 operation(s) for google maps.
+  humanURL: https://app.zoca.com/
+  baseURL: https://api.zoca.ai
+  tags:
+  - Google Maps
+  properties:
+  - type: OpenAPI
+    url: openapi/zoca-google-maps-api-openapi.yml
+  - type: Components
+    url: components/zoca-components.yml
+- aid: zoca:zoca-health-api
+  name: Zoca Health API
+  description: The Health API from Zoca — 9 operation(s) for health.
+  humanURL: https://app.zoca.com/
+  baseURL: https://api.zoca.ai
+  tags:
+  - Health
+  properties:
+  - type: OpenAPI
+    url: openapi/zoca-health-api-openapi.yml
+  - type: Components
+    url: components/zoca-components.yml
+- aid: zoca:zoca-homepage-api
+  name: Zoca Homepage API
+  description: The homepage API from Zoca — 20 operation(s) for homepage.
+  humanURL: https://app.zoca.com/
+  baseURL: https://api.zoca.ai
+  tags:
+  - homepage
+  properties:
+  - type: OpenAPI
+    url: openapi/zoca-homepage-api-openapi.yml
+  - type: Components
+    url: components/zoca-components.yml
+- aid: zoca:zoca-hubspot-api
+  name: Zoca Hub Spot API
+  description: The HubSpot API from Zoca — 22 operation(s) for hubspot.
+  humanURL: https://app.zoca.com/
+  baseURL: https://api.zoca.ai
+  tags:
+  - HubSpot
+  properties:
+  - type: OpenAPI
+    url: openapi/zoca-hubspot-api-openapi.yml
+  - type: Components
+    url: components/zoca-components.yml
+- aid: zoca:zoca-hubspot-custom-properties-sync-api
+  name: Zoca HubSpot Custom Properties Sync API
+  description: >-
+    The HubSpot Custom Properties Sync API from Zoca — 1 operation(s) for hubspot custom properties sync.
+  humanURL: https://app.zoca.com/
+  baseURL: https://api.zoca.ai
+  tags:
+  - HubSpot Custom Properties Sync
+  properties:
+  - type: OpenAPI
+    url: openapi/zoca-hubspot-custom-properties-sync-api-openapi.yml
+  - type: Components
+    url: components/zoca-components.yml
+- aid: zoca:zoca-hubspot-health-score-sync-api
+  name: Zoca HubSpot Health Score Sync API
+  description: >-
+    The HubSpot Health Score Sync API from Zoca — 1 operation(s) for hubspot health score sync.
+  humanURL: https://app.zoca.com/
+  baseURL: https://api.zoca.ai
+  tags:
+  - HubSpot Health Score Sync
+  properties:
+  - type: OpenAPI
+    url: openapi/zoca-hubspot-health-score-sync-api-openapi.yml
+  - type: Components
+    url: components/zoca-components.yml
+- aid: zoca:zoca-image-generation-api
+  name: Zoca Image Generation API
+  description: The Image Generation API from Zoca — 6 operation(s) for image generation.
+  humanURL: https://app.zoca.com/
+  baseURL: https://api.zoca.ai
+  tags:
+  - Image Generation
+  properties:
+  - type: OpenAPI
+    url: openapi/zoca-image-generation-api-openapi.yml
+  - type: Components
+    url: components/zoca-components.yml
+- aid: zoca:zoca-image-tagging-api
+  name: Zoca Image Tagging API
+  description: The Image Tagging API from Zoca — 7 operation(s) for image tagging.
+  humanURL: https://app.zoca.com/
+  baseURL: https://api.zoca.ai
+  tags:
+  - Image Tagging
+  properties:
+  - type: OpenAPI
+    url: openapi/zoca-image-tagging-api-openapi.yml
+  - type: Components
+    url: components/zoca-components.yml
+- aid: zoca:zoca-instantly-webhook-api
+  name: Zoca Instantly Webhook API
+  description: The Instantly Webhook API from Zoca — 3 operation(s) for instantly webhook.
+  humanURL: https://app.zoca.com/
+  baseURL: https://api.zoca.ai
+  tags:
+  - Instantly Webhook
+  properties:
+  - type: OpenAPI
+    url: openapi/zoca-instantly-webhook-api-openapi.yml
+  - type: Components
+    url: components/zoca-components.yml
+- aid: zoca:zoca-integrations-api
+  name: Zoca Integrations API
+  description: The Integrations API from Zoca — 6 operation(s) for integrations.
+  humanURL: https://app.zoca.com/
+  baseURL: https://api.zoca.ai
+  tags:
+  - Integrations
+  properties:
+  - type: OpenAPI
+    url: openapi/zoca-integrations-api-openapi.yml
+  - type: Components
+    url: components/zoca-components.yml
+- aid: zoca:zoca-internal-ai-tools-api
+  name: Zoca Internal AI Tools API
+  description: The Internal AI Tools API from Zoca — 1 operation(s) for internal ai tools.
+  humanURL: https://app.zoca.com/
+  baseURL: https://api.zoca.ai
+  tags:
+  - Internal AI Tools
+  properties:
+  - type: OpenAPI
+    url: openapi/zoca-internal-ai-tools-api-openapi.yml
+  - type: Components
+    url: components/zoca-components.yml
+- aid: zoca:zoca-inventory-csv-import-api
+  name: Zoca Inventory CSV Import API
+  description: The Inventory CSV Import API from Zoca — 2 operation(s) for inventory csv import.
+  humanURL: https://app.zoca.com/
+  baseURL: https://api.zoca.ai
+  tags:
+  - Inventory CSV Import
+  properties:
+  - type: OpenAPI
+    url: openapi/zoca-inventory-csv-import-api-openapi.yml
+  - type: Components
+    url: components/zoca-components.yml
+- aid: zoca:zoca-inventory-products-api
+  name: Zoca Inventory Products API
+  description: The Inventory Products API from Zoca — 7 operation(s) for inventory products.
+  humanURL: https://app.zoca.com/
+  baseURL: https://api.zoca.ai
+  tags:
+  - Inventory Products
+  properties:
+  - type: OpenAPI
+    url: openapi/zoca-inventory-products-api-openapi.yml
+  - type: Components
+    url: components/zoca-components.yml
+- aid: zoca:zoca-inventory-stock-movements-api
+  name: Zoca Inventory Stock Movements API
+  description: >-
+    The Inventory Stock Movements API from Zoca — 2 operation(s) for inventory stock movements.
+  humanURL: https://app.zoca.com/
+  baseURL: https://api.zoca.ai
+  tags:
+  - Inventory Stock Movements
+  properties:
+  - type: OpenAPI
+    url: openapi/zoca-inventory-stock-movements-api-openapi.yml
+  - type: Components
+    url: components/zoca-components.yml
+- aid: zoca:zoca-jobs-api
+  name: Zoca Jobs API
+  description: The Jobs API from Zoca — 4 operation(s) for jobs.
+  humanURL: https://app.zoca.com/
+  baseURL: https://api.zoca.ai
+  tags:
+  - Jobs
+  properties:
+  - type: OpenAPI
+    url: openapi/zoca-jobs-api-openapi.yml
+  - type: Components
+    url: components/zoca-components.yml
+- aid: zoca:zoca-justcall-api
+  name: Zoca Just Call API
+  description: The JustCall API from Zoca — 1 operation(s) for justcall.
+  humanURL: https://app.zoca.com/
+  baseURL: https://api.zoca.ai
+  tags:
+  - JustCall
+  properties:
+  - type: OpenAPI
+    url: openapi/zoca-justcall-api-openapi.yml
+  - type: Components
+    url: components/zoca-components.yml
+- aid: zoca:zoca-landing-page-api
+  name: Zoca Landing Page API
+  description: The Landing Page API from Zoca — 1 operation(s) for landing page.
+  humanURL: https://app.zoca.com/
+  baseURL: https://api.zoca.ai
+  tags:
+  - Landing Page
+  properties:
+  - type: OpenAPI
+    url: openapi/zoca-landing-page-api-openapi.yml
+  - type: Components
+    url: components/zoca-components.yml
+- aid: zoca:zoca-lead-magnet-api
+  name: Zoca Lead Magnet API
+  description: The lead-magnet API from Zoca — 40 operation(s) for lead-magnet.
+  humanURL: https://app.zoca.com/
+  baseURL: https://api.zoca.ai
+  tags:
+  - lead-magnet
+  properties:
+  - type: OpenAPI
+    url: openapi/zoca-lead-magnet-api-openapi.yml
+  - type: Components
+    url: components/zoca-components.yml
+- aid: zoca:zoca-lead-magnet-webhook-api
+  name: Zoca Lead Magnet Webhook API
+  description: The Lead Magnet Webhook API from Zoca — 12 operation(s) for lead magnet webhook.
+  humanURL: https://app.zoca.com/
+  baseURL: https://api.zoca.ai
+  tags:
+  - Lead Magnet Webhook
+  properties:
+  - type: OpenAPI
+    url: openapi/zoca-lead-magnet-webhook-api-openapi.yml
+  - type: Components
+    url: components/zoca-components.yml
+- aid: zoca:zoca-linear-api
+  name: Zoca Linear API
+  description: The Linear API from Zoca — 7 operation(s) for linear.
+  humanURL: https://app.zoca.com/
+  baseURL: https://api.zoca.ai
+  tags:
+  - Linear
+  properties:
+  - type: OpenAPI
+    url: openapi/zoca-linear-api-openapi.yml
+  - type: Components
+    url: components/zoca-components.yml
+- aid: zoca:zoca-links-api
+  name: Zoca Links API
+  description: The Links API from Zoca — 6 operation(s) for links.
+  humanURL: https://app.zoca.com/
+  baseURL: https://api.zoca.ai
+  tags:
+  - Links
+  properties:
+  - type: OpenAPI
+    url: openapi/zoca-links-api-openapi.yml
+  - type: Components
+    url: components/zoca-components.yml
+- aid: zoca:zoca-llm-api
+  name: Zoca LLM API
+  description: The LLM API from Zoca — 2 operation(s) for llm.
+  humanURL: https://app.zoca.com/
+  baseURL: https://api.zoca.ai
+  tags:
+  - LLM
+  properties:
+  - type: OpenAPI
+    url: openapi/zoca-llm-api-openapi.yml
+  - type: Components
+    url: components/zoca-components.yml
+- aid: zoca:zoca-load-testing-endpoint-api
+  name: Zoca Load Testing Endpoint API
+  description: The Load Testing Endpoint API from Zoca — 1 operation(s) for load testing endpoint.
+  humanURL: https://app.zoca.com/
+  baseURL: https://api.zoca.ai
+  tags:
+  - Load Testing Endpoint
+  properties:
+  - type: OpenAPI
+    url: openapi/zoca-load-testing-endpoint-api-openapi.yml
+  - type: Components
+    url: components/zoca-components.yml
+- aid: zoca:zoca-local-seo-api
+  name: Zoca Local SEO API
+  description: The Local SEO API from Zoca — 36 operation(s) for local seo.
+  humanURL: https://app.zoca.com/
+  baseURL: https://api.zoca.ai
+  tags:
   - Local SEO
-  - Webhook
-  tags_raw:
-  - Content
-  - Automation
-  - Booking Widget
-  - Voice Agents
-  - SMS
-  - Local SEO
+  properties:
+  - type: OpenAPI
+    url: openapi/zoca-local-seo-api-openapi.yml
+  - type: Components
+    url: components/zoca-components.yml
+- aid: zoca:zoca-local-seo-map-grid-api
+  name: Zoca Local SEO Map Grid API
+  description: The Local SEO Map Grid API from Zoca — 7 operation(s) for local seo map grid.
+  humanURL: https://app.zoca.com/
+  baseURL: https://api.zoca.ai
+  tags:
+  - Local SEO Map Grid
+  properties:
+  - type: OpenAPI
+    url: openapi/zoca-local-seo-map-grid-api-openapi.yml
+  - type: Components
+    url: components/zoca-components.yml
+- aid: zoca:zoca-loyalty-campaigns-api
+  name: Zoca Loyalty Campaigns API
+  description: The loyalty-campaigns API from Zoca — 5 operation(s) for loyalty-campaigns.
+  humanURL: https://app.zoca.com/
+  baseURL: https://api.zoca.ai
+  tags:
+  - loyalty-campaigns
+  properties:
+  - type: OpenAPI
+    url: openapi/zoca-loyalty-campaigns-api-openapi.yml
+  - type: Components
+    url: components/zoca-components.yml
+- aid: zoca:zoca-media-api
+  name: Zoca Media API
+  description: The media API from Zoca — 19 operation(s) for media.
+  humanURL: https://app.zoca.com/
+  baseURL: https://api.zoca.ai
+  tags:
+  - media
+  properties:
+  - type: OpenAPI
+    url: openapi/zoca-media-api-openapi.yml
+  - type: Components
+    url: components/zoca-components.yml
+- aid: zoca:zoca-meta-api
+  name: Zoca Meta API
+  description: The meta API from Zoca — 6 operation(s) for meta.
+  humanURL: https://app.zoca.com/
+  baseURL: https://api.zoca.ai
+  tags:
+  - meta
+  properties:
+  - type: OpenAPI
+    url: openapi/zoca-meta-api-openapi.yml
+  - type: Components
+    url: components/zoca-components.yml
+- aid: zoca:zoca-mindbody-api
+  name: Zoca Mindbody API
+  description: The Mindbody API from Zoca — 15 operation(s) for mindbody.
+  humanURL: https://app.zoca.com/
+  baseURL: https://api.zoca.ai
+  tags:
+  - Mindbody
+  properties:
+  - type: OpenAPI
+    url: openapi/zoca-mindbody-api-openapi.yml
+  - type: Components
+    url: components/zoca-components.yml
+- aid: zoca:zoca-misc-api
+  name: Zoca Misc API
+  description: The misc API from Zoca — 7 operation(s) for misc.
+  humanURL: https://app.zoca.com/
+  baseURL: https://api.zoca.ai
+  tags:
+  - misc
+  properties:
+  - type: OpenAPI
+    url: openapi/zoca-misc-api-openapi.yml
+  - type: Components
+    url: components/zoca-components.yml
+- aid: zoca:zoca-misc-google-mock-api
+  name: Zoca Misc/google Mock API
+  description: The misc/google-mock API from Zoca — 21 operation(s) for misc/google-mock.
+  humanURL: https://app.zoca.com/
+  baseURL: https://api.zoca.ai
+  tags:
+  - misc/google-mock
+  properties:
+  - type: OpenAPI
+    url: openapi/zoca-misc-google-mock-api-openapi.yml
+  - type: Components
+    url: components/zoca-components.yml
+- aid: zoca:zoca-missed-payment-api
+  name: Zoca Missed Payment API
+  description: The missed-payment API from Zoca — 1 operation(s) for missed-payment.
+  humanURL: https://app.zoca.com/
+  baseURL: https://api.zoca.ai
+  tags:
+  - missed-payment
+  properties:
+  - type: OpenAPI
+    url: openapi/zoca-missed-payment-api-openapi.yml
+  - type: Components
+    url: components/zoca-components.yml
+- aid: zoca:zoca-moengage-api
+  name: Zoca Moengage API
+  description: The Moengage API from Zoca — 2 operation(s) for moengage.
+  humanURL: https://app.zoca.com/
+  baseURL: https://api.zoca.ai
+  tags:
+  - Moengage
+  properties:
+  - type: OpenAPI
+    url: openapi/zoca-moengage-api-openapi.yml
+  - type: Components
+    url: components/zoca-components.yml
+- aid: zoca:zoca-offers-api
+  name: Zoca Offers API
+  description: The Offers API from Zoca — 32 operation(s) for offers.
+  humanURL: https://app.zoca.com/
+  baseURL: https://api.zoca.ai
+  tags:
+  - Offers
+  properties:
+  - type: OpenAPI
+    url: openapi/zoca-offers-api-openapi.yml
+  - type: Components
+    url: components/zoca-components.yml
+- aid: zoca:zoca-onboarding-api
+  name: Zoca Onboarding API
+  description: The onboarding API from Zoca — 17 operation(s) for onboarding.
+  humanURL: https://app.zoca.com/
+  baseURL: https://api.zoca.ai
+  tags:
+  - onboarding
+  properties:
+  - type: OpenAPI
+    url: openapi/zoca-onboarding-api-openapi.yml
+  - type: Components
+    url: components/zoca-components.yml
+- aid: zoca:zoca-onboarding-demo-api
+  name: Zoca Onboarding Demo API
+  description: The Onboarding Demo API from Zoca — 1 operation(s) for onboarding demo.
+  humanURL: https://app.zoca.com/
+  baseURL: https://api.zoca.ai
+  tags:
+  - Onboarding Demo
+  properties:
+  - type: OpenAPI
+    url: openapi/zoca-onboarding-demo-api-openapi.yml
+  - type: Components
+    url: components/zoca-components.yml
+- aid: zoca:zoca-packages-api
+  name: Zoca Packages API
+  description: The Packages API from Zoca — 14 operation(s) for packages.
+  humanURL: https://app.zoca.com/
+  baseURL: https://api.zoca.ai
+  tags:
+  - Packages
+  properties:
+  - type: OpenAPI
+    url: openapi/zoca-packages-api-openapi.yml
+  - type: Components
+    url: components/zoca-components.yml
+- aid: zoca:zoca-payment-dunning-api
+  name: Zoca Payment Dunning API
+  description: The Payment Dunning API from Zoca — 1 operation(s) for payment dunning.
+  humanURL: https://app.zoca.com/
+  baseURL: https://api.zoca.ai
+  tags:
+  - Payment Dunning
+  properties:
+  - type: OpenAPI
+    url: openapi/zoca-payment-dunning-api-openapi.yml
+  - type: Components
+    url: components/zoca-components.yml
+- aid: zoca:zoca-payments-api
+  name: Zoca Payments API
+  description: The Payments API from Zoca — 1 operation(s) for payments.
+  humanURL: https://app.zoca.com/
+  baseURL: https://api.zoca.ai
+  tags:
+  - Payments
+  properties:
+  - type: OpenAPI
+    url: openapi/zoca-payments-api-openapi.yml
+  - type: Components
+    url: components/zoca-components.yml
+- aid: zoca:zoca-phone-blocklist-api
+  name: Zoca Phone Blocklist API
+  description: The phone-blocklist API from Zoca — 4 operation(s) for phone-blocklist.
+  humanURL: https://app.zoca.com/
+  baseURL: https://api.zoca.ai
+  tags:
+  - phone-blocklist
+  properties:
+  - type: OpenAPI
+    url: openapi/zoca-phone-blocklist-api-openapi.yml
+  - type: Components
+    url: components/zoca-components.yml
+- aid: zoca:zoca-pipedrive-webhook-api
+  name: Zoca Pipedrive Webhook API
+  description: The Pipedrive Webhook API from Zoca — 19 operation(s) for pipedrive webhook.
+  humanURL: https://app.zoca.com/
+  baseURL: https://api.zoca.ai
+  tags:
+  - Pipedrive Webhook
+  properties:
+  - type: OpenAPI
+    url: openapi/zoca-pipedrive-webhook-api-openapi.yml
+  - type: Components
+    url: components/zoca-components.yml
+- aid: zoca:zoca-places-api
+  name: Zoca Places API
+  description: The places API from Zoca — 4 operation(s) for places.
+  humanURL: https://app.zoca.com/
+  baseURL: https://api.zoca.ai
+  tags:
+  - places
+  properties:
+  - type: OpenAPI
+    url: openapi/zoca-places-api-openapi.yml
+  - type: Components
+    url: components/zoca-components.yml
+- aid: zoca:zoca-platform-migration-api
+  name: Zoca Platform Migration API
+  description: The Platform Migration API from Zoca — 1 operation(s) for platform migration.
+  humanURL: https://app.zoca.com/
+  baseURL: https://api.zoca.ai
+  tags:
+  - Platform Migration
+  properties:
+  - type: OpenAPI
+    url: openapi/zoca-platform-migration-api-openapi.yml
+  - type: Components
+    url: components/zoca-components.yml
+- aid: zoca:zoca-platform-scraper-api
+  name: Zoca Platform Scraper API
+  description: The Platform Scraper API from Zoca — 6 operation(s) for platform scraper.
+  humanURL: https://app.zoca.com/
+  baseURL: https://api.zoca.ai
+  tags:
+  - Platform Scraper
+  properties:
+  - type: OpenAPI
+    url: openapi/zoca-platform-scraper-api-openapi.yml
+  - type: Components
+    url: components/zoca-components.yml
+- aid: zoca:zoca-prompts-api
+  name: Zoca Prompts API
+  description: The prompts API from Zoca — 11 operation(s) for prompts.
+  humanURL: https://app.zoca.com/
+  baseURL: https://api.zoca.ai
+  tags:
+  - prompts
+  properties:
+  - type: OpenAPI
+    url: openapi/zoca-prompts-api-openapi.yml
+  - type: Components
+    url: components/zoca-components.yml
+- aid: zoca:zoca-publicaddons-api
+  name: Zoca Public Addons API
+  description: The PublicAddons API from Zoca — 1 operation(s) for publicaddons.
+  humanURL: https://app.zoca.com/
+  baseURL: https://api.zoca.ai
+  tags:
+  - PublicAddons
+  properties:
+  - type: OpenAPI
+    url: openapi/zoca-publicaddons-api-openapi.yml
+  - type: Components
+    url: components/zoca-components.yml
+- aid: zoca:zoca-queues-api
+  name: Zoca Queues API
+  description: The Queues API from Zoca — 7 operation(s) for queues.
+  humanURL: https://app.zoca.com/
+  baseURL: https://api.zoca.ai
+  tags:
+  - Queues
+  properties:
+  - type: OpenAPI
+    url: openapi/zoca-queues-api-openapi.yml
+  - type: Components
+    url: components/zoca-components.yml
+- aid: zoca:zoca-refunds-api
+  name: Zoca Refunds API
+  description: The Refunds API from Zoca — 5 operation(s) for refunds.
+  humanURL: https://app.zoca.com/
+  baseURL: https://api.zoca.ai
+  tags:
+  - Refunds
+  properties:
+  - type: OpenAPI
+    url: openapi/zoca-refunds-api-openapi.yml
+  - type: Components
+    url: components/zoca-components.yml
+- aid: zoca:zoca-reports-api
+  name: Zoca Reports API
+  description: The Reports API from Zoca — 11 operation(s) for reports.
+  humanURL: https://app.zoca.com/
+  baseURL: https://api.zoca.ai
+  tags:
+  - Reports
+  properties:
+  - type: OpenAPI
+    url: openapi/zoca-reports-api-openapi.yml
+  - type: Components
+    url: components/zoca-components.yml
+- aid: zoca:zoca-requests-api
+  name: Zoca Requests API
+  description: The Requests API from Zoca — 11 operation(s) for requests.
+  humanURL: https://app.zoca.com/
+  baseURL: https://api.zoca.ai
+  tags:
+  - Requests
+  properties:
+  - type: OpenAPI
+    url: openapi/zoca-requests-api-openapi.yml
+  - type: Components
+    url: components/zoca-components.yml
+- aid: zoca:zoca-review-invites-api
+  name: Zoca Review Invites API
+  description: The Review Invites API from Zoca — 18 operation(s) for review invites.
+  humanURL: https://app.zoca.com/
+  baseURL: https://api.zoca.ai
+  tags:
+  - Review Invites
+  properties:
+  - type: OpenAPI
+    url: openapi/zoca-review-invites-api-openapi.yml
+  - type: Components
+    url: components/zoca-components.yml
+- aid: zoca:zoca-reviews-api
+  name: Zoca Reviews API
+  description: The Reviews API from Zoca — 14 operation(s) for reviews.
+  humanURL: https://app.zoca.com/
+  baseURL: https://api.zoca.ai
+  tags:
+  - Reviews
+  properties:
+  - type: OpenAPI
+    url: openapi/zoca-reviews-api-openapi.yml
+  - type: Components
+    url: components/zoca-components.yml
+- aid: zoca:zoca-reviews-campaigns-api
+  name: Zoca Reviews Campaigns API
+  description: The reviews-campaigns API from Zoca — 10 operation(s) for reviews-campaigns.
+  humanURL: https://app.zoca.com/
+  baseURL: https://api.zoca.ai
+  tags:
+  - reviews-campaigns
+  properties:
+  - type: OpenAPI
+    url: openapi/zoca-reviews-campaigns-api-openapi.yml
+  - type: Components
+    url: components/zoca-components.yml
+- aid: zoca:zoca-route53-api
+  name: Zoca Route53 API
+  description: The Route53 API from Zoca — 15 operation(s) for route53.
+  humanURL: https://app.zoca.com/
+  baseURL: https://api.zoca.ai
+  tags:
+  - Route53
+  properties:
+  - type: OpenAPI
+    url: openapi/zoca-route53-api-openapi.yml
+  - type: Components
+    url: components/zoca-components.yml
+- aid: zoca:zoca-sales-api
+  name: Zoca Sales API
+  description: The Sales API from Zoca — 6 operation(s) for sales.
+  humanURL: https://app.zoca.com/
+  baseURL: https://api.zoca.ai
+  tags:
+  - Sales
+  properties:
+  - type: OpenAPI
+    url: openapi/zoca-sales-api-openapi.yml
+  - type: Components
+    url: components/zoca-components.yml
+- aid: zoca:zoca-salesforce-api
+  name: Zoca Salesforce API
+  description: The Salesforce API from Zoca — 5 operation(s) for salesforce.
+  humanURL: https://app.zoca.com/
+  baseURL: https://api.zoca.ai
+  tags:
+  - Salesforce
+  properties:
+  - type: OpenAPI
+    url: openapi/zoca-salesforce-api-openapi.yml
+  - type: Components
+    url: components/zoca-components.yml
+- aid: zoca:zoca-scheduling-admin-api
+  name: Zoca Scheduling Admin API
+  description: The Scheduling Admin API from Zoca — 1 operation(s) for scheduling admin.
+  humanURL: https://app.zoca.com/
+  baseURL: https://api.zoca.ai
+  tags:
+  - Scheduling Admin
+  properties:
+  - type: OpenAPI
+    url: openapi/zoca-scheduling-admin-api-openapi.yml
+  - type: Components
+    url: components/zoca-components.yml
+- aid: zoca:zoca-scheduling-blocked-slots-api
+  name: Zoca Scheduling Blocked Slots API
+  description: >-
+    The Scheduling Blocked Slots API from Zoca — 1 operation(s) for scheduling blocked slots.
+  humanURL: https://app.zoca.com/
+  baseURL: https://api.zoca.ai
+  tags:
+  - Scheduling Blocked Slots
+  properties:
+  - type: OpenAPI
+    url: openapi/zoca-scheduling-blocked-slots-api-openapi.yml
+  - type: Components
+    url: components/zoca-components.yml
+- aid: zoca:zoca-scheduling-booking-products-api
+  name: Zoca Scheduling Booking Products API
+  description: >-
+    The Scheduling Booking Products API from Zoca — 2 operation(s) for scheduling booking products.
+  humanURL: https://app.zoca.com/
+  baseURL: https://api.zoca.ai
+  tags:
+  - Scheduling Booking Products
+  properties:
+  - type: OpenAPI
+    url: openapi/zoca-scheduling-booking-products-api-openapi.yml
+  - type: Components
+    url: components/zoca-components.yml
+- aid: zoca:zoca-scheduling-booking-rules-api
+  name: Zoca Scheduling - Booking Rules API
+  description: >-
+    The Scheduling - Booking Rules API from Zoca — 9 operation(s) for scheduling - booking rules.
+  humanURL: https://app.zoca.com/
+  baseURL: https://api.zoca.ai
+  tags:
+  - Scheduling - Booking Rules
+  properties:
+  - type: OpenAPI
+    url: openapi/zoca-scheduling-booking-rules-api-openapi.yml
+  - type: Components
+    url: components/zoca-components.yml
+- aid: zoca:zoca-scheduling-breaks-api
+  name: Zoca Scheduling Breaks API
+  description: The Scheduling Breaks API from Zoca — 9 operation(s) for scheduling breaks.
+  humanURL: https://app.zoca.com/
+  baseURL: https://api.zoca.ai
+  tags:
+  - Scheduling Breaks
+  properties:
+  - type: OpenAPI
+    url: openapi/zoca-scheduling-breaks-api-openapi.yml
+  - type: Components
+    url: components/zoca-components.yml
+- aid: zoca:zoca-scheduling-cart-products-api
+  name: Zoca Scheduling Cart Products API
+  description: >-
+    The Scheduling Cart Products API from Zoca — 3 operation(s) for scheduling cart products.
+  humanURL: https://app.zoca.com/
+  baseURL: https://api.zoca.ai
+  tags:
+  - Scheduling Cart Products
+  properties:
+  - type: OpenAPI
+    url: openapi/zoca-scheduling-cart-products-api-openapi.yml
+  - type: Components
+    url: components/zoca-components.yml
+- aid: zoca:zoca-scheduling-carts-api
+  name: Zoca Scheduling Carts API
+  description: The Scheduling Carts API from Zoca — 10 operation(s) for scheduling carts.
+  humanURL: https://app.zoca.com/
+  baseURL: https://api.zoca.ai
+  tags:
+  - Scheduling Carts
+  properties:
+  - type: OpenAPI
+    url: openapi/zoca-scheduling-carts-api-openapi.yml
+  - type: Components
+    url: components/zoca-components.yml
+- aid: zoca:zoca-scheduling-checkout-tip-config-api
+  name: Zoca Scheduling - Checkout Tip Config API
+  description: >-
+    The Scheduling - Checkout Tip Config API from Zoca — 2 operation(s) for scheduling - checkout tip
+    config.
+  humanURL: https://app.zoca.com/
+  baseURL: https://api.zoca.ai
+  tags:
+  - Scheduling - Checkout Tip Config
+  properties:
+  - type: OpenAPI
+    url: openapi/zoca-scheduling-checkout-tip-config-api-openapi.yml
+  - type: Components
+    url: components/zoca-components.yml
+- aid: zoca:zoca-scheduling-communication-templates-api
+  name: Zoca Scheduling - Communication Templates API
+  description: >-
+    The Scheduling - Communication Templates API from Zoca — 7 operation(s) for scheduling - communication
+    templates.
+  humanURL: https://app.zoca.com/
+  baseURL: https://api.zoca.ai
+  tags:
+  - Scheduling - Communication Templates
+  properties:
+  - type: OpenAPI
+    url: openapi/zoca-scheduling-communication-templates-api-openapi.yml
+  - type: Components
+    url: components/zoca-components.yml
+- aid: zoca:zoca-scheduling-form-submissions-api
+  name: Zoca Scheduling - Form Submissions API
+  description: >-
+    The Scheduling - Form Submissions API from Zoca — 5 operation(s) for scheduling - form submissions.
+  humanURL: https://app.zoca.com/
+  baseURL: https://api.zoca.ai
+  tags:
+  - Scheduling - Form Submissions
+  properties:
+  - type: OpenAPI
+    url: openapi/zoca-scheduling-form-submissions-api-openapi.yml
+  - type: Components
+    url: components/zoca-components.yml
+- aid: zoca:zoca-scheduling-forms-api
+  name: Zoca Scheduling - Forms API
+  description: The Scheduling - Forms API from Zoca — 17 operation(s) for scheduling - forms.
+  humanURL: https://app.zoca.com/
+  baseURL: https://api.zoca.ai
+  tags:
+  - Scheduling - Forms
+  properties:
+  - type: OpenAPI
+    url: openapi/zoca-scheduling-forms-api-openapi.yml
+  - type: Components
+    url: components/zoca-components.yml
+- aid: zoca:zoca-scheduling-insights-api
+  name: Zoca Scheduling Insights API
+  description: The Scheduling Insights API from Zoca — 5 operation(s) for scheduling insights.
+  humanURL: https://app.zoca.com/
+  baseURL: https://api.zoca.ai
+  tags:
+  - Scheduling Insights
+  properties:
+  - type: OpenAPI
+    url: openapi/zoca-scheduling-insights-api-openapi.yml
+  - type: Components
+    url: components/zoca-components.yml
+- aid: zoca:zoca-scheduling-onboarding-api
+  name: Zoca Scheduling Onboarding API
+  description: The Scheduling Onboarding API from Zoca — 11 operation(s) for scheduling onboarding.
+  humanURL: https://app.zoca.com/
+  baseURL: https://api.zoca.ai
+  tags:
+  - Scheduling Onboarding
+  properties:
+  - type: OpenAPI
+    url: openapi/zoca-scheduling-onboarding-api-openapi.yml
+  - type: Components
+    url: components/zoca-components.yml
+- aid: zoca:zoca-scheduling-policies-api
+  name: Zoca Scheduling - Policies API
+  description: The Scheduling - Policies API from Zoca — 18 operation(s) for scheduling - policies.
+  humanURL: https://app.zoca.com/
+  baseURL: https://api.zoca.ai
+  tags:
+  - Scheduling - Policies
+  properties:
+  - type: OpenAPI
+    url: openapi/zoca-scheduling-policies-api-openapi.yml
+  - type: Components
+    url: components/zoca-components.yml
+- aid: zoca:zoca-scheduling-quick-sale-api
+  name: Zoca Scheduling Quick Sale API
+  description: The Scheduling Quick Sale API from Zoca — 5 operation(s) for scheduling quick sale.
+  humanURL: https://app.zoca.com/
+  baseURL: https://api.zoca.ai
+  tags:
+  - Scheduling Quick Sale
+  properties:
+  - type: OpenAPI
+    url: openapi/zoca-scheduling-quick-sale-api-openapi.yml
+  - type: Components
+    url: components/zoca-components.yml
+- aid: zoca:zoca-scheduling-stripe-connect-api
+  name: Zoca Scheduling - Stripe Connect API
+  description: >-
+    The Scheduling - Stripe Connect API from Zoca — 14 operation(s) for scheduling - stripe connect.
+  humanURL: https://app.zoca.com/
+  baseURL: https://api.zoca.ai
+  tags:
+  - Scheduling - Stripe Connect
+  properties:
+  - type: OpenAPI
+    url: openapi/zoca-scheduling-stripe-connect-api-openapi.yml
+  - type: Components
+    url: components/zoca-components.yml
+- aid: zoca:zoca-scheduling-stripe-terminal-api
+  name: Zoca Scheduling - Stripe Terminal API
+  description: >-
+    The Scheduling - Stripe Terminal API from Zoca — 8 operation(s) for scheduling - stripe terminal.
+  humanURL: https://app.zoca.com/
+  baseURL: https://api.zoca.ai
+  tags:
+  - Scheduling - Stripe Terminal
+  properties:
+  - type: OpenAPI
+    url: openapi/zoca-scheduling-stripe-terminal-api-openapi.yml
+  - type: Components
+    url: components/zoca-components.yml
+- aid: zoca:zoca-scrape-api
+  name: Zoca Scrape API
+  description: The Scrape API from Zoca — 5 operation(s) for scrape.
+  humanURL: https://app.zoca.com/
+  baseURL: https://api.zoca.ai
+  tags:
+  - Scrape
+  properties:
+  - type: OpenAPI
+    url: openapi/zoca-scrape-api-openapi.yml
+  - type: Components
+    url: components/zoca-components.yml
+- aid: zoca:zoca-scraped-services-api
+  name: Zoca Scraped Services API
+  description: The Scraped Services API from Zoca — 10 operation(s) for scraped services.
+  humanURL: https://app.zoca.com/
+  baseURL: https://api.zoca.ai
+  tags:
+  - Scraped Services
+  properties:
+  - type: OpenAPI
+    url: openapi/zoca-scraped-services-api-openapi.yml
+  - type: Components
+    url: components/zoca-components.yml
+- aid: zoca:zoca-scraping-api
+  name: Zoca Scraping API
+  description: The Scraping API from Zoca — 6 operation(s) for scraping.
+  humanURL: https://app.zoca.com/
+  baseURL: https://api.zoca.ai
+  tags:
+  - Scraping
+  properties:
+  - type: OpenAPI
+    url: openapi/zoca-scraping-api-openapi.yml
+  - type: Components
+    url: components/zoca-components.yml
+- aid: zoca:zoca-services-api
+  name: Zoca Services API
+  description: The Services API from Zoca — 51 operation(s) for services.
+  humanURL: https://app.zoca.com/
+  baseURL: https://api.zoca.ai
+  tags:
+  - Services
+  properties:
+  - type: OpenAPI
+    url: openapi/zoca-services-api-openapi.yml
+  - type: Components
+    url: components/zoca-components.yml
+- aid: zoca:zoca-services-sync-api
+  name: Zoca Services Sync API
+  description: The Services Sync API from Zoca — 2 operation(s) for services sync.
+  humanURL: https://app.zoca.com/
+  baseURL: https://api.zoca.ai
+  tags:
+  - Services Sync
+  properties:
+  - type: OpenAPI
+    url: openapi/zoca-services-sync-api-openapi.yml
+  - type: Components
+    url: components/zoca-components.yml
+- aid: zoca:zoca-slack-api
+  name: Zoca Slack API
+  description: The slack API from Zoca — 3 operation(s) for slack.
+  humanURL: https://app.zoca.com/
+  baseURL: https://api.zoca.ai
+  tags:
+  - slack
+  properties:
+  - type: OpenAPI
+    url: openapi/zoca-slack-api-openapi.yml
+  - type: Components
+    url: components/zoca-components.yml
+- aid: zoca:zoca-sms-logs-api
+  name: Zoca Sms Logs API
+  description: The sms-logs API from Zoca — 1 operation(s) for sms-logs.
+  humanURL: https://app.zoca.com/
+  baseURL: https://api.zoca.ai
+  tags:
+  - sms-logs
+  properties:
+  - type: OpenAPI
+    url: openapi/zoca-sms-logs-api-openapi.yml
+  - type: Components
+    url: components/zoca-components.yml
+- aid: zoca:zoca-social-media-api
+  name: Zoca Social Media API
+  description: The Social Media API from Zoca — 66 operation(s) for social media.
+  humanURL: https://app.zoca.com/
+  baseURL: https://api.zoca.ai
+  tags:
+  - Social Media
+  properties:
+  - type: OpenAPI
+    url: openapi/zoca-social-media-api-openapi.yml
+  - type: Components
+    url: components/zoca-components.yml
+- aid: zoca:zoca-socket-debug-api
+  name: Zoca Socket Debug API
+  description: The Socket Debug API from Zoca — 10 operation(s) for socket debug.
+  humanURL: https://app.zoca.com/
+  baseURL: https://api.zoca.ai
+  tags:
+  - Socket Debug
+  properties:
+  - type: OpenAPI
+    url: openapi/zoca-socket-debug-api-openapi.yml
+  - type: Components
+    url: components/zoca-components.yml
+- aid: zoca:zoca-square-api
+  name: Zoca Square API
+  description: The Square API from Zoca — 16 operation(s) for square.
+  humanURL: https://app.zoca.com/
+  baseURL: https://api.zoca.ai
+  tags:
+  - Square
+  properties:
+  - type: OpenAPI
+    url: openapi/zoca-square-api-openapi.yml
+  - type: Components
+    url: components/zoca-components.yml
+- aid: zoca:zoca-staff-api
+  name: Zoca Staff API
+  description: The Staff API from Zoca — 12 operation(s) for staff.
+  humanURL: https://app.zoca.com/
+  baseURL: https://api.zoca.ai
+  tags:
+  - Staff
+  properties:
+  - type: OpenAPI
+    url: openapi/zoca-staff-api-openapi.yml
+  - type: Components
+    url: components/zoca-components.yml
+- aid: zoca:zoca-staff-invites-api
+  name: Zoca Staff Invites API
+  description: The Staff Invites API from Zoca — 5 operation(s) for staff invites.
+  humanURL: https://app.zoca.com/
+  baseURL: https://api.zoca.ai
+  tags:
+  - Staff Invites
+  properties:
+  - type: OpenAPI
+    url: openapi/zoca-staff-invites-api-openapi.yml
+  - type: Components
+    url: components/zoca-components.yml
+- aid: zoca:zoca-staff-permissions-api
+  name: Zoca Staff Permissions API
+  description: The Staff Permissions API from Zoca — 2 operation(s) for staff permissions.
+  humanURL: https://app.zoca.com/
+  baseURL: https://api.zoca.ai
+  tags:
+  - Staff Permissions
+  properties:
+  - type: OpenAPI
+    url: openapi/zoca-staff-permissions-api-openapi.yml
+  - type: Components
+    url: components/zoca-components.yml
+- aid: zoca:zoca-staff-roles-api
+  name: Zoca Staff Roles API
+  description: The Staff Roles API from Zoca — 5 operation(s) for staff roles.
+  humanURL: https://app.zoca.com/
+  baseURL: https://api.zoca.ai
+  tags:
+  - Staff Roles
+  properties:
+  - type: OpenAPI
+    url: openapi/zoca-staff-roles-api-openapi.yml
+  - type: Components
+    url: components/zoca-components.yml
+- aid: zoca:zoca-state-transition-api
+  name: Zoca State Transition API
+  description: The state-transition API from Zoca — 1 operation(s) for state-transition.
+  humanURL: https://app.zoca.com/
+  baseURL: https://api.zoca.ai
+  tags:
+  - state-transition
+  properties:
+  - type: OpenAPI
+    url: openapi/zoca-state-transition-api-openapi.yml
+  - type: Components
+    url: components/zoca-components.yml
+- aid: zoca:zoca-subscribers-api
+  name: Zoca Subscribers API
+  description: The Subscribers API from Zoca — 6 operation(s) for subscribers.
+  humanURL: https://app.zoca.com/
+  baseURL: https://api.zoca.ai
+  tags:
+  - Subscribers
+  properties:
+  - type: OpenAPI
+    url: openapi/zoca-subscribers-api-openapi.yml
+  - type: Components
+    url: components/zoca-components.yml
+- aid: zoca:zoca-suggested-services-api
+  name: Zoca Suggested Services API
+  description: The suggested-services API from Zoca — 3 operation(s) for suggested-services.
+  humanURL: https://app.zoca.com/
+  baseURL: https://api.zoca.ai
+  tags:
+  - suggested-services
+  properties:
+  - type: OpenAPI
+    url: openapi/zoca-suggested-services-api-openapi.yml
+  - type: Components
+    url: components/zoca-components.yml
+- aid: zoca:zoca-support-agent-kb-api
+  name: Zoca Support Agent/kb API
+  description: The support-agent/kb API from Zoca — 6 operation(s) for support-agent/kb.
+  humanURL: https://app.zoca.com/
+  baseURL: https://api.zoca.ai
+  tags:
+  - support-agent/kb
+  properties:
+  - type: OpenAPI
+    url: openapi/zoca-support-agent-kb-api-openapi.yml
+  - type: Components
+    url: components/zoca-components.yml
+- aid: zoca:zoca-sybill-webhook-api
+  name: Zoca Sybill Webhook API
+  description: The Sybill Webhook API from Zoca — 2 operation(s) for sybill webhook.
+  humanURL: https://app.zoca.com/
+  baseURL: https://api.zoca.ai
+  tags:
+  - Sybill Webhook
+  properties:
+  - type: OpenAPI
+    url: openapi/zoca-sybill-webhook-api-openapi.yml
+  - type: Components
+    url: components/zoca-components.yml
+- aid: zoca:zoca-t-api
+  name: Zoca T API
+  description: The t API from Zoca — 100 operation(s) for t.
+  humanURL: https://app.zoca.com/
+  baseURL: https://api.zoca.ai
+  tags:
+  - t
+  properties:
+  - type: OpenAPI
+    url: openapi/zoca-t-api-openapi.yml
+  - type: Components
+    url: components/zoca-components.yml
+- aid: zoca:zoca-tax-configuration-api
+  name: Zoca Tax Configuration API
+  description: The Tax Configuration API from Zoca — 6 operation(s) for tax configuration.
+  humanURL: https://app.zoca.com/
+  baseURL: https://api.zoca.ai
+  tags:
+  - Tax Configuration
+  properties:
+  - type: OpenAPI
+    url: openapi/zoca-tax-configuration-api-openapi.yml
+  - type: Components
+    url: components/zoca-components.yml
+- aid: zoca:zoca-tiktok-api
+  name: Zoca Tiktok API
+  description: The tiktok API from Zoca — 7 operation(s) for tiktok.
+  humanURL: https://app.zoca.com/
+  baseURL: https://api.zoca.ai
+  tags:
+  - tiktok
+  properties:
+  - type: OpenAPI
+    url: openapi/zoca-tiktok-api-openapi.yml
+  - type: Components
+    url: components/zoca-components.yml
+- aid: zoca:zoca-time-clock-api
+  name: Zoca Time Clock API
+  description: The Time Clock API from Zoca — 10 operation(s) for time clock.
+  humanURL: https://app.zoca.com/
+  baseURL: https://api.zoca.ai
+  tags:
+  - Time Clock
+  properties:
+  - type: OpenAPI
+    url: openapi/zoca-time-clock-api-openapi.yml
+  - type: Components
+    url: components/zoca-components.yml
+- aid: zoca:zoca-trial-checklist-api
+  name: Zoca Trial Checklist API
+  description: The trial-checklist API from Zoca — 2 operation(s) for trial-checklist.
+  humanURL: https://app.zoca.com/
+  baseURL: https://api.zoca.ai
+  tags:
+  - trial-checklist
+  properties:
+  - type: OpenAPI
+    url: openapi/zoca-trial-checklist-api-openapi.yml
+  - type: Components
+    url: components/zoca-components.yml
+- aid: zoca:zoca-twilio-api
+  name: Zoca Twilio API
+  description: The twilio API from Zoca — 16 operation(s) for twilio.
+  humanURL: https://app.zoca.com/
+  baseURL: https://api.zoca.ai
+  tags:
+  - twilio
+  properties:
+  - type: OpenAPI
+    url: openapi/zoca-twilio-api-openapi.yml
+  - type: Components
+    url: components/zoca-components.yml
+- aid: zoca:zoca-ui-components-api
+  name: Zoca UI Components API
+  description: The UI Components API from Zoca — 3 operation(s) for ui components.
+  humanURL: https://app.zoca.com/
+  baseURL: https://api.zoca.ai
+  tags:
+  - UI Components
+  properties:
+  - type: OpenAPI
+    url: openapi/zoca-ui-components-api-openapi.yml
+  - type: Components
+    url: components/zoca-components.yml
+- aid: zoca:zoca-updates-api
+  name: Zoca Updates API
+  description: The updates API from Zoca — 8 operation(s) for updates.
+  humanURL: https://app.zoca.com/
+  baseURL: https://api.zoca.ai
+  tags:
+  - updates
+  properties:
+  - type: OpenAPI
+    url: openapi/zoca-updates-api-openapi.yml
+  - type: Components
+    url: components/zoca-components.yml
+- aid: zoca:zoca-vagaro-api
+  name: Zoca Vagaro API
+  description: The Vagaro API from Zoca — 10 operation(s) for vagaro.
+  humanURL: https://app.zoca.com/
+  baseURL: https://api.zoca.ai
+  tags:
+  - Vagaro
+  properties:
+  - type: OpenAPI
+    url: openapi/zoca-vagaro-api-openapi.yml
+  - type: Components
+    url: components/zoca-components.yml
+- aid: zoca:zoca-webhooks-api
+  name: Zoca Webhooks API
+  description: The Webhooks API from Zoca — 1 operation(s) for webhooks.
+  humanURL: https://app.zoca.com/
+  baseURL: https://api.zoca.ai
+  tags:
   - Webhooks
   properties:
   - type: OpenAPI
-    url: openapi/zoca-tasks-openapi.yml
-  - type: OpenAPI
-    url: openapi/_original/zoca-tasks-swagger.json
-    name: Original as served by Zoca
-  - type: Overlay
-    url: overlays/zoca-tasks-overlay.yaml
+    url: openapi/zoca-webhooks-api-openapi.yml
   - type: Components
     url: components/zoca-components.yml
-- aid: zoca:zoca-public-api
-  name: Zoca Public API
-  slug: zoca-public-api
-  description: Zoca's unauthenticated public surface — the 69 operations behind the free self-serve tools on zoca.com.
-    Covers the Local Business Demand Tracker (keyword demand and keyword intelligence), Google Business Profile
-    competitor analysis, place metrics and keyword tables, website strategy grading, pricing benchmarks and menu
-    analysis, plus short-link and app-link redirects. Served as an OpenAPI 3.0.0 document at https://public.zoca.com/swagger.json.
-    This is the only Zoca surface reachable without a Zoca account.
-  humanURL: https://zoca.com/free-tools/keywords-analysis
-  baseURL: https://public.zoca.com
-  image: https://cdn.prod.website-files.com/68137618ce08fc7361daa786/6824fbebce901ed009a1e222_3.avif
+- aid: zoca:zoca-website-api
+  name: Zoca Website API
+  description: The Website API from Zoca — 128 operation(s) for website.
+  humanURL: https://app.zoca.com/
+  baseURL: https://api.zoca.ai
   tags:
-  - Lead Generation
-  - Keyword Research
-  - Local SEO
-  - Google Business Profile
-  - Website Audit
-  - Public API
+  - Website
   properties:
   - type: OpenAPI
-    url: openapi/zoca-public-openapi.yml
+    url: openapi/zoca-website-api-openapi.yml
+  - type: Components
+    url: components/zoca-components.yml
+- aid: zoca:zoca-website-creation-api
+  name: Zoca Website Creation API
+  description: The Website Creation API from Zoca — 8 operation(s) for website creation.
+  humanURL: https://app.zoca.com/
+  baseURL: https://api.zoca.ai
+  tags:
+  - Website Creation
+  properties:
   - type: OpenAPI
-    url: openapi/_original/zoca-public-swagger.json
-    name: Original as served by Zoca
-  - type: Overlay
-    url: overlays/zoca-public-overlay.yaml
+    url: openapi/zoca-website-creation-api-openapi.yml
+  - type: Components
+    url: components/zoca-components.yml
+- aid: zoca:zoca-website-legacy-controller-api
+  name: Zoca Website Legacy Controller API
+  description: >-
+    The Website Legacy Controller API from Zoca — 1 operation(s) for website legacy controller.
+  humanURL: https://app.zoca.com/
+  baseURL: https://api.zoca.ai
+  tags:
+  - Website Legacy Controller
+  properties:
+  - type: OpenAPI
+    url: openapi/zoca-website-legacy-controller-api-openapi.yml
+  - type: Components
+    url: components/zoca-components.yml
+- aid: zoca:zoca-website-performance-api
+  name: Zoca Website Performance API
+  description: The website-performance API from Zoca — 12 operation(s) for website-performance.
+  humanURL: https://app.zoca.com/
+  baseURL: https://api.zoca.ai
+  tags:
+  - website-performance
+  properties:
+  - type: OpenAPI
+    url: openapi/zoca-website-performance-api-openapi.yml
+  - type: Components
+    url: components/zoca-components.yml
+- aid: zoca:zoca-website-performance-callback-api
+  name: Zoca Website Performance Callback API
+  description: >-
+    The website-performance-callback API from Zoca — 1 operation(s) for website-performance-callback.
+  humanURL: https://app.zoca.com/
+  baseURL: https://api.zoca.ai
+  tags:
+  - website-performance-callback
+  properties:
+  - type: OpenAPI
+    url: openapi/zoca-website-performance-callback-api-openapi.yml
+  - type: Components
+    url: components/zoca-components.yml
+- aid: zoca:zoca-webview-api
+  name: Zoca Webview API
+  description: The Webview API from Zoca — 2 operation(s) for webview.
+  humanURL: https://app.zoca.com/
+  baseURL: https://api.zoca.ai
+  tags:
+  - Webview
+  properties:
+  - type: OpenAPI
+    url: openapi/zoca-webview-api-openapi.yml
+  - type: Components
+    url: components/zoca-components.yml
+- aid: zoca:zoca-win-analytics-api
+  name: Zoca Win Analytics API
+  description: The Win Analytics API from Zoca — 9 operation(s) for win analytics.
+  humanURL: https://app.zoca.com/
+  baseURL: https://api.zoca.ai
+  tags:
+  - Win Analytics
+  properties:
+  - type: OpenAPI
+    url: openapi/zoca-win-analytics-api-openapi.yml
+  - type: Components
+    url: components/zoca-components.yml
+- aid: zoca:zoca-win-conversion-api
+  name: Zoca Win Conversion API
+  description: The Win Conversion API from Zoca — 1 operation(s) for win conversion.
+  humanURL: https://app.zoca.com/
+  baseURL: https://api.zoca.ai
+  tags:
+  - Win Conversion
+  properties:
+  - type: OpenAPI
+    url: openapi/zoca-win-conversion-api-openapi.yml
+  - type: Components
+    url: components/zoca-components.yml
+- aid: zoca:zoca-win-internal-api
+  name: Zoca Win Internal API
+  description: The Win Internal API from Zoca — 7 operation(s) for win internal.
+  humanURL: https://app.zoca.com/
+  baseURL: https://api.zoca.ai
+  tags:
+  - Win Internal
+  properties:
+  - type: OpenAPI
+    url: openapi/zoca-win-internal-api-openapi.yml
+  - type: Components
+    url: components/zoca-components.yml
+- aid: zoca:zoca-win-onboarding-api
+  name: Zoca Win Onboarding API
+  description: The Win Onboarding API from Zoca — 37 operation(s) for win onboarding.
+  humanURL: https://app.zoca.com/
+  baseURL: https://api.zoca.ai
+  tags:
+  - Win Onboarding
+  properties:
+  - type: OpenAPI
+    url: openapi/zoca-win-onboarding-api-openapi.yml
+  - type: Components
+    url: components/zoca-components.yml
+- aid: zoca:zoca-win-subscription-api
+  name: Zoca Win Subscription API
+  description: The Win Subscription API from Zoca — 13 operation(s) for win subscription.
+  humanURL: https://app.zoca.com/
+  baseURL: https://api.zoca.ai
+  tags:
+  - Win Subscription
+  properties:
+  - type: OpenAPI
+    url: openapi/zoca-win-subscription-api-openapi.yml
+  - type: Components
+    url: components/zoca-components.yml
+- aid: zoca:zoca-working-hours-api
+  name: Zoca Working Hours API
+  description: The Working Hours API from Zoca — 12 operation(s) for working hours.
+  humanURL: https://app.zoca.com/
+  baseURL: https://api.zoca.ai
+  tags:
+  - Working Hours
+  properties:
+  - type: OpenAPI
+    url: openapi/zoca-working-hours-api-openapi.yml
+  - type: Components
+    url: components/zoca-components.yml
+- aid: zoca:zoca-zoe-chatbot-api
+  name: Zoca Zoe Chatbot API
+  description: The Zoe Chatbot API from Zoca — 15 operation(s) for zoe chatbot.
+  humanURL: https://app.zoca.com/
+  baseURL: https://api.zoca.ai
+  tags:
+  - Zoe Chatbot
+  properties:
+  - type: OpenAPI
+    url: openapi/zoca-zoe-chatbot-api-openapi.yml
+  - type: Components
+    url: components/zoca-components.yml
+- aid: zoca:zoca-zoho-api
+  name: Zoca Zoho API
+  description: The zoho API from Zoca — 2 operation(s) for zoho.
+  humanURL: https://app.zoca.com/
+  baseURL: https://api.zoca.ai
+  tags:
+  - zoho
+  properties:
+  - type: OpenAPI
+    url: openapi/zoca-zoho-api-openapi.yml
+  - type: Components
+    url: components/zoca-components.yml
 maintainers:
 - FN: Kin Lane
   email: kin@apievangelist.com
 - FN: APIs.json
   email: info@apis.io
 common:
+- type: Overlay
+  url: overlays/zoca-platform-overlay.yaml
+- type: Overlay
+  url: overlays/zoca-tasks-overlay.yaml
+- type: Overlay
+  url: overlays/zoca-public-overlay.yaml
 - type: AgenticAccess
   url: agentic-access/zoca-agentic-access.yml
 - type: Website
