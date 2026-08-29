@@ -12,6 +12,18 @@ description: 'Zoca is an AI-powered marketing platform built for local beauty an
   describing 2,624 operations across 2,267 paths. Those are the application''s own backend contracts rather than
   a product, and they ship with minified operationIds and untyped schemas.'
 url: https://raw.githubusercontent.com/api-evangelist/zoca/refs/heads/main/apis.yml
+deliveryModel:
+  model: saas
+  open_source: false
+  commercial: true
+  callable_host: true
+  label: Hosted service · you call their endpoint
+  confidence: high
+  source:
+  - openapi
+  - pricing
+  generated: '2026-08-28'
+  method: derived
 accessModel:
   pricing: subscription
   onboarding: sales
