@@ -1,0 +1,83 @@
+openapi: 3.2.0
+info:
+  title: Zoca Tasks Callhippo API
+  description: 'The Zoca tasks/automation service: AI content queue and planning, FrontDesk (Retell/Twilio) voice + SMS agent onboarding, local-SEO grid scans, WIN conversion triggers, and inbound integration webhooks (Chargebee, Square, Pipedrive, Twilio, Retell, CallHippo, Sybill, Instantly).'
+  version: 3.20.9
+  contact: {}
+  x-apievangelist-note: Harvested verbatim from https://tasks.zoca.ai/swagger.json. The provider ships the default NestJS Swagger metadata (title "API Documentation", empty servers[]); title/description/servers were set by API Evangelist for identification and the unmodified original is preserved at openapi/_original/zoca-tasks-swagger.json. Every path, operation, summary, parameter and response is exactly as published.
+servers:
+- url: https://tasks.zoca.ai
+  description: Production
+security:
+- access-token: []
+tags:
+- name: Callhippo
+paths:
+  /tasks/api/v1/callhippo/webhook:
+    post:
+      description: Processes incoming Callhippo webhook data and queues it for handling
+      operationId: t_value
+      parameters: []
+      responses:
+        '201':
+          description: Callhippo webhook processed successfully
+      security:
+      - {}
+      summary: Process Callhippo webhook
+      tags:
+      - Callhippo
+  /tasks/api/v1/callhippo/template-message:
+    get:
+      description: Retrieves the template message for a given locationEntityId
+      operationId: t_value
+      parameters: []
+      responses:
+        '200':
+          description: ''
+      summary: Get template message for a given locationEntityId
+      tags:
+      - Callhippo
+  /tasks/api/v1/callhippo/save-sms-data:
+    post:
+      description: Saves SMS data to the database
+      operationId: t_value
+      parameters: []
+      responses:
+        '201':
+          description: ''
+      summary: Save SMS data
+      tags:
+      - Callhippo
+  /tasks/api/v1/callhippo/send-sms:
+    post:
+      description: Sends an SMS message using the CallHippo API
+      operationId: t_value
+      parameters: []
+      responses:
+        '201':
+          description: ''
+      summary: Send SMS using CallHippo API
+      tags:
+      - Callhippo
+  /tasks/api/v1/callhippo/sync-transcripts:
+    post:
+      description: Refetch and analyze CallHippo transcripts for calls within a date range and matching query filters
+      operationId: t_value
+      parameters: []
+      responses:
+        '201':
+          description: Transcript sync job queued successfully
+        '400':
+          description: Invalid request parameters
+      summary: Sync and analyze CallHippo transcripts
+      tags:
+      - Callhippo
+components:
+  securitySchemes:
+    access-token:
+      scheme: bearer
+      bearerFormat: JWT
+      type: http
+      name: Authorization
+      description: Enter JWT token in the format Bearer <token>
+      in: header

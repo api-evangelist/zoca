@@ -1,0 +1,202 @@
+openapi: 3.2.0
+info:
+  title: Zoca Health API
+  contact: {}
+  x-refined-note:
+  - x-apievangelist-note differs across the merged source definitions and was not carried
+  version: '1.0'
+  description: 'Operations tagged Health across 3 of this provider''s published API definitions: zoca-platform-openapi.yml, zoca-public-openapi.yml, zoca-tasks-openapi.yml. Each path carries the servers of the definition it was published in.'
+servers:
+- url: https://api.zoca.ai
+  description: Production
+- url: https://public.zoca.com
+  description: Production
+- url: https://tasks.zoca.ai
+  description: Production
+tags:
+- name: Health
+paths:
+  /health:
+    get:
+      operationId: t_value
+      parameters: []
+      responses:
+        '200':
+          description: Service is healthy
+      summary: Health check endpoint
+      tags:
+      - Health
+    servers:
+    - url: https://api.zoca.ai
+      description: Production
+  /zoca:
+    get:
+      operationId: t_value
+      parameters: []
+      responses:
+        '200':
+          description: ''
+      summary: Root health check endpoint
+      tags:
+      - Health
+    servers:
+    - url: https://api.zoca.ai
+      description: Production
+  /zoca/health:
+    get:
+      description: Retrieves application health status and environment information
+      operationId: t_value
+      parameters: []
+      responses:
+        '200':
+          description: Health check and environment data retrieved successfully
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  status:
+                    type: string
+                  timestamp:
+                    type: string
+                    format: date-time
+                  environment:
+                    type: string
+                  version:
+                    type: string
+                  uptime:
+                    type: number
+                  memoryUsage:
+                    type: object
+                    properties:
+                      heapUsed:
+                        type: number
+                      heapTotal:
+                        type: number
+                      rss:
+                        type: number
+      summary: Get Health and Environment Status
+      tags:
+      - Health
+    servers:
+    - url: https://api.zoca.ai
+      description: Production
+  /zoca/error:
+    get:
+      operationId: t_value
+      parameters: []
+      responses:
+        '200':
+          description: ''
+      summary: Test error endpoint
+      tags:
+      - Health
+    servers:
+    - url: https://api.zoca.ai
+      description: Production
+  /zoca/headers:
+    get:
+      operationId: t_value
+      parameters: []
+      responses:
+        '200':
+          description: ''
+      summary: Display request headers
+      tags:
+      - Health
+    servers:
+    - url: https://api.zoca.ai
+      description: Production
+  /zoca/favicon.ico:
+    get:
+      operationId: t_value
+      parameters: []
+      responses:
+        '200':
+          description: ''
+      summary: Get favicon
+      tags:
+      - Health
+    servers:
+    - url: https://api.zoca.ai
+      description: Production
+  /zoca/custom-exception:
+    get:
+      operationId: t_value
+      parameters: []
+      responses:
+        '200':
+          description: ''
+      summary: Test custom exception handling
+      tags:
+      - Health
+    servers:
+    - url: https://api.zoca.ai
+      description: Production
+  /zoca/default-exception:
+    get:
+      operationId: t_value
+      parameters: []
+      responses:
+        '200':
+          description: ''
+      summary: Test default exception handling
+      tags:
+      - Health
+    servers:
+    - url: https://api.zoca.ai
+      description: Production
+  /tasks/api/v1/health:
+    get:
+      description: Retrieves application health status and environment information
+      operationId: t_value
+      parameters: []
+      responses:
+        '200':
+          description: Health check and environment data retrieved successfully
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  status:
+                    type: string
+                  timestamp:
+                    type: string
+                    format: date-time
+                  environment:
+                    type: string
+                  version:
+                    type: string
+                  uptime:
+                    type: number
+                  memoryUsage:
+                    type: object
+                    properties:
+                      heapUsed:
+                        type: number
+                      heapTotal:
+                        type: number
+                      rss:
+                        type: number
+      security:
+      - {}
+      summary: Get Health and Environment Status
+      tags:
+      - Health
+    servers:
+    - url: https://tasks.zoca.ai
+      description: Production
+components:
+  securitySchemes:
+    access-token:
+      scheme: bearer
+      bearerFormat: JWT
+      type: http
+      name: Authorization
+      description: Enter JWT token in the format Bearer <token>
+      in: header
+x-refined-from:
+- zoca-platform-openapi.yml
+- zoca-public-openapi.yml
+- zoca-tasks-openapi.yml

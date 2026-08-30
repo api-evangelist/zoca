@@ -1,0 +1,473 @@
+openapi: 3.2.0
+info:
+  title: Zoca Platform Custom Domains API
+  description: 'The Zoca platform API behind the Zoca web app and mobile apps: scheduling, website generation, Google Business Profile, discovery/local SEO, social media, booking enquiries, offers, clients, staff, billing and the Zoca "brain" agent layer.'
+  version: 3.20.10
+  contact: {}
+  x-apievangelist-note: Harvested verbatim from https://api.zoca.ai/swagger.json. The provider ships the default NestJS Swagger metadata (title "API Documentation", empty servers[]); title/description/servers were set by API Evangelist for identification and the unmodified original is preserved at openapi/_original/zoca-platform-swagger.json. Every path, operation, summary, parameter and response is exactly as published.
+servers:
+- url: https://api.zoca.ai
+  description: Production
+tags:
+- name: Custom Domains
+paths:
+  /custom-domains:
+    post:
+      operationId: t_value
+      parameters: []
+      responses:
+        '201':
+          description: Custom domain created successfully
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/e'
+        '400':
+          description: Invalid request data
+      security:
+      - bearer: []
+      summary: Create a new custom domain
+      tags:
+      - Custom Domains
+    get:
+      operationId: t_value
+      parameters:
+      - name: limit
+        required: false
+        in: query
+        description: Number of items per page
+        schema:
+          example: 10
+          type: number
+      - name: page
+        required: false
+        in: query
+        description: Page number (starts from 1)
+        schema:
+          example: 1
+          type: number
+      - name: domainType
+        required: false
+        in: query
+        description: Filter by domain type (subdomain or domain)
+        schema:
+          enum:
+          - subdomain
+          - domain
+          type: string
+      - name: primaryDomain
+        required: false
+        in: query
+        description: Filter by primary domain
+        schema:
+          example: example.zoca.com
+          type: string
+      - name: domainPlatform
+        required: false
+        in: query
+        description: Filter by domain platform/registrar (alias for platform)
+        schema:
+          example: GoDaddy
+          type: string
+      - name: platform
+        required: false
+        in: query
+        description: Filter by platform
+        schema:
+          example: zoca.com
+          type: string
+      - name: search
+        required: false
+        in: query
+        description: Search by domain name (partial match)
+        schema:
+          example: example.com
+          type: string
+      - name: isActive
+        required: false
+        in: query
+        description: Filter by active status
+        schema:
+          example: true
+          type: boolean
+      - name: websiteId
+        required: false
+        in: query
+        description: Filter by website ID
+        schema:
+          example: 123e4567-e89b-12d3-a456-426614174000
+      responses:
+        '200':
+          description: Paginated list of custom domains
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/e'
+      security:
+      - bearer: []
+      summary: Get all custom domains with optional filters and pagination
+      tags:
+      - Custom Domains
+  /custom-domains/ops/in-flight:
+    get:
+      description: 'Read-only ops endpoint: every row that is not fully live, with cert status and a human-readable stuckReason so support can see WHY a connect is stuck without AWS console access.'
+      operationId: t_value
+      parameters: []
+      responses:
+        '200':
+          description: In-flight rows with stuck reasons
+      security:
+      - bearer: []
+      summary: List all in-flight custom-domain rows with a computed stuck reason
+      tags:
+      - Custom Domains
+  /custom-domains/{id}:
+    get:
+      operationId: t_value
+      parameters:
+      - name: id
+        required: true
+        in: path
+        description: Custom domain ID
+        schema:
+          example: 123e4567-e89b-12d3-a456-426614174000
+      responses:
+        '200':
+          description: Custom domain details
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/e'
+        '404':
+          description: Custom domain not found
+      security:
+      - bearer: []
+      summary: Get a custom domain by ID
+      tags:
+      - Custom Domains
+    patch:
+      operationId: t_value
+      parameters:
+      - name: id
+        required: true
+        in: path
+        description: Custom domain ID
+        schema:
+          example: 123e4567-e89b-12d3-a456-426614174000
+      responses:
+        '200':
+          description: Custom domain updated successfully
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/e'
+        '400':
+          description: Invalid request data
+        '404':
+          description: Custom domain not found
+      security:
+      - bearer: []
+      summary: Update a custom domain
+      tags:
+      - Custom Domains
+    delete:
+      operationId: t_value
+      parameters:
+      - name: id
+        required: true
+        in: path
+        description: Custom domain ID
+        schema:
+          example: 123e4567-e89b-12d3-a456-426614174000
+      responses:
+        '200':
+          description: Custom domain deleted successfully
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/e'
+        '404':
+          description: Custom domain not found
+      security:
+      - bearer: []
+      summary: Delete a custom domain
+      tags:
+      - Custom Domains
+  /custom-domains/{id}/publish-state:
+    get:
+      description: Returns ACM cert status, CloudFront distribution domain (once created), deployment status, and the DNS records the customer still needs to add. Also opportunistically runs the publish pipeline when cert is ISSUED + distribution missing — so FE polling produces results without waiting for the maintenance cron.
+      operationId: t_value
+      parameters:
+      - name: id
+        required: true
+        in: path
+        description: Custom domain ID
+        schema:
+          example: 123e4567-e89b-12d3-a456-426614174000
+      responses:
+        '200':
+          description: Publish state retrieved
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/e'
+        '404':
+          description: Custom domain not found
+      security:
+      - bearer: []
+      summary: Get current publish state + dnsRecords for a custom domain
+      tags:
+      - Custom Domains
+  /custom-domains/{id}/reachability:
+    get:
+      description: Live-checks AWS Route 53 Domains for whether the registrant email is verified. Applies only to `zoca`-owned rows; `sp` rows return applicable:false. On an AWS error returns status:unknown (no false alarm). Includes the registrant email + a 15-day deadline computed from the registration date.
+      operationId: t_value
+      parameters:
+      - name: id
+        required: true
+        in: path
+        description: Custom domain ID
+        schema: {}
+      responses:
+        '200':
+          description: Reachability status
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/e'
+        '404':
+          description: Custom domain not found
+      security:
+      - bearer: []
+      summary: Get ICANN registrant-email verification status for a purchased domain
+      tags:
+      - Custom Domains
+  /custom-domains/{id}/reachability/resend:
+    post:
+      description: Triggers AWS ResendContactReachabilityEmail for a `zoca`-owned row. 400 for `sp` rows. Returns isAlreadyVerified (true when the address is already confirmed — no email sent) + the target email.
+      operationId: t_value
+      parameters:
+      - name: id
+        required: true
+        in: path
+        description: Custom domain ID
+        schema: {}
+      responses:
+        '200':
+          description: Verification email resent
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/e'
+        '400':
+          description: Not a Zoca-registered domain
+        '404':
+          description: Custom domain not found
+      security:
+      - bearer: []
+      summary: Resend the ICANN registrant-verification email for a purchased domain
+      tags:
+      - Custom Domains
+  /custom-domains/{id}/connect-cname:
+    post:
+      description: Flips the row to dnsMode=registrar, requests/reuses the ACM cert (apex + wildcard ⇒ a single validation CNAME), and returns the record(s) the customer adds at their DNS host. Idempotent on retry; dead certs are transparently re-issued with identical records. Creates no Route 53 resources.
+      operationId: t_value
+      parameters:
+      - name: id
+        required: true
+        in: path
+        description: Custom domain ID
+        schema: {}
+      responses:
+        '200':
+          description: CNAME connect initiated
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/e'
+        '404':
+          description: Custom domain not found
+      security:
+      - bearer: []
+      summary: Initiate the CNAME-at-registrar Connect flow for a custom domain
+      tags:
+      - Custom Domains
+  /custom-domains/{id}/delegation-preview:
+    get:
+      description: Runs ONLY the public-DNS snapshot and returns the risk report — creates no AWS resources. The FE shows blockers (e.g. DNSSEC) with their fix steps BEFORE calling connect-delegation, and re-calls this from a "Check again" button after the customer fixes things at their registrar.
+      operationId: t_value
+      parameters:
+      - name: id
+        required: true
+        in: path
+        description: Custom domain ID
+        schema: {}
+      responses:
+        '200':
+          description: Migration Risk Report (dry-run)
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/e'
+        '404':
+          description: Custom domain not found
+      security:
+      - bearer: []
+      summary: Dry-run the Migration Risk Report for a custom domain
+      tags:
+      - Custom Domains
+  /custom-domains/{id}/connect-delegation:
+    post:
+      description: Runs the pre-flight DNS audit, creates a Route 53 hosted zone, imports the customer's existing records into it, requests the ACM cert, and writes validation CNAMEs. Returns the 4 awsdns NS values + Migration Risk Report. Idempotent on retry.
+      operationId: t_value
+      parameters:
+      - name: id
+        required: true
+        in: path
+        description: Custom domain ID
+        schema: {}
+      responses:
+        '200':
+          description: Delegation initiated
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/e'
+        '400':
+          description: DNSSEC enabled or other blocker — see message
+        '404':
+          description: Custom domain not found
+      security:
+      - bearer: []
+      summary: Initiate nameserver-delegation Connect flow for a custom domain
+      tags:
+      - Custom Domains
+  /custom-domains/{id}/delegation-status:
+    get:
+      description: Queries the parent TLD's authoritative servers for the domain's NS. When the observed NS match our awsdns set, marks the row as delegated and kicks off the publish chain (CloudFront distro + ALIAS records) in the background.
+      operationId: t_value
+      parameters:
+      - name: id
+        required: true
+        in: path
+        description: Custom domain ID
+        schema: {}
+      responses:
+        '200':
+          description: Delegation status
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/e'
+        '400':
+          description: Domain is not in nameserver-delegation mode
+        '404':
+          description: Custom domain not found
+      security:
+      - bearer: []
+      summary: Check nameserver-delegation progress at the parent TLD
+      tags:
+      - Custom Domains
+  /custom-domains/{id}/disconnect:
+    post:
+      description: Marks the domain as disconnecting. Site keeps serving for 30 days. Customer needs to revert NS at their registrar (NS delegation mode) or remove the CNAME (registrar mode) for the chain to tear down sooner. Cancelable via /reconnect during the grace window.
+      operationId: t_value
+      parameters:
+      - name: id
+        required: true
+        in: path
+        description: Custom domain ID
+        schema: {}
+      responses:
+        '200':
+          description: Disconnect initiated
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/e'
+        '404':
+          description: Custom domain not found
+      security:
+      - bearer: []
+      summary: Start disconnect for a custom domain (30-day grace)
+      tags:
+      - Custom Domains
+  /custom-domains/{id}/reconnect:
+    post:
+      description: Clears the disconnect timestamp, returning the domain to active. Common when a customer panics, then realises their email still works because we preserved their imported records.
+      operationId: t_value
+      parameters:
+      - name: id
+        required: true
+        in: path
+        description: Custom domain ID
+        schema: {}
+      responses:
+        '200':
+          description: Reconnected
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/e'
+        '404':
+          description: Custom domain not found
+      security:
+      - bearer: []
+      summary: Cancel an in-flight disconnect
+      tags:
+      - Custom Domains
+  /custom-domains/{id}/dns-export:
+    get:
+      description: Returns text/plain in BIND zone-file format containing every record we have for the domain (MX, TXT, CNAME, A, etc.). The customer can paste this at any DNS host to migrate without losing records.
+      operationId: t_value
+      parameters:
+      - name: id
+        required: true
+        in: path
+        description: Custom domain ID
+        schema: {}
+      responses:
+        '200':
+          description: Zone file content
+        '404':
+          description: Custom domain not found or no snapshot
+      security:
+      - bearer: []
+      summary: Export the domain's DNS as a BIND-style zone file
+      tags:
+      - Custom Domains
+components:
+  schemas:
+    e:
+      type: object
+      properties:
+        id:
+          type: number
+        entityId:
+          type: string
+        attribute:
+          type: string
+        value:
+          type:
+          - object
+          - 'null'
+        metadata:
+          type:
+          - object
+          - 'null'
+        createdAt:
+          type:
+          - object
+          - 'null'
+      required:
+      - id
+      - entityId
+      - attribute
+  securitySchemes:
+    access-token:
+      scheme: bearer
+      bearerFormat: JWT
+      type: http
+      name: Authorization
+      description: Enter JWT token in the format Bearer <token>
+      in: header

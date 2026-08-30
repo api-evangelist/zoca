@@ -1,0 +1,133 @@
+openapi: 3.2.0
+info:
+  title: Zoca Platform Domains API
+  description: 'The Zoca platform API behind the Zoca web app and mobile apps: scheduling, website generation, Google Business Profile, discovery/local SEO, social media, booking enquiries, offers, clients, staff, billing and the Zoca "brain" agent layer.'
+  version: 3.20.10
+  contact: {}
+  x-apievangelist-note: Harvested verbatim from https://api.zoca.ai/swagger.json. The provider ships the default NestJS Swagger metadata (title "API Documentation", empty servers[]); title/description/servers were set by API Evangelist for identification and the unmodified original is preserved at openapi/_original/zoca-platform-swagger.json. Every path, operation, summary, parameter and response is exactly as published.
+servers:
+- url: https://api.zoca.ai
+  description: Production
+tags:
+- name: Domains
+paths:
+  /domains/suggest:
+    get:
+      description: Generates 5–6 candidate domains from the input and returns availability + yearly registration price for each. Available rows always returned; unavailable rows are filtered out unless the user typed an exact FQDN.
+      operationId: t_value
+      parameters: []
+      responses:
+        '200':
+          description: ''
+          content:
+            application/json:
+              schema:
+                type: array
+                items:
+                  $ref: '#/components/schemas/e'
+      security:
+      - bearer: []
+      summary: Search domain availability + pricing for a keyword or FQDN
+      tags:
+      - Domains
+  /domains/pricing:
+    get:
+      description: Returns price + currency per TLD. When `tlds` is omitted, the FE picker default set is used.
+      operationId: t_value
+      parameters: []
+      responses:
+        '200':
+          description: ''
+          content:
+            application/json:
+              schema:
+                type: array
+                items:
+                  $ref: '#/components/schemas/e'
+      security:
+      - bearer: []
+      summary: Yearly registration prices for a TLD set
+      tags:
+      - Domains
+  /domains/register:
+    post:
+      description: Submits the registration to AWS, then writes a `custom_domains` row tagged `domainOwnedBy=zoca` with `isActive=false` and the AWS operation ID stored on the row. Poll GET /domains/register/:operationId until `SUCCESSFUL` to flip the row active.
+      operationId: t_value
+      parameters: []
+      responses:
+        '200':
+          description: ''
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/e'
+      security:
+      - bearer: []
+      summary: Register a domain through AWS Route53Domains
+      tags:
+      - Domains
+  /domains/distribution-status/{distributionId}:
+    get:
+      description: Wraps CloudFront GetDistribution. Returns `Deployed` once the distribution has fully propagated to all edge POPs (typically 5–15 min after CreateDistribution). FE uses this to keep showing a "publishing" state instead of claiming the site is live before traffic actually serves.
+      operationId: t_value
+      parameters: []
+      responses:
+        '200':
+          description: ''
+      security:
+      - bearer: []
+      summary: Get CloudFront distribution deployment status
+      tags:
+      - Domains
+  /domains/register/{operationId}:
+    get:
+      description: Wraps Route53Domains GetOperationDetail. When status flips to SUCCESSFUL the row is auto-promoted (isActive=true, registerOperationId cleared) and the publish pipeline (ACM cert + per-customer CloudFront distribution + Route53 ALIAS records) is kicked off so the website serves on the purchased domain. The same pipeline also runs from the maintenance-worker cron, so customers who close their browser still get published.
+      operationId: t_value
+      parameters: []
+      responses:
+        '200':
+          description: ''
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/e'
+      security:
+      - bearer: []
+      summary: Poll the status of an in-flight domain registration
+      tags:
+      - Domains
+components:
+  schemas:
+    e:
+      type: object
+      properties:
+        id:
+          type: number
+        entityId:
+          type: string
+        attribute:
+          type: string
+        value:
+          type:
+          - object
+          - 'null'
+        metadata:
+          type:
+          - object
+          - 'null'
+        createdAt:
+          type:
+          - object
+          - 'null'
+      required:
+      - id
+      - entityId
+      - attribute
+  securitySchemes:
+    access-token:
+      scheme: bearer
+      bearerFormat: JWT
+      type: http
+      name: Authorization
+      description: Enter JWT token in the format Bearer <token>
+      in: header

@@ -1,0 +1,62 @@
+openapi: 3.2.0
+info:
+  title: Zoca Platform Staff Permissions API
+  description: 'The Zoca platform API behind the Zoca web app and mobile apps: scheduling, website generation, Google Business Profile, discovery/local SEO, social media, booking enquiries, offers, clients, staff, billing and the Zoca "brain" agent layer.'
+  version: 3.20.10
+  contact: {}
+  x-apievangelist-note: Harvested verbatim from https://api.zoca.ai/swagger.json. The provider ships the default NestJS Swagger metadata (title "API Documentation", empty servers[]); title/description/servers were set by API Evangelist for identification and the unmodified original is preserved at openapi/_original/zoca-platform-swagger.json. Every path, operation, summary, parameter and response is exactly as published.
+servers:
+- url: https://api.zoca.ai
+  description: Production
+tags:
+- name: Staff Permissions
+paths:
+  /staff/permissions/users/{userEntityId}:
+    get:
+      description: Returns one `auth.user_permissions` row per scope diverging from the role preset. Empty array means the user’s effective scopes match their role exactly.
+      operationId: t_value
+      parameters: []
+      responses:
+        '200':
+          description: Array of override rows.
+        '401':
+          description: Unauthenticated.
+        '403':
+          description: Denied `staff:member.read` action.
+        '503':
+          description: Feature disabled (killswitch).
+      security:
+      - bearer: []
+      summary: Read a user’s per-business override map.
+      tags:
+      - Staff Permissions
+  /staff/permissions/users/{userEntityId}/apply:
+    post:
+      description: Routes through the cascade engine. Body supports `toggleOn` / `toggleOff` (incremental) OR `setExact` (declarative). FC-AZ-11 — non-owner actors cannot grant scopes outside their own effective set; 403 is the rejection path.
+      operationId: t_value
+      parameters: []
+      responses:
+        '200':
+          description: Overrides applied (counts in response).
+        '400':
+          description: Validation error / unknown scope key.
+        '401':
+          description: Unauthenticated.
+        '403':
+          description: Denied `staff:member.permission.manage` action OR actor cannot grant outside own set.
+        '503':
+          description: Feature disabled (killswitch).
+      security:
+      - bearer: []
+      summary: Apply per-business permission overrides for a user.
+      tags:
+      - Staff Permissions
+components:
+  securitySchemes:
+    access-token:
+      scheme: bearer
+      bearerFormat: JWT
+      type: http
+      name: Authorization
+      description: Enter JWT token in the format Bearer <token>
+      in: header

@@ -1,0 +1,145 @@
+openapi: 3.2.0
+info:
+  title: Zoca Platform Tax Configuration API
+  description: 'The Zoca platform API behind the Zoca web app and mobile apps: scheduling, website generation, Google Business Profile, discovery/local SEO, social media, booking enquiries, offers, clients, staff, billing and the Zoca "brain" agent layer.'
+  version: 3.20.10
+  contact: {}
+  x-apievangelist-note: Harvested verbatim from https://api.zoca.ai/swagger.json. The provider ships the default NestJS Swagger metadata (title "API Documentation", empty servers[]); title/description/servers were set by API Evangelist for identification and the unmodified original is preserved at openapi/_original/zoca-platform-swagger.json. Every path, operation, summary, parameter and response is exactly as published.
+servers:
+- url: https://api.zoca.ai
+  description: Production
+tags:
+- name: Tax Configuration
+paths:
+  /scheduling/tax-rates:
+    get:
+      operationId: t_value
+      parameters:
+      - name: entityId
+        required: true
+        in: query
+        description: Entity ID to get tax rates for
+        schema:
+          type: string
+      responses:
+        '200':
+          description: ''
+      summary: List all active tax rates for an entity
+      tags:
+      - Tax Configuration
+    post:
+      operationId: t_value
+      parameters: []
+      responses:
+        '201':
+          description: ''
+      summary: Create a new tax rate
+      tags:
+      - Tax Configuration
+  /scheduling/tax-rates/default:
+    get:
+      operationId: t_value
+      parameters:
+      - name: scope
+        required: false
+        in: query
+        description: 'AMEND-17: Tax-rate scope. Defaults to SERVICE for backwards compatibility.'
+        schema:
+          enum:
+          - SERVICE
+          - RETAIL
+          type: string
+      - name: entityId
+        required: true
+        in: query
+        description: Entity ID to get default tax rate for
+        schema:
+          type: string
+      responses:
+        '200':
+          description: ''
+      summary: Get current default tax rate for an entity
+      tags:
+      - Tax Configuration
+  /scheduling/tax-rates/{id}:
+    patch:
+      operationId: t_value
+      parameters:
+      - name: id
+        required: true
+        in: path
+        description: Tax rate ID
+        schema:
+          type: string
+      responses:
+        '200':
+          description: ''
+      summary: Update an existing tax rate
+      tags:
+      - Tax Configuration
+    delete:
+      operationId: t_value
+      parameters:
+      - name: id
+        required: true
+        in: path
+        description: Tax rate ID
+        schema:
+          type: string
+      responses:
+        '200':
+          description: ''
+      summary: Soft-delete a tax rate
+      tags:
+      - Tax Configuration
+  /scheduling/service-tax-mappings:
+    get:
+      operationId: t_value
+      parameters:
+      - name: entityId
+        required: true
+        in: query
+        description: Entity ID to get service tax mappings for
+        schema:
+          type: string
+      responses:
+        '200':
+          description: ''
+      summary: List all service tax mappings for an entity
+      tags:
+      - Tax Configuration
+  /scheduling/service-tax-mappings/{serviceVariationId}/tax:
+    patch:
+      operationId: t_value
+      parameters:
+      - name: serviceVariationId
+        required: true
+        in: path
+        description: Service variation ID
+        schema:
+          type: string
+      responses:
+        '200':
+          description: ''
+      summary: Toggle tax enabled status for a service variation
+      tags:
+      - Tax Configuration
+  /scheduling/service-tax-mappings/bulk-update:
+    post:
+      operationId: t_value
+      parameters: []
+      responses:
+        '201':
+          description: ''
+      summary: Bulk update tax status for multiple service variations
+      tags:
+      - Tax Configuration
+components:
+  securitySchemes:
+    access-token:
+      scheme: bearer
+      bearerFormat: JWT
+      type: http
+      name: Authorization
+      description: Enter JWT token in the format Bearer <token>
+      in: header

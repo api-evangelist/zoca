@@ -1,0 +1,2554 @@
+openapi: 3.2.0
+info:
+  title: Zoca Platform Website API
+  description: 'The Zoca platform API behind the Zoca web app and mobile apps: scheduling, website generation, Google Business Profile, discovery/local SEO, social media, booking enquiries, offers, clients, staff, billing and the Zoca "brain" agent layer.'
+  version: 3.20.10
+  contact: {}
+  x-apievangelist-note: Harvested verbatim from https://api.zoca.ai/swagger.json. The provider ships the default NestJS Swagger metadata (title "API Documentation", empty servers[]); title/description/servers were set by API Evangelist for identification and the unmodified original is preserved at openapi/_original/zoca-platform-swagger.json. Every path, operation, summary, parameter and response is exactly as published.
+servers:
+- url: https://api.zoca.ai
+  description: Production
+tags:
+- name: Website
+paths:
+  /website/{websiteId}/gallery/migrate:
+    post:
+      description: Fetches media from media.chrone_mapping where entity_id matches and is_website_gallery is true, then migrates to website.media with duplicate checking
+      operationId: t_value
+      parameters:
+      - name: websiteId
+        required: true
+        in: path
+        description: ID of the website
+        schema:
+          type: string
+      responses:
+        '200':
+          description: Gallery migration completed successfully
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  success:
+                    type: boolean
+                    example: true
+                  message:
+                    type: string
+                    example: Website gallery migration completed successfully
+                  migrated:
+                    type: number
+                    example: 10
+                  skipped:
+                    type: number
+                    example: 2
+                  failed:
+                    type: number
+                    example: 0
+                  details:
+                    type: object
+                    properties:
+                      totalChroneMappingRecords:
+                        type: number
+                      validZocaIds:
+                        type: number
+                      validMediaRecords:
+                        type: number
+                      existingInWebsite:
+                        type: number
+                      newlyInserted:
+                        type: number
+        '400':
+          description: Invalid request parameters
+        '500':
+          description: Migration failed
+      summary: Migrate website gallery media from chrone_mapping to website.media
+      tags:
+      - Website
+  /website/forms:
+    post:
+      operationId: t_value
+      parameters: []
+      responses:
+        '201':
+          description: Form created successfully
+      summary: Create a new form
+      tags:
+      - Website
+    get:
+      operationId: t_value
+      parameters:
+      - name: pageSize
+        required: false
+        in: query
+        description: 'Items per page (default: 10)'
+        schema:
+          type: number
+      - name: page
+        required: false
+        in: query
+        description: 'Page number (default: 1)'
+        schema:
+          type: number
+      responses:
+        '200':
+          description: List of forms
+      summary: Get all forms (paginated)
+      tags:
+      - Website
+  /website/forms/{id}:
+    get:
+      operationId: t_value
+      parameters: []
+      responses:
+        '200':
+          description: Form details
+      summary: Get form by ID
+      tags:
+      - Website
+    patch:
+      operationId: t_value
+      parameters: []
+      responses:
+        '200':
+          description: Form updated successfully
+      summary: Update a form
+      tags:
+      - Website
+    delete:
+      operationId: t_value
+      parameters: []
+      responses:
+        '200':
+          description: Form deleted successfully
+      summary: Delete a form (soft delete)
+      tags:
+      - Website
+  /website/{websiteId}/generate-metadata:
+    get:
+      operationId: t_value
+      parameters:
+      - name: websiteId
+        required: true
+        in: path
+        description: ID of the website
+        schema: {}
+      responses:
+        '200':
+          description: Metadata generated successfully
+        '400':
+          description: Invalid websiteId
+        '404':
+          description: Metadata not found
+      summary: Generate metadata for a website
+      tags:
+      - Website
+  /website/generate-fonts:
+    post:
+      description: Describe the font style you want and AI returns matching Google Font heading/body pairs.
+      operationId: t_value
+      parameters: []
+      responses:
+        '200':
+          description: Font suggestions generated successfully
+        '400':
+          description: Invalid request parameters
+      summary: Generate AI font pair suggestions
+      tags:
+      - Website
+  /website/{websiteId}/website-forms:
+    get:
+      operationId: t_value
+      parameters: []
+      responses:
+        '200':
+          description: Returns list of formIds
+      summary: Get all formIds mapped to a websiteId
+      tags:
+      - Website
+    post:
+      operationId: t_value
+      parameters: []
+      responses:
+        '201':
+          description: Mapping created successfully
+      summary: Create website-form mapping
+      tags:
+      - Website
+  /website/{websiteId}/website-forms/{id}:
+    patch:
+      operationId: t_value
+      parameters: []
+      responses:
+        '200':
+          description: Mapping updated successfully
+      summary: Update website-form mapping by ID
+      tags:
+      - Website
+    delete:
+      operationId: t_value
+      parameters: []
+      responses:
+        '200':
+          description: Mapping deleted successfully
+      summary: Delete a website-form mapping
+      tags:
+      - Website
+  /website/global-pages:
+    get:
+      operationId: t_value
+      parameters:
+      - name: search
+        required: false
+        in: query
+        description: Search global page by name
+        schema:
+          maxLength: 256
+          example: About
+          type: string
+      - name: pageSize
+        required: false
+        in: query
+        description: 'Items per page (default: 10)'
+        schema:
+          type: number
+      - name: page
+        required: false
+        in: query
+        description: 'Page number (default: 1)'
+        schema:
+          type: number
+      responses:
+        '200':
+          description: Paginated list of global pages
+      summary: Get paginated list of global pages
+      tags:
+      - Website
+  /website/sections/{sectionId}/colors:
+    get:
+      operationId: t_value
+      parameters: []
+      responses:
+        '200':
+          description: ''
+      summary: Get all colors for a section
+      tags:
+      - Website
+    patch:
+      operationId: t_value
+      parameters:
+      - name: sectionId
+        required: true
+        in: path
+        description: ID of the section to update colors for
+        schema: {}
+      requestBody:
+        required: true
+        description: Color variables to update
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/e'
+      responses:
+        '200':
+          description: ''
+      summary: Update color for a section
+      tags:
+      - Website
+  /website/{websiteId}/products:
+    post:
+      operationId: t_value
+      parameters: []
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              type: array
+              items:
+                $ref: '#/components/schemas/e'
+      responses:
+        '201':
+          description: ''
+      summary: Create a new product for a website
+      tags:
+      - Website
+    get:
+      operationId: t_value
+      parameters: []
+      responses:
+        '200':
+          description: ''
+      summary: Get all products for a website
+      tags:
+      - Website
+  /website/{websiteId}/products/{productId}:
+    get:
+      operationId: t_value
+      parameters:
+      - name: productId
+        required: true
+        in: path
+        description: ID of the product
+        schema: {}
+      - name: websiteId
+        required: true
+        in: path
+        description: ID of the website
+        schema: {}
+      responses:
+        '200':
+          description: ''
+      summary: Get a product by ID for a website
+      tags:
+      - Website
+    patch:
+      operationId: t_value
+      parameters:
+      - name: productId
+        required: true
+        in: path
+        description: ID of the product
+        schema: {}
+      - name: websiteId
+        required: true
+        in: path
+        description: ID of the website
+        schema: {}
+      responses:
+        '200':
+          description: ''
+      summary: Update a product for a website
+      tags:
+      - Website
+    delete:
+      operationId: t_value
+      parameters:
+      - name: productId
+        required: true
+        in: path
+        description: ID of the product
+        schema: {}
+      - name: websiteId
+        required: true
+        in: path
+        description: ID of the website
+        schema: {}
+      responses:
+        '200':
+          description: ''
+      summary: Delete a product for a website
+      tags:
+      - Website
+  /website/{websiteId}/products/reorder:
+    patch:
+      operationId: t_value
+      parameters:
+      - name: websiteId
+        required: true
+        in: path
+        description: ID of the website
+        schema: {}
+      requestBody:
+        required: true
+        description: Product reordering configuration
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/e'
+      responses:
+        '200':
+          description: Products reordered successfully
+        '400':
+          description: Invalid request data
+        '404':
+          description: Website or products not found
+      summary: Reorder products for a website
+      tags:
+      - Website
+  /website/navigation-links:
+    post:
+      operationId: t_value
+      parameters: []
+      responses:
+        '201':
+          description: ''
+      summary: Create a navigation link
+      tags:
+      - Website
+    get:
+      operationId: t_value
+      parameters:
+      - name: isActive
+        required: false
+        in: query
+        description: Filter by active status (true/false). Omit to return all links regardless of active status.
+        schema:
+          type: boolean
+      - name: parentId
+        required: false
+        in: query
+        description: ID of the parent entity to filter navigation links
+        schema:
+          type: string
+      responses:
+        '200':
+          description: ''
+      summary: Get navigation links by parent ID
+      tags:
+      - Website
+  /website/navigation-links/{id}:
+    patch:
+      operationId: t_value
+      parameters:
+      - name: id
+        required: true
+        in: path
+        description: ID of the navigation link
+        schema: {}
+      responses:
+        '200':
+          description: ''
+      summary: Update a navigation link
+      tags:
+      - Website
+    delete:
+      operationId: t_value
+      parameters:
+      - name: id
+        required: true
+        in: path
+        description: ID of the navigation link
+        schema: {}
+      responses:
+        '200':
+          description: ''
+      summary: Delete a navigation link
+      tags:
+      - Website
+  /website/navigation-links/reorder/{parentId}:
+    patch:
+      operationId: t_value
+      parameters: []
+      responses:
+        '200':
+          description: ''
+      summary: Reorder navigation links
+      tags:
+      - Website
+  /website/navigation-links/reset/{parentId}:
+    post:
+      description: Clears the page's stored navigation links so the next website generation rebuilds them from the page's sections. Does not itself regenerate the site — until it runs, the page has no stored navigation.
+      operationId: t_value
+      parameters:
+      - name: parentId
+        required: true
+        in: path
+        description: ID of the page whose navigation is reset
+        schema: {}
+      responses:
+        '201':
+          description: ''
+      summary: Reset a page's navigation links to the generated list
+      tags:
+      - Website
+  /website/website-font:
+    post:
+      operationId: t_value
+      parameters: []
+      responses:
+        '201':
+          description: ''
+      summary: Create website font configuration
+      tags:
+      - Website
+  /website/website-font/{websiteId}:
+    get:
+      operationId: t_value
+      parameters: []
+      responses:
+        '200':
+          description: ''
+      summary: Get website font configuration
+      tags:
+      - Website
+  /website/website-font/{websiteId}/{fontType}:
+    patch:
+      operationId: t_value
+      parameters: []
+      responses:
+        '200':
+          description: ''
+      summary: Update website font configuration
+      tags:
+      - Website
+  /website/website-font/{websiteId}/{fontId}/{fontType}:
+    delete:
+      operationId: t_value
+      parameters: []
+      responses:
+        '200':
+          description: ''
+      summary: Delete website font configuration
+      tags:
+      - Website
+  /website/{websiteId}/add/font:
+    post:
+      description: Checks if the font exists in website.fonts by name and URL. If it exists, reuses the ID. If not, creates the font first. Then creates the website_fonts association.
+      operationId: t_value
+      parameters:
+      - name: websiteId
+        required: true
+        in: path
+        description: Website UUID
+        schema: {}
+      responses:
+        '201':
+          description: ''
+      summary: Add a font to a website by name and URL
+      tags:
+      - Website
+  /website/font:
+    post:
+      operationId: t_value
+      parameters: []
+      responses:
+        '201':
+          description: ''
+      summary: Create a new font
+      tags:
+      - Website
+    get:
+      operationId: t_value
+      parameters:
+      - name: pageSize
+        required: false
+        in: query
+        description: 'Items per page (default: 10)'
+        schema:
+          type: number
+      - name: page
+        required: false
+        in: query
+        description: 'Page number (default: 1)'
+        schema:
+          type: number
+      responses:
+        '200':
+          description: ''
+      summary: Get paginated list of fonts with optional filtering
+      tags:
+      - Website
+  /website/font/{id}:
+    patch:
+      operationId: t_value
+      parameters: []
+      responses:
+        '200':
+          description: ''
+      summary: Update a font by ID
+      tags:
+      - Website
+    delete:
+      operationId: t_value
+      parameters: []
+      responses:
+        '200':
+          description: ''
+      summary: Delete a font by ID
+      tags:
+      - Website
+  /website/font/{id}/websites:
+    get:
+      operationId: t_value
+      parameters:
+      - name: id
+        required: true
+        in: path
+        description: Font ID
+        schema:
+          type: number
+      responses:
+        '200':
+          description: List of websites using this font
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  fontId:
+                    type: number
+                    example: 68
+                  totalWebsites:
+                    type: number
+                    example: 3
+                  totalAssociations:
+                    type: number
+                    example: 5
+                  websites:
+                    type: array
+                    items:
+                      type: object
+                      properties:
+                        websiteId:
+                          type: string
+                          example: 5f8ed882-309d-45b9-aec1-acfb22352995
+                        websiteUrl:
+                          type: string
+                          example: https://example.zoca.ai
+                        fontType:
+                          type: string
+                          example: HEAD
+                        isPublished:
+                          type: boolean
+                          example: true
+                        isCreated:
+                          type: boolean
+                          example: true
+        '404':
+          description: Font not found
+      summary: Get all websites associated with a specific font
+      tags:
+      - Website
+  /website/create-website-v2:
+    post:
+      operationId: t_value
+      parameters: []
+      responses:
+        '201':
+          description: ''
+      summary: Create website V2 from location payload
+      tags:
+      - Website
+  /website/create-website-v3:
+    post:
+      operationId: t_value
+      parameters: []
+      responses:
+        '201':
+          description: ''
+      summary: Create website V3 with booking link
+      tags:
+      - Website
+  /website/scrape-theme:
+    post:
+      operationId: t_value
+      parameters: []
+      responses:
+        '201':
+          description: ''
+      summary: Queue a website-theme scrape (colors + fonts) from reference_website_url
+      tags:
+      - Website
+  /website/scrape-theme-preview:
+    post:
+      operationId: t_value
+      parameters: []
+      responses:
+        '201':
+          description: ''
+      summary: Queue a URL-only theme scrape (colors + fonts); no DB writes — poll for the result
+      tags:
+      - Website
+  /website/scrape-theme-preview/{jobId}:
+    get:
+      operationId: t_value
+      parameters: []
+      responses:
+        '200':
+          description: ''
+      summary: Poll a URL-only theme-preview job for its scraped colors + fonts
+      tags:
+      - Website
+  /website/scrape-data:
+    post:
+      operationId: t_value
+      parameters: []
+      responses:
+        '201':
+          description: ''
+      summary: Scrape business data from booking link
+      tags:
+      - Website
+  /website/collect-website-data:
+    post:
+      operationId: t_value
+      parameters: []
+      responses:
+        '201':
+          description: ''
+      summary: 'Mode B Phase 1: Collect raw website data for frontend review (no DB writes)'
+      tags:
+      - Website
+  /website/create-from-confirmed-data:
+    post:
+      operationId: t_value
+      parameters: []
+      responses:
+        '201':
+          description: ''
+      summary: 'Mode B Phase 2: Create website from user-confirmed data'
+      tags:
+      - Website
+  /website/sync-services-from-booking:
+    post:
+      description: Scrapes services from a booking platform URL (fast — skips media, reviews, etc.), categorizes them into website-friendly groups via LLM, replaces all existing services for the entity, and returns the full categories → services → variations tree with prices, durations, and all details.
+      operationId: t_value
+      parameters: []
+      responses:
+        '200':
+          description: Categories with nested services returned successfully
+        '400':
+          description: Invalid booking link or unrecognized platform
+        '404':
+          description: No services found or entity not found
+      summary: Sync services from a booking platform into the database
+      tags:
+      - Website
+  /website/booking-link-data:
+    get:
+      operationId: t_value
+      parameters: []
+      responses:
+        '200':
+          description: ''
+      summary: Get business details from booking link
+      tags:
+      - Website
+  /website/get-new-website-id:
+    post:
+      operationId: t_value
+      parameters: []
+      responses:
+        '201':
+          description: ''
+      summary: Get or create new website ID for location
+      tags:
+      - Website
+  /website/add-booking-link:
+    post:
+      operationId: t_value
+      parameters: []
+      responses:
+        '201':
+          description: ''
+      summary: Add booking link and trigger website creation
+      tags:
+      - Website
+  /website/onboarding-creation-status:
+    get:
+      description: 'Returns status for the two onboarding flows tracked in website.processes: WEBSITE_CREATION_ONBOARDING (Orca user.onboarded path) and WEBSITE_CREATION_ONBOARDING_WITH_BOOKING_LINK (add-booking-link path). Either websiteId or locationEntityId must be provided.'
+      operationId: t_value
+      parameters:
+      - name: locationEntityId
+        required: false
+        in: query
+        schema:
+          format: uuid
+          type: string
+      - name: websiteId
+        required: false
+        in: query
+        schema:
+          format: uuid
+          type: string
+      responses:
+        '200':
+          description: ''
+      summary: Get onboarding website-creation status
+      tags:
+      - Website
+  /website/generate-website:
+    get:
+      operationId: t_value
+      parameters: []
+      responses:
+        '200':
+          description: ''
+      summary: Generate website for a location
+      tags:
+      - Website
+  /website/generate-subdomains:
+    get:
+      operationId: t_value
+      parameters: []
+      responses:
+        '200':
+          description: ''
+      summary: Generate subdomain suggestions
+      tags:
+      - Website
+  /website/platforms:
+    get:
+      operationId: t_value
+      parameters: []
+      responses:
+        '200':
+          description: ''
+      summary: Get available booking platforms
+      tags:
+      - Website
+  /website/get-website-id/{locationEntityId}:
+    get:
+      operationId: t_value
+      parameters: []
+      responses:
+        '200':
+          description: ''
+      summary: Get website ID by location entity ID
+      tags:
+      - Website
+  /website/{websiteId}:
+    get:
+      operationId: t_value
+      parameters: []
+      responses:
+        '200':
+          description: ''
+      summary: Get website data by ID
+      tags:
+      - Website
+  /website/{websiteId}/v2:
+    get:
+      operationId: t_value
+      parameters: []
+      responses:
+        '200':
+          description: ''
+      summary: Get website data V2 with sections
+      tags:
+      - Website
+  /website/{websiteId}/v2/pages/{pageId}/sections:
+    get:
+      operationId: t_value
+      parameters: []
+      responses:
+        '200':
+          description: ''
+      summary: Hydrate a single page's sections (metadata-mode companion)
+      tags:
+      - Website
+  /website/{websiteId}/check-website-live-on-gbp:
+    post:
+      operationId: t_value
+      parameters: []
+      responses:
+        '201':
+          description: ''
+      summary: Check if website is live on GBP
+      tags:
+      - Website
+  /website/{websiteId}/editor/publish:
+    post:
+      operationId: t_value
+      parameters: []
+      responses:
+        '201':
+          description: ''
+      summary: Batch publish editor changes for website sections
+      tags:
+      - Website
+  /website/{websiteId}/ctas:
+    post:
+      operationId: t_value
+      parameters: []
+      responses:
+        '201':
+          description: ''
+      summary: Create a call-to-action for website
+      tags:
+      - Website
+    get:
+      operationId: t_value
+      parameters:
+      - name: parentType
+        required: true
+        in: query
+        description: Type of the parent entity (e.g., SECTION)
+        schema:
+          type: string
+      - name: parentId
+        required: true
+        in: query
+        description: ID of the parent entity
+        schema:
+          type: string
+      - name: websiteId
+        required: true
+        in: path
+        description: ID of the website
+        schema: {}
+      responses:
+        '200':
+          description: CTAs retrieved successfully
+        '400':
+          description: Missing required parameters
+      summary: Get CTAs filtered by parent entity
+      tags:
+      - Website
+  /website/{websiteId}/ctas/{ctaId}:
+    get:
+      operationId: t_value
+      parameters: []
+      responses:
+        '200':
+          description: ''
+      summary: Get a CTA by ID
+      tags:
+      - Website
+    put:
+      operationId: t_value
+      parameters: []
+      responses:
+        '200':
+          description: ''
+      summary: Update a CTA by ID
+      tags:
+      - Website
+    delete:
+      operationId: t_value
+      parameters: []
+      responses:
+        '200':
+          description: ''
+      summary: Delete a CTA by ID
+      tags:
+      - Website
+  /website/{websiteId}/working-hours:
+    get:
+      operationId: t_value
+      parameters: []
+      responses:
+        '200':
+          description: ''
+      summary: Get website working hours
+      tags:
+      - Website
+    post:
+      operationId: t_value
+      parameters: []
+      responses:
+        '201':
+          description: ''
+      summary: Update website working hours
+      tags:
+      - Website
+  /website/{websiteId}/reviews:
+    get:
+      operationId: t_value
+      parameters: []
+      responses:
+        '200':
+          description: ''
+      summary: Get website reviews
+      tags:
+      - Website
+  /website/{parentId}/{parentType}/attributes:
+    get:
+      description: Retrieve attributes for a specific parent entity (website, component, etc.)
+      operationId: t_value
+      parameters:
+      - name: attributeName
+        required: false
+        in: query
+        description: Filter by specific attribute name
+        schema:
+          example: primaryColor
+          type: string
+      - name: isActive
+        required: false
+        in: query
+        description: Filter by active status
+        schema:
+          example: true
+          type: boolean
+      - name: parentType
+        required: true
+        in: path
+        description: Parent entity type
+        schema:
+          example: website
+      - name: parentId
+        required: true
+        in: path
+        description: Parent entity ID
+        schema:
+          example: website_123
+      responses:
+        '200':
+          description: Successfully retrieved attributes
+          content:
+            application/json:
+              schema:
+                type: array
+                items:
+                  $ref: '#/components/schemas/e'
+        '400':
+          description: Invalid request parameters
+      summary: Get website attributes
+      tags:
+      - Website
+  /website/{parentId}/{parentType}/attributes/{attributeId}:
+    patch:
+      description: Update a specific attribute by ID
+      operationId: t_value
+      parameters:
+      - name: attributeId
+        required: true
+        in: path
+        description: Attribute ID to update
+        schema:
+          example: 1
+      - name: parentType
+        required: true
+        in: path
+        description: Parent entity type
+        schema:
+          example: website
+      - name: parentId
+        required: true
+        in: path
+        description: Parent entity ID
+        schema:
+          example: website_123
+      requestBody:
+        required: true
+        description: Attribute data to update
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/e'
+      responses:
+        '200':
+          description: Successfully updated attribute
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/e'
+        '400':
+          description: Invalid request data
+        '404':
+          description: Attribute not found
+      summary: Update website attribute
+      tags:
+      - Website
+    delete:
+      description: Delete a specific attribute by ID
+      operationId: t_value
+      parameters:
+      - name: attributeId
+        required: true
+        in: path
+        description: Attribute ID to delete
+        schema:
+          example: 1
+      - name: parentType
+        required: true
+        in: path
+        description: Parent entity type
+        schema:
+          example: website
+      - name: parentId
+        required: true
+        in: path
+        description: Parent entity ID
+        schema:
+          example: website_123
+      responses:
+        '200':
+          description: Successfully deleted attribute
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  success:
+                    type: boolean
+                    example: true
+                  message:
+                    type: string
+                    example: Attribute deleted successfully
+        '400':
+          description: Invalid request parameters
+        '404':
+          description: Attribute not found
+      summary: Delete website attribute
+      tags:
+      - Website
+  /website/{websiteId}/themes:
+    get:
+      operationId: t_value
+      parameters: []
+      responses:
+        '200':
+          description: ''
+      summary: Get all themes for a website
+      tags:
+      - Website
+    post:
+      operationId: t_value
+      parameters: []
+      responses:
+        '201':
+          description: ''
+      summary: Create a theme for website
+      tags:
+      - Website
+  /website/{websiteId}/themes/v2:
+    get:
+      operationId: t_value
+      parameters: []
+      responses:
+        '200':
+          description: ''
+      summary: Get website themes V2
+      tags:
+      - Website
+  /website/{websiteId}/themes/{themeId}:
+    get:
+      operationId: t_value
+      parameters:
+      - name: themeId
+        required: true
+        in: path
+        description: ID of the theme to delete
+        schema: {}
+      - name: websiteId
+        required: true
+        in: path
+        description: ID of the website
+        schema: {}
+      responses:
+        '200':
+          description: ''
+      summary: Delete a theme for a website
+      tags:
+      - Website
+    patch:
+      operationId: t_value
+      parameters: []
+      responses:
+        '200':
+          description: ''
+      summary: Update a website theme
+      tags:
+      - Website
+    delete:
+      operationId: t_value
+      parameters: []
+      responses:
+        '200':
+          description: ''
+      summary: Delete a website theme
+      tags:
+      - Website
+  /website/themes/{themeId}:
+    delete:
+      operationId: t_value
+      parameters:
+      - name: themeId
+        required: true
+        in: path
+        description: ID of the theme to delete
+        schema: {}
+      responses:
+        '200':
+          description: ''
+      summary: Delete a global theme by ID
+      tags:
+      - Website
+    get:
+      operationId: t_value
+      parameters: []
+      responses:
+        '200':
+          description: ''
+      summary: Get theme by ID
+      tags:
+      - Website
+  /website/{websiteId}/pages:
+    get:
+      operationId: t_value
+      parameters:
+      - name: websiteId
+        required: true
+        in: path
+        description: ID of the website
+        schema: {}
+      responses:
+        '200':
+          description: ''
+      summary: Get website pages mapping
+      tags:
+      - Website
+    post:
+      operationId: t_value
+      parameters: []
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/e'
+      responses:
+        '200':
+          description: Page created
+      summary: Create a website page
+      tags:
+      - Website
+  /website/{websiteId}/website-pages:
+    get:
+      operationId: t_value
+      parameters:
+      - name: websiteId
+        required: true
+        in: path
+        description: ID of the website
+        schema: {}
+      responses:
+        '200':
+          description: ''
+      summary: List website_pages rows for a website (per-row name/path/metadata)
+      tags:
+      - Website
+  /website/{websiteId}/pages/{pageId}:
+    get:
+      operationId: t_value
+      parameters:
+      - name: pageId
+        required: true
+        in: path
+        description: ID of the page
+        schema: {}
+      - name: websiteId
+        required: true
+        in: path
+        description: ID of the website
+        schema: {}
+      responses:
+        '200':
+          description: Page retrieved
+        '404':
+          description: Page not found
+      summary: Get website page by page ID
+      tags:
+      - Website
+    patch:
+      operationId: t_value
+      parameters: []
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/e'
+      responses:
+        '200':
+          description: Page updated
+      summary: Update a website page
+      tags:
+      - Website
+  /website/{websiteId}/pages/{id}:
+    delete:
+      operationId: t_value
+      parameters:
+      - name: id
+        required: true
+        in: path
+        description: ID of website-page mapping
+        schema:
+          type: number
+      - name: websiteId
+        required: true
+        in: path
+        description: ID of the website
+        schema: {}
+      responses:
+        '200':
+          description: Page deleted
+      summary: Delete a website page
+      tags:
+      - Website
+  /website/{websiteId}/pages/{pageId}/attributes:
+    get:
+      operationId: t_value
+      parameters: []
+      responses:
+        '200':
+          description: ''
+      summary: Get page attributes
+      tags:
+      - Website
+    post:
+      operationId: t_value
+      parameters: []
+      responses:
+        '201':
+          description: ''
+      summary: Create a page attribute
+      tags:
+      - Website
+  /website/{websiteId}/pages/{pageId}/attributes/{attributeId}:
+    patch:
+      operationId: t_value
+      parameters: []
+      responses:
+        '200':
+          description: ''
+      summary: Update a page attribute
+      tags:
+      - Website
+    delete:
+      operationId: t_value
+      parameters: []
+      responses:
+        '200':
+          description: ''
+      summary: Delete a page attribute
+      tags:
+      - Website
+  /website/{templateId}/template-sections:
+    get:
+      operationId: t_value
+      parameters: []
+      responses:
+        '200':
+          description: ''
+      summary: Get template sections
+      tags:
+      - Website
+  /website/{websiteId}/pages/{pageId}/sections:
+    get:
+      operationId: t_value
+      parameters: []
+      responses:
+        '200':
+          description: ''
+      summary: Get page sections
+      tags:
+      - Website
+    post:
+      operationId: t_value
+      parameters: []
+      responses:
+        '201':
+          description: ''
+      summary: Create a page section
+      tags:
+      - Website
+  /website/{websiteId}/pages/{pageId}/sections/reorder:
+    patch:
+      operationId: t_value
+      parameters: []
+      responses:
+        '200':
+          description: ''
+      summary: Reorder page sections
+      tags:
+      - Website
+  /website/{websiteId}/pages/{pageId}/sections/{sectionId}:
+    patch:
+      operationId: t_value
+      parameters: []
+      responses:
+        '200':
+          description: ''
+      summary: Update a page section
+      tags:
+      - Website
+    delete:
+      operationId: t_value
+      parameters: []
+      responses:
+        '200':
+          description: ''
+      summary: Delete a page section
+      tags:
+      - Website
+  /website/{websiteId}/pages/{pageId}/sections/{sectionId}/attributes:
+    get:
+      operationId: t_value
+      parameters: []
+      responses:
+        '200':
+          description: ''
+      summary: Get section attributes
+      tags:
+      - Website
+    post:
+      operationId: t_value
+      parameters: []
+      responses:
+        '201':
+          description: ''
+      summary: Create a section attribute
+      tags:
+      - Website
+  /website/{websiteId}/pages/{pageId}/sections/{sectionId}/attributes/{attributeId}:
+    delete:
+      operationId: t_value
+      parameters: []
+      responses:
+        '200':
+          description: ''
+      summary: Delete a section attribute
+      tags:
+      - Website
+  /website/{websiteId}/pages/{pageId}/sections/{sectionId}/contents:
+    get:
+      operationId: t_value
+      parameters: []
+      responses:
+        '200':
+          description: ''
+      summary: Get section contents
+      tags:
+      - Website
+    post:
+      operationId: t_value
+      parameters: []
+      responses:
+        '201':
+          description: ''
+      summary: Create section content
+      tags:
+      - Website
+  /website/{websiteId}/pages/{pageId}/sections/{sectionId}/contents/{contentId}:
+    get:
+      operationId: t_value
+      parameters: []
+      responses:
+        '200':
+          description: ''
+      summary: Get section content by ID
+      tags:
+      - Website
+    patch:
+      operationId: t_value
+      parameters: []
+      responses:
+        '200':
+          description: ''
+      summary: Update section content
+      tags:
+      - Website
+    delete:
+      operationId: t_value
+      parameters: []
+      responses:
+        '200':
+          description: ''
+      summary: Delete section content
+      tags:
+      - Website
+  /website/{websiteId}/pages/{pageId}/sections/{sectionId}/contents/{contentId}/attributes:
+    get:
+      operationId: t_value
+      parameters: []
+      responses:
+        '200':
+          description: ''
+      summary: Get content attributes
+      tags:
+      - Website
+    post:
+      operationId: t_value
+      parameters: []
+      responses:
+        '201':
+          description: ''
+      summary: Create content attribute
+      tags:
+      - Website
+  /website/{websiteId}/pages/{pageId}/sections/{sectionId}/contents/{contentId}/attributes/{attributeId}:
+    patch:
+      operationId: t_value
+      parameters: []
+      responses:
+        '200':
+          description: ''
+      summary: Update content attribute
+      tags:
+      - Website
+    delete:
+      operationId: t_value
+      parameters: []
+      responses:
+        '200':
+          description: ''
+      summary: Delete content attribute
+      tags:
+      - Website
+  /website/{websiteId}/pages/{pageId}/sections/{sectionId}/contents/{contentId}/media:
+    get:
+      operationId: t_value
+      parameters: []
+      responses:
+        '200':
+          description: ''
+      summary: Get content media
+      tags:
+      - Website
+    post:
+      operationId: t_value
+      parameters: []
+      responses:
+        '201':
+          description: ''
+      summary: Create content media
+      tags:
+      - Website
+  /website/{websiteId}/pages/{pageId}/sections/{sectionId}/contents/{contentId}/media/{mediaId}:
+    patch:
+      operationId: t_value
+      parameters: []
+      responses:
+        '200':
+          description: ''
+      summary: Update content media
+      tags:
+      - Website
+    delete:
+      operationId: t_value
+      parameters: []
+      responses:
+        '200':
+          description: ''
+      summary: Delete content media
+      tags:
+      - Website
+  /website/themes:
+    post:
+      operationId: t_value
+      parameters: []
+      responses:
+        '201':
+          description: ''
+      summary: Upload themes
+      tags:
+      - Website
+  /website/themes/v2:
+    post:
+      operationId: t_value
+      parameters: []
+      responses:
+        '201':
+          description: ''
+      summary: Upload themes V2 without template-theme link
+      tags:
+      - Website
+  /website/themes/list:
+    get:
+      operationId: t_value
+      parameters:
+      - name: pageSize
+        required: false
+        in: query
+        description: 'Items per page (default: 10)'
+        schema:
+          type: number
+      - name: page
+        required: false
+        in: query
+        description: 'Page number (default: 1)'
+        schema:
+          type: number
+      responses:
+        '200':
+          description: ''
+      summary: Get paginated list of themes with optional filtering
+      tags:
+      - Website
+  /website/templates:
+    get:
+      operationId: t_value
+      parameters: []
+      responses:
+        '200':
+          description: ''
+      summary: Get templates, optionally filtered by website ID
+      tags:
+      - Website
+  /website/section-media:
+    get:
+      operationId: t_value
+      parameters: []
+      responses:
+        '200':
+          description: ''
+      summary: Get section media data
+      tags:
+      - Website
+  /website/category-media:
+    get:
+      operationId: t_value
+      parameters: []
+      responses:
+        '200':
+          description: ''
+      summary: Get category media data
+      tags:
+      - Website
+  /website/single-section-media:
+    get:
+      operationId: t_value
+      parameters: []
+      responses:
+        '200':
+          description: ''
+      summary: Get single section media
+      tags:
+      - Website
+  /website/replace-media-in-section:
+    post:
+      operationId: t_value
+      parameters: []
+      responses:
+        '201':
+          description: ''
+      summary: Replace media in section
+      tags:
+      - Website
+  /website/save-theme-template:
+    post:
+      operationId: t_value
+      parameters: []
+      responses:
+        '201':
+          description: ''
+      summary: Save selected theme and template
+      tags:
+      - Website
+  /website/{websiteId}/themes/generate-palette:
+    post:
+      operationId: t_value
+      parameters: []
+      responses:
+        '201':
+          description: ''
+      summary: Generate AI color palettes from a prompt
+      tags:
+      - Website
+  /website/{websiteId}/ai-colors:
+    get:
+      operationId: t_value
+      parameters: []
+      responses:
+        '200':
+          description: ''
+      summary: List a website's AI-generated color palettes
+      tags:
+      - Website
+  /website/{websiteId}/ai-colors/{id}:
+    delete:
+      operationId: t_value
+      parameters: []
+      responses:
+        '200':
+          description: ''
+      summary: Delete an AI-generated color palette
+      tags:
+      - Website
+  /website/{websiteId}/ai-colors/{id}/persist:
+    post:
+      operationId: t_value
+      parameters: []
+      responses:
+        '201':
+          description: ''
+      summary: Persist a stored AI palette as a theme (returns themeId)
+      tags:
+      - Website
+  /website/{websiteId}/ai-colors/{id}/apply:
+    post:
+      operationId: t_value
+      parameters: []
+      responses:
+        '201':
+          description: ''
+      summary: Apply a stored AI palette to the website and publish
+      tags:
+      - Website
+  /website/{websiteId}/theme-template:
+    get:
+      operationId: t_value
+      parameters: []
+      responses:
+        '200':
+          description: ''
+      summary: Get theme and template for website
+      tags:
+      - Website
+  /website/reorder-media-in-section:
+    post:
+      operationId: t_value
+      parameters: []
+      responses:
+        '201':
+          description: ''
+      summary: Reorder media in section
+      tags:
+      - Website
+  /website/update-website-status:
+    post:
+      operationId: t_value
+      parameters: []
+      responses:
+        '201':
+          description: ''
+      summary: Update website status
+      tags:
+      - Website
+  /website/get-website-status:
+    get:
+      operationId: t_value
+      parameters: []
+      responses:
+        '200':
+          description: ''
+      summary: Get website status and preferences
+      tags:
+      - Website
+  /website/subdomain:
+    get:
+      operationId: t_value
+      parameters: []
+      responses:
+        '200':
+          description: ''
+      summary: Get website subdomain
+      tags:
+      - Website
+    put:
+      operationId: t_value
+      parameters: []
+      responses:
+        '200':
+          description: ''
+      summary: Update website subdomain (preserves current domain)
+      tags:
+      - Website
+  /website/subdomain-validate:
+    get:
+      operationId: t_value
+      parameters: []
+      responses:
+        '200':
+          description: ''
+      summary: Validate subdomain availability
+      tags:
+      - Website
+  /website/domain:
+    put:
+      operationId: t_value
+      parameters: []
+      responses:
+        '200':
+          description: Domain updated successfully
+        '400':
+          description: Invalid request data
+        '404':
+          description: Website not found
+      summary: Update website domain (preserves current subdomain)
+      tags:
+      - Website
+  /website/{websiteId}/pipeline:
+    patch:
+      description: Toggle between old (v1) and new (v2) website generation and publishing pipelines
+      operationId: t_value
+      parameters:
+      - name: websiteId
+        required: true
+        in: path
+        description: ID of the website
+        schema:
+          example: 41aa7463-9435-4298-85aa-3f8bd58e8fcd
+      requestBody:
+        required: true
+        description: Pipeline version configuration
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/e'
+      responses:
+        '200':
+          description: Pipeline version updated successfully
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  status:
+                    type: string
+                    example: success
+                  message:
+                    type: string
+                    example: Pipeline version updated successfully
+                  websiteId:
+                    type: string
+                    example: 41aa7463-9435-4298-85aa-3f8bd58e8fcd
+                  pipelineVersion:
+                    type: string
+                    example: v2
+        '400':
+          description: Invalid pipeline version (must be v1 or v2)
+        '404':
+          description: Website not found
+      summary: Update website pipeline version
+      tags:
+      - Website
+  /website/get-system-category:
+    get:
+      operationId: t_value
+      parameters: []
+      responses:
+        '200':
+          description: ''
+      summary: Get system category by name
+      tags:
+      - Website
+  /website/default-category-images:
+    get:
+      operationId: t_value
+      parameters: []
+      responses:
+        '200':
+          description: ''
+      summary: Get default images for a category
+      tags:
+      - Website
+  /website/add-user-preferences:
+    post:
+      operationId: t_value
+      parameters: []
+      responses:
+        '201':
+          description: ''
+      summary: Add user preferences
+      tags:
+      - Website
+  /website/get-ip-details:
+    get:
+      operationId: t_value
+      parameters: []
+      responses:
+        '200':
+          description: ''
+      summary: Get IP details from request
+      tags:
+      - Website
+  /website/create-website-from-location:
+    post:
+      operationId: t_value
+      parameters: []
+      responses:
+        '201':
+          description: ''
+      summary: Create website from location data
+      tags:
+      - Website
+  /website/{websiteId}/location:
+    get:
+      operationId: t_value
+      parameters: []
+      responses:
+        '200':
+          description: ''
+      summary: Get location for website
+      tags:
+      - Website
+    put:
+      operationId: t_value
+      parameters: []
+      responses:
+        '200':
+          description: ''
+      summary: Update website location details
+      tags:
+      - Website
+  /website/{websiteId}/location/canonical:
+    get:
+      operationId: t_value
+      parameters: []
+      responses:
+        '200':
+          description: ''
+      summary: Get canonical website location NAP and contact data
+      tags:
+      - Website
+  /website/list:
+    get:
+      operationId: t_value
+      parameters:
+      - name: isLeadWidgetActive
+        required: false
+        in: query
+        description: Filter by the website.leadWidget.isActive preference
+        schema:
+          type: boolean
+      - name: isWebsiteProductActive
+        required: false
+        in: query
+        description: Filter by whether entity has active website product
+        schema:
+          type: boolean
+      - name: isSchedulingEnabled
+        required: false
+        in: query
+        description: Filter by scheduling enabled status
+        schema:
+          type: boolean
+      - name: isWebsiteMigrated
+        required: false
+        in: query
+        description: Filter by websites with migrated website status from chrone mapping
+        schema:
+          type: boolean
+      - name: isMigrated
+        required: false
+        in: query
+        description: Filter by migrated websites from chrone mapping
+        schema:
+          type: boolean
+      - name: hasCustomDomain
+        required: false
+        in: query
+        description: Filter by websites with active custom domains
+        schema:
+          type: boolean
+      - name: pipelineVersion
+        required: false
+        in: query
+        description: Filter by pipeline version (e.g., v1, v2)
+        schema:
+          type: string
+      - name: isTest
+        required: false
+        in: query
+        description: Filter by entity test status
+        schema:
+          type: boolean
+      - name: isActive
+        required: false
+        in: query
+        description: Filter by entity active status
+        schema:
+          type: boolean
+      - name: leadMasking
+        required: false
+        in: query
+        description: Filter by lead masking availability
+        schema:
+          type: boolean
+      - name: paid
+        required: false
+        in: query
+        description: Filter by paid subscription status
+        schema:
+          type: boolean
+      - name: amId
+        required: false
+        in: query
+        description: Filter by Account Manager ID
+        schema:
+          type: string
+      - name: aeId
+        required: false
+        in: query
+        description: Filter by Account Executive ID
+        schema:
+          type: string
+      - name: sortOrder
+        required: false
+        in: query
+        description: 'Sort order (default: desc)'
+        schema:
+          enum:
+          - asc
+          - desc
+          type: string
+      - name: sortBy
+        required: false
+        in: query
+        description: 'Field to sort by (default: createdAt)'
+        schema:
+          enum:
+          - createdAt
+          - updatedAt
+          type: string
+      - name: endDate
+        required: false
+        in: query
+        description: Filter by created date (ISO format)
+        schema:
+          type: string
+      - name: startDate
+        required: false
+        in: query
+        description: Filter by created date (ISO format)
+        schema:
+          type: string
+      - name: search
+        required: false
+        in: query
+        description: Search term for URL, subdomain, business name, AE name, or AM name
+        schema:
+          type: string
+      - name: isLiveOnGbp
+        required: false
+        in: query
+        description: Filter by GBP live status
+        schema:
+          type: boolean
+      - name: isCreated
+        required: false
+        in: query
+        description: Filter by creation status
+        schema:
+          type: boolean
+      - name: isPublished
+        required: false
+        in: query
+        description: Filter by publication status
+        schema:
+          type: boolean
+      - name: pageSize
+        required: false
+        in: query
+        description: 'Items per page (default: 10)'
+        schema:
+          type: number
+      - name: page
+        required: false
+        in: query
+        description: 'Page number (default: 1)'
+        schema:
+          type: number
+      responses:
+        '200':
+          description: Returns paginated websites with status, locations, and AE/AM information
+        '400':
+          description: Bad request
+      summary: Get paginated list of websites with optional filtering
+      tags:
+      - Website
+  /website/get-websites/{websiteId}:
+    get:
+      operationId: t_value
+      parameters: []
+      responses:
+        '200':
+          description: ''
+      summary: Get website by ID
+      tags:
+      - Website
+  /website/{websiteId}/{sectionId}/section:
+    patch:
+      operationId: t_value
+      parameters: []
+      responses:
+        '200':
+          description: ''
+      summary: Update section
+      tags:
+      - Website
+  /website/chrone-services:
+    get:
+      operationId: t_value
+      parameters: []
+      responses:
+        '200':
+          description: ''
+      summary: Get chrone services for a location
+      tags:
+      - Website
+  /website/gallery-media:
+    get:
+      operationId: t_value
+      parameters: []
+      responses:
+        '200':
+          description: ''
+      summary: Get website gallery media for a location
+      tags:
+      - Website
+  /website/set-external-domain/{externalDomain}/{subDomain}:
+    post:
+      operationId: t_value
+      parameters: []
+      responses:
+        '201':
+          description: ''
+      summary: Set external domain for website
+      tags:
+      - Website
+  /website/kill/{websiteName}:
+    delete:
+      operationId: t_value
+      parameters: []
+      responses:
+        '200':
+          description: ''
+      summary: Delete website by name
+      tags:
+      - Website
+  /website/respawn/{websiteName}:
+    get:
+      operationId: t_value
+      parameters: []
+      responses:
+        '200':
+          description: ''
+      summary: Respawn website by name
+      tags:
+      - Website
+  /website/{websiteId}/build:
+    post:
+      operationId: t_value
+      parameters: []
+      responses:
+        '201':
+          description: ''
+      summary: Build website
+      tags:
+      - Website
+  /website/build/all:
+    post:
+      operationId: t_value
+      parameters: []
+      responses:
+        '201':
+          description: ''
+      summary: Build all published websites
+      tags:
+      - Website
+  /website/{websiteId}/build-status/{buildStatus}:
+    patch:
+      operationId: t_value
+      parameters: []
+      responses:
+        '200':
+          description: ''
+      summary: Update website build status
+      tags:
+      - Website
+  /website/{websiteId}/page/{pageId}/metadata:
+    get:
+      operationId: t_value
+      parameters: []
+      responses:
+        '200':
+          description: ''
+      summary: Get page metadata
+      tags:
+      - Website
+    delete:
+      operationId: t_value
+      parameters: []
+      responses:
+        '200':
+          description: ''
+      summary: Delete page metadata
+      tags:
+      - Website
+    patch:
+      operationId: t_value
+      parameters: []
+      responses:
+        '200':
+          description: ''
+      summary: Update page metadata
+      tags:
+      - Website
+  /website/{websiteId}/schema-markup:
+    patch:
+      operationId: t_value
+      parameters: []
+      responses:
+        '200':
+          description: ''
+      summary: Update schema markup
+      tags:
+      - Website
+    delete:
+      operationId: t_value
+      parameters: []
+      responses:
+        '200':
+          description: ''
+      summary: Delete schema markup
+      tags:
+      - Website
+    get:
+      operationId: t_value
+      parameters: []
+      responses:
+        '200':
+          description: ''
+      summary: Get schema markup
+      tags:
+      - Website
+  /website/{websiteId}/analytics:
+    post:
+      operationId: t_value
+      parameters:
+      - name: websiteId
+        required: true
+        in: path
+        description: ID of the website
+        schema: {}
+      requestBody:
+        required: true
+        description: Array of analytics to create
+        content:
+          application/json:
+            schema:
+              type: array
+              items:
+                $ref: '#/components/schemas/e'
+      responses:
+        '201':
+          description: Analytics created successfully
+        '400':
+          description: Invalid request data
+      summary: Create website analytics tracking codes in bulk
+      tags:
+      - Website
+    patch:
+      operationId: t_value
+      parameters:
+      - name: websiteId
+        required: true
+        in: path
+        description: ID of the website
+        schema: {}
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              type: array
+              items:
+                $ref: '#/components/schemas/e'
+      responses:
+        '200':
+          description: Analytics updated successfully
+        '400':
+          description: Invalid request data
+        '404':
+          description: Website or analytics not found
+      summary: Update website analytics tracking codes in bulk
+      tags:
+      - Website
+    delete:
+      operationId: t_value
+      parameters:
+      - name: trackingType
+        required: true
+        in: query
+        description: Type of tracking code to delete
+        schema:
+          enum:
+          - ga
+          - gtm
+          - gads
+          - glead
+          - gaddress
+          - gphone
+          - fb
+          - linkedin
+          - tiktok
+          - twitter
+          - custom
+          type: string
+      - name: websiteId
+        required: true
+        in: path
+        description: ID of the website
+        schema: {}
+      responses:
+        '200':
+          description: Analytics deleted successfully
+        '404':
+          description: Website or analytics not found
+      summary: Delete website analytics tracking code
+      tags:
+      - Website
+    get:
+      operationId: t_value
+      parameters:
+      - name: websiteId
+        required: true
+        in: path
+        description: ID of the website
+        schema: {}
+      responses:
+        '200':
+          description: Analytics retrieved successfully
+        '404':
+          description: Website or analytics not found
+      summary: Get website analytics tracking codes
+      tags:
+      - Website
+  /website/book-now-clicks:
+    get:
+      operationId: t_value
+      parameters: []
+      responses:
+        '200':
+          description: Book now clicks breakdown retrieved successfully
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/e'
+        '400':
+          description: Invalid query parameters
+        '404':
+          description: No data found for the specified criteria
+      summary: Get book now clicks breakdown by page type
+      tags:
+      - Website
+  /website/website-funnel:
+    get:
+      operationId: t_value
+      parameters: []
+      responses:
+        '200':
+          description: Website funnel data retrieved successfully
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/e'
+        '400':
+          description: Invalid query parameters
+        '404':
+          description: No data found for the specified criteria
+      summary: Get website funnel data with conversion rates
+      tags:
+      - Website
+  /website/website-mixpanel-funnel:
+    get:
+      operationId: t_value
+      parameters: []
+      responses:
+        '200':
+          description: Mixpanel-only website funnel data retrieved successfully
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/e'
+        '400':
+          description: Invalid query parameters
+        '404':
+          description: No data found for the specified criteria
+      summary: Get Mixpanel-only website funnel data (visitors + book-now clicks)
+      tags:
+      - Website
+  /website/page-views-trend:
+    get:
+      operationId: t_value
+      parameters: []
+      responses:
+        '200':
+          description: Page views trend data retrieved successfully
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/e'
+        '400':
+          description: Invalid query parameters
+        '404':
+          description: No data found for the specified criteria
+      summary: Get website page views trend over time
+      tags:
+      - Website
+  /website/location-details:
+    get:
+      operationId: t_value
+      parameters: []
+      responses:
+        '200':
+          description: Location and website details retrieved successfully
+        '404':
+          description: Location not found
+      summary: Get lightweight location and website details
+      tags:
+      - Website
+  /website/top-pages:
+    get:
+      operationId: t_value
+      parameters: []
+      responses:
+        '200':
+          description: Top pages data retrieved successfully
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/e'
+        '400':
+          description: Invalid query parameters
+      summary: Get top pages by page views for a website
+      tags:
+      - Website
+  /website/traffic-sources:
+    get:
+      operationId: t_value
+      parameters: []
+      responses:
+        '200':
+          description: Traffic sources data retrieved successfully
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/e'
+        '400':
+          description: Invalid query parameters
+      summary: Get traffic sources breakdown for a website
+      tags:
+      - Website
+  /website/{websiteId}/description/generate:
+    post:
+      description: Generates AI-powered copy for a website section. `type` is the section name; `field` is "title" for short headlines or "description" for body copy (default).
+      operationId: t_value
+      parameters:
+      - name: websiteId
+        required: true
+        in: path
+        description: ID of the website
+        schema: {}
+      responses:
+        '200':
+          description: AI copy generated successfully
+        '400':
+          description: Invalid request parameters
+      summary: Generate AI copy (title or description) for a website section
+      tags:
+      - Website
+  /website/template-theme:
+    post:
+      operationId: t_value
+      parameters: []
+      responses:
+        '201':
+          description: Template-theme mapping created
+        '409':
+          description: (templateId, themeId) pair already exists
+      summary: Create a template-theme mapping
+      tags:
+      - Website
+    get:
+      operationId: t_value
+      parameters: []
+      responses:
+        '200':
+          description: List of template-theme mappings
+      summary: List template-theme mappings with optional filters + pagination
+      tags:
+      - Website
+  /website/template-theme/{id}:
+    get:
+      operationId: t_value
+      parameters:
+      - name: id
+        required: true
+        in: path
+        description: Serial id of the template-theme row
+        schema: {}
+      responses:
+        '200':
+          description: Mapping found
+        '404':
+          description: Mapping not found
+      summary: Get a single template-theme mapping by id
+      tags:
+      - Website
+    patch:
+      operationId: t_value
+      parameters:
+      - name: id
+        required: true
+        in: path
+        description: Serial id of the template-theme row
+        schema: {}
+      responses:
+        '200':
+          description: Mapping updated
+        '404':
+          description: Mapping not found
+        '409':
+          description: (templateId, themeId) pair already exists
+      summary: Update a template-theme mapping
+      tags:
+      - Website
+    delete:
+      operationId: t_value
+      parameters:
+      - name: id
+        required: true
+        in: path
+        description: Serial id of the template-theme row
+        schema: {}
+      responses:
+        '200':
+          description: Mapping deleted
+        '404':
+          description: Mapping not found
+      summary: Delete a template-theme mapping
+      tags:
+      - Website
+  /website/generation-status/{generationId}:
+    get:
+      description: JWT-authed via the global guard. No additional ownership check — the generationId UUID itself is the authorisation token (128-bit unguessable, issued by the frontend per publish click).
+      operationId: t_value
+      parameters: []
+      responses:
+        '200':
+          description: ''
+      summary: Get the status of a website generation run
+      tags:
+      - Website
+    post:
+      description: '@Public() endpoint mirroring scrape-data. Lambda POSTs terminal status. UPDATE-only (insert-before-respond means the row always exists). Terminal-state-sticky + websiteId safety AND-clause: writes to a row already in COMPLETED/FAILED, or with a mismatched websiteId, are no-ops.'
+      operationId: t_value
+      parameters: []
+      responses:
+        '201':
+          description: ''
+      summary: Update website generation status (called by prism lambda)
+      tags:
+      - Website
+components:
+  schemas:
+    e:
+      type: object
+      properties:
+        id:
+          type: number
+        entityId:
+          type: string
+        attribute:
+          type: string
+        value:
+          type:
+          - object
+          - 'null'
+        metadata:
+          type:
+          - object
+          - 'null'
+        createdAt:
+          type:
+          - object
+          - 'null'
+      required:
+      - id
+      - entityId
+      - attribute
+  securitySchemes:
+    access-token:
+      scheme: bearer
+      bearerFormat: JWT
+      type: http
+      name: Authorization
+      description: Enter JWT token in the format Bearer <token>
+      in: header

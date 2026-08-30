@@ -1,0 +1,241 @@
+openapi: 3.2.0
+info:
+  title: Zoca Tasks Firecrawl API
+  description: 'The Zoca tasks/automation service: AI content queue and planning, FrontDesk (Retell/Twilio) voice + SMS agent onboarding, local-SEO grid scans, WIN conversion triggers, and inbound integration webhooks (Chargebee, Square, Pipedrive, Twilio, Retell, CallHippo, Sybill, Instantly).'
+  version: 3.20.9
+  contact: {}
+  x-apievangelist-note: Harvested verbatim from https://tasks.zoca.ai/swagger.json. The provider ships the default NestJS Swagger metadata (title "API Documentation", empty servers[]); title/description/servers were set by API Evangelist for identification and the unmodified original is preserved at openapi/_original/zoca-tasks-swagger.json. Every path, operation, summary, parameter and response is exactly as published.
+servers:
+- url: https://tasks.zoca.ai
+  description: Production
+security:
+- access-token: []
+tags:
+- name: Firecrawl
+paths:
+  /tasks/api/v1/firecrawl/scrape:
+    post:
+      description: Extract content from a single URL using Firecrawl
+      operationId: t_value
+      parameters: []
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/e'
+      responses:
+        '200':
+          description: Successfully scraped URL
+        '400':
+          description: Invalid request parameters
+      summary: Scrape a single URL
+      tags:
+      - Firecrawl
+  /tasks/api/v1/firecrawl/scrape/batch:
+    post:
+      description: Scrape multiple URLs in parallel
+      operationId: t_value
+      parameters: []
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/e'
+      responses:
+        '202':
+          description: Batch scrape initiated
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/e'
+      summary: Batch scrape multiple URLs
+      tags:
+      - Firecrawl
+  /tasks/api/v1/firecrawl/crawl:
+    post:
+      description: Start crawling a website and its subpages
+      operationId: t_value
+      parameters: []
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/e'
+      responses:
+        '202':
+          description: Crawl job started
+      summary: Crawl a website
+      tags:
+      - Firecrawl
+  /tasks/api/v1/firecrawl/crawl/{jobId}:
+    get:
+      description: Check the status of a crawl job
+      operationId: t_value
+      parameters:
+      - name: jobId
+        required: true
+        in: path
+        description: The crawl job ID
+        schema:
+          example: 12345-67890-abcdef
+      responses:
+        '200':
+          description: Crawl status retrieved
+        '404':
+          description: Crawl job not found
+      summary: Get crawl job status
+      tags:
+      - Firecrawl
+  /tasks/api/v1/firecrawl/crawl/{jobId}/cancel:
+    post:
+      description: Stop an ongoing crawl job
+      operationId: t_value
+      parameters:
+      - name: jobId
+        required: true
+        in: path
+        description: The crawl job ID to cancel
+        schema:
+          example: 12345-67890-abcdef
+      responses:
+        '200':
+          description: Crawl job cancelled
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/e'
+      summary: Cancel a crawl job
+      tags:
+      - Firecrawl
+  /tasks/api/v1/firecrawl/map:
+    post:
+      description: Get all URLs from a website (sitemap)
+      operationId: t_value
+      parameters: []
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/e'
+      responses:
+        '200':
+          description: Website mapped successfully
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/e'
+      summary: Map a website
+      tags:
+      - Firecrawl
+  /tasks/api/v1/firecrawl/extract:
+    post:
+      description: Extract structured data from a URL using a schema
+      operationId: t_value
+      parameters: []
+      requestBody:
+        required: true
+        description: Request body for structured data extraction
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/e'
+      responses:
+        '200':
+          description: Data extracted successfully
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/e'
+      summary: Extract structured data
+      tags:
+      - Firecrawl
+  /tasks/api/v1/firecrawl/health:
+    get:
+      description: Check if Firecrawl service is operational
+      operationId: t_value
+      parameters: []
+      responses:
+        '200':
+          description: Service is healthy
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/e'
+      summary: Health check
+      tags:
+      - Firecrawl
+  /tasks/api/v1/firecrawl/stats:
+    get:
+      description: Get usage statistics for Firecrawl service
+      operationId: t_value
+      parameters: []
+      responses:
+        '200':
+          description: Statistics retrieved
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/e'
+      summary: Get service statistics
+      tags:
+      - Firecrawl
+  /tasks/api/v1/firecrawl/search:
+    post:
+      description: Search for content across the web using Firecrawl
+      operationId: t_value
+      parameters: []
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/e'
+      responses:
+        '200':
+          description: Search completed successfully
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/e'
+      summary: Search the web
+      tags:
+      - Firecrawl
+components:
+  schemas:
+    e:
+      type: object
+      properties:
+        scan:
+          $ref: '#/components/schemas/e'
+        businessLat:
+          type:
+          - number
+          - 'null'
+        businessLng:
+          type:
+          - number
+          - 'null'
+        points:
+          type: array
+          items:
+            $ref: '#/components/schemas/e'
+        heroMetrics:
+          $ref: '#/components/schemas/e'
+      required:
+      - scan
+      - businessLat
+      - businessLng
+      - points
+      - heroMetrics
+  securitySchemes:
+    access-token:
+      scheme: bearer
+      bearerFormat: JWT
+      type: http
+      name: Authorization
+      description: Enter JWT token in the format Bearer <token>
+      in: header

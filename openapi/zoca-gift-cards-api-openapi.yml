@@ -1,0 +1,172 @@
+openapi: 3.2.0
+info:
+  title: Zoca Platform Gift Cards API
+  description: 'The Zoca platform API behind the Zoca web app and mobile apps: scheduling, website generation, Google Business Profile, discovery/local SEO, social media, booking enquiries, offers, clients, staff, billing and the Zoca "brain" agent layer.'
+  version: 3.20.10
+  contact: {}
+  x-apievangelist-note: Harvested verbatim from https://api.zoca.ai/swagger.json. The provider ships the default NestJS Swagger metadata (title "API Documentation", empty servers[]); title/description/servers were set by API Evangelist for identification and the unmodified original is preserved at openapi/_original/zoca-platform-swagger.json. Every path, operation, summary, parameter and response is exactly as published.
+servers:
+- url: https://api.zoca.ai
+  description: Production
+tags:
+- name: Gift Cards
+paths:
+  /gift-cards:
+    get:
+      operationId: t_value
+      parameters: []
+      responses:
+        '200':
+          description: Paginated list of gift cards
+      security:
+      - bearer: []
+      summary: List gift cards for a location (admin)
+      tags:
+      - Gift Cards
+  /gift-cards/issue:
+    post:
+      operationId: t_value
+      parameters: []
+      responses:
+        '201':
+          description: Gift card issued
+      security:
+      - bearer: []
+      summary: Issue a CASH gift card (admin); card sales go through checkout
+      tags:
+      - Gift Cards
+  /gift-cards/issue/initiate:
+    post:
+      operationId: t_value
+      parameters: []
+      responses:
+        '201':
+          description: Pending purchase created
+      security:
+      - bearer: []
+      summary: Initiate a pending gift-card issuance (paid via checkout)
+      tags:
+      - Gift Cards
+  /gift-cards/pending-issuances:
+    get:
+      operationId: t_value
+      parameters: []
+      responses:
+        '200':
+          description: Pending purchases awaiting payment
+      security:
+      - bearer: []
+      summary: List pending gift-card issuances (awaiting checkout)
+      tags:
+      - Gift Cards
+  /gift-cards/redeemable:
+    get:
+      operationId: t_value
+      parameters: []
+      responses:
+        '200':
+          description: Redeemable cards for the client
+      security:
+      - bearer: []
+      summary: List a client's redeemable gift cards (POS pay-with picker)
+      tags:
+      - Gift Cards
+  /gift-cards/validate:
+    post:
+      operationId: t_value
+      parameters: []
+      responses:
+        '200':
+          description: Validate code result
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/e'
+      security:
+      - bearer: []
+      summary: Validate a gift card code (POS preview)
+      tags:
+      - Gift Cards
+  /gift-cards/{id}:
+    get:
+      operationId: t_value
+      parameters: []
+      responses:
+        '200':
+          description: Gift card row
+      security:
+      - bearer: []
+      summary: Get gift card detail
+      tags:
+      - Gift Cards
+  /gift-cards/{id}/transactions:
+    get:
+      operationId: t_value
+      parameters: []
+      responses:
+        '200':
+          description: Paginated ledger rows
+      security:
+      - bearer: []
+      summary: List ledger transactions for a gift card
+      tags:
+      - Gift Cards
+  /gift-cards/{id}/adjust-balance:
+    post:
+      operationId: t_value
+      parameters: []
+      responses:
+        '200':
+          description: Adjusted card snapshot
+      security:
+      - bearer: []
+      summary: Adjust gift card balance (Owner only — audit logged)
+      tags:
+      - Gift Cards
+  /gift-cards/{id}/cancel:
+    post:
+      operationId: t_value
+      parameters: []
+      responses:
+        '200':
+          description: Cancelled card + refund result
+      security:
+      - bearer: []
+      summary: Cancel an unredeemed gift card (Owner only)
+      tags:
+      - Gift Cards
+components:
+  schemas:
+    e:
+      type: object
+      properties:
+        id:
+          type: number
+        entityId:
+          type: string
+        attribute:
+          type: string
+        value:
+          type:
+          - object
+          - 'null'
+        metadata:
+          type:
+          - object
+          - 'null'
+        createdAt:
+          type:
+          - object
+          - 'null'
+      required:
+      - id
+      - entityId
+      - attribute
+  securitySchemes:
+    access-token:
+      scheme: bearer
+      bearerFormat: JWT
+      type: http
+      name: Authorization
+      description: Enter JWT token in the format Bearer <token>
+      in: header

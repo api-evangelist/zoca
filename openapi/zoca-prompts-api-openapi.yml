@@ -1,0 +1,379 @@
+openapi: 3.2.0
+info:
+  title: Zoca Tasks Prompts API
+  description: 'The Zoca tasks/automation service: AI content queue and planning, FrontDesk (Retell/Twilio) voice + SMS agent onboarding, local-SEO grid scans, WIN conversion triggers, and inbound integration webhooks (Chargebee, Square, Pipedrive, Twilio, Retell, CallHippo, Sybill, Instantly).'
+  version: 3.20.9
+  contact: {}
+  x-apievangelist-note: Harvested verbatim from https://tasks.zoca.ai/swagger.json. The provider ships the default NestJS Swagger metadata (title "API Documentation", empty servers[]); title/description/servers were set by API Evangelist for identification and the unmodified original is preserved at openapi/_original/zoca-tasks-swagger.json. Every path, operation, summary, parameter and response is exactly as published.
+servers:
+- url: https://tasks.zoca.ai
+  description: Production
+security:
+- access-token: []
+tags:
+- name: prompts
+paths:
+  /tasks/api/v1/prompts:
+    get:
+      operationId: t_value
+      parameters:
+      - name: offset
+        required: false
+        in: query
+        description: 'Number of items to skip (default: 0)'
+        schema:
+          type: number
+      - name: limit
+        required: false
+        in: query
+        description: 'Number of items to return (default: 100, max: 500)'
+        schema:
+          type: number
+      - name: isCurrent
+        required: false
+        in: query
+        description: Filter by current status
+        schema:
+          type: boolean
+      - name: useCase
+        required: false
+        in: query
+        description: Filter by use case
+        schema: {}
+      - name: function
+        required: false
+        in: query
+        description: Filter by business function
+        schema:
+          enum:
+          - SALES
+          - MARKETING
+          - LOCAL_SEO
+          - WEBSITE
+          - CUSTOMER_SUCCESS
+          - GBP
+          - REVIEW_REPLY
+          - COPILOT
+          - CONTEXT_SCRAPER
+          - SCRAPERS
+          - AUTOMATION
+          - CONTENT_GENERATION
+          - L2B
+          - WIN_AGENT
+          - DISCOVERY_AGENT
+          - SOCIAL_AGENT
+          - LOYALTY_AGENT
+          - SECURITY
+          - DATA_ANALYTICS
+          - ENGINEERING
+          - DEVOPS
+          - OPERATIONS
+          type: string
+      responses:
+        '200':
+          description: List of prompts retrieved successfully with pagination info
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  data:
+                    type: array
+                    items:
+                      $ref: '#/components/schemas/PromptResponseDto'
+                  pagination:
+                    type: object
+                    properties:
+                      total:
+                        type: number
+                      limit:
+                        type: number
+                      offset:
+                        type: number
+                      hasMore:
+                        type: boolean
+      summary: List all prompts with optional filters and pagination
+      tags:
+      - prompts
+  /tasks/api/v1/prompts/upsert:
+    post:
+      operationId: t_value
+      parameters: []
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/e'
+      responses:
+        '200':
+          description: Prompt created or updated successfully
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/e'
+      summary: Create or update a prompt
+      tags:
+      - prompts
+  /tasks/api/v1/prompts/prompt:
+    get:
+      operationId: t_value
+      parameters: []
+      responses:
+        '200':
+          description: Prompt text retrieved successfully
+          content:
+            application/json:
+              schema:
+                type: string
+      summary: Get a prompt by function and useCase
+      tags:
+      - prompts
+  /tasks/api/v1/prompts/prompt/fallback:
+    get:
+      operationId: t_value
+      parameters: []
+      responses:
+        '200':
+          description: Prompt text retrieved successfully
+          content:
+            application/json:
+              schema:
+                type: string
+      summary: Get a prompt by function and useCase with fallback
+      tags:
+      - prompts
+  /tasks/api/v1/prompts/cohort/set:
+    post:
+      description: Sets a prompt value for all entities in a cohort in their preferences table against the specified attribute
+      operationId: t_value
+      parameters: []
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/e'
+      responses:
+        '200':
+          description: Successfully set prompt for cohort
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/e'
+        '400':
+          description: Bad Request - Invalid input data
+      summary: Set prompt for a cohort of entities
+      tags:
+      - prompts
+  /tasks/api/v1/prompts/cohort/update-to-latest:
+    post:
+      description: Updates a cohort's prompt to the latest version by function and useCase. Stores the prompt reference (PROMPT:<id>) against the cohortId in entity_preferences using the specified attribute key (e.g., chatbot.prompt.initializer). This is used by tier 2 of getPromptWithFallback for cohort-level prompt resolution.
+      operationId: t_value
+      parameters: []
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/e'
+      responses:
+        '200':
+          description: Successfully updated cohort prompt to latest
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/e'
+        '400':
+          description: Bad Request - Invalid input data, cohort not found, or prompt not found
+      summary: Update cohort prompt to latest version
+      tags:
+      - prompts
+  /tasks/api/v1/prompts/cohort/{cohortId}:
+    get:
+      description: Retrieves the prompt value that was set for entities in a cohort from their preferences table
+      operationId: t_value
+      parameters:
+      - name: checkForId
+        required: false
+        in: query
+        description: When true, checks for PROMPTS:<id> pattern in preferences and fetches full prompt details
+        schema:
+          type: boolean
+      - name: attribute
+        required: true
+        in: query
+        description: The attribute key used when setting the prompt (e.g., chatbot.prompt.initializer)
+        schema:
+          type: string
+      responses:
+        '200':
+          description: Successfully retrieved cohort prompt
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  cohortId:
+                    type: string
+                  attribute:
+                    type: string
+                  promptValue:
+                    type:
+                    - string
+                    - 'null'
+                  entitiesWithPrompt:
+                    type: number
+                  totalEntities:
+                    type: number
+                  promptId:
+                    type:
+                    - number
+                    - 'null'
+                  promptDetails:
+                    type:
+                    - object
+                    - 'null'
+                    properties:
+                      function:
+                        type: string
+                      useCase:
+                        type: string
+                      version:
+                        type: string
+                      isCurrent:
+                        type: boolean
+        '404':
+          description: Cohort not found
+      summary: Get prompt that was set for a cohort
+      tags:
+      - prompts
+  /tasks/api/v1/prompts/functions:
+    get:
+      operationId: t_value
+      parameters: []
+      responses:
+        '200':
+          description: List of available business functions retrieved successfully
+          content:
+            application/json:
+              schema:
+                type: array
+                items:
+                  type: string
+      summary: List all available business functions
+      tags:
+      - prompts
+  /tasks/api/v1/prompts/use-cases:
+    get:
+      operationId: t_value
+      parameters:
+      - name: unique
+        required: false
+        in: query
+        description: 'Return only unique use cases (default: true)'
+        schema:
+          type: boolean
+      responses:
+        '200':
+          description: List of use cases retrieved successfully
+          content:
+            application/json:
+              schema:
+                type: array
+                items:
+                  type: string
+      summary: List all use cases across all functions
+      tags:
+      - prompts
+  /tasks/api/v1/prompts/functions/{function}/use-cases:
+    get:
+      operationId: t_value
+      parameters:
+      - name: function
+        required: true
+        in: path
+        description: The business function to get use cases for
+        schema:
+          enum:
+          - SALES
+          - MARKETING
+          - LOCAL_SEO
+          - WEBSITE
+          - CUSTOMER_SUCCESS
+          - GBP
+          - REVIEW_REPLY
+          - COPILOT
+          type: string
+      responses:
+        '200':
+          description: List of use cases for the function retrieved successfully
+          content:
+            application/json:
+              schema:
+                type: array
+                items:
+                  type: string
+      summary: List use cases for a specific business function
+      tags:
+      - prompts
+  /tasks/api/v1/prompts/{id}:
+    delete:
+      operationId: t_value
+      parameters:
+      - name: id
+        required: true
+        in: path
+        description: The ID of the prompt to delete
+        schema:
+          example: 1
+          type: number
+      responses:
+        '200':
+          description: Prompt deleted successfully
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/e'
+        '400':
+          description: Bad Request - Prompt not found or cannot be deleted
+        '404':
+          description: Prompt not found
+      summary: Delete a prompt by ID
+      tags:
+      - prompts
+components:
+  schemas:
+    e:
+      type: object
+      properties:
+        scan:
+          $ref: '#/components/schemas/e'
+        businessLat:
+          type:
+          - number
+          - 'null'
+        businessLng:
+          type:
+          - number
+          - 'null'
+        points:
+          type: array
+          items:
+            $ref: '#/components/schemas/e'
+        heroMetrics:
+          $ref: '#/components/schemas/e'
+      required:
+      - scan
+      - businessLat
+      - businessLng
+      - points
+      - heroMetrics
+  securitySchemes:
+    access-token:
+      scheme: bearer
+      bearerFormat: JWT
+      type: http
+      name: Authorization
+      description: Enter JWT token in the format Bearer <token>
+      in: header

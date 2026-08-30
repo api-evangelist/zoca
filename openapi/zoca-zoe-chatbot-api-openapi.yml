@@ -1,0 +1,429 @@
+openapi: 3.2.0
+info:
+  title: Zoca Tasks Zoe Chatbot API
+  description: 'The Zoca tasks/automation service: AI content queue and planning, FrontDesk (Retell/Twilio) voice + SMS agent onboarding, local-SEO grid scans, WIN conversion triggers, and inbound integration webhooks (Chargebee, Square, Pipedrive, Twilio, Retell, CallHippo, Sybill, Instantly).'
+  version: 3.20.9
+  contact: {}
+  x-apievangelist-note: Harvested verbatim from https://tasks.zoca.ai/swagger.json. The provider ships the default NestJS Swagger metadata (title "API Documentation", empty servers[]); title/description/servers were set by API Evangelist for identification and the unmodified original is preserved at openapi/_original/zoca-tasks-swagger.json. Every path, operation, summary, parameter and response is exactly as published.
+servers:
+- url: https://tasks.zoca.ai
+  description: Production
+security:
+- access-token: []
+tags:
+- name: Zoe Chatbot
+paths:
+  /tasks/api/v1/chatbot/zoe/services:
+    get:
+      operationId: t_value
+      parameters:
+      - name: locationEntityId
+        required: true
+        in: query
+        description: The entity ID of the location
+        schema:
+          example: 677ffa96-2fa6-4fec-9dd1-b6155205a575
+      responses:
+        '200':
+          description: Returns basic information for all available services
+      summary: Get basic information for all services
+      tags:
+      - Zoe Chatbot
+  /tasks/api/v1/chatbot/zoe/services/{serviceId}:
+    get:
+      operationId: t_value
+      parameters:
+      - name: locationEntityId
+        required: true
+        in: query
+        description: The entity ID of the location
+        schema:
+          example: 677ffa96-2fa6-4fec-9dd1-b6155205a575
+      - name: serviceId
+        required: true
+        in: path
+        description: The unique identifier of the service
+        schema:
+          example: WECBGYKYKGVZJARL23GB2NGG
+      responses:
+        '200':
+          description: Returns enhanced details for the specified service
+        '404':
+          description: Service not found
+      summary: Get enhanced details for a specific service
+      tags:
+      - Zoe Chatbot
+  /tasks/api/v1/chatbot/zoe/services-detailed:
+    get:
+      operationId: t_value
+      parameters:
+      - name: locationEntityId
+        required: true
+        in: query
+        description: The entity ID of the location
+        schema:
+          example: 677ffa96-2fa6-4fec-9dd1-b6155205a575
+      responses:
+        '200':
+          description: Returns enhanced details for all available services
+      summary: Get enhanced details for all services
+      tags:
+      - Zoe Chatbot
+  /tasks/api/v1/chatbot/zoe/hours/basic:
+    get:
+      operationId: t_value
+      parameters:
+      - name: locationEntityId
+        required: true
+        in: query
+        description: The entity ID of the location
+        schema:
+          example: 677ffa96-2fa6-4fec-9dd1-b6155205a575
+      responses:
+        '200':
+          description: Returns basic working hours information
+      summary: Get basic working hours information
+      tags:
+      - Zoe Chatbot
+  /tasks/api/v1/chatbot/zoe/hours/detailed:
+    get:
+      operationId: t_value
+      parameters:
+      - name: locationEntityId
+        required: true
+        in: query
+        description: The entity ID of the location
+        schema:
+          example: 677ffa96-2fa6-4fec-9dd1-b6155205a575
+      responses:
+        '200':
+          description: Returns detailed working hours information
+      summary: Get detailed working hours information
+      tags:
+      - Zoe Chatbot
+  /tasks/api/v1/chatbot/zoe/hours/answer:
+    post:
+      operationId: t_value
+      parameters: []
+      requestBody:
+        required: true
+        description: Location entity ID and question
+        content:
+          application/json:
+            schema:
+              type: object
+              properties:
+                locationEntityId:
+                  type: string
+                  description: The entity ID of the location
+                  example: 677ffa96-2fa6-4fec-9dd1-b6155205a575
+                question:
+                  type: string
+                  description: Question about working hours
+                  example: Are you open now?
+              required:
+              - locationEntityId
+              - question
+      responses:
+        '200':
+          description: Returns an answer to the working hours question
+      summary: Answer a question about working hours
+      tags:
+      - Zoe Chatbot
+  /tasks/api/v1/chatbot/zoe/faqs/list:
+    get:
+      operationId: t_value
+      parameters:
+      - name: locationEntityId
+        required: true
+        in: query
+        description: The entity ID of the location
+        schema:
+          example: 677ffa96-2fa6-4fec-9dd1-b6155205a575
+      responses:
+        '200':
+          description: Returns categorized FAQ list
+      summary: Get categorized FAQ list
+      tags:
+      - Zoe Chatbot
+  /tasks/api/v1/chatbot/zoe/faqs/{id}:
+    get:
+      operationId: t_value
+      parameters:
+      - name: locationEntityId
+        required: true
+        in: query
+        description: The entity ID of the location
+        schema:
+          example: 677ffa96-2fa6-4fec-9dd1-b6155205a575
+      - name: id
+        required: true
+        in: path
+        description: The FAQ ID
+        schema:
+          example: 1
+          type: number
+      responses:
+        '200':
+          description: Returns FAQ answer with related questions
+        '404':
+          description: FAQ not found
+      summary: Get FAQ answer by ID
+      tags:
+      - Zoe Chatbot
+  /tasks/api/v1/chatbot/zoe/faqs/search:
+    post:
+      operationId: t_value
+      parameters: []
+      requestBody:
+        required: true
+        description: Location entity ID and search query
+        content:
+          application/json:
+            schema:
+              type: object
+              properties:
+                locationEntityId:
+                  type: string
+                  description: The entity ID of the location
+                  example: 677ffa96-2fa6-4fec-9dd1-b6155205a575
+                query:
+                  type: string
+                  description: User search query
+                  example: What are your hours?
+              required:
+              - locationEntityId
+              - query
+      responses:
+        '200':
+          description: Returns matching FAQ questions
+      summary: Search FAQs by user query
+      tags:
+      - Zoe Chatbot
+  /tasks/api/v1/chatbot/zoe/faqs/check-query:
+    get:
+      operationId: t_value
+      parameters:
+      - name: query
+        required: true
+        in: query
+        description: User query to check
+        schema:
+          example: What services do you offer?
+      - name: locationEntityId
+        required: true
+        in: query
+        description: The entity ID of the location
+        schema:
+          example: 677ffa96-2fa6-4fec-9dd1-b6155205a575
+      responses:
+        '200':
+          description: Returns whether the query might be an FAQ
+      summary: Check if a query might be an FAQ
+      tags:
+      - Zoe Chatbot
+  /tasks/api/v1/chatbot/zoe/faqs/answer:
+    post:
+      operationId: t_value
+      parameters: []
+      requestBody:
+        required: true
+        description: Location entity ID and user query
+        content:
+          application/json:
+            schema:
+              type: object
+              properties:
+                locationEntityId:
+                  type: string
+                  description: The entity ID of the location
+                  example: 677ffa96-2fa6-4fec-9dd1-b6155205a575
+                query:
+                  type: string
+                  description: User query
+                  example: What are your business hours?
+              required:
+              - locationEntityId
+              - query
+      responses:
+        '200':
+          description: Returns FAQ answer if found
+      summary: Get FAQ answer for a user query
+      tags:
+      - Zoe Chatbot
+  /tasks/api/v1/chatbot/zoe/start-conversation:
+    post:
+      description: Initiates a new conversation with the Zoe booking assistant. Creates a new client if needed and sends an initial greeting.
+      operationId: t_value
+      parameters: []
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/e'
+      responses:
+        '200':
+          description: Conversation started successfully
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/e'
+        '400':
+          description: Bad request - invalid parameters
+        '403':
+          description: Access denied
+        '500':
+          description: Internal server error
+      summary: Start a new conversation with Zoe bot
+      tags:
+      - Zoe Chatbot
+  /tasks/api/v1/chatbot/zoe/continue-conversation:
+    post:
+      description: Sends a message to the Zoe bot and receives a response with optional function calls.
+      operationId: t_value
+      parameters: []
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/e'
+      responses:
+        '200':
+          description: Conversation processed successfully
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/e'
+        '400':
+          description: Bad request - invalid parameters
+        '403':
+          description: Access denied
+        '404':
+          description: Client not found
+        '500':
+          description: Internal server error
+      summary: Continue a conversation with Zoe bot
+      tags:
+      - Zoe Chatbot
+  /tasks/api/v1/chatbot/zoe/conversation-history:
+    get:
+      description: Retrieves the message history for a specific client conversation with Zoe bot with pagination support.
+      operationId: t_value
+      parameters:
+      - description: Client ID to get conversation history for
+        name: clientId
+        in: query
+        required: true
+        schema:
+          example: 123e4567-e89b-12d3-a456-426614174001
+      - description: Page number for pagination
+        required: false
+        name: page
+        in: query
+        schema:
+          minimum: 1
+          default: 1
+          example: 1
+      - description: Number of messages per page
+        required: false
+        name: limit
+        in: query
+        schema:
+          minimum: 1
+          maximum: 100
+          default: 20
+          example: 20
+      responses:
+        '200':
+          description: Conversation history retrieved successfully with pagination
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/e'
+        '400':
+          description: Bad request - invalid parameters
+        '404':
+          description: Client not found
+        '500':
+          description: Internal server error
+      summary: Get conversation history for a client with pagination
+      tags:
+      - Zoe Chatbot
+  /tasks/api/v1/chatbot/zoe/entity-conversations:
+    get:
+      description: Retrieves all Zoe conversations associated with a specific entity ID with pagination support.
+      operationId: t_value
+      parameters:
+      - description: The entity ID to get conversations for
+        name: entityId
+        in: query
+        required: true
+        schema:
+          example: 677ffa96-2fa6-4fec-9dd1-b6155205a575
+      - description: 'Page number for pagination (default: 1)'
+        required: false
+        name: page
+        in: query
+        schema:
+          default: 1
+          example: 1
+      - description: 'Number of items per page (default: 20, max: 100)'
+        required: false
+        name: limit
+        in: query
+        schema:
+          default: 20
+          example: 20
+      responses:
+        '200':
+          description: Entity conversations retrieved successfully with pagination
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/e'
+        '400':
+          description: Bad request - invalid parameters
+        '403':
+          description: Access denied
+        '500':
+          description: Internal server error
+      summary: Get all Zoe conversations for an entity
+      tags:
+      - Zoe Chatbot
+components:
+  schemas:
+    e:
+      type: object
+      properties:
+        scan:
+          $ref: '#/components/schemas/e'
+        businessLat:
+          type:
+          - number
+          - 'null'
+        businessLng:
+          type:
+          - number
+          - 'null'
+        points:
+          type: array
+          items:
+            $ref: '#/components/schemas/e'
+        heroMetrics:
+          $ref: '#/components/schemas/e'
+      required:
+      - scan
+      - businessLat
+      - businessLng
+      - points
+      - heroMetrics
+  securitySchemes:
+    access-token:
+      scheme: bearer
+      bearerFormat: JWT
+      type: http
+      name: Authorization
+      description: Enter JWT token in the format Bearer <token>
+      in: header

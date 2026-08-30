@@ -1,0 +1,419 @@
+openapi: 3.2.0
+info:
+  title: Zoca Platform Sales API
+  description: 'The Zoca platform API behind the Zoca web app and mobile apps: scheduling, website generation, Google Business Profile, discovery/local SEO, social media, booking enquiries, offers, clients, staff, billing and the Zoca "brain" agent layer.'
+  version: 3.20.10
+  contact: {}
+  x-apievangelist-note: Harvested verbatim from https://api.zoca.ai/swagger.json. The provider ships the default NestJS Swagger metadata (title "API Documentation", empty servers[]); title/description/servers were set by API Evangelist for identification and the unmodified original is preserved at openapi/_original/zoca-platform-swagger.json. Every path, operation, summary, parameter and response is exactly as published.
+servers:
+- url: https://api.zoca.ai
+  description: Production
+tags:
+- name: Sales
+paths:
+  /scheduling/sales/summary:
+    get:
+      description: Returns a financial summary including pending payments, cancellation fees, no-show fees, confirmed payments, and total revenue.
+      operationId: t_value
+      parameters:
+      - name: entityId
+        required: true
+        in: query
+        description: Entity ID
+        schema:
+          type: string
+      responses:
+        '200':
+          description: Sales summary retrieved successfully
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  pendingPayments:
+                    type: number
+                    description: Sum of amount due on OPEN/PARTIALLY_PAID sales
+                  cancellationFee:
+                    type: number
+                    description: Sum of completed cancellation fee payments
+                  noShowFee:
+                    type: number
+                    description: Sum of completed no-show fee payments
+                  confirmedPayments:
+                    type: number
+                    description: Sum of completed deposit/partial/final payments
+                  totalRevenue:
+                    type: number
+                    description: Sum of all completed payments
+        '400':
+          description: Missing or invalid entityId
+      summary: Get sales summary for an entity
+      tags:
+      - Sales
+  /scheduling/sales/{id}:
+    get:
+      description: Retrieves a sale with all associated payments and calculated amounts.
+      operationId: t_value
+      parameters:
+      - name: id
+        required: true
+        in: path
+        description: Sale ID
+        schema:
+          type: string
+      responses:
+        '200':
+          description: Sale retrieved successfully
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  id:
+                    type: string
+                    format: uuid
+                  entityId:
+                    type: string
+                    format: uuid
+                  bookingId:
+                    type: string
+                    format: uuid
+                  clientId:
+                    type:
+                    - string
+                    - 'null'
+                    format: uuid
+                  status:
+                    type: string
+                    enum:
+                    - OPEN
+                    - PARTIALLY_PAID
+                    - PAID
+                    - CLOSED
+                    - VOIDED
+                  subtotal:
+                    type: number
+                    description: Subtotal in cents
+                  discountAmount:
+                    type: number
+                    description: Discount amount in cents
+                  taxAmount:
+                    type: number
+                    description: Tax amount in cents
+                  tipAmount:
+                    type: number
+                    description: Tip amount in cents
+                  totalAmount:
+                    type: number
+                    description: Total amount in cents
+                  amountPaid:
+                    type: number
+                    description: Amount paid in cents
+                  amountDue:
+                    type: number
+                    description: Amount due in cents
+                  currency:
+                    type: string
+                    default: USD
+                  payments:
+                    type: array
+                    items:
+                      type: object
+                    description: Associated payments
+                  createdAt:
+                    type: string
+                    format: date-time
+                  updatedAt:
+                    type: string
+                    format: date-time
+                  closedAt:
+                    type:
+                    - string
+                    - 'null'
+                    format: date-time
+        '404':
+          description: Sale not found
+      summary: Get sale by ID
+      tags:
+      - Sales
+  /scheduling/sales/booking/{bookingId}:
+    get:
+      description: Retrieves the sale associated with a booking (1:1 relationship).
+      operationId: t_value
+      parameters:
+      - name: bookingId
+        required: true
+        in: path
+        description: Booking ID
+        schema:
+          type: string
+      responses:
+        '200':
+          description: Sale retrieved successfully
+        '404':
+          description: Sale not found for booking
+      summary: Get sale by booking ID
+      tags:
+      - Sales
+  /scheduling/sales:
+    get:
+      description: Retrieves sales with optional filters for status, date range, item/client search, amount ranges, and pagination. Returns total count for pagination UI.
+      operationId: t_value
+      parameters:
+      - name: limit
+        required: false
+        in: query
+        description: Results per page (max 100)
+        schema:
+          example: 20
+          type: number
+      - name: page
+        required: false
+        in: query
+        description: Page number (starts at 1)
+        schema:
+          example: 1
+          type: number
+      - name: maxTotal
+        required: false
+        in: query
+        description: Maximum total amount
+        schema:
+          type: number
+      - name: minTotal
+        required: false
+        in: query
+        description: Minimum total amount
+        schema:
+          type: number
+      - name: maxTip
+        required: false
+        in: query
+        description: Maximum tip amount
+        schema:
+          type: number
+      - name: minTip
+        required: false
+        in: query
+        description: Minimum tip amount
+        schema:
+          type: number
+      - name: maxTax
+        required: false
+        in: query
+        description: Maximum tax amount
+        schema:
+          type: number
+      - name: minTax
+        required: false
+        in: query
+        description: Minimum tax amount
+        schema:
+          type: number
+      - name: maxDiscount
+        required: false
+        in: query
+        description: Maximum discount amount
+        schema:
+          type: number
+      - name: minDiscount
+        required: false
+        in: query
+        description: Minimum discount amount
+        schema:
+          type: number
+      - name: maxSubtotal
+        required: false
+        in: query
+        description: Maximum subtotal
+        schema:
+          type: number
+      - name: minSubtotal
+        required: false
+        in: query
+        description: Minimum subtotal
+        schema:
+          type: number
+      - name: dateTo
+        required: false
+        in: query
+        description: Only sales created at or before this ISO instant
+        schema:
+          type: string
+      - name: dateFrom
+        required: false
+        in: query
+        description: Only sales created at or after this ISO instant
+        schema:
+          type: string
+      - name: search
+        required: false
+        in: query
+        description: Free-text match on sold service/product names or the client name
+        schema:
+          type: string
+      - name: status
+        required: false
+        in: query
+        description: Filter by sale status. Comma-separated for a multi-status bucket; omit or pass ALL for no filter.
+        schema:
+          enum:
+          - OPEN
+          - PARTIALLY_PAID
+          - PAID
+          - CANCELLED
+          - NO_SHOW
+          - VOIDED
+          - REFUND_INITIATED
+          - PARTIALLY_REFUNDED
+          - REFUNDED
+          type: string
+      - name: entityId
+        required: true
+        in: query
+        description: Entity ID
+        schema:
+          type: string
+      responses:
+        '200':
+          description: Sales retrieved successfully
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  sales:
+                    type: array
+                    items:
+                      type: object
+                  totalCount:
+                    type: number
+                    description: Total number of sales matching filters
+                  totalPages:
+                    type: number
+                    description: Total number of pages
+                  currentPage:
+                    type: number
+                    description: Current page number
+        '400':
+          description: Missing or invalid entityId
+      summary: List sales for an entity
+      tags:
+      - Sales
+  /scheduling/sales/{saleId}/payments:
+    get:
+      description: Retrieves payment history for a sale, including status, method, amounts, and timestamps.
+      operationId: t_value
+      parameters:
+      - name: saleId
+        required: true
+        in: path
+        description: Sale ID
+        schema:
+          type: string
+      responses:
+        '200':
+          description: Payments retrieved successfully
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  payments:
+                    type: array
+                    items:
+                      type: object
+                      properties:
+                        id:
+                          type: string
+                          format: uuid
+                        saleId:
+                          type: string
+                          format: uuid
+                        amount:
+                          type: number
+                          description: Payment amount in cents
+                        tipAmount:
+                          type: number
+                          description: Tip amount in cents
+                        paymentMethod:
+                          type: string
+                          enum:
+                          - CASH
+                          - CARD
+                          - CARD_ON_FILE
+                        paymentType:
+                          type: string
+                          enum:
+                          - DEPOSIT
+                          - PARTIAL
+                          - FINAL
+                          - REFUND
+                        status:
+                          type: string
+                          enum:
+                          - PENDING
+                          - PROCESSING
+                          - COMPLETED
+                          - FAILED
+                          - REFUNDED
+                          - PARTIALLY_REFUNDED
+                        stripePaymentIntentId:
+                          type:
+                          - string
+                          - 'null'
+                        cardBrand:
+                          type:
+                          - string
+                          - 'null'
+                        cardLast4:
+                          type:
+                          - string
+                          - 'null'
+                        completedAt:
+                          type:
+                          - string
+                          - 'null'
+                          format: date-time
+                        createdAt:
+                          type: string
+                          format: date-time
+        '404':
+          description: Sale not found
+      summary: Get all payments for a sale
+      tags:
+      - Sales
+  /scheduling/sales/{id}/void:
+    post:
+      description: Voids a sale if no payments have been made. Use this for cancellations or mistakes before payment. Cannot void sales with payments.
+      operationId: t_value
+      parameters:
+      - name: id
+        required: true
+        in: path
+        description: Sale ID
+        schema:
+          type: string
+      responses:
+        '200':
+          description: Sale voided successfully
+          content:
+            application/json:
+              schema:
+                type: object
+        '400':
+          description: Cannot void sale with payments
+        '404':
+          description: Sale not found
+      summary: Void a sale
+      tags:
+      - Sales
+components:
+  securitySchemes:
+    access-token:
+      scheme: bearer
+      bearerFormat: JWT
+      type: http
+      name: Authorization
+      description: Enter JWT token in the format Bearer <token>
+      in: header

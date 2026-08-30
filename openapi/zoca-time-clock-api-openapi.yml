@@ -1,0 +1,158 @@
+openapi: 3.2.0
+info:
+  title: Zoca Platform Time Clock API
+  description: 'The Zoca platform API behind the Zoca web app and mobile apps: scheduling, website generation, Google Business Profile, discovery/local SEO, social media, booking enquiries, offers, clients, staff, billing and the Zoca "brain" agent layer.'
+  version: 3.20.10
+  contact: {}
+  x-apievangelist-note: Harvested verbatim from https://api.zoca.ai/swagger.json. The provider ships the default NestJS Swagger metadata (title "API Documentation", empty servers[]); title/description/servers were set by API Evangelist for identification and the unmodified original is preserved at openapi/_original/zoca-platform-swagger.json. Every path, operation, summary, parameter and response is exactly as published.
+servers:
+- url: https://api.zoca.ai
+  description: Production
+tags:
+- name: Time Clock
+paths:
+  /time-clock/clock-in:
+    post:
+      operationId: t_value
+      parameters: []
+      responses:
+        '201':
+          description: ''
+      summary: Clock in (kiosk PIN or authenticated self-service)
+      tags:
+      - Time Clock
+  /time-clock/clock-out:
+    post:
+      operationId: t_value
+      parameters: []
+      responses:
+        '201':
+          description: ''
+      summary: Clock out
+      tags:
+      - Time Clock
+  /time-clock/open/{entityId}:
+    get:
+      operationId: t_value
+      parameters: []
+      responses:
+        '200':
+          description: ''
+      summary: Who's clocked in right now
+      tags:
+      - Time Clock
+  /time-clock/status/{memberLocationId}:
+    get:
+      operationId: t_value
+      parameters: []
+      responses:
+        '200':
+          description: ''
+      summary: Get a staff member’s current clock status
+      tags:
+      - Time Clock
+  /time-clock/entries/{memberLocationId}:
+    get:
+      operationId: t_value
+      parameters: []
+      responses:
+        '200':
+          description: ''
+      summary: List time cards
+      tags:
+      - Time Clock
+  /time-clock/entries/{entryId}:
+    patch:
+      operationId: t_value
+      parameters: []
+      responses:
+        '200':
+          description: ''
+      summary: Edit a time card
+      tags:
+      - Time Clock
+    delete:
+      operationId: t_value
+      parameters: []
+      responses:
+        '200':
+          description: ''
+      summary: Remove a time card
+      tags:
+      - Time Clock
+  /time-clock/entries/{entryId}/close:
+    post:
+      operationId: t_value
+      parameters: []
+      responses:
+        '201':
+          description: ''
+      summary: Close an abandoned time card
+      tags:
+      - Time Clock
+  /time-clock/pin/{memberLocationId}:
+    put:
+      operationId: t_value
+      parameters: []
+      responses:
+        '200':
+          description: ''
+      summary: Set a clock-in PIN (own PIN for staff)
+      tags:
+      - Time Clock
+    delete:
+      operationId: t_value
+      parameters: []
+      responses:
+        '200':
+          description: ''
+      summary: Clear a clock-in PIN (own PIN for staff)
+      tags:
+      - Time Clock
+  /time-clock/time-off-types/{locationEntityId}:
+    get:
+      operationId: t_value
+      parameters: []
+      responses:
+        '200':
+          description: ''
+      summary: List time-off types
+      tags:
+      - Time Clock
+    post:
+      operationId: t_value
+      parameters: []
+      responses:
+        '201':
+          description: ''
+      summary: Create a time-off type
+      tags:
+      - Time Clock
+  /time-clock/time-off-types/{typeId}:
+    patch:
+      operationId: t_value
+      parameters: []
+      responses:
+        '200':
+          description: ''
+      summary: Update a time-off type
+      tags:
+      - Time Clock
+    delete:
+      operationId: t_value
+      parameters: []
+      responses:
+        '200':
+          description: ''
+      summary: Archive a time-off type
+      tags:
+      - Time Clock
+components:
+  securitySchemes:
+    access-token:
+      scheme: bearer
+      bearerFormat: JWT
+      type: http
+      name: Authorization
+      description: Enter JWT token in the format Bearer <token>
+      in: header

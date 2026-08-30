@@ -1,0 +1,276 @@
+openapi: 3.2.0
+info:
+  title: Zoca Tasks Win Analytics API
+  description: 'The Zoca tasks/automation service: AI content queue and planning, FrontDesk (Retell/Twilio) voice + SMS agent onboarding, local-SEO grid scans, WIN conversion triggers, and inbound integration webhooks (Chargebee, Square, Pipedrive, Twilio, Retell, CallHippo, Sybill, Instantly).'
+  version: 3.20.9
+  contact: {}
+  x-apievangelist-note: Harvested verbatim from https://tasks.zoca.ai/swagger.json. The provider ships the default NestJS Swagger metadata (title "API Documentation", empty servers[]); title/description/servers were set by API Evangelist for identification and the unmodified original is preserved at openapi/_original/zoca-tasks-swagger.json. Every path, operation, summary, parameter and response is exactly as published.
+servers:
+- url: https://tasks.zoca.ai
+  description: Production
+security:
+- access-token: []
+tags:
+- name: Win Analytics
+paths:
+  /tasks/api/v1/win/analytics/{entityId}/dashboard:
+    get:
+      description: Retrieves comprehensive analytics data for dashboard charts including calls over time, sentiment, peak hours, and callback stats
+      operationId: t_value
+      parameters:
+      - name: days
+        required: false
+        in: query
+        description: Number of days to analyze (default 30)
+        schema:
+          type: number
+      - name: entityId
+        required: true
+        in: path
+        description: Entity ID to get analytics for
+        schema: {}
+      responses:
+        '200':
+          description: Dashboard analytics retrieved successfully
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/e'
+      summary: Get dashboard analytics
+      tags:
+      - Win Analytics
+  /tasks/api/v1/win/analytics/{entityId}/home-call-kpis:
+    get:
+      description: 'Aggregates the four call-driven home tiles (Calls handled, Bookings, Minutes answered, Conversations) server-side: all-time tile values + a trailing daily sparkline series + window-over-window change. Replaces fetching up to 500 raw call rows and reducing them in the browser.'
+      operationId: t_value
+      parameters:
+      - name: days
+        required: false
+        in: query
+        description: Trailing window for the sparkline + change (default 30, max 90)
+        schema:
+          type: number
+      - name: entityId
+        required: true
+        in: path
+        description: Entity ID to get home KPIs for
+        schema: {}
+      responses:
+        '200':
+          description: Home call KPIs retrieved successfully
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/e'
+      summary: Get dashboard-home call KPIs
+      tags:
+      - Win Analytics
+  /tasks/api/v1/win/analytics/{entityId}/calls-over-time:
+    get:
+      description: Retrieves daily call volume data for time series charts
+      operationId: t_value
+      parameters:
+      - name: days
+        required: false
+        in: query
+        description: Number of days (default 30)
+        schema:
+          type: number
+      - name: entityId
+        required: true
+        in: path
+        description: Entity ID to get data for
+        schema: {}
+      responses:
+        '200':
+          description: Calls over time data
+          content:
+            application/json:
+              schema:
+                type: array
+                items:
+                  $ref: '#/components/schemas/e'
+      summary: Get calls over time data
+      tags:
+      - Win Analytics
+  /tasks/api/v1/win/analytics/{entityId}/call-outcomes:
+    get:
+      description: Retrieves success/failure breakdown for pie charts
+      operationId: t_value
+      parameters:
+      - name: days
+        required: false
+        in: query
+        description: Number of days (default 30)
+        schema:
+          type: number
+      - name: entityId
+        required: true
+        in: path
+        description: Entity ID to get data for
+        schema: {}
+      responses:
+        '200':
+          description: Call outcomes data
+          content:
+            application/json:
+              schema:
+                type: array
+                items:
+                  $ref: '#/components/schemas/e'
+      summary: Get call outcomes breakdown
+      tags:
+      - Win Analytics
+  /tasks/api/v1/win/analytics/{entityId}/sentiment:
+    get:
+      description: Retrieves positive/neutral/negative sentiment breakdown
+      operationId: t_value
+      parameters:
+      - name: days
+        required: false
+        in: query
+        description: Number of days (default 30)
+        schema:
+          type: number
+      - name: entityId
+        required: true
+        in: path
+        description: Entity ID to get data for
+        schema: {}
+      responses:
+        '200':
+          description: Sentiment breakdown data
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/e'
+      summary: Get sentiment breakdown
+      tags:
+      - Win Analytics
+  /tasks/api/v1/win/analytics/{entityId}/peak-hours:
+    get:
+      description: Retrieves call distribution by hour of day
+      operationId: t_value
+      parameters:
+      - name: days
+        required: false
+        in: query
+        description: Number of days (default 30)
+        schema:
+          type: number
+      - name: entityId
+        required: true
+        in: path
+        description: Entity ID to get data for
+        schema: {}
+      responses:
+        '200':
+          description: Peak hours data
+          content:
+            application/json:
+              schema:
+                type: array
+                items:
+                  $ref: '#/components/schemas/e'
+      summary: Get peak hours data
+      tags:
+      - Win Analytics
+  /tasks/api/v1/win/analytics/{entityId}/call-funnel-stats:
+    get:
+      description: 'Composite funnel-shaped call stats for the Reports page: totals, answer rate, booked-on-call, opportunities, pending pipeline, and a 24×7 calls-by-hour heatmap.'
+      operationId: t_value
+      parameters:
+      - name: endDate
+        required: true
+        in: query
+        description: Period end (YYYY-MM-DD)
+        schema: {}
+      - name: startDate
+        required: true
+        in: query
+        description: Period start (YYYY-MM-DD)
+        schema: {}
+      - name: entityId
+        required: true
+        in: path
+        description: Front-desk entity ID
+        schema: {}
+      responses:
+        '200':
+          description: Call funnel stats
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/e'
+      summary: Get call funnel stats for a period
+      tags:
+      - Win Analytics
+  /tasks/api/v1/win/analytics/call/{callId}/analysis:
+    get:
+      description: Retrieves the LLM-generated post-call analysis for a specific call. Includes overall score, per-response scores, issues, strengths, and recommendations.
+      operationId: t_value
+      parameters:
+      - name: callId
+        required: true
+        in: path
+        description: Retell call ID
+        schema: {}
+      responses:
+        '200':
+          description: Post-call analysis retrieved successfully
+        '404':
+          description: Analysis not found for this call
+      summary: Get post-call analysis
+      tags:
+      - Win Analytics
+  /tasks/api/v1/win/analytics/call/{callId}/analyze:
+    post:
+      description: Queues an LLM-based post-call analysis job for a specific call. Uses callId-based deduplication to prevent duplicate analysis.
+      operationId: t_value
+      parameters:
+      - name: callId
+        required: true
+        in: path
+        description: Retell call ID to analyze
+        schema: {}
+      responses:
+        '201':
+          description: Analysis job queued successfully
+      summary: Queue post-call analysis
+      tags:
+      - Win Analytics
+components:
+  schemas:
+    e:
+      type: object
+      properties:
+        scan:
+          $ref: '#/components/schemas/e'
+        businessLat:
+          type:
+          - number
+          - 'null'
+        businessLng:
+          type:
+          - number
+          - 'null'
+        points:
+          type: array
+          items:
+            $ref: '#/components/schemas/e'
+        heroMetrics:
+          $ref: '#/components/schemas/e'
+      required:
+      - scan
+      - businessLat
+      - businessLng
+      - points
+      - heroMetrics
+  securitySchemes:
+    access-token:
+      scheme: bearer
+      bearerFormat: JWT
+      type: http
+      name: Authorization
+      description: Enter JWT token in the format Bearer <token>
+      in: header

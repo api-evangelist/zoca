@@ -1,0 +1,133 @@
+openapi: 3.2.0
+info:
+  title: Zoca Tasks Reviews Campaigns API
+  description: 'The Zoca tasks/automation service: AI content queue and planning, FrontDesk (Retell/Twilio) voice + SMS agent onboarding, local-SEO grid scans, WIN conversion triggers, and inbound integration webhooks (Chargebee, Square, Pipedrive, Twilio, Retell, CallHippo, Sybill, Instantly).'
+  version: 3.20.9
+  contact: {}
+  x-apievangelist-note: Harvested verbatim from https://tasks.zoca.ai/swagger.json. The provider ships the default NestJS Swagger metadata (title "API Documentation", empty servers[]); title/description/servers were set by API Evangelist for identification and the unmodified original is preserved at openapi/_original/zoca-tasks-swagger.json. Every path, operation, summary, parameter and response is exactly as published.
+servers:
+- url: https://tasks.zoca.ai
+  description: Production
+security:
+- access-token: []
+tags:
+- name: reviews-campaigns
+paths:
+  /tasks/api/v1/reviews-campaigns/preview:
+    post:
+      operationId: t_value
+      parameters: []
+      responses:
+        '200':
+          description: Preview returned
+      summary: Preview a reviews cohort — total active client count
+      tags:
+      - reviews-campaigns
+  /tasks/api/v1/reviews-campaigns/cohorts/{cohortId}/clients:
+    get:
+      operationId: t_value
+      parameters: []
+      responses:
+        '200':
+          description: Clients returned
+      summary: Paginated list of active clients in a reviews cohort
+      tags:
+      - reviews-campaigns
+    post:
+      operationId: t_value
+      parameters: []
+      responses:
+        '201':
+          description: Clients added
+      summary: Add clients to a reviews cohort
+      tags:
+      - reviews-campaigns
+  /tasks/api/v1/reviews-campaigns/clients/search:
+    get:
+      operationId: t_value
+      parameters: []
+      responses:
+        '200':
+          description: Search results returned
+      summary: Search an entity’s clients by name / phone / email (paginated)
+      tags:
+      - reviews-campaigns
+  /tasks/api/v1/reviews-campaigns/cohorts/{cohortId}/clients/{clientId}:
+    delete:
+      operationId: t_value
+      parameters: []
+      responses:
+        '200':
+          description: Client removed
+      summary: Soft-remove a client from a reviews cohort
+      tags:
+      - reviews-campaigns
+  /tasks/api/v1/reviews-campaigns/stats:
+    get:
+      operationId: t_value
+      parameters: []
+      responses:
+        '200':
+          description: Stats returned
+      summary: Entity rollup of review campaign stats
+      tags:
+      - reviews-campaigns
+  /tasks/api/v1/reviews-campaigns/imports/{jobId}:
+    get:
+      operationId: t_value
+      parameters: []
+      responses:
+        '200':
+          description: Import report returned
+      summary: Get the persisted import report for a reviews import job
+      tags:
+      - reviews-campaigns
+  /tasks/api/v1/reviews-campaigns/{campaignId}:
+    get:
+      operationId: t_value
+      parameters: []
+      responses:
+        '200':
+          description: Campaign returned
+      summary: Get a review campaign batch (status, counts)
+      tags:
+      - reviews-campaigns
+  /tasks/api/v1/reviews-campaigns/{campaignId}/clients:
+    get:
+      operationId: t_value
+      parameters: []
+      responses:
+        '200':
+          description: Clients returned
+      summary: List campaign clients (reached / skipped / pending)
+      tags:
+      - reviews-campaigns
+  /tasks/api/v1/reviews-campaigns:
+    get:
+      operationId: t_value
+      parameters: []
+      responses:
+        '200':
+          description: Campaigns returned
+      summary: Paginated list of an entity’s review campaigns
+      tags:
+      - reviews-campaigns
+  /tasks/api/v1/reviews-campaigns/{campaignId}/cancel:
+    post:
+      operationId: t_value
+      parameters: []
+      responses:
+        '200':
+          description: Campaign cancelled
+      summary: Cancel (skip) a review campaign batch
+      tags:
+      - reviews-campaigns
+components:
+  securitySchemes:
+    access-token:
+      scheme: bearer
+      bearerFormat: JWT
+      type: http
+      name: Authorization
+      description: Enter JWT token in the format Bearer <token>
+      in: header

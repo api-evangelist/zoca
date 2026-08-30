@@ -1,0 +1,767 @@
+openapi: 3.2.0
+info:
+  title: Zoca Tasks Frontdesk Onboarding API
+  description: 'The Zoca tasks/automation service: AI content queue and planning, FrontDesk (Retell/Twilio) voice + SMS agent onboarding, local-SEO grid scans, WIN conversion triggers, and inbound integration webhooks (Chargebee, Square, Pipedrive, Twilio, Retell, CallHippo, Sybill, Instantly).'
+  version: 3.20.9
+  contact: {}
+  x-apievangelist-note: Harvested verbatim from https://tasks.zoca.ai/swagger.json. The provider ships the default NestJS Swagger metadata (title "API Documentation", empty servers[]); title/description/servers were set by API Evangelist for identification and the unmodified original is preserved at openapi/_original/zoca-tasks-swagger.json. Every path, operation, summary, parameter and response is exactly as published.
+servers:
+- url: https://tasks.zoca.ai
+  description: Production
+security:
+- access-token: []
+tags:
+- name: Frontdesk Onboarding
+paths:
+  /tasks/api/v1/frontdesk/onboarding/provision:
+    post:
+      description: Materializes the agent role, product, product activation, entity_agents row, and (optionally) platform metadata. Re-running with the same inputs is a no-op.
+      operationId: t_value
+      parameters: []
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/e'
+      responses:
+        '201':
+          description: Provisioning result with every row touched
+      summary: Onboard an entity end-to-end against the canonical chain
+      tags:
+      - Frontdesk Onboarding
+  /tasks/api/v1/frontdesk/onboarding/{entityId}/agent-catalogue:
+    get:
+      description: Wizard step 02. Returns a flat curated voice catalogue. Each voice carries its provider discriminator so the server can infer platform metadata during selection.
+      operationId: t_value
+      parameters: []
+      responses:
+        '200':
+          description: AgentCatalogueResponse
+      summary: List curated agent voices available to this entity
+      tags:
+      - Frontdesk Onboarding
+  /tasks/api/v1/frontdesk/onboarding/{entityId}/provider:
+    post:
+      description: Wizard step 03. Validates the voice against the curated catalogue, infers its platform, then writes { platform, voice, llmModel?, systemPrompt?, temperature? } to entity_agents.attributes. Pure config write — no external API calls UNLESS the new voice changes the platform vs the currently-bound one, in which case the prior platform binding is auto-released (DELETE phoneNumber on old provider, clear binding fields) before the new attributes land. That folds the Case E "switch provider" flow into a single endpoint — the wizard just picks a different voice, no separate /release call needed. Steps 05 (Platform agent) + 06 (Import phone) then re-run to bind on the new platform.
+      operationId: t_value
+      parameters: []
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/e'
+      responses:
+        '200':
+          description: Resulting identity with attributes
+      summary: Select voice + optional prompt config for this entity
+      tags:
+      - Frontdesk Onboarding
+  /tasks/api/v1/frontdesk/onboarding/{entityId}/phone-number:
+    post:
+      description: Wizard step 04. Synchronously buys a Twilio number, sets its friendly name, imports it to Retell against the default fallback agent, and persists the mapping. Sync replacement for the legacy POST /win-onboarding/create-virtual-number (Bull-fronted). Step 06 (Phase D) rebinds the phone to the entity's own platform-side agent. Throws if a VIRTUAL_NUMBER already exists for the entity. SIP trunk credentials + termination URI are resolved internally from env / AWS Secrets — callers do not pass them.
+      operationId: t_value
+      parameters: []
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/e'
+      responses:
+        '201':
+          description: '{ phoneNumber, sid }'
+      summary: Purchase a Twilio number for the entity (sync)
+      tags:
+      - Frontdesk Onboarding
+  /tasks/api/v1/frontdesk/onboarding/{entityId}/state-rules/seed-defaults:
+    post:
+      description: Wizard step 04 follow-on. Inserts the ONBOARDING_DEFAULT_STATE_RULES catalogue into chatbot.state_rules for `entityId` iff the entity currently has zero rows. Otherwise a no-op. Safe to call from any entry point — the count-check gate protects pre-existing rules from being overwritten.
+      operationId: t_value
+      parameters: []
+      responses:
+        '200':
+          description: '{ seeded, inserted, reason? }'
+      summary: Seed default Frontdesk state-rules for an entity (idempotent)
+      tags:
+      - Frontdesk Onboarding
+  /tasks/api/v1/frontdesk/onboarding/{entityId}/agent:
+    post:
+      description: Wizard step 05. Reads attributes.platform (set in step 03), resolves the predefined Retell agent id or Vapi assistant id from config (RETELL_FRONTDESK_INBOUND_AGENT_ID / VAPI_FRONTDESK_ASSISTANT_ID), validates it via the provider SDK, then writes the id back to entity_agents.attributes. No new external agents are created — per-entity differences (voice, prompt, LLM model, temperature) are applied at incoming-call webhook time from attributes set in step 03.
+      operationId: t_value
+      parameters: []
+      responses:
+        '200':
+          description: Updated identity with bound platform agent id
+      summary: Bind the predefined platform agent for the entity
+      tags:
+      - Frontdesk Onboarding
+  /tasks/api/v1/frontdesk/onboarding/{entityId}/agent/adopt:
+    post:
+      description: Sibling of POST /:entityId/agent. Instead of overwriting with the predefined Frontdesk agent id, reads whatever Retell agent / Vapi assistant is currently bound to the entity's phone and records THAT id in entity_agents.attributes. Drives partial-onboarding Case C — a legacy entity with a custom Retell agent that we want to keep rather than replace. Step 06 then rebinds the phone to the same id (net no-op on the provider side, custom binding preserved).
+      operationId: t_value
+      parameters: []
+      responses:
+        '200':
+          description: Updated identity with the adopted agent id
+      summary: Adopt the entity's existing platform agent binding
+      tags:
+      - Frontdesk Onboarding
+  /tasks/api/v1/frontdesk/onboarding/{entityId}/sync:
+    post:
+      description: 'Drives partial-onboarding Case G — an entity that was configured directly on Retell (and possibly Twilio) outside our system, and now wants to be managed from our side. Provisions the canonical chain if missing, reads the external phone + agent state on Retell, and writes attributes with source: ''backfill''. Does NOT insert into l2b.virtual_phone_numbers (operator can run /phone-number separately if our DB also needs the row), does NOT back-fill l2b.agent_context (not derivable from Retell state), does NOT set onboarding status flags (those map to concrete wizard step completions). Idempotent.'
+      operationId: t_value
+      parameters: []
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/e'
+      responses:
+        '200':
+          description: Updated identity with hydrated attributes
+      summary: Hydrate the entity's wizard state from external Retell + Twilio config
+      tags:
+      - Frontdesk Onboarding
+  /tasks/api/v1/frontdesk/onboarding/{entityId}/import-from-provider:
+    post:
+      description: 'For entities operationally bound on the provider (Retell + Twilio) but with no entity_agents row in WIN — e.g. legacy entities onboarded through the old chatbot path. Runs the full repair sequence in one server round-trip: (1) hydrateFromExternal provisions the canonical 4-layer chain and records the live binding; (2) importPhoneToPlatform rebinds the phone idempotently and stamps the canonical inbound_webhook_url; (3) repairRetellAgentWebhook stamps the canonical call-events webhook on the bound agent. Returns a step-by-step report so the panel can show per-step success / failure. Best-effort independent: a failing step doesn''t roll back the earlier ones — the panel re-verifies to show the new partial state.'
+      operationId: t_value
+      parameters: []
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/e'
+      responses:
+        '200':
+          description: ImportFromProviderResult with per-step status
+      summary: One-click "import legacy entity into WIN" — hydrate + rebind phone + repair agent webhook
+      tags:
+      - Frontdesk Onboarding
+  /tasks/api/v1/frontdesk/onboarding/{entityId}/repair-agent-webhook:
+    post:
+      description: 'Standalone repair for the callEventsWebhookConfigured drift — fixes the case where the bound Retell agent''s webhook_url still points at a legacy path (e.g. /chatbot/webhooks/call-events or /win-onboarding/...). Resolves the agent id from entity_agents.attributes, or falls back to the live phone-side binding when WIN has no recorded binding yet. Idempotent — Retell returns the same agent record when the URL is already canonical. Use when you only need this single repair; for full legacy-import use POST /:entityId/import-from-provider.
+
+
+        ⚠ SHARED-AGENT SAFETY: if the bound agent id is the env-predefined Frontdesk agent (shared across every entity that ran the canonical wizard), this update changes the webhook_url for ALL of them — confirm in the UI before calling for those. Legacy entities like the import-from-provider target have their OWN custom agent id and are safe to repair without affecting peers.'
+      operationId: t_value
+      parameters: []
+      responses:
+        '200':
+          description: Updated Retell agent record
+      summary: Stamp the canonical Frontdesk call-events webhook on the entity's Retell agent
+      tags:
+      - Frontdesk Onboarding
+  /tasks/api/v1/frontdesk/onboarding/{entityId}/teardown:
+    post:
+      description: 'Drives partial-onboarding Case I. Releases the entity''s phone from its provider (Retell / Vapi), then sets entities.product_entities.is_active=false so the canonical ''onboarded'' signal goes off. Non-destructive: keeps entity_agents, l2b.virtual_phone_numbers, and l2b.agent_context rows intact for audit + cheap re-onboarding. Re-onboard by running POST /provision again — ensureProductEntity reactivates the inactive row automatically.'
+      operationId: t_value
+      parameters: []
+      responses:
+        '200':
+          description: Deactivated product activation record
+      summary: Soft teardown — release the phone + mark the product activation inactive
+      tags:
+      - Frontdesk Onboarding
+  /tasks/api/v1/frontdesk/onboarding/{entityId}/release:
+    post:
+      description: 'Releases the phone on Retell / Vapi (DELETE the phone-number resource) and clears platform-specific binding fields from entity_agents.attributes. Two scenarios: (1) provider switch — Retell → Vapi — call /release, then re-run /provider /agent /import-phone with the new platform; (2) pause — release the phone, leave attributes unbound, re-bind later when ready. Idempotent: both SDK deletes swallow 404. Config fields (voice, llmModel, systemPrompt, temperature) are preserved so they can carry over.'
+      operationId: t_value
+      parameters: []
+      responses:
+        '200':
+          description: Updated identity with binding cleared
+      summary: Release the entity's phone from its currently-bound platform
+      tags:
+      - Frontdesk Onboarding
+  /tasks/api/v1/frontdesk/onboarding/{entityId}/booking-platforms:
+    get:
+      description: Returns catalogue + current booking link + credential status + computed state in one call. Frontends consume this instead of fanning out across three legacy backends.
+      operationId: t_value
+      parameters: []
+      responses:
+        '200':
+          description: ''
+      summary: Combined booking-platform connection state for an entity
+      tags:
+      - Frontdesk Onboarding
+  /tasks/api/v1/frontdesk/onboarding/{entityId}/booking-platforms/catalogue:
+    get:
+      description: Today same for every entity; per-entity filtering (plan / region / feature flags) rides on this same shape.
+      operationId: t_value
+      parameters: []
+      responses:
+        '200':
+          description: ''
+      summary: Booking-platform catalogue available to an entity
+      tags:
+      - Frontdesk Onboarding
+  /tasks/api/v1/frontdesk/onboarding/{entityId}/booking-credentials/{platform}:
+    delete:
+      description: Wipes the entities.integrated_platforms row for the named platform so the next relay session forces a fresh login. The `:platform` segment is validated at the controller boundary against the canonical `PlatformType` set (lowercase, with alias collapsing) so unknown values 400 here instead of 500-ing downstream on a Postgres enum cast.
+      operationId: t_value
+      parameters: []
+      responses:
+        '200':
+          description: ''
+      summary: Clear the entity's cached browser-auth credentials for a platform
+      tags:
+      - Frontdesk Onboarding
+  /tasks/api/v1/frontdesk/onboarding/{entityId}/import-phone:
+    post:
+      description: Wizard step 06. Reads attributes.platform + the recorded retellAgentId / vapiAgentId (from step 05) and imports the phone via PhoneNumberService.importToRetell or VapiService.importPhoneNumber. SIP trunk credentials (Retell) and Twilio account credentials (Vapi) are resolved internally from env / AWS Secrets Manager — callers do not pass them.
+      operationId: t_value
+      parameters: []
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/e'
+      responses:
+        '201':
+          description: Provider-specific import result record
+      summary: Import a Twilio number to the entity's bound platform agent
+      tags:
+      - Frontdesk Onboarding
+  /tasks/api/v1/frontdesk/onboarding/platform:
+    patch:
+      description: Writes the Retell/Vapi binding for a (location, role) tuple. Calls ensureAgentIdentity first, so a missing entity_agents row is created.
+      operationId: t_value
+      parameters: []
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/e'
+      responses:
+        '200':
+          description: Resulting identity with attributes
+      summary: Stamp platform metadata on entity_agents.attributes
+      tags:
+      - Frontdesk Onboarding
+  /tasks/api/v1/frontdesk/onboarding/{entityId}/status:
+    get:
+      description: Returns every product_entities activation and every entity_agents identity tied to this entity, with denormalized product/agent names and the attributes JSONB.
+      operationId: t_value
+      parameters: []
+      responses:
+        '200':
+          description: Activations + identities snapshot
+      summary: Read canonical-chain state for an entity
+      tags:
+      - Frontdesk Onboarding
+  /tasks/api/v1/frontdesk/onboarding/agent-context:
+    post:
+      description: Writes business facts and transitional agent-config fields. Idempotent — repeated calls overwrite. Body shape is AgentContextData (from @mononest/win) minus entityId.
+      operationId: t_value
+      parameters: []
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/e'
+      responses:
+        '200':
+          description: Mutation result
+      summary: Upsert agent context (l2b.agent_context) for an entity
+      tags:
+      - Frontdesk Onboarding
+  /tasks/api/v1/frontdesk/onboarding/{entityId}/agent-context:
+    get:
+      description: Returns the business facts + transitional agent-config row, if present.
+      operationId: t_value
+      parameters: []
+      responses:
+        '200':
+          description: Agent context row
+      summary: Read l2b.agent_context for an entity
+      tags:
+      - Frontdesk Onboarding
+  /tasks/api/v1/frontdesk/onboarding/{entityId}/state:
+    get:
+      description: 'Returns the comprehensive step-by-step state: accountCreated, chatbotEntityCreated, virtualNumberCreated, retellImported, contextBuilt, subscriptionActive, errors[], completedAt, plus location and context summaries.'
+      operationId: t_value
+      parameters: []
+      responses:
+        '200':
+          description: ComprehensiveOnboardingStatus
+      summary: Read the onboarding state map for an entity
+      tags:
+      - Frontdesk Onboarding
+  /tasks/api/v1/frontdesk/onboarding/{entityId}/verify:
+    get:
+      description: 'Aggregates three sources of truth: (1) our DB — entity_agents.attributes + recorded phone number; (2) the provider — Retell or Vapi — what they say the phone is bound to and which webhook receives inbound calls; (3) Twilio — the underlying carrier — voiceUrl + statusCallback + trunkSid that route calls into the provider. Returns a consistency block with mismatches as human-readable warnings (agent_id drift, missing webhook, no SIP trunk binding, etc.). Drives the wizard''s ''everything is wired'' badge.'
+      operationId: t_value
+      parameters: []
+      responses:
+        '200':
+          description: OnboardingVerificationResult
+      summary: Cross-check our DB against the provider + Twilio for this entity
+      tags:
+      - Frontdesk Onboarding
+  /tasks/api/v1/frontdesk/onboarding/{entityId}/health:
+    get:
+      description: 'Aggregates two cells of the detail-page status dashboard into one round-trip: (1) activity — last inbound call, last outbound SMS, last booking, last integration sync, last successful call_analyzed webhook; (2) followupEngine — pending / fired / deactivated touch counts, lastFiredAt, current DND state. Read-only; pure aggregator over chatbot.followups, chatbot.transcript_mapping, scheduling.bookings, entities.integrated_platforms, twilio.sms, l2b.do_not_disturb.'
+      operationId: t_value
+      parameters: []
+      responses:
+        '200':
+          description: OnboardingHealthResult
+      summary: Combined activity + follow-up-engine state for the Frontdesk detail page
+      tags:
+      - Frontdesk Onboarding
+  /tasks/api/v1/frontdesk/onboarding/{entityId}/quiet-hours:
+    get:
+      description: Returns the SP-local quiet window { start, end, postponeHours } the followup dispatcher honors. Defaults (21/7/10) are applied for any unset key.
+      operationId: t_value
+      parameters: []
+      responses:
+        '200':
+          description: QuietHoursConfig
+      summary: Read the followup quiet-hours window for an entity
+      tags:
+      - Frontdesk Onboarding
+    put:
+      description: Persists { start, end, postponeHours } to entities.preferences (win.followup.quietHours.*). Takes effect on the next dispatch — no restart.
+      operationId: t_value
+      parameters: []
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/e'
+      responses:
+        '200':
+          description: Stored QuietHoursConfig
+      summary: Set the followup quiet-hours window for an entity
+      tags:
+      - Frontdesk Onboarding
+  /tasks/api/v1/frontdesk/onboarding/{entityId}/timezone:
+    get:
+      description: Returns the stored IANA timezone, the postal address, and the lat/lng from entities.locations. The timezone localises quiet hours and appointment windows across the Frontdesk tools.
+      operationId: t_value
+      parameters: []
+      responses:
+        '200':
+          description: EntityLocale
+      summary: Read the entity locale (timezone + address + coordinates)
+      tags:
+      - Frontdesk Onboarding
+    patch:
+      description: Validates the IANA zone and persists it to entities.locations.timezone. Takes effect on the next tool read — no restart.
+      operationId: t_value
+      parameters: []
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/e'
+      responses:
+        '200':
+          description: SetTimezoneResult
+      summary: Set the entity timezone
+      tags:
+      - Frontdesk Onboarding
+  /tasks/api/v1/frontdesk/onboarding/{entityId}/timezone/suggest:
+    get:
+      description: Looks up the IANA timezone for the stored lat/lng via the Google Time Zone API. Returns { current, suggested, latitude, longitude, source } without persisting — the operator confirms before saving. `suggested` is null when coordinates are missing or the lookup fails.
+      operationId: t_value
+      parameters: []
+      responses:
+        '200':
+          description: TimezoneSuggestion
+      summary: Derive a timezone suggestion from the location coordinates
+      tags:
+      - Frontdesk Onboarding
+  /tasks/api/v1/frontdesk/onboarding/dnd/{clientId}:
+    get:
+      description: Returns { active, reason, activatedAt } for the client.
+      operationId: t_value
+      parameters: []
+      responses:
+        '200':
+          description: DnD state
+      summary: Read a client's Do-Not-Disturb state
+      tags:
+      - Frontdesk Onboarding
+  /tasks/api/v1/frontdesk/onboarding/dnd/enable:
+    post:
+      description: Marks the client on DND so the followup engine suppresses contact. Idempotent.
+      operationId: t_value
+      parameters: []
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/e'
+      responses:
+        '200':
+          description: EnableDndResult
+      summary: Enable Do-Not-Disturb for a client
+      tags:
+      - Frontdesk Onboarding
+  /tasks/api/v1/frontdesk/onboarding/dnd/disable:
+    post:
+      description: Lifts DND. Does not re-create previously cancelled followups (by design).
+      operationId: t_value
+      parameters: []
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/e'
+      responses:
+        '200':
+          description: DisableDndResult
+      summary: Disable Do-Not-Disturb for a client
+      tags:
+      - Frontdesk Onboarding
+  /tasks/api/v1/frontdesk/onboarding/{entityId}/handovers:
+    get:
+      description: Lists every contact currently on human handover (`chatbot.human_handovers.is_active = true`) whose client row belongs to this entity. Inner-joined to `clients.clients` for entity scoping plus the contact display name; ordered newest handover first. Drives the "waiting on a human" queue in the Frontdesk panel Inbox tab. Read-only.
+      operationId: t_value
+      parameters: []
+      responses:
+        '200':
+          description: Array of ActiveHandover
+      summary: Active human handovers for an entity (Frontdesk panel Inbox)
+      tags:
+      - Frontdesk Onboarding
+  /tasks/api/v1/frontdesk/onboarding/{entityId}/twilio/number:
+    get:
+      description: Returns the FULL Twilio number record (~30 fields — capabilities, fallback URLs/methods, application SIDs, bundle/address/identity, emergency, origin, dates) for this entity, vs. the 7-field subset that `verifyOnboarding.twilio` projects. Returns `null` when the entity has no virtual-number row OR when Twilio has no IncomingPhoneNumber matching the E.164 — the panel renders the empty state in both cases.
+      operationId: t_value
+      parameters: []
+      responses:
+        '200':
+          description: FullTwilioNumber or null
+      summary: Comprehensive Twilio IncomingPhoneNumber resource for the panel's Twilio Number card
+      tags:
+      - Frontdesk Onboarding
+  /tasks/api/v1/frontdesk/onboarding/{entityId}/twilio/numbers/available:
+    get:
+      description: Wraps `availablePhoneNumbers[countryCode].local.list` — voice + SMS capable numbers only. Backs the Frontdesk panel `Purchase new number` modal. Pass `areaCode` (preferred) or `inRegion` (state code) to scope the search. `entityId` is for route consistency; the search itself is account-scoped.
+      operationId: t_value
+      parameters: []
+      responses:
+        '200':
+          description: Array of AvailableTwilioNumber
+      summary: Search Twilio's available-for-purchase inventory (panel Purchase modal)
+      tags:
+      - Frontdesk Onboarding
+  /tasks/api/v1/frontdesk/onboarding/{entityId}/twilio/numbers/account:
+    get:
+      description: Wraps `client.incomingPhoneNumbers.page` to list numbers already purchased on the Twilio account. Backs the Frontdesk panel `Attach existing number` modal — admin picks one to bind to an entity. `?search` filters across phone number + friendly name. Does NOT filter out numbers already bound to other entities; the friendly name (set to the salon name on attach) helps operators spot conflicts.
+      operationId: t_value
+      parameters: []
+      responses:
+        '200':
+          description: Array of AccountTwilioNumber
+      summary: List Twilio numbers already on the account (panel Attach modal)
+      tags:
+      - Frontdesk Onboarding
+  /tasks/api/v1/frontdesk/onboarding/{entityId}/twilio/attach:
+    post:
+      description: 'Same downstream work as `POST :entityId/phone-number` minus the purchase itself: fetches the Twilio record, stamps friendly name + Frontdesk inbound-SMS webhook, imports to Retell, writes `entities.phones` + flips the virtual-number-active flag. Idempotent only at the entity level — fails if the entity already has a VIRTUAL_NUMBER (release first).'
+      operationId: t_value
+      parameters: []
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/e'
+      responses:
+        '201':
+          description: '{ phoneNumber, sid }'
+      summary: Attach an existing Twilio number to this entity (panel Attach modal)
+      tags:
+      - Frontdesk Onboarding
+  /tasks/api/v1/frontdesk/onboarding/{entityId}/twilio/messaging-service:
+    get:
+      description: 'Returns the configured Twilio A2P messaging service (`TWILIO_A2P_SMS_APPLICATION_SID`) — friendly name, inbound + fallback URLs, `useInboundWebhookOnNumber` flag (the field that decides whether inbound SMS routes through the service or the per-number `smsUrl`), plus whether this entity''s number is currently enrolled in the service. `configured: false` when the env var is unset.'
+      operationId: t_value
+      parameters: []
+      responses:
+        '200':
+          description: MessagingServiceInfo
+      summary: A2P messaging service info + enrollment status for this number
+      tags:
+      - Frontdesk Onboarding
+    patch:
+      description: '⚠ SYSTEM-WIDE: this mutates the messaging service shared by every number enrolled in it (every other Frontdesk entity in this environment). The panel surfaces a clear confirm dialog before calling. Only inbound + fallback URL/method fields are exposed; other service fields (sticky sender, smart encoding, A2P registration, …) are managed outside the panel.'
+      operationId: t_value
+      parameters: []
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/e'
+      responses:
+        '200':
+          description: Updated MessagingServiceRow
+      summary: Partial update of the A2P messaging service's webhook config (SYSTEM-WIDE)
+      tags:
+      - Frontdesk Onboarding
+  /tasks/api/v1/frontdesk/onboarding/{entityId}/twilio/sms-url:
+    patch:
+      description: Custom-URL sibling of `POST :entityId/twilio-webhooks/sync` (which stamps the canonical Frontdesk path). Bypasses canonicalisation — caller controls the exact URL. Affects only this entity's number, not the messaging service.
+      operationId: t_value
+      parameters: []
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/e'
+      responses:
+        '200':
+          description: '{ entityId, sid, smsUrl }'
+      summary: Set the per-number Twilio `smsUrl` to an arbitrary URL
+      tags:
+      - Frontdesk Onboarding
+  /tasks/api/v1/frontdesk/onboarding/{entityId}/twilio/messaging-service/enrollment:
+    put:
+      description: Idempotent. Enrolling routes inbound SMS through the service's webhook when `useInboundWebhookOnNumber=false`; unenrolling falls back to the per-number `smsUrl`. Throws when the service is unconfigured or the entity has no Twilio number.
+      operationId: t_value
+      parameters: []
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/e'
+      responses:
+        '200':
+          description: ''
+      summary: Enroll or unenroll this entity's number in the A2P messaging service
+      tags:
+      - Frontdesk Onboarding
+  /tasks/api/v1/frontdesk/onboarding/{entityId}/twilio/voice-config:
+    patch:
+      description: Generic field-level update — writes only the keys present in the body (omitted keys leave existing values untouched, empty strings clear them). Sibling of the SMS-URL editor but per-number, not service-wide. Returns the refreshed FullTwilioNumber so the panel re-renders without a round-trip.
+      operationId: t_value
+      parameters: []
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/e'
+      responses:
+        '200':
+          description: FullTwilioNumber
+      summary: Inline-edit voice + status-callback fields on this entity's Twilio number
+      tags:
+      - Frontdesk Onboarding
+  /tasks/api/v1/frontdesk/onboarding/{entityId}/twilio/sip-trunk:
+    get:
+      description: 'Reads the entity''s IncomingPhoneNumber.trunkSid; when present, fetches the trunk''s friendlyName, domainName (termination URI), origination URLs, secure/recording/transferMode/cnamLookup flags, and the count of numbers attached to it. Returns { bound: false, trunk: null } when no trunk is bound. When the bound trunk is missing on Twilio (deleted), `trunk` carries only the sid so the panel can show a stale-binding warning.'
+      operationId: t_value
+      parameters: []
+      responses:
+        '200':
+          description: SipTrunkInfo
+      summary: This entity's current SIP trunk binding + full trunk config
+      tags:
+      - Frontdesk Onboarding
+    patch:
+      description: 'Sets IncomingPhoneNumber.trunkSid. Pass `trunkSid: null` (or empty string) to detach — Twilio will then fall back to the number''s voiceUrl / voiceApplicationSid. While a trunkSid is set, voiceUrl is effectively ignored by Twilio for inbound calls. Returns the refreshed FullTwilioNumber.'
+      operationId: t_value
+      parameters: []
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/e'
+      responses:
+        '200':
+          description: FullTwilioNumber
+      summary: Bind or unbind a SIP trunk on this entity's number
+      tags:
+      - Frontdesk Onboarding
+  /tasks/api/v1/frontdesk/onboarding/{entityId}/twilio/sip-trunks/available:
+    get:
+      description: Thin summary (sid, friendlyName, domainName, secure, dateCreated) for the "bind to trunk" picker. Entity is in the path for auth/routing parity, but the list is account-scoped.
+      operationId: t_value
+      parameters: []
+      responses:
+        '200':
+          description: Array of AccountSipTrunkSummary
+      summary: List every SIP trunk on the Twilio account (picker data)
+      tags:
+      - Frontdesk Onboarding
+  /tasks/api/v1/frontdesk/onboarding/{entityId}/conversations:
+    get:
+      description: DISTINCT-ON-client_id over `chatbot.messages` joined to `clients.clients` for entity scoping, ordered newest-conversation first. Returns the latest-message-per-client summary the Conversations tab list pane renders. Read-only. Proper replacement for the global `getRecentConversationPartners` path which raft was filtering client-side at a 100-row cap.
+      operationId: t_value
+      parameters: []
+      responses:
+        '200':
+          description: Array of EntityConversation
+      summary: Entity-scoped conversation list (Frontdesk panel Conversations tab)
+      tags:
+      - Frontdesk Onboarding
+  /tasks/api/v1/frontdesk/onboarding/{entityId}/followups:
+    get:
+      description: 'Returns `chatbot.followups` rows scoped to one entity. `clientId` narrows to a single client (the FrontDesk Ops context panel uses this). `state` buckets: `pending` = isActive & !processed, `fired` = processed, `deactivated` = !isActive & !processed. `channel` filters on `mode_of_communication`. Default order is `scheduledTime DESC`; pass `order=asc` to flip. Capped at 500 rows per request.'
+      operationId: t_value
+      parameters: []
+      responses:
+        '200':
+          description: Array of followup rows
+      summary: List followup rows for an entity (ops dashboard)
+      tags:
+      - Frontdesk Onboarding
+  /tasks/api/v1/frontdesk/onboarding/{entityId}/followups/sweep:
+    post:
+      description: 'Runs `FollowupSweepService.processDueFollowups()` inline (the same path the cron uses). Skips rate-limit / DND gates via the normal lifecycle — same behaviors as the scheduled sweep. Note: this is an entity-scoped *trigger*, but the sweep itself processes every due followup across the whole DB. Returns `{ processed, errors, results[] }`.'
+      operationId: t_value
+      parameters: []
+      responses:
+        '202':
+          description: Sweep result envelope
+      summary: Manually trigger a follow-up sweep
+      tags:
+      - Frontdesk Onboarding
+  /tasks/api/v1/frontdesk/onboarding/{entityId}/followups/{followupId}/send-now:
+    post:
+      description: 'Routes a SINGLE followup through `FollowupDispatchService.processFollowupV2` — the same guarded path the Bull worker uses — without waiting for its `scheduledTime`. Unlike `/followups/sweep` this touches exactly one row and one client. Compliance gates (do-not-disturb, quiet hours, per-client rate limit, human-handover) are deliberately NOT bypassed: an operator pressing "send now" is choosing the timing, not overriding consent. When a gate fires the row is skipped and the reason is returned in `skipReason` so the UI can explain why nothing was sent.'
+      operationId: t_value
+      parameters: []
+      responses:
+        '200':
+          description: Dispatch outcome for the single followup
+      summary: Dispatch one queued followup immediately
+      tags:
+      - Frontdesk Onboarding
+  /tasks/api/v1/frontdesk/onboarding/{entityId}/followups/{followupId}/deactivate:
+    post:
+      description: Flips `isActive=false`, stamps `deactivatedAt`, persists `reason`. No-op if the row is already fired or already deactivated.
+      operationId: t_value
+      parameters: []
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/e'
+      responses:
+        '200':
+          description: Updated followup row
+      summary: Deactivate a single queued followup
+      tags:
+      - Frontdesk Onboarding
+  /tasks/api/v1/frontdesk/onboarding/{entityId}/followup-rules:
+    get:
+      description: Returns ENTITY-scoped rules from `chatbot.followup_rules` for the given entity. Optional `state` / `channel` / `isActive` query filters; mirrors the legacy `GET /chatbot/rules/entity/:entityId`. Cohort rules + the in-code default catalogue (ONBOARDING_DEFAULT_STATE_RULES) are NOT included here — request them separately via `resolveRuleSet` if needed.
+      operationId: t_value
+      parameters: []
+      responses:
+        '200':
+          description: Array of OpsRuleResponse rows
+      summary: List follow-up rules for an entity
+      tags:
+      - Frontdesk Onboarding
+    post:
+      description: Persists a new entity-scoped rule. Validates that delay + interval + maxFollowUps are internally consistent; the service throws BadRequestException on misconfigurations. The DTO's `entityId` must match the route param.
+      operationId: t_value
+      parameters: []
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/e'
+      responses:
+        '201':
+          description: Created OpsRuleResponse
+      summary: Create a follow-up rule for an entity
+      tags:
+      - Frontdesk Onboarding
+  /tasks/api/v1/frontdesk/onboarding/{entityId}/followup-rules/{ruleId}:
+    put:
+      description: Partial update. Service revalidates the merged config whenever delay / interval / maxFollowUps change.
+      operationId: t_value
+      parameters: []
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/e'
+      responses:
+        '200':
+          description: Updated OpsRuleResponse
+      summary: Update a follow-up rule
+      tags:
+      - Frontdesk Onboarding
+    delete:
+      description: Hard-deletes the row from `chatbot.followup_rules`.
+      operationId: t_value
+      parameters: []
+      responses:
+        '204':
+          description: Rule deleted
+      summary: Delete a follow-up rule
+      tags:
+      - Frontdesk Onboarding
+  /tasks/api/v1/frontdesk/onboarding/{entityId}/twilio-webhooks/sync:
+    post:
+      description: Resolves the entity's VIRTUAL_NUMBER, looks up the matching Twilio IncomingPhoneNumber sid, and calls Twilio.updatePhoneNumber to stamp `smsUrl = ${TASKS_SERVER_ENDPOINT}/tasks/api/v1/frontdesk/webhooks/twilio/sms`. Backfill for numbers provisioned before the smsUrl was set explicitly at purchase time. Idempotent.
+      operationId: t_value
+      parameters: []
+      responses:
+        '200':
+          description: '{ entityId, phoneNumber, sid, smsUrl }'
+      summary: Repoint Twilio inbound-SMS webhook at the Frontdesk path
+      tags:
+      - Frontdesk Onboarding
+components:
+  schemas:
+    e:
+      type: object
+      properties:
+        scan:
+          $ref: '#/components/schemas/e'
+        businessLat:
+          type:
+          - number
+          - 'null'
+        businessLng:
+          type:
+          - number
+          - 'null'
+        points:
+          type: array
+          items:
+            $ref: '#/components/schemas/e'
+        heroMetrics:
+          $ref: '#/components/schemas/e'
+      required:
+      - scan
+      - businessLat
+      - businessLng
+      - points
+      - heroMetrics
+  securitySchemes:
+    access-token:
+      scheme: bearer
+      bearerFormat: JWT
+      type: http
+      name: Authorization
+      description: Enter JWT token in the format Bearer <token>
+      in: header

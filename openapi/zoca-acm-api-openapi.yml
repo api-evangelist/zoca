@@ -1,0 +1,280 @@
+openapi: 3.2.0
+info:
+  title: Zoca Platform ACM API
+  description: 'The Zoca platform API behind the Zoca web app and mobile apps: scheduling, website generation, Google Business Profile, discovery/local SEO, social media, booking enquiries, offers, clients, staff, billing and the Zoca "brain" agent layer.'
+  version: 3.20.10
+  contact: {}
+  x-apievangelist-note: Harvested verbatim from https://api.zoca.ai/swagger.json. The provider ships the default NestJS Swagger metadata (title "API Documentation", empty servers[]); title/description/servers were set by API Evangelist for identification and the unmodified original is preserved at openapi/_original/zoca-platform-swagger.json. Every path, operation, summary, parameter and response is exactly as published.
+servers:
+- url: https://api.zoca.ai
+  description: Production
+tags:
+- name: ACM
+paths:
+  /dns/acm/certificate/request:
+    post:
+      description: Request a new SSL certificate from AWS Certificate Manager
+      operationId: t_value
+      parameters: []
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/e'
+      responses:
+        '201':
+          description: Certificate requested successfully
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/e'
+        '400':
+          description: Invalid certificate request data
+      security:
+      - bearer: []
+      summary: Request a new ACM certificate
+      tags:
+      - ACM
+  /dns/acm/certificate/{certificateArn}:
+    get:
+      description: Retrieve detailed information about a specific certificate
+      operationId: t_value
+      parameters:
+      - name: certificateArn
+        required: true
+        in: path
+        description: The ARN of the certificate
+        schema:
+          example: arn:aws:acm:us-east-1:123456789:certificate/abc-123
+      responses:
+        '200':
+          description: Certificate details retrieved
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/e'
+        '404':
+          description: Certificate not found
+      security:
+      - bearer: []
+      summary: Get certificate details
+      tags:
+      - ACM
+  /dns/acm/certificate/find/{domainName}:
+    get:
+      description: Find the most recent certificate for a specific domain
+      operationId: t_value
+      parameters:
+      - name: domainName
+        required: true
+        in: path
+        description: The domain name to search for
+        schema:
+          example: example.com
+      responses:
+        '200':
+          description: Certificate ARN if found
+          content:
+            application/json:
+              schema:
+                type:
+                - string
+                - 'null'
+                description: Certificate ARN or null if not found
+      security:
+      - bearer: []
+      summary: Find latest certificate for domain
+      tags:
+      - ACM
+  /dns/acm/validation-status/{certificateArn}:
+    get:
+      description: Check if the certificate validation is complete
+      operationId: t_value
+      parameters:
+      - name: certificateArn
+        required: true
+        in: path
+        description: The ARN of the certificate to check validation status
+        schema:
+          example: arn:aws:acm:us-east-1:123456789:certificate/abc-123
+      responses:
+        '200':
+          description: Validation status retrieved
+          content:
+            application/json:
+              schema:
+                type: boolean
+                description: True if certificate is validated
+      security:
+      - bearer: []
+      summary: Get certificate validation status
+      tags:
+      - ACM
+  /dns/acm/wait-for-validation/{certificateArn}:
+    post:
+      description: Wait for the certificate to be validated (polls until validated or timeout)
+      operationId: t_value
+      parameters:
+      - name: maxWaitTime
+        required: false
+        in: query
+        description: 'Maximum time to wait in seconds (default: 300)'
+        schema:
+          type: number
+      - name: certificateArn
+        required: true
+        in: path
+        description: The ARN of the certificate to wait for
+        schema:
+          example: arn:aws:acm:us-east-1:123456789:certificate/abc-123
+      responses:
+        '200':
+          description: Certificate validation complete or timed out
+          content:
+            application/json:
+              schema:
+                type: boolean
+                description: True if validated, false if timed out
+      security:
+      - bearer: []
+      summary: Wait for certificate validation
+      tags:
+      - ACM
+  /dns/acm/certificates:
+    get:
+      description: Retrieve AWS Certificate Manager certificates with pagination and search functionality. Supports searching by domain name (in domain name or SANs) and filtering by status.
+      operationId: t_value
+      parameters:
+      - name: limit
+        required: false
+        in: query
+        description: Number of items per page
+        schema:
+          example: 20
+          type: number
+      - name: page
+        required: false
+        in: query
+        description: Page number (starts from 1)
+        schema:
+          example: 1
+          type: number
+      - name: status
+        required: false
+        in: query
+        description: Filter by certificate status
+        schema:
+          enum:
+          - PENDING_VALIDATION
+          - ISSUED
+          - INACTIVE
+          - EXPIRED
+          - VALIDATION_TIMED_OUT
+          - REVOKED
+          - FAILED
+          type: string
+      - name: search
+        required: false
+        in: query
+        description: Search by domain name (partial match in domain name or SANs)
+        schema:
+          type: string
+      responses:
+        '200':
+          description: Paginated list of certificates
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/e'
+      security:
+      - bearer: []
+      summary: List ACM certificates with pagination and search
+      tags:
+      - ACM
+  /dns/acm/certificate/search-by-san/{domainName}:
+    get:
+      description: Search for a certificate where the domain appears in the Subject Alternative Names (SAN/SNI) list. This includes exact matches and wildcard certificate coverage.
+      operationId: t_value
+      parameters:
+      - name: domainName
+        required: true
+        in: path
+        description: The domain name to search for in certificate SAN lists
+        schema:
+          example: subdomain.example.com
+      responses:
+        '200':
+          description: Certificate found with domain in SAN list
+          schema: {}
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/e'
+        '404':
+          description: No certificate found with domain in SAN list
+      security:
+      - bearer: []
+      summary: Find certificate by domain in SAN list
+      tags:
+      - ACM
+  /dns/acm/certificates/search-by-san/{domainName}:
+    get:
+      description: Search for all certificates where the domain appears in the Subject Alternative Names (SAN/SNI) list. Returns all matching certificates including wildcard coverage.
+      operationId: t_value
+      parameters:
+      - name: domainName
+        required: true
+        in: path
+        description: The domain name to search for in certificate SAN lists
+        schema:
+          example: subdomain.example.com
+      responses:
+        '200':
+          description: Array of certificates with domain in SAN list
+          content:
+            application/json:
+              schema:
+                type: array
+                items:
+                  $ref: '#/components/schemas/e'
+      security:
+      - bearer: []
+      summary: Find all certificates with domain in SAN list
+      tags:
+      - ACM
+components:
+  schemas:
+    e:
+      type: object
+      properties:
+        id:
+          type: number
+        entityId:
+          type: string
+        attribute:
+          type: string
+        value:
+          type:
+          - object
+          - 'null'
+        metadata:
+          type:
+          - object
+          - 'null'
+        createdAt:
+          type:
+          - object
+          - 'null'
+      required:
+      - id
+      - entityId
+      - attribute
+  securitySchemes:
+    access-token:
+      scheme: bearer
+      bearerFormat: JWT
+      type: http
+      name: Authorization
+      description: Enter JWT token in the format Bearer <token>
+      in: header

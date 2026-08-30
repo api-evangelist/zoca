@@ -1,0 +1,246 @@
+openapi: 3.2.0
+info:
+  title: Zoca Tasks Lead Magnet Webhook API
+  description: 'The Zoca tasks/automation service: AI content queue and planning, FrontDesk (Retell/Twilio) voice + SMS agent onboarding, local-SEO grid scans, WIN conversion triggers, and inbound integration webhooks (Chargebee, Square, Pipedrive, Twilio, Retell, CallHippo, Sybill, Instantly).'
+  version: 3.20.9
+  contact: {}
+  x-apievangelist-note: Harvested verbatim from https://tasks.zoca.ai/swagger.json. The provider ships the default NestJS Swagger metadata (title "API Documentation", empty servers[]); title/description/servers were set by API Evangelist for identification and the unmodified original is preserved at openapi/_original/zoca-tasks-swagger.json. Every path, operation, summary, parameter and response is exactly as published.
+servers:
+- url: https://tasks.zoca.ai
+  description: Production
+security:
+- access-token: []
+tags:
+- name: Lead Magnet Webhook
+paths:
+  /tasks/api/v1/lead-magnet:
+    post:
+      description: Lead Magnet Job
+      operationId: t_value
+      parameters: []
+      requestBody:
+        required: true
+        description: Lead Magnet Payload
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/Object'
+      responses:
+        '201':
+          description: Lead Magnet Job created successfully
+      summary: Lead Magnet
+      tags:
+      - Lead Magnet Webhook
+  /tasks/api/v1/lead-magnet/search-volume:
+    post:
+      description: Store search volume
+      operationId: t_value
+      parameters: []
+      requestBody:
+        required: true
+        description: Search volume Payload
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/Object'
+      responses:
+        '201':
+          description: Lead Magnet Job created successfully
+      summary: Lead Magnet
+      tags:
+      - Lead Magnet Webhook
+  /tasks/api/v1/lead-magnet/kw-services:
+    post:
+      description: Get keyword services
+      operationId: t_value
+      parameters: []
+      requestBody:
+        required: true
+        description: Get keyword services
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/Object'
+      responses:
+        '201':
+          description: Lead Magnet Job created successfully
+      security:
+      - {}
+      summary: Lead Magnet
+      tags:
+      - Lead Magnet Webhook
+  /tasks/api/v1/lead-magnet/update:
+    post:
+      description: Store search volume
+      operationId: t_value
+      parameters: []
+      requestBody:
+        required: true
+        description: Search volume Payload
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/Object'
+      responses:
+        '201':
+          description: Lead Magnet Job created successfully
+      security:
+      - {}
+      summary: Lead Magnet
+      tags:
+      - Lead Magnet Webhook
+  /tasks/api/v1/lead-magnet/reviews/serp:
+    get:
+      description: Store reviews
+      operationId: t_value
+      parameters:
+      - name: placeId
+        required: true
+        in: query
+        description: Google Maps placeId of the business
+        schema:
+          type: string
+      responses:
+        '200':
+          description: ''
+      summary: Lead Magnet
+      tags:
+      - Lead Magnet Webhook
+  /tasks/api/v1/lead-magnet/posts/serp:
+    get:
+      description: Get business posts
+      operationId: t_value
+      parameters:
+      - name: placeId
+        required: true
+        in: query
+        description: Google Maps placeId of the business
+        schema:
+          type: string
+      responses:
+        '200':
+          description: ''
+      summary: Lead Magnet
+      tags:
+      - Lead Magnet Webhook
+  /tasks/api/v1/lead-magnet/calculate-zoca-score:
+    post:
+      description: Get business zoca score
+      operationId: t_value
+      parameters: []
+      responses:
+        '201':
+          description: ''
+      summary: Lead Magnet
+      tags:
+      - Lead Magnet Webhook
+  /tasks/api/v1/lead-magnet/fetch-and-store-serp-data:
+    post:
+      description: Fetch and store serp data
+      operationId: t_value
+      parameters: []
+      responses:
+        '201':
+          description: ''
+      summary: Lead Magnet
+      tags:
+      - Lead Magnet Webhook
+  /tasks/api/v1/lead-magnet/get-insights:
+    get:
+      description: Get insights
+      operationId: t_value
+      parameters: []
+      responses:
+        '200':
+          description: ''
+      summary: Lead Magnet
+      tags:
+      - Lead Magnet Webhook
+  /tasks/api/v1/lead-magnet/add-rank-data:
+    post:
+      description: Bulk insert rank data for keyword competition analysis
+      operationId: t_value
+      parameters: []
+      requestBody:
+        required: true
+        description: Rank data payload for bulk insertion
+        content:
+          application/json:
+            schema:
+              type: array
+              items:
+                $ref: '#/components/schemas/Object'
+      responses:
+        '201':
+          description: Rank data successfully inserted
+        '400':
+          description: Invalid data format
+        '500':
+          description: Internal server error
+      security:
+      - {}
+      summary: Lead Magnet
+      tags:
+      - Lead Magnet Webhook
+  /tasks/api/v1/lead-magnet/keyword/services:
+    post:
+      description: Get keyword services
+      operationId: t_value
+      parameters: []
+      requestBody:
+        required: true
+        description: Get keyword services
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/Object'
+      responses:
+        '201':
+          description: Lead Magnet Job created successfully
+      security:
+      - {}
+      summary: Lead Magnet
+      tags:
+      - Lead Magnet Webhook
+  /tasks/api/v1/lead-magnet/extract-primary-category-rank:
+    post:
+      description: Triggers rank extraction on the primary category for a placeId. Returns immediately with 202 status while Lambda processes in background.
+      operationId: t_value
+      parameters:
+      - name: placeId
+        required: true
+        in: query
+        description: Google Maps placeId of the business
+        schema:
+          type: string
+      responses:
+        '202':
+          description: Rank extraction triggered successfully
+          content:
+            application/json:
+              schema:
+                example:
+                  status: 202
+                  data:
+                    primaryCategory: restaurant
+                    processId: uuid-here
+        '400':
+          description: Invalid placeId
+        '500':
+          description: Internal server error
+      summary: Extract Primary Category Rank
+      tags:
+      - Lead Magnet Webhook
+components:
+  schemas:
+    Object:
+      type: object
+      properties: {}
+  securitySchemes:
+    access-token:
+      scheme: bearer
+      bearerFormat: JWT
+      type: http
+      name: Authorization
+      description: Enter JWT token in the format Bearer <token>
+      in: header

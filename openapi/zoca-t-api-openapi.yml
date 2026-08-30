@@ -1,0 +1,1440 @@
+openapi: 3.2.0
+info:
+  title: Zoca T API
+  contact: {}
+  x-refined-note:
+  - x-apievangelist-note differs across the merged source definitions and was not carried
+  version: '1.0'
+  description: 'Operations tagged t across 2 of this provider''s published API definitions: zoca-platform-openapi.yml, zoca-tasks-openapi.yml. Each path carries the servers of the definition it was published in.'
+servers:
+- url: https://api.zoca.ai
+  description: Production
+- url: https://tasks.zoca.ai
+  description: Production
+tags:
+- name: t
+paths:
+  /brain/memories:
+    post:
+      operationId: t_value
+      parameters: []
+      responses:
+        '201':
+          description: ''
+      tags:
+      - t
+    servers:
+    - url: https://api.zoca.ai
+      description: Production
+  /brain/memories/{sourceId}/retry:
+    post:
+      operationId: t_value
+      parameters: []
+      responses:
+        '200':
+          description: ''
+      tags:
+      - t
+    servers:
+    - url: https://api.zoca.ai
+      description: Production
+  /brain/memories/{id}:
+    get:
+      operationId: t_value
+      parameters: []
+      responses:
+        '200':
+          description: ''
+      tags:
+      - t
+    patch:
+      operationId: t_value
+      parameters: []
+      responses:
+        '200':
+          description: ''
+      tags:
+      - t
+    delete:
+      operationId: t_value
+      parameters: []
+      responses:
+        '200':
+          description: ''
+      tags:
+      - t
+    servers:
+    - url: https://api.zoca.ai
+      description: Production
+  /brain/memories/{id}/question:
+    get:
+      operationId: t_value
+      parameters: []
+      responses:
+        '200':
+          description: ''
+      tags:
+      - t
+    servers:
+    - url: https://api.zoca.ai
+      description: Production
+  /brain/memories/{id}/history:
+    get:
+      operationId: t_value
+      parameters: []
+      responses:
+        '200':
+          description: ''
+      tags:
+      - t
+    servers:
+    - url: https://api.zoca.ai
+      description: Production
+  /brain/memories/reembed:
+    post:
+      operationId: t_value
+      parameters: []
+      responses:
+        '200':
+          description: ''
+      tags:
+      - t
+    servers:
+    - url: https://api.zoca.ai
+      description: Production
+  /brain/documents/upload-url:
+    post:
+      operationId: t_value
+      parameters: []
+      responses:
+        '201':
+          description: ''
+      tags:
+      - t
+    servers:
+    - url: https://api.zoca.ai
+      description: Production
+  /brain/documents:
+    post:
+      operationId: t_value
+      parameters: []
+      responses:
+        '201':
+          description: ''
+      tags:
+      - t
+    servers:
+    - url: https://api.zoca.ai
+      description: Production
+  /brain/documents/{docId}:
+    get:
+      operationId: t_value
+      parameters: []
+      responses:
+        '200':
+          description: ''
+      tags:
+      - t
+    servers:
+    - url: https://api.zoca.ai
+      description: Production
+  /brain/snapshot:
+    get:
+      operationId: t_value
+      parameters: []
+      responses:
+        '200':
+          description: ''
+      tags:
+      - t
+    servers:
+    - url: https://api.zoca.ai
+      description: Production
+  /brain/topics:
+    get:
+      operationId: t_value
+      parameters: []
+      responses:
+        '200':
+          description: ''
+      tags:
+      - t
+    servers:
+    - url: https://api.zoca.ai
+      description: Production
+  /brain/topics/subtopic-overrides:
+    post:
+      operationId: t_value
+      parameters: []
+      responses:
+        '200':
+          description: ''
+      tags:
+      - t
+    servers:
+    - url: https://api.zoca.ai
+      description: Production
+  /brain/services/completeness/overview:
+    get:
+      operationId: t_value
+      parameters: []
+      responses:
+        '200':
+          description: ''
+      tags:
+      - t
+    servers:
+    - url: https://api.zoca.ai
+      description: Production
+  /brain/services/completeness/by-service:
+    get:
+      operationId: t_value
+      parameters: []
+      responses:
+        '200':
+          description: ''
+      tags:
+      - t
+    servers:
+    - url: https://api.zoca.ai
+      description: Production
+  /brain/services/rubric:
+    get:
+      operationId: t_value
+      parameters: []
+      responses:
+        '200':
+          description: ''
+      tags:
+      - t
+    patch:
+      operationId: t_value
+      parameters: []
+      responses:
+        '200':
+          description: ''
+      tags:
+      - t
+    servers:
+    - url: https://api.zoca.ai
+      description: Production
+  /brain/overview:
+    get:
+      operationId: t_value
+      parameters: []
+      responses:
+        '200':
+          description: ''
+      tags:
+      - t
+    servers:
+    - url: https://api.zoca.ai
+      description: Production
+  /brain/onboarding-state:
+    get:
+      operationId: t_value
+      parameters: []
+      responses:
+        '200':
+          description: ''
+      tags:
+      - t
+    patch:
+      operationId: t_value
+      parameters: []
+      responses:
+        '200':
+          description: ''
+      tags:
+      - t
+    servers:
+    - url: https://api.zoca.ai
+      description: Production
+  /brain/onboarding/training-questions:
+    get:
+      operationId: t_value
+      parameters: []
+      responses:
+        '200':
+          description: ''
+      tags:
+      - t
+    servers:
+    - url: https://api.zoca.ai
+      description: Production
+  /brain/onboarding/training-answers:
+    post:
+      operationId: t_value
+      parameters: []
+      responses:
+        '201':
+          description: ''
+      tags:
+      - t
+    servers:
+    - url: https://api.zoca.ai
+      description: Production
+  /brain/onboarding/training-answers/sync:
+    post:
+      operationId: t_value
+      parameters: []
+      responses:
+        '201':
+          description: ''
+      tags:
+      - t
+    servers:
+    - url: https://api.zoca.ai
+      description: Production
+  /brain/attribution/by-ref:
+    get:
+      operationId: t_value
+      parameters: []
+      responses:
+        '200':
+          description: ''
+      tags:
+      - t
+    post:
+      operationId: t_value
+      parameters: []
+      responses:
+        '201':
+          description: ''
+      tags:
+      - t
+    servers:
+    - url: https://api.zoca.ai
+      description: Production
+  /brain/attribution/clients-with-memory:
+    get:
+      operationId: t_value
+      parameters: []
+      responses:
+        '200':
+          description: ''
+      tags:
+      - t
+    servers:
+    - url: https://api.zoca.ai
+      description: Production
+  /brain/seed:
+    post:
+      operationId: t_value
+      parameters: []
+      responses:
+        '202':
+          description: ''
+      tags:
+      - t
+    servers:
+    - url: https://api.zoca.ai
+      description: Production
+  /brain/seed/status:
+    get:
+      operationId: t_value
+      parameters: []
+      responses:
+        '200':
+          description: ''
+      tags:
+      - t
+    servers:
+    - url: https://api.zoca.ai
+      description: Production
+  /brain/seed/preview:
+    get:
+      operationId: t_value
+      parameters: []
+      responses:
+        '200':
+          description: ''
+      tags:
+      - t
+    servers:
+    - url: https://api.zoca.ai
+      description: Production
+  /brain/conflicts:
+    get:
+      operationId: t_value
+      parameters: []
+      responses:
+        '200':
+          description: ''
+      tags:
+      - t
+    servers:
+    - url: https://api.zoca.ai
+      description: Production
+  /brain/conflicts/{id}/resolve:
+    post:
+      operationId: t_value
+      parameters: []
+      responses:
+        '201':
+          description: ''
+      tags:
+      - t
+    servers:
+    - url: https://api.zoca.ai
+      description: Production
+  /brain/sessions/topic-candidates:
+    get:
+      operationId: t_value
+      parameters: []
+      responses:
+        '200':
+          description: ''
+      tags:
+      - t
+    servers:
+    - url: https://api.zoca.ai
+      description: Production
+  /brain/sessions:
+    post:
+      operationId: t_value
+      parameters: []
+      responses:
+        '201':
+          description: ''
+      tags:
+      - t
+    servers:
+    - url: https://api.zoca.ai
+      description: Production
+  /brain/sessions/{id}:
+    get:
+      operationId: t_value
+      parameters: []
+      responses:
+        '200':
+          description: ''
+      tags:
+      - t
+    servers:
+    - url: https://api.zoca.ai
+      description: Production
+  /brain/sessions/{id}/turns:
+    post:
+      operationId: t_value
+      parameters: []
+      responses:
+        '201':
+          description: ''
+      tags:
+      - t
+    servers:
+    - url: https://api.zoca.ai
+      description: Production
+  /brain/sessions/{id}/end:
+    post:
+      operationId: t_value
+      parameters: []
+      responses:
+        '201':
+          description: ''
+      tags:
+      - t
+    servers:
+    - url: https://api.zoca.ai
+      description: Production
+  /brain/sessions/{id}/memories:
+    get:
+      operationId: t_value
+      parameters: []
+      responses:
+        '200':
+          description: ''
+      tags:
+      - t
+    servers:
+    - url: https://api.zoca.ai
+      description: Production
+  /brain/sessions/{id}/memory-chips:
+    get:
+      operationId: t_value
+      parameters: []
+      responses:
+        '200':
+          description: ''
+      tags:
+      - t
+    servers:
+    - url: https://api.zoca.ai
+      description: Production
+  /brain/context/search:
+    post:
+      operationId: t_value
+      parameters: []
+      responses:
+        '201':
+          description: ''
+      tags:
+      - t
+    servers:
+    - url: https://api.zoca.ai
+      description: Production
+  /brain/questions:
+    get:
+      operationId: t_value
+      parameters: []
+      responses:
+        '200':
+          description: ''
+      tags:
+      - t
+    post:
+      operationId: t_value
+      parameters: []
+      responses:
+        '201':
+          description: ''
+      tags:
+      - t
+    servers:
+    - url: https://api.zoca.ai
+      description: Production
+  /brain/questions/next-pending:
+    get:
+      operationId: t_value
+      parameters: []
+      responses:
+        '200':
+          description: ''
+      tags:
+      - t
+    servers:
+    - url: https://api.zoca.ai
+      description: Production
+  /brain/questions/ai-compose-suggestions:
+    get:
+      operationId: t_value
+      parameters: []
+      responses:
+        '200':
+          description: ''
+      tags:
+      - t
+    servers:
+    - url: https://api.zoca.ai
+      description: Production
+  /brain/questions/ai-generate:
+    post:
+      operationId: t_value
+      parameters: []
+      responses:
+        '200':
+          description: ''
+      tags:
+      - t
+    servers:
+    - url: https://api.zoca.ai
+      description: Production
+  /brain/questions/{id}:
+    patch:
+      operationId: t_value
+      parameters: []
+      responses:
+        '200':
+          description: ''
+      tags:
+      - t
+    servers:
+    - url: https://api.zoca.ai
+      description: Production
+  /brain/questions/{id}/memory:
+    get:
+      operationId: t_value
+      parameters: []
+      responses:
+        '200':
+          description: ''
+      tags:
+      - t
+    servers:
+    - url: https://api.zoca.ai
+      description: Production
+  /brain/questions/{id}/answer:
+    post:
+      operationId: t_value
+      parameters: []
+      responses:
+        '202':
+          description: ''
+      tags:
+      - t
+    servers:
+    - url: https://api.zoca.ai
+      description: Production
+  /brain/questions/{id}/archive:
+    post:
+      operationId: t_value
+      parameters: []
+      responses:
+        '200':
+          description: ''
+      tags:
+      - t
+    servers:
+    - url: https://api.zoca.ai
+      description: Production
+  /brain/questions/{id}/pause:
+    post:
+      operationId: t_value
+      parameters: []
+      responses:
+        '200':
+          description: ''
+      tags:
+      - t
+    servers:
+    - url: https://api.zoca.ai
+      description: Production
+  /brain/questions/{id}/restore:
+    post:
+      operationId: t_value
+      parameters: []
+      responses:
+        '200':
+          description: ''
+      tags:
+      - t
+    servers:
+    - url: https://api.zoca.ai
+      description: Production
+  /brain/candidates:
+    get:
+      operationId: t_value
+      parameters: []
+      responses:
+        '200':
+          description: ''
+      tags:
+      - t
+    servers:
+    - url: https://api.zoca.ai
+      description: Production
+  /brain/candidates/{id}/confirm:
+    post:
+      operationId: t_value
+      parameters: []
+      responses:
+        '200':
+          description: ''
+      tags:
+      - t
+    servers:
+    - url: https://api.zoca.ai
+      description: Production
+  /brain/candidates/{id}/refine:
+    post:
+      operationId: t_value
+      parameters: []
+      responses:
+        '200':
+          description: ''
+      tags:
+      - t
+    servers:
+    - url: https://api.zoca.ai
+      description: Production
+  /brain/candidates/{id}:
+    patch:
+      operationId: t_value
+      parameters: []
+      responses:
+        '200':
+          description: ''
+      tags:
+      - t
+    servers:
+    - url: https://api.zoca.ai
+      description: Production
+  /brain/candidates/{id}/reject:
+    post:
+      operationId: t_value
+      parameters: []
+      responses:
+        '200':
+          description: ''
+      tags:
+      - t
+    servers:
+    - url: https://api.zoca.ai
+      description: Production
+  /brain/candidates/{id}/resolve-canonical-conflict:
+    post:
+      operationId: t_value
+      parameters: []
+      responses:
+        '200':
+          description: ''
+      tags:
+      - t
+    servers:
+    - url: https://api.zoca.ai
+      description: Production
+  /brain/candidates/{id}/resolve-semantic-conflict:
+    post:
+      operationId: t_value
+      parameters: []
+      responses:
+        '200':
+          description: ''
+      tags:
+      - t
+    servers:
+    - url: https://api.zoca.ai
+      description: Production
+  /brain/candidates/{id}/resolve-archive-collision:
+    post:
+      operationId: t_value
+      parameters: []
+      responses:
+        '200':
+          description: ''
+      tags:
+      - t
+    servers:
+    - url: https://api.zoca.ai
+      description: Production
+  /brain/candidates/inline-save:
+    post:
+      operationId: t_value
+      parameters: []
+      responses:
+        '201':
+          description: ''
+      tags:
+      - t
+    servers:
+    - url: https://api.zoca.ai
+      description: Production
+  /brain/preview/answer:
+    post:
+      operationId: t_value
+      parameters: []
+      responses:
+        '200':
+          description: ''
+      tags:
+      - t
+    servers:
+    - url: https://api.zoca.ai
+      description: Production
+  /brain/memories/{memoryId}/revisions:
+    get:
+      operationId: t_value
+      parameters: []
+      responses:
+        '200':
+          description: ''
+      tags:
+      - t
+    servers:
+    - url: https://api.zoca.ai
+      description: Production
+  /brain/memories/{memoryId}/revisions/{revisionId}/restore:
+    post:
+      operationId: t_value
+      parameters: []
+      responses:
+        '200':
+          description: ''
+      tags:
+      - t
+    servers:
+    - url: https://api.zoca.ai
+      description: Production
+  /brain/agent-callback/propose-memory:
+    post:
+      operationId: t_value
+      parameters: []
+      responses:
+        '201':
+          description: ''
+      tags:
+      - t
+    servers:
+    - url: https://api.zoca.ai
+      description: Production
+  /tasks/api/v1/employees/sdr/attendance:
+    get:
+      operationId: t_value
+      parameters: []
+      responses:
+        '200':
+          description: ''
+      tags:
+      - t
+      security:
+      - access-token: []
+    servers:
+    - url: https://tasks.zoca.ai
+      description: Production
+  /tasks/api/v1/employees/sdr/attendance/bulk:
+    put:
+      operationId: t_value
+      parameters: []
+      responses:
+        '200':
+          description: ''
+      tags:
+      - t
+      security:
+      - access-token: []
+    servers:
+    - url: https://tasks.zoca.ai
+      description: Production
+  /tasks/api/v1/employees/sdr/{entityId}/attendance:
+    put:
+      operationId: t_value
+      parameters: []
+      responses:
+        '200':
+          description: ''
+      tags:
+      - t
+      security:
+      - access-token: []
+    servers:
+    - url: https://tasks.zoca.ai
+      description: Production
+  /tasks/api/v1/employees/sdr/roster:
+    get:
+      operationId: t_value
+      parameters: []
+      responses:
+        '200':
+          description: ''
+      tags:
+      - t
+      security:
+      - access-token: []
+    servers:
+    - url: https://tasks.zoca.ai
+      description: Production
+  /tasks/api/v1/employees/sdr/{entityId}/segments:
+    put:
+      operationId: t_value
+      parameters: []
+      responses:
+        '200':
+          description: ''
+      tags:
+      - t
+      security:
+      - access-token: []
+    servers:
+    - url: https://tasks.zoca.ai
+      description: Production
+  /tasks/api/v1/employees/sdr/{entityId}/capacity:
+    put:
+      operationId: t_value
+      parameters: []
+      responses:
+        '200':
+          description: ''
+      tags:
+      - t
+      security:
+      - access-token: []
+    servers:
+    - url: https://tasks.zoca.ai
+      description: Production
+  /tasks/api/v1/employees/sdr/segments:
+    get:
+      operationId: t_value
+      parameters: []
+      responses:
+        '200':
+          description: ''
+      tags:
+      - t
+      security:
+      - access-token: []
+    post:
+      operationId: t_value
+      parameters: []
+      responses:
+        '201':
+          description: ''
+      tags:
+      - t
+      security:
+      - access-token: []
+    servers:
+    - url: https://tasks.zoca.ai
+      description: Production
+  /tasks/api/v1/learning-center/pillars:
+    get:
+      operationId: t_value
+      parameters: []
+      responses:
+        '200':
+          description: ''
+      tags:
+      - t
+      security:
+      - access-token: []
+    servers:
+    - url: https://tasks.zoca.ai
+      description: Production
+  /tasks/api/v1/learning-center/pillars/{id}:
+    get:
+      operationId: t_value
+      parameters: []
+      responses:
+        '200':
+          description: ''
+      tags:
+      - t
+      security:
+      - access-token: []
+    servers:
+    - url: https://tasks.zoca.ai
+      description: Production
+  /tasks/api/v1/learning-center/modules:
+    get:
+      operationId: t_value
+      parameters: []
+      responses:
+        '200':
+          description: ''
+      tags:
+      - t
+      security:
+      - access-token: []
+    servers:
+    - url: https://tasks.zoca.ai
+      description: Production
+  /tasks/api/v1/learning-center/modules/{id}:
+    get:
+      operationId: t_value
+      parameters: []
+      responses:
+        '200':
+          description: ''
+      tags:
+      - t
+      security:
+      - access-token: []
+    servers:
+    - url: https://tasks.zoca.ai
+      description: Production
+  /tasks/api/v1/learning-center/modules/{moduleId}/lessons:
+    get:
+      operationId: t_value
+      parameters: []
+      responses:
+        '200':
+          description: ''
+      tags:
+      - t
+      security:
+      - access-token: []
+    servers:
+    - url: https://tasks.zoca.ai
+      description: Production
+  /tasks/api/v1/learning-center/lessons/{id}:
+    get:
+      operationId: t_value
+      parameters: []
+      responses:
+        '200':
+          description: ''
+      tags:
+      - t
+      security:
+      - access-token: []
+    servers:
+    - url: https://tasks.zoca.ai
+      description: Production
+  /tasks/api/v1/learning-center/admin/pillars:
+    post:
+      operationId: t_value
+      parameters: []
+      responses:
+        '201':
+          description: ''
+      tags:
+      - t
+      security:
+      - access-token: []
+    servers:
+    - url: https://tasks.zoca.ai
+      description: Production
+  /tasks/api/v1/learning-center/admin/pillars/{id}:
+    put:
+      operationId: t_value
+      parameters: []
+      responses:
+        '200':
+          description: ''
+      tags:
+      - t
+      security:
+      - access-token: []
+    delete:
+      operationId: t_value
+      parameters: []
+      responses:
+        '200':
+          description: ''
+      tags:
+      - t
+      security:
+      - access-token: []
+    servers:
+    - url: https://tasks.zoca.ai
+      description: Production
+  /tasks/api/v1/learning-center/admin/modules:
+    post:
+      operationId: t_value
+      parameters: []
+      responses:
+        '201':
+          description: ''
+      tags:
+      - t
+      security:
+      - access-token: []
+    servers:
+    - url: https://tasks.zoca.ai
+      description: Production
+  /tasks/api/v1/learning-center/admin/modules/{id}:
+    put:
+      operationId: t_value
+      parameters: []
+      responses:
+        '200':
+          description: ''
+      tags:
+      - t
+      security:
+      - access-token: []
+    delete:
+      operationId: t_value
+      parameters: []
+      responses:
+        '200':
+          description: ''
+      tags:
+      - t
+      security:
+      - access-token: []
+    servers:
+    - url: https://tasks.zoca.ai
+      description: Production
+  /tasks/api/v1/learning-center/admin/lessons:
+    post:
+      operationId: t_value
+      parameters: []
+      responses:
+        '201':
+          description: ''
+      tags:
+      - t
+      security:
+      - access-token: []
+    servers:
+    - url: https://tasks.zoca.ai
+      description: Production
+  /tasks/api/v1/learning-center/admin/lessons/{id}:
+    put:
+      operationId: t_value
+      parameters: []
+      responses:
+        '200':
+          description: ''
+      tags:
+      - t
+      security:
+      - access-token: []
+    delete:
+      operationId: t_value
+      parameters: []
+      responses:
+        '200':
+          description: ''
+      tags:
+      - t
+      security:
+      - access-token: []
+    servers:
+    - url: https://tasks.zoca.ai
+      description: Production
+  /tasks/api/v1/learning-center/assessments:
+    get:
+      operationId: t_value
+      parameters: []
+      responses:
+        '200':
+          description: ''
+      tags:
+      - t
+      security:
+      - access-token: []
+    servers:
+    - url: https://tasks.zoca.ai
+      description: Production
+  /tasks/api/v1/learning-center/assessments/{id}:
+    get:
+      operationId: t_value
+      parameters: []
+      responses:
+        '200':
+          description: ''
+      tags:
+      - t
+      security:
+      - access-token: []
+    servers:
+    - url: https://tasks.zoca.ai
+      description: Production
+  /tasks/api/v1/learning-center/assessments/{id}/with-status:
+    get:
+      operationId: t_value
+      parameters: []
+      responses:
+        '200':
+          description: ''
+      tags:
+      - t
+      security:
+      - access-token: []
+    servers:
+    - url: https://tasks.zoca.ai
+      description: Production
+  /tasks/api/v1/learning-center/assessments/{id}/questions:
+    get:
+      operationId: t_value
+      parameters: []
+      responses:
+        '200':
+          description: ''
+      tags:
+      - t
+      security:
+      - access-token: []
+    servers:
+    - url: https://tasks.zoca.ai
+      description: Production
+  /tasks/api/v1/learning-center/admin/assessments:
+    post:
+      operationId: t_value
+      parameters: []
+      responses:
+        '201':
+          description: ''
+      tags:
+      - t
+      security:
+      - access-token: []
+    servers:
+    - url: https://tasks.zoca.ai
+      description: Production
+  /tasks/api/v1/learning-center/admin/assessments/{id}:
+    put:
+      operationId: t_value
+      parameters: []
+      responses:
+        '200':
+          description: ''
+      tags:
+      - t
+      security:
+      - access-token: []
+    delete:
+      operationId: t_value
+      parameters: []
+      responses:
+        '200':
+          description: ''
+      tags:
+      - t
+      security:
+      - access-token: []
+    servers:
+    - url: https://tasks.zoca.ai
+      description: Production
+  /tasks/api/v1/learning-center/admin/assessments/{id}/questions/mcq:
+    post:
+      operationId: t_value
+      parameters: []
+      responses:
+        '201':
+          description: ''
+      tags:
+      - t
+      security:
+      - access-token: []
+    servers:
+    - url: https://tasks.zoca.ai
+      description: Production
+  /tasks/api/v1/learning-center/admin/assessments/{id}/questions/subjective:
+    post:
+      operationId: t_value
+      parameters: []
+      responses:
+        '201':
+          description: ''
+      tags:
+      - t
+      security:
+      - access-token: []
+    servers:
+    - url: https://tasks.zoca.ai
+      description: Production
+  /tasks/api/v1/learning-center/admin/assessments/questions/mcq/{questionId}:
+    put:
+      operationId: t_value
+      parameters: []
+      responses:
+        '200':
+          description: ''
+      tags:
+      - t
+      security:
+      - access-token: []
+    servers:
+    - url: https://tasks.zoca.ai
+      description: Production
+  /tasks/api/v1/learning-center/admin/assessments/questions/subjective/{questionId}:
+    put:
+      operationId: t_value
+      parameters: []
+      responses:
+        '200':
+          description: ''
+      tags:
+      - t
+      security:
+      - access-token: []
+    servers:
+    - url: https://tasks.zoca.ai
+      description: Production
+  /tasks/api/v1/learning-center/admin/assessments/questions/{questionId}:
+    delete:
+      operationId: t_value
+      parameters: []
+      responses:
+        '200':
+          description: ''
+      tags:
+      - t
+      security:
+      - access-token: []
+    servers:
+    - url: https://tasks.zoca.ai
+      description: Production
+  /tasks/api/v1/learning-center/admin/assignments:
+    post:
+      operationId: t_value
+      parameters: []
+      responses:
+        '201':
+          description: ''
+      tags:
+      - t
+      security:
+      - access-token: []
+    delete:
+      operationId: t_value
+      parameters: []
+      responses:
+        '200':
+          description: ''
+      tags:
+      - t
+      security:
+      - access-token: []
+    get:
+      operationId: t_value
+      parameters: []
+      responses:
+        '200':
+          description: ''
+      tags:
+      - t
+      security:
+      - access-token: []
+    servers:
+    - url: https://tasks.zoca.ai
+      description: Production
+  /tasks/api/v1/learning-center/admin/assignments/bulk:
+    post:
+      operationId: t_value
+      parameters: []
+      responses:
+        '201':
+          description: ''
+      tags:
+      - t
+      security:
+      - access-token: []
+    delete:
+      operationId: t_value
+      parameters: []
+      responses:
+        '200':
+          description: ''
+      tags:
+      - t
+      security:
+      - access-token: []
+    servers:
+    - url: https://tasks.zoca.ai
+      description: Production
+  /tasks/api/v1/learning-center/admin/answers/needs-review:
+    get:
+      operationId: t_value
+      parameters: []
+      responses:
+        '200':
+          description: ''
+      tags:
+      - t
+      security:
+      - access-token: []
+    servers:
+    - url: https://tasks.zoca.ai
+      description: Production
+  /tasks/api/v1/learning-center/admin/answers/{id}/override:
+    post:
+      operationId: t_value
+      parameters: []
+      responses:
+        '201':
+          description: ''
+      tags:
+      - t
+      security:
+      - access-token: []
+    servers:
+    - url: https://tasks.zoca.ai
+      description: Production
+  /tasks/api/v1/learning-center/admin/answers/{id}/calibrate:
+    post:
+      operationId: t_value
+      parameters: []
+      responses:
+        '201':
+          description: ''
+      tags:
+      - t
+      security:
+      - access-token: []
+    servers:
+    - url: https://tasks.zoca.ai
+      description: Production
+  /tasks/api/v1/learning-center/admin/attempts/unlock:
+    post:
+      operationId: t_value
+      parameters: []
+      responses:
+        '201':
+          description: ''
+      tags:
+      - t
+      security:
+      - access-token: []
+    servers:
+    - url: https://tasks.zoca.ai
+      description: Production
+  /tasks/api/v1/learning-center/me:
+    get:
+      operationId: t_value
+      parameters: []
+      responses:
+        '200':
+          description: ''
+      tags:
+      - t
+      security:
+      - access-token: []
+    servers:
+    - url: https://tasks.zoca.ai
+      description: Production
+  /tasks/api/v1/learning-center/me/dashboard:
+    get:
+      operationId: t_value
+      parameters: []
+      responses:
+        '200':
+          description: ''
+      tags:
+      - t
+      security:
+      - access-token: []
+    servers:
+    - url: https://tasks.zoca.ai
+      description: Production
+  /tasks/api/v1/learning-center/users/{userId}/lessons/{id}:
+    get:
+      operationId: t_value
+      parameters: []
+      responses:
+        '200':
+          description: ''
+      tags:
+      - t
+      security:
+      - access-token: []
+    servers:
+    - url: https://tasks.zoca.ai
+      description: Production
+  /tasks/api/v1/learning-center/users/{userId}/modules/{moduleId}/lessons:
+    get:
+      operationId: t_value
+      parameters: []
+      responses:
+        '200':
+          description: ''
+      tags:
+      - t
+      security:
+      - access-token: []
+    servers:
+    - url: https://tasks.zoca.ai
+      description: Production
+  /tasks/api/v1/learning-center/lessons/{id}/start:
+    post:
+      operationId: t_value
+      parameters: []
+      responses:
+        '201':
+          description: ''
+      tags:
+      - t
+      security:
+      - access-token: []
+    servers:
+    - url: https://tasks.zoca.ai
+      description: Production
+  /tasks/api/v1/learning-center/lessons/{id}/complete:
+    post:
+      operationId: t_value
+      parameters: []
+      responses:
+        '201':
+          description: ''
+      tags:
+      - t
+      security:
+      - access-token: []
+    servers:
+    - url: https://tasks.zoca.ai
+      description: Production
+components:
+  securitySchemes:
+    access-token:
+      scheme: bearer
+      bearerFormat: JWT
+      type: http
+      name: Authorization
+      description: Enter JWT token in the format Bearer <token>
+      in: header
+x-refined-from:
+- zoca-platform-openapi.yml
+- zoca-tasks-openapi.yml

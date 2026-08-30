@@ -1,0 +1,43 @@
+openapi: 3.2.0
+info:
+  title: Zoca Platform Payments API
+  description: 'The Zoca platform API behind the Zoca web app and mobile apps: scheduling, website generation, Google Business Profile, discovery/local SEO, social media, booking enquiries, offers, clients, staff, billing and the Zoca "brain" agent layer.'
+  version: 3.20.10
+  contact: {}
+  x-apievangelist-note: Harvested verbatim from https://api.zoca.ai/swagger.json. The provider ships the default NestJS Swagger metadata (title "API Documentation", empty servers[]); title/description/servers were set by API Evangelist for identification and the unmodified original is preserved at openapi/_original/zoca-platform-swagger.json. Every path, operation, summary, parameter and response is exactly as published.
+servers:
+- url: https://api.zoca.ai
+  description: Production
+tags:
+- name: Payments
+paths:
+  /scheduling/payments/{paymentId}:
+    get:
+      description: Returns { payment, latestAttempt }. `latestAttempt` is null for payments that were not taken via a smart card reader. Used by the in-person checkout polling flow.
+      operationId: t_value
+      parameters:
+      - name: paymentId
+        required: true
+        in: path
+        description: Payment ID
+        schema:
+          type: string
+      responses:
+        '200':
+          description: Payment retrieved successfully
+        '404':
+          description: Payment not found
+      security:
+      - bearer: []
+      summary: Get a payment by ID with the latest reader attempt
+      tags:
+      - Payments
+components:
+  securitySchemes:
+    access-token:
+      scheme: bearer
+      bearerFormat: JWT
+      type: http
+      name: Authorization
+      description: Enter JWT token in the format Bearer <token>
+      in: header

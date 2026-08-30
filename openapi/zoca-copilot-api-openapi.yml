@@ -1,0 +1,191 @@
+openapi: 3.2.0
+info:
+  title: Zoca Platform Copilot API
+  description: 'The Zoca platform API behind the Zoca web app and mobile apps: scheduling, website generation, Google Business Profile, discovery/local SEO, social media, booking enquiries, offers, clients, staff, billing and the Zoca "brain" agent layer.'
+  version: 3.20.10
+  contact: {}
+  x-apievangelist-note: Harvested verbatim from https://api.zoca.ai/swagger.json. The provider ships the default NestJS Swagger metadata (title "API Documentation", empty servers[]); title/description/servers were set by API Evangelist for identification and the unmodified original is preserved at openapi/_original/zoca-platform-swagger.json. Every path, operation, summary, parameter and response is exactly as published.
+servers:
+- url: https://api.zoca.ai
+  description: Production
+tags:
+- name: copilot
+paths:
+  /copilot/chat:
+    post:
+      operationId: t_value
+      parameters: []
+      responses:
+        '200':
+          description: Chat response
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/e'
+      security:
+      - bearer: []
+      summary: Chat with the copilot
+      tags:
+      - copilot
+  /copilot/discover:
+    post:
+      operationId: t_value
+      parameters: []
+      responses:
+        '200':
+          description: Discovery response
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/e'
+      security:
+      - bearer: []
+      summary: Discover insights using the copilot
+      tags:
+      - copilot
+  /copilot/conversations:
+    get:
+      operationId: t_value
+      parameters: []
+      responses:
+        '200':
+          description: ''
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/e'
+      security:
+      - bearer: []
+      summary: Get user conversations with optional pagination
+      tags:
+      - copilot
+  /copilot/conversations/{conversationId}:
+    get:
+      operationId: t_value
+      parameters: []
+      responses:
+        '200':
+          description: ''
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/e'
+      security:
+      - bearer: []
+      summary: Get conversation history with optional pagination
+      tags:
+      - copilot
+  /copilot/chat/stream:
+    options:
+      operationId: t_value
+      parameters: []
+      responses:
+        '204':
+          description: ''
+      security:
+      - bearer: []
+      tags:
+      - copilot
+    get:
+      operationId: t_value
+      parameters: []
+      responses:
+        '200':
+          description: ''
+      security:
+      - bearer: []
+      summary: Stream chat responses from the copilot
+      tags:
+      - copilot
+  /copilot/stream:
+    get:
+      operationId: t_value
+      parameters: []
+      responses:
+        '200':
+          description: ''
+      security:
+      - bearer: []
+      summary: Stream responses from the copilot
+      tags:
+      - copilot
+  /copilot/enquiry-stats-with-roi:
+    post:
+      operationId: t_value
+      parameters: []
+      responses:
+        '200':
+          description: Returns enquiry statistics with ROI calculation
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/e'
+      security:
+      - bearer: []
+      tags:
+      - copilot
+  /copilot/discovery-insights:
+    post:
+      description: Analyzes location data from the last 12 months including reviews, media, bookings, and metrics to generate insights
+      operationId: t_value
+      parameters: []
+      requestBody:
+        required: true
+        description: Request body containing the location entity ID
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/e'
+      responses:
+        '200':
+          description: Discovery insights generated successfully
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/e'
+        '400':
+          description: Bad request - Invalid location entity ID
+        '404':
+          description: Location entity not found
+        '500':
+          description: Internal server error
+      security:
+      - bearer: []
+      summary: Get discovery insights for a specific location
+      tags:
+      - copilot
+components:
+  schemas:
+    e:
+      type: object
+      properties:
+        id:
+          type: number
+        entityId:
+          type: string
+        attribute:
+          type: string
+        value:
+          type:
+          - object
+          - 'null'
+        metadata:
+          type:
+          - object
+          - 'null'
+        createdAt:
+          type:
+          - object
+          - 'null'
+      required:
+      - id
+      - entityId
+      - attribute
+  securitySchemes:
+    access-token:
+      scheme: bearer
+      bearerFormat: JWT
+      type: http
+      name: Authorization
+      description: Enter JWT token in the format Bearer <token>
+      in: header

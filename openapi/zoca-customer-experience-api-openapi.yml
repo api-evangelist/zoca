@@ -1,0 +1,289 @@
+openapi: 3.2.0
+info:
+  title: Zoca Tasks Customer Experience API
+  description: 'The Zoca tasks/automation service: AI content queue and planning, FrontDesk (Retell/Twilio) voice + SMS agent onboarding, local-SEO grid scans, WIN conversion triggers, and inbound integration webhooks (Chargebee, Square, Pipedrive, Twilio, Retell, CallHippo, Sybill, Instantly).'
+  version: 3.20.9
+  contact: {}
+  x-apievangelist-note: Harvested verbatim from https://tasks.zoca.ai/swagger.json. The provider ships the default NestJS Swagger metadata (title "API Documentation", empty servers[]); title/description/servers were set by API Evangelist for identification and the unmodified original is preserved at openapi/_original/zoca-tasks-swagger.json. Every path, operation, summary, parameter and response is exactly as published.
+servers:
+- url: https://tasks.zoca.ai
+  description: Production
+security:
+- access-token: []
+tags:
+- name: Customer Experience
+paths:
+  /tasks/api/v1/cx/am/suggestions/{entityId}:
+    get:
+      operationId: t_value
+      parameters: []
+      responses:
+        '200':
+          description: ''
+      security:
+      - {}
+      summary: Suggest an account manager for a given entity
+      tags:
+      - Customer Experience
+  /tasks/api/v1/cx/handover:
+    post:
+      operationId: t_value
+      parameters: []
+      responses:
+        '201':
+          description: ''
+      security:
+      - {}
+      summary: Save handover form data and assign account manager
+      tags:
+      - Customer Experience
+  /tasks/api/v1/cx/ae/{entityId}:
+    get:
+      operationId: t_value
+      parameters: []
+      responses:
+        '200':
+          description: ''
+      security:
+      - {}
+      summary: Get account executive for a given entity
+      tags:
+      - Customer Experience
+  /tasks/api/v1/cx/ae/{entityId}/assign:
+    post:
+      operationId: t_value
+      parameters: []
+      responses:
+        '201':
+          description: ''
+      security:
+      - {}
+      summary: Assign an account executive to a given entity
+      tags:
+      - Customer Experience
+  /tasks/api/v1/cx/am/bulk-upsert:
+    post:
+      operationId: t_value
+      parameters: []
+      responses:
+        '201':
+          description: ''
+      security:
+      - {}
+      summary: Bulk upsert AM mappings from S3 data or raw payload
+      tags:
+      - Customer Experience
+  /tasks/api/v1/cx/mom/regenerate/{customerMeetingId}:
+    post:
+      description: Triggers regeneration of meeting minutes (MOM) for a specific customer meeting. This endpoint processes the meeting data and generates updated meeting minutes. Use the forceRegenerate query parameter to control whether to regenerate if MOM already exists.
+      operationId: t_value
+      parameters:
+      - name: forceRegenerate
+        required: false
+        in: query
+        description: Whether to force regeneration even if MOM already exists. If false, will skip generation if MOM exists.
+        schema:
+          example: true
+          type: boolean
+      - name: customerMeetingId
+        required: true
+        in: path
+        description: The unique identifier of the customer meeting for which to regenerate meeting minutes
+        schema:
+          example: cm_123e4567-e89b-12d3-a456-426614174000
+          type: string
+      responses:
+        '200':
+          description: Meeting minutes regeneration triggered successfully or skipped if already exists
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  message:
+                    type: string
+                    examples:
+                    - MOM regeneration triggered successfully
+                    - MOM already exists, skipping regeneration
+                  customerMeetingId:
+                    type: string
+                    example: cm_123e4567-e89b-12d3-a456-426614174000
+                  timestamp:
+                    type: string
+                    format: date-time
+                    example: '2023-12-07T10:30:00.000Z'
+                  status:
+                    type: string
+                    enum:
+                    - success
+                    - skipped
+                    description: Status of the operation - success when regenerated, skipped when MOM already exists and forceRegenerate is false
+        '400':
+          description: Bad request - Invalid customer meeting ID format
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  message:
+                    type: string
+                    example: Failed to trigger regenerate MOM
+                  customerMeetingId:
+                    type: string
+                    example: invalid-id
+                  error:
+                    type: string
+                    example: Invalid customer meeting ID format
+                  timestamp:
+                    type: string
+                    format: date-time
+                    example: '2023-12-07T10:30:00.000Z'
+                  status:
+                    type: string
+                    example: failed
+        '404':
+          description: Customer meeting not found
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  message:
+                    type: string
+                    example: Failed to trigger regenerate MOM
+                  customerMeetingId:
+                    type: string
+                    example: cm_123e4567-e89b-12d3-a456-426614174000
+                  error:
+                    type: string
+                    example: Customer meeting not found
+                  timestamp:
+                    type: string
+                    format: date-time
+                    example: '2023-12-07T10:30:00.000Z'
+                  status:
+                    type: string
+                    example: failed
+        '500':
+          description: Internal server error during MOM regeneration
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  message:
+                    type: string
+                    example: Failed to trigger regenerate MOM
+                  customerMeetingId:
+                    type: string
+                    example: cm_123e4567-e89b-12d3-a456-426614174000
+                  error:
+                    type: string
+                    example: Database connection failed
+                  timestamp:
+                    type: string
+                    format: date-time
+                    example: '2023-12-07T10:30:00.000Z'
+                  status:
+                    type: string
+                    example: failed
+      security:
+      - {}
+      summary: Regenerate meeting minutes for a customer meeting
+      tags:
+      - Customer Experience
+  /tasks/api/v1/cx/notes/upsert:
+    post:
+      description: Creates or updates notes for a given entity in the cx.notes table. Notes are stored as an array of objects with type and note fields. If a note with the same type already exists, it will be updated with the new content. If the type is new, it will be added to the array. Existing notes with different types are preserved.
+      operationId: t_value
+      parameters: []
+      responses:
+        '200':
+          description: Notes upserted successfully
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  message:
+                    type: string
+                    example: Notes upserted successfully
+                  data:
+                    type: object
+                    properties:
+                      entityId:
+                        type: string
+                        example: 123e4567-e89b-12d3-a456-426614174000
+                      notes:
+                        type: array
+                        items:
+                          type: object
+                          properties:
+                            type:
+                              type: string
+                              example: support
+                            note:
+                              type: string
+                              example: Customer requested additional support
+                        example:
+                        - type: support
+                          note: Customer requested additional support
+                        - type: sales
+                          note: Follow up scheduled for next week
+                      updatedAt:
+                        type: string
+                        format: date-time
+                        example: '2023-12-07T10:30:00.000Z'
+                  timestamp:
+                    type: string
+                    format: date-time
+                    example: '2023-12-07T10:30:00.000Z'
+                  status:
+                    type: string
+                    example: success
+        '500':
+          description: Internal server error during notes upsert
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  message:
+                    type: string
+                    example: Failed to upsert notes
+                  error:
+                    type: string
+                    example: Database connection failed
+                  timestamp:
+                    type: string
+                    format: date-time
+                    example: '2023-12-07T10:30:00.000Z'
+                  status:
+                    type: string
+                    example: failed
+      security:
+      - {}
+      summary: Upsert notes for an entity
+      tags:
+      - Customer Experience
+  /tasks/api/v1/cx/{entityId}/rm:
+    get:
+      operationId: t_value
+      parameters: []
+      responses:
+        '200':
+          description: ''
+      security:
+      - {}
+      summary: Get the relationship manager for a given entity
+      tags:
+      - Customer Experience
+components:
+  securitySchemes:
+    access-token:
+      scheme: bearer
+      bearerFormat: JWT
+      type: http
+      name: Authorization
+      description: Enter JWT token in the format Bearer <token>
+      in: header

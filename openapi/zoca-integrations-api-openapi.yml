@@ -1,0 +1,105 @@
+openapi: 3.2.0
+info:
+  title: Zoca Platform Integrations API
+  description: 'The Zoca platform API behind the Zoca web app and mobile apps: scheduling, website generation, Google Business Profile, discovery/local SEO, social media, booking enquiries, offers, clients, staff, billing and the Zoca "brain" agent layer.'
+  version: 3.20.10
+  contact: {}
+  x-apievangelist-note: Harvested verbatim from https://api.zoca.ai/swagger.json. The provider ships the default NestJS Swagger metadata (title "API Documentation", empty servers[]); title/description/servers were set by API Evangelist for identification and the unmodified original is preserved at openapi/_original/zoca-platform-swagger.json. Every path, operation, summary, parameter and response is exactly as published.
+servers:
+- url: https://api.zoca.ai
+  description: Production
+tags:
+- name: Integrations
+paths:
+  /integrations/website/{entityId}/list:
+    get:
+      operationId: t_value
+      parameters: []
+      responses:
+        '200':
+          description: Platform list with per-entity status
+      security:
+      - access-token: []
+      summary: List all platforms with link status for an entity
+      tags:
+      - Integrations
+  /integrations/{entityId}/{id}:
+    get:
+      operationId: t_value
+      parameters: []
+      responses:
+        '200':
+          description: Full platform detail for steps page
+      security:
+      - access-token: []
+      summary: Get platform detail by id
+      tags:
+      - Integrations
+  /integrations/website/{entityId}/status:
+    patch:
+      operationId: t_value
+      parameters: []
+      responses:
+        '200':
+          description: Updated link status
+      security:
+      - access-token: []
+      summary: Link or unlink a platform for an entity
+      tags:
+      - Integrations
+  /integrations/website/{entityId}/dismissed:
+    patch:
+      operationId: t_value
+      parameters: []
+      responses:
+        '200':
+          description: Updated dismissed state
+      security:
+      - access-token: []
+      summary: Update dismissed state for website integrations
+      tags:
+      - Integrations
+  /integrations/admin/templates:
+    get:
+      operationId: t_value
+      parameters: []
+      responses:
+        '200':
+          description: ''
+      security:
+      - access-token: []
+      summary: List all templates (admin)
+      tags:
+      - Integrations
+    post:
+      operationId: t_value
+      parameters: []
+      responses:
+        '201':
+          description: Template created
+      security:
+      - access-token: []
+      summary: Create a new template (admin)
+      tags:
+      - Integrations
+  /integrations/admin/templates/{id}:
+    patch:
+      operationId: t_value
+      parameters: []
+      responses:
+        '200':
+          description: ''
+      security:
+      - access-token: []
+      summary: Update a template (admin)
+      tags:
+      - Integrations
+components:
+  securitySchemes:
+    access-token:
+      scheme: bearer
+      bearerFormat: JWT
+      type: http
+      name: Authorization
+      description: Enter JWT token in the format Bearer <token>
+      in: header

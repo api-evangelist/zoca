@@ -1,0 +1,206 @@
+openapi: 3.2.0
+info:
+  title: Zoca Platform Scheduling Breaks API
+  description: 'The Zoca platform API behind the Zoca web app and mobile apps: scheduling, website generation, Google Business Profile, discovery/local SEO, social media, booking enquiries, offers, clients, staff, billing and the Zoca "brain" agent layer.'
+  version: 3.20.10
+  contact: {}
+  x-apievangelist-note: Harvested verbatim from https://api.zoca.ai/swagger.json. The provider ships the default NestJS Swagger metadata (title "API Documentation", empty servers[]); title/description/servers were set by API Evangelist for identification and the unmodified original is preserved at openapi/_original/zoca-platform-swagger.json. Every path, operation, summary, parameter and response is exactly as published.
+servers:
+- url: https://api.zoca.ai
+  description: Production
+tags:
+- name: Scheduling Breaks
+paths:
+  /scheduling/breaks:
+    post:
+      operationId: t_value
+      parameters: []
+      responses:
+        '201':
+          description: ''
+      summary: Create a scheduling break
+      tags:
+      - Scheduling Breaks
+  /scheduling/breaks/recurring:
+    post:
+      operationId: t_value
+      parameters: []
+      responses:
+        '201':
+          description: ''
+      summary: Create a recurring time-off series
+      tags:
+      - Scheduling Breaks
+  /scheduling/breaks/recurring/{seriesId}:
+    get:
+      operationId: t_value
+      parameters: []
+      responses:
+        '200':
+          description: ''
+      summary: Get a recurring time-off series
+      tags:
+      - Scheduling Breaks
+  /scheduling/breaks/{id}/recurring:
+    patch:
+      operationId: t_value
+      parameters:
+      - name: scope
+        required: true
+        in: query
+        schema:
+          enum:
+          - THIS_EVENT
+          - THIS_AND_FOLLOWING
+          type: string
+      responses:
+        '200':
+          description: ''
+      summary: Edit a time-off occurrence with scope
+      tags:
+      - Scheduling Breaks
+    delete:
+      operationId: t_value
+      parameters:
+      - name: scope
+        required: true
+        in: query
+        schema:
+          enum:
+          - THIS_EVENT
+          - THIS_AND_FOLLOWING
+          type: string
+      responses:
+        '200':
+          description: ''
+      summary: Delete a time-off occurrence with scope
+      tags:
+      - Scheduling Breaks
+  /scheduling/breaks/{userEntityId}:
+    get:
+      operationId: t_value
+      parameters: []
+      responses:
+        '200':
+          description: ''
+      summary: Get breaks for user entity (service provider)
+      tags:
+      - Scheduling Breaks
+  /scheduling/breaks/{id}:
+    patch:
+      operationId: t_value
+      parameters: []
+      responses:
+        '200':
+          description: ''
+      summary: Update a scheduling break
+      tags:
+      - Scheduling Breaks
+    delete:
+      operationId: t_value
+      parameters: []
+      responses:
+        '200':
+          description: ''
+      summary: Delete a scheduling break
+      tags:
+      - Scheduling Breaks
+  /scheduling/breaks/break/{id}:
+    get:
+      operationId: t_value
+      parameters:
+      - name: locationEntityId
+        required: false
+        in: query
+        description: Location entity ID for timezone conversion
+        schema:
+          type: string
+      responses:
+        '200':
+          description: ''
+      summary: Get a break by ID
+      tags:
+      - Scheduling Breaks
+  /scheduling/breaks/{userEntityId}/available-slots/{locationEntityId}:
+    get:
+      operationId: t_value
+      parameters:
+      - name: slotId
+        required: false
+        in: query
+        description: Specific blocked slot ID - allows the owner to see it as available
+        schema:
+          type: string
+      - name: clientId
+        required: false
+        in: query
+        description: Client ID who blocked the slot - allows them to see their own blocked slot
+        schema:
+          type: string
+      - name: duration
+        required: true
+        in: query
+        description: Slot duration in minutes
+        schema:
+          type: number
+      - name: date
+        required: true
+        in: query
+        description: Date in YYYY-MM-DD format
+        schema:
+          type: string
+      responses:
+        '200':
+          description: ''
+      summary: Get available time slots for a service provider on a date
+      tags:
+      - Scheduling Breaks
+  /scheduling/breaks/{userEntityId}/available-days/{locationEntityId}:
+    get:
+      operationId: t_value
+      parameters:
+      - name: clientId
+        required: false
+        in: query
+        description: Client ID - allows them to see days with their own blocked slots as available
+        schema:
+          type: string
+      - name: includeTimezone
+        required: false
+        in: query
+        description: If true, includes location timezone in response
+        schema:
+          type: boolean
+      - name: duration
+        required: true
+        in: query
+        description: Slot duration in minutes
+        schema:
+          type: number
+      - name: nextDays
+        required: true
+        in: query
+        description: Number of days to check (max 30)
+        schema:
+          type: number
+      - name: inputDate
+        required: true
+        in: query
+        description: Starting date in YYYY-MM-DD format
+        schema:
+          type: string
+      responses:
+        '200':
+          description: ''
+      summary: Get available days with slots for a service provider over a date range
+      tags:
+      - Scheduling Breaks
+components:
+  securitySchemes:
+    access-token:
+      scheme: bearer
+      bearerFormat: JWT
+      type: http
+      name: Authorization
+      description: Enter JWT token in the format Bearer <token>
+      in: header

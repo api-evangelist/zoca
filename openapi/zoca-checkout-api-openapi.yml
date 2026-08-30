@@ -1,0 +1,506 @@
+openapi: 3.2.0
+info:
+  title: Zoca Platform Checkout API
+  description: 'The Zoca platform API behind the Zoca web app and mobile apps: scheduling, website generation, Google Business Profile, discovery/local SEO, social media, booking enquiries, offers, clients, staff, billing and the Zoca "brain" agent layer.'
+  version: 3.20.10
+  contact: {}
+  x-apievangelist-note: Harvested verbatim from https://api.zoca.ai/swagger.json. The provider ships the default NestJS Swagger metadata (title "API Documentation", empty servers[]); title/description/servers were set by API Evangelist for identification and the unmodified original is preserved at openapi/_original/zoca-platform-swagger.json. Every path, operation, summary, parameter and response is exactly as published.
+servers:
+- url: https://api.zoca.ai
+  description: Production
+tags:
+- name: Checkout
+paths:
+  /scheduling/checkout/pay:
+    post:
+      description: Unified payment endpoint supporting CASH, CARD, CARD_ON_FILE, and TAP_TO_PAY. Cash payments are immediately COMPLETED. Card payments return PROCESSING status and are confirmed via webhook.
+      operationId: t_value
+      parameters: []
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/e'
+      responses:
+        '200':
+          description: Payment processed successfully
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  paymentId:
+                    type: string
+                    format: uuid
+                    description: Payment record ID
+                  status:
+                    type: string
+                    enum:
+                    - COMPLETED
+                    - PROCESSING
+                    - FAILED
+                    description: Payment status
+                  saleStatus:
+                    type: string
+                    enum:
+                    - OPEN
+                    - PARTIALLY_PAID
+                    - PAID
+                    description: Updated sale status
+                  amountPaid:
+                    type: number
+                    description: Total amount paid in cents
+                  amountDue:
+                    type: number
+                    description: Remaining amount due in cents
+                  processingFeeAmount:
+                    type: number
+                    description: Processing fee charged for this payment in dollars
+                  preProcessingAmount:
+                    type: number
+                    description: Base amount used for fee calculation in dollars
+                  chargeAmount:
+                    type: number
+                    description: Gross amount charged to the customer in dollars
+                  stripePaymentIntentId:
+                    type: string
+                    description: Stripe PaymentIntent ID (card payments only)
+                  clientSecret:
+                    type: string
+                    description: Client secret for confirming payment (new card only)
+                  cardBrand:
+                    type: string
+                    description: Card brand (visa, mastercard, etc.)
+                  cardLast4:
+                    type: string
+                    description: Last 4 digits of card
+                  latestAttemptId:
+                    type: string
+                    description: CARD_READER only — id of the reader attempt row for cancel/retry polling
+                  message:
+                    type: string
+                    description: Status message
+        '400':
+          description: Bad request - validation failed
+        '404':
+          description: Sale not found
+      summary: Process a payment for a sale
+      tags:
+      - Checkout
+  /scheduling/checkout/processing-fee-quote:
+    post:
+      description: Returns the pass-through processing fee and gross customer charge for the selected payment method.
+      operationId: t_value
+      parameters: []
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/e'
+      responses:
+        '200':
+          description: ''
+      summary: Quote checkout processing fee
+      tags:
+      - Checkout
+  /scheduling/checkout/sale/{saleId}/tip:
+    patch:
+      description: Persists the tip on the sale (override, not accumulate) before collecting payment so the checkout total and processing-fee quote stay correct. Omitting additionalTip (or sending a zero value) clears the tip.
+      operationId: t_value
+      parameters:
+      - name: saleId
+        required: true
+        in: path
+        description: Sale ID
+        schema:
+          type: string
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/e'
+      responses:
+        '200':
+          description: Tip updated; returns the updated sale summary
+        '404':
+          description: Sale not found
+      summary: Update the tip on a sale
+      tags:
+      - Checkout
+  /scheduling/checkout/cancel-payment/{paymentId}:
+    post:
+      description: Marks a payment as CANCELLED. Only PENDING or PROCESSING payments can be cancelled. If Stripe processes the payment after cancellation, an automatic refund is triggered.
+      operationId: t_value
+      parameters:
+      - name: paymentId
+        required: true
+        in: path
+        description: Payment ID
+        schema:
+          type: string
+      responses:
+        '200':
+          description: Payment cancelled successfully
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  id:
+                    type: string
+                    format: uuid
+                    description: Payment ID
+                  status:
+                    type: string
+                    enum:
+                    - CANCELLED
+                    description: Payment status
+                  saleId:
+                    type: string
+                    format: uuid
+                    description: Sale ID
+                  stripePaymentIntentCancelled:
+                    type: boolean
+                    description: Whether Stripe PaymentIntent was successfully cancelled
+        '400':
+          description: Payment cannot be cancelled
+        '404':
+          description: Payment not found
+      summary: Cancel a payment
+      tags:
+      - Checkout
+  /scheduling/checkout/split-payment:
+    post:
+      description: Handles multiple payments in sequence for a single checkout. Cash portion is processed first, then card portion. Automatically determines FINAL vs PARTIAL payment type.
+      operationId: t_value
+      parameters: []
+      responses:
+        '200':
+          description: Split payment processed successfully
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  cashPayment:
+                    type: object
+                    description: Cash payment details (if cash amount provided)
+                  cardPayment:
+                    type: object
+                    description: Card payment details (if card amount provided)
+                  saleStatus:
+                    type: string
+                    description: Updated sale status
+                  amountPaid:
+                    type: number
+                    description: Total amount paid in cents
+                  amountDue:
+                    type: number
+                    description: Remaining amount due in cents
+        '400':
+          description: Bad request - validation failed
+        '404':
+          description: Sale not found
+      summary: Process a split payment (cash + card)
+      tags:
+      - Checkout
+  /scheduling/checkout/sale/{saleId}:
+    get:
+      description: Retrieves complete sale information including amounts, payment history, and summary. Use this to populate the checkout UI.
+      operationId: t_value
+      parameters:
+      - name: saleId
+        required: true
+        in: path
+        description: Sale ID
+        schema:
+          type: string
+      responses:
+        '200':
+          description: Sale details retrieved successfully
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  sale:
+                    type: object
+                    description: Sale record
+                  payments:
+                    type: array
+                    items:
+                      type: object
+                    description: Payment history
+                  summary:
+                    type: object
+                    properties:
+                      subtotal:
+                        type: number
+                        description: Subtotal in cents
+                      discountAmount:
+                        type: number
+                        description: Discount amount in cents
+                      taxAmount:
+                        type: number
+                        description: Tax amount in cents
+                      tipAmount:
+                        type: number
+                        description: Tip amount in cents
+                      preProcessingAmount:
+                        type: number
+                        description: Sale amount before processing fees in dollars
+                      processingFee:
+                        type: number
+                        description: Collected processing fee in dollars
+                      totalAmount:
+                        type: number
+                        description: Total amount in cents
+                      amountPaid:
+                        type: number
+                        description: Amount paid in cents
+                      amountDue:
+                        type: number
+                        description: Amount due in cents
+                      status:
+                        type: string
+                        description: Sale status
+        '404':
+          description: Sale not found
+      summary: Get sale details for checkout
+      tags:
+      - Checkout
+  /scheduling/checkout/booking/{bookingId}:
+    get:
+      description: Retrieves sale details using booking ID. Each booking has exactly one sale, so this provides a convenient lookup.
+      operationId: t_value
+      parameters:
+      - name: bookingId
+        required: true
+        in: path
+        description: Booking ID
+        schema:
+          type: string
+      responses:
+        '200':
+          description: Sale details retrieved successfully
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  sale:
+                    type: object
+                    description: Sale record
+                  payments:
+                    type: array
+                    items:
+                      type: object
+                    description: Payment history
+                  summary:
+                    type: object
+                    description: Payment summary
+        '404':
+          description: Sale not found for booking
+      summary: Get sale by booking ID for checkout
+      tags:
+      - Checkout
+  /scheduling/checkout/send-payment-link:
+    post:
+      description: Generates a Stripe Checkout Session URL and sends it to the client via SMS or EMAIL. If price is null, it will be calculated from the sale. Tip is optional.
+      operationId: t_value
+      parameters: []
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/e'
+      responses:
+        '200':
+          description: Payment link sent successfully
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  success:
+                    type: boolean
+                    description: Whether the operation succeeded
+                  paymentUrl:
+                    type: string
+                    format: uri
+                    description: Stripe Checkout Session URL
+                    example: https://checkout.stripe.com/c/pay/cs_test_a1...
+                  sessionId:
+                    type: string
+                    description: Stripe Checkout Session ID
+                    example: cs_test_a1b2c3d4e5f6g7h8i9j0
+                  commStatus:
+                    type: string
+                    description: Communication delivery status
+                    example: SENT
+                  amount:
+                    type: number
+                    description: Total amount including tip in cents
+        '400':
+          description: Bad request - validation failed
+        '404':
+          description: Sale or client not found
+      summary: Send a payment link via SMS or EMAIL
+      tags:
+      - Checkout
+  /scheduling/checkout/generate-payment-link:
+    post:
+      description: Creates a Stripe Checkout Session URL without sending it. Returns the URL that can be shared with the client through any channel.
+      operationId: t_value
+      parameters: []
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/e'
+      responses:
+        '200':
+          description: Payment link generated successfully
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  url:
+                    type: string
+                    format: uri
+                    description: Stripe Checkout Session URL
+                  sessionId:
+                    type: string
+                    description: Stripe Checkout Session ID
+                  amount:
+                    type: number
+                    description: Total amount including tip in cents
+        '400':
+          description: Bad request - validation failed
+        '404':
+          description: Sale or booking not found
+      summary: Generate a payment link without sending
+      tags:
+      - Checkout
+  /scheduling/checkout/generate-payment-qr:
+    post:
+      description: Creates a Stripe Checkout Session and generates a scannable QR code image. Returns both the QR code URL and the payment link URL. Clients can scan the QR code to open the payment page.
+      operationId: t_value
+      parameters: []
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/e'
+      responses:
+        '200':
+          description: QR code generated successfully
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  qrURL:
+                    type: string
+                    format: uri
+                    description: QR code image URL (can be null if generation fails)
+                    example: https://s3.amazonaws.com/bucket/qr-code.png
+                  paymentUrl:
+                    type: string
+                    format: uri
+                    description: Stripe Checkout Session URL
+                    example: https://checkout.stripe.com/c/pay/cs_test_a1...
+                  amount:
+                    type: number
+                    description: Total amount including tip in cents
+        '400':
+          description: Bad request - validation failed
+        '404':
+          description: Sale or booking not found
+      summary: Generate a QR code for payment link
+      tags:
+      - Checkout
+  /scheduling/checkout/offers/override/entity/{entityId}:
+    post:
+      description: Returns discount amount and warnings. Staff confirms after reviewing warnings. Requires clientId (customer), serviceId, and servicePrice in the request body.
+      operationId: t_value
+      parameters: []
+      responses:
+        '200':
+          description: Override calculated with warnings
+      summary: 'Staff override: apply an offer regardless of restrictions'
+      tags:
+      - Checkout
+  /scheduling/checkout/offers/override/batch/entity/{entityId}:
+    post:
+      description: Allows staff to stack non-stackable offers on services. Returns per-offer discounts and warnings about stacking violations.
+      operationId: t_value
+      parameters: []
+      responses:
+        '200':
+          description: Batch override calculated with warnings
+      summary: 'Staff batch override: stack multiple offers with warnings'
+      tags:
+      - Checkout
+  /scheduling/checkout/reader/cancel:
+    post:
+      operationId: t_value
+      parameters: []
+      responses:
+        '204':
+          description: ''
+      summary: Cancel an in-flight reader prompt
+      tags:
+      - Checkout
+  /scheduling/checkout/reader/retry:
+    post:
+      operationId: t_value
+      parameters: []
+      responses:
+        '200':
+          description: ''
+      summary: Retry a failed reader payment using a (possibly different) reader
+      tags:
+      - Checkout
+components:
+  schemas:
+    e:
+      type: object
+      properties:
+        id:
+          type: number
+        entityId:
+          type: string
+        attribute:
+          type: string
+        value:
+          type:
+          - object
+          - 'null'
+        metadata:
+          type:
+          - object
+          - 'null'
+        createdAt:
+          type:
+          - object
+          - 'null'
+      required:
+      - id
+      - entityId
+      - attribute
+  securitySchemes:
+    access-token:
+      scheme: bearer
+      bearerFormat: JWT
+      type: http
+      name: Authorization
+      description: Enter JWT token in the format Bearer <token>
+      in: header

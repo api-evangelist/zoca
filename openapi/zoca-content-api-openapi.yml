@@ -1,0 +1,1492 @@
+openapi: 3.2.0
+info:
+  title: Zoca Content API
+  contact: {}
+  x-refined-note:
+  - x-apievangelist-note differs across the merged source definitions and was not carried
+  version: '1.0'
+  description: 'Operations tagged Content across 2 of this provider''s published API definitions: zoca-platform-openapi.yml, zoca-tasks-openapi.yml. Each path carries the servers of the definition it was published in.'
+servers:
+- url: https://api.zoca.ai
+  description: Production
+- url: https://tasks.zoca.ai
+  description: Production
+tags:
+- name: Content
+paths:
+  /content/multilocation/{businessEntityId}/overview:
+    get:
+      description: Resolves the authenticated user's managed locations and aggregates live/pipeline rollups, an 8-week publishing-velocity series, and per-region + per-location rollups across the network.
+      operationId: t_value
+      parameters:
+      - name: businessEntityId
+        required: true
+        in: path
+        description: Business entity UUID
+        schema:
+          example: c65a879b-bf21-4b5c-ace5-51992c4a1e62
+      responses:
+        '200':
+          description: ''
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/e'
+      summary: Get network-wide content overview for a multi-location business
+      tags:
+      - Content
+    servers:
+    - url: https://api.zoca.ai
+      description: Production
+  /content/multilocation/{businessEntityId}/pieces:
+    get:
+      description: Flattens the content queue across every location, filters in-memory by type/channel/status/region/search, sorts by publish date, and paginates.
+      operationId: t_value
+      parameters:
+      - name: businessEntityId
+        required: true
+        in: path
+        description: Business entity UUID
+        schema:
+          example: c65a879b-bf21-4b5c-ace5-51992c4a1e62
+      responses:
+        '200':
+          description: ''
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/e'
+      summary: Get paginated content pieces for a multi-location business
+      tags:
+      - Content
+    servers:
+    - url: https://api.zoca.ai
+      description: Production
+  /tasks/api/v1/content/post/{entityId}/{platformId}:
+    post:
+      operationId: t_value
+      parameters:
+      - name: postType
+        required: true
+        in: query
+        description: Post type (REGULAR_POST, OFFER, etc.)
+        schema:
+          enum:
+          - REGULAR_POST
+          - OFFER
+          - EVENT
+          - QUESTION_POST
+          - ANSWER_POST
+          type: string
+      - name: platformId
+        required: true
+        in: path
+        description: Platform ID
+        schema:
+          type: string
+      - name: entityId
+        required: true
+        in: path
+        description: Entity ID
+        schema:
+          type: string
+      responses:
+        '201':
+          description: Returns the created post ID.
+          content:
+            application/json:
+              schema:
+                type: array
+                items:
+                  $ref: '#/components/schemas/e_2'
+      summary: Create a Post with Pre-Generated Content
+      tags:
+      - Content
+      security:
+      - access-token: []
+    servers:
+    - url: https://tasks.zoca.ai
+      description: Production
+  /tasks/api/v1/content/generate/{entityId}/{platformId}:
+    post:
+      operationId: t_value
+      parameters:
+      - name: postType
+        required: true
+        in: query
+        description: Post type (REGULAR_POST, OFFER, etc.)
+        schema:
+          enum:
+          - REGULAR_POST
+          - OFFER
+          - EVENT
+          - QUESTION_POST
+          - ANSWER_POST
+          type: string
+      - name: platformId
+        required: true
+        in: path
+        description: Platform ID
+        schema:
+          type: string
+      - name: entityId
+        required: true
+        in: path
+        description: Entity ID
+        schema:
+          type: string
+      responses:
+        '200':
+          description: Returns the generated content.
+          content:
+            application/json:
+              schema:
+                type: object
+      summary: Generate Content Only Without Creating a Post
+      tags:
+      - Content
+      security:
+      - access-token: []
+    servers:
+    - url: https://tasks.zoca.ai
+      description: Production
+  /tasks/api/v1/content/generate-and-create/{entityId}/{platformId}:
+    post:
+      operationId: t_value
+      parameters:
+      - name: postType
+        required: true
+        in: query
+        description: Post type (REGULAR_POST, OFFER, etc.)
+        schema:
+          enum:
+          - REGULAR_POST
+          - OFFER
+          - EVENT
+          - QUESTION_POST
+          - ANSWER_POST
+          type: string
+      - name: platformId
+        required: true
+        in: path
+        description: Platform ID
+        schema:
+          type: string
+      - name: entityId
+        required: true
+        in: path
+        description: Entity ID
+        schema:
+          type: string
+      responses:
+        '201':
+          description: Returns the created post ID.
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/e_2'
+      summary: Generate and Create a Post in One Step
+      tags:
+      - Content
+      security:
+      - access-token: []
+    servers:
+    - url: https://tasks.zoca.ai
+      description: Production
+  /tasks/api/v1/content/user-config/{entityId}:
+    post:
+      operationId: t_value
+      parameters:
+      - name: entityId
+        required: true
+        in: path
+        description: Entity ID
+        schema:
+          type: string
+      responses:
+        '201':
+          description: User config created successfully.
+      summary: Create User Config
+      tags:
+      - Content
+      security:
+      - access-token: []
+    get:
+      operationId: t_value
+      parameters:
+      - name: entityId
+        required: true
+        in: path
+        description: Entity ID
+        schema:
+          type: string
+      responses:
+        '200':
+          description: Returns user config.
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/e_2'
+      summary: Get User Config
+      tags:
+      - Content
+      security:
+      - access-token: []
+    put:
+      operationId: t_value
+      parameters:
+      - name: entityId
+        required: true
+        in: path
+        description: Entity ID
+        schema:
+          type: string
+      responses:
+        '204':
+          description: User config updated successfully.
+      summary: Update User Config
+      tags:
+      - Content
+      security:
+      - access-token: []
+    delete:
+      operationId: t_value
+      parameters:
+      - name: entityId
+        required: true
+        in: path
+        description: Entity ID
+        schema:
+          type: string
+      responses:
+        '204':
+          description: User config deleted successfully.
+      summary: Delete User Config
+      tags:
+      - Content
+      security:
+      - access-token: []
+    servers:
+    - url: https://tasks.zoca.ai
+      description: Production
+  /tasks/api/v1/content/user-config/active:
+    get:
+      operationId: t_value
+      parameters: []
+      responses:
+        '200':
+          description: Returns a list of active user configs.
+          content:
+            application/json:
+              schema:
+                type: array
+                items:
+                  $ref: '#/components/schemas/e_2'
+      summary: Get All Active User Configs
+      tags:
+      - Content
+      security:
+      - access-token: []
+    servers:
+    - url: https://tasks.zoca.ai
+      description: Production
+  /tasks/api/v1/content/active-entities:
+    get:
+      operationId: t_value
+      parameters: []
+      responses:
+        '200':
+          description: Returns a list of active ids.
+      summary: Get All Active User Entity IDs
+      tags:
+      - Content
+      security:
+      - access-token: []
+    servers:
+    - url: https://tasks.zoca.ai
+      description: Production
+  /tasks/api/v1/content/inactive-entities:
+    get:
+      operationId: t_value
+      parameters: []
+      responses:
+        '200':
+          description: Returns a list of active ids.
+      summary: Get All Active User Entity IDs
+      tags:
+      - Content
+      security:
+      - access-token: []
+    servers:
+    - url: https://tasks.zoca.ai
+      description: Production
+  /tasks/api/v1/content/platform-config:
+    post:
+      operationId: t_value
+      parameters: []
+      responses:
+        '201':
+          description: Platform config created successfully.
+      summary: Create Platform Config
+      tags:
+      - Content
+      security:
+      - access-token: []
+    get:
+      operationId: t_value
+      parameters:
+      - name: type
+        required: false
+        in: query
+        description: 'Optional: Filter platforms by type (GBP, FACEBOOK, etc.)'
+        schema:
+          enum:
+          - GBP
+          - FACEBOOK
+          - INSTAGRAM
+          - TWITTER
+          - LINKEDIN
+          type: string
+      responses:
+        '200':
+          description: Returns a list of active platform configurations, optionally filtered by type.
+          content:
+            application/json:
+              schema:
+                type: array
+                items:
+                  $ref: '#/components/schemas/e_2'
+      summary: 'Get Active Platforms (Optional: Filter by Type)'
+      tags:
+      - Content
+      security:
+      - access-token: []
+    servers:
+    - url: https://tasks.zoca.ai
+      description: Production
+  /tasks/api/v1/content/platform-config/{platformId}:
+    get:
+      operationId: t_value
+      parameters:
+      - name: platformId
+        required: true
+        in: path
+        description: Platform ID
+        schema:
+          type: string
+      responses:
+        '200':
+          description: Returns platform config.
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/e_2'
+      summary: Get Platform Config
+      tags:
+      - Content
+      security:
+      - access-token: []
+    put:
+      operationId: t_value
+      parameters:
+      - name: platformId
+        required: true
+        in: path
+        description: Platform ID
+        schema:
+          type: string
+      responses:
+        '204':
+          description: Platform config updated successfully.
+      summary: Update Platform Config
+      tags:
+      - Content
+      security:
+      - access-token: []
+    delete:
+      operationId: t_value
+      parameters:
+      - name: platformId
+        required: true
+        in: path
+        description: Platform ID
+        schema:
+          type: string
+      responses:
+        '204':
+          description: Platform config deleted successfully.
+      summary: Delete Platform Config
+      tags:
+      - Content
+      security:
+      - access-token: []
+    servers:
+    - url: https://tasks.zoca.ai
+      description: Production
+  /tasks/api/v1/content/posting-platforms:
+    get:
+      operationId: t_value
+      parameters: []
+      responses:
+        '200':
+          description: Returns a list of active platform configurations, optionally filtered by type.
+          content:
+            application/json:
+              schema:
+                type: array
+                items:
+                  $ref: '#/components/schemas/e_2'
+      summary: 'Get Posting Platforms '
+      tags:
+      - Content
+      security:
+      - access-token: []
+    servers:
+    - url: https://tasks.zoca.ai
+      description: Production
+  /tasks/api/v1/content/platform-config/{platformId}/status:
+    put:
+      operationId: t_value
+      parameters:
+      - name: platformId
+        required: true
+        in: path
+        description: Platform ID
+        schema:
+          type: string
+      responses:
+        '204':
+          description: Platform status updated successfully.
+      summary: Update Platform Status
+      tags:
+      - Content
+      security:
+      - access-token: []
+    servers:
+    - url: https://tasks.zoca.ai
+      description: Production
+  /tasks/api/v1/content/platform-config/{platformId}/credentials:
+    put:
+      operationId: t_value
+      parameters:
+      - name: platformId
+        required: true
+        in: path
+        description: Platform ID
+        schema:
+          type: string
+      responses:
+        '204':
+          description: Platform credentials updated successfully.
+      summary: Update Platform Credentials
+      tags:
+      - Content
+      security:
+      - access-token: []
+    servers:
+    - url: https://tasks.zoca.ai
+      description: Production
+  /tasks/api/v1/content/platform-config/health/{healthStatus}:
+    get:
+      operationId: t_value
+      parameters:
+      - name: healthStatus
+        required: true
+        in: path
+        description: Health Status
+        schema:
+          enum:
+          - healthy
+          - degraded
+          - down
+          type: string
+      responses:
+        '200':
+          description: Returns platforms with specified health status.
+          content:
+            application/json:
+              schema:
+                type: array
+                items:
+                  $ref: '#/components/schemas/e_2'
+      summary: Get Platforms by Health Status
+      tags:
+      - Content
+      security:
+      - access-token: []
+    servers:
+    - url: https://tasks.zoca.ai
+      description: Production
+  /tasks/api/v1/content/schedule/post/{postId}:
+    post:
+      operationId: t_value
+      parameters:
+      - name: postId
+        required: true
+        in: path
+        description: Post ID
+        schema:
+          type: string
+      responses:
+        '201':
+          description: Post scheduled successfully.
+          content:
+            application/json:
+              schema:
+                type: string
+      summary: Schedule a Post
+      tags:
+      - Content
+      security:
+      - access-token: []
+    servers:
+    - url: https://tasks.zoca.ai
+      description: Production
+  /tasks/api/v1/content/schedule/post/{scheduleId}:
+    delete:
+      operationId: t_value
+      parameters:
+      - name: scheduleId
+        required: true
+        in: path
+        description: Schedule ID
+        schema:
+          type: string
+      responses:
+        '204':
+          description: Scheduled post cancelled successfully.
+      summary: Cancel a Scheduled Post
+      tags:
+      - Content
+      security:
+      - access-token: []
+    get:
+      operationId: t_value
+      parameters:
+      - name: scheduleId
+        required: true
+        in: path
+        description: Schedule ID
+        schema:
+          type: string
+      responses:
+        '200':
+          description: Returns scheduled post.
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/e_2'
+      summary: Get Scheduled Post
+      tags:
+      - Content
+      security:
+      - access-token: []
+    servers:
+    - url: https://tasks.zoca.ai
+      description: Production
+  /tasks/api/v1/content/schedule/upcoming:
+    get:
+      operationId: t_value
+      parameters: []
+      responses:
+        '200':
+          description: Returns upcoming scheduled posts.
+          content:
+            application/json:
+              schema:
+                type: array
+                items:
+                  $ref: '#/components/schemas/e_2'
+      summary: Get Upcoming Scheduled Posts
+      tags:
+      - Content
+      security:
+      - access-token: []
+    servers:
+    - url: https://tasks.zoca.ai
+      description: Production
+  /tasks/api/v1/content/schedule/previous:
+    get:
+      operationId: t_value
+      parameters: []
+      responses:
+        '200':
+          description: Returns previously scheduled posts.
+          content:
+            application/json:
+              schema:
+                type: array
+                items:
+                  $ref: '#/components/schemas/e_2'
+      summary: Get Previous Scheduled Posts
+      tags:
+      - Content
+      security:
+      - access-token: []
+    servers:
+    - url: https://tasks.zoca.ai
+      description: Production
+  /tasks/api/v1/content/approve/post/{postId}:
+    post:
+      operationId: t_value
+      parameters:
+      - name: approvalType
+        required: true
+        in: query
+        description: Type of approval
+        schema:
+          enum:
+          - admin
+          - user
+          type: string
+      - name: approvedBy
+        required: true
+        in: query
+        description: User ID approving the post
+        schema:
+          type: string
+      - name: postId
+        required: true
+        in: path
+        description: Post ID
+        schema:
+          type: string
+      responses:
+        '204':
+          description: Post approved successfully.
+      summary: Approve a Post
+      tags:
+      - Content
+      security:
+      - access-token: []
+    servers:
+    - url: https://tasks.zoca.ai
+      description: Production
+  /tasks/api/v1/content/reject/post/{postId}:
+    post:
+      operationId: t_value
+      parameters:
+      - name: reason
+        required: true
+        in: query
+        description: Rejection reason
+        schema:
+          type: string
+      - name: approvalType
+        required: true
+        in: query
+        description: Type of rejection
+        schema:
+          enum:
+          - admin
+          - user
+          type: string
+      - name: rejectedBy
+        required: true
+        in: query
+        description: User ID rejecting the post
+        schema:
+          type: string
+      - name: postId
+        required: true
+        in: path
+        description: Post ID
+        schema:
+          type: string
+      responses:
+        '204':
+          description: Post rejected successfully.
+      summary: Reject a Post
+      tags:
+      - Content
+      security:
+      - access-token: []
+    servers:
+    - url: https://tasks.zoca.ai
+      description: Production
+  /tasks/api/v1/content/approval-history/post/{postId}:
+    get:
+      operationId: t_value
+      parameters:
+      - name: postId
+        required: true
+        in: path
+        description: Post ID
+        schema:
+          type: string
+      responses:
+        '200':
+          description: Returns post approval history.
+          content:
+            application/json:
+              schema:
+                type: array
+                items:
+                  type: object
+      summary: Get Post Approval History
+      tags:
+      - Content
+      security:
+      - access-token: []
+    servers:
+    - url: https://tasks.zoca.ai
+      description: Production
+  /tasks/api/v1/content/request-admin-approval/post/{postId}:
+    post:
+      operationId: t_value
+      parameters:
+      - name: postId
+        required: true
+        in: path
+        description: Post ID
+        schema:
+          type: string
+      responses:
+        '204':
+          description: Admin approval requested successfully.
+      summary: Request Admin Approval for a Post
+      tags:
+      - Content
+      security:
+      - access-token: []
+    servers:
+    - url: https://tasks.zoca.ai
+      description: Production
+  /tasks/api/v1/content/posts/{entityId}:
+    get:
+      operationId: t_value
+      parameters:
+      - name: to
+        required: false
+        in: query
+        description: End date (ISO format)
+        schema:
+          type: string
+      - name: from
+        required: false
+        in: query
+        description: Start date (ISO format)
+        schema:
+          type: string
+      - name: limit
+        required: false
+        in: query
+        description: Results per page
+        schema:
+          type: number
+      - name: page
+        required: false
+        in: query
+        description: Page number
+        schema:
+          type: number
+      - name: search
+        required: false
+        in: query
+        description: Search term
+        schema:
+          type: string
+      - name: platform
+        required: false
+        in: query
+        description: Comma-separated list of platform filters
+        schema:
+          type: string
+      - name: type
+        required: false
+        in: query
+        description: Comma-separated list of post type filters
+        schema:
+          type: string
+      - name: status
+        required: false
+        in: query
+        description: Comma-separated list of status filters
+        schema:
+          type: string
+      - name: entityId
+        required: true
+        in: path
+        description: Entity ID
+        schema:
+          type: string
+      responses:
+        '200':
+          description: Returns paginated list of posts for the entity.
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/e_2'
+      summary: List Posts for Entity with Filtering
+      tags:
+      - Content
+      security:
+      - access-token: []
+    servers:
+    - url: https://tasks.zoca.ai
+      description: Production
+  /tasks/api/v1/content/schedule/posts:
+    get:
+      operationId: t_value
+      parameters:
+      - name: to
+        required: false
+        in: query
+        description: End date (ISO format)
+        schema:
+          type: string
+      - name: from
+        required: false
+        in: query
+        description: Start date (ISO format)
+        schema:
+          type: string
+      - name: limit
+        required: false
+        in: query
+        description: Results per page
+        schema:
+          type: number
+      - name: page
+        required: false
+        in: query
+        description: Page number
+        schema:
+          type: number
+      - name: platformId
+        required: false
+        in: query
+        description: Comma-separated list of platform IDs
+        schema:
+          type: string
+      - name: entityId
+        required: false
+        in: query
+        description: Entity ID
+        schema:
+          type: string
+      responses:
+        '200':
+          description: Returns paginated list of scheduled posts.
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/e_2'
+      summary: Get Scheduled Posts with Filtering
+      tags:
+      - Content
+      security:
+      - access-token: []
+    servers:
+    - url: https://tasks.zoca.ai
+      description: Production
+  /tasks/api/v1/content/items/by-blog/{blogId}:
+    get:
+      operationId: t_value
+      parameters:
+      - name: blogId
+        required: true
+        in: path
+        description: Blog UUID
+        schema:
+          type: string
+      responses:
+        '200':
+          description: Returns the matching content item id and entity id.
+        '404':
+          description: No content item references this blog.
+      summary: Resolve a blog UUID to its content-queue item
+      tags:
+      - Content
+      security:
+      - access-token: []
+    servers:
+    - url: https://tasks.zoca.ai
+      description: Production
+  /tasks/api/v1/content/post/{postId}:
+    get:
+      operationId: t_value
+      parameters:
+      - name: postId
+        required: true
+        in: path
+        description: Post ID
+        schema:
+          type: string
+      responses:
+        '200':
+          description: Returns the post if found.
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/e_2'
+        '404':
+          description: Post not found.
+      summary: Get Post by ID
+      tags:
+      - Content
+      security:
+      - access-token: []
+    put:
+      operationId: t_value
+      parameters:
+      - name: postId
+        required: true
+        in: path
+        description: Post ID
+        schema:
+          type: string
+      responses:
+        '204':
+          description: Post updated successfully.
+      summary: Update Post Content and/or Status
+      tags:
+      - Content
+      security:
+      - access-token: []
+    servers:
+    - url: https://tasks.zoca.ai
+      description: Production
+  /tasks/api/v1/content/schedule/availability/{entityId}/{date}:
+    get:
+      operationId: t_value
+      parameters:
+      - name: platformId
+        required: false
+        in: query
+        description: Optional platform ID to filter slots
+        schema:
+          type: string
+      - name: date
+        required: true
+        in: path
+        description: Date (YYYY-MM-DD)
+        schema:
+          type: string
+      - name: entityId
+        required: true
+        in: path
+        description: Entity ID
+        schema:
+          type: string
+      responses:
+        '200':
+          description: Returns available time slots for the specified date.
+          content:
+            application/json:
+              schema:
+                type: array
+                items:
+                  $ref: '#/components/schemas/e_2'
+      summary: Get Available Time Slots for Scheduling
+      tags:
+      - Content
+      security:
+      - access-token: []
+    servers:
+    - url: https://tasks.zoca.ai
+      description: Production
+  /tasks/api/v1/content/execute/scheduled-post/{scheduleId}:
+    post:
+      operationId: t_value
+      parameters:
+      - name: scheduleId
+        required: true
+        in: path
+        description: Schedule ID
+        schema:
+          type: string
+      responses:
+        '200':
+          description: Returns the execution result.
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/e_2'
+      summary: Manually Execute a Scheduled Post
+      tags:
+      - Content
+      security:
+      - access-token: []
+    servers:
+    - url: https://tasks.zoca.ai
+      description: Production
+  /tasks/api/v1/content/execute/batch:
+    post:
+      operationId: t_value
+      parameters: []
+      responses:
+        '200':
+          description: Returns the execution results.
+          content:
+            application/json:
+              schema:
+                type: array
+                items:
+                  $ref: '#/components/schemas/e_2'
+      summary: Execute a Batch of Scheduled Posts
+      tags:
+      - Content
+      security:
+      - access-token: []
+    servers:
+    - url: https://tasks.zoca.ai
+      description: Production
+  /tasks/api/v1/content/execute/timeslot:
+    post:
+      operationId: t_value
+      parameters: []
+      responses:
+        '200':
+          description: Returns the execution results.
+          content:
+            application/json:
+              schema:
+                type: array
+                items:
+                  $ref: '#/components/schemas/e_2'
+      summary: Process Posts for a Specific Time Slot
+      tags:
+      - Content
+      security:
+      - access-token: []
+    servers:
+    - url: https://tasks.zoca.ai
+      description: Production
+  /tasks/api/v1/content/execution-results:
+    get:
+      operationId: t_value
+      parameters:
+      - name: to
+        required: false
+        in: query
+        description: End date (ISO format)
+        schema:
+          type: string
+      - name: from
+        required: false
+        in: query
+        description: Start date (ISO format)
+        schema:
+          type: string
+      - name: limit
+        required: false
+        in: query
+        description: Results per page
+        schema:
+          type: number
+      - name: page
+        required: false
+        in: query
+        description: Page number
+        schema:
+          type: number
+      - name: success
+        required: false
+        in: query
+        description: Filter by success status
+        schema:
+          type: boolean
+      - name: platformId
+        required: false
+        in: query
+        description: Filter by Platform ID
+        schema:
+          type: string
+      - name: scheduleId
+        required: false
+        in: query
+        description: Filter by Schedule ID
+        schema:
+          type: string
+      - name: postId
+        required: false
+        in: query
+        description: Filter by Post ID
+        schema:
+          type: string
+      responses:
+        '200':
+          description: Returns paginated execution results.
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/e_2'
+      summary: Get Execution Results with Filtering
+      tags:
+      - Content
+      security:
+      - access-token: []
+    servers:
+    - url: https://tasks.zoca.ai
+      description: Production
+  /tasks/api/v1/content/execution-results/{executionId}:
+    get:
+      operationId: t_value
+      parameters:
+      - name: executionId
+        required: true
+        in: path
+        description: Execution ID
+        schema:
+          type: string
+      responses:
+        '200':
+          description: Returns the execution result if found.
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/e_2'
+        '404':
+          description: Execution result not found.
+      summary: Get Execution Result by ID
+      tags:
+      - Content
+      security:
+      - access-token: []
+    servers:
+    - url: https://tasks.zoca.ai
+      description: Production
+  /tasks/api/v1/content/bulk-schedule/create-and-schedule/{entityId}:
+    post:
+      operationId: t_value
+      parameters:
+      - name: entityId
+        required: true
+        in: path
+        description: The entity ID to schedule a post for
+        schema:
+          type: string
+      responses:
+        '201':
+          description: Successfully create and scheduled a post for the entity
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/e_2'
+      summary: Create and Schedule a post for an entity ID if the current date post are not available
+      tags:
+      - Content
+      security:
+      - access-token: []
+    servers:
+    - url: https://tasks.zoca.ai
+      description: Production
+  /tasks/api/v1/content/bulk-schedule/all-active:
+    post:
+      operationId: t_value
+      parameters: []
+      responses:
+        '200':
+          description: Bulk scheduling completed. Returns success and failure counts.
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  success:
+                    type: number
+                    example: 5
+                  failed:
+                    type: number
+                    example: 0
+      summary: Schedule posts for all active entities that do not have a post scheduled for today.
+      tags:
+      - Content
+      security:
+      - access-token: []
+    servers:
+    - url: https://tasks.zoca.ai
+      description: Production
+  /tasks/api/v1/content/bulk-schedule/active-without-scheduled:
+    get:
+      description: Retrieves a list of entity IDs that are marked as active but do not currently have a scheduled post for the current date.
+      operationId: t_value
+      parameters: []
+      responses:
+        '200':
+          description: A list of entity IDs without scheduled posts for today.
+          content:
+            application/json:
+              schema:
+                type: array
+                items:
+                  type: string
+      summary: Get Active Entities without Scheduled Posts Today
+      tags:
+      - Content
+      security:
+      - access-token: []
+    servers:
+    - url: https://tasks.zoca.ai
+      description: Production
+  /tasks/api/v1/content/bulk-execute/date/gbp:
+    post:
+      operationId: t_value
+      parameters:
+      - name: date
+        required: true
+        in: query
+        description: Date for which to execute posts (YYYY-MM-DD)
+        schema:
+          example: '2024-01-01'
+          type: string
+      responses:
+        '201':
+          description: ''
+      summary: Execute all scheduled GBP posts for a specific date
+      tags:
+      - Content
+      security:
+      - access-token: []
+    servers:
+    - url: https://tasks.zoca.ai
+      description: Production
+  /tasks/api/v1/content/schedule-missing-posts:
+    post:
+      description: Enqueues a job to create and schedule posts for active entities that have no posts scheduled for today
+      operationId: t_value
+      parameters: []
+      responses:
+        '201':
+          description: Scheduling job enqueued successfully
+          content:
+            application/json:
+              schema:
+                properties:
+                  jobId:
+                    type: string
+        '500':
+          description: Failed to enqueue job
+      summary: Schedule posts for entities without scheduled posts
+      tags:
+      - Content
+      security:
+      - access-token: []
+    servers:
+    - url: https://tasks.zoca.ai
+      description: Production
+  /tasks/api/v1/content/process-time-slot:
+    post:
+      description: Enqueues a job to process all posts scheduled for the current time slot
+      operationId: t_value
+      parameters: []
+      responses:
+        '201':
+          description: Time slot processing job enqueued successfully
+          content:
+            application/json:
+              schema:
+                properties:
+                  jobId:
+                    type: string
+        '500':
+          description: Failed to enqueue job
+      summary: Process a time slot
+      tags:
+      - Content
+      security:
+      - access-token: []
+    servers:
+    - url: https://tasks.zoca.ai
+      description: Production
+  /tasks/api/v1/content/user-config/{entityId}/keywords:
+    put:
+      operationId: t_value
+      parameters:
+      - name: entityId
+        required: true
+        in: path
+        description: Entity ID
+        schema:
+          type: string
+      requestBody:
+        required: true
+        description: Keywords to add
+        content:
+          application/json:
+            schema:
+              properties:
+                keywords:
+                  type: array
+                  items:
+                    type: string
+                  description: Array of target keywords
+                  example:
+                  - digital marketing
+                  - SEO
+                  - local business
+                replace:
+                  type: boolean
+                  description: If true, replace all existing keywords; if false, append to existing
+                  example: false
+              $ref: '#/components/schemas/'
+      responses:
+        '204':
+          description: Target keywords updated successfully.
+      summary: Update Target Keywords
+      tags:
+      - Content
+      security:
+      - access-token: []
+    servers:
+    - url: https://tasks.zoca.ai
+      description: Production
+  /tasks/api/v1/content/user-config/{entityId}/specialization:
+    put:
+      operationId: t_value
+      parameters:
+      - name: entityId
+        required: true
+        in: path
+        description: Entity ID
+        schema:
+          type: string
+      requestBody:
+        required: true
+        description: Specialization operations
+        content:
+          application/json:
+            schema:
+              properties:
+                operation:
+                  type: string
+                  enum:
+                  - add
+                  - remove
+                  description: Operation to perform
+                  example: add
+                specialization:
+                  type: string
+                  description: Specialization to add or remove
+                  example: Web Development
+              $ref: '#/components/schemas/'
+      responses:
+        '204':
+          description: Specialization updated successfully.
+      summary: Manage Business Specializations
+      tags:
+      - Content
+      security:
+      - access-token: []
+    servers:
+    - url: https://tasks.zoca.ai
+      description: Production
+  /tasks/api/v1/content/gbp-entity-keywords/{entityId}/{entityType}:
+    get:
+      operationId: t_value
+      parameters:
+      - name: entityType
+        required: true
+        in: path
+        description: GBP entity type (e.g. posts, services, businessDescription)
+        schema: {}
+      - name: entityId
+        required: true
+        in: path
+        description: Entity UUID
+        schema: {}
+      responses:
+        '200':
+          description: GBP entity keywords retrieved successfully.
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/e_2'
+      summary: Get GBP Entity Keywords by Entity Type
+      tags:
+      - Content
+      security:
+      - access-token: []
+    servers:
+    - url: https://tasks.zoca.ai
+      description: Production
+  /tasks/api/v1/content/gbp-entity-keywords:
+    post:
+      operationId: t_value
+      parameters: []
+      requestBody:
+        required: true
+        description: GBP entity keywords update request
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/e_2'
+      responses:
+        '200':
+          description: GBP entity keywords updated successfully.
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/e_2'
+      summary: Update GBP Entity Keywords
+      tags:
+      - Content
+      security:
+      - access-token: []
+    servers:
+    - url: https://tasks.zoca.ai
+      description: Production
+components:
+  schemas:
+    e:
+      type: object
+      properties:
+        id:
+          type: number
+        entityId:
+          type: string
+        attribute:
+          type: string
+        value:
+          type:
+          - object
+          - 'null'
+        metadata:
+          type:
+          - object
+          - 'null'
+        createdAt:
+          type:
+          - object
+          - 'null'
+      required:
+      - id
+      - entityId
+      - attribute
+    e_2:
+      type: object
+      properties:
+        scan:
+          $ref: '#/components/schemas/e_2'
+        businessLat:
+          type:
+          - number
+          - 'null'
+        businessLng:
+          type:
+          - number
+          - 'null'
+        points:
+          type: array
+          items:
+            $ref: '#/components/schemas/e_2'
+        heroMetrics:
+          $ref: '#/components/schemas/e_2'
+      required:
+      - scan
+      - businessLat
+      - businessLng
+      - points
+      - heroMetrics
+  securitySchemes:
+    access-token:
+      scheme: bearer
+      bearerFormat: JWT
+      type: http
+      name: Authorization
+      description: Enter JWT token in the format Bearer <token>
+      in: header
+x-refined-from:
+- zoca-platform-openapi.yml
+- zoca-tasks-openapi.yml

@@ -1,0 +1,60 @@
+openapi: 3.2.0
+info:
+  title: Zoca Platform State Transition API
+  description: 'The Zoca platform API behind the Zoca web app and mobile apps: scheduling, website generation, Google Business Profile, discovery/local SEO, social media, booking enquiries, offers, clients, staff, billing and the Zoca "brain" agent layer.'
+  version: 3.20.10
+  contact: {}
+  x-apievangelist-note: Harvested verbatim from https://api.zoca.ai/swagger.json. The provider ships the default NestJS Swagger metadata (title "API Documentation", empty servers[]); title/description/servers were set by API Evangelist for identification and the unmodified original is preserved at openapi/_original/zoca-platform-swagger.json. Every path, operation, summary, parameter and response is exactly as published.
+servers:
+- url: https://api.zoca.ai
+  description: Production
+tags:
+- name: state-transition
+paths:
+  /state-transition/{entityId}/transition:
+    patch:
+      operationId: t_value
+      parameters:
+      - name: entityId
+        required: true
+        in: path
+        description: Entity whose state rule is updated.
+        schema: {}
+      responses:
+        '200':
+          description: Transition configured; returns the resolved config.
+        '400':
+          description: Unknown state or malformed buffer.
+        '404':
+          description: No active rule for that entity + source state.
+      summary: Configure the no-response state transition for an entity + source state
+      tags:
+      - state-transition
+    get:
+      description: Resolves the configured transition (entity rule metadata, falling back to code defaults) and returns the from-state → to-state, buffer value, and unit.
+      operationId: t_value
+      parameters:
+      - name: entityId
+        required: true
+        in: path
+        description: Entity whose transition config is resolved.
+        schema: {}
+      responses:
+        '200':
+          description: Resolved transition config.
+        '400':
+          description: Unknown state.
+        '404':
+          description: No transition configured for that entity + source state.
+      summary: Get the resolved no-response state transition for an entity + source state
+      tags:
+      - state-transition
+components:
+  securitySchemes:
+    access-token:
+      scheme: bearer
+      bearerFormat: JWT
+      type: http
+      name: Authorization
+      description: Enter JWT token in the format Bearer <token>
+      in: header

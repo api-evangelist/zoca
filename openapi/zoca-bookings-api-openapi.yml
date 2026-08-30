@@ -1,0 +1,1169 @@
+openapi: 3.2.0
+info:
+  title: Zoca Platform Bookings API
+  description: 'The Zoca platform API behind the Zoca web app and mobile apps: scheduling, website generation, Google Business Profile, discovery/local SEO, social media, booking enquiries, offers, clients, staff, billing and the Zoca "brain" agent layer.'
+  version: 3.20.10
+  contact: {}
+  x-apievangelist-note: Harvested verbatim from https://api.zoca.ai/swagger.json. The provider ships the default NestJS Swagger metadata (title "API Documentation", empty servers[]); title/description/servers were set by API Evangelist for identification and the unmodified original is preserved at openapi/_original/zoca-platform-swagger.json. Every path, operation, summary, parameter and response is exactly as published.
+servers:
+- url: https://api.zoca.ai
+  description: Production
+tags:
+- name: Bookings
+paths:
+  /scheduling/bookings/comms/{entityId}:
+    get:
+      operationId: t_value
+      parameters:
+      - name: entityId
+        required: true
+        in: path
+        schema:
+          format: uuid
+          type: string
+      responses:
+        '200':
+          description: SMS and email comms for the entity
+      summary: Get all comms for an entity (test endpoint)
+      tags:
+      - Bookings
+  /scheduling/bookings/slots/block:
+    post:
+      description: Temporarily holds a provider time slot for a client during checkout. The block expires after a configurable timeout (default 10 minutes). When a booking is created with the blockedSlotId, the status changes from HOLD to BOOKED.
+      operationId: t_value
+      parameters: []
+      responses:
+        '201':
+          description: Slot blocked successfully
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  id:
+                    type: string
+                    format: uuid
+                    description: Blocked slot ID
+                  providerId:
+                    type: string
+                    format: uuid
+                  locationEntityId:
+                    type: string
+                    format: uuid
+                  startTime:
+                    type: string
+                    format: date-time
+                  endTime:
+                    type: string
+                    format: date-time
+                  status:
+                    type: string
+                    enum:
+                    - HOLD
+                    - BOOKED
+                  expiresAt:
+                    type: string
+                    format: date-time
+                    description: When the block expires
+        '400':
+          description: Bad request - validation failed
+      summary: Block a slot temporarily during checkout
+      tags:
+      - Bookings
+  /scheduling/bookings/recurring:
+    post:
+      operationId: t_value
+      parameters: []
+      responses:
+        '201':
+          description: Series created
+        '400':
+          description: Invalid recurrence rule
+        '403':
+          description: Staff-only endpoint
+      summary: Create a recurring appointment series
+      tags:
+      - Bookings
+  /scheduling/bookings/recurring/{seriesId}:
+    get:
+      operationId: t_value
+      parameters: []
+      responses:
+        '200':
+          description: Series found
+        '404':
+          description: Series not found
+      summary: Get a recurring series and its occurrences
+      tags:
+      - Bookings
+  /scheduling/bookings/{id}/recurring:
+    put:
+      operationId: t_value
+      parameters:
+      - name: scope
+        required: true
+        in: query
+        schema:
+          enum:
+          - THIS_EVENT
+          - THIS_AND_FOLLOWING
+          type: string
+      responses:
+        '200':
+          description: Occurrence(s) updated
+      summary: Edit an occurrence, scoped to this event or this and following
+      tags:
+      - Bookings
+  /scheduling/bookings/{id}/recurring/cancel:
+    post:
+      operationId: t_value
+      parameters:
+      - name: scope
+        required: true
+        in: query
+        schema:
+          enum:
+          - THIS_EVENT
+          - THIS_AND_FOLLOWING
+          type: string
+      responses:
+        '200':
+          description: Occurrence(s) cancelled
+      summary: Cancel an occurrence, scoped to this event or this and following
+      tags:
+      - Bookings
+  /scheduling/bookings:
+    post:
+      operationId: t_value
+      parameters: []
+      responses:
+        '201':
+          description: Booking created successfully
+        '400':
+          description: Bad request - validation failed
+      summary: Create a new booking with items
+      tags:
+      - Bookings
+    get:
+      operationId: t_value
+      parameters:
+      - name: limit
+        required: false
+        in: query
+        description: Number of results per page (max 100)
+        schema:
+          type: number
+      - name: page
+        required: false
+        in: query
+        description: Page number for pagination (starts at 1)
+        schema:
+          type: number
+      - name: providerId
+        required: false
+        in: query
+        description: Optional staff member ID; restricts returned bookings and items to one provider
+        schema:
+          type: string
+      - name: clientId
+        required: false
+        in: query
+        description: Client ID filter
+        schema: {}
+      - name: endDate
+        required: false
+        in: query
+        description: End date filter (ISO string)
+        schema: {}
+      - name: startDate
+        required: false
+        in: query
+        description: Start date filter (ISO string)
+        schema: {}
+      - name: status
+        required: false
+        in: query
+        description: Booking status filter
+        schema: {}
+      - name: entityId
+        required: true
+        in: query
+        description: Entity ID
+        schema:
+          type: string
+      responses:
+        '200':
+          description: Bookings retrieved successfully
+        '400':
+          description: Invalid entityId or filters
+      summary: List bookings for an entity with filters
+      tags:
+      - Bookings
+  /scheduling/bookings/calendar:
+    get:
+      description: Returns appointments (APPOINTMENT) and blocked time (TIME_OFF) for calendar display. Appointments include individual booking items with service details and colors.
+      operationId: t_value
+      parameters:
+      - name: endDate
+        required: true
+        in: query
+        description: End date (ISO date string)
+        schema:
+          example: '2025-01-31'
+          type: string
+      - name: providerId
+        required: false
+        in: query
+        description: Optional staff member ID; restricts appointments and time off to one provider
+        schema:
+          type: string
+      - name: startDate
+        required: true
+        in: query
+        description: Start date (ISO date string)
+        schema:
+          example: '2025-01-01'
+          type: string
+      - name: entityId
+        required: true
+        in: query
+        description: Entity ID
+        schema:
+          type: string
+      responses:
+        '200':
+          description: Calendar entries retrieved successfully
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/e'
+        '400':
+          description: Invalid query parameters
+      summary: Get calendar entries for date range
+      tags:
+      - Bookings
+  /scheduling/bookings/counts:
+    get:
+      operationId: t_value
+      parameters:
+      - name: entityId
+        required: true
+        in: query
+        description: Entity ID
+        schema:
+          type: string
+      responses:
+        '200':
+          description: Booking counts retrieved successfully
+        '400':
+          description: Missing entityId
+      summary: Get booking counts grouped by status
+      tags:
+      - Bookings
+  /scheduling/bookings/{id}:
+    get:
+      operationId: t_value
+      parameters:
+      - name: id
+        required: true
+        in: path
+        description: Booking ID
+        schema:
+          type: string
+      responses:
+        '200':
+          description: Booking retrieved successfully
+        '404':
+          description: Booking not found
+      summary: Get booking by ID with aggregated data
+      tags:
+      - Bookings
+    put:
+      operationId: t_value
+      parameters:
+      - name: id
+        required: true
+        in: path
+        description: Booking ID
+        schema:
+          type: string
+      responses:
+        '200':
+          description: Booking updated successfully
+        '404':
+          description: Booking not found
+      summary: Update a booking
+      tags:
+      - Bookings
+  /scheduling/bookings/{id}/items:
+    put:
+      description: Updates booking and multiple items atomically in a single transaction. Sends only ONE notification when times change, preventing duplicate communications.
+      operationId: t_value
+      parameters:
+      - name: id
+        required: true
+        in: path
+        description: Booking ID
+        schema:
+          type: string
+      responses:
+        '200':
+          description: Booking updated successfully
+        '400':
+          description: Bad request - booking cannot be updated in current status
+        '404':
+          description: Booking not found
+      summary: Update booking with items
+      tags:
+      - Bookings
+    post:
+      operationId: t_value
+      parameters:
+      - name: id
+        required: true
+        in: path
+        description: Booking ID
+        schema:
+          type: string
+      responses:
+        '201':
+          description: Service added to booking successfully
+        '404':
+          description: Booking not found
+      summary: Add a service item to an existing booking
+      tags:
+      - Bookings
+  /scheduling/bookings/{bookingId}/items/{bookingItemId}/coverage:
+    patch:
+      description: Before checkout, toggle package-credit coverage on one service line. skip releases the reserved credit and restores the price; auto/force reserves a credit and zeroes the line. Deposit is re-armed/cleared. Refuses a checked-out line.
+      operationId: t_value
+      parameters:
+      - name: bookingItemId
+        required: true
+        in: path
+        description: Booking item (service line) ID
+        schema:
+          type: string
+      - name: bookingId
+        required: true
+        in: path
+        description: Booking ID
+        schema:
+          type: string
+      responses:
+        '200':
+          description: Coverage updated
+        '409':
+          description: Line already checked out
+      summary: Apply or remove package coverage on an appointment service line
+      tags:
+      - Bookings
+  /scheduling/bookings/{bookingId}/update-client/{clientId}:
+    post:
+      description: Updates the client field in a booking if it is currently null. If the client field is already populated, the booking is returned unchanged.
+      operationId: t_value
+      parameters: []
+      responses:
+        '200':
+          description: Booking updated or returned unchanged
+        '400':
+          description: Bad request - validation failed
+        '404':
+          description: Booking or client not found
+      summary: Update client field in booking
+      tags:
+      - Bookings
+  /scheduling/bookings/{id}/cancel:
+    post:
+      operationId: t_value
+      parameters:
+      - name: id
+        required: true
+        in: path
+        description: Booking ID
+        schema:
+          type: string
+      responses:
+        '200':
+          description: Booking cancelled successfully
+        '404':
+          description: Booking not found
+      summary: Cancel a booking with cancellation details
+      tags:
+      - Bookings
+  /scheduling/bookings/{id}/reschedule:
+    post:
+      description: Reschedules all booking items to start at the new time. Item times are recalculated based on their existing durations, chained sequentially.
+      operationId: t_value
+      parameters:
+      - name: id
+        required: true
+        in: path
+        description: Booking ID
+        schema:
+          type: string
+      responses:
+        '200':
+          description: Booking rescheduled successfully
+        '404':
+          description: Booking not found
+        '409':
+          description: Time slot not available
+      summary: Reschedule a booking to a new time
+      tags:
+      - Bookings
+  /scheduling/bookings/{id}/no-show:
+    post:
+      description: Marks a booking as no-show with optional fee handling. COLLECT_FEE applies the policy fee, NO_FEE waives it.
+      operationId: t_value
+      parameters:
+      - name: id
+        required: true
+        in: path
+        description: Booking ID
+        schema:
+          type: string
+      responses:
+        '200':
+          description: Booking marked as no-show successfully
+        '404':
+          description: Booking not found
+      summary: Mark a booking as no-show
+      tags:
+      - Bookings
+  /scheduling/bookings/{id}/resend:
+    post:
+      description: Sends appointment details to the client for an existing booking. Optionally specify channels (sms, email). Defaults to both.
+      operationId: t_value
+      parameters:
+      - name: id
+        required: true
+        in: path
+        description: Booking ID
+        schema:
+          type: string
+      responses:
+        '200':
+          description: Appointment details sent successfully
+        '400':
+          description: Booking has no client or items
+        '404':
+          description: Booking not found
+      summary: Resend appointment details
+      tags:
+      - Bookings
+  /scheduling/bookings/{id}/complete:
+    post:
+      operationId: t_value
+      parameters:
+      - name: id
+        required: true
+        in: path
+        description: Booking ID
+        schema:
+          type: string
+      responses:
+        '200':
+          description: Booking marked as completed successfully
+        '404':
+          description: Booking not found
+      summary: Mark a booking as completed
+      tags:
+      - Bookings
+  /scheduling/bookings/{id}/confirm:
+    post:
+      operationId: t_value
+      parameters:
+      - name: id
+        required: true
+        in: path
+        description: Booking ID
+        schema:
+          type: string
+      responses:
+        '200':
+          description: Booking confirmed successfully
+        '400':
+          description: Only pending bookings can be confirmed
+        '404':
+          description: Booking not found
+      summary: Confirm a pending booking
+      tags:
+      - Bookings
+  /scheduling/bookings/{id}/approval/{status}:
+    post:
+      description: Approves or declines a pending booking. APPROVED changes status to BOOKED, DECLINED changes status to DECLINED. Only pending bookings can be processed.
+      operationId: t_value
+      parameters:
+      - name: status
+        required: true
+        in: path
+        description: Approval action
+        schema:
+          enum:
+          - APPROVED
+          - DECLINED
+          type: string
+      - name: id
+        required: true
+        in: path
+        description: Booking ID
+        schema:
+          type: string
+      responses:
+        '200':
+          description: Booking approval/decline processed successfully
+        '400':
+          description: Only pending bookings can be approved or declined
+        '404':
+          description: Booking not found
+      summary: Approve or decline a pending booking
+      tags:
+      - Bookings
+  /scheduling/bookings/{id}/confirm-attendance:
+    post:
+      description: 'Marks that the client has confirmed they will attend the appointment. Idempotent: returns the booking as-is if already confirmed.'
+      operationId: t_value
+      parameters:
+      - name: id
+        required: true
+        in: path
+        description: Booking ID
+        schema:
+          type: string
+      responses:
+        '200':
+          description: Attendance confirmed successfully
+        '400':
+          description: Cannot confirm attendance for cancelled/completed/no-show bookings
+        '404':
+          description: Booking not found
+      summary: Confirm attendance for a booking
+      tags:
+      - Bookings
+  /scheduling/bookings/{id}/unconfirm-attendance:
+    post:
+      description: Resets the attendance confirmation flag. Used when a client or SP needs to undo a previous confirmation.
+      operationId: t_value
+      parameters:
+      - name: id
+        required: true
+        in: path
+        description: Booking ID
+        schema:
+          type: string
+      responses:
+        '200':
+          description: Attendance unconfirmed successfully
+        '404':
+          description: Booking not found
+      summary: Remove attendance confirmation from a booking
+      tags:
+      - Bookings
+  /scheduling/bookings/{id}/undo-no-show:
+    post:
+      description: Reverses a no-show status back to BOOKED. If a no-show fee was charged, initiates a refund for the fee.
+      operationId: t_value
+      parameters:
+      - name: id
+        required: true
+        in: path
+        description: Booking ID
+        schema:
+          type: string
+      responses:
+        '200':
+          description: No-show status undone successfully, refund initiated if applicable
+        '400':
+          description: Only no-show bookings can be undone
+        '404':
+          description: Booking not found
+      summary: Undo a no-show booking
+      tags:
+      - Bookings
+  /scheduling/bookings/{id}/deposit/mark-paid:
+    post:
+      description: Marks a booking deposit as paid. If shouldCollectCashPayment is true, creates a CASH payment for the deposit amount. Updates booking status from DEPOSIT_PENDING to BOOKED and sets isDepositPaid to true.
+      operationId: t_value
+      parameters:
+      - name: id
+        required: true
+        in: path
+        description: Booking ID
+        schema:
+          type: string
+      responses:
+        '200':
+          description: Deposit marked as paid successfully
+        '400':
+          description: Booking has no deposit amount or is not in DEPOSIT_PENDING status
+        '404':
+          description: Booking or sale not found
+      summary: Mark deposit as paid with optional cash payment
+      tags:
+      - Bookings
+  /scheduling/bookings/{id}/deposit/waive:
+    post:
+      description: Waives the deposit requirement for a booking by setting shouldCollectDeposit to false. If booking is in DEPOSIT_PENDING status, changes it to BOOKED (applies to both booking and booking items).
+      operationId: t_value
+      parameters:
+      - name: id
+        required: true
+        in: path
+        description: Booking ID
+        schema:
+          type: string
+      responses:
+        '200':
+          description: Deposit waived successfully
+        '404':
+          description: Booking not found
+      summary: Waive deposit requirement
+      tags:
+      - Bookings
+  /scheduling/bookings/{id}/send-receipt:
+    post:
+      description: Sends booking receipt URL to client via SMS and/or Email. If contactIds array is empty, sends to all active contacts for the client.
+      operationId: t_value
+      parameters:
+      - name: id
+        required: true
+        in: path
+        description: Booking ID
+        schema:
+          type: string
+      responses:
+        '200':
+          description: Receipt URL sent successfully
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  success:
+                    type: boolean
+                  message:
+                    type: string
+                  results:
+                    type: array
+                    items:
+                      type: object
+                      properties:
+                        contactId:
+                          type: string
+                        type:
+                          type: string
+                          enum:
+                          - SMS
+                          - EMAIL
+                        success:
+                          type: boolean
+                        error:
+                          type: string
+        '400':
+          description: Bad request - client not found or no contacts
+        '404':
+          description: Booking or website URL not found
+      summary: Send receipt URL to client contacts
+      tags:
+      - Bookings
+  /scheduling/bookings/{bookingId}/items/{itemId}/addons:
+    post:
+      operationId: t_value
+      parameters:
+      - name: itemId
+        required: true
+        in: path
+        description: Booking Item ID
+        schema:
+          type: string
+      - name: bookingId
+        required: true
+        in: path
+        description: Booking ID
+        schema:
+          type: string
+      responses:
+        '200':
+          description: Add-ons added successfully
+        '400':
+          description: Invalid addon selection or attachment path
+        '409':
+          description: ADDON_NO_LONGER_AVAILABLE
+      summary: Add one or more add-ons to an existing booking item
+      tags:
+      - Bookings
+  /scheduling/bookings/{bookingId}/items/{itemId}/addons/{addonLineItemId}:
+    delete:
+      operationId: t_value
+      parameters:
+      - name: addonLineItemId
+        required: true
+        in: path
+        description: Addon Line Item ID
+        schema:
+          type: string
+      - name: itemId
+        required: true
+        in: path
+        description: Booking Item ID
+        schema:
+          type: string
+      - name: bookingId
+        required: true
+        in: path
+        description: Booking ID
+        schema:
+          type: string
+      responses:
+        '200':
+          description: Add-on removed successfully
+      summary: Cancel an addon line on a booking item
+      tags:
+      - Bookings
+  /scheduling/bookings/{bookingId}/items/{itemId}/remove:
+    post:
+      operationId: t_value
+      parameters:
+      - name: itemId
+        required: true
+        in: path
+        description: Booking Item ID
+        schema:
+          type: string
+      - name: bookingId
+        required: true
+        in: path
+        description: Booking ID
+        schema:
+          type: string
+      responses:
+        '200':
+          description: Service removed from booking successfully
+        '404':
+          description: Booking or item not found
+      summary: Remove a service item from a booking
+      tags:
+      - Bookings
+  /scheduling/bookings/items/{itemId}:
+    put:
+      operationId: t_value
+      parameters:
+      - name: itemId
+        required: true
+        in: path
+        description: Booking Item ID
+        schema:
+          type: string
+      responses:
+        '200':
+          description: Booking item updated successfully
+        '404':
+          description: Booking item not found
+      summary: Update a booking item
+      tags:
+      - Bookings
+  /scheduling/bookings/{bookingId}/notes:
+    post:
+      description: Creates a note associated with a specific booking. Can be called with JWT token (createdBy from JWT) or without (createdBy from clientId in body).
+      operationId: t_value
+      parameters:
+      - name: bookingId
+        required: true
+        in: path
+        description: Booking ID
+        schema:
+          type: string
+      responses:
+        '201':
+          description: Note created successfully
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/e'
+        '400':
+          description: Bad request - validation failed
+        '404':
+          description: Booking not found
+      summary: Create a new note for a booking
+      tags:
+      - Bookings
+    get:
+      description: Retrieves all notes associated with a specific booking, excluding deleted notes.
+      operationId: t_value
+      parameters:
+      - name: bookingId
+        required: true
+        in: path
+        description: Booking ID
+        schema:
+          type: string
+      responses:
+        '200':
+          description: Notes retrieved successfully
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  notes:
+                    type: array
+                    items:
+                      $ref: '#/components/schemas/BookingNoteResponseDto'
+        '404':
+          description: Booking not found
+      summary: Get all notes for a booking
+      tags:
+      - Bookings
+  /scheduling/bookings/notes/{id}:
+    get:
+      operationId: t_value
+      parameters:
+      - name: id
+        required: true
+        in: path
+        description: Note ID
+        schema:
+          type: string
+      responses:
+        '200':
+          description: Note retrieved successfully
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/e'
+        '404':
+          description: Note not found
+      summary: Get a specific booking note by ID
+      tags:
+      - Bookings
+    put:
+      description: Updates an existing booking note. Only the note text, type, and media URL can be updated.
+      operationId: t_value
+      parameters:
+      - name: id
+        required: true
+        in: path
+        description: Note ID
+        schema:
+          type: string
+      responses:
+        '200':
+          description: Note updated successfully
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/e'
+        '404':
+          description: Note not found
+      summary: Update a booking note
+      tags:
+      - Bookings
+    delete:
+      description: Soft deletes a booking note. The note is marked as deleted but retained in the database.
+      operationId: t_value
+      parameters:
+      - name: id
+        required: true
+        in: path
+        description: Note ID
+        schema:
+          type: string
+      responses:
+        '204':
+          description: Note deleted successfully
+        '404':
+          description: Note not found
+      summary: Delete a booking note
+      tags:
+      - Bookings
+  /scheduling/bookings/client/{clientId}/notes:
+    get:
+      description: Retrieves all notes for a client combining client notes and appointment notes into a single paginated list. Filter by category to view only client notes, appointment notes, or all.
+      operationId: t_value
+      parameters:
+      - name: limit
+        required: false
+        in: query
+        description: 'Items per page (default: 20, max: 100)'
+        schema:
+          type: number
+      - name: page
+        required: false
+        in: query
+        description: 'Page number (default: 1)'
+        schema:
+          type: number
+      - name: category
+        required: false
+        in: query
+        description: 'Filter by note category (default: all)'
+        schema:
+          enum:
+          - client
+          - appointment
+          - all
+          type: string
+      - name: clientId
+        required: true
+        in: path
+        description: Client ID
+        schema:
+          format: uuid
+          type: string
+      responses:
+        '200':
+          description: Unified notes retrieved successfully
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/e'
+      summary: Get unified notes for a client
+      tags:
+      - Bookings
+  /scheduling/bookings/client/{clientId}/appointment-notes:
+    get:
+      description: Returns paginated bookings (ordered by booking date desc) each with their most recent client note and SP note. Paginated by booking count.
+      operationId: t_value
+      parameters:
+      - name: limit
+        required: false
+        in: query
+        description: 'Items per page (default: 20, max: 100)'
+        schema:
+          type: number
+      - name: page
+        required: false
+        in: query
+        description: 'Page number (default: 1)'
+        schema:
+          type: number
+      - name: clientId
+        required: true
+        in: path
+        description: Client ID
+        schema:
+          format: uuid
+          type: string
+      responses:
+        '200':
+          description: Appointment notes retrieved successfully
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/e'
+      summary: Get appointment notes for a client grouped by booking
+      tags:
+      - Bookings
+  /scheduling/bookings/client/{clientId}/summary:
+    get:
+      description: 'Returns summary stats for a client: upcoming appointment count, completed count, and total sales from completed appointments.'
+      operationId: t_value
+      parameters:
+      - name: entityId
+        required: true
+        in: query
+        description: Entity ID
+        schema:
+          type: string
+      - name: clientId
+        required: true
+        in: path
+        description: Client ID
+        schema:
+          format: uuid
+          type: string
+      responses:
+        '200':
+          description: Client appointment summary retrieved successfully
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/e'
+        '400':
+          description: Missing entityId
+      summary: Get appointment summary for a client
+      tags:
+      - Bookings
+  /scheduling/bookings/reminders/{reminderId}/execute:
+    post:
+      description: Triggers the sending of an appointment reminder notification. Called by AWS EventBridge Scheduler or manually for testing.
+      operationId: t_value
+      parameters:
+      - name: reminderId
+        required: true
+        in: path
+        description: Reminder ID
+        schema:
+          type: string
+      responses:
+        '200':
+          description: Reminder executed successfully
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  success:
+                    type: boolean
+                  reminderId:
+                    type: string
+                    format: uuid
+                  bookingId:
+                    type: string
+                    format: uuid
+                  type:
+                    type: string
+                    enum:
+                    - REMINDER_24H
+                    - REMINDER_POLICY_DEADLINE
+                  message:
+                    type: string
+        '404':
+          description: Reminder or booking not found
+      summary: Execute a booking reminder
+      tags:
+      - Bookings
+  /scheduling/bookings/reminders/execute:
+    post:
+      description: Triggers the sending of an appointment reminder notification. Accepts reminderId in request body. Used as AWS EventBridge Lambda target.
+      operationId: t_value
+      parameters: []
+      responses:
+        '200':
+          description: Reminder executed successfully
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  success:
+                    type: boolean
+                  reminderId:
+                    type: string
+                    format: uuid
+                  bookingId:
+                    type: string
+                    format: uuid
+                  type:
+                    type: string
+                    enum:
+                    - REMINDER_24H
+                    - REMINDER_POLICY_DEADLINE
+                  message:
+                    type: string
+        '400':
+          description: reminderId is required
+        '404':
+          description: Reminder or booking not found
+      summary: Execute a booking reminder (webhook)
+      tags:
+      - Bookings
+  /scheduling/bookings/reminders/{reminderId}:
+    get:
+      description: Retrieves details of a specific booking reminder.
+      operationId: t_value
+      parameters:
+      - name: reminderId
+        required: true
+        in: path
+        description: Reminder ID
+        schema:
+          type: string
+      responses:
+        '200':
+          description: Reminder retrieved successfully
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  id:
+                    type: string
+                    format: uuid
+                  bookingId:
+                    type: string
+                    format: uuid
+                  type:
+                    type: string
+                    enum:
+                    - REMINDER_24H
+                    - REMINDER_POLICY_DEADLINE
+                  triggerAt:
+                    type: string
+                    format: date-time
+                  status:
+                    type: string
+                    enum:
+                    - PENDING_SYNC
+                    - SYNCED
+                    - UPDATE_NEEDED
+                    - FAILED_SYNC
+                    - SENT
+                    - CANCELLED
+                  email:
+                    type: boolean
+                  sms:
+                    type: boolean
+                  createdAt:
+                    type: string
+                    format: date-time
+                  updatedAt:
+                    type: string
+                    format: date-time
+        '404':
+          description: Reminder not found
+      summary: Get reminder details
+      tags:
+      - Bookings
+  /scheduling/bookings/{locationEntityId}/backfill-snapshots:
+    post:
+      operationId: t_value
+      parameters:
+      - name: locationEntityId
+        required: true
+        in: path
+        schema:
+          format: uuid
+          type: string
+      responses:
+        '200':
+          description: Backfill completed successfully
+      summary: Backfill service, serviceVariation, and client snapshots on migrated booking items
+      tags:
+      - Bookings
+components:
+  schemas:
+    e:
+      type: object
+      properties:
+        id:
+          type: number
+        entityId:
+          type: string
+        attribute:
+          type: string
+        value:
+          type:
+          - object
+          - 'null'
+        metadata:
+          type:
+          - object
+          - 'null'
+        createdAt:
+          type:
+          - object
+          - 'null'
+      required:
+      - id
+      - entityId
+      - attribute
+  securitySchemes:
+    access-token:
+      scheme: bearer
+      bearerFormat: JWT
+      type: http
+      name: Authorization
+      description: Enter JWT token in the format Bearer <token>
+      in: header

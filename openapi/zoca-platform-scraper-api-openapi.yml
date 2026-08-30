@@ -1,0 +1,210 @@
+openapi: 3.2.0
+info:
+  title: Zoca Tasks Platform Scraper API
+  description: 'The Zoca tasks/automation service: AI content queue and planning, FrontDesk (Retell/Twilio) voice + SMS agent onboarding, local-SEO grid scans, WIN conversion triggers, and inbound integration webhooks (Chargebee, Square, Pipedrive, Twilio, Retell, CallHippo, Sybill, Instantly).'
+  version: 3.20.9
+  contact: {}
+  x-apievangelist-note: Harvested verbatim from https://tasks.zoca.ai/swagger.json. The provider ships the default NestJS Swagger metadata (title "API Documentation", empty servers[]); title/description/servers were set by API Evangelist for identification and the unmodified original is preserved at openapi/_original/zoca-tasks-swagger.json. Every path, operation, summary, parameter and response is exactly as published.
+servers:
+- url: https://tasks.zoca.ai
+  description: Production
+security:
+- access-token: []
+tags:
+- name: Platform Scraper
+paths:
+  /tasks/api/v1/platform-scraper/scrape-services:
+    post:
+      operationId: t_value
+      parameters: []
+      responses:
+        '200':
+          description: Services scraped successfully
+        '400':
+          description: Invalid platform or URL
+      summary: Scrape services from a platform URL
+      tags:
+      - Platform Scraper
+  /tasks/api/v1/platform-scraper/scrape-theme:
+    post:
+      operationId: t_value
+      parameters: []
+      responses:
+        '200':
+          description: Website theme scraped successfully
+        '400':
+          description: Invalid website URL or options
+      summary: Scrape website theme colors, fonts, and diagnostics
+      tags:
+      - Platform Scraper
+  /tasks/api/v1/platform-scraper/fuzzy-match:
+    post:
+      description: Takes provider and service names, fetches actual data from GlossGenius, applies fuzzy matching, and returns exact same structure with corrected names.
+      operationId: t_value
+      parameters: []
+      responses:
+        '200':
+          description: Successfully matched providers and services
+          content:
+            application/json:
+              schema:
+                example:
+                  url: https://brazenbeautyvault.glossgenius.com/
+                  data:
+                  - provider: Hannah
+                    services:
+                    - Brazilian Wax
+                  - provider: Liza Irwin
+                    services:
+                    - 30 Min Massage
+                    - Energy Balance
+        '400':
+          description: Invalid request data
+        '500':
+          description: Error during fuzzy matching
+      summary: Fuzzy match provider and service names for GlossGenius
+      tags:
+      - Platform Scraper
+  /tasks/api/v1/platform-scraper/test-suite:
+    post:
+      description: Fetches services from database and invokes Lambda function asynchronously (fire-and-forget)
+      operationId: t_value
+      parameters: []
+      responses:
+        '200':
+          description: Lambda test suite invoked successfully
+          content:
+            application/json:
+              schema:
+                example:
+                  success: true
+                  servicesCount: 15
+                  message: Lambda test suite invoked asynchronously
+                  invocationResult:
+                    status: Event invoked successfully
+        '400':
+          description: Invalid request parameters
+        '500':
+          description: Lambda invocation or test suite execution failed
+      summary: Run scraper test suite via Lambda (async)
+      tags:
+      - Platform Scraper
+  /tasks/api/v1/platform-scraper/callback:
+    post:
+      description: Endpoint for Lambda to callback with test suite results. Updates the database with results.
+      operationId: t_value
+      parameters: []
+      responses:
+        '200':
+          description: Callback processed successfully
+          content:
+            application/json:
+              schema:
+                example:
+                  success: true
+                  taskId: f47ac10b-58cc-4372-a567-0e02b2c3d479
+                  message: Test suite results updated successfully
+        '400':
+          description: Invalid callback data
+        '500':
+          description: Failed to process callback
+      summary: Receive callback from scraper test suite Lambda
+      tags:
+      - Platform Scraper
+  /tasks/api/v1/platform-scraper/services-comparison:
+    post:
+      description: Compares services from a Zoca site against a booking platform to identify missing, incorrect, or mismatched services. Returns detailed comparison with confidence scores.
+      operationId: t_value
+      parameters: []
+      responses:
+        '200':
+          description: Service comparison completed successfully
+          content:
+            application/json:
+              schema:
+                example:
+                  overallConfidence: 85.5
+                  totalBookingServices: 20
+                  totalZocaServices: 21
+                  matched: 17
+                  missing: 3
+                  potentiallyWrong: 1
+                  extra: 4
+                  bookingPlatform: Fresha
+                  services:
+                  - bookingService:
+                      title: Male Haircut
+                      description: Professional haircut service
+                      price: $50
+                      duration: 45mins
+                      serviceId: s:12345
+                    zocaService:
+                      title: Men's Haircut
+                      description: Professional haircut service
+                      price: $50
+                      duration: 45mins
+                    confidence: 0.92
+                    status: matched
+                  - bookingService:
+                      title: Tape-ins Full Head
+                      description: Includes extensions that are attached with hair tape. This service is best if you want the look of a full weave.
+                      price: $450
+                      duration: 250min
+                      serviceId: s:12346
+                    zocaService:
+                      title: Tape-ins Full Head
+                      description: eeks with proper maintenance. Consultation included to determine if hair is strong enough.
+                      price: $450+
+                      duration: '4h : 10min'
+                    confidence: 1
+                    status: matched
+                    issues:
+                    - 'Description mismatch: 53.2% similarity (threshold: 90%)'
+                  - bookingService:
+                      title: Color Treatment
+                      description: Full color service with conditioning
+                      price: $120
+                      duration: 120min
+                      serviceId: s:12347
+                    zocaService:
+                      title: Color Service
+                      description: Full color service with conditioning
+                      price: $135
+                      duration: 2h
+                    confidence: 0.65
+                    status: potentially_wrong
+                    issues:
+                    - 'Price mismatch: booking=$120, zoca=$135 (15.00 difference)'
+                  - bookingService:
+                      title: Trim Service
+                      description: Basic trim to maintain health of hair
+                      price: $20
+                      duration: 10min
+                      serviceId: s:12348
+                    zocaService: null
+                    confidence: 0
+                    status: missing
+                  - bookingService: null
+                    zocaService:
+                      title: Special Promo Service
+                      description: Limited time offer - discounted service
+                      price: $30
+                      duration: 30mins
+                    confidence: 0
+                    status: extra
+        '400':
+          description: Invalid request parameters
+        '500':
+          description: Service comparison failed
+      summary: Compare Zoca services against booking platform services
+      tags:
+      - Platform Scraper
+components:
+  securitySchemes:
+    access-token:
+      scheme: bearer
+      bearerFormat: JWT
+      type: http
+      name: Authorization
+      description: Enter JWT token in the format Bearer <token>
+      in: header

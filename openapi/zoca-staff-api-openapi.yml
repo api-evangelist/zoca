@@ -1,0 +1,248 @@
+openapi: 3.2.0
+info:
+  title: Zoca Platform Staff API
+  description: 'The Zoca platform API behind the Zoca web app and mobile apps: scheduling, website generation, Google Business Profile, discovery/local SEO, social media, booking enquiries, offers, clients, staff, billing and the Zoca "brain" agent layer.'
+  version: 3.20.10
+  contact: {}
+  x-apievangelist-note: Harvested verbatim from https://api.zoca.ai/swagger.json. The provider ships the default NestJS Swagger metadata (title "API Documentation", empty servers[]); title/description/servers were set by API Evangelist for identification and the unmodified original is preserved at openapi/_original/zoca-platform-swagger.json. Every path, operation, summary, parameter and response is exactly as published.
+servers:
+- url: https://api.zoca.ai
+  description: Production
+tags:
+- name: Staff
+paths:
+  /staff:
+    post:
+      description: 'Member-first: writes a `staff.members` row + `member_locations` assignment. When the supplied email already maps to a member at this business, returns `kind: "existing-member-found"` (HTTP 200) so the FE can confirm reuse.'
+      operationId: t_value
+      parameters: []
+      responses:
+        '200':
+          description: Created or needs-confirmation result.
+        '400':
+          description: Validation error / mass-assignment attempt.
+        '401':
+          description: Unauthenticated.
+        '403':
+          description: Missing `addNewStaffMembers` scope.
+        '409':
+          description: Assignment already exists at (member, location).
+        '503':
+          description: Feature disabled (killswitch).
+      security:
+      - bearer: []
+      summary: Create a staff member at a business + location (member-first).
+      tags:
+      - Staff
+    get:
+      operationId: t_value
+      parameters: []
+      responses:
+        '200':
+          description: ''
+      security:
+      - bearer: []
+      summary: List staff members (by businessEntityId for rich view, else entityId)
+      tags:
+      - Staff
+  /staff/bulk:
+    post:
+      operationId: t_value
+      parameters: []
+      responses:
+        '201':
+          description: ''
+      security:
+      - bearer: []
+      summary: Create multiple staff members in bulk
+      tags:
+      - Staff
+  /staff/reorder:
+    put:
+      operationId: t_value
+      parameters: []
+      responses:
+        '200':
+          description: ''
+      security:
+      - bearer: []
+      summary: Reorder staff members
+      tags:
+      - Staff
+  /staff/media:
+    post:
+      operationId: t_value
+      parameters: []
+      responses:
+        '201':
+          description: ''
+      security:
+      - bearer: []
+      summary: Attach media to a staff member
+      tags:
+      - Staff
+  /staff/me:
+    get:
+      operationId: t_value
+      parameters: []
+      responses:
+        '200':
+          description: Staff profile.
+        '401':
+          description: Unauthenticated.
+        '403':
+          description: Archived in this business.
+      security:
+      - bearer: []
+      summary: Fetch the calling staff member's own profile.
+      tags:
+      - Staff
+    patch:
+      operationId: t_value
+      parameters: []
+      responses:
+        '200':
+          description: Updated staff record.
+        '401':
+          description: Unauthenticated.
+        '403':
+          description: Denied `staff:member.self.update` action (e.g., archived staff).
+      security:
+      - bearer: []
+      summary: Patch the calling staff member's own profile.
+      tags:
+      - Staff
+  /staff/directory:
+    get:
+      operationId: t_value
+      parameters: []
+      responses:
+        '200':
+          description: Page of staff member views.
+        '401':
+          description: Unauthenticated.
+        '403':
+          description: Denied `staff:member.list` action.
+        '503':
+          description: Feature disabled (killswitch).
+      security:
+      - bearer: []
+      summary: List staff members at a business (cursor-paginated, rich view).
+      tags:
+      - Staff
+  /staff/{memberId}:
+    get:
+      operationId: t_value
+      parameters: []
+      responses:
+        '200':
+          description: Staff member view.
+        '401':
+          description: Unauthenticated.
+        '403':
+          description: Denied `staff:member.read` action.
+        '404':
+          description: Staff not found.
+        '503':
+          description: Feature disabled (killswitch).
+      security:
+      - bearer: []
+      summary: Fetch a single staff member by memberId (rich view).
+      tags:
+      - Staff
+  /staff/{memberId}/archive:
+    post:
+      operationId: t_value
+      parameters: []
+      responses:
+        '204':
+          description: Archived.
+        '401':
+          description: Unauthenticated.
+        '403':
+          description: Missing `archiveStaffMembers` scope.
+        '404':
+          description: Staff not found.
+        '503':
+          description: Feature disabled (killswitch).
+      security:
+      - bearer: []
+      summary: Archive a staff member at a business (soft-delete).
+      tags:
+      - Staff
+  /staff/{memberId}/unarchive:
+    post:
+      operationId: t_value
+      parameters: []
+      responses:
+        '204':
+          description: Unarchived.
+        '401':
+          description: Unauthenticated.
+        '403':
+          description: Missing `archiveStaffMembers` scope.
+        '404':
+          description: Staff not found.
+        '503':
+          description: Feature disabled (killswitch).
+      security:
+      - bearer: []
+      summary: Unarchive a staff member at a business.
+      tags:
+      - Staff
+  /staff/{id}:
+    patch:
+      operationId: t_value
+      parameters: []
+      responses:
+        '200':
+          description: ''
+      security:
+      - bearer: []
+      summary: Update a staff member by ID
+      tags:
+      - Staff
+    delete:
+      operationId: t_value
+      parameters: []
+      responses:
+        '200':
+          description: ''
+      security:
+      - bearer: []
+      summary: Delete a staff member by ID (soft-delete)
+      tags:
+      - Staff
+  /staff/{id}/email:
+    patch:
+      operationId: t_value
+      parameters: []
+      responses:
+        '200':
+          description: ''
+      security:
+      - bearer: []
+      summary: Set a staff member’s email (first-time only, enables invites)
+      tags:
+      - Staff
+  /staff/{staffMemberId}/media/{mediaId}:
+    delete:
+      operationId: t_value
+      parameters: []
+      responses:
+        '200':
+          description: ''
+      security:
+      - bearer: []
+      summary: Delete media from a staff member
+      tags:
+      - Staff
+components:
+  securitySchemes:
+    access-token:
+      scheme: bearer
+      bearerFormat: JWT
+      type: http
+      name: Authorization
+      description: Enter JWT token in the format Bearer <token>
+      in: header

@@ -1,0 +1,265 @@
+openapi: 3.2.0
+info:
+  title: Zoca Tasks Jobs API
+  description: 'The Zoca tasks/automation service: AI content queue and planning, FrontDesk (Retell/Twilio) voice + SMS agent onboarding, local-SEO grid scans, WIN conversion triggers, and inbound integration webhooks (Chargebee, Square, Pipedrive, Twilio, Retell, CallHippo, Sybill, Instantly).'
+  version: 3.20.9
+  contact: {}
+  x-apievangelist-note: Harvested verbatim from https://tasks.zoca.ai/swagger.json. The provider ships the default NestJS Swagger metadata (title "API Documentation", empty servers[]); title/description/servers were set by API Evangelist for identification and the unmodified original is preserved at openapi/_original/zoca-tasks-swagger.json. Every path, operation, summary, parameter and response is exactly as published.
+servers:
+- url: https://tasks.zoca.ai
+  description: Production
+security:
+- access-token: []
+tags:
+- name: Jobs
+paths:
+  /tasks/api/v1/jobs:
+    get:
+      description: Retrieves a filtered list of jobs across queues with pagination and sorting options
+      operationId: t_value
+      parameters:
+      - name: sortOrder
+        required: false
+        in: query
+        description: Sort order (asc or desc)
+        schema:
+          enum:
+          - asc
+          - desc
+          type: string
+      - name: sortBy
+        required: false
+        in: query
+        description: Field to sort by (timestamp, finishedOn, or processedOn)
+        schema:
+          enum:
+          - timestamp
+          - finishedOn
+          - processedOn
+          type: string
+      - name: search
+        required: false
+        in: query
+        description: Search term for job name or data
+        schema: {}
+      - name: endDate
+        required: false
+        in: query
+        description: Filter jobs before this date (ISO string)
+        schema: {}
+      - name: startDate
+        required: false
+        in: query
+        description: Filter jobs after this date (ISO string)
+        schema: {}
+      - name: queues
+        required: false
+        in: query
+        description: Comma-separated list of queue names to filter
+        schema: {}
+      - name: states
+        required: false
+        in: query
+        description: Comma-separated list of job states (e.g., completed,failed,delayed,active,waiting)
+        schema: {}
+      - name: pageSize
+        required: false
+        in: query
+        description: Number of jobs per page
+        schema:
+          type: number
+      - name: page
+        required: false
+        in: query
+        description: Page number
+        schema:
+          type: number
+      responses:
+        '200':
+          description: List of jobs with pagination information
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  jobs:
+                    type: array
+                    items:
+                      type: object
+                      properties:
+                        queue:
+                          type: string
+                        job:
+                          type: object
+                        state:
+                          type: string
+                  pagination:
+                    type: object
+                    properties:
+                      total:
+                        type: number
+                      page:
+                        type: number
+                      pageSize:
+                        type: number
+                      totalPages:
+                        type: number
+      summary: Get all jobs
+      tags:
+      - Jobs
+    post:
+      description: Adds a job to the specified Bull queue
+      operationId: t_value
+      parameters: []
+      responses:
+        '201':
+          description: Job enqueued successfully
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  jobId:
+                    type: string
+                  queue:
+                    type: string
+                  jobName:
+                    type: string
+      summary: Enqueue a job
+      tags:
+      - Jobs
+  /tasks/api/v1/jobs/{id}:
+    get:
+      description: Retrieves the status of a specific job
+      operationId: t_value
+      parameters:
+      - name: id
+        required: true
+        in: path
+        description: Job ID to check status for
+        schema: {}
+      responses:
+        '200':
+          description: Job status retrieved successfully
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  queue:
+                    type: string
+                  job:
+                    type: object
+                    properties:
+                      id:
+                        type: string
+                      name:
+                        type: string
+                      data:
+                        type: object
+                      timestamp:
+                        type: number
+                      processedOn:
+                        type: number
+                      finishedOn:
+                        type: number
+                      failedReason:
+                        type: string
+                      attemptsMade:
+                        type: number
+                      state:
+                        type: string
+      summary: Get job status
+      tags:
+      - Jobs
+    delete:
+      description: Deletes a specific job
+      operationId: t_value
+      parameters:
+      - name: id
+        required: true
+        in: path
+        description: Job ID to remove
+        schema: {}
+      responses:
+        '200':
+          description: Job removed successfully
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  success:
+                    type: boolean
+                  message:
+                    type: string
+      summary: Remove job
+      tags:
+      - Jobs
+  /tasks/api/v1/jobs/redis/connections:
+    get:
+      description: Retrieves all active Redis connections with their identities and details
+      operationId: t_value
+      parameters: []
+      responses:
+        '200':
+          description: List of active Redis connections
+          content:
+            application/json:
+              schema:
+                type: array
+                items:
+                  $ref: '#/components/schemas/e'
+      summary: List all Redis connections
+      tags:
+      - Jobs
+  /tasks/api/v1/jobs/redis/connections/summary:
+    get:
+      description: Retrieves a summary of Redis connections grouped by service name
+      operationId: t_value
+      parameters: []
+      responses:
+        '200':
+          description: Summary of connections grouped by service
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/e'
+      summary: Get Redis connections summary
+      tags:
+      - Jobs
+components:
+  schemas:
+    e:
+      type: object
+      properties:
+        scan:
+          $ref: '#/components/schemas/e'
+        businessLat:
+          type:
+          - number
+          - 'null'
+        businessLng:
+          type:
+          - number
+          - 'null'
+        points:
+          type: array
+          items:
+            $ref: '#/components/schemas/e'
+        heroMetrics:
+          $ref: '#/components/schemas/e'
+      required:
+      - scan
+      - businessLat
+      - businessLng
+      - points
+      - heroMetrics
+  securitySchemes:
+    access-token:
+      scheme: bearer
+      bearerFormat: JWT
+      type: http
+      name: Authorization
+      description: Enter JWT token in the format Bearer <token>
+      in: header

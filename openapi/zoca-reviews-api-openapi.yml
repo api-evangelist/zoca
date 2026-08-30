@@ -1,0 +1,238 @@
+openapi: 3.2.0
+info:
+  title: Zoca Platform Reviews API
+  description: 'The Zoca platform API behind the Zoca web app and mobile apps: scheduling, website generation, Google Business Profile, discovery/local SEO, social media, booking enquiries, offers, clients, staff, billing and the Zoca "brain" agent layer.'
+  version: 3.20.10
+  contact: {}
+  x-apievangelist-note: Harvested verbatim from https://api.zoca.ai/swagger.json. The provider ships the default NestJS Swagger metadata (title "API Documentation", empty servers[]); title/description/servers were set by API Evangelist for identification and the unmodified original is preserved at openapi/_original/zoca-platform-swagger.json. Every path, operation, summary, parameter and response is exactly as published.
+servers:
+- url: https://api.zoca.ai
+  description: Production
+tags:
+- name: Reviews
+paths:
+  /reviews/{entityId}/reviews:
+    get:
+      description: Retrieves paginated list of reviews for a specific entity with optional sorting and search functionality
+      operationId: t_value
+      parameters: []
+      responses:
+        '200':
+          description: ''
+      summary: Get paginated reviews for an entity
+      tags:
+      - Reviews
+  /reviews/review-id:
+    get:
+      description: Retrieves a specific review by its ID along with reply status
+      operationId: t_value
+      parameters: []
+      responses:
+        '200':
+          description: ''
+      summary: Get review by ID
+      tags:
+      - Reviews
+  /reviews/{entityId}/review-tags:
+    get:
+      description: Retrieves review tags with their associated review counts for a specific entity
+      operationId: t_value
+      parameters: []
+      responses:
+        '200':
+          description: ''
+      summary: Get review tags for an entity
+      tags:
+      - Reviews
+  /reviews/{reviewId}/reply/ai-generated:
+    get:
+      description: Generates an AI-powered reply for a specific review, supports both streaming and non-streaming modes
+      operationId: t_value
+      parameters: []
+      responses:
+        '200':
+          description: ''
+      summary: Generate AI reply for a review
+      tags:
+      - Reviews
+  /reviews/{reviewId}/reply:
+    post:
+      description: Creates a reply to a specific review, can be AI-generated or manual
+      operationId: t_value
+      parameters: []
+      responses:
+        '201':
+          description: ''
+      summary: Create a reply to a review
+      tags:
+      - Reviews
+    put:
+      description: Updates an existing reply to a review with new content or AI-generated status
+      operationId: t_value
+      parameters: []
+      responses:
+        '200':
+          description: ''
+      summary: Update a review reply
+      tags:
+      - Reviews
+    delete:
+      description: Deletes an existing reply to a review
+      operationId: t_value
+      parameters: []
+      responses:
+        '204':
+          description: ''
+      summary: Delete a review reply
+      tags:
+      - Reviews
+  /reviews/stats:
+    get:
+      description: Retrieves statistical data about reviews for a specific entity
+      operationId: t_value
+      parameters: []
+      responses:
+        '200':
+          description: ''
+      summary: Get review statistics
+      tags:
+      - Reviews
+  /reviews/qr-poster-design:
+    get:
+      description: Generates a QR poster design for review collection for a specific entity
+      operationId: t_value
+      parameters: []
+      responses:
+        '200':
+          description: ''
+      summary: Get QR poster design
+      tags:
+      - Reviews
+  /reviews/{entityId}/preferences:
+    post:
+      description: Updates review preferences for a specific entity including reply settings and templates
+      operationId: t_value
+      parameters: []
+      responses:
+        '201':
+          description: ''
+      summary: Set review preferences
+      tags:
+      - Reviews
+    get:
+      description: Retrieves review preferences for a specific entity including reply settings and templates
+      operationId: t_value
+      parameters: []
+      responses:
+        '200':
+          description: ''
+      summary: Get review preferences
+      tags:
+      - Reviews
+  /reviews/{entityId}/add-default-text-template:
+    post:
+      description: Adds default review text templates for a specific entity with service provider and business names
+      operationId: t_value
+      parameters: []
+      responses:
+        '201':
+          description: ''
+      summary: Add default text template
+      tags:
+      - Reviews
+  /reviews/{reviewId}/share-templates:
+    get:
+      description: Retrieves sharing templates for a specific review to encourage review sharing
+      operationId: t_value
+      parameters: []
+      responses:
+        '200':
+          description: ''
+      summary: Get share templates for a review
+      tags:
+      - Reviews
+  /reviews/{entityId}/app/gbp-component:
+    get:
+      description: Retrieves component data for Google Business Profile reviews display in the app
+      operationId: t_value
+      parameters: []
+      responses:
+        '200':
+          description: ''
+      summary: Get Google Business Profile component data
+      tags:
+      - Reviews
+  /reviews/{entityId}/app/card:
+    get:
+      description: Retrieves review-related cards data for display in the app dashboard based on review metrics
+      operationId: t_value
+      parameters: []
+      responses:
+        '200':
+          description: ''
+      summary: Get review cards for app dashboard
+      tags:
+      - Reviews
+  /reviews/zoca-reply:
+    post:
+      description: Creates a scheduled reply to a review through the Zoca platform integration
+      operationId: t_value
+      parameters: []
+      responses:
+        '201':
+          description: ''
+      summary: Create scheduled Zoca reply
+      tags:
+      - Reviews
+  /reviews/consistency-metrics:
+    get:
+      description: Returns weekly 5-star review consistency metrics with RAG status for a specific date range. Requires entityId, startDate, and endDate as mandatory query parameters.
+      operationId: t_value
+      parameters: []
+      responses:
+        '200':
+          description: 5-star review consistency metrics retrieved successfully
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/e'
+        '400':
+          description: Bad request - missing or invalid required parameters (entityId, startDate, endDate)
+      summary: Get 5-star review consistency metrics
+      tags:
+      - Reviews
+components:
+  schemas:
+    e:
+      type: object
+      properties:
+        id:
+          type: number
+        entityId:
+          type: string
+        attribute:
+          type: string
+        value:
+          type:
+          - object
+          - 'null'
+        metadata:
+          type:
+          - object
+          - 'null'
+        createdAt:
+          type:
+          - object
+          - 'null'
+      required:
+      - id
+      - entityId
+      - attribute
+  securitySchemes:
+    access-token:
+      scheme: bearer
+      bearerFormat: JWT
+      type: http
+      name: Authorization
+      description: Enter JWT token in the format Bearer <token>
+      in: header

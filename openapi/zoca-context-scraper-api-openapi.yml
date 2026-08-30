@@ -1,0 +1,420 @@
+openapi: 3.2.0
+info:
+  title: Zoca Tasks Context Scraper API
+  description: 'The Zoca tasks/automation service: AI content queue and planning, FrontDesk (Retell/Twilio) voice + SMS agent onboarding, local-SEO grid scans, WIN conversion triggers, and inbound integration webhooks (Chargebee, Square, Pipedrive, Twilio, Retell, CallHippo, Sybill, Instantly).'
+  version: 3.20.9
+  contact: {}
+  x-apievangelist-note: Harvested verbatim from https://tasks.zoca.ai/swagger.json. The provider ships the default NestJS Swagger metadata (title "API Documentation", empty servers[]); title/description/servers were set by API Evangelist for identification and the unmodified original is preserved at openapi/_original/zoca-tasks-swagger.json. Every path, operation, summary, parameter and response is exactly as published.
+servers:
+- url: https://tasks.zoca.ai
+  description: Production
+security:
+- access-token: []
+tags:
+- name: Context Scraper
+paths:
+  /tasks/api/v1/scrape/context:
+    post:
+      description: Immediately scrapes and extracts structured business information from website. Use /context/queue for background processing.
+      operationId: t_value
+      parameters: []
+      requestBody:
+        required: true
+        description: Request body containing URL and scraping options
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/e'
+      responses:
+        '200':
+          description: Context successfully scraped
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/e'
+        '400':
+          description: Invalid request parameters
+        '500':
+          description: Internal server error during scraping
+      summary: Scrape business context from URL (immediate)
+      tags:
+      - Context Scraper
+  /tasks/api/v1/scrape/context/queue:
+    post:
+      description: Queues a URL for background scraping with optional Slack notifications and callbacks. Each request creates a new job with a unique UUID.
+      operationId: t_value
+      parameters: []
+      requestBody:
+        required: true
+        description: Request with URL, scraping options, and optional notification/callback settings
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/t'
+            examples:
+              singlePage:
+                value:
+                  url: https://example-business.com
+                  maxDepth: 0
+                  mergeStrategy: intelligent
+                  notifySlack: true
+                  entityId: entity_123
+                  callbackUrl: https://webhook.site/callback
+                description: Single page scraping with notifications
+              crawl:
+                value:
+                  url: https://example-business.com
+                  maxDepth: 2
+                  mergeStrategy: intelligent
+                  notifySlack: true
+                description: Multi-page crawl (up to depth 2)
+      responses:
+        '202':
+          description: Scrape job queued successfully with UUID
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/e'
+        '400':
+          description: Invalid request parameters
+      summary: Queue business context scraping
+      tags:
+      - Context Scraper
+  /tasks/api/v1/scrape/context/bulk:
+    post:
+      description: Queue multiple URLs for scraping in a single background job. All URLs are processed with the same options. Job ID is a UUID.
+      operationId: t_value
+      parameters: []
+      requestBody:
+        required: true
+        description: Request body containing multiple URLs and options
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/e'
+            examples:
+              bulkScrape:
+                value:
+                  urls:
+                  - https://business1.com
+                  - https://business2.com
+                  - https://business3.com
+                  options:
+                    maxDepth: 0
+                    mergeStrategy: intelligent
+                  notifySlack: true
+                  callbackUrl: https://webhook.site/bulk-complete
+                description: Bulk scraping with notifications
+      responses:
+        '202':
+          description: Bulk scrape job queued with UUID
+          schema:
+            example:
+              success: true
+              jobId: 550e8400-e29b-41d4-a716-446655440000
+              totalUrls: 3
+              estimatedTime: 90 seconds
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/e'
+        '400':
+          description: Invalid request parameters
+      summary: Bulk scrape multiple URLs
+      tags:
+      - Context Scraper
+  /tasks/api/v1/scrape/context/job/{jobId}:
+    get:
+      description: Check the status and progress of a queued scraping job by its UUID
+      operationId: t_value
+      parameters:
+      - name: jobId
+        required: true
+        in: path
+        description: UUID of the job to check
+        schema:
+          example: 550e8400-e29b-41d4-a716-446655440000
+      responses:
+        '200':
+          description: Job status retrieved
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/e'
+        '404':
+          description: Job not found
+      summary: Get scraping job status
+      tags:
+      - Context Scraper
+    delete:
+      description: Cancel a queued or running scraping job by its UUID. Only jobs in waiting or active state can be cancelled.
+      operationId: t_value
+      parameters:
+      - name: jobId
+        required: true
+        in: path
+        description: UUID of the job to cancel
+        schema:
+          example: 550e8400-e29b-41d4-a716-446655440000
+      responses:
+        '200':
+          description: Job cancelled successfully
+          content:
+            application/json:
+              schema:
+                example:
+                  success: true
+                  message: Job 550e8400-e29b-41d4-a716-446655440000 cancelled successfully
+        '404':
+          description: Job not found or already completed
+      summary: Cancel a scraping job
+      tags:
+      - Context Scraper
+  /tasks/api/v1/scrape/context/queue/stats:
+    get:
+      description: Get real-time statistics for the context scraper queue including job counts by status
+      operationId: t_value
+      parameters: []
+      responses:
+        '200':
+          description: Queue statistics retrieved
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/e'
+      summary: Get queue statistics
+      tags:
+      - Context Scraper
+  /tasks/api/v1/scrape/health:
+    get:
+      description: Check if the scraping service is operational
+      operationId: t_value
+      parameters: []
+      responses:
+        '200':
+          description: Service is healthy
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/e'
+      summary: Health check
+      tags:
+      - Context Scraper
+  /tasks/api/v1/scrape/prompts:
+    get:
+      description: Retrieve all prompts currently being used for scraping (from database or fallback)
+      operationId: t_value
+      parameters: []
+      responses:
+        '200':
+          description: Prompts retrieved successfully
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/e'
+      summary: Get current scraper prompts
+      tags:
+      - Context Scraper
+  /tasks/api/v1/scrape/prompts/{promptType}:
+    get:
+      description: Retrieve a specific prompt by type (e.g., BUSINESS_INFO, SERVICES, etc.)
+      operationId: t_value
+      parameters:
+      - name: promptType
+        required: true
+        in: path
+        description: Type of prompt to retrieve
+        schema:
+          enum:
+          - BUSINESS_INFO
+          - SERVICES
+          - TEAM
+          - REVIEWS
+          - MEDIA
+          - PRODUCTS
+          - BLOGS
+          - FAQS
+          - OFFERS
+          - PAGES
+          - PUBLICATIONS
+          type: string
+      responses:
+        '200':
+          description: Prompt retrieved successfully
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/e'
+        '404':
+          description: Prompt type not found
+      summary: Get a specific scraper prompt
+      tags:
+      - Context Scraper
+  /tasks/api/v1/scrape/prompts/cache:
+    delete:
+      description: Force refresh of prompts by clearing the cache. Next scrape will fetch from database.
+      operationId: t_value
+      parameters: []
+      responses:
+        '200':
+          description: Cache cleared successfully
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/e'
+      summary: Clear prompts cache
+      tags:
+      - Context Scraper
+  /tasks/api/v1/scrape/prompts/refresh:
+    post:
+      description: Clear cache and immediately fetch fresh prompts from database
+      operationId: t_value
+      parameters: []
+      responses:
+        '200':
+          description: Prompts refreshed successfully
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/e'
+      summary: Refresh prompts cache
+      tags:
+      - Context Scraper
+  /tasks/api/v1/scrape/context/entity/{entityId}/history:
+    get:
+      description: Retrieve all scraping jobs and their status for a specific entity
+      operationId: t_value
+      parameters:
+      - name: limit
+        required: false
+        in: query
+        description: Number of records to return
+        schema:
+          example: 10
+      - name: entityId
+        required: true
+        in: path
+        description: UUID of the entity
+        schema:
+          example: c65a879b-bf21-4b5c-ace5-51992c4a1e62
+      responses:
+        '200':
+          description: Scrape history retrieved successfully
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/e'
+      summary: Get scrape history for an entity
+      tags:
+      - Context Scraper
+  /tasks/api/v1/scrape/context/entity/{entityId}/latest:
+    get:
+      description: Retrieve the most recent successful scraping result for a specific entity
+      operationId: t_value
+      parameters:
+      - name: entityId
+        required: true
+        in: path
+        description: UUID of the entity
+        schema:
+          example: c65a879b-bf21-4b5c-ace5-51992c4a1e62
+      responses:
+        '200':
+          description: Latest scrape result retrieved successfully
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/e'
+      summary: Get latest scrape result for an entity
+      tags:
+      - Context Scraper
+components:
+  schemas:
+    t:
+      type: object
+      properties:
+        callId:
+          type: string
+          description: Unique call identifier
+          example: call_abcdef123456
+        entityId:
+          type: string
+          description: Entity ID associated with the call
+        startTime:
+          type: string
+          description: Call start time
+        endTime:
+          type: string
+          description: Call end time
+        status:
+          type: string
+          description: Call status
+          example: COMPLETED
+          enum:
+          - ONGOING
+          - COMPLETED
+        metadata:
+          type: object
+          description: Call metadata including transcript, recording URL, etc.
+        summary:
+          type: object
+          description: AI-generated call summary and analysis
+        createdAt:
+          type: string
+          description: Record creation timestamp
+        callback:
+          description: Callback associated with this call
+          allOf:
+          - $ref: '#/components/schemas/e'
+        clientId:
+          type: string
+          description: Client ID associated with the call
+        clientFirstName:
+          type: string
+          description: Client first name
+        clientLastName:
+          type: string
+          description: Client last name
+        clientPhoneNumber:
+          type: string
+          description: Client phone number
+      required:
+      - callId
+      - entityId
+      - startTime
+      - status
+      - createdAt
+      - clientId
+    e:
+      type: object
+      properties:
+        scan:
+          $ref: '#/components/schemas/e'
+        businessLat:
+          type:
+          - number
+          - 'null'
+        businessLng:
+          type:
+          - number
+          - 'null'
+        points:
+          type: array
+          items:
+            $ref: '#/components/schemas/e'
+        heroMetrics:
+          $ref: '#/components/schemas/e'
+      required:
+      - scan
+      - businessLat
+      - businessLng
+      - points
+      - heroMetrics
+  securitySchemes:
+    access-token:
+      scheme: bearer
+      bearerFormat: JWT
+      type: http
+      name: Authorization
+      description: Enter JWT token in the format Bearer <token>
+      in: header

@@ -1,0 +1,369 @@
+openapi: 3.2.0
+info:
+  title: Zoca Platform Onboarding API
+  description: 'The Zoca platform API behind the Zoca web app and mobile apps: scheduling, website generation, Google Business Profile, discovery/local SEO, social media, booking enquiries, offers, clients, staff, billing and the Zoca "brain" agent layer.'
+  version: 3.20.10
+  contact: {}
+  x-apievangelist-note: Harvested verbatim from https://api.zoca.ai/swagger.json. The provider ships the default NestJS Swagger metadata (title "API Documentation", empty servers[]); title/description/servers were set by API Evangelist for identification and the unmodified original is preserved at openapi/_original/zoca-platform-swagger.json. Every path, operation, summary, parameter and response is exactly as published.
+servers:
+- url: https://api.zoca.ai
+  description: Production
+tags:
+- name: onboarding
+paths:
+  /onboarding:
+    get:
+      operationId: t_value
+      parameters: []
+      responses:
+        '200':
+          description: ''
+      summary: Health check for onboarding service
+      tags:
+      - onboarding
+  /onboarding/app-visitor:
+    get:
+      operationId: t_value
+      parameters: []
+      responses:
+        '200':
+          description: ''
+      summary: Register app visitor
+      tags:
+      - onboarding
+  /onboarding/update-user:
+    post:
+      operationId: t_value
+      parameters: []
+      requestBody:
+        required: true
+        description: User profile update data
+        content:
+          application/json:
+            schema:
+              type: object
+              properties:
+                entity_id:
+                  type: string
+                  description: Unique identifier for the user
+                firstName:
+                  type: string
+                  description: User's first name
+                lastName:
+                  type: string
+                  description: User's last name
+                primaryPhone:
+                  type: object
+                  properties:
+                    phone_number:
+                      type: string
+                      description: Primary phone number
+                    country_code:
+                      type: string
+                      description: Country code for primary phone
+                secondaryPhone:
+                  type: object
+                  properties:
+                    phone_number:
+                      type: string
+                      description: Secondary phone number
+                    country_code:
+                      type: string
+                      description: Country code for secondary phone
+                primaryEmail:
+                  type: string
+                  format: email
+                  description: Primary email address
+                secondaryEmail:
+                  type: string
+                  format: email
+                  description: Secondary email address
+              required:
+              - entity_id
+      responses:
+        '200':
+          description: User profile updated successfully
+          content:
+            application/json:
+              schema:
+                example:
+                  status: success
+                  message: User profile updated
+                  data:
+                    entityId: '1234567890'
+                    firstName: John
+                    lastName: Doe
+        '400':
+          description: Bad Request
+        '404':
+          description: User not found
+      summary: Update User Profile
+      tags:
+      - onboarding
+  /onboarding/locations/{entity_id}:
+    get:
+      operationId: t_value
+      parameters: []
+      responses:
+        '200':
+          description: ''
+      summary: Get locations for entity
+      tags:
+      - onboarding
+  /onboarding/onboarding-state:
+    get:
+      operationId: t_value
+      parameters: []
+      responses:
+        '200':
+          description: ''
+      summary: Get onboarding state for entity
+      tags:
+      - onboarding
+  /onboarding/user-profile:
+    get:
+      operationId: t_value
+      parameters: []
+      responses:
+        '200':
+          description: ''
+      summary: Get user profile information
+      tags:
+      - onboarding
+  /onboarding/clear-user-data:
+    delete:
+      operationId: t_value
+      parameters: []
+      responses:
+        '200':
+          description: ''
+      summary: Clear user data (admin only)
+      tags:
+      - onboarding
+  /onboarding/quick-recap:
+    get:
+      operationId: t_value
+      parameters: []
+      responses:
+        '200':
+          description: Onboarding quick recap pointers retrieved successfully
+          content:
+            application/json:
+              schema:
+                example:
+                - I trust Zoca to select the best keywords for my business.
+                - I'll collect regular 5-star reviews to boost my visibility
+                - Zoca will help me get both new and returning clients
+                - I expect steady growth, not overnight results
+                - I'll reach out to leads on the Zoca app to ensure they book
+      summary: Get onboarding quick recap pointers
+      tags:
+      - onboarding
+  /onboarding/business-categories:
+    get:
+      operationId: t_value
+      parameters: []
+      responses:
+        '200':
+          description: Business categories retrieved successfully
+          content:
+            application/json:
+              schema:
+                example:
+                - Hair salon
+                - Facial
+                - Lash & brow
+                - Permanent makeup
+                - Med spa
+                - Nail salon
+                - Waxing
+                - Braider
+                - Barber
+                - Massage
+                - Other
+      summary: Get list of business categories
+      tags:
+      - onboarding
+  /onboarding/customer-sources:
+    get:
+      operationId: t_value
+      parameters: []
+      responses:
+        '200':
+          description: Customer sources retrieved successfully
+          content:
+            application/json:
+              schema:
+                example:
+                - Groupon
+                - Yelp
+                - ClassPass
+                - Google
+                - Word of Mouth
+      summary: Get list of customer sources
+      tags:
+      - onboarding
+  /onboarding/search-booking-link:
+    get:
+      operationId: t_value
+      parameters: []
+      responses:
+        '200':
+          description: ''
+      summary: Search for booking platform link
+      tags:
+      - onboarding
+  /onboarding/search-all-links:
+    get:
+      operationId: t_value
+      parameters: []
+      responses:
+        '200':
+          description: ''
+      summary: Search for all links related to entity
+      tags:
+      - onboarding
+  /onboarding/{entityId}/add-user-for-sm:
+    post:
+      operationId: t_value
+      parameters: []
+      responses:
+        '200':
+          description: User successfully added for social media onboarding
+          content:
+            application/json:
+              schema:
+                example:
+                  status: true
+                  message: Success
+                  data:
+                    gmbRetoolOnboardingDetailsData:
+                      biz_name: Jawdrop Salon
+                      ob_date: '2025-05-07T20:15:57.674Z'
+                      verification: Not Verified
+                      place_id: ChIJswuv4-y1WoYR--cNwahESU0
+                      location: null
+                      uid: 822b2848-9895-43de-bdff-191e8c8df0b6
+                      verification_date: '2025-05-07T20:15:57.674Z'
+                    gmbRetoolDeadProfilesData:
+                      place_id: ChIJswuv4-y1WoYR--cNwahESU0
+                      dead: false
+                      lead_mask: false
+                      uid: 822b2848-9895-43de-bdff-191e8c8df0b6
+                      location: null
+                      operation: null
+                      comms_status: true
+                      paused: false
+                      payment_link_shared: false
+                      is_data_deleted: false
+                      is_discarded: false
+        '404':
+          description: Entity not found
+      summary: Add user for social media onboarding
+      tags:
+      - onboarding
+  /onboarding/check-platform-selection/{locationEntityId}:
+    get:
+      operationId: t_value
+      parameters: []
+      responses:
+        '200':
+          description: Platform selection status retrieved successfully (within 10 hours of onboarding)
+          schema:
+            example:
+              isPlatformSelected: true
+              platformName: square,vagaro
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/e'
+        '400':
+          description: Bad Request - Invalid UUID format or missing platform names
+        '404':
+          description: Onboarding record not found
+      summary: Check if specific platforms were selected during onboarding within 10 hours
+      tags:
+      - onboarding
+  /onboarding/trigger-comms:
+    post:
+      description: Triggers onboarding communication events based on user actions during onboarding flow. For REVIEW_SCREEN_VIEW type, calculates and includes review insights data.
+      operationId: t_value
+      parameters: []
+      responses:
+        '200':
+          description: Onboarding communication event triggered successfully
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/e'
+        '400':
+          description: Bad Request - Missing required fields or invalid data
+        '500':
+          description: Internal Server Error - Failed to trigger onboarding communication
+      summary: Trigger onboarding communications for MoEngage notifications
+      tags:
+      - onboarding
+  /onboarding/onboarding-record:
+    get:
+      operationId: t_value
+      parameters: []
+      responses:
+        '200':
+          description: ''
+      summary: Get onboarding record by entity ID and version
+      tags:
+      - onboarding
+    patch:
+      operationId: t_value
+      parameters: []
+      responses:
+        '200':
+          description: ''
+      summary: Update an app.onboarding record by entity and version
+      tags:
+      - onboarding
+  /onboarding/web-visitor:
+    post:
+      operationId: t_value
+      parameters: []
+      responses:
+        '201':
+          description: ''
+      summary: Create a web visitor onboarding record
+      tags:
+      - onboarding
+components:
+  schemas:
+    e:
+      type: object
+      properties:
+        id:
+          type: number
+        entityId:
+          type: string
+        attribute:
+          type: string
+        value:
+          type:
+          - object
+          - 'null'
+        metadata:
+          type:
+          - object
+          - 'null'
+        createdAt:
+          type:
+          - object
+          - 'null'
+      required:
+      - id
+      - entityId
+      - attribute
+  securitySchemes:
+    access-token:
+      scheme: bearer
+      bearerFormat: JWT
+      type: http
+      name: Authorization
+      description: Enter JWT token in the format Bearer <token>
+      in: header

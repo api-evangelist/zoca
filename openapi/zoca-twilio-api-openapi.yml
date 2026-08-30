@@ -1,0 +1,409 @@
+openapi: 3.2.0
+info:
+  title: Zoca Tasks Twilio API
+  description: 'The Zoca tasks/automation service: AI content queue and planning, FrontDesk (Retell/Twilio) voice + SMS agent onboarding, local-SEO grid scans, WIN conversion triggers, and inbound integration webhooks (Chargebee, Square, Pipedrive, Twilio, Retell, CallHippo, Sybill, Instantly).'
+  version: 3.20.9
+  contact: {}
+  x-apievangelist-note: Harvested verbatim from https://tasks.zoca.ai/swagger.json. The provider ships the default NestJS Swagger metadata (title "API Documentation", empty servers[]); title/description/servers were set by API Evangelist for identification and the unmodified original is preserved at openapi/_original/zoca-tasks-swagger.json. Every path, operation, summary, parameter and response is exactly as published.
+servers:
+- url: https://tasks.zoca.ai
+  description: Production
+security:
+- access-token: []
+tags:
+- name: twilio
+paths:
+  /tasks/api/v1/twilio/send-sms:
+    post:
+      operationId: t_value
+      parameters: []
+      responses:
+        '201':
+          description: ''
+      tags:
+      - twilio
+  /tasks/api/v1/twilio/status-callback:
+    post:
+      operationId: t_value
+      parameters: []
+      responses:
+        '201':
+          description: ''
+      tags:
+      - twilio
+  /tasks/api/v1/twilio/incoming-sms:
+    post:
+      operationId: t_value
+      parameters: []
+      responses:
+        '201':
+          description: ''
+      tags:
+      - twilio
+  /tasks/api/v1/twilio/phone/search:
+    get:
+      operationId: t_value
+      parameters: []
+      responses:
+        '200':
+          description: ''
+      tags:
+      - twilio
+  /tasks/api/v1/twilio/phone/purchase:
+    post:
+      operationId: t_value
+      parameters: []
+      responses:
+        '201':
+          description: ''
+      tags:
+      - twilio
+  /tasks/api/v1/twilio/phone/search/{entityId}:
+    get:
+      operationId: t_value
+      parameters: []
+      responses:
+        '200':
+          description: ''
+      tags:
+      - twilio
+  /tasks/api/v1/twilio/connect-call:
+    post:
+      operationId: t_value
+      parameters: []
+      responses:
+        '201':
+          description: ''
+      tags:
+      - twilio
+  /tasks/api/v1/twilio/voice-bridge:
+    get:
+      description: Generates TwiML response for Twilio voice bridge with recording enabled
+      operationId: t_value
+      parameters:
+      - name: CallSid
+        required: false
+        in: query
+        description: Call SID from Twilio
+        schema: {}
+      - name: twilioNumber
+        required: false
+        in: query
+        description: Twilio phone number
+        schema: {}
+      - name: callerNumber
+        required: false
+        in: query
+        description: Phone number of the caller
+        schema: {}
+      - name: receiverNumber
+        required: true
+        in: query
+        description: Phone number of the receiver
+        schema: {}
+      responses:
+        '200':
+          description: TwiML response generated successfully
+          content:
+            text/xml:
+              schema:
+                type: string
+                example: <?xml version="1.0" encoding="UTF-8"?><Response><Dial record="record-from-answer-dual">+1234567890</Dial></Response>
+      summary: Generate TwiML for voice bridge (GET)
+      tags:
+      - twilio
+    post:
+      description: Generates TwiML response for Twilio voice bridge with recording enabled
+      operationId: t_value
+      parameters:
+      - name: twilioNumber
+        required: false
+        in: query
+        description: Twilio phone number
+        schema: {}
+      - name: callerNumber
+        required: false
+        in: query
+        description: Phone number of the caller
+        schema: {}
+      - name: receiverNumber
+        required: false
+        in: query
+        description: Phone number of the receiver
+        schema: {}
+      requestBody:
+        required: true
+        description: Voice bridge request body
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/e'
+      responses:
+        '200':
+          description: TwiML response generated successfully
+          content:
+            text/xml:
+              schema:
+                type: string
+                example: <?xml version="1.0" encoding="UTF-8"?><Response><Dial record="record-from-answer-dual">+1234567890</Dial></Response>
+      summary: Generate TwiML for voice bridge (POST)
+      tags:
+      - twilio
+  /tasks/api/v1/twilio/outgoing-call:
+    post:
+      operationId: t_value
+      parameters: []
+      responses:
+        '201':
+          description: ''
+      tags:
+      - twilio
+  /tasks/api/v1/twilio/outgoing-call-dash:
+    post:
+      operationId: t_value
+      parameters: []
+      responses:
+        '201':
+          description: ''
+      tags:
+      - twilio
+  /tasks/api/v1/twilio/initiate-call:
+    post:
+      operationId: t_value
+      parameters: []
+      responses:
+        '201':
+          description: ''
+      tags:
+      - twilio
+  /tasks/api/v1/twilio/recording-callback:
+    post:
+      description: Processes callbacks from Twilio when call recordings are completed and transcribed by Deepgram
+      operationId: t_value
+      parameters: []
+      requestBody:
+        required: true
+        description: Twilio recording callback payload
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/e'
+      responses:
+        '200':
+          description: Recording callback processed successfully
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/e'
+        '400':
+          description: Invalid callback payload
+      summary: Handle Twilio recording status callbacks with Deepgram transcription
+      tags:
+      - twilio
+  /tasks/api/v1/twilio/phone/purchased:
+    get:
+      description: Returns a paginated list of phone numbers purchased on the Twilio account. Supports searching by phone number or friendly name. Total count is included for un-filtered requests (sourced from DB).
+      operationId: t_value
+      parameters:
+      - name: search
+        required: false
+        in: query
+        description: Search by phone number or friendly name
+        schema:
+          type: string
+      - name: pageSize
+        required: false
+        in: query
+        description: 'Items per page (default: 20, max: 100)'
+        schema:
+          type: number
+      - name: page
+        required: false
+        in: query
+        description: 'Page number (default: 1, min: 1)'
+        schema:
+          type: number
+      responses:
+        '200':
+          description: Purchased phone numbers retrieved successfully
+          content:
+            application/json:
+              schema:
+                example:
+                  data:
+                  - sid: PNaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa
+                    phoneNumber: '+17867513610'
+                    friendlyName: (786) 751-3610
+                    dateCreated: '2024-01-01T00:00:00.000Z'
+                    capabilities:
+                      fax: false
+                      mms: true
+                      sms: true
+                      voice: true
+                    smsUrl: https://example.com/sms
+                    voiceUrl: null
+                    statusCallback: null
+                  page: 1
+                  pageSize: 20
+                  hasNextPage: false
+                  hasPreviousPage: false
+                  total: 42
+                  totalPages: 3
+      summary: List purchased phone numbers (paginated)
+      tags:
+      - twilio
+  /tasks/api/v1/twilio/messaging-services:
+    get:
+      description: Returns a paginated list of messaging services configured on the Twilio account.
+      operationId: t_value
+      parameters:
+      - name: pageSize
+        required: false
+        in: query
+        description: 'Items per page (default: 20, max: 100)'
+        schema:
+          type: number
+      - name: page
+        required: false
+        in: query
+        description: 'Page number (default: 1, min: 1)'
+        schema:
+          type: number
+      responses:
+        '200':
+          description: Messaging services retrieved successfully
+          content:
+            application/json:
+              schema:
+                example:
+                  data:
+                  - sid: MGaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa
+                    friendlyName: My Messaging Service
+                    dateCreated: '2024-01-01T00:00:00.000Z'
+                    dateUpdated: '2024-01-01T00:00:00.000Z'
+                    inboundRequestUrl: https://example.com/sms
+                    inboundMethod: POST
+                    fallbackUrl: null
+                    fallbackMethod: POST
+                    statusCallback: null
+                    stickySender: true
+                    smartEncoding: true
+                    mmsConverter: true
+                    fallbackToLongCode: true
+                    scanMessageContent: disabled
+                    areaCodeGeomatch: true
+                    validityPeriod: 14400
+                    useInboundWebhookOnNumber: false
+                  page: 1
+                  pageSize: 20
+                  hasNextPage: false
+                  hasPreviousPage: false
+      summary: List Twilio messaging services (paginated)
+      tags:
+      - twilio
+  /tasks/api/v1/twilio/messaging-services/{sid}:
+    get:
+      operationId: t_value
+      parameters: []
+      responses:
+        '200':
+          description: ''
+      tags:
+      - twilio
+  /tasks/api/v1/twilio/phone/{sid}:
+    delete:
+      description: Releases a phone number from the Twilio account and removes it from the database. This action is irreversible.
+      operationId: t_value
+      parameters: []
+      responses:
+        '200':
+          description: Phone number released successfully
+          content:
+            application/json:
+              schema:
+                example:
+                  message: Phone number +17867513610 released successfully
+                  phoneNumber: '+17867513610'
+                  sid: PNaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa
+        '500':
+          description: Failed to release phone number
+      summary: Release a purchased phone number
+      tags:
+      - twilio
+    get:
+      description: Retrieves detailed information about a Twilio phone number using its SID
+      operationId: t_value
+      parameters: []
+      responses:
+        '200':
+          description: Phone number details retrieved successfully
+          content:
+            application/json:
+              schema:
+                example:
+                  phoneNumber: '+17867513610'
+                  sid: Paaaaaaaaaaaaaaaaaaaaaaaaa
+                  friendlyName: (786) 751-3610
+                  capabilities:
+                    fax: false
+                    mms: true
+                    sms: true
+                    voice: true
+        '500':
+          description: Failed to fetch phone number details
+      summary: Fetch Twilio phone number details
+      tags:
+      - twilio
+    put:
+      description: Updates settings for a Twilio phone number such as SMS URL, method and trunk SID
+      operationId: t_value
+      parameters: []
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/e'
+      responses:
+        '200':
+          description: Phone number updated successfully
+        '500':
+          description: Failed to update phone number
+      summary: Update Twilio phone number configuration
+      tags:
+      - twilio
+components:
+  schemas:
+    e:
+      type: object
+      properties:
+        scan:
+          $ref: '#/components/schemas/e'
+        businessLat:
+          type:
+          - number
+          - 'null'
+        businessLng:
+          type:
+          - number
+          - 'null'
+        points:
+          type: array
+          items:
+            $ref: '#/components/schemas/e'
+        heroMetrics:
+          $ref: '#/components/schemas/e'
+      required:
+      - scan
+      - businessLat
+      - businessLng
+      - points
+      - heroMetrics
+  securitySchemes:
+    access-token:
+      scheme: bearer
+      bearerFormat: JWT
+      type: http
+      name: Authorization
+      description: Enter JWT token in the format Bearer <token>
+      in: header

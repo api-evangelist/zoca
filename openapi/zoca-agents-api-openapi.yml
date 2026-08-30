@@ -1,0 +1,210 @@
+openapi: 3.2.0
+info:
+  title: Zoca Tasks Agents API
+  description: 'The Zoca tasks/automation service: AI content queue and planning, FrontDesk (Retell/Twilio) voice + SMS agent onboarding, local-SEO grid scans, WIN conversion triggers, and inbound integration webhooks (Chargebee, Square, Pipedrive, Twilio, Retell, CallHippo, Sybill, Instantly).'
+  version: 3.20.9
+  contact: {}
+  x-apievangelist-note: Harvested verbatim from https://tasks.zoca.ai/swagger.json. The provider ships the default NestJS Swagger metadata (title "API Documentation", empty servers[]); title/description/servers were set by API Evangelist for identification and the unmodified original is preserved at openapi/_original/zoca-tasks-swagger.json. Every path, operation, summary, parameter and response is exactly as published.
+servers:
+- url: https://tasks.zoca.ai
+  description: Production
+security:
+- access-token: []
+tags:
+- name: Agents
+paths:
+  /tasks/api/v1/agents/link-fetcher:
+    post:
+      description: Uses the LinkFetcher AI agent with web search capabilities to find official online properties of a business including website, booking links, and social media profiles. Results are saved to database.
+      operationId: t_value
+      parameters: []
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/e'
+      responses:
+        '200':
+          description: Business links fetched successfully
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/e'
+        '400':
+          description: Invalid request data
+        '500':
+          description: Agent execution failed
+      summary: Fetch business links using AI agent
+      tags:
+      - Agents
+  /tasks/api/v1/agents/link-fetcher/queue:
+    post:
+      description: Adds a link-fetcher job to the queue for background processing by the link-scraper worker. Returns immediately with a job ID for tracking.
+      operationId: t_value
+      parameters: []
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/e'
+      responses:
+        '201':
+          description: Link-fetcher job queued successfully
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  jobId:
+                    type: string
+                    description: The unique job ID for tracking
+        '400':
+          description: Invalid request data
+      summary: Queue a link-fetcher job for background processing
+      tags:
+      - Agents
+  /tasks/api/v1/agents/context-builder:
+    post:
+      description: Uses the ContextBuilder AI agent to extract comprehensive business information including services, hours, policies, and more from websites, Google Business Profile, and booking platforms. Results are saved to database.
+      operationId: t_value
+      parameters: []
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/e'
+      responses:
+        '200':
+          description: Business context built successfully
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/e'
+        '400':
+          description: Invalid request data
+        '500':
+          description: Agent execution failed
+      summary: Build business context using AI agent
+      tags:
+      - Agents
+  /tasks/api/v1/agents/context-builder/queue:
+    post:
+      description: Adds a context-builder job to the queue for background processing by the link-scraper worker. Returns immediately with a job ID for tracking.
+      operationId: t_value
+      parameters: []
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/e'
+      responses:
+        '201':
+          description: Context-builder job queued successfully
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  jobId:
+                    type: string
+                    description: The unique job ID for tracking
+        '400':
+          description: Invalid request data
+      summary: Queue a context-builder job for background processing
+      tags:
+      - Agents
+  /tasks/api/v1/agents/contexts:
+    get:
+      description: Retrieves previously scraped business contexts from entities.agent_business_context table. Supports filtering by link URL, entity ID, and pagination.
+      operationId: t_value
+      parameters:
+      - name: limit
+        required: false
+        in: query
+        description: 'Maximum records to return (1-100, default: 50)'
+        schema:
+          type: number
+      - name: entityId
+        required: false
+        in: query
+        description: Filter by entity ID
+        schema:
+          type: string
+      - name: link
+        required: false
+        in: query
+        description: Filter by link URL
+        schema:
+          type: string
+      responses:
+        '200':
+          description: Contexts retrieved successfully
+          content:
+            application/json:
+              schema:
+                type: array
+                items:
+                  type: object
+                  properties:
+                    id:
+                      type: string
+                      format: uuid
+                    entity_id:
+                      type:
+                      - string
+                      - 'null'
+                      format: uuid
+                    link:
+                      type: string
+                    context:
+                      type: object
+                    created_at:
+                      type: string
+                      format: date-time
+                    updated_at:
+                      type: string
+                      format: date-time
+        '400':
+          description: Invalid query parameters
+      summary: Retrieve saved business contexts
+      tags:
+      - Agents
+components:
+  schemas:
+    e:
+      type: object
+      properties:
+        scan:
+          $ref: '#/components/schemas/e'
+        businessLat:
+          type:
+          - number
+          - 'null'
+        businessLng:
+          type:
+          - number
+          - 'null'
+        points:
+          type: array
+          items:
+            $ref: '#/components/schemas/e'
+        heroMetrics:
+          $ref: '#/components/schemas/e'
+      required:
+      - scan
+      - businessLat
+      - businessLng
+      - points
+      - heroMetrics
+  securitySchemes:
+    access-token:
+      scheme: bearer
+      bearerFormat: JWT
+      type: http
+      name: Authorization
+      description: Enter JWT token in the format Bearer <token>
+      in: header

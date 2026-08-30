@@ -1,0 +1,780 @@
+openapi: 3.2.0
+info:
+  title: Zoca Auth API
+  contact: {}
+  x-refined-note:
+  - x-apievangelist-note differs across the merged source definitions and was not carried
+  version: '1.0'
+  description: 'Operations tagged auth across 2 of this provider''s published API definitions: zoca-platform-openapi.yml, zoca-tasks-openapi.yml. Each path carries the servers of the definition it was published in.'
+servers:
+- url: https://api.zoca.ai
+  description: Production
+- url: https://tasks.zoca.ai
+  description: Production
+tags:
+- name: auth
+paths:
+  /auth/me:
+    get:
+      operationId: t_value
+      parameters: []
+      responses:
+        '200':
+          description: Identity with per-context authority.
+        '401':
+          description: Unauthenticated.
+      summary: The caller's identity and per-context permissions
+      tags:
+      - auth
+    servers:
+    - url: https://api.zoca.ai
+      description: Production
+  /auth:
+    get:
+      operationId: t_value
+      parameters: []
+      responses:
+        '200':
+          description: ''
+      summary: Health check for auth service
+      tags:
+      - auth
+    servers:
+    - url: https://api.zoca.ai
+      description: Production
+  /auth/check:
+    get:
+      operationId: t_value
+      parameters: []
+      responses:
+        '200':
+          description: Returns authentication status
+          content:
+            application/json:
+              schema:
+                type: boolean
+                example: true
+      summary: Check authentication status
+      tags:
+      - auth
+    servers:
+    - url: https://api.zoca.ai
+      description: Production
+  /auth/google-token-exchange:
+    post:
+      description: Validates a Google ID token from client-side sign-in and creates a session. Use this for mobile/SPA apps where the client handles the OAuth flow.
+      operationId: t_value
+      parameters: []
+      responses:
+        '201':
+          description: ''
+      summary: Exchange Google token (client-side flow)
+      tags:
+      - auth
+    servers:
+    - url: https://api.zoca.ai
+      description: Production
+  /auth/google-callback:
+    get:
+      operationId: t_value
+      parameters: []
+      responses:
+        '200':
+          description: Google Authentication callback
+          content:
+            application/json:
+              schema:
+                example:
+                  status: success
+                  message: User Authenticated
+                  entity_id: '1234567890'
+      summary: Google Authentication callback
+      tags:
+      - auth
+    servers:
+    - url: https://api.zoca.ai
+      description: Production
+  /auth/google-auth-url:
+    get:
+      operationId: t_value
+      parameters:
+      - name: redirectUrl
+        required: false
+        in: query
+        description: Optional redirect URL after authentication
+        schema: {}
+      - name: clientId
+        required: true
+        in: query
+        description: Client application ID (e.g., zoca-web, zoca-app)
+        schema: {}
+      responses:
+        '200':
+          description: Google Authentication URL
+          content:
+            application/json:
+              schema:
+                example:
+                  url: https://api.zoca.ai/auth/
+      summary: Google Authentication URL
+      tags:
+      - auth
+    servers:
+    - url: https://api.zoca.ai
+      description: Production
+  /auth/gmail-auth-url:
+    get:
+      operationId: t_value
+      parameters:
+      - name: clientId
+        required: false
+        in: query
+        description: Client application ID
+        schema: {}
+      responses:
+        '200':
+          description: Gmail Authentication URL
+          content:
+            application/json:
+              schema:
+                example:
+                  url: https://api.zoca.ai/auth/
+      summary: Gmail Authentication URL
+      tags:
+      - auth
+    servers:
+    - url: https://api.zoca.ai
+      description: Production
+  /auth/win/authorize:
+    get:
+      operationId: t_value
+      parameters:
+      - name: redirectUrl
+        required: false
+        in: query
+        description: Optional redirect URL after authentication
+        schema: {}
+      - name: clientId
+        required: false
+        in: query
+        description: Client application ID (defaults to win-app)
+        schema: {}
+      responses:
+        '200':
+          description: Win Standalone Google Authentication URL with minimal scopes (user info only)
+          content:
+            application/json:
+              schema:
+                example:
+                  url: https://accounts.google.com/o/oauth2/v2/auth?client_id=...
+      summary: Win Standalone Authentication URL
+      tags:
+      - auth
+    servers:
+    - url: https://api.zoca.ai
+      description: Production
+  /auth/win/google-callback:
+    get:
+      operationId: t_value
+      parameters: []
+      responses:
+        '200':
+          description: Win Standalone Google Authentication callback - only validates basic user info scopes
+          content:
+            application/json:
+              schema:
+                example:
+                  status: success
+                  message: User Authenticated
+                  entity_id: '1234567890'
+      summary: Win Standalone Google Authentication callback
+      tags:
+      - auth
+    servers:
+    - url: https://api.zoca.ai
+      description: Production
+  /auth/google-dummyurl:
+    get:
+      operationId: t_value
+      parameters: []
+      responses:
+        '200':
+          description: ''
+      summary: Get Google dummy URL for testing
+      tags:
+      - auth
+    servers:
+    - url: https://api.zoca.ai
+      description: Production
+  /auth/google-browser-simulator:
+    get:
+      operationId: t_value
+      parameters: []
+      responses:
+        '200':
+          description: ''
+      summary: Simulate Google browser authentication
+      tags:
+      - auth
+    servers:
+    - url: https://api.zoca.ai
+      description: Production
+  /auth/square/authorize:
+    get:
+      description: Generates the Square OAuth authorization URL for entity integration. Use isWinAgent=true to request Win Agent specific permissions.
+      operationId: t_value
+      parameters: []
+      responses:
+        '200':
+          description: Square OAuth authorization URL generated successfully
+          content:
+            application/json:
+              schema:
+                example:
+                  url: https://squareup.com/oauth2/authorize?client_id=...&scope=...
+        '400':
+          description: Invalid request - missing entityId
+          content:
+            application/json:
+              schema:
+                example:
+                  message: entityId is required
+                  error: Bad Request
+                  statusCode: 400
+      summary: Square OAuth Authorization URL
+      tags:
+      - auth
+    servers:
+    - url: https://api.zoca.ai
+      description: Production
+  /auth/square/callback:
+    get:
+      operationId: t_value
+      parameters: []
+      responses:
+        '200':
+          description: ''
+      summary: Square OAuth callback
+      tags:
+      - auth
+    servers:
+    - url: https://api.zoca.ai
+      description: Production
+  /auth/square/refresh/{entityId}:
+    post:
+      operationId: t_value
+      parameters: []
+      responses:
+        '201':
+          description: ''
+      summary: Refresh Square access token
+      tags:
+      - auth
+    servers:
+    - url: https://api.zoca.ai
+      description: Production
+  /auth/square/revoke:
+    post:
+      operationId: t_value
+      parameters: []
+      responses:
+        '201':
+          description: ''
+      summary: Revoke Square access token
+      tags:
+      - auth
+    servers:
+    - url: https://api.zoca.ai
+      description: Production
+  /auth/google-auth-status:
+    get:
+      operationId: t_value
+      parameters: []
+      responses:
+        '200':
+          description: Returns GBP authentication status
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  isActive:
+                    type: boolean
+                    example: true
+      summary: Get Google Business Profile authentication status
+      tags:
+      - auth
+    servers:
+    - url: https://api.zoca.ai
+      description: Production
+  /auth/refresh-jwt:
+    post:
+      operationId: t_value
+      parameters: []
+      responses:
+        '201':
+          description: ''
+      summary: Refresh JWT token
+      tags:
+      - auth
+    servers:
+    - url: https://api.zoca.ai
+      description: Production
+  /auth/refresh-token:
+    post:
+      operationId: t_value
+      parameters: []
+      responses:
+        '201':
+          description: ''
+      summary: Refresh authentication token
+      tags:
+      - auth
+    servers:
+    - url: https://api.zoca.ai
+      description: Production
+  /auth/validate:
+    get:
+      operationId: t_value
+      parameters: []
+      responses:
+        '200':
+          description: ''
+      summary: Validate JWT token
+      tags:
+      - auth
+    servers:
+    - url: https://api.zoca.ai
+      description: Production
+  /auth/meta/authorize:
+    get:
+      operationId: t_value
+      parameters: []
+      responses:
+        '200':
+          description: ''
+      summary: Get Meta OAuth authorization URL
+      tags:
+      - auth
+    servers:
+    - url: https://api.zoca.ai
+      description: Production
+  /auth/meta/callback:
+    get:
+      operationId: t_value
+      parameters: []
+      responses:
+        '200':
+          description: ''
+      summary: Meta OAuth callback
+      tags:
+      - auth
+    servers:
+    - url: https://api.zoca.ai
+      description: Production
+  /auth/instagram/authorize:
+    get:
+      operationId: t_value
+      parameters: []
+      responses:
+        '200':
+          description: Instagram OAuth authorization URL
+          content:
+            application/json:
+              schema:
+                example:
+                  url: https://www.instagram.com/oauth/authorize?client_id=...
+      summary: Instagram OAuth Authorization URL
+      tags:
+      - auth
+    servers:
+    - url: https://api.zoca.ai
+      description: Production
+  /auth/instagram/callback:
+    get:
+      operationId: t_value
+      parameters: []
+      responses:
+        '302':
+          description: Redirects after successful Instagram OAuth
+      summary: Instagram OAuth Callback
+      tags:
+      - auth
+    servers:
+    - url: https://api.zoca.ai
+      description: Production
+  /auth/tiktok/authorize:
+    get:
+      operationId: t_value
+      parameters: []
+      responses:
+        '200':
+          description: TikTok OAuth authorization URL
+          content:
+            application/json:
+              schema:
+                example:
+                  url: https://www.tiktok.com/v2/auth/authorize?client_key=...
+      summary: TikTok OAuth Authorization URL
+      tags:
+      - auth
+    servers:
+    - url: https://api.zoca.ai
+      description: Production
+  /auth/tiktok/callback:
+    get:
+      operationId: t_value
+      parameters: []
+      responses:
+        '302':
+          description: Redirects after successful TikTok OAuth
+      summary: TikTok OAuth Callback
+      tags:
+      - auth
+    servers:
+    - url: https://api.zoca.ai
+      description: Production
+  /auth/acuity/authorize:
+    get:
+      operationId: t_value
+      parameters: []
+      responses:
+        '200':
+          description: Returns the authorization URL
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/e'
+      summary: Get Acuity OAuth authorization URL
+      tags:
+      - auth
+    servers:
+    - url: https://api.zoca.ai
+      description: Production
+  /auth/acuity/callback:
+    get:
+      operationId: t_value
+      parameters: []
+      responses:
+        '200':
+          description: ''
+      summary: Acuity OAuth callback
+      tags:
+      - auth
+    servers:
+    - url: https://api.zoca.ai
+      description: Production
+  /auth/mindbody/register:
+    post:
+      operationId: t_value
+      parameters: []
+      responses:
+        '201':
+          description: ''
+      summary: Register Mindbody site and connect
+      tags:
+      - auth
+    servers:
+    - url: https://api.zoca.ai
+      description: Production
+  /auth/meevo/locations:
+    get:
+      operationId: t_value
+      parameters: []
+      responses:
+        '200':
+          description: ''
+      summary: List Meevo tenant locations
+      tags:
+      - auth
+    servers:
+    - url: https://api.zoca.ai
+      description: Production
+  /auth/meevo/register:
+    post:
+      operationId: t_value
+      parameters: []
+      responses:
+        '201':
+          description: ''
+      summary: Register Meevo location and connect
+      tags:
+      - auth
+    servers:
+    - url: https://api.zoca.ai
+      description: Production
+  /auth/mindbody/activation-status:
+    get:
+      description: After /mindbody/register returns activation_required, the dashboard polls this endpoint while the studio activates Zoca inside Mindbody. It only re-attempts token issuance — it never regenerates the activation code — so polling does not hammer Mindbody. Returns activation_pending until activated, then the connected result (is_valid flipped, single location auto-bound).
+      operationId: t_value
+      parameters: []
+      responses:
+        '200':
+          description: ''
+      summary: Poll-safe Mindbody activation status
+      tags:
+      - auth
+    servers:
+    - url: https://api.zoca.ai
+      description: Production
+  /auth/mindbody/connect:
+    get:
+      operationId: t_value
+      parameters: []
+      responses:
+        '200':
+          description: ''
+      summary: Connect existing Mindbody site
+      tags:
+      - auth
+    servers:
+    - url: https://api.zoca.ai
+      description: Production
+  /auth/magic-link/request:
+    post:
+      description: Sends a magic link to the provided email address. The link expires in 15 minutes and can only be used once. Rate limited to 5 requests per email per 5-minute window.
+      operationId: t_value
+      parameters: []
+      responses:
+        '200':
+          description: Magic link request processed
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/e'
+        '429':
+          description: Rate limit exceeded
+          content:
+            application/json:
+              schema:
+                example:
+                  statusCode: 429
+                  message: Too many magic link requests. Please try again later.
+                  error: Too Many Requests
+      summary: Request a magic link for passwordless login
+      tags:
+      - auth
+    servers:
+    - url: https://api.zoca.ai
+      description: Production
+  /auth/magic-link/verify:
+    post:
+      description: Validates the magic link token and returns JWT access token and refresh token. Tokens are single-use - the magic link cannot be used again after verification.
+      operationId: t_value
+      parameters: []
+      responses:
+        '200':
+          description: Token verified, auth tokens returned
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/e'
+        '400':
+          description: Invalid or expired token
+          content:
+            application/json:
+              schema:
+                example:
+                  statusCode: 400
+                  message: Invalid or expired magic link
+                  error: Bad Request
+      summary: Verify a magic link token and get auth tokens
+      tags:
+      - auth
+    servers:
+    - url: https://api.zoca.ai
+      description: Production
+  /tasks/api/v1/auth/google/url:
+    get:
+      description: Generates a Google OAuth authorization URL for employee authentication
+      operationId: t_value
+      parameters:
+      - name: clientId
+        required: false
+        in: query
+        description: Calling client application (e.g. raft). Defaults to `server` for callers that omit it.
+        schema:
+          example: raft
+      - name: redirectUrl
+        required: false
+        in: query
+        description: Optional redirect URL after authentication
+        schema: {}
+      responses:
+        '200':
+          description: Returns the Google OAuth URL
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  url:
+                    type: string
+                    example: https://accounts.google.com/o/oauth2/v2/auth?...
+      summary: Get Google OAuth URL
+      tags:
+      - auth
+      security:
+      - access-token: []
+    servers:
+    - url: https://tasks.zoca.ai
+      description: Production
+  /tasks/api/v1/auth/google/callback:
+    get:
+      description: Handles the Google OAuth callback and creates a session. If redirectUrl was provided, redirects with tokens. Otherwise returns JSON response.
+      operationId: t_value
+      parameters: []
+      responses:
+        '200':
+          description: Returns auth data as JSON (when no redirectUrl)
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  status:
+                    type: string
+                    example: auth_success
+                  entityId:
+                    type: string
+                  accessToken:
+                    type: string
+                  refreshToken:
+                    type: string
+        '302':
+          description: Redirects after authentication (when redirectUrl provided)
+      summary: Google OAuth callback
+      tags:
+      - auth
+      security:
+      - access-token: []
+    servers:
+    - url: https://tasks.zoca.ai
+      description: Production
+  /tasks/api/v1/auth/me:
+    get:
+      operationId: t_value
+      parameters: []
+      responses:
+        '200':
+          description: Profile retrieved successfully
+        '401':
+          description: Unauthorized
+      security:
+      - bearer: []
+      summary: Get current user profile
+      tags:
+      - auth
+    servers:
+    - url: https://tasks.zoca.ai
+      description: Production
+  /tasks/api/v1/auth/refresh:
+    post:
+      description: Exchanges a refresh token for new access and refresh tokens. Implements token rotation.
+      operationId: t_value
+      parameters: []
+      responses:
+        '200':
+          description: Tokens refreshed successfully
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  accessToken:
+                    type: string
+                  refreshToken:
+                    type: string
+        '401':
+          description: Invalid refresh token
+      summary: Refresh authentication token
+      tags:
+      - auth
+      security:
+      - access-token: []
+    servers:
+    - url: https://tasks.zoca.ai
+      description: Production
+  /tasks/api/v1/auth/logout:
+    post:
+      operationId: t_value
+      parameters: []
+      responses:
+        '200':
+          description: Logged out successfully
+      security:
+      - bearer: []
+      summary: Logout and invalidate session
+      tags:
+      - auth
+    servers:
+    - url: https://tasks.zoca.ai
+      description: Production
+  /tasks/api/v1/auth/sessions:
+    get:
+      operationId: t_value
+      parameters: []
+      responses:
+        '200':
+          description: Returns list of active sessions
+      security:
+      - bearer: []
+      summary: Get all active sessions for the current user
+      tags:
+      - auth
+    servers:
+    - url: https://tasks.zoca.ai
+      description: Production
+  /tasks/api/v1/auth/sessions/revoke-all:
+    post:
+      operationId: t_value
+      parameters: []
+      responses:
+        '200':
+          description: All sessions revoked
+      security:
+      - bearer: []
+      summary: Revoke all sessions for the current user
+      tags:
+      - auth
+    servers:
+    - url: https://tasks.zoca.ai
+      description: Production
+components:
+  schemas:
+    e:
+      type: object
+      properties:
+        id:
+          type: number
+        entityId:
+          type: string
+        attribute:
+          type: string
+        value:
+          type:
+          - object
+          - 'null'
+        metadata:
+          type:
+          - object
+          - 'null'
+        createdAt:
+          type:
+          - object
+          - 'null'
+      required:
+      - id
+      - entityId
+      - attribute
+  securitySchemes:
+    access-token:
+      scheme: bearer
+      bearerFormat: JWT
+      type: http
+      name: Authorization
+      description: Enter JWT token in the format Bearer <token>
+      in: header
+x-refined-from:
+- zoca-platform-openapi.yml
+- zoca-tasks-openapi.yml

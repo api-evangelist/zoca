@@ -1,0 +1,202 @@
+openapi: 3.2.0
+info:
+  title: Zoca Tasks Phone Blocklist API
+  description: 'The Zoca tasks/automation service: AI content queue and planning, FrontDesk (Retell/Twilio) voice + SMS agent onboarding, local-SEO grid scans, WIN conversion triggers, and inbound integration webhooks (Chargebee, Square, Pipedrive, Twilio, Retell, CallHippo, Sybill, Instantly).'
+  version: 3.20.9
+  contact: {}
+  x-apievangelist-note: Harvested verbatim from https://tasks.zoca.ai/swagger.json. The provider ships the default NestJS Swagger metadata (title "API Documentation", empty servers[]); title/description/servers were set by API Evangelist for identification and the unmodified original is preserved at openapi/_original/zoca-tasks-swagger.json. Every path, operation, summary, parameter and response is exactly as published.
+servers:
+- url: https://tasks.zoca.ai
+  description: Production
+security:
+- access-token: []
+tags:
+- name: phone-blocklist
+paths:
+  /tasks/api/v1/phone-blocklist:
+    post:
+      operationId: t_value
+      parameters: []
+      responses:
+        '201':
+          description: Phone number added to blocklist
+      summary: Add a phone number to the blocklist
+      tags:
+      - phone-blocklist
+    get:
+      operationId: t_value
+      parameters:
+      - name: sortOrder
+        required: false
+        in: query
+        description: Sort order
+        schema:
+          enum:
+          - asc
+          - desc
+          type: string
+      - name: sortBy
+        required: false
+        in: query
+        description: Sort by field
+        schema:
+          enum:
+          - createdAt
+          - phoneNumber
+          - countryCode
+          type: string
+      - name: numberType
+        required: false
+        in: query
+        description: Filter by number type (SP = Service Provider, EC = Entity Client)
+        schema:
+          enum:
+          - SP
+          - EC
+          type: string
+      - name: reason
+        required: false
+        in: query
+        description: Filter by reason (exact match)
+        schema:
+          type: string
+      - name: countryCode
+        required: false
+        in: query
+        description: Filter by country code
+        schema:
+          type: string
+      - name: isBlocked
+        required: false
+        in: query
+        description: Filter by blocked status
+        schema:
+          type: boolean
+      - name: search
+        required: false
+        in: query
+        description: Search by phone number or reason
+        schema:
+          type: string
+      - name: limit
+        required: false
+        in: query
+        description: 'Items per page (default: 20)'
+        schema:
+          type: number
+      - name: page
+        required: false
+        in: query
+        description: 'Page number (default: 1)'
+        schema:
+          type: number
+      responses:
+        '200':
+          description: Paginated list of blocked phone numbers
+      summary: List blocked phone numbers with pagination, search, and filters
+      tags:
+      - phone-blocklist
+  /tasks/api/v1/phone-blocklist/reasons:
+    get:
+      operationId: t_value
+      parameters: []
+      responses:
+        '200':
+          description: Array of distinct reason strings
+      summary: Get distinct blocklist reasons for filter dropdown
+      tags:
+      - phone-blocklist
+  /tasks/api/v1/phone-blocklist/status:
+    get:
+      operationId: t_value
+      parameters:
+      - name: phoneNumber
+        required: true
+        in: query
+        schema:
+          type: string
+      - name: countryCode
+        required: true
+        in: query
+        schema:
+          type: string
+      responses:
+        '200':
+          description: Block status or null if no blocklist entry exists
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/e'
+      summary: Get block status for a single phone number (exact match)
+      tags:
+      - phone-blocklist
+  /tasks/api/v1/phone-blocklist/{id}:
+    patch:
+      operationId: t_value
+      parameters:
+      - name: id
+        required: true
+        in: path
+        description: Blocklist entry UUID
+        schema:
+          type: string
+      responses:
+        '200':
+          description: Blocked status updated
+        '404':
+          description: Blocklist entry not found
+      summary: Update blocked status of a phone number
+      tags:
+      - phone-blocklist
+    delete:
+      operationId: t_value
+      parameters:
+      - name: id
+        required: true
+        in: path
+        description: Blocklist entry UUID
+        schema:
+          type: string
+      responses:
+        '200':
+          description: Phone number removed from blocklist
+        '404':
+          description: Blocklist entry not found
+      summary: Remove a phone number from the blocklist
+      tags:
+      - phone-blocklist
+components:
+  schemas:
+    e:
+      type: object
+      properties:
+        scan:
+          $ref: '#/components/schemas/e'
+        businessLat:
+          type:
+          - number
+          - 'null'
+        businessLng:
+          type:
+          - number
+          - 'null'
+        points:
+          type: array
+          items:
+            $ref: '#/components/schemas/e'
+        heroMetrics:
+          $ref: '#/components/schemas/e'
+      required:
+      - scan
+      - businessLat
+      - businessLng
+      - points
+      - heroMetrics
+  securitySchemes:
+    access-token:
+      scheme: bearer
+      bearerFormat: JWT
+      type: http
+      name: Authorization
+      description: Enter JWT token in the format Bearer <token>
+      in: header

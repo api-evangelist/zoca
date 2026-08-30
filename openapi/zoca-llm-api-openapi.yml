@@ -1,0 +1,99 @@
+openapi: 3.2.0
+info:
+  title: Zoca Tasks LLM API
+  description: 'The Zoca tasks/automation service: AI content queue and planning, FrontDesk (Retell/Twilio) voice + SMS agent onboarding, local-SEO grid scans, WIN conversion triggers, and inbound integration webhooks (Chargebee, Square, Pipedrive, Twilio, Retell, CallHippo, Sybill, Instantly).'
+  version: 3.20.9
+  contact: {}
+  x-apievangelist-note: Harvested verbatim from https://tasks.zoca.ai/swagger.json. The provider ships the default NestJS Swagger metadata (title "API Documentation", empty servers[]); title/description/servers were set by API Evangelist for identification and the unmodified original is preserved at openapi/_original/zoca-tasks-swagger.json. Every path, operation, summary, parameter and response is exactly as published.
+servers:
+- url: https://tasks.zoca.ai
+  description: Production
+security:
+- access-token: []
+tags:
+- name: LLM
+paths:
+  /tasks/api/v1/llm/providers:
+    get:
+      operationId: t_value
+      parameters: []
+      responses:
+        '200':
+          description: List of available providers and their models
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/e'
+      summary: Get available LLM providers and their models
+      tags:
+      - LLM
+  /tasks/api/v1/llm/generate:
+    post:
+      operationId: t_value
+      parameters: []
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/e'
+      responses:
+        '200':
+          description: Successfully generated text
+          content:
+            application/json:
+              schema:
+                properties:
+                  text:
+                    type: string
+                  usage:
+                    type: object
+                    properties:
+                      promptTokens:
+                        type: number
+                      completionTokens:
+                        type: number
+                      totalTokens:
+                        type: number
+        '500':
+          description: Internal server error during text generation
+      security:
+      - bearer: []
+      summary: Generate text using specified LLM provider
+      tags:
+      - LLM
+components:
+  schemas:
+    e:
+      type: object
+      properties:
+        scan:
+          $ref: '#/components/schemas/e'
+        businessLat:
+          type:
+          - number
+          - 'null'
+        businessLng:
+          type:
+          - number
+          - 'null'
+        points:
+          type: array
+          items:
+            $ref: '#/components/schemas/e'
+        heroMetrics:
+          $ref: '#/components/schemas/e'
+      required:
+      - scan
+      - businessLat
+      - businessLng
+      - points
+      - heroMetrics
+  securitySchemes:
+    access-token:
+      scheme: bearer
+      bearerFormat: JWT
+      type: http
+      name: Authorization
+      description: Enter JWT token in the format Bearer <token>
+      in: header

@@ -1,0 +1,680 @@
+openapi: 3.2.0
+info:
+  title: Zoca Platform Route53 API
+  description: 'The Zoca platform API behind the Zoca web app and mobile apps: scheduling, website generation, Google Business Profile, discovery/local SEO, social media, booking enquiries, offers, clients, staff, billing and the Zoca "brain" agent layer.'
+  version: 3.20.10
+  contact: {}
+  x-apievangelist-note: Harvested verbatim from https://api.zoca.ai/swagger.json. The provider ships the default NestJS Swagger metadata (title "API Documentation", empty servers[]); title/description/servers were set by API Evangelist for identification and the unmodified original is preserved at openapi/_original/zoca-platform-swagger.json. Every path, operation, summary, parameter and response is exactly as published.
+servers:
+- url: https://api.zoca.ai
+  description: Production
+tags:
+- name: Route53
+paths:
+  /dns/route53/cname:
+    post:
+      description: Create a CNAME record in Route53 for domain validation
+      operationId: t_value
+      parameters: []
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/e'
+      responses:
+        '201':
+          description: CNAME record created successfully
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/e'
+        '400':
+          description: Invalid CNAME record data
+      security:
+      - bearer: []
+      summary: Create CNAME record
+      tags:
+      - Route53
+  /dns/route53/cname/batch:
+    post:
+      description: Create multiple CNAME records at once for certificate validation
+      operationId: t_value
+      parameters: []
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/e'
+      responses:
+        '201':
+          description: CNAME records created successfully
+          content:
+            application/json:
+              schema:
+                type: array
+                items:
+                  $ref: '#/components/schemas/CnameRecordResponseDto'
+        '400':
+          description: Invalid CNAME records data
+      security:
+      - bearer: []
+      summary: Create multiple CNAME records
+      tags:
+      - Route53
+  /dns/route53/hosted-zone/find/{domainName}:
+    get:
+      description: Find the Route53 hosted zone ID for a specific domain
+      operationId: t_value
+      parameters:
+      - name: domainName
+        required: true
+        in: path
+        description: The domain name to find hosted zone for
+        schema:
+          example: example.com
+      responses:
+        '200':
+          description: Hosted zone information
+          content:
+            application/json:
+              schema:
+                type:
+                - object
+                - 'null'
+                properties:
+                  hostedZoneId:
+                    type: string
+                  name:
+                    type: string
+      security:
+      - bearer: []
+      summary: Find hosted zone for domain
+      tags:
+      - Route53
+  /dns/route53/validate-cnames:
+    post:
+      description: Check if CNAME records are properly configured for certificate validation
+      operationId: t_value
+      parameters: []
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              type: object
+              properties:
+                certificateArn:
+                  type: string
+                  description: Certificate ARN to validate CNAMEs for
+              required:
+              - certificateArn
+      responses:
+        '200':
+          description: Validation result
+          content:
+            application/json:
+              schema:
+                type: boolean
+                description: True if all CNAMEs are properly configured
+      security:
+      - bearer: []
+      summary: Validate CNAME records
+      tags:
+      - Route53
+  /dns/route53/hosted-zone:
+    post:
+      description: Create a new Route53 hosted zone for a domain and get name servers
+      operationId: t_value
+      parameters: []
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/e'
+      responses:
+        '201':
+          description: Hosted zone created successfully
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/e'
+        '400':
+          description: Invalid domain name
+        '500':
+          description: Failed to create hosted zone
+      security:
+      - bearer: []
+      summary: Create Route53 hosted zone
+      tags:
+      - Route53
+  /dns/route53/hosted-zone/{domainOrZoneId}:
+    get:
+      description: Retrieve complete hosted zone information including all DNS records. Can search by domain name or hosted zone ID
+      operationId: t_value
+      parameters:
+      - name: domainOrZoneId
+        required: true
+        in: path
+        description: Domain name (e.g., example.com) or Hosted Zone ID (e.g., Z1234567890ABC)
+        schema:
+          example: example.com
+      responses:
+        '200':
+          description: Hosted zone details with all DNS records
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/e'
+        '404':
+          description: Hosted zone not found
+      security:
+      - bearer: []
+      summary: Get hosted zone details with all DNS records
+      tags:
+      - Route53
+  /dns/route53/hosted-zones:
+    get:
+      description: Retrieve Route53 hosted zones with optional search filter and pagination. Supports searching by domain name (partial match).
+      operationId: t_value
+      parameters:
+      - name: limit
+        required: false
+        in: query
+        description: Number of items per page
+        schema:
+          example: 10
+          type: number
+      - name: page
+        required: false
+        in: query
+        description: Page number (starts from 1)
+        schema:
+          example: 1
+          type: number
+      - name: search
+        required: false
+        in: query
+        description: Search by domain name (partial match)
+        schema:
+          type: string
+      responses:
+        '200':
+          description: Paginated list of hosted zones
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/e'
+      security:
+      - bearer: []
+      summary: List hosted zones with pagination and search
+      tags:
+      - Route53
+  /dns/route53/hosted-zone/{hostedZoneId}:
+    delete:
+      description: 'Delete a Route53 hosted zone. Note: The hosted zone must have only NS and SOA records before deletion. All other records must be deleted first.'
+      operationId: t_value
+      parameters:
+      - name: hostedZoneId
+        required: true
+        in: path
+        description: The hosted zone ID to delete
+        schema:
+          example: Z1234567890ABC
+      responses:
+        '204':
+          description: Hosted zone deleted successfully
+        '400':
+          description: Cannot delete hosted zone with existing records (other than NS and SOA)
+        '404':
+          description: Hosted zone not found
+      security:
+      - bearer: []
+      summary: Delete hosted zone
+      tags:
+      - Route53
+  /dns/route53/dns-record:
+    post:
+      description: Create a single DNS record (A, AAAA, CNAME, MX, TXT, etc.) in a hosted zone
+      operationId: t_value
+      parameters: []
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/e'
+      responses:
+        '201':
+          description: DNS record created successfully
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/e'
+        '400':
+          description: Invalid DNS record data
+      security:
+      - bearer: []
+      summary: Create DNS record in Route53
+      tags:
+      - Route53
+    put:
+      description: Update an existing DNS record value in a hosted zone
+      operationId: t_value
+      parameters: []
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              type: object
+              properties:
+                hostedZoneId:
+                  type: string
+                  example: Z1234567890ABC
+                recordName:
+                  type: string
+                  example: www.example.com
+                recordType:
+                  type: string
+                  example: A
+                oldValue:
+                  type: string
+                  example: 192.0.2.1
+                newValue:
+                  type: string
+                  example: 192.0.2.2
+                ttl:
+                  type: number
+                  example: 300
+              required:
+              - hostedZoneId
+              - recordName
+              - recordType
+              - oldValue
+              - newValue
+      responses:
+        '200':
+          description: DNS record updated successfully
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/e'
+        '404':
+          description: DNS record not found
+      security:
+      - bearer: []
+      summary: Update DNS record
+      tags:
+      - Route53
+    delete:
+      description: Delete a specific DNS record from a hosted zone
+      operationId: t_value
+      parameters:
+      - name: ttl
+        required: false
+        in: query
+        description: 'TTL in seconds (default: 300)'
+        schema:
+          type: number
+      - name: recordValue
+        required: true
+        in: query
+        description: The record value
+        schema:
+          example: 192.0.2.1
+      - name: recordType
+        required: true
+        in: query
+        description: The record type (A, AAAA, CNAME, MX, TXT, etc.)
+        schema:
+          example: A
+      - name: recordName
+        required: true
+        in: query
+        description: The record name to delete
+        schema:
+          example: www.example.com
+      - name: hostedZoneId
+        required: true
+        in: query
+        description: The hosted zone ID
+        schema:
+          example: Z1234567890ABC
+      responses:
+        '204':
+          description: DNS record deleted successfully
+        '404':
+          description: DNS record not found
+      security:
+      - bearer: []
+      summary: Delete DNS record
+      tags:
+      - Route53
+  /dns/route53/dns-record/batch:
+    post:
+      description: Create multiple DNS records at once in a hosted zone
+      operationId: t_value
+      parameters: []
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/e'
+      responses:
+        '201':
+          description: DNS records created successfully
+          content:
+            application/json:
+              schema:
+                type: array
+                items:
+                  $ref: '#/components/schemas/DnsRecordResponseDto'
+        '400':
+          description: Invalid DNS records data
+      security:
+      - bearer: []
+      summary: Create multiple DNS records
+      tags:
+      - Route53
+  /dns/route53/alias-record:
+    post:
+      description: Create an alias record (A record) pointing to CloudFront, S3, ELB, or other AWS services. Alias records are Route53-specific and provide better performance and cost benefits compared to CNAME records.
+      operationId: t_value
+      parameters: []
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/e'
+      responses:
+        '201':
+          description: Alias record created successfully
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/e'
+        '400':
+          description: Invalid alias record data
+        '500':
+          description: Failed to create alias record
+      security:
+      - bearer: []
+      summary: Create alias record in Route53
+      tags:
+      - Route53
+  /dns/route53/records/log:
+    post:
+      description: Create a new Route53 record entry to log DNS changes. This endpoint should be called whenever a DNS record is created, updated, or deleted in Route53. Acts as an audit trail for all DNS modifications.
+      operationId: t_value
+      parameters: []
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/e'
+      responses:
+        '201':
+          description: Route53 record entry created successfully
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/e'
+        '400':
+          description: Invalid input data
+        '500':
+          description: Failed to create Route53 record entry
+      security:
+      - bearer: []
+      summary: Create Route53 record entry
+      tags:
+      - Route53
+    get:
+      description: Retrieve Route53 record entries with optional filters, pagination, and search. Supports searching by domain name (partial match in domain name or record name). Results are ordered by creation date (newest first).
+      operationId: t_value
+      parameters:
+      - name: limit
+        required: false
+        in: query
+        description: Number of items per page
+        schema:
+          example: 20
+          type: number
+      - name: page
+        required: false
+        in: query
+        description: Page number (starts from 1)
+        schema:
+          example: 1
+          type: number
+      - name: isActive
+        required: false
+        in: query
+        description: Filter by active status
+        schema:
+          type: boolean
+      - name: recordType
+        required: false
+        in: query
+        description: Filter by record type
+        schema:
+          type: string
+      - name: domainName
+        required: false
+        in: query
+        description: Filter by exact domain name
+        schema:
+          type: string
+      - name: hostedZoneId
+        required: false
+        in: query
+        description: Filter by hosted zone ID
+        schema:
+          type: string
+      - name: search
+        required: false
+        in: query
+        description: Search by domain name (partial match in domain name or record name)
+        schema:
+          type: string
+      responses:
+        '200':
+          description: Paginated Route53 record entries retrieved successfully
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/e'
+        '500':
+          description: Failed to retrieve Route53 record entries
+      security:
+      - bearer: []
+      summary: Get Route53 record entries with pagination and search
+      tags:
+      - Route53
+  /dns/route53/records/log/{id}:
+    get:
+      description: Retrieve a specific Route53 record entry by its ID
+      operationId: t_value
+      parameters:
+      - name: id
+        required: true
+        in: path
+        description: Route53 record entry ID
+        schema:
+          example: 123e4567-e89b-12d3-a456-426614174000
+      responses:
+        '200':
+          description: Route53 record entry retrieved successfully
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/e'
+        '404':
+          description: Route53 record entry not found
+        '500':
+          description: Failed to retrieve Route53 record entry
+      security:
+      - bearer: []
+      summary: Get Route53 record entry by ID
+      tags:
+      - Route53
+    put:
+      description: Update a Route53 record entry. This can be used to update change status from PENDING to INSYNC, or to mark records as inactive.
+      operationId: t_value
+      parameters:
+      - name: id
+        required: true
+        in: path
+        description: Route53 record entry ID
+        schema:
+          example: 123e4567-e89b-12d3-a456-426614174000
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/e'
+      responses:
+        '200':
+          description: Route53 record entry updated successfully
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/e'
+        '400':
+          description: Invalid input data
+        '404':
+          description: Route53 record entry not found
+        '500':
+          description: Failed to update Route53 record entry
+      security:
+      - bearer: []
+      summary: Update Route53 record entry
+      tags:
+      - Route53
+    delete:
+      description: Delete a Route53 record entry from the audit trail. This does NOT delete the actual DNS record from Route53, only the log entry.
+      operationId: t_value
+      parameters:
+      - name: id
+        required: true
+        in: path
+        description: Route53 record entry ID
+        schema:
+          example: 123e4567-e89b-12d3-a456-426614174000
+      responses:
+        '200':
+          description: Route53 record entry deleted successfully
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/e'
+        '404':
+          description: Route53 record entry not found
+        '500':
+          description: Failed to delete Route53 record entry
+      security:
+      - bearer: []
+      summary: Delete Route53 record entry
+      tags:
+      - Route53
+  /dns/route53/records/history/{hostedZoneId}/{recordName}:
+    get:
+      description: Retrieve all change history entries for a specific DNS record. Results are ordered by creation date (newest first).
+      operationId: t_value
+      parameters:
+      - name: recordName
+        required: true
+        in: path
+        description: DNS record name
+        schema:
+          example: www.example.com
+      - name: hostedZoneId
+        required: true
+        in: path
+        description: Route53 hosted zone ID
+        schema:
+          example: Z1234567890ABC
+      responses:
+        '200':
+          description: Record history retrieved successfully
+          content:
+            application/json:
+              schema:
+                type: array
+                items:
+                  $ref: '#/components/schemas/e'
+        '500':
+          description: Failed to retrieve record history
+      security:
+      - bearer: []
+      summary: Get change history for a specific DNS record
+      tags:
+      - Route53
+  /dns/route53/records/hosted-zone/{hostedZoneId}:
+    get:
+      description: Retrieve all Route53 record entries for a specific hosted zone. Results are ordered by creation date (newest first).
+      operationId: t_value
+      parameters:
+      - name: hostedZoneId
+        required: true
+        in: path
+        description: Route53 hosted zone ID
+        schema:
+          example: Z1234567890ABC
+      responses:
+        '200':
+          description: Hosted zone records retrieved successfully
+          content:
+            application/json:
+              schema:
+                type: array
+                items:
+                  $ref: '#/components/schemas/e'
+        '500':
+          description: Failed to retrieve hosted zone records
+      security:
+      - bearer: []
+      summary: Get all audit log records for a hosted zone
+      tags:
+      - Route53
+components:
+  schemas:
+    e:
+      type: object
+      properties:
+        id:
+          type: number
+        entityId:
+          type: string
+        attribute:
+          type: string
+        value:
+          type:
+          - object
+          - 'null'
+        metadata:
+          type:
+          - object
+          - 'null'
+        createdAt:
+          type:
+          - object
+          - 'null'
+      required:
+      - id
+      - entityId
+      - attribute
+  securitySchemes:
+    access-token:
+      scheme: bearer
+      bearerFormat: JWT
+      type: http
+      name: Authorization
+      description: Enter JWT token in the format Bearer <token>
+      in: header

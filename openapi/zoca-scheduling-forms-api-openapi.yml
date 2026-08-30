@@ -1,0 +1,383 @@
+openapi: 3.2.0
+info:
+  title: Zoca Platform Scheduling - Forms API
+  description: 'The Zoca platform API behind the Zoca web app and mobile apps: scheduling, website generation, Google Business Profile, discovery/local SEO, social media, booking enquiries, offers, clients, staff, billing and the Zoca "brain" agent layer.'
+  version: 3.20.10
+  contact: {}
+  x-apievangelist-note: Harvested verbatim from https://api.zoca.ai/swagger.json. The provider ships the default NestJS Swagger metadata (title "API Documentation", empty servers[]); title/description/servers were set by API Evangelist for identification and the unmodified original is preserved at openapi/_original/zoca-platform-swagger.json. Every path, operation, summary, parameter and response is exactly as published.
+servers:
+- url: https://api.zoca.ai
+  description: Production
+tags:
+- name: Scheduling - Forms
+paths:
+  /scheduling/forms:
+    post:
+      operationId: t_value
+      parameters: []
+      responses:
+        '201':
+          description: Form created
+        '409':
+          description: Entity already has a form
+      summary: Create a new form template
+      tags:
+      - Scheduling - Forms
+    get:
+      operationId: t_value
+      parameters:
+      - name: include
+        required: false
+        in: query
+        description: 'Comma-separated: draftQuestions, publishedQuestions, services'
+        schema: {}
+      - name: entityId
+        required: true
+        in: query
+        description: Location entity ID
+        schema: {}
+      responses:
+        '200':
+          description: Form found or null
+      summary: Get form template for entity (legacy single-form)
+      tags:
+      - Scheduling - Forms
+  /scheduling/forms/list:
+    get:
+      operationId: t_value
+      parameters:
+      - name: sendMode
+        required: false
+        in: query
+        description: 'Filter by send mode: AUTOMATIC | MANUAL'
+        schema: {}
+      - name: include
+        required: false
+        in: query
+        description: 'Comma-separated: draftQuestions, publishedQuestions, services, bundles'
+        schema: {}
+      - name: entityId
+        required: true
+        in: query
+        description: Location entity ID
+        schema: {}
+      responses:
+        '200':
+          description: Array of forms
+      summary: List all forms for entity (Forms V2)
+      tags:
+      - Scheduling - Forms
+  /scheduling/forms/{id}:
+    get:
+      operationId: t_value
+      parameters:
+      - name: include
+        required: false
+        in: query
+        schema: {}
+      - name: entityId
+        required: true
+        in: query
+        description: Location entity ID
+        schema: {}
+      - name: id
+        required: true
+        in: path
+        description: Form ID
+        schema: {}
+      responses:
+        '200':
+          description: Form found
+        '404':
+          description: Form not found
+      summary: Get a single form by ID (Forms V2)
+      tags:
+      - Scheduling - Forms
+    put:
+      operationId: t_value
+      parameters:
+      - name: id
+        required: true
+        in: path
+        description: Form ID
+        schema: {}
+      responses:
+        '200':
+          description: Form updated
+        '404':
+          description: Form not found
+      summary: Update form properties
+      tags:
+      - Scheduling - Forms
+    delete:
+      operationId: t_value
+      parameters:
+      - name: id
+        required: true
+        in: path
+        description: Form ID
+        schema: {}
+      responses:
+        '200':
+          description: Form deleted
+      summary: Delete form (soft delete)
+      tags:
+      - Scheduling - Forms
+  /scheduling/forms/{id}/activate:
+    post:
+      operationId: t_value
+      parameters:
+      - name: id
+        required: true
+        in: path
+        description: Form ID
+        schema: {}
+      responses:
+        '200':
+          description: Form activated
+      summary: Activate a disabled form
+      tags:
+      - Scheduling - Forms
+  /scheduling/forms/{id}/disable:
+    post:
+      operationId: t_value
+      parameters:
+      - name: id
+        required: true
+        in: path
+        description: Form ID
+        schema: {}
+      responses:
+        '200':
+          description: Form disabled
+      summary: Disable an active form
+      tags:
+      - Scheduling - Forms
+  /scheduling/forms/{id}/questions:
+    post:
+      operationId: t_value
+      parameters:
+      - name: id
+        required: true
+        in: path
+        description: Form ID
+        schema: {}
+      responses:
+        '201':
+          description: Question added
+      summary: Add a draft question
+      tags:
+      - Scheduling - Forms
+  /scheduling/forms/{id}/questions/bulk:
+    post:
+      operationId: t_value
+      parameters:
+      - name: id
+        required: true
+        in: path
+        description: Form ID
+        schema: {}
+      responses:
+        '201':
+          description: Questions added
+      summary: Bulk add draft questions
+      tags:
+      - Scheduling - Forms
+  /scheduling/forms/{id}/questions/upsert:
+    put:
+      operationId: t_value
+      parameters:
+      - name: id
+        required: true
+        in: path
+        description: Form ID
+        schema: {}
+      responses:
+        '200':
+          description: Questions upserted
+      summary: Bulk upsert (update/create) draft questions
+      tags:
+      - Scheduling - Forms
+  /scheduling/forms/{id}/questions/{questionId}/duplicate:
+    post:
+      operationId: t_value
+      parameters:
+      - name: questionId
+        required: true
+        in: path
+        description: Question ID to duplicate
+        schema: {}
+      - name: id
+        required: true
+        in: path
+        description: Form ID
+        schema: {}
+      responses:
+        '201':
+          description: Question duplicated
+      summary: Duplicate a draft question
+      tags:
+      - Scheduling - Forms
+  /scheduling/forms/{id}/questions/reorder:
+    put:
+      operationId: t_value
+      parameters:
+      - name: id
+        required: true
+        in: path
+        description: Form ID
+        schema: {}
+      responses:
+        '200':
+          description: Questions reordered
+      summary: Reorder draft questions
+      tags:
+      - Scheduling - Forms
+  /scheduling/forms/{id}/questions/{questionId}:
+    put:
+      operationId: t_value
+      parameters:
+      - name: questionId
+        required: true
+        in: path
+        description: Question ID
+        schema: {}
+      - name: id
+        required: true
+        in: path
+        description: Form ID
+        schema: {}
+      responses:
+        '200':
+          description: Question updated
+      summary: Update a draft question
+      tags:
+      - Scheduling - Forms
+    delete:
+      operationId: t_value
+      parameters:
+      - name: questionId
+        required: true
+        in: path
+        description: Question ID
+        schema: {}
+      - name: id
+        required: true
+        in: path
+        description: Form ID
+        schema: {}
+      responses:
+        '200':
+          description: Question deleted
+      summary: Delete a draft question
+      tags:
+      - Scheduling - Forms
+  /scheduling/forms/{id}/publish:
+    post:
+      operationId: t_value
+      parameters:
+      - name: id
+        required: true
+        in: path
+        description: Form ID
+        schema: {}
+      responses:
+        '200':
+          description: Form published
+      summary: Publish draft form
+      tags:
+      - Scheduling - Forms
+  /scheduling/forms/{id}/preview:
+    get:
+      operationId: t_value
+      parameters:
+      - name: id
+        required: true
+        in: path
+        description: Form ID
+        schema: {}
+      responses:
+        '200':
+          description: Preview schema
+      summary: Preview draft form
+      tags:
+      - Scheduling - Forms
+  /scheduling/forms/{id}/services:
+    put:
+      operationId: t_value
+      parameters:
+      - name: id
+        required: true
+        in: path
+        description: Form ID
+        schema: {}
+      responses:
+        '200':
+          description: Assignments updated
+      summary: Update service assignments
+      tags:
+      - Scheduling - Forms
+  /scheduling/forms/{id}/bundles:
+    put:
+      operationId: t_value
+      parameters:
+      - name: id
+        required: true
+        in: path
+        description: Form ID
+        schema: {}
+      responses:
+        '200':
+          description: Bundle assignments updated
+      summary: Update bundle assignments (Forms V2)
+      tags:
+      - Scheduling - Forms
+  /scheduling/forms/{formId}/responses:
+    get:
+      operationId: t_value
+      parameters:
+      - name: formId
+        required: true
+        in: path
+        description: Form ID
+        schema: {}
+      responses:
+        '200':
+          description: Paginated responses
+        '401':
+          description: No authenticated staff actor
+        '404':
+          description: Form not found
+      summary: List all client responses for a form (SP)
+      tags:
+      - Scheduling - Forms
+  /scheduling/forms/{formId}/responses/export:
+    get:
+      operationId: t_value
+      parameters:
+      - name: formId
+        required: true
+        in: path
+        description: Form ID
+        schema: {}
+      responses:
+        '200':
+          description: CSV file
+          content:
+            text/csv: {}
+        '401':
+          description: No authenticated staff actor
+        '404':
+          description: Form not found
+      summary: Export a form’s responses as CSV (SP)
+      tags:
+      - Scheduling - Forms
+components:
+  securitySchemes:
+    access-token:
+      scheme: bearer
+      bearerFormat: JWT
+      type: http
+      name: Authorization
+      description: Enter JWT token in the format Bearer <token>
+      in: header

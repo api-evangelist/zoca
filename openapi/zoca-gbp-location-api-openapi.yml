@@ -1,0 +1,725 @@
+openapi: 3.2.0
+info:
+  title: Zoca Platform Gbp Location API
+  description: 'The Zoca platform API behind the Zoca web app and mobile apps: scheduling, website generation, Google Business Profile, discovery/local SEO, social media, booking enquiries, offers, clients, staff, billing and the Zoca "brain" agent layer.'
+  version: 3.20.10
+  contact: {}
+  x-apievangelist-note: Harvested verbatim from https://api.zoca.ai/swagger.json. The provider ships the default NestJS Swagger metadata (title "API Documentation", empty servers[]); title/description/servers were set by API Evangelist for identification and the unmodified original is preserved at openapi/_original/zoca-platform-swagger.json. Every path, operation, summary, parameter and response is exactly as published.
+servers:
+- url: https://api.zoca.ai
+  description: Production
+tags:
+- name: gbp-location
+paths:
+  /gbp-location/{locationEntityId}/aggregated-metrics:
+    get:
+      operationId: t_value
+      parameters: []
+      responses:
+        '200':
+          description: Successfully fetched aggregated metrics
+      summary: Get aggregated GBP metrics before/after onboarding
+      tags:
+      - gbp-location
+  /gbp-location:
+    get:
+      operationId: t_value
+      parameters: []
+      responses:
+        '201':
+          description: Sucessfully fetched the location for given entity id
+          content:
+            application/json:
+              schema:
+                example:
+                  status: true
+                  message: Success
+                  data:
+                    about:
+                      name: BoB's Beauty Bar
+                      logo: https://lh3.googleusercontent.com/a-/ALV-UjXDCD_jOm9YIRPDeasUFFyn5qCmgVcnb2RvH4q-IztsFUhWPT0O
+                      cover: https://lh3.googleusercontent.com/4uRrZdPtbWc_3Rv8Yoq66VFujAAD8YMx3jdbqb6iWk5jQsBfmyVTaDdDcEJP_TxdCljT2dq0b9hC0Ay1PA=s0
+                      category:
+                        primaryCategory: Hairdresser
+                        additionalCategories:
+                        - Stylist
+                        - Hairdresser
+                        - Beauty products vending machine
+                      description: BoB's Beauty Bar is the premier hairdressing salon in Bhopal, Madhya Pradesh.  Our expert stylists are dedicated to providing top-notch hair services that cater to your individual needs. Whether you're in need of a trendy haircut, a stunning hair color, or a glamorous hairstyle for a special occasion, our team is here to make your hair dreams a reality. We take pride in using the best quality products and techniques to ensure that your hair looks and feels its absolute best. Come visit us at BoB's Beauty Bar and let our professionals pamper you with the finest hairdressing services in the heart of Bhopal, Madhya Pradesh.
+                      openDate:
+                        day: 21
+                        year: 2018
+                        month: 8
+                    businessHours:
+                      MONDAY:
+                      - openTime:
+                          hours: 9
+                          minutes: 0
+                          seconds: 0
+                        closeTime:
+                          hours: 17
+                          minutes: 0
+                          seconds: 0
+                      WEDNESDAY:
+                      - openTime:
+                          hours: 9
+                          minutes: 0
+                          seconds: 0
+                        closeTime:
+                          hours: 17
+                          minutes: 0
+                          seconds: 0
+                      SATURDAY:
+                      - openTime:
+                          hours: 14
+                          minutes: 0
+                          seconds: 0
+                        closeTime:
+                          hours: 19
+                          minutes: 0
+                          seconds: 0
+                    locationAndServiceAreas:
+                      address:
+                        locality: Bhopal
+                        postalCode: '462016'
+                        regionCode: IN
+                        addressLines:
+                        - E-7/8 Arera Colony
+                        languageCode: en
+                        administrativeArea: Madhya Pradesh
+                      serviceAreas:
+                      - placeId: ChIJvY_Wj49CfDkR-NRy1RZXFQI
+                        placeName: Bhopal, Madhya Pradesh, India
+                      - placeId: ChIJgQH27v8YfDkRjzVYwWO-c4U
+                        placeName: Raisen, Madhya Pradesh 464551, India
+                      - placeId: ChIJ9VXCa0ZGfDkRr1Ml0WN_BoI
+                        placeName: Mandideep, Bhopal, Madhya Pradesh 462046, India
+                    contact:
+                      email_address: null
+                      phone_number:
+                      - country_code: ''
+                        number: ''
+                    websiteAndOtherLinks:
+                      website: https://bobs-beauty-bar.chrone.work/
+                      socialMedia: []
+                      bookingLink: ''
+                  code: 200
+      summary: Get location data for given entity id
+      tags:
+      - gbp-location
+  /gbp-location/google-updated:
+    get:
+      operationId: t_value
+      parameters: []
+      responses:
+        '200':
+          description: ''
+      summary: Get Google updated locations for entity
+      tags:
+      - gbp-location
+  /gbp-location/list:
+    get:
+      operationId: t_value
+      parameters: []
+      responses:
+        '200':
+          description: ''
+      summary: List all locations for entity
+      tags:
+      - gbp-location
+  /gbp-location/create:
+    post:
+      operationId: t_value
+      parameters: []
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              type: object
+              properties:
+                entityId:
+                  type: string
+                  example: e5318b53-cb09-4edb-a8d6-fa19d8fb3250
+                locationName:
+                  type: string
+                  example: locations/6151354253777559174
+              required:
+              - entityId
+              - locationName
+      responses:
+        '201':
+          description: Sucessfully onboarded the location for given entity id
+          content:
+            application/json:
+              schema:
+                example:
+                  status: true
+                  message: Success
+                  data:
+                    entityId: e5318b53-cb09-4edb-a8d6-fa19d8fb3250
+                    firstName: Deepesh
+                    lastName: Rathod
+                    createdAt: '2024-10-21T05:01:04.138Z'
+                  code: 200
+      summary: Onboard a gbp location for entity
+      tags:
+      - gbp-location
+  /gbp-location/{id}:
+    put:
+      operationId: t_value
+      parameters: []
+      responses:
+        '200':
+          description: ''
+      summary: Update location by ID
+      tags:
+      - gbp-location
+  /gbp-location/attributes:
+    get:
+      operationId: t_value
+      parameters: []
+      responses:
+        '200':
+          description: ''
+      summary: Get attributes for location
+      tags:
+      - gbp-location
+    post:
+      operationId: t_value
+      parameters: []
+      responses:
+        '201':
+          description: ''
+      summary: Create attributes for location
+      tags:
+      - gbp-location
+  /gbp-location/notifications:
+    get:
+      operationId: t_value
+      parameters: []
+      responses:
+        '200':
+          description: ''
+      summary: Get notifications for entity
+      tags:
+      - gbp-location
+    post:
+      operationId: t_value
+      parameters: []
+      responses:
+        '201':
+          description: ''
+      summary: Update notifications for entity
+      tags:
+      - gbp-location
+  /gbp-location/placeActionLinks:
+    get:
+      operationId: t_value
+      parameters: []
+      responses:
+        '200':
+          description: ''
+      summary: Get place action links for location
+      tags:
+      - gbp-location
+    post:
+      operationId: t_value
+      parameters: []
+      responses:
+        '201':
+          description: ''
+      summary: Create place action links for location
+      tags:
+      - gbp-location
+  /gbp-location/posts/list:
+    get:
+      operationId: t_value
+      parameters: []
+      responses:
+        '200':
+          description: ''
+      summary: List posts for location
+      tags:
+      - gbp-location
+  /gbp-location/posts/metrics:
+    get:
+      operationId: t_value
+      parameters: []
+      responses:
+        '200':
+          description: Returns count of successfully posted GBP posts
+        '400':
+          description: Invalid params (e.g. startDate > endDate)
+      summary: Get total GBP posts posted by Zoca in a date range
+      tags:
+      - gbp-location
+  /gbp-location/posts/zoca:
+    get:
+      operationId: t_value
+      parameters: []
+      responses:
+        '200':
+          description: ''
+      summary: List non-failed GBP posts created by Zoca
+      tags:
+      - gbp-location
+  /gbp-location/posts:
+    get:
+      operationId: t_value
+      parameters: []
+      responses:
+        '200':
+          description: ''
+      summary: Get a single post by name
+      tags:
+      - gbp-location
+    patch:
+      operationId: t_value
+      parameters: []
+      responses:
+        '200':
+          description: ''
+      summary: Update a post
+      tags:
+      - gbp-location
+    delete:
+      operationId: t_value
+      parameters: []
+      responses:
+        '200':
+          description: ''
+      summary: Delete a post
+      tags:
+      - gbp-location
+    post:
+      operationId: t_value
+      parameters: []
+      responses:
+        '201':
+          description: ''
+      summary: Create a new post
+      tags:
+      - gbp-location
+  /gbp-location/posts/sync:
+    post:
+      operationId: t_value
+      parameters: []
+      responses:
+        '201':
+          description: ''
+      summary: Sync posts from GBP
+      tags:
+      - gbp-location
+  /gbp-location/posts/rewrite:
+    get:
+      operationId: t_value
+      parameters: []
+      responses:
+        '200':
+          description: ''
+      summary: Rewrite post text using AI
+      tags:
+      - gbp-location
+  /gbp-location/posts/ai-write:
+    get:
+      operationId: t_value
+      parameters: []
+      responses:
+        '200':
+          description: ''
+      summary: Generate a GBP post content using AI
+      tags:
+      - gbp-location
+  /gbp-location/pubsub-notifications:
+    post:
+      operationId: t_value
+      parameters: []
+      responses:
+        '201':
+          description: ''
+      summary: Handle GBP Pub/Sub notifications
+      tags:
+      - gbp-location
+  /gbp-location/business-profile-details:
+    get:
+      operationId: t_value
+      parameters: []
+      responses:
+        '200':
+          description: ''
+      summary: Get business profile insights
+      tags:
+      - gbp-location
+  /gbp-location/monthly-keyword-impressions:
+    get:
+      operationId: t_value
+      parameters: []
+      responses:
+        '200':
+          description: ''
+      summary: Get monthly keyword impressions
+      tags:
+      - gbp-location
+  /gbp-location/sync-media:
+    post:
+      operationId: t_value
+      parameters: []
+      responses:
+        '201':
+          description: ''
+      summary: Sync media from GBP
+      tags:
+      - gbp-location
+  /gbp-location/keyword-impressions-intelligence:
+    get:
+      operationId: t_value
+      parameters: []
+      responses:
+        '200':
+          description: ''
+      summary: Get keyword impressions intelligence
+      tags:
+      - gbp-location
+  /gbp-location/keyword-impression-insights:
+    get:
+      operationId: t_value
+      parameters: []
+      responses:
+        '200':
+          description: Successfully retrieved keyword impression insights
+      summary: Get keyword impression insights for a location
+      tags:
+      - gbp-location
+  /gbp-location/keyword-impressions/backfill:
+    post:
+      description: Backfills themes, relevance scores, and relevance flags for existing keyword impressions
+      operationId: t_value
+      parameters: []
+      responses:
+        '200':
+          description: Successfully backfilled keyword enrichment data
+          content:
+            application/json:
+              schema:
+                example:
+                  status: true
+                  message: Keyword enrichment backfill completed successfully
+                  data:
+                    totalKeywords: 5000
+                    enrichedKeywords: 4800
+                    skippedKeywords: 200
+                    failedKeywords: 0
+                    processingTimeMs: 45000
+                    locationsProcessed: 25
+      summary: Backfill keyword enrichment data
+      tags:
+      - gbp-location
+  /gbp-location/performance-insights:
+    get:
+      operationId: t_value
+      parameters: []
+      responses:
+        '200':
+          description: ''
+      summary: Get performance insights for location
+      tags:
+      - gbp-location
+  /gbp-location/location-admins:
+    get:
+      operationId: t_value
+      parameters: []
+      responses:
+        '200':
+          description: Successfully retrieved location administrators
+      summary: Get location administrators for a given location
+      tags:
+      - gbp-location
+    post:
+      operationId: t_value
+      parameters: []
+      responses:
+        '201':
+          description: Successfully created location administrator
+      summary: Create a location administrator for a given location
+      tags:
+      - gbp-location
+  /gbp-location/location-admins/sync:
+    post:
+      operationId: t_value
+      parameters: []
+      responses:
+        '200':
+          description: Successfully synced location administrators
+          content:
+            application/json:
+              schema:
+                example:
+                  success: true
+                  syncedCount: 2
+                  deletedCount: 0
+                  resurrectedCount: 0
+                  admins:
+                  - name: locations/14972089597295169863/admins/107325519089954628857
+                    admin: Magical Waxing
+                    role: PRIMARY_OWNER
+                    account: accounts/107325519089954628857
+                  - name: locations/13016578362838338775/admins/signup%40zoca.ai
+                    admin: signup@zoca.ai
+                    role: MANAGER
+                    pendingInvitation: true
+      summary: Sync location administrators from GBP API to database
+      tags:
+      - gbp-location
+  /gbp-location/update:
+    post:
+      operationId: t_value
+      parameters: []
+      responses:
+        '201':
+          description: ''
+      summary: Update GBP location data
+      tags:
+      - gbp-location
+  /gbp-location/questions-and-answers:
+    get:
+      operationId: t_value
+      parameters: []
+      responses:
+        '200':
+          description: ''
+      summary: List all questions and answers for location
+      tags:
+      - gbp-location
+  /gbp-location/{userEntityId}/{locationEntityId}/question:
+    get:
+      operationId: t_value
+      parameters: []
+      responses:
+        '200':
+          description: ''
+      summary: Get a specific question
+      tags:
+      - gbp-location
+    delete:
+      operationId: t_value
+      parameters: []
+      responses:
+        '200':
+          description: ''
+      summary: Delete a question
+      tags:
+      - gbp-location
+  /gbp-location/{userEntityId}/{locationEntityId}:
+    post:
+      operationId: t_value
+      parameters: []
+      responses:
+        '201':
+          description: ''
+      summary: Create a new question
+      tags:
+      - gbp-location
+    patch:
+      operationId: t_value
+      parameters: []
+      responses:
+        '200':
+          description: ''
+      summary: Update an existing question
+      tags:
+      - gbp-location
+  /gbp-location/{userEntityId}/{locationEntityId}/{questionName}/answers:
+    get:
+      operationId: t_value
+      parameters: []
+      responses:
+        '200':
+          description: ''
+      summary: Get answers for a question
+      tags:
+      - gbp-location
+  /gbp-location/{userEntityId}/{locationEntityId}/answers:
+    put:
+      operationId: t_value
+      parameters: []
+      responses:
+        '200':
+          description: ''
+      summary: Update answers for questions
+      tags:
+      - gbp-location
+    delete:
+      operationId: t_value
+      parameters: []
+      responses:
+        '200':
+          description: ''
+      summary: Delete an answer for a question
+      tags:
+      - gbp-location
+  /gbp-location/{userEntityId}/{locationEntityId}/sync:
+    post:
+      operationId: t_value
+      parameters: []
+      responses:
+        '201':
+          description: ''
+      summary: Sync questions and answers from GBP
+      tags:
+      - gbp-location
+  /gbp-location/publish-website:
+    post:
+      operationId: t_value
+      parameters: []
+      responses:
+        '201':
+          description: ''
+      summary: Publish website to GBP
+      tags:
+      - gbp-location
+  /gbp-location/sync-location:
+    post:
+      operationId: t_value
+      parameters: []
+      responses:
+        '201':
+          description: ''
+      summary: Sync location data from GBP
+      tags:
+      - gbp-location
+  /gbp-location/insights-db:
+    get:
+      operationId: t_value
+      parameters: []
+      responses:
+        '200':
+          description: Successfully retrieved location insights from database
+      summary: Get GBP location insights from database
+      tags:
+      - gbp-location
+  /gbp-location/interactions-insights:
+    get:
+      operationId: t_value
+      parameters: []
+      responses:
+        '200':
+          description: Successfully retrieved interactions insights
+          content:
+            application/json:
+              schema:
+                example:
+                  totalInteractions: 245
+                  interactionsMap:
+                  - interactionType: WEBSITE_VISITS
+                    interactionCount: 150
+                    color: '#3B82F6'
+                    label: Website Visits
+                  - interactionType: DIRECTION_REQUESTS
+                    interactionCount: 75
+                    color: '#10B981'
+                    label: Direction Requests
+                  - interactionType: CALL_CLICKS
+                    interactionCount: 20
+                    color: '#F59E0B'
+                    label: Call Clicks
+                  lastYearInteractions:
+                    totalInteractions: 180
+                    interactionsMap:
+                    - interactionType: WEBSITE_VISITS
+                      interactionCount: 120
+                      color: '#3B82F6'
+                      label: Website Visits
+                    - interactionType: DIRECTION_REQUESTS
+                      interactionCount: 50
+                      color: '#10B981'
+                      label: Direction Requests
+                    - interactionType: CALL_CLICKS
+                      interactionCount: 10
+                      color: '#F59E0B'
+                      label: Call Clicks
+                  totalGrowthPercentage: 36.11
+      summary: Get GBP interactions insights with year-over-year comparison
+      tags:
+      - gbp-location
+  /gbp-location/profile-clicks-insights:
+    get:
+      operationId: t_value
+      parameters: []
+      responses:
+        '200':
+          description: Successfully retrieved profile clicks insights
+          content:
+            application/json:
+              schema:
+                example:
+                  totalProfileClicks: 450
+                  profileClicksMap:
+                  - profileClickType: DESKTOP_MAPS
+                    clickCount: 180
+                    color: '#3B82F6'
+                    label: Desktop Maps
+                  - profileClickType: DESKTOP_SEARCH
+                    clickCount: 120
+                    color: '#10B981'
+                    label: Desktop Search
+                  - profileClickType: MOBILE_MAPS
+                    clickCount: 100
+                    color: '#F59E0B'
+                    label: Mobile Maps
+                  - profileClickType: MOBILE_SEARCH
+                    clickCount: 50
+                    color: '#EF4444'
+                    label: Mobile Search
+                  lastYearProfileClicks:
+                    totalProfileClicks: 320
+                    profileClicksMap:
+                    - profileClickType: DESKTOP_MAPS
+                      clickCount: 130
+                      color: '#3B82F6'
+                      label: Desktop Maps
+                    - profileClickType: DESKTOP_SEARCH
+                      clickCount: 90
+                      color: '#10B981'
+                      label: Desktop Search
+                    - profileClickType: MOBILE_MAPS
+                      clickCount: 70
+                      color: '#F59E0B'
+                      label: Mobile Maps
+                    - profileClickType: MOBILE_SEARCH
+                      clickCount: 30
+                      color: '#EF4444'
+                      label: Mobile Search
+                  totalGrowthPercentage: 40.62
+      summary: Get GBP profile clicks insights with year-over-year comparison
+      tags:
+      - gbp-location
+  /gbp-location/website-audit-callback:
+    post:
+      operationId: t_value
+      parameters: []
+      responses:
+        '200':
+          description: Successfully updated website audit data
+          content:
+            application/json:
+              schema:
+                example:
+                  success: true
+                  message: Website audit data updated successfully
+        '400':
+          description: Bad request - missing required data
+        '500':
+          description: Internal server error
+      summary: Callback endpoint for PagespeedInsightsFunction to update website audit data
+      tags:
+      - gbp-location
+components:
+  securitySchemes:
+    access-token:
+      scheme: bearer
+      bearerFormat: JWT
+      type: http
+      name: Authorization
+      description: Enter JWT token in the format Bearer <token>
+      in: header

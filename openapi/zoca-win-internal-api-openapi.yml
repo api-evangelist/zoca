@@ -1,0 +1,221 @@
+openapi: 3.2.0
+info:
+  title: Zoca Tasks Win Internal API
+  description: 'The Zoca tasks/automation service: AI content queue and planning, FrontDesk (Retell/Twilio) voice + SMS agent onboarding, local-SEO grid scans, WIN conversion triggers, and inbound integration webhooks (Chargebee, Square, Pipedrive, Twilio, Retell, CallHippo, Sybill, Instantly).'
+  version: 3.20.9
+  contact: {}
+  x-apievangelist-note: Harvested verbatim from https://tasks.zoca.ai/swagger.json. The provider ships the default NestJS Swagger metadata (title "API Documentation", empty servers[]); title/description/servers were set by API Evangelist for identification and the unmodified original is preserved at openapi/_original/zoca-tasks-swagger.json. Every path, operation, summary, parameter and response is exactly as published.
+servers:
+- url: https://tasks.zoca.ai
+  description: Production
+security:
+- access-token: []
+tags:
+- name: Win Internal
+paths:
+  /tasks/api/v1/win-internal/entities:
+    get:
+      description: Returns a paginated list of all entities that have agent context configured. Includes summary information about onboarding status, call counts, and configuration.
+      operationId: t_value
+      parameters:
+      - name: status
+        required: false
+        in: query
+        description: Filter by WIN status
+        schema:
+          enum:
+          - all
+          - active
+          - inactive
+          type: string
+      - name: limit
+        required: false
+        in: query
+        description: Results per page (max 100)
+        schema:
+          example: 50
+          type: number
+      - name: page
+        required: false
+        in: query
+        description: Page number (1-indexed)
+        schema:
+          example: 1
+          type: number
+      responses:
+        '200':
+          description: WIN-enabled entities retrieved successfully
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/e'
+      summary: List WIN-enabled entities
+      tags:
+      - Win Internal
+  /tasks/api/v1/win-internal/entities/{entityId}/state:
+    get:
+      description: 'Retrieves comprehensive state for a WIN-enabled entity including: onboarding status, agent context configuration, recent calls (last 10), callback counts, and location information.'
+      operationId: t_value
+      parameters:
+      - name: entityId
+        required: true
+        in: path
+        description: Entity ID
+        schema:
+          example: 123e4567-e89b-12d3-a456-426614174000
+      responses:
+        '200':
+          description: Entity state retrieved successfully
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/e'
+        '404':
+          description: Entity not found
+      summary: Get complete entity state
+      tags:
+      - Win Internal
+  /tasks/api/v1/win-internal/simulate/incoming-call:
+    post:
+      description: Simulates a Retell incoming call webhook for testing purposes. Returns the dynamic variables that would be sent to the Retell agent. Uses the entity's virtual number as the to_number if not specified.
+      operationId: t_value
+      parameters: []
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/e'
+      responses:
+        '200':
+          description: Simulation completed successfully
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/e'
+        '400':
+          description: Invalid request
+      summary: Simulate incoming call webhook
+      tags:
+      - Win Internal
+  /tasks/api/v1/win-internal/simulate/call-event:
+    post:
+      description: Simulates a Retell call event webhook (call_started, call_ended, call_analyzed) for testing. Processes the event through the actual webhook handler and returns the result.
+      operationId: t_value
+      parameters: []
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/e'
+      responses:
+        '200':
+          description: Simulation completed successfully
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/e'
+        '400':
+          description: Invalid request
+      summary: Simulate call event webhook
+      tags:
+      - Win Internal
+  /tasks/api/v1/win-internal/win-status/{entityId}:
+    get:
+      description: Returns whether WIN (ZocaFrontDesk) is enabled for the entity, and whether the enablement comes from entity preference or cohort.
+      operationId: t_value
+      parameters:
+      - name: entityId
+        required: true
+        in: path
+        description: Entity ID
+        schema:
+          example: 123e4567-e89b-12d3-a456-426614174000
+      responses:
+        '200':
+          description: WIN status retrieved successfully
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/e'
+      summary: Get WIN status for an entity
+      tags:
+      - Win Internal
+  /tasks/api/v1/win-internal/win-status/entity:
+    post:
+      description: Sets the isFrontdeskAvailable preference for the entity. This controls whether the WIN feature is available in the app for this entity.
+      operationId: t_value
+      parameters: []
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/e'
+      responses:
+        '200':
+          description: WIN status updated successfully
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/e'
+      summary: Enable or disable WIN for an entity
+      tags:
+      - Win Internal
+  /tasks/api/v1/win-internal/win-status/cohort:
+    post:
+      description: Sets the isFrontdeskAvailable preference for the cohort. All entities in the cohort will inherit this setting unless they have their own entity-level preference.
+      operationId: t_value
+      parameters: []
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/e'
+      responses:
+        '200':
+          description: WIN status updated for cohort successfully
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/e'
+      summary: Enable or disable WIN for a cohort
+      tags:
+      - Win Internal
+components:
+  schemas:
+    e:
+      type: object
+      properties:
+        scan:
+          $ref: '#/components/schemas/e'
+        businessLat:
+          type:
+          - number
+          - 'null'
+        businessLng:
+          type:
+          - number
+          - 'null'
+        points:
+          type: array
+          items:
+            $ref: '#/components/schemas/e'
+        heroMetrics:
+          $ref: '#/components/schemas/e'
+      required:
+      - scan
+      - businessLat
+      - businessLng
+      - points
+      - heroMetrics
+  securitySchemes:
+    access-token:
+      scheme: bearer
+      bearerFormat: JWT
+      type: http
+      name: Authorization
+      description: Enter JWT token in the format Bearer <token>
+      in: header

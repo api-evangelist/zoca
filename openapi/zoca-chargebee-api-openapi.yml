@@ -1,0 +1,408 @@
+openapi: 3.2.0
+info:
+  title: Zoca Chargebee API
+  version: 3.20.9
+  contact: {}
+  x-refined-note:
+  - x-apievangelist-note differs across the merged source definitions and was not carried
+  description: 'Operations tagged chargebee across 2 of this provider''s published API definitions: zoca-public-openapi.yml, zoca-tasks-openapi.yml. Each path carries the servers of the definition it was published in.'
+servers:
+- url: https://public.zoca.com
+  description: Production
+- url: https://tasks.zoca.ai
+  description: Production
+tags:
+- name: chargebee
+paths:
+  /chargebee/missed/payment/{entityId}:
+    get:
+      operationId: t_value
+      parameters: []
+      responses:
+        '200':
+          description: ''
+      summary: Handle missed payment redirect
+      tags:
+      - chargebee
+    servers:
+    - url: https://public.zoca.com
+      description: Production
+  /chargebee/update/payment/method/{entityId}:
+    get:
+      operationId: t_value
+      parameters: []
+      responses:
+        '200':
+          description: ''
+      summary: Update payment method redirect
+      tags:
+      - chargebee
+    servers:
+    - url: https://public.zoca.com
+      description: Production
+  /chargebee/contract/pay/{contractId}:
+    get:
+      operationId: t_value
+      parameters: []
+      responses:
+        '200':
+          description: ''
+      summary: Handle contract payment redirect
+      tags:
+      - chargebee
+    servers:
+    - url: https://public.zoca.com
+      description: Production
+  /chargebee/generate/invoice/{invoiceId}:
+    get:
+      operationId: t_value
+      parameters: []
+      responses:
+        '200':
+          description: ''
+      summary: Generate and redirect to invoice PDF
+      tags:
+      - chargebee
+    servers:
+    - url: https://public.zoca.com
+      description: Production
+  /tasks/api/v1/chargebee/webhooks:
+    post:
+      description: Unified webhook endpoint that queues all Chargebee webhook events for background processing. Supports subscription_created, payment_succeeded, invoice_generated, and other Chargebee events.
+      operationId: t_value
+      parameters: []
+      requestBody:
+        required: true
+        description: Webhook payload from Chargebee
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/Object'
+      responses:
+        '200':
+          description: Webhook queued successfully
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  success:
+                    type: boolean
+                    example: true
+                  jobId:
+                    type: string
+                    example: 550e8400-e29b-41d4-a716-446655440000
+                  eventType:
+                    type: string
+                    example: payment_succeeded
+      security:
+      - {}
+      summary: Handle all Chargebee webhooks
+      tags:
+      - chargebee
+    servers:
+    - url: https://tasks.zoca.ai
+      description: Production
+  /tasks/api/v1/chargebee/ignore-payments/upsert:
+    post:
+      description: Creates or updates the ignore payments status for a given entity in the chargebee.ignore_payments table. If the entity already has a status, it will be updated. Otherwise, a new record will be created.
+      operationId: t_value
+      parameters: []
+      responses:
+        '200':
+          description: Ignore payments status upserted successfully
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  message:
+                    type: string
+                    example: Ignore payments status upserted successfully
+                  data:
+                    type: object
+                    properties:
+                      entityId:
+                        type: string
+                        example: 123e4567-e89b-12d3-a456-426614174000
+                      status:
+                        type: boolean
+                        example: true
+                      updatedAt:
+                        type: string
+                        format: date-time
+                        example: '2023-12-07T10:30:00.000Z'
+                  timestamp:
+                    type: string
+                    format: date-time
+                    example: '2023-12-07T10:30:00.000Z'
+                  status:
+                    type: string
+                    example: success
+        '500':
+          description: Internal server error during ignore payments upsert
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  message:
+                    type: string
+                    example: Failed to upsert ignore payments status
+                  error:
+                    type: string
+                    example: Database connection failed
+                  timestamp:
+                    type: string
+                    format: date-time
+                    example: '2023-12-07T10:30:00.000Z'
+                  status:
+                    type: string
+                    example: failed
+      security:
+      - {}
+      summary: Upsert ignore payments status for an entity
+      tags:
+      - chargebee
+    servers:
+    - url: https://tasks.zoca.ai
+      description: Production
+  /tasks/api/v1/chargebee/auto-collection-status/upsert:
+    post:
+      description: Creates or updates the auto-collection status for a given Chargebee customer or subscription in the chargebee.auto_collection_status table. If the entity already has a status, it will be updated. Otherwise, a new record will be created.
+      operationId: t_value
+      parameters: []
+      responses:
+        '200':
+          description: Auto-collection status upserted successfully
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  message:
+                    type: string
+                    example: Auto-collection status upserted successfully
+                  data:
+                    type: object
+                    properties:
+                      id:
+                        type: string
+                        example: cust_abc123def456
+                      type:
+                        type: string
+                        enum:
+                        - CUSTOMER
+                        - SUBSCRIPTION
+                        example: CUSTOMER
+                      autoCollection:
+                        type: boolean
+                        example: false
+                      createdAt:
+                        type: string
+                        format: date-time
+                        example: '2023-12-07T10:30:00.000Z'
+                  timestamp:
+                    type: string
+                    format: date-time
+                    example: '2023-12-07T10:30:00.000Z'
+                  status:
+                    type: string
+                    example: success
+        '500':
+          description: Internal server error during auto-collection status upsert
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  message:
+                    type: string
+                    example: Failed to upsert auto-collection status
+                  error:
+                    type: string
+                    example: Database connection failed
+                  timestamp:
+                    type: string
+                    format: date-time
+                    example: '2023-12-07T10:30:00.000Z'
+                  status:
+                    type: string
+                    example: failed
+      security:
+      - {}
+      summary: Upsert auto-collection status for a Chargebee entity
+      tags:
+      - chargebee
+    servers:
+    - url: https://tasks.zoca.ai
+      description: Production
+  /tasks/api/v1/chargebee/webhook:
+    post:
+      description: Unified webhook endpoint that routes Chargebee events to appropriate handlers
+      operationId: t_value
+      parameters: []
+      responses:
+        '200':
+          description: Webhook processed successfully
+      security:
+      - {}
+      summary: Handle all Chargebee webhooks
+      tags:
+      - chargebee
+    servers:
+    - url: https://tasks.zoca.ai
+      description: Production
+  /tasks/api/v1/chargebee/trigger-missed-payment-job:
+    post:
+      description: Trigger missed payment detection jobs manually for testing or emergency use. Detection jobs automatically queue processing jobs (process-discovery-missed-payment and process-win-missed-payment) when missed payments are found. Supports detect-missed-payments, detect-win-missed-payments, and test jobs.
+      operationId: t_value
+      parameters: []
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              type: object
+              properties:
+                jobName:
+                  type: string
+                  enum:
+                  - detect-missed-payments
+                  - detect-win-missed-payments
+                  - test
+                  description: Name of the detection job to trigger (processing jobs are automatically queued)
+              required:
+              - jobName
+      responses:
+        '200':
+          description: Job queued successfully
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  success:
+                    type: boolean
+                  jobId:
+                    type: string
+                  jobName:
+                    type: string
+                  message:
+                    type: string
+        '400':
+          description: Invalid job name
+      security:
+      - {}
+      summary: Manually trigger missed payment detection jobs
+      tags:
+      - chargebee
+    servers:
+    - url: https://tasks.zoca.ai
+      description: Production
+  /tasks/api/v1/chargebee/line-item-overrides:
+    post:
+      description: Creates a rule in chargebee.line_item_overrides that excludes or modifies matched invoice line items.
+      operationId: t_value
+      parameters: []
+      responses:
+        '201':
+          description: Line item override created successfully
+      summary: Create a line item override
+      tags:
+      - chargebee
+      security:
+      - access-token: []
+    get:
+      description: Returns line item override rules (newest first), optionally filtered.
+      operationId: t_value
+      parameters: []
+      responses:
+        '200':
+          description: Line item overrides fetched successfully
+      summary: List line item overrides
+      tags:
+      - chargebee
+      security:
+      - access-token: []
+    servers:
+    - url: https://tasks.zoca.ai
+      description: Production
+  /tasks/api/v1/chargebee/line-item-overrides/{id}:
+    get:
+      operationId: t_value
+      parameters:
+      - name: id
+        required: true
+        in: path
+        description: Line item override id
+        schema:
+          type: number
+      responses:
+        '200':
+          description: Line item override fetched successfully
+        '404':
+          description: Line item override not found
+      summary: Get a line item override by id
+      tags:
+      - chargebee
+      security:
+      - access-token: []
+    patch:
+      operationId: t_value
+      parameters:
+      - name: id
+        required: true
+        in: path
+        description: Line item override id
+        schema:
+          type: number
+      responses:
+        '200':
+          description: Line item override updated successfully
+        '404':
+          description: Line item override not found
+      summary: Update a line item override
+      tags:
+      - chargebee
+      security:
+      - access-token: []
+    delete:
+      description: Soft-deletes the override by setting is_active=false; the row is retained.
+      operationId: t_value
+      parameters:
+      - name: id
+        required: true
+        in: path
+        description: Line item override id
+        schema:
+          type: number
+      responses:
+        '200':
+          description: Line item override deactivated successfully
+        '404':
+          description: Line item override not found
+      summary: Deactivate a line item override
+      tags:
+      - chargebee
+      security:
+      - access-token: []
+    servers:
+    - url: https://tasks.zoca.ai
+      description: Production
+components:
+  schemas:
+    Object:
+      type: object
+      properties: {}
+  securitySchemes:
+    access-token:
+      scheme: bearer
+      bearerFormat: JWT
+      type: http
+      name: Authorization
+      description: Enter JWT token in the format Bearer <token>
+      in: header
+x-refined-from:
+- zoca-public-openapi.yml
+- zoca-tasks-openapi.yml

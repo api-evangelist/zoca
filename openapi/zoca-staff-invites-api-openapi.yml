@@ -1,0 +1,169 @@
+openapi: 3.2.0
+info:
+  title: Zoca Platform Staff Invites API
+  description: 'The Zoca platform API behind the Zoca web app and mobile apps: scheduling, website generation, Google Business Profile, discovery/local SEO, social media, booking enquiries, offers, clients, staff, billing and the Zoca "brain" agent layer.'
+  version: 3.20.10
+  contact: {}
+  x-apievangelist-note: Harvested verbatim from https://api.zoca.ai/swagger.json. The provider ships the default NestJS Swagger metadata (title "API Documentation", empty servers[]); title/description/servers were set by API Evangelist for identification and the unmodified original is preserved at openapi/_original/zoca-platform-swagger.json. Every path, operation, summary, parameter and response is exactly as published.
+servers:
+- url: https://api.zoca.ai
+  description: Production
+tags:
+- name: Staff Invites
+paths:
+  /staff/invites:
+    post:
+      description: Owner-only. Emits an `auth.invites` row, fires `staff-mgmt.invite.created`, and returns the persisted record (token included so the dispatch worker can render the email body — clients should redact before logging).
+      operationId: t_value
+      parameters: []
+      responses:
+        '201':
+          description: Invite created.
+        '400':
+          description: Validation error / mass-assignment attempt.
+        '401':
+          description: Unauthenticated.
+        '403':
+          description: Denied `staff:member.invite` action.
+        '429':
+          description: Send rate limit exceeded.
+        '503':
+          description: Feature disabled (killswitch).
+      security:
+      - bearer: []
+      summary: Send a staff invite to an existing or prospective user.
+      tags:
+      - Staff Invites
+    get:
+      description: Page-default 50, max 200 per page. Use `nextCursor` to walk further. `?status=` filters to a single state when set (`PENDING | ACCEPTED | CANCELLED | EXPIRED`).
+      operationId: t_value
+      parameters: []
+      responses:
+        '200':
+          description: Page of invite records.
+        '400':
+          description: Invalid status / pagination param.
+        '401':
+          description: Unauthenticated.
+        '403':
+          description: Missing `staff:read` scope.
+        '503':
+          description: Feature disabled (killswitch).
+      security:
+      - bearer: []
+      summary: List invites at a business (cursor-paginated).
+      tags:
+      - Staff Invites
+  /staff/invites/{token}:
+    get:
+      description: Read-only view used by the accept-invite page before the invitee has signed in. No JWT required — the token in the path is the bearer credential. Skips the staff-management killswitch so accept flows survive a write-side flip.
+      operationId: t_value
+      parameters: []
+      responses:
+        '200':
+          description: Invite record (lazy-expired if PENDING + past TTL).
+        '404':
+          description: Token unknown or malformed.
+        '410':
+          description: Invite expired.
+      security:
+      - bearer: []
+      summary: Public lookup of an invite by token.
+      tags:
+      - Staff Invites
+  /staff/invites/{token}/email-match:
+    get:
+      operationId: t_value
+      parameters: []
+      responses:
+        '200':
+          description: Match result.
+        '401':
+          description: Unauthenticated.
+        '404':
+          description: Invite not found / token invalid.
+      security:
+      - bearer: []
+      summary: Precheck the acceptor's email against the invite (read-only).
+      tags:
+      - Staff Invites
+  /staff/invites/{token}/accept:
+    post:
+      description: 'Materializes the role assignment, permission overrides, and staff_assignments rows per spec §12.5. Idempotent — re-accepting the same invite as the same user returns the existing record with `kind: "already-accepted"`.'
+      operationId: t_value
+      parameters: []
+      responses:
+        '200':
+          description: Accepted or replay (`kind` field disambiguates).
+        '400':
+          description: Malformed token / DTO validation error.
+        '401':
+          description: Unauthenticated.
+        '404':
+          description: Invite not found / token invalid.
+        '409':
+          description: Invite already accepted by another user.
+        '410':
+          description: Invite expired.
+        '503':
+          description: Feature disabled (killswitch).
+      security:
+      - bearer: []
+      summary: Accept an invite — authenticated as the invitee.
+      tags:
+      - Staff Invites
+  /staff/invites/{inviteId}:
+    patch:
+      description: Owner-only. Re-assigns the role (and optionally the locations / permission overrides) a PENDING invite will materialize on accept. Rejects non-PENDING invites with 409 and unknown roles with 404.
+      operationId: t_value
+      parameters: []
+      responses:
+        '200':
+          description: Updated invite record.
+        '400':
+          description: Validation error / mass-assignment attempt.
+        '401':
+          description: Unauthenticated.
+        '403':
+          description: Denied `staff:invite.update` action.
+        '404':
+          description: Invite not found / role not found.
+        '409':
+          description: Invite is not PENDING (cannot edit role).
+        '503':
+          description: Feature disabled (killswitch).
+      security:
+      - bearer: []
+      summary: Update the role on a pending invite (applied when the invitee accepts).
+      tags:
+      - Staff Invites
+    delete:
+      operationId: t_value
+      parameters: []
+      responses:
+        '204':
+          description: Revoked.
+        '401':
+          description: Unauthenticated.
+        '403':
+          description: Missing `manageStaffPermissions` scope.
+        '404':
+          description: Invite not found.
+        '409':
+          description: Invite already accepted (cannot revoke).
+        '503':
+          description: Feature disabled (killswitch).
+      security:
+      - bearer: []
+      summary: Revoke a pending invite (idempotent flip to CANCELLED).
+      tags:
+      - Staff Invites
+components:
+  securitySchemes:
+    access-token:
+      scheme: bearer
+      bearerFormat: JWT
+      type: http
+      name: Authorization
+      description: Enter JWT token in the format Bearer <token>
+      in: header

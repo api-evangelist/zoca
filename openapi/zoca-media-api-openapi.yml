@@ -1,0 +1,477 @@
+openapi: 3.2.0
+info:
+  title: Zoca Media API
+  contact: {}
+  x-refined-note:
+  - x-apievangelist-note differs across the merged source definitions and was not carried
+  version: '1.0'
+  description: 'Operations tagged media across 2 of this provider''s published API definitions: zoca-platform-openapi.yml, zoca-tasks-openapi.yml. Each path carries the servers of the definition it was published in.'
+servers:
+- url: https://api.zoca.ai
+  description: Production
+- url: https://tasks.zoca.ai
+  description: Production
+tags:
+- name: media
+paths:
+  /media/primary-category-stock:
+    post:
+      operationId: t_value
+      parameters: []
+      responses:
+        '201':
+          description: Primary category stock created successfully
+      summary: Create a new primary category stock
+      tags:
+      - media
+    get:
+      operationId: t_value
+      parameters: []
+      responses:
+        '200':
+          description: Return all primary category stock
+      summary: Get all primary category stock
+      tags:
+      - media
+    servers:
+    - url: https://api.zoca.ai
+      description: Production
+  /media/primary-category-stock/categories:
+    get:
+      operationId: t_value
+      parameters: []
+      responses:
+        '200':
+          description: Return all primary categories with counts
+      summary: Get all primary categories with counts
+      tags:
+      - media
+    servers:
+    - url: https://api.zoca.ai
+      description: Production
+  /media/primary-category-stock/{id}:
+    get:
+      operationId: t_value
+      parameters: []
+      responses:
+        '200':
+          description: Return the primary category stock
+      summary: Get a primary category stock by id
+      tags:
+      - media
+    patch:
+      operationId: t_value
+      parameters: []
+      responses:
+        '200':
+          description: Primary category stock updated successfully
+      summary: Update a primary category stock
+      tags:
+      - media
+    delete:
+      operationId: t_value
+      parameters: []
+      responses:
+        '200':
+          description: Primary category stock deleted successfully
+      summary: Delete a primary category stock
+      tags:
+      - media
+    servers:
+    - url: https://api.zoca.ai
+      description: Production
+  /media/process-status:
+    get:
+      operationId: t_value
+      parameters:
+      - name: batchId
+        required: true
+        in: query
+        description: The batch ID to check status for
+        schema: {}
+      responses:
+        '200':
+          description: Returns processing status and success percentage
+      summary: Get media processing status for a batch
+      tags:
+      - media
+    servers:
+    - url: https://api.zoca.ai
+      description: Production
+  /media:
+    post:
+      operationId: t_value
+      parameters: []
+      responses:
+        '201':
+          description: Media created successfully
+      summary: Create a new media
+      tags:
+      - media
+    get:
+      operationId: t_value
+      parameters: []
+      responses:
+        '200':
+          description: Return all media
+      summary: Get all media
+      tags:
+      - media
+    delete:
+      operationId: t_value
+      parameters: []
+      responses:
+        '200':
+          description: Media deleted successfully
+      summary: Delete a media
+      tags:
+      - media
+    servers:
+    - url: https://api.zoca.ai
+      description: Production
+  /media/{id}:
+    get:
+      operationId: t_value
+      parameters: []
+      responses:
+        '200':
+          description: Return the media
+      summary: Get a media by id
+      tags:
+      - media
+    patch:
+      operationId: t_value
+      parameters: []
+      responses:
+        '200':
+          description: Media updated successfully
+      summary: Update a media
+      tags:
+      - media
+    servers:
+    - url: https://api.zoca.ai
+      description: Production
+  /media/scheduled-media:
+    get:
+      operationId: t_value
+      parameters: []
+      responses:
+        '200':
+          description: ''
+      summary: Get scheduled media for a location
+      tags:
+      - media
+    servers:
+    - url: https://api.zoca.ai
+      description: Production
+  /media/gbp-scheduled-media/metrics:
+    get:
+      operationId: t_value
+      parameters: []
+      responses:
+        '200':
+          description: ''
+      summary: Get GBP scheduled media metrics for an entity
+      tags:
+      - media
+    servers:
+    - url: https://api.zoca.ai
+      description: Production
+  /media/gbp-scheduled-media:
+    get:
+      operationId: t_value
+      parameters: []
+      responses:
+        '200':
+          description: ''
+      summary: Get GBP scheduled media by status (offset pagination)
+      tags:
+      - media
+    servers:
+    - url: https://api.zoca.ai
+      description: Production
+  /media/logo-and-cover-image:
+    get:
+      operationId: t_value
+      parameters: []
+      responses:
+        '200':
+          description: ''
+      summary: Get logo and cover image for a location
+      tags:
+      - media
+    servers:
+    - url: https://api.zoca.ai
+      description: Production
+  /media/log-failed-media-time:
+    post:
+      operationId: t_value
+      parameters: []
+      responses:
+        '201':
+          description: ''
+      summary: Log failed media upload time
+      tags:
+      - media
+    servers:
+    - url: https://api.zoca.ai
+      description: Production
+  /tasks/api/v1/media/input:
+    post:
+      description: Enqueues a job to handle media input with destination processing
+      operationId: t_value
+      parameters: []
+      requestBody:
+        required: true
+        description: Media Input Dto
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/e'
+      responses:
+        '201':
+          description: Media sync job enqueued successfully
+          content:
+            application/json:
+              schema:
+                properties:
+                  jobId:
+                    type: string
+        '400':
+          description: Invalid input data
+        '500':
+          description: Failed to enqueue job
+      summary: Handle media input
+      tags:
+      - media
+      security:
+      - access-token: []
+    servers:
+    - url: https://tasks.zoca.ai
+      description: Production
+  /tasks/api/v1/media/lambda/callback:
+    post:
+      description: Process callback from Lambda media processing service
+      operationId: t_value
+      parameters: []
+      responses:
+        '200':
+          description: Callback processed successfully
+        '400':
+          description: Invalid callback data
+        '401':
+          description: Unauthorized
+        '500':
+          description: Processing error
+      summary: Handle media processing callback
+      tags:
+      - media
+      security:
+      - access-token: []
+    servers:
+    - url: https://tasks.zoca.ai
+      description: Production
+  /tasks/api/v1/media/check-duplicates:
+    post:
+      description: Enqueues a job to check for duplicate media for a given entity
+      operationId: t_value
+      parameters: []
+      responses:
+        '201':
+          description: Duplicate check job enqueued successfully
+          content:
+            application/json:
+              schema:
+                properties:
+                  jobId:
+                    type: string
+        '400':
+          description: Invalid input data
+        '500':
+          description: Failed to enqueue job
+      summary: Check for duplicate media
+      tags:
+      - media
+      security:
+      - access-token: []
+    servers:
+    - url: https://tasks.zoca.ai
+      description: Production
+  /tasks/api/v1/media/process-destinations:
+    post:
+      description: Enqueues a job to process media for specified destinations
+      operationId: t_value
+      parameters: []
+      responses:
+        '201':
+          description: Destinations processing job enqueued successfully
+          content:
+            application/json:
+              schema:
+                properties:
+                  jobId:
+                    type: string
+        '400':
+          description: Invalid input data
+        '500':
+          description: Failed to enqueue job
+      summary: Process media destinations
+      tags:
+      - media
+      security:
+      - access-token: []
+    servers:
+    - url: https://tasks.zoca.ai
+      description: Production
+  /tasks/api/v1/media/convert-url:
+    post:
+      description: Converts a single S3 URL to its corresponding ImageKit URL using the mapping table
+      operationId: t_value
+      parameters: []
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/e'
+      responses:
+        '200':
+          description: URL converted successfully
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/e'
+        '400':
+          description: Invalid URL provided
+        '500':
+          description: Failed to convert URL
+      summary: Convert S3 URL to ImageKit URL
+      tags:
+      - media
+      security:
+      - access-token: []
+    servers:
+    - url: https://tasks.zoca.ai
+      description: Production
+  /tasks/api/v1/media/convert-urls:
+    post:
+      description: Converts multiple S3 URLs to their corresponding ImageKit URLs using the mapping table
+      operationId: t_value
+      parameters: []
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/e'
+      responses:
+        '200':
+          description: URLs converted successfully
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/e'
+        '400':
+          description: Invalid URLs provided
+        '500':
+          description: Failed to convert URLs
+      summary: Convert multiple S3 URLs to ImageKit URLs
+      tags:
+      - media
+      security:
+      - access-token: []
+    servers:
+    - url: https://tasks.zoca.ai
+      description: Production
+  /tasks/api/v1/media/add-s3-imagekit-mapping:
+    post:
+      description: Creates a new mapping between an S3 bucket URL and its corresponding ImageKit URL. This mapping is used for URL conversion throughout the system.
+      operationId: t_value
+      parameters: []
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/e'
+      responses:
+        '201':
+          description: Mapping created successfully
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/e'
+        '400':
+          description: Invalid mapping data provided
+        '409':
+          description: Mapping already exists
+        '500':
+          description: Failed to create mapping
+      summary: Add S3 to ImageKit URL mapping
+      tags:
+      - media
+      security:
+      - access-token: []
+    servers:
+    - url: https://tasks.zoca.ai
+      description: Production
+  /tasks/api/v1/media/s3-imagekit-mappings:
+    get:
+      description: Retrieves all mappings between S3 bucket URLs and their corresponding ImageKit URLs from the database.
+      operationId: t_value
+      parameters: []
+      responses:
+        '200':
+          description: Mappings retrieved successfully
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/e'
+        '500':
+          description: Failed to retrieve mappings
+      summary: Get all S3 to ImageKit URL mappings
+      tags:
+      - media
+      security:
+      - access-token: []
+    servers:
+    - url: https://tasks.zoca.ai
+      description: Production
+components:
+  schemas:
+    e:
+      type: object
+      properties:
+        scan:
+          $ref: '#/components/schemas/e'
+        businessLat:
+          type:
+          - number
+          - 'null'
+        businessLng:
+          type:
+          - number
+          - 'null'
+        points:
+          type: array
+          items:
+            $ref: '#/components/schemas/e'
+        heroMetrics:
+          $ref: '#/components/schemas/e'
+      required:
+      - scan
+      - businessLat
+      - businessLng
+      - points
+      - heroMetrics
+  securitySchemes:
+    access-token:
+      scheme: bearer
+      bearerFormat: JWT
+      type: http
+      name: Authorization
+      description: Enter JWT token in the format Bearer <token>
+      in: header
+x-refined-from:
+- zoca-platform-openapi.yml
+- zoca-tasks-openapi.yml

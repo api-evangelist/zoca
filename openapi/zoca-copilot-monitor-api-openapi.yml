@@ -1,0 +1,142 @@
+openapi: 3.2.0
+info:
+  title: Zoca Platform Copilot Monitor API
+  description: 'The Zoca platform API behind the Zoca web app and mobile apps: scheduling, website generation, Google Business Profile, discovery/local SEO, social media, booking enquiries, offers, clients, staff, billing and the Zoca "brain" agent layer.'
+  version: 3.20.10
+  contact: {}
+  x-apievangelist-note: Harvested verbatim from https://api.zoca.ai/swagger.json. The provider ships the default NestJS Swagger metadata (title "API Documentation", empty servers[]); title/description/servers were set by API Evangelist for identification and the unmodified original is preserved at openapi/_original/zoca-platform-swagger.json. Every path, operation, summary, parameter and response is exactly as published.
+servers:
+- url: https://api.zoca.ai
+  description: Production
+tags:
+- name: Copilot Monitor
+paths:
+  /api/copilot/agents:
+    get:
+      operationId: t_value
+      parameters: []
+      responses:
+        '200':
+          description: Returns list of agents with metrics
+      summary: Get list of agents and their current status
+      tags:
+      - Copilot Monitor
+  /api/copilot/metrics:
+    get:
+      operationId: t_value
+      parameters: []
+      responses:
+        '200':
+          description: Returns system-wide metrics
+      summary: Get current system metrics
+      tags:
+      - Copilot Monitor
+  /api/copilot/tools:
+    get:
+      operationId: t_value
+      parameters: []
+      responses:
+        '200':
+          description: Returns list of tools with execution metrics
+      summary: Get list of tools and their metrics
+      tags:
+      - Copilot Monitor
+  /api/copilot/logs:
+    get:
+      operationId: t_value
+      parameters:
+      - name: limit
+        required: false
+        in: query
+        description: Number of events to return
+        schema:
+          type: number
+      responses:
+        '200':
+          description: Returns recent flow events and logs
+      summary: Get recent flow events
+      tags:
+      - Copilot Monitor
+  /api/copilot/agent/{agentId}:
+    get:
+      operationId: t_value
+      parameters: []
+      responses:
+        '200':
+          description: Returns metrics for a specific agent
+      summary: Get specific agent metrics
+      tags:
+      - Copilot Monitor
+  /api/copilot/tool/{toolId}:
+    get:
+      operationId: t_value
+      parameters: []
+      responses:
+        '200':
+          description: Returns metrics for a specific tool
+      summary: Get specific tool metrics
+      tags:
+      - Copilot Monitor
+  /api/copilot/health:
+    get:
+      operationId: t_value
+      parameters: []
+      responses:
+        '200':
+          description: Returns health status
+      summary: Check monitoring service health
+      tags:
+      - Copilot Monitor
+  /api/copilot/chat:
+    post:
+      operationId: t_value
+      parameters: []
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              type: object
+              properties:
+                message:
+                  type: string
+                  description: The user message
+                conversationId:
+                  type: string
+                  description: Optional conversation ID to continue a conversation
+                entityId:
+                  type: string
+                  description: Optional entity ID for context
+              required:
+              - message
+      responses:
+        '200':
+          description: Returns the agent response
+      summary: Send a message to the Discovery Orchestrator
+      tags:
+      - Copilot Monitor
+  /api/copilot/conversations:
+    get:
+      operationId: t_value
+      parameters:
+      - name: limit
+        required: false
+        in: query
+        description: Number of conversations to return
+        schema:
+          type: number
+      responses:
+        '200':
+          description: Returns list of recent conversations
+      summary: Get list of recent conversations
+      tags:
+      - Copilot Monitor
+components:
+  securitySchemes:
+    access-token:
+      scheme: bearer
+      bearerFormat: JWT
+      type: http
+      name: Authorization
+      description: Enter JWT token in the format Bearer <token>
+      in: header

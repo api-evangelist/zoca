@@ -1,0 +1,106 @@
+openapi: 3.2.0
+info:
+  title: Zoca Platform Linear API
+  description: 'The Zoca platform API behind the Zoca web app and mobile apps: scheduling, website generation, Google Business Profile, discovery/local SEO, social media, booking enquiries, offers, clients, staff, billing and the Zoca "brain" agent layer.'
+  version: 3.20.10
+  contact: {}
+  x-apievangelist-note: Harvested verbatim from https://api.zoca.ai/swagger.json. The provider ships the default NestJS Swagger metadata (title "API Documentation", empty servers[]); title/description/servers were set by API Evangelist for identification and the unmodified original is preserved at openapi/_original/zoca-platform-swagger.json. Every path, operation, summary, parameter and response is exactly as published.
+servers:
+- url: https://api.zoca.ai
+  description: Production
+tags:
+- name: Linear
+paths:
+  /linear/templates:
+    get:
+      operationId: t_value
+      parameters: []
+      responses:
+        '200':
+          description: ''
+      summary: Get all Linear issue templates
+      tags:
+      - Linear
+  /linear/templates/{id}:
+    get:
+      operationId: t_value
+      parameters: []
+      responses:
+        '200':
+          description: ''
+      summary: Get a Linear issue template by ID
+      tags:
+      - Linear
+  /linear/customers:
+    post:
+      operationId: t_value
+      parameters: []
+      responses:
+        '201':
+          description: ''
+      summary: Upsert a Linear customer
+      tags:
+      - Linear
+  /linear/issues/{entityId}:
+    post:
+      operationId: t_value
+      parameters: []
+      responses:
+        '201':
+          description: ''
+      summary: Create a Linear issue for an entity
+      tags:
+      - Linear
+  /linear/issues/{issueId}:
+    patch:
+      operationId: t_value
+      parameters: []
+      responses:
+        '200':
+          description: Issue updated successfully
+        '404':
+          description: Issue not found
+      summary: Update a Linear issue
+      tags:
+      - Linear
+  /linear/issues/sync:
+    post:
+      operationId: t_value
+      parameters: []
+      responses:
+        '201':
+          description: ''
+      summary: Sync all Linear issues
+      tags:
+      - Linear
+  /linear/webhook:
+    post:
+      description: Processes incoming Linear webhook events for issue synchronization
+      operationId: t_value
+      parameters: []
+      requestBody:
+        required: true
+        description: Linear webhook payload
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/Object'
+      responses:
+        '200':
+          description: Webhook processed successfully
+      summary: Linear Webhook
+      tags:
+      - Linear
+components:
+  schemas:
+    Object:
+      type: object
+      properties: {}
+  securitySchemes:
+    access-token:
+      scheme: bearer
+      bearerFormat: JWT
+      type: http
+      name: Authorization
+      description: Enter JWT token in the format Bearer <token>
+      in: header

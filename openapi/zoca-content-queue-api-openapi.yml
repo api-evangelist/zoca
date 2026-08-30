@@ -1,0 +1,716 @@
+openapi: 3.2.0
+info:
+  title: Zoca Content Queue API
+  contact: {}
+  x-refined-note:
+  - x-apievangelist-note differs across the merged source definitions and was not carried
+  version: '1.0'
+  description: 'Operations tagged Content Queue across 2 of this provider''s published API definitions: zoca-platform-openapi.yml, zoca-tasks-openapi.yml. Each path carries the servers of the definition it was published in.'
+servers:
+- url: https://api.zoca.ai
+  description: Production
+- url: https://tasks.zoca.ai
+  description: Production
+tags:
+- name: Content Queue
+paths:
+  /content-queue/{entityId}/items:
+    get:
+      operationId: t_value
+      parameters: []
+      responses:
+        '200':
+          description: ''
+      tags:
+      - Content Queue
+    post:
+      operationId: t_value
+      parameters: []
+      responses:
+        '201':
+          description: ''
+      tags:
+      - Content Queue
+    servers:
+    - url: https://api.zoca.ai
+      description: Production
+  /content-queue/{entityId}/items/{itemId}:
+    get:
+      operationId: t_value
+      parameters: []
+      responses:
+        '200':
+          description: ''
+      tags:
+      - Content Queue
+    patch:
+      operationId: t_value
+      parameters: []
+      responses:
+        '200':
+          description: ''
+      tags:
+      - Content Queue
+    delete:
+      operationId: t_value
+      parameters: []
+      responses:
+        '200':
+          description: ''
+      tags:
+      - Content Queue
+    servers:
+    - url: https://api.zoca.ai
+      description: Production
+  /content-queue/{entityId}/items/{itemId}/post:
+    patch:
+      operationId: t_value
+      parameters: []
+      responses:
+        '200':
+          description: ''
+      tags:
+      - Content Queue
+    servers:
+    - url: https://api.zoca.ai
+      description: Production
+  /content-queue/{entityId}/items/{itemId}/reschedule:
+    post:
+      operationId: t_value
+      parameters: []
+      responses:
+        '200':
+          description: ''
+      tags:
+      - Content Queue
+    servers:
+    - url: https://api.zoca.ai
+      description: Production
+  /content-queue/{entityId}/items/{itemId}/link-content:
+    post:
+      operationId: t_value
+      parameters: []
+      responses:
+        '200':
+          description: ''
+      tags:
+      - Content Queue
+    servers:
+    - url: https://api.zoca.ai
+      description: Production
+  /content-queue/{entityId}/items/{itemId}/generate:
+    post:
+      operationId: t_value
+      parameters: []
+      responses:
+        '202':
+          description: ''
+      tags:
+      - Content Queue
+    servers:
+    - url: https://api.zoca.ai
+      description: Production
+  /content-queue/{entityId}/items/{itemId}/force-publish:
+    post:
+      operationId: t_value
+      parameters: []
+      responses:
+        '200':
+          description: ''
+      tags:
+      - Content Queue
+    servers:
+    - url: https://api.zoca.ai
+      description: Production
+  /content-queue/{entityId}/items/bulk-reschedule:
+    post:
+      operationId: t_value
+      parameters: []
+      responses:
+        '200':
+          description: ''
+      tags:
+      - Content Queue
+    servers:
+    - url: https://api.zoca.ai
+      description: Production
+  /content-queue/{entityId}/items/bulk-delete:
+    post:
+      operationId: t_value
+      parameters: []
+      responses:
+        '200':
+          description: ''
+      tags:
+      - Content Queue
+    servers:
+    - url: https://api.zoca.ai
+      description: Production
+  /content-queue/{entityId}/items/bulk-force-publish:
+    post:
+      operationId: t_value
+      parameters: []
+      responses:
+        '200':
+          description: ''
+      tags:
+      - Content Queue
+    servers:
+    - url: https://api.zoca.ai
+      description: Production
+  /content-queue/{entityId}/items/force-all-category-pages:
+    post:
+      operationId: t_value
+      parameters: []
+      responses:
+        '200':
+          description: ''
+      tags:
+      - Content Queue
+    servers:
+    - url: https://api.zoca.ai
+      description: Production
+  /content-queue/{entityId}/generate-all:
+    post:
+      operationId: t_value
+      parameters: []
+      responses:
+        '202':
+          description: ''
+      tags:
+      - Content Queue
+    servers:
+    - url: https://api.zoca.ai
+      description: Production
+  /content-queue/{entityId}/stats:
+    get:
+      operationId: t_value
+      parameters: []
+      responses:
+        '200':
+          description: ''
+      tags:
+      - Content Queue
+    servers:
+    - url: https://api.zoca.ai
+      description: Production
+  /content-queue/{entityId}/calendar:
+    get:
+      operationId: t_value
+      parameters: []
+      responses:
+        '200':
+          description: ''
+      tags:
+      - Content Queue
+    servers:
+    - url: https://api.zoca.ai
+      description: Production
+  /content-queue/{entityId}/plan:
+    get:
+      operationId: t_value
+      parameters: []
+      responses:
+        '200':
+          description: ''
+      tags:
+      - Content Queue
+    delete:
+      operationId: t_value
+      parameters: []
+      responses:
+        '200':
+          description: ''
+      tags:
+      - Content Queue
+    servers:
+    - url: https://api.zoca.ai
+      description: Production
+  /content-queue/{entityId}/plan/summary:
+    get:
+      operationId: t_value
+      parameters: []
+      responses:
+        '200':
+          description: ''
+      tags:
+      - Content Queue
+    servers:
+    - url: https://api.zoca.ai
+      description: Production
+  /content-queue/{entityId}/plan/services:
+    get:
+      operationId: t_value
+      parameters: []
+      responses:
+        '200':
+          description: ''
+      tags:
+      - Content Queue
+    servers:
+    - url: https://api.zoca.ai
+      description: Production
+  /content-queue/{entityId}/plan/generate:
+    post:
+      operationId: t_value
+      parameters: []
+      responses:
+        '200':
+          description: ''
+      tags:
+      - Content Queue
+    servers:
+    - url: https://api.zoca.ai
+      description: Production
+  /content-queue/{entityId}/status:
+    get:
+      operationId: t_value
+      parameters: []
+      responses:
+        '200':
+          description: ''
+      tags:
+      - Content Queue
+    servers:
+    - url: https://api.zoca.ai
+      description: Production
+  /content-queue/{entityId}/activate:
+    post:
+      operationId: t_value
+      parameters: []
+      responses:
+        '200':
+          description: ''
+      tags:
+      - Content Queue
+    servers:
+    - url: https://api.zoca.ai
+      description: Production
+  /content-queue/{entityId}/deactivate:
+    post:
+      operationId: t_value
+      parameters: []
+      responses:
+        '200':
+          description: ''
+      tags:
+      - Content Queue
+    servers:
+    - url: https://api.zoca.ai
+      description: Production
+  /content-queue/{entityId}/rollback-to-v2:
+    post:
+      operationId: t_value
+      parameters: []
+      responses:
+        '200':
+          description: ''
+      tags:
+      - Content Queue
+    servers:
+    - url: https://api.zoca.ai
+      description: Production
+  /content-queue/{entityId}/schedule-preferences:
+    get:
+      operationId: t_value
+      parameters: []
+      responses:
+        '200':
+          description: ''
+      tags:
+      - Content Queue
+    put:
+      operationId: t_value
+      parameters: []
+      responses:
+        '200':
+          description: ''
+      tags:
+      - Content Queue
+    servers:
+    - url: https://api.zoca.ai
+      description: Production
+  /tasks/api/v1/content-queue/{entityId}/items:
+    get:
+      operationId: t_value
+      parameters: []
+      responses:
+        '200':
+          description: ''
+      tags:
+      - Content Queue
+      security:
+      - access-token: []
+    post:
+      operationId: t_value
+      parameters: []
+      responses:
+        '201':
+          description: ''
+      tags:
+      - Content Queue
+      security:
+      - access-token: []
+    servers:
+    - url: https://tasks.zoca.ai
+      description: Production
+  /tasks/api/v1/content-queue/{entityId}/items/{itemId}:
+    get:
+      operationId: t_value
+      parameters: []
+      responses:
+        '200':
+          description: ''
+      tags:
+      - Content Queue
+      security:
+      - access-token: []
+    patch:
+      operationId: t_value
+      parameters: []
+      responses:
+        '200':
+          description: ''
+      tags:
+      - Content Queue
+      security:
+      - access-token: []
+    delete:
+      operationId: t_value
+      parameters: []
+      responses:
+        '200':
+          description: ''
+      tags:
+      - Content Queue
+      security:
+      - access-token: []
+    servers:
+    - url: https://tasks.zoca.ai
+      description: Production
+  /tasks/api/v1/content-queue/{entityId}/items/{itemId}/post:
+    patch:
+      operationId: t_value
+      parameters: []
+      responses:
+        '200':
+          description: ''
+      tags:
+      - Content Queue
+      security:
+      - access-token: []
+    servers:
+    - url: https://tasks.zoca.ai
+      description: Production
+  /tasks/api/v1/content-queue/{entityId}/items/{itemId}/reschedule:
+    post:
+      operationId: t_value
+      parameters: []
+      responses:
+        '200':
+          description: ''
+      tags:
+      - Content Queue
+      security:
+      - access-token: []
+    servers:
+    - url: https://tasks.zoca.ai
+      description: Production
+  /tasks/api/v1/content-queue/{entityId}/items/{itemId}/link-content:
+    post:
+      operationId: t_value
+      parameters: []
+      responses:
+        '200':
+          description: ''
+      tags:
+      - Content Queue
+      security:
+      - access-token: []
+    servers:
+    - url: https://tasks.zoca.ai
+      description: Production
+  /tasks/api/v1/content-queue/{entityId}/items/{itemId}/generate:
+    post:
+      operationId: t_value
+      parameters: []
+      responses:
+        '202':
+          description: ''
+      tags:
+      - Content Queue
+      security:
+      - access-token: []
+    servers:
+    - url: https://tasks.zoca.ai
+      description: Production
+  /tasks/api/v1/content-queue/{entityId}/items/{itemId}/force-publish:
+    post:
+      operationId: t_value
+      parameters: []
+      responses:
+        '200':
+          description: ''
+      tags:
+      - Content Queue
+      security:
+      - access-token: []
+    servers:
+    - url: https://tasks.zoca.ai
+      description: Production
+  /tasks/api/v1/content-queue/{entityId}/items/bulk-reschedule:
+    post:
+      operationId: t_value
+      parameters: []
+      responses:
+        '200':
+          description: ''
+      tags:
+      - Content Queue
+      security:
+      - access-token: []
+    servers:
+    - url: https://tasks.zoca.ai
+      description: Production
+  /tasks/api/v1/content-queue/{entityId}/items/bulk-delete:
+    post:
+      operationId: t_value
+      parameters: []
+      responses:
+        '200':
+          description: ''
+      tags:
+      - Content Queue
+      security:
+      - access-token: []
+    servers:
+    - url: https://tasks.zoca.ai
+      description: Production
+  /tasks/api/v1/content-queue/{entityId}/items/bulk-force-publish:
+    post:
+      operationId: t_value
+      parameters: []
+      responses:
+        '200':
+          description: ''
+      tags:
+      - Content Queue
+      security:
+      - access-token: []
+    servers:
+    - url: https://tasks.zoca.ai
+      description: Production
+  /tasks/api/v1/content-queue/{entityId}/items/force-all-category-pages:
+    post:
+      operationId: t_value
+      parameters: []
+      responses:
+        '200':
+          description: ''
+      tags:
+      - Content Queue
+      security:
+      - access-token: []
+    servers:
+    - url: https://tasks.zoca.ai
+      description: Production
+  /tasks/api/v1/content-queue/{entityId}/generate-all:
+    post:
+      operationId: t_value
+      parameters: []
+      responses:
+        '202':
+          description: ''
+      tags:
+      - Content Queue
+      security:
+      - access-token: []
+    servers:
+    - url: https://tasks.zoca.ai
+      description: Production
+  /tasks/api/v1/content-queue/{entityId}/stats:
+    get:
+      operationId: t_value
+      parameters: []
+      responses:
+        '200':
+          description: ''
+      tags:
+      - Content Queue
+      security:
+      - access-token: []
+    servers:
+    - url: https://tasks.zoca.ai
+      description: Production
+  /tasks/api/v1/content-queue/{entityId}/calendar:
+    get:
+      operationId: t_value
+      parameters: []
+      responses:
+        '200':
+          description: ''
+      tags:
+      - Content Queue
+      security:
+      - access-token: []
+    servers:
+    - url: https://tasks.zoca.ai
+      description: Production
+  /tasks/api/v1/content-queue/{entityId}/plan:
+    get:
+      operationId: t_value
+      parameters: []
+      responses:
+        '200':
+          description: ''
+      tags:
+      - Content Queue
+      security:
+      - access-token: []
+    delete:
+      operationId: t_value
+      parameters: []
+      responses:
+        '200':
+          description: ''
+      tags:
+      - Content Queue
+      security:
+      - access-token: []
+    servers:
+    - url: https://tasks.zoca.ai
+      description: Production
+  /tasks/api/v1/content-queue/{entityId}/plan/summary:
+    get:
+      operationId: t_value
+      parameters: []
+      responses:
+        '200':
+          description: ''
+      tags:
+      - Content Queue
+      security:
+      - access-token: []
+    servers:
+    - url: https://tasks.zoca.ai
+      description: Production
+  /tasks/api/v1/content-queue/{entityId}/plan/services:
+    get:
+      operationId: t_value
+      parameters: []
+      responses:
+        '200':
+          description: ''
+      tags:
+      - Content Queue
+      security:
+      - access-token: []
+    servers:
+    - url: https://tasks.zoca.ai
+      description: Production
+  /tasks/api/v1/content-queue/{entityId}/plan/generate:
+    post:
+      operationId: t_value
+      parameters: []
+      responses:
+        '200':
+          description: ''
+      tags:
+      - Content Queue
+      security:
+      - access-token: []
+    servers:
+    - url: https://tasks.zoca.ai
+      description: Production
+  /tasks/api/v1/content-queue/{entityId}/status:
+    get:
+      operationId: t_value
+      parameters: []
+      responses:
+        '200':
+          description: ''
+      tags:
+      - Content Queue
+      security:
+      - access-token: []
+    servers:
+    - url: https://tasks.zoca.ai
+      description: Production
+  /tasks/api/v1/content-queue/{entityId}/activate:
+    post:
+      operationId: t_value
+      parameters: []
+      responses:
+        '200':
+          description: ''
+      tags:
+      - Content Queue
+      security:
+      - access-token: []
+    servers:
+    - url: https://tasks.zoca.ai
+      description: Production
+  /tasks/api/v1/content-queue/{entityId}/deactivate:
+    post:
+      operationId: t_value
+      parameters: []
+      responses:
+        '200':
+          description: ''
+      tags:
+      - Content Queue
+      security:
+      - access-token: []
+    servers:
+    - url: https://tasks.zoca.ai
+      description: Production
+  /tasks/api/v1/content-queue/{entityId}/rollback-to-v2:
+    post:
+      operationId: t_value
+      parameters: []
+      responses:
+        '200':
+          description: ''
+      tags:
+      - Content Queue
+      security:
+      - access-token: []
+    servers:
+    - url: https://tasks.zoca.ai
+      description: Production
+  /tasks/api/v1/content-queue/{entityId}/schedule-preferences:
+    get:
+      operationId: t_value
+      parameters: []
+      responses:
+        '200':
+          description: ''
+      tags:
+      - Content Queue
+      security:
+      - access-token: []
+    put:
+      operationId: t_value
+      parameters: []
+      responses:
+        '200':
+          description: ''
+      tags:
+      - Content Queue
+      security:
+      - access-token: []
+    servers:
+    - url: https://tasks.zoca.ai
+      description: Production
+components:
+  securitySchemes:
+    access-token:
+      scheme: bearer
+      bearerFormat: JWT
+      type: http
+      name: Authorization
+      description: Enter JWT token in the format Bearer <token>
+      in: header
+x-refined-from:
+- zoca-platform-openapi.yml
+- zoca-tasks-openapi.yml

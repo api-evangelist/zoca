@@ -1,0 +1,191 @@
+openapi: 3.2.0
+info:
+  title: Zoca Tasks Website Creation API
+  description: 'The Zoca tasks/automation service: AI content queue and planning, FrontDesk (Retell/Twilio) voice + SMS agent onboarding, local-SEO grid scans, WIN conversion triggers, and inbound integration webhooks (Chargebee, Square, Pipedrive, Twilio, Retell, CallHippo, Sybill, Instantly).'
+  version: 3.20.9
+  contact: {}
+  x-apievangelist-note: Harvested verbatim from https://tasks.zoca.ai/swagger.json. The provider ships the default NestJS Swagger metadata (title "API Documentation", empty servers[]); title/description/servers were set by API Evangelist for identification and the unmodified original is preserved at openapi/_original/zoca-tasks-swagger.json. Every path, operation, summary, parameter and response is exactly as published.
+servers:
+- url: https://tasks.zoca.ai
+  description: Production
+security:
+- access-token: []
+tags:
+- name: Website Creation
+paths:
+  /tasks/api/v1/website/creation:
+    post:
+      description: Enqueues a website creation job with specified template and settings
+      operationId: t_value
+      parameters: []
+      responses:
+        '201':
+          description: Website creation job enqueued successfully
+          content:
+            application/json:
+              schema:
+                properties:
+                  jobId:
+                    type: string
+        '400':
+          description: Invalid input data
+        '500':
+          description: Failed to enqueue job
+      security:
+      - bearer: []
+      summary: Create website from template
+      tags:
+      - Website Creation
+  /tasks/api/v1/website/creation-user-onboarding:
+    post:
+      description: Enqueues a website creation job specifically for the user onboarding flow
+      operationId: t_value
+      parameters: []
+      responses:
+        '201':
+          description: Website creation job enqueued successfully
+          content:
+            application/json:
+              schema:
+                properties:
+                  jobId:
+                    type: string
+        '400':
+          description: Invalid input data
+        '500':
+          description: Failed to enqueue job
+      security:
+      - bearer: []
+      summary: Create website during user onboarding
+      tags:
+      - Website Creation
+  /tasks/api/v1/website/generation:
+    post:
+      description: Enqueues a website generation job for content creation
+      operationId: t_value
+      parameters: []
+      responses:
+        '201':
+          description: Website generation job enqueued successfully
+          content:
+            application/json:
+              schema:
+                properties:
+                  jobId:
+                    type: string
+        '400':
+          description: Invalid input data
+        '500':
+          description: Failed to enqueue job
+      security:
+      - bearer: []
+      summary: Generate website content
+      tags:
+      - Website Creation
+  /tasks/api/v1/website/multipager:
+    post:
+      description: Enqueues a website generation job for content creation
+      operationId: t_value
+      parameters: []
+      responses:
+        '201':
+          description: Website generation job enqueued successfully
+          content:
+            application/json:
+              schema:
+                properties:
+                  jobId:
+                    type: string
+        '400':
+          description: Invalid input data
+        '500':
+          description: Failed to enqueue job
+      security:
+      - bearer: []
+      summary: Start multipager request for a website
+      tags:
+      - Website Creation
+  /tasks/api/v1/website/regenerate:
+    post:
+      description: Enqueues a website regeneration job for content creation
+      operationId: t_value
+      parameters: []
+      responses:
+        '201':
+          description: Website generation job enqueued successfully
+          content:
+            application/json:
+              schema:
+                properties:
+                  jobId:
+                    type: string
+        '400':
+          description: Invalid input data
+        '500':
+          description: Failed to enqueue job
+      security:
+      - bearer: []
+      summary: Start multipager request for a website
+      tags:
+      - Website Creation
+  /tasks/api/v1/website/test:
+    post:
+      operationId: t_value
+      parameters: []
+      responses:
+        '201':
+          description: ''
+      security:
+      - bearer: []
+      tags:
+      - Website Creation
+  /tasks/api/v1/website/recreate:
+    post:
+      operationId: t_value
+      parameters: []
+      responses:
+        '201':
+          description: ''
+      security:
+      - bearer: []
+      tags:
+      - Website Creation
+  /tasks/api/v1/website/store-scraped-services:
+    post:
+      description: Stores the raw JSON response from the service scraper for a given entity
+      operationId: t_value
+      parameters: []
+      responses:
+        '201':
+          description: Scraped services stored successfully
+          content:
+            application/json:
+              schema:
+                properties:
+                  id:
+                    type: string
+                  locationId:
+                    type: string
+                  scraperResponse:
+                    type: string
+                  createdAt:
+                    type: string
+        '400':
+          description: Invalid input data
+        '500':
+          description: Failed to store scraped services
+      security:
+      - bearer: []
+      - {}
+      summary: Store scraped services data
+      tags:
+      - Website Creation
+components:
+  securitySchemes:
+    access-token:
+      scheme: bearer
+      bearerFormat: JWT
+      type: http
+      name: Authorization
+      description: Enter JWT token in the format Bearer <token>
+      in: header

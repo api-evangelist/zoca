@@ -1,0 +1,150 @@
+openapi: 3.2.0
+info:
+  title: Zoca Platform Coupons API
+  description: 'The Zoca platform API behind the Zoca web app and mobile apps: scheduling, website generation, Google Business Profile, discovery/local SEO, social media, booking enquiries, offers, clients, staff, billing and the Zoca "brain" agent layer.'
+  version: 3.20.10
+  contact: {}
+  x-apievangelist-note: Harvested verbatim from https://api.zoca.ai/swagger.json. The provider ships the default NestJS Swagger metadata (title "API Documentation", empty servers[]); title/description/servers were set by API Evangelist for identification and the unmodified original is preserved at openapi/_original/zoca-platform-swagger.json. Every path, operation, summary, parameter and response is exactly as published.
+servers:
+- url: https://api.zoca.ai
+  description: Production
+tags:
+- name: Coupons
+paths:
+  /scheduling/coupons:
+    post:
+      operationId: t_value
+      parameters: []
+      responses:
+        '201':
+          description: Coupon created
+      summary: Create a new coupon
+      tags:
+      - Coupons
+  /scheduling/coupons/validate:
+    post:
+      operationId: t_value
+      parameters: []
+      responses:
+        '200':
+          description: Validation result
+      summary: Validate a coupon code and calculate discount
+      tags:
+      - Coupons
+  /scheduling/coupons/available:
+    post:
+      operationId: t_value
+      parameters: []
+      responses:
+        '200':
+          description: List of eligible coupons with discount previews
+      summary: Get available coupons for a client/cart and validate each
+      tags:
+      - Coupons
+  /scheduling/coupons/entity/{entityId}:
+    get:
+      operationId: t_value
+      parameters: []
+      responses:
+        '200':
+          description: Paginated coupon list
+      summary: List coupons for an entity
+      tags:
+      - Coupons
+  /scheduling/coupons/{id}:
+    get:
+      operationId: t_value
+      parameters: []
+      responses:
+        '200':
+          description: Coupon details
+      summary: Get a single coupon by ID
+      tags:
+      - Coupons
+    put:
+      operationId: t_value
+      parameters: []
+      responses:
+        '200':
+          description: Coupon updated
+      summary: Update a coupon
+      tags:
+      - Coupons
+    delete:
+      operationId: t_value
+      parameters: []
+      responses:
+        '204':
+          description: Coupon deleted
+      summary: Soft delete a coupon
+      tags:
+      - Coupons
+  /scheduling/coupons/{id}/pause:
+    post:
+      operationId: t_value
+      parameters: []
+      responses:
+        '200':
+          description: Coupon paused
+      summary: Pause a live coupon
+      tags:
+      - Coupons
+  /scheduling/coupons/{id}/resume:
+    put:
+      operationId: t_value
+      parameters: []
+      responses:
+        '200':
+          description: Coupon resumed
+      summary: Resume a paused coupon
+      tags:
+      - Coupons
+  /scheduling/coupons/{id}/activate:
+    put:
+      operationId: t_value
+      parameters: []
+      responses:
+        '200':
+          description: Coupon activated
+      summary: Publish a draft coupon (status derived from its schedule)
+      tags:
+      - Coupons
+  /scheduling/coupons/auto-configs/entity/{entityId}:
+    get:
+      operationId: t_value
+      parameters: []
+      responses:
+        '200':
+          description: Auto-coupon configs list
+      summary: Get all auto-coupon configs for an entity
+      tags:
+      - Coupons
+  /scheduling/coupons/auto-configs/entity/{entityId}/{triggerType}:
+    put:
+      operationId: t_value
+      parameters: []
+      responses:
+        '200':
+          description: Config saved
+      summary: Upsert an auto-coupon config (create or update)
+      tags:
+      - Coupons
+  /scheduling/coupons/auto-configs/entity/{entityId}/run:
+    post:
+      operationId: t_value
+      parameters: []
+      responses:
+        '200':
+          description: Trigger run completed
+      summary: Manually run auto-coupon trigger(s) for an entity
+      tags:
+      - Coupons
+components:
+  securitySchemes:
+    access-token:
+      scheme: bearer
+      bearerFormat: JWT
+      type: http
+      name: Authorization
+      description: Enter JWT token in the format Bearer <token>
+      in: header

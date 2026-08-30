@@ -1,0 +1,183 @@
+openapi: 3.2.0
+info:
+  title: Zoca Tasks Salesforce API
+  description: 'The Zoca tasks/automation service: AI content queue and planning, FrontDesk (Retell/Twilio) voice + SMS agent onboarding, local-SEO grid scans, WIN conversion triggers, and inbound integration webhooks (Chargebee, Square, Pipedrive, Twilio, Retell, CallHippo, Sybill, Instantly).'
+  version: 3.20.9
+  contact: {}
+  x-apievangelist-note: Harvested verbatim from https://tasks.zoca.ai/swagger.json. The provider ships the default NestJS Swagger metadata (title "API Documentation", empty servers[]); title/description/servers were set by API Evangelist for identification and the unmodified original is preserved at openapi/_original/zoca-tasks-swagger.json. Every path, operation, summary, parameter and response is exactly as published.
+servers:
+- url: https://tasks.zoca.ai
+  description: Production
+security:
+- access-token: []
+tags:
+- name: Salesforce
+paths:
+  /tasks/api/v1/salesforce/webhook:
+    post:
+      description: Processes incoming Salesforce webhook data and queues it for handling
+      operationId: t_value
+      parameters: []
+      requestBody:
+        required: true
+        description: Salesforce webhook payload
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/Object'
+      responses:
+        '201':
+          description: Salesforce webhook processed successfully
+      security:
+      - {}
+      summary: Process Salesforce webhook
+      tags:
+      - Salesforce
+  /tasks/api/v1/salesforce/onboarding:
+    post:
+      description: Processes incoming Salesforce onboarding data and queues it for handling
+      operationId: t_value
+      parameters: []
+      requestBody:
+        required: true
+        description: Salesforce onboarding data
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/Object'
+      responses:
+        '201':
+          description: Salesforce onboarding processed successfully
+      security:
+      - {}
+      summary: Process Salesforce onboarding
+      tags:
+      - Salesforce
+  /tasks/api/v1/salesforce/cleanup:
+    delete:
+      description: Deletes data from both Salesforce and local database. Can cleanup all data or specific entity.
+      operationId: t_value
+      parameters:
+      - name: dryRun
+        required: false
+        in: query
+        description: If true, only shows what would be deleted without actually deleting
+        schema:
+          type: boolean
+      - name: entityId
+        required: false
+        in: query
+        description: Specific entity ID to cleanup. If not provided, cleans up all data.
+        schema:
+          type: string
+      responses:
+        '200':
+          description: Cleanup completed successfully
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  deletedFromSalesforce:
+                    type: object
+                    properties:
+                      opportunities:
+                        type: number
+                      contacts:
+                        type: number
+                      locations:
+                        type: number
+                      businesses:
+                        type: number
+                  deletedFromDB:
+                    type: object
+                    properties:
+                      opportunities:
+                        type: number
+                      contacts:
+                        type: number
+                      locations:
+                        type: number
+                      businesses:
+                        type: number
+      summary: Cleanup Salesforce data
+      tags:
+      - Salesforce
+  /tasks/api/v1/salesforce/sync:
+    post:
+      description: Syncs all businesses with Salesforce. Can sync all or specific entity.
+      operationId: t_value
+      parameters:
+      - name: dryRun
+        required: false
+        in: query
+        description: If true, only shows what would be synced without actually syncing
+        schema:
+          type: boolean
+      - name: entityId
+        required: false
+        in: query
+        description: Specific entity ID to sync. If provided, other filters are ignored.
+        schema:
+          type: string
+      responses:
+        '201':
+          description: Sync initiated successfully
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  message:
+                    type: string
+                  count:
+                    type: number
+                  results:
+                    type: array
+                    items:
+                      type: object
+                      properties:
+                        entityId:
+                          type: string
+                        status:
+                          type: string
+                        businessName:
+                          type: string
+      summary: Sync businesses with Salesforce
+      tags:
+      - Salesforce
+  /tasks/api/v1/salesforce/gbp-metrics/sync:
+    post:
+      description: Syncs all GBP metrics to Salesforce Performance Data
+      operationId: t_value
+      parameters: []
+      responses:
+        '200':
+          description: Sync completed successfully
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  success:
+                    type: number
+                  failed:
+                    type: number
+                  total:
+                    type: number
+      summary: Sync GBP metrics to Salesforce
+      tags:
+      - Salesforce
+components:
+  schemas:
+    Object:
+      type: object
+      properties: {}
+  securitySchemes:
+    access-token:
+      scheme: bearer
+      bearerFormat: JWT
+      type: http
+      name: Authorization
+      description: Enter JWT token in the format Bearer <token>
+      in: header

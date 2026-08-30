@@ -1,0 +1,155 @@
+openapi: 3.2.0
+info:
+  title: Zoca Links API
+  contact: {}
+  x-refined-note:
+  - x-apievangelist-note differs across the merged source definitions and was not carried
+  version: '1.0'
+  description: 'Operations tagged Links across 3 of this provider''s published API definitions: zoca-platform-openapi.yml, zoca-public-openapi.yml, zoca-tasks-openapi.yml. Each path carries the servers of the definition it was published in.'
+servers:
+- url: https://api.zoca.ai
+  description: Production
+- url: https://public.zoca.com
+  description: Production
+- url: https://tasks.zoca.ai
+  description: Production
+tags:
+- name: Links
+paths:
+  /links:
+    post:
+      operationId: t_value
+      parameters: []
+      responses:
+        '201':
+          description: ''
+      summary: Create a new shortened link
+      tags:
+      - Links
+    servers:
+    - url: https://api.zoca.ai
+      description: Production
+  /links/r/{alias}:
+    get:
+      operationId: t_value
+      parameters: []
+      responses:
+        '200':
+          description: ''
+      summary: Redirect to original URL by alias
+      tags:
+      - Links
+    servers:
+    - url: https://api.zoca.ai
+      description: Production
+  /links/health:
+    get:
+      operationId: t_value
+      parameters: []
+      responses:
+        '200':
+          description: ''
+      summary: Health check
+      tags:
+      - Links
+    servers:
+    - url: https://public.zoca.com
+      description: Production
+  /links/invalidate/{alias}:
+    delete:
+      operationId: t_value
+      parameters: []
+      responses:
+        '200':
+          description: ''
+      summary: Invalidate link cache by alias
+      tags:
+      - Links
+    servers:
+    - url: https://public.zoca.com
+      description: Production
+  /links/get-app:
+    get:
+      operationId: t_value
+      parameters: []
+      responses:
+        '200':
+          description: ''
+      summary: Serve app redirect page
+      tags:
+      - Links
+    servers:
+    - url: https://public.zoca.com
+      description: Production
+  /tasks/api/v1/links/csv/process:
+    post:
+      description: Validates CSV file has required columns (url and attributes.linkType), creates links, and uploads processed CSV to S3
+      operationId: t_value
+      parameters: []
+      requestBody:
+        required: true
+        content:
+          multipart/form-data:
+            schema:
+              type: object
+              properties:
+                file:
+                  type: string
+                  format: binary
+                  description: 'CSV file with columns: url (required), alias (optional), attributes.linkType (required), and any other attributes.* columns'
+      responses:
+        '201':
+          description: CSV file validated and queued for link processing
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/e'
+        '400':
+          description: CSV validation failed - missing required columns or invalid format
+      summary: Process CSV file to create links
+      tags:
+      - Links
+      security:
+      - access-token: []
+    servers:
+    - url: https://tasks.zoca.ai
+      description: Production
+components:
+  schemas:
+    e:
+      type: object
+      properties:
+        scan:
+          $ref: '#/components/schemas/e'
+        businessLat:
+          type:
+          - number
+          - 'null'
+        businessLng:
+          type:
+          - number
+          - 'null'
+        points:
+          type: array
+          items:
+            $ref: '#/components/schemas/e'
+        heroMetrics:
+          $ref: '#/components/schemas/e'
+      required:
+      - scan
+      - businessLat
+      - businessLng
+      - points
+      - heroMetrics
+  securitySchemes:
+    access-token:
+      scheme: bearer
+      bearerFormat: JWT
+      type: http
+      name: Authorization
+      description: Enter JWT token in the format Bearer <token>
+      in: header
+x-refined-from:
+- zoca-platform-openapi.yml
+- zoca-public-openapi.yml
+- zoca-tasks-openapi.yml

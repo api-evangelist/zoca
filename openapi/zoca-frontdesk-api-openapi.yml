@@ -1,0 +1,720 @@
+openapi: 3.2.0
+info:
+  title: Zoca Frontdesk API
+  contact: {}
+  x-refined-note:
+  - x-apievangelist-note differs across the merged source definitions and was not carried
+  version: '1.0'
+  description: 'Operations tagged Frontdesk across 2 of this provider''s published API definitions: zoca-platform-openapi.yml, zoca-tasks-openapi.yml. Each path carries the servers of the definition it was published in.'
+servers:
+- url: https://api.zoca.ai
+  description: Production
+- url: https://tasks.zoca.ai
+  description: Production
+tags:
+- name: Frontdesk
+paths:
+  /frontdesk/multilocation/{businessEntityId}/overview:
+    get:
+      operationId: t_value
+      parameters:
+      - name: businessEntityId
+        required: true
+        in: path
+        description: Business entity UUID
+        schema: {}
+      responses:
+        '200':
+          description: ''
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/e'
+      summary: Front Desk Control Tower — network overview
+      tags:
+      - Frontdesk
+    servers:
+    - url: https://api.zoca.ai
+      description: Production
+  /frontdesk/multilocation/{businessEntityId}/locations:
+    get:
+      operationId: t_value
+      parameters:
+      - name: businessEntityId
+        required: true
+        in: path
+        description: Business entity UUID
+        schema: {}
+      responses:
+        '200':
+          description: ''
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/e'
+      summary: Front Desk Control Tower — ranked locations table
+      tags:
+      - Frontdesk
+    servers:
+    - url: https://api.zoca.ai
+      description: Production
+  /frontdesk/multilocation/{businessEntityId}/activity:
+    get:
+      operationId: t_value
+      parameters:
+      - name: businessEntityId
+        required: true
+        in: path
+        description: Business entity UUID
+        schema: {}
+      responses:
+        '200':
+          description: ''
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/e'
+      summary: Front Desk Control Tower — network activity feed
+      tags:
+      - Frontdesk
+    servers:
+    - url: https://api.zoca.ai
+      description: Production
+  /frontdesk/handover/{clientId}/toggle:
+    post:
+      description: 'Flips human handover in chatbot.human_handovers: enables it when off, disables it when on. Response reflects the resulting state.'
+      operationId: t_value
+      parameters:
+      - name: clientId
+        required: true
+        in: path
+        description: Client ID to toggle handover for
+        schema: {}
+      responses:
+        '201':
+          description: Human handover toggled
+      summary: Toggle human handover for a client
+      tags:
+      - Frontdesk
+    servers:
+    - url: https://api.zoca.ai
+      description: Production
+  /frontdesk/handover/{clientId}/deactivate:
+    post:
+      description: 'Soft-first: deletes the Redis temp-handover key when present, else deactivates the chatbot.human_handovers row. When `disposition` is supplied, the SP-chosen ConversationState is pinned; otherwise the full conversation is analyzed immediately. Any resulting follow-up remains delayed until the grace period ends.'
+      operationId: t_value
+      parameters:
+      - name: clientId
+        required: true
+        in: path
+        description: Client ID to deactivate handover for
+        schema: {}
+      responses:
+        '201':
+          description: Human handover deactivated
+      summary: Deactivate human handover for a client
+      tags:
+      - Frontdesk
+    servers:
+    - url: https://api.zoca.ai
+      description: Production
+  /frontdesk/handover/{clientId}/status:
+    get:
+      description: Returns { soft, hard, active, softExpiresAt } — soft is the Redis temp handover (softExpiresAt is its ISO expiry, null when inactive), hard is the chatbot.human_handovers row, active is soft OR hard.
+      operationId: t_value
+      parameters:
+      - name: entityId
+        required: true
+        in: query
+        description: Entity the client belongs to
+        schema: {}
+      - name: clientId
+        required: true
+        in: path
+        description: Client ID to check handover status for
+        schema: {}
+      responses:
+        '200':
+          description: Handover status retrieved
+      summary: Check whether a client is in human handover (soft or hard)
+      tags:
+      - Frontdesk
+    servers:
+    - url: https://api.zoca.ai
+      description: Production
+  /frontdesk/status/{entityId}:
+    get:
+      description: Retrieves comprehensive status including business info, virtual number, context data, and subscription status
+      operationId: t_value
+      parameters:
+      - name: entityId
+        required: true
+        in: path
+        description: Entity ID to check status for
+        schema: {}
+      responses:
+        '200':
+          description: Onboarding status retrieved successfully
+        '404':
+          description: Onboarding status not found
+      summary: Get Frontdesk onboarding status
+      tags:
+      - Frontdesk
+    servers:
+    - url: https://api.zoca.ai
+      description: Production
+  /frontdesk/overview/{locationEntityId}:
+    get:
+      operationId: t_value
+      parameters:
+      - name: locationEntityId
+        required: true
+        in: path
+        description: Location entity UUID
+        schema: {}
+      responses:
+        '200':
+          description: ''
+      summary: Front Desk dashboard — Overview cards (v1)
+      tags:
+      - Frontdesk
+    servers:
+    - url: https://api.zoca.ai
+      description: Production
+  /frontdesk/analytics/{locationEntityId}:
+    get:
+      operationId: t_value
+      parameters:
+      - name: locationEntityId
+        required: true
+        in: path
+        description: Location entity UUID
+        schema: {}
+      responses:
+        '200':
+          description: ''
+      summary: Front Desk dashboard — Analytics tab (7 widgets)
+      tags:
+      - Frontdesk
+    servers:
+    - url: https://api.zoca.ai
+      description: Production
+  /frontdesk/analytics-v2/{locationEntityId}:
+    get:
+      operationId: t_value
+      parameters:
+      - name: locationEntityId
+        required: true
+        in: path
+        description: Location entity UUID
+        schema: {}
+      responses:
+        '200':
+          description: ''
+      summary: Front Desk dashboard — Analytics tab v2 (real data from call_callbacks)
+      tags:
+      - Frontdesk
+    servers:
+    - url: https://api.zoca.ai
+      description: Production
+  /frontdesk/bookings/{entityId}:
+    get:
+      description: Returns paginated booking attempts written by the frontdesk AI agent, ordered by createdAt desc. Supports status filter + limit/offset pagination.
+      operationId: t_value
+      parameters:
+      - name: entityId
+        required: true
+        in: path
+        description: Entity ID to list bookings for
+        schema: {}
+      responses:
+        '200':
+          description: ''
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/e'
+      summary: List frontdesk bookings for an entity
+      tags:
+      - Frontdesk
+    servers:
+    - url: https://api.zoca.ai
+      description: Production
+  /tasks/api/v1/frontdesk/chat:
+    post:
+      operationId: t_value
+      parameters: []
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/e_2'
+      responses:
+        '200':
+          description: ''
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/e_2'
+      summary: Chat with the Frontdesk Agent
+      tags:
+      - Frontdesk
+      security:
+      - access-token: []
+    servers:
+    - url: https://tasks.zoca.ai
+      description: Production
+  /tasks/api/v1/frontdesk/chat/stream:
+    post:
+      operationId: t_value
+      parameters: []
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/e_2'
+      responses:
+        '201':
+          description: ''
+      summary: Chat with streaming via SSE
+      tags:
+      - Frontdesk
+      security:
+      - access-token: []
+    servers:
+    - url: https://tasks.zoca.ai
+      description: Production
+  /tasks/api/v1/frontdesk/message:
+    post:
+      operationId: t_value
+      parameters: []
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/e_2'
+      responses:
+        '200':
+          description: ''
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/e_2'
+      summary: Single message (no conversation history)
+      tags:
+      - Frontdesk
+      security:
+      - access-token: []
+    servers:
+    - url: https://tasks.zoca.ai
+      description: Production
+  /tasks/api/v1/frontdesk/manual-message:
+    post:
+      description: Dispatches a human-authored message to the customer, sets a temporary human handover, and records it as a HUMAN_AGENT turn. No LLM runs.
+      operationId: t_value
+      parameters: []
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/e_2'
+      responses:
+        '201':
+          description: Message sent
+      summary: Send a manual (human-authored) message to a customer
+      tags:
+      - Frontdesk
+      security:
+      - access-token: []
+    servers:
+    - url: https://tasks.zoca.ai
+      description: Production
+  /tasks/api/v1/frontdesk/conversations/{conversationId}:
+    get:
+      operationId: t_value
+      parameters:
+      - name: entityId
+        required: true
+        in: query
+        description: Business entity UUID
+        schema:
+          type: string
+      - name: conversationId
+        required: true
+        in: path
+        schema:
+          type: string
+      responses:
+        '200':
+          description: ''
+      summary: Get conversation info
+      tags:
+      - Frontdesk
+      security:
+      - access-token: []
+    delete:
+      operationId: t_value
+      parameters:
+      - name: entityId
+        required: true
+        in: query
+        description: Business entity UUID
+        schema:
+          type: string
+      - name: conversationId
+        required: true
+        in: path
+        schema:
+          type: string
+      responses:
+        '200':
+          description: ''
+      summary: End a conversation
+      tags:
+      - Frontdesk
+      security:
+      - access-token: []
+    servers:
+    - url: https://tasks.zoca.ai
+      description: Production
+  /tasks/api/v1/frontdesk/conversations:
+    get:
+      operationId: t_value
+      parameters:
+      - name: limit
+        required: false
+        in: query
+        schema:
+          type: number
+      - name: entityId
+        required: true
+        in: query
+        schema:
+          type: string
+      responses:
+        '200':
+          description: ''
+      summary: List conversations for an entity
+      tags:
+      - Frontdesk
+      security:
+      - access-token: []
+    servers:
+    - url: https://tasks.zoca.ai
+      description: Production
+  /tasks/api/v1/frontdesk/conversations/{conversationId}/messages:
+    get:
+      operationId: t_value
+      parameters:
+      - name: limit
+        required: false
+        in: query
+        schema:
+          type: number
+      - name: entityId
+        required: true
+        in: query
+        schema:
+          type: string
+      - name: conversationId
+        required: true
+        in: path
+        schema:
+          type: string
+      responses:
+        '200':
+          description: ''
+      summary: Get conversation messages
+      tags:
+      - Frontdesk
+      security:
+      - access-token: []
+    servers:
+    - url: https://tasks.zoca.ai
+      description: Production
+  /tasks/api/v1/frontdesk/conversations/by-client/{clientId}/messages:
+    get:
+      operationId: t_value
+      parameters:
+      - name: limit
+        required: false
+        in: query
+        schema:
+          type: number
+      - name: entityId
+        required: true
+        in: query
+        schema:
+          type: string
+      - name: clientId
+        required: true
+        in: path
+        schema:
+          type: string
+      responses:
+        '200':
+          description: ''
+      summary: Get a client's frontdesk conversation messages (resolves conversationId)
+      tags:
+      - Frontdesk
+      security:
+      - access-token: []
+    servers:
+    - url: https://tasks.zoca.ai
+      description: Production
+  /tasks/api/v1/frontdesk/webhooks/card-complete:
+    post:
+      operationId: t_value[0]
+      parameters: []
+      responses:
+        '200':
+          description: ''
+      summary: Card-on-file completion callback (PCI → mononest, all platforms)
+      tags:
+      - Frontdesk
+      security:
+      - access-token: []
+    servers:
+    - url: https://tasks.zoca.ai
+      description: Production
+  /tasks/api/v1/frontdesk/webhooks/boulevard/card-complete:
+    post:
+      operationId: t_value[1]
+      parameters: []
+      responses:
+        '200':
+          description: ''
+      summary: Card-on-file completion callback (PCI → mononest, all platforms)
+      tags:
+      - Frontdesk
+      security:
+      - access-token: []
+    servers:
+    - url: https://tasks.zoca.ai
+      description: Production
+  /tasks/api/v1/frontdesk/webhooks/mindbody/card-complete:
+    post:
+      operationId: t_value[2]
+      parameters: []
+      responses:
+        '200':
+          description: ''
+      summary: Card-on-file completion callback (PCI → mononest, all platforms)
+      tags:
+      - Frontdesk
+      security:
+      - access-token: []
+    servers:
+    - url: https://tasks.zoca.ai
+      description: Production
+  /tasks/api/v1/frontdesk/card-links/{bookingRef}/slot:
+    get:
+      operationId: t_value
+      parameters:
+      - name: bookingRef
+        required: true
+        in: path
+        description: frontdesk_bookings row id (uuid)
+        schema: {}
+      responses:
+        '200':
+          description: available | taken | completed | unknown
+      summary: Card-link slot availability re-check (hosted card page)
+      tags:
+      - Frontdesk
+      security:
+      - access-token: []
+    servers:
+    - url: https://tasks.zoca.ai
+      description: Production
+  /tasks/api/v1/frontdesk/webhooks/sms:
+    post:
+      description: Resolves entityId from the business phone (`to`) and clientId from the sender phone (`from`), runs the frontdesk agent against the message, returns the agent response in the body. Provider-side dispatch is the caller’s responsibility.
+      operationId: t_value
+      parameters: []
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/e_3'
+      responses:
+        '200':
+          description: Agent processed the message
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/e_3'
+        '404':
+          description: Entity or client not found for the supplied phones
+      summary: Inbound SMS → Frontdesk agent (generic)
+      tags:
+      - Frontdesk
+      security:
+      - access-token: []
+    servers:
+    - url: https://tasks.zoca.ai
+      description: Production
+  /tasks/api/v1/frontdesk/webhooks/twilio/sms:
+    post:
+      description: Twilio-specific adapter. Resolves entity + client from From/To, runs the frontdesk agent, dispatches the reply via TwilioService.sendSmsE164 so each outbound is a real /Messages.json call (visible in the Twilio dashboard / local emulator inbox). Returns empty TwiML so Twilio doesn't double-reply.
+      operationId: t_value
+      parameters: []
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/e_3'
+      responses:
+        '200':
+          description: Empty TwiML; outbound dispatched separately
+      summary: Twilio inbound-SMS webhook (JSON mode) → Frontdesk agent
+      tags:
+      - Frontdesk
+      security:
+      - access-token: []
+    servers:
+    - url: https://tasks.zoca.ai
+      description: Production
+  /tasks/api/v1/frontdesk/webhooks/retell/incoming-call:
+    post:
+      description: Resolves entity + customer from from_number/to_number, returns the Retell call_inbound envelope with dynamic_variables and metadata.
+      operationId: t_value
+      parameters: []
+      requestBody:
+        required: true
+        description: Retell call_inbound webhook payload
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/Object'
+      responses:
+        '200':
+          description: Retell call_inbound envelope
+      summary: Retell call_inbound webhook → dynamic_variables envelope
+      tags:
+      - Frontdesk
+      security:
+      - access-token: []
+    servers:
+    - url: https://tasks.zoca.ai
+      description: Production
+  /tasks/api/v1/frontdesk/webhooks/retell/call-events:
+    post:
+      description: Dispatches all Retell call lifecycle events (call_inbound, call_started, call_ended, call_analyzed) to the lifted handlers.
+      operationId: t_value
+      parameters: []
+      requestBody:
+        required: true
+        description: Retell webhook payload
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/Object'
+      responses:
+        '200':
+          description: Event processed or acknowledged
+      summary: Retell unified call-events webhook
+      tags:
+      - Frontdesk
+      security:
+      - access-token: []
+    servers:
+    - url: https://tasks.zoca.ai
+      description: Production
+components:
+  schemas:
+    e:
+      type: object
+      properties:
+        id:
+          type: number
+        entityId:
+          type: string
+        attribute:
+          type: string
+        value:
+          type:
+          - object
+          - 'null'
+        metadata:
+          type:
+          - object
+          - 'null'
+        createdAt:
+          type:
+          - object
+          - 'null'
+      required:
+      - id
+      - entityId
+      - attribute
+    e_2:
+      type: object
+      properties:
+        scan:
+          $ref: '#/components/schemas/e_2'
+        businessLat:
+          type:
+          - number
+          - 'null'
+        businessLng:
+          type:
+          - number
+          - 'null'
+        points:
+          type: array
+          items:
+            $ref: '#/components/schemas/e_2'
+        heroMetrics:
+          $ref: '#/components/schemas/e_2'
+      required:
+      - scan
+      - businessLat
+      - businessLng
+      - points
+      - heroMetrics
+    Object:
+      type: object
+      properties: {}
+    e_3:
+      type: object
+      properties:
+        scan:
+          $ref: '#/components/schemas/e_3'
+        businessLat:
+          type:
+          - number
+          - 'null'
+        businessLng:
+          type:
+          - number
+          - 'null'
+        points:
+          type: array
+          items:
+            $ref: '#/components/schemas/e_3'
+        heroMetrics:
+          $ref: '#/components/schemas/e_3'
+      required:
+      - scan
+      - businessLat
+      - businessLng
+      - points
+      - heroMetrics
+  securitySchemes:
+    access-token:
+      scheme: bearer
+      bearerFormat: JWT
+      type: http
+      name: Authorization
+      description: Enter JWT token in the format Bearer <token>
+      in: header
+x-refined-from:
+- zoca-platform-openapi.yml
+- zoca-tasks-openapi.yml

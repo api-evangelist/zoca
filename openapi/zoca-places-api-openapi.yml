@@ -1,0 +1,62 @@
+openapi: 3.2.0
+info:
+  title: Zoca Public Places API
+  description: 'Zoca''s unauthenticated public surface backing the free self-serve lead-magnet tools: Local Business Demand Tracker keyword/demand analysis, Google Business Profile competitor analysis, website strategy grading, pricing benchmarks, and short-link/app-link redirects.'
+  version: 3.20.9
+  contact: {}
+  x-apievangelist-note: Harvested verbatim from https://public.zoca.com/swagger.json. The provider ships the default NestJS Swagger metadata (title "API Documentation", empty servers[]); title/description/servers were set by API Evangelist for identification and the unmodified original is preserved at openapi/_original/zoca-public-swagger.json. Every path, operation, summary, parameter and response is exactly as published.
+servers:
+- url: https://public.zoca.com
+  description: Production
+tags:
+- name: places
+paths:
+  /places/autocomplete:
+    get:
+      operationId: e_value
+      parameters: []
+      responses:
+        '200':
+          description: ''
+      summary: Get places autocomplete suggestions
+      tags:
+      - places
+  /places/details:
+    get:
+      operationId: e_value
+      parameters: []
+      responses:
+        '200':
+          description: ''
+      summary: Get place details by place ID
+      tags:
+      - places
+  /places/search:
+    get:
+      operationId: e_value
+      parameters: []
+      responses:
+        '200':
+          description: ''
+      summary: Search places
+      tags:
+      - places
+  /places/search-text:
+    post:
+      operationId: e_value
+      parameters: []
+      responses:
+        '201':
+          description: ''
+      summary: Search places using Google Places API v2
+      tags:
+      - places
+components:
+  securitySchemes:
+    access-token:
+      scheme: bearer
+      bearerFormat: JWT
+      type: http
+      name: Authorization
+      description: Enter JWT token in the format Bearer <token>
+      in: header

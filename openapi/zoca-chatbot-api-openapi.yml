@@ -1,0 +1,3338 @@
+openapi: 3.2.0
+info:
+  title: Zoca Chatbot API
+  contact: {}
+  x-refined-note:
+  - x-apievangelist-note differs across the merged source definitions and was not carried
+  version: '1.0'
+  description: 'Operations tagged chatbot across 2 of this provider''s published API definitions: zoca-platform-openapi.yml, zoca-tasks-openapi.yml. Each path carries the servers of the definition it was published in.'
+servers:
+- url: https://api.zoca.ai
+  description: Production
+- url: https://tasks.zoca.ai
+  description: Production
+tags:
+- name: chatbot
+paths:
+  /chatbot/calls/{callId}:
+    get:
+      operationId: t_value
+      parameters: []
+      responses:
+        '200':
+          description: Call details retrieved successfully
+      summary: Get call details by call ID
+      tags:
+      - chatbot
+    servers:
+    - url: https://api.zoca.ai
+      description: Production
+  /chatbot/calls/{callId}/regenerate-summary:
+    get:
+      operationId: t_value
+      parameters:
+      - name: callId
+        required: true
+        in: path
+        description: Unique identifier for the call
+        schema:
+          type: string
+      responses:
+        '200':
+          description: Call summary retrieved successfully
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  summary:
+                    type: string
+                    description: The call summary or "No summary available"
+                  regenerateSummary:
+                    type: boolean
+                    description: Indicates if the summary was newly generated
+        '400':
+          description: Bad request - CallId is required
+        '404':
+          description: Call record not found
+      summary: Regenerate call summary by call ID
+      tags:
+      - chatbot
+    servers:
+    - url: https://api.zoca.ai
+      description: Production
+  /chatbot/sp-context/{entityId}:
+    get:
+      operationId: t_value
+      parameters:
+      - name: entityId
+        required: true
+        in: path
+        description: Entity ID to retrieve context for
+        schema:
+          type: string
+      responses:
+        '200':
+          description: Service provider context retrieved successfully
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/e'
+      summary: Get service provider context for an entity
+      tags:
+      - chatbot
+    servers:
+    - url: https://api.zoca.ai
+      description: Production
+  /chatbot/retell/phone/import:
+    post:
+      operationId: t_value
+      parameters: []
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/e'
+      responses:
+        '201':
+          description: Phone number successfully imported
+        '400':
+          description: Invalid request payload
+      summary: Import a phone number to Retell
+      tags:
+      - chatbot
+    servers:
+    - url: https://api.zoca.ai
+      description: Production
+  /chatbot/retell/phone/{phoneNumber}:
+    put:
+      operationId: t_value
+      parameters:
+      - name: phoneNumber
+        required: true
+        in: path
+        description: Phone number to update
+        schema:
+          type: string
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/e'
+      responses:
+        '200':
+          description: Phone number configuration updated successfully
+        '400':
+          description: Invalid request payload
+        '404':
+          description: Phone number not found
+      summary: Update a phone number configuration
+      tags:
+      - chatbot
+    servers:
+    - url: https://api.zoca.ai
+      description: Production
+  /chatbot/phone/purchase:
+    post:
+      operationId: t_value
+      parameters: []
+      responses:
+        '201':
+          description: ''
+      summary: Purchase a new phone number
+      tags:
+      - chatbot
+    servers:
+    - url: https://api.zoca.ai
+      description: Production
+  /chatbot/phone/verify-virtual-number:
+    post:
+      operationId: t_value
+      parameters: []
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/e'
+      responses:
+        '200':
+          description: Virtual number verification completed
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/e'
+        '400':
+          description: Invalid request payload
+      summary: Verify that a virtual number is properly configured
+      tags:
+      - chatbot
+    servers:
+    - url: https://api.zoca.ai
+      description: Production
+  /chatbot/test/followup-status/{clientId}:
+    get:
+      operationId: t_value
+      parameters:
+      - name: clientId
+        required: true
+        in: path
+        description: Client ID to check followup status for
+        schema:
+          type: string
+      responses:
+        '200':
+          description: Followup status retrieved successfully
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  clientId:
+                    type: string
+                  hasProcessedFollowups:
+                    type: boolean
+                  hasConsecutiveBotMessages:
+                    type: boolean
+                  shouldSkipFollowup:
+                    type: boolean
+      summary: Test endpoint to check followup status for a client
+      tags:
+      - chatbot
+    servers:
+    - url: https://api.zoca.ai
+      description: Production
+  /chatbot/conversation/state/{clientId}:
+    post:
+      operationId: t_value
+      parameters:
+      - name: clientId
+        required: true
+        in: path
+        description: Client ID to retrieve conversation state
+        schema:
+          type: string
+      responses:
+        '201':
+          description: ''
+      summary: Get conversation state by client ID
+      tags:
+      - chatbot
+    servers:
+    - url: https://api.zoca.ai
+      description: Production
+  /chatbot/card/on-file:
+    post:
+      operationId: t_value
+      parameters: []
+      responses:
+        '201':
+          description: ''
+      summary: Create card on file
+      tags:
+      - chatbot
+    servers:
+    - url: https://api.zoca.ai
+      description: Production
+  /chatbot/card/on-file/link:
+    post:
+      operationId: t_value
+      parameters: []
+      responses:
+        '201':
+          description: ''
+      summary: Get card on file link
+      tags:
+      - chatbot
+    servers:
+    - url: https://api.zoca.ai
+      description: Production
+  /chatbot/feedback:
+    post:
+      operationId: t_value
+      parameters: []
+      responses:
+        '201':
+          description: Feedback created successfully
+        '400':
+          description: Invalid request payload or missing entityId
+      summary: Create a new feedback record
+      tags:
+      - chatbot
+    get:
+      operationId: t_value
+      parameters:
+      - name: limit
+        required: false
+        in: query
+        description: Number of items per page
+        schema:
+          type: number
+      - name: page
+        required: false
+        in: query
+        description: Page number (1-indexed)
+        schema:
+          type: number
+      - name: entityId
+        required: true
+        in: query
+        description: Entity ID to retrieve feedback for
+        schema:
+          type: string
+      responses:
+        '200':
+          description: Feedback list retrieved successfully
+        '400':
+          description: entityId is required
+      summary: Get all feedback records for an entity with pagination
+      tags:
+      - chatbot
+    servers:
+    - url: https://api.zoca.ai
+      description: Production
+  /chatbot/feedback/{id}:
+    put:
+      operationId: t_value
+      parameters:
+      - name: id
+        required: true
+        in: path
+        description: Feedback record ID to update
+        schema:
+          type: string
+      responses:
+        '200':
+          description: Feedback updated successfully
+        '400':
+          description: Invalid request payload or missing entityId
+        '404':
+          description: Feedback not found or not accessible
+      summary: Update an existing feedback record
+      tags:
+      - chatbot
+    delete:
+      operationId: t_value
+      parameters:
+      - name: id
+        required: true
+        in: path
+        description: Feedback record ID to delete
+        schema:
+          type: string
+      responses:
+        '200':
+          description: Feedback deleted successfully
+        '404':
+          description: Feedback not found or not accessible
+      summary: Soft delete a feedback record
+      tags:
+      - chatbot
+    get:
+      operationId: t_value
+      parameters:
+      - name: id
+        required: true
+        in: path
+        description: Feedback record ID to retrieve
+        schema:
+          type: string
+      responses:
+        '200':
+          description: Feedback retrieved successfully
+        '404':
+          description: Feedback not found
+      summary: Get a feedback record by ID
+      tags:
+      - chatbot
+    servers:
+    - url: https://api.zoca.ai
+      description: Production
+  /chatbot/human-handovers/{clientId}:
+    get:
+      operationId: t_value
+      parameters:
+      - name: clientId
+        required: true
+        in: path
+        description: Client ID to retrieve human handovers for
+        schema:
+          type: string
+      responses:
+        '200':
+          description: Human handovers retrieved successfully
+          content:
+            application/json:
+              schema:
+                type: array
+                items:
+                  type: object
+                  properties:
+                    clientId:
+                      type: string
+                      description: Client UUID
+                    isActive:
+                      type: boolean
+                      description: Whether handover is currently active
+                    createdAt:
+                      type: string
+                      description: Creation timestamp
+                    reason:
+                      type: string
+                      description: Reason for handover
+                    deactivatedAt:
+                      type: string
+                      description: Deactivation timestamp
+                    deactivationReason:
+                      type: string
+                      description: Reason for deactivation
+                    deactivateAt:
+                      type: string
+                      description: Scheduled deactivation timestamp
+        '404':
+          description: Client not found or no handovers exist
+        '500':
+          description: Internal server error
+      summary: Get all human handover records for a client
+      tags:
+      - chatbot
+    servers:
+    - url: https://api.zoca.ai
+      description: Production
+  /tasks/api/v1/chatbot/callhippo-sms-webhook:
+    post:
+      description: Processes incoming CallHippo SMS webhook data and batches it for processing
+      operationId: t_value
+      parameters: []
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/e_2'
+      responses:
+        '200':
+          description: SMS message processed successfully
+        '400':
+          description: Bad request format
+        '500':
+          description: Internal server error
+      security:
+      - {}
+      summary: Handle incoming SMS messages from CallHippo
+      tags:
+      - chatbot
+    servers:
+    - url: https://tasks.zoca.ai
+      description: Production
+  /tasks/api/v1/chatbot/continue-conversation:
+    post:
+      operationId: t_value
+      parameters: []
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/e_2'
+      responses:
+        '200':
+          description: Conversation processed successfully
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/e_2'
+        '500':
+          description: Internal server error
+      summary: Continue a conversation with the chatbot for testing
+      tags:
+      - chatbot
+      security:
+      - access-token: []
+    servers:
+    - url: https://tasks.zoca.ai
+      description: Production
+  /tasks/api/v1/chatbot/soft-delete-messages:
+    post:
+      description: Marks specified messages as deleted without removing them from the database. Uses the same access validation as continue-conversation endpoint.
+      operationId: t_value
+      parameters: []
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/e_2'
+      responses:
+        '200':
+          description: Messages soft deleted successfully
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/e_2'
+        '403':
+          description: Access denied
+        '404':
+          description: Entity not found for client
+        '500':
+          description: Internal server error
+      summary: Soft delete messages from a conversation
+      tags:
+      - chatbot
+      security:
+      - access-token: []
+    servers:
+    - url: https://tasks.zoca.ai
+      description: Production
+  /tasks/api/v1/chatbot/start-conversation:
+    post:
+      description: Initiates a new conversation without waiting for a booking enquiry. Creates a new client if needed and sends initial messages. Requires phone number and country code as separate fields.
+      operationId: t_value
+      parameters: []
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/e_2'
+      responses:
+        '200':
+          description: Conversation started successfully
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/e_2'
+        '400':
+          description: Bad request - invalid parameters
+        '500':
+          description: Internal server error
+      summary: Start a new conversation with a customer
+      tags:
+      - chatbot
+      security:
+      - access-token: []
+    servers:
+    - url: https://tasks.zoca.ai
+      description: Production
+  /tasks/api/v1/chatbot/start-conversation-production:
+    post:
+      description: Initiates a new conversation without waiting for a booking enquiry. Creates a new client if needed and sends initial messages. This endpoint has no access restrictions and can be used in production for any entity. Requires phone number and country code as separate fields.
+      operationId: t_value
+      parameters: []
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/e_2'
+      responses:
+        '200':
+          description: Conversation started successfully
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/e_2'
+        '400':
+          description: Bad request - invalid parameters
+        '500':
+          description: Internal server error
+      summary: Start a new conversation with a customer (Production - No Restrictions)
+      tags:
+      - chatbot
+      security:
+      - access-token: []
+    servers:
+    - url: https://tasks.zoca.ai
+      description: Production
+  /tasks/api/v1/chatbot/process-followups:
+    post:
+      operationId: t_value
+      parameters: []
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/e_2'
+      responses:
+        '200':
+          description: Follow-ups processed successfully
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/e_2'
+        '500':
+          description: Internal server error during processing
+      summary: Process due follow-ups
+      tags:
+      - chatbot
+      security:
+      - access-token: []
+    servers:
+    - url: https://tasks.zoca.ai
+      description: Production
+  /tasks/api/v1/chatbot/deactivate-handover/{clientId}:
+    post:
+      operationId: t_value
+      parameters:
+      - name: reason
+        required: false
+        in: query
+        description: Reason for deactivating human handover
+        schema:
+          example: Manual deactivation
+      - name: clientId
+        required: true
+        in: path
+        description: ID of the client to deactivate handover for
+        schema:
+          example: client_123456
+      responses:
+        '200':
+          description: Human handover deactivated successfully
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/e_2'
+        '500':
+          description: Internal server error during deactivation
+      summary: Deactivate human handover for a client
+      tags:
+      - chatbot
+      security:
+      - access-token: []
+    servers:
+    - url: https://tasks.zoca.ai
+      description: Production
+  /tasks/api/v1/chatbot/activate-handover/{clientId}:
+    post:
+      operationId: t_value
+      parameters:
+      - name: clientId
+        required: true
+        in: path
+        description: Client ID to activate handover for
+        schema: {}
+      responses:
+        '200':
+          description: Human handover activated successfully
+        '500':
+          description: Internal server error during activation
+      summary: Activate human handover for a client
+      tags:
+      - chatbot
+      security:
+      - access-token: []
+    servers:
+    - url: https://tasks.zoca.ai
+      description: Production
+  /tasks/api/v1/chatbot/followups/due:
+    get:
+      operationId: t_value
+      parameters: []
+      responses:
+        '200':
+          description: Due followups retrieved successfully
+          content:
+            application/json:
+              schema:
+                type: array
+                items:
+                  type: object
+                  properties:
+                    id:
+                      type: string
+                    clientId:
+                      type: string
+                    type:
+                      type: string
+                    scheduledTime:
+                      type: string
+                      format: date-time
+        '500':
+          description: Internal server error
+      summary: Get all due followups
+      tags:
+      - chatbot
+      security:
+      - access-token: []
+    servers:
+    - url: https://tasks.zoca.ai
+      description: Production
+  /tasks/api/v1/chatbot/followups/{clientId}:
+    get:
+      operationId: t_value
+      parameters:
+      - name: clientId
+        required: true
+        in: path
+        description: ID of the client to retrieve followups for
+        schema:
+          example: client_123456
+      responses:
+        '200':
+          description: Followups retrieved successfully
+          content:
+            application/json:
+              schema:
+                type: array
+                items:
+                  type: object
+                  properties:
+                    id:
+                      type: string
+                    clientId:
+                      type: string
+                    type:
+                      type: string
+                    scheduledTime:
+                      type: string
+                      format: date-time
+        '500':
+          description: Internal server error
+      summary: Get all followups for a client
+      tags:
+      - chatbot
+      security:
+      - access-token: []
+    servers:
+    - url: https://tasks.zoca.ai
+      description: Production
+  /tasks/api/v1/chatbot/{clientId}/next-followup:
+    post:
+      description: Determines the next follow-up action to schedule for a client based on their current conversation state and existing follow-up rules.
+      operationId: t_value
+      parameters:
+      - name: clientId
+        required: true
+        in: path
+        description: Client ID for the follow-up calculation
+        schema:
+          example: 123e4567-e89b-12d3-a456-426614174000
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/e_2'
+      responses:
+        '200':
+          description: Next follow-up calculated successfully
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/e_2'
+        '400':
+          description: Bad request - invalid parameters
+        '404':
+          description: Client not found or no follow-up needed
+        '500':
+          description: Internal server error
+      summary: Calculate next follow-up for a client
+      tags:
+      - chatbot
+      security:
+      - access-token: []
+    servers:
+    - url: https://tasks.zoca.ai
+      description: Production
+  /tasks/api/v1/chatbot/event-webhook:
+    post:
+      operationId: t_value
+      parameters: []
+      responses:
+        '200':
+          description: Event processed successfully
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/e_2'
+        '400':
+          description: Bad request format
+        '500':
+          description: Internal server error
+      summary: Handle various application events
+      tags:
+      - chatbot
+      security:
+      - access-token: []
+    servers:
+    - url: https://tasks.zoca.ai
+      description: Production
+  /tasks/api/v1/chatbot/sp-context/{locationEntityId}:
+    get:
+      operationId: t_value
+      parameters:
+      - name: locationEntityId
+        required: true
+        in: path
+        description: ID of the location entity to retrieve context for
+        schema:
+          example: 5b2aa9ad-3fb0-456c-9ae8-4d79f67b294f
+      responses:
+        '200':
+          description: Service provider context retrieved successfully
+        '500':
+          description: Internal server error
+      summary: Test the getSpContext function with a specific location entity ID
+      tags:
+      - chatbot
+      security:
+      - access-token: []
+    servers:
+    - url: https://tasks.zoca.ai
+      description: Production
+  /tasks/api/v1/chatbot/booking-requests/update:
+    post:
+      operationId: t_value
+      parameters: []
+      requestBody:
+        required: true
+        description: Either {uuid, slots, service} or {uuid, error}
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/Object'
+      responses:
+        '200':
+          description: Booking requests updated successfully
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/e_2'
+        '404':
+          description: No pending booking requests found
+        '500':
+          description: Internal server error
+      summary: Update booking requests with available slots
+      tags:
+      - chatbot
+      security:
+      - access-token: []
+    servers:
+    - url: https://tasks.zoca.ai
+      description: Production
+  /tasks/api/v1/chatbot/booking-requests/pending:
+    get:
+      operationId: t_value
+      parameters: []
+      responses:
+        '200':
+          description: List of pending booking requests
+          content:
+            application/json:
+              schema:
+                type: array
+                items:
+                  $ref: '#/components/schemas/e_2'
+        '500':
+          description: Internal server error
+      summary: Get all pending booking requests
+      tags:
+      - chatbot
+      security:
+      - access-token: []
+    servers:
+    - url: https://tasks.zoca.ai
+      description: Production
+  /tasks/api/v1/chatbot/booking-requests/test-booking-info:
+    post:
+      operationId: t_value
+      parameters: []
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              type: object
+              properties:
+                date:
+                  type: string
+                  example: '2025-01-15'
+                  description: Date for booking in YYYY-MM-DD format
+                serviceType:
+                  type: string
+                  example: Haircut
+                  description: Type of service to book
+                salonId:
+                  type: string
+                  example: 123e4567-e89b-12d3-a456-426614174000
+                  description: Entity ID of the salon
+                clientId:
+                  type: string
+                  example: client_123456
+                  description: Client ID requesting the booking
+              required:
+              - date
+              - serviceType
+              - salonId
+              - clientId
+      responses:
+        '200':
+          description: Booking info function result
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  status:
+                    type: string
+                    enum:
+                    - success
+                    - error
+                    - PENDING
+                  message:
+                    type: string
+                  requestId:
+                    type: string
+                  bookingLink:
+                    type: string
+                  slots:
+                    type: string
+        '400':
+          description: Bad request
+        '500':
+          description: Internal server error
+      summary: Test the getBookingInfo function with direct parameters
+      tags:
+      - chatbot
+      security:
+      - access-token: []
+    servers:
+    - url: https://tasks.zoca.ai
+      description: Production
+  /tasks/api/v1/chatbot/booking-info:
+    post:
+      operationId: t_value
+      parameters: []
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/e_2'
+      responses:
+        '200':
+          description: Booking information retrieved successfully
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  status:
+                    type: string
+                    enum:
+                    - PENDING
+                    - COMPLETED
+                    - error
+                  message:
+                    type: string
+                  requestId:
+                    type: string
+                  slots:
+                    type: array
+                    items:
+                      type: object
+                      properties:
+                        time:
+                          type: string
+                        stylist:
+                          type: string
+                        available:
+                          type: boolean
+                        timezone:
+                          type: string
+                  bookingLink:
+                    type: string
+        '400':
+          description: Bad request
+        '500':
+          description: Internal server error
+      summary: Get available booking slots for a specific service and date
+      tags:
+      - chatbot
+      security:
+      - access-token: []
+    servers:
+    - url: https://tasks.zoca.ai
+      description: Production
+  /tasks/api/v1/chatbot/entity-record-l2b/{entityId}:
+    get:
+      operationId: t_value
+      parameters:
+      - name: entityId
+        required: true
+        in: path
+        description: The entity ID to fetch
+        schema:
+          example: c23f1689-2cbf-488e-b53e-090ccdb9254b
+      responses:
+        '200':
+          description: Entity record fetched successfully
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  success:
+                    type: boolean
+                  data:
+                    type: object
+                    properties:
+                      entityId:
+                        type: string
+                      status:
+                        type: boolean
+                      messageSendDelay:
+                        type: number
+                      messages:
+                        type: array
+                        items:
+                          type: string
+                      isBotActive:
+                        type: boolean
+                      isVoiceActive:
+                        type: boolean
+                      createdAt:
+                        type: string
+                        format: date-time
+                      channel:
+                        type: string
+        '404':
+          description: Entity record not found
+        '500':
+          description: Internal server error
+      summary: Get an entity record for L2B bot configuration
+      tags:
+      - chatbot
+      security:
+      - access-token: []
+    servers:
+    - url: https://tasks.zoca.ai
+      description: Production
+  /tasks/api/v1/chatbot/enabled-functions/{entityId}:
+    get:
+      description: Returns enabled functions based on entity preferences, cohort settings, or default configuration
+      operationId: t_value
+      parameters:
+      - name: entityId
+        required: true
+        in: path
+        description: The entity ID to fetch enabled functions for
+        schema:
+          example: c23f1689-2cbf-488e-b53e-090ccdb9254b
+      responses:
+        '200':
+          description: Enabled functions retrieved successfully
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  success:
+                    type: boolean
+                  data:
+                    type: object
+                    properties:
+                      functions:
+                        type: array
+                        items:
+                          type: object
+                          properties:
+                            name:
+                              type: string
+                            description:
+                              type: string
+                            parameters:
+                              type: object
+                              properties:
+                                type:
+                                  type: string
+                                properties:
+                                  type: object
+                                required:
+                                  type: array
+                                  items:
+                                    type: string
+                      isDefault:
+                        type: boolean
+                        description: Indicates if default functions are being used (no custom preference set)
+        '404':
+          description: Entity not found
+        '500':
+          description: Internal server error
+      summary: Get enabled chatbot functions for an entity
+      tags:
+      - chatbot
+      security:
+      - access-token: []
+    servers:
+    - url: https://tasks.zoca.ai
+      description: Production
+  /tasks/api/v1/chatbot/entity-record-l2b:
+    post:
+      operationId: t_value
+      parameters: []
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/e_2'
+      responses:
+        '200':
+          description: Entity record created successfully
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  success:
+                    type: boolean
+                  message:
+                    type: string
+                  entityId:
+                    type: string
+        '400':
+          description: Bad request
+        '500':
+          description: Internal server error
+      summary: Create an entity record for L2B bot configuration
+      tags:
+      - chatbot
+      security:
+      - access-token: []
+    servers:
+    - url: https://tasks.zoca.ai
+      description: Production
+  /tasks/api/v1/chatbot/entity-record-l2b/update/{entityId}:
+    post:
+      operationId: t_value
+      parameters:
+      - name: entityId
+        required: true
+        in: path
+        description: Entity ID to update
+        schema:
+          example: c23f1689-2cbf-488e-b53e-090ccdb9254b
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/e_2'
+      responses:
+        '200':
+          description: Entity record updated successfully
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  success:
+                    type: boolean
+                  message:
+                    type: string
+                  entityId:
+                    type: string
+        '400':
+          description: Bad request
+        '404':
+          description: Entity not found
+        '500':
+          description: Internal server error
+      summary: Update an entity record for L2B bot configuration
+      tags:
+      - chatbot
+      security:
+      - access-token: []
+    servers:
+    - url: https://tasks.zoca.ai
+      description: Production
+  /tasks/api/v1/chatbot/business-info/{entityId}:
+    post:
+      operationId: t_value
+      parameters:
+      - name: entityId
+        required: true
+        in: path
+        description: Entity UUID
+        schema:
+          example: 123e4567-e89b-12d3-a456-426614174000
+          type: string
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/e_2'
+      responses:
+        '200':
+          description: Business information saved successfully
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  success:
+                    type: boolean
+                    example: true
+                  message:
+                    type: string
+                    example: Business information saved successfully
+                  data:
+                    type: object
+                    properties:
+                      entityId:
+                        type: string
+                        example: 123e4567-e89b-12d3-a456-426614174000
+                      businessInfo:
+                        type: object
+                      updatedAt:
+                        type: string
+                        example: '2025-11-06T10:30:00.000Z'
+        '400':
+          description: Validation error or entity_id mismatch
+        '401':
+          description: Unauthorized - JWT required
+        '404':
+          description: Entity not found
+        '500':
+          description: Internal server error
+      summary: Save business information for L2B entity
+      tags:
+      - chatbot
+      security:
+      - access-token: []
+    get:
+      operationId: t_value
+      parameters:
+      - name: entityId
+        required: true
+        in: path
+        description: Entity UUID
+        schema:
+          example: 123e4567-e89b-12d3-a456-426614174000
+          type: string
+      responses:
+        '200':
+          description: Returns business info and onboarding questionnaire
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  success:
+                    type: boolean
+                    example: true
+                  data:
+                    type: object
+                    properties:
+                      entityId:
+                        type: string
+                        example: 123e4567-e89b-12d3-a456-426614174000
+                      businessInfo:
+                        type:
+                        - object
+                        - 'null'
+                      onboardingQuestionnaire:
+                        type:
+                        - object
+                        - 'null'
+                      updatedAt:
+                        type: string
+                        example: '2025-11-06T10:30:00.000Z'
+                      timezone:
+                        type:
+                        - string
+                        - 'null'
+                        example: America/New_York
+                      leadMask:
+                        type: boolean
+                        example: true
+                      paymentStatus:
+                        type: string
+                        enum:
+                        - Paid
+                        - Mispayment
+                        - Trial
+                        - Dead
+                        example: Paid
+        '400':
+          description: Invalid entity ID format
+        '401':
+          description: Unauthorized - JWT required
+        '404':
+          description: Entity not found
+        '500':
+          description: Internal server error
+      summary: Get business information and onboarding data for entity
+      tags:
+      - chatbot
+      security:
+      - access-token: []
+    servers:
+    - url: https://tasks.zoca.ai
+      description: Production
+  /tasks/api/v1/chatbot/l2b/non-configured-entities:
+    get:
+      description: Fetches entities that are either not present in l2b.entities table or have status set to false. Only includes active, non-test entities with location names.
+      operationId: t_value
+      parameters:
+      - name: search
+        required: false
+        in: query
+        description: Search by entity ID or location name
+        schema:
+          type: string
+      - name: limit
+        required: false
+        in: query
+        description: Number of items per page (max 100)
+        schema:
+          example: 50
+          type: number
+      - name: page
+        required: false
+        in: query
+        description: Page number for pagination
+        schema:
+          example: 1
+          type: number
+      responses:
+        '200':
+          description: Non-L2B entities retrieved successfully
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  data:
+                    type: array
+                    items:
+                      type: object
+                      properties:
+                        entityId:
+                          type: string
+                          format: uuid
+                        locationName:
+                          type: string
+                        type:
+                          type: string
+                        isActive:
+                          type: boolean
+                        isTest:
+                          type: boolean
+                        createdAt:
+                          type: string
+                          format: date-time
+                        l2bStatus:
+                          type: string
+                          enum:
+                          - not_configured
+                          - disabled
+                          description: not_configured if not in l2b.entities, disabled if status is false
+                        l2bCreatedAt:
+                          type:
+                          - string
+                          - 'null'
+                          format: date-time
+                  pagination:
+                    type: object
+                    properties:
+                      totalItems:
+                        type: number
+                      totalPages:
+                        type: number
+                      currentPage:
+                        type: number
+                      limit:
+                        type: number
+        '500':
+          description: Internal server error
+      summary: Get entities not configured for L2B or with L2B disabled
+      tags:
+      - chatbot
+      security:
+      - access-token: []
+    servers:
+    - url: https://tasks.zoca.ai
+      description: Production
+  /tasks/api/v1/chatbot/l2b/all-phone-numbers:
+    get:
+      operationId: t_value
+      parameters:
+      - name: type
+        required: false
+        in: query
+        description: Type of phone numbers to retrieve
+        schema: {}
+      responses:
+        '200':
+          description: All L2B entity phone numbers retrieved successfully
+        '500':
+          description: Internal server error
+      summary: Get all L2B entity phone numbers
+      tags:
+      - chatbot
+      security:
+      - access-token: []
+    servers:
+    - url: https://tasks.zoca.ai
+      description: Production
+  /tasks/api/v1/chatbot/l2b/entity-phone-numbers/{entityId}:
+    get:
+      operationId: t_value
+      parameters:
+      - name: type
+        required: false
+        in: query
+        description: Type of phone numbers to retrieve
+        schema: {}
+      - name: entityId
+        required: true
+        in: path
+        description: Entity ID to retrieve phone numbers for
+        schema: {}
+      responses:
+        '200':
+          description: All L2B entity phone numbers retrieved successfully
+        '500':
+          description: Internal server error
+      summary: Get all L2B entity phone numbers
+      tags:
+      - chatbot
+      security:
+      - access-token: []
+    servers:
+    - url: https://tasks.zoca.ai
+      description: Production
+  /tasks/api/v1/chatbot/conversation-partners:
+    get:
+      operationId: t_value
+      parameters:
+      - name: version
+        required: false
+        in: query
+        description: Query version to use (v1 or v2)
+        schema:
+          enum:
+          - v1
+          - v2
+          type: string
+      - name: filterBy
+        required: false
+        in: query
+        description: 'Filter conversations by type: all, lastByEC (last by customer), lastByWin (last by Win), unread (has unread), humanHandover (active human handovers)'
+        schema:
+          enum:
+          - all
+          - lastByEC
+          - lastByWin
+          - unread
+          - humanHandover
+          type: string
+      - name: search
+        required: false
+        in: query
+        description: Search term to filter by client names, entity names, or phone numbers
+        schema:
+          type: string
+      - name: page
+        required: false
+        in: query
+        description: Page number
+        schema: {}
+      - name: limit
+        required: false
+        in: query
+        description: Number of results per page (max 100)
+        schema:
+          example: 20
+          type: number
+      - name: type
+        required: false
+        in: query
+        description: Type of phone number
+        schema: {}
+      responses:
+        '200':
+          description: Recent conversation partners retrieved successfully
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  data:
+                    type: array
+                    items:
+                      type: object
+                      properties:
+                        entityId:
+                          type: string
+                        entityCountryCode:
+                          type: string
+                        entityPhoneNumber:
+                          type: string
+                        contactCountryCode:
+                          type: string
+                        contactPhoneNumber:
+                          type: string
+                        lastInteraction:
+                          type: string
+                          format: date-time
+                        last_message:
+                          type:
+                          - string
+                          - 'null'
+                        message_time:
+                          type:
+                          - string
+                          - 'null'
+                          format: date-time
+                        direction:
+                          type:
+                          - string
+                          - 'null'
+                          enum:
+                          - Incoming
+                          - Outgoing
+                        clientName:
+                          type:
+                          - string
+                          - 'null'
+                        clientId:
+                          type:
+                          - string
+                          - 'null'
+                        entityName:
+                          type:
+                          - string
+                          - 'null'
+                        unread_count:
+                          type: number
+                          description: Number of unread incoming messages
+                  pagination:
+                    type: object
+                    properties:
+                      totalPages:
+                        type: number
+                      currentPage:
+                        type: number
+        '500':
+          description: Internal server error
+      summary: Get recent conversation partners
+      tags:
+      - chatbot
+      security:
+      - access-token: []
+    servers:
+    - url: https://tasks.zoca.ai
+      description: Production
+  /tasks/api/v1/chatbot/mark-read:
+    post:
+      operationId: t_value
+      parameters: []
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              type: object
+              properties:
+                clientId:
+                  type: string
+                  example: uuid-client-id
+                  description: Client ID to mark as read
+              required:
+              - clientId
+      responses:
+        '200':
+          description: Conversation marked as read successfully
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  success:
+                    type: boolean
+                  message:
+                    type: string
+                  lastReadAt:
+                    type: string
+                    format: date-time
+        '400':
+          description: Bad request - missing or invalid clientId
+        '500':
+          description: Internal server error
+      summary: Mark conversation as read for a client
+      tags:
+      - chatbot
+      security:
+      - access-token: []
+    servers:
+    - url: https://tasks.zoca.ai
+      description: Production
+  /tasks/api/v1/chatbot/conversation-history:
+    get:
+      operationId: t_value
+      parameters:
+      - name: conversationPairs
+        required: false
+        in: query
+        description: Conversation pairs JSON string
+        schema:
+          type: string
+      responses:
+        '200':
+          description: Conversation history retrieved successfully
+        '400':
+          description: Invalid request payload
+        '500':
+          description: Internal server error
+      summary: Get conversation history
+      tags:
+      - chatbot
+      security:
+      - access-token: []
+    servers:
+    - url: https://tasks.zoca.ai
+      description: Production
+  /tasks/api/v1/chatbot/l2b/leads/{entityId}:
+    get:
+      operationId: t_value
+      parameters:
+      - name: page
+        required: false
+        in: query
+        description: Page number
+        schema:
+          example: 1
+          type: number
+      - name: limit
+        required: false
+        in: query
+        description: Number of results per page (max 50)
+        schema:
+          example: 50
+          type: number
+      - name: entityId
+        required: true
+        in: path
+        description: Entity ID to get leads for
+        schema: {}
+      responses:
+        '200':
+          description: List of L2B leads with pagination metadata and most recent message info
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  data:
+                    type: array
+                    items:
+                      type: object
+                      properties:
+                        first_name:
+                          type: string
+                        last_name:
+                          type: string
+                        phone_number:
+                          type: string
+                        country_code:
+                          type: string
+                        created_at:
+                          type: string
+                          format: date
+                        client_id:
+                          type: string
+                        last_message:
+                          type:
+                          - string
+                          - 'null'
+                        message_time:
+                          type:
+                          - string
+                          - 'null'
+                          format: date-time
+                        direction:
+                          type:
+                          - string
+                          - 'null'
+                          enum:
+                          - Incoming
+                          - Outgoing
+                  pagination:
+                    type: object
+                    properties:
+                      totalItems:
+                        type: number
+                      totalPages:
+                        type: number
+                      currentPage:
+                        type: number
+                      limit:
+                        type: number
+        '500':
+          description: Internal server error
+      summary: Get L2B leads for an entity with their most recent message
+      tags:
+      - chatbot
+      security:
+      - access-token: []
+    servers:
+    - url: https://tasks.zoca.ai
+      description: Production
+  /tasks/api/v1/chatbot/l2b/conversations/{phoneNumber}/{countryCode}/{entityId}:
+    get:
+      operationId: t_value
+      parameters:
+      - name: page
+        required: false
+        in: query
+        description: Page number
+        schema:
+          example: 1
+          type: number
+      - name: limit
+        required: false
+        in: query
+        description: Number of results per page
+        schema:
+          example: 20
+          type: number
+      - name: entityId
+        required: true
+        in: path
+        description: Entity ID to get conversations for
+        schema: {}
+      - name: countryCode
+        required: true
+        in: path
+        description: Country code to get conversations for
+        schema: {}
+      - name: phoneNumber
+        required: true
+        in: path
+        description: Phone number to get conversations for
+        schema: {}
+      responses:
+        '200':
+          description: List of L2B conversations with pagination metadata
+        '500':
+          description: Internal server error
+      summary: Get L2B conversations for a phone number
+      tags:
+      - chatbot
+      security:
+      - access-token: []
+    servers:
+    - url: https://tasks.zoca.ai
+      description: Production
+  /tasks/api/v1/chatbot/l2b-entity-phone-numbers/{entityId}:
+    get:
+      operationId: t_value
+      parameters:
+      - name: entityId
+        required: true
+        in: path
+        description: Entity ID to get virtual phone numbers for
+        schema: {}
+      responses:
+        '200':
+          description: Virtual phone numbers retrieved successfully
+          content:
+            application/json:
+              schema:
+                type: array
+                items:
+                  type: object
+                  properties:
+                    entityId:
+                      type: string
+                    phoneNumber:
+                      type: string
+                    countryCode:
+                      type: string
+                    type:
+                      type: string
+                    id:
+                      type: number
+        '500':
+          description: Internal server error
+      summary: Get virtual phone numbers for an entity
+      tags:
+      - chatbot
+      security:
+      - access-token: []
+    servers:
+    - url: https://tasks.zoca.ai
+      description: Production
+  /tasks/api/v1/chatbot/calls/initiate:
+    post:
+      operationId: t_value
+      parameters: []
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/e_2'
+      responses:
+        '200':
+          description: Call initiated successfully
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/e_2'
+        '400':
+          description: Bad request
+        '500':
+          description: Internal server error
+      summary: Initiate a call to a customer
+      tags:
+      - chatbot
+      security:
+      - access-token: []
+    servers:
+    - url: https://tasks.zoca.ai
+      description: Production
+  /tasks/api/v1/chatbot/calls/client/{clientId}:
+    get:
+      operationId: t_value
+      parameters:
+      - name: clientId
+        required: true
+        in: path
+        description: Client ID to get call history for
+        schema: {}
+      responses:
+        '200':
+          description: Call history retrieved successfully
+          content:
+            application/json:
+              schema:
+                type: array
+                items:
+                  type: object
+                  properties:
+                    callId:
+                      type: string
+                    clientId:
+                      type: string
+                    entityId:
+                      type: string
+                    fromNumber:
+                      type: string
+                    toNumber:
+                      type: string
+                    startTime:
+                      type: string
+                    endTime:
+                      type: string
+                    duration:
+                      type: number
+                    status:
+                      type: string
+                    summary:
+                      type: string
+                    createdAt:
+                      type: string
+        '500':
+          description: Internal server error
+      summary: Get call history for a client
+      tags:
+      - chatbot
+      security:
+      - access-token: []
+    servers:
+    - url: https://tasks.zoca.ai
+      description: Production
+  /tasks/api/v1/chatbot/webhooks/incoming-call:
+    post:
+      operationId: t_value
+      parameters: []
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/Object'
+      responses:
+        '200':
+          description: Webhook processed successfully
+        '400':
+          description: Bad request
+      summary: Handle incoming call webhook and events from Retell
+      tags:
+      - chatbot
+      security:
+      - access-token: []
+    servers:
+    - url: https://tasks.zoca.ai
+      description: Production
+  /tasks/api/v1/chatbot/calls/context:
+    get:
+      operationId: t_value
+      parameters:
+      - name: call_id
+        required: false
+        in: query
+        description: Call ID from Retell
+        schema:
+          example: call_abcdef123456
+      - name: to_number
+        required: false
+        in: query
+        description: Phone number being called
+        schema:
+          example: '+19387864128'
+      - name: from_number
+        required: true
+        in: query
+        description: Phone number of the caller
+        schema:
+          example: '+14155552671'
+      responses:
+        '200':
+          description: Call context retrieved successfully
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/e_2'
+      summary: Get call context for incoming calls
+      tags:
+      - chatbot
+      security:
+      - access-token: []
+    servers:
+    - url: https://tasks.zoca.ai
+      description: Production
+  /tasks/api/v1/chatbot/calls/{callId}:
+    get:
+      operationId: t_value
+      parameters:
+      - name: callId
+        required: true
+        in: path
+        description: Call ID to retrieve details for
+        schema: {}
+      responses:
+        '200':
+          description: Call details retrieved successfully
+        '500':
+          description: Internal server error
+      summary: Retrieve call details from Retell
+      tags:
+      - chatbot
+      security:
+      - access-token: []
+    servers:
+    - url: https://tasks.zoca.ai
+      description: Production
+  /tasks/api/v1/chatbot/webhooks/call-events:
+    post:
+      description: Processes all Retell webhook events including call_inbound, call_started, call_ended, and call_analyzed for both incoming and outbound calls
+      operationId: t_value
+      parameters: []
+      requestBody:
+        required: true
+        description: Retell webhook payload containing event type and call details
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/Object'
+      responses:
+        '200':
+          description: Webhook processed successfully
+        '400':
+          description: Bad request
+      security:
+      - {}
+      summary: Handle all call events webhook from Retell (unified endpoint)
+      tags:
+      - chatbot
+    servers:
+    - url: https://tasks.zoca.ai
+      description: Production
+  /tasks/api/v1/chatbot/test/make-call:
+    post:
+      description: Standalone test endpoint to make an outbound call using Retell AI. No client/entity dependencies required.
+      operationId: t_value
+      parameters: []
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              type: object
+              properties:
+                fromNumber:
+                  type: string
+                  example: '+1234567890'
+                  description: Phone number to call from (Twilio number)
+                toNumber:
+                  type: string
+                  example: +0987654321
+                  description: Phone number to call to
+                agentId:
+                  type: string
+                  example: agent_03bc85bc6b0aeefbdb72e120e7
+                  description: Optional Retell agent ID to use for the call
+                name:
+                  type: string
+                  example: John Doe
+                  description: Optional customer name for the call
+              required:
+              - fromNumber
+              - toNumber
+      responses:
+        '200':
+          description: Call initiated successfully
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  success:
+                    type: boolean
+                  callId:
+                    type: string
+                  error:
+                    type: string
+      summary: Make a test outbound call
+      tags:
+      - chatbot
+      security:
+      - access-token: []
+    servers:
+    - url: https://tasks.zoca.ai
+      description: Production
+  /tasks/api/v1/chatbot/test/incoming-call:
+    post:
+      description: Standalone test endpoint to prepare dynamic variables for incoming calls. No client/entity dependencies required.
+      operationId: t_value
+      parameters: []
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              type: object
+              properties:
+                fromNumber:
+                  type: string
+                  example: +0987654321
+                  description: Phone number calling from
+                toNumber:
+                  type: string
+                  example: '+1234567890'
+                  description: Phone number being called (business number)
+                agentId:
+                  type: string
+                  example: agent_03bc85bc6b0aeefbdb72e120e7
+                  description: Optional Retell agent ID to use for the call
+                name:
+                  type: string
+                  example: Jane Smith
+                  description: Optional caller name for the incoming call
+              required:
+              - fromNumber
+              - toNumber
+      responses:
+        '200':
+          description: Incoming call acknowledged successfully
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  status:
+                    type: string
+                  timestamp:
+                    type: string
+                  message:
+                    type: string
+      summary: Handle test incoming call setup
+      tags:
+      - chatbot
+      security:
+      - access-token: []
+    servers:
+    - url: https://tasks.zoca.ai
+      description: Production
+  /tasks/api/v1/chatbot/human-handover/{clientId}:
+    get:
+      operationId: t_value
+      parameters:
+      - name: clientId
+        required: true
+        in: path
+        description: Client ID to check handover status for
+        schema:
+          example: client_123456
+      responses:
+        '200':
+          description: Human handover status retrieved successfully
+          content:
+            application/json:
+              schema:
+                type: boolean
+        '500':
+          description: Internal server error
+      summary: Check if human handover is active for a client
+      tags:
+      - chatbot
+      security:
+      - access-token: []
+    servers:
+    - url: https://tasks.zoca.ai
+      description: Production
+  /tasks/api/v1/chatbot/call-bridge-number:
+    get:
+      operationId: t_value
+      parameters: []
+      responses:
+        '200':
+          description: Human handover status retrieved successfully
+          content:
+            application/json:
+              schema:
+                type: string
+        '500':
+          description: Internal server error
+      summary: Get the call brige number to which calls will be forwarded if EC calls to virtual number.
+      tags:
+      - chatbot
+      security:
+      - access-token: []
+    servers:
+    - url: https://tasks.zoca.ai
+      description: Production
+  /tasks/api/v1/chatbot/message-history/{clientId}:
+    get:
+      operationId: t_value
+      parameters:
+      - name: limit
+        required: false
+        in: query
+        description: Number of messages to retrieve
+        schema:
+          type: number
+      - name: clientId
+        required: true
+        in: path
+        description: The client ID
+        schema: {}
+      responses:
+        '200':
+          description: Returns formatted message history string
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  clientId:
+                    type: string
+                  messageHistory:
+                    type: string
+                  limit:
+                    type: number
+        '400':
+          description: Invalid client ID
+        '500':
+          description: Internal server error
+      summary: Get formatted message history for a client
+      tags:
+      - chatbot
+      security:
+      - access-token: []
+    servers:
+    - url: https://tasks.zoca.ai
+      description: Production
+  /tasks/api/v1/chatbot/l2b/active-businesses:
+    get:
+      operationId: t_value
+      parameters:
+      - name: limit
+        required: false
+        in: query
+        description: Number of results per page (max 50)
+        schema:
+          example: 50
+          type: number
+      - name: page
+        required: false
+        in: query
+        description: Page number
+        schema:
+          example: 1
+          type: number
+      responses:
+        '200':
+          description: List of businesses with active L2B
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/e_2'
+        '500':
+          description: Internal server error
+      summary: Get all businesses with active L2B bot
+      tags:
+      - chatbot
+      security:
+      - access-token: []
+    servers:
+    - url: https://tasks.zoca.ai
+      description: Production
+  /tasks/api/v1/chatbot/entities/{entityId}/preferences:
+    get:
+      operationId: t_value
+      parameters:
+      - name: entityId
+        required: true
+        in: path
+        description: Entity ID to get chatbot preferences for
+        schema:
+          example: c23f1689-2cbf-488e-b53e-090ccdb9254b
+      responses:
+        '200':
+          description: Chatbot preferences retrieved successfully
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  prompts:
+                    type: object
+                    additionalProperties:
+                      type: string
+                  variables:
+                    type: object
+                    additionalProperties:
+                      type: string
+                  settings:
+                    type: object
+                    additionalProperties:
+                      type: string
+      summary: Get all chatbot-related preferences for an entity
+      tags:
+      - chatbot
+      security:
+      - access-token: []
+    servers:
+    - url: https://tasks.zoca.ai
+      description: Production
+  /tasks/api/v1/chatbot/l2b/business/{entityId}/clients:
+    get:
+      operationId: t_value
+      parameters:
+      - name: limit
+        required: false
+        in: query
+        description: Number of results per page (max 20)
+        schema:
+          example: 20
+          type: number
+      - name: page
+        required: false
+        in: query
+        description: Page number
+        schema:
+          example: 1
+          type: number
+      - name: entityId
+        required: true
+        in: path
+        description: Entity ID of the business
+        schema:
+          example: c23f1689-2cbf-488e-b53e-090ccdb9254b
+      responses:
+        '200':
+          description: List of clients with conversation and handover status
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/e_2'
+        '500':
+          description: Internal server error
+      summary: Get clients for a business with conversation and handover status
+      tags:
+      - chatbot
+      security:
+      - access-token: []
+    servers:
+    - url: https://tasks.zoca.ai
+      description: Production
+  /tasks/api/v1/chatbot/business/{entityId}/webhook-data:
+    get:
+      operationId: t_value
+      parameters:
+      - name: entityId
+        required: true
+        in: path
+        description: Entity ID of the business
+        schema:
+          example: c23f1689-2cbf-488e-b53e-090ccdb9254b
+      responses:
+        '200':
+          description: Business webhook data formatted for Retell or similar services
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  salon_name:
+                    type: string
+                    example: Neolithium Hair
+                  business_url:
+                    type: string
+                    example: neolithiumhair.com
+                  business_phone:
+                    type: string
+                    example: '+918971826118'
+                  business_email:
+                    type: string
+                    example: info@neolithiumhair.com
+                  salon_address:
+                    type: string
+                    example: Bengaluru, Karnataka, 560001, India
+                  businessWorkingHours:
+                    type: array
+                    items:
+                      type: object
+                      properties:
+                        day:
+                          type: string
+                        time:
+                          type: array
+                          items:
+                            type: string
+                        note:
+                          type:
+                          - string
+                          - 'null'
+                  businessServices:
+                    type: array
+                    items:
+                      type: object
+                      properties:
+                        categoryName:
+                          type: string
+                        description:
+                          type: string
+                        services:
+                          type: array
+                  conversation_history:
+                    type: string
+                  customer_name:
+                    type: string
+                  current_date:
+                    type: string
+                  current_time:
+                    type: string
+                  current_day:
+                    type: string
+        '404':
+          description: Business not found
+        '500':
+          description: Internal server error
+      summary: Get formatted webhook data for a business entity
+      tags:
+      - chatbot
+      security:
+      - access-token: []
+    servers:
+    - url: https://tasks.zoca.ai
+      description: Production
+  /tasks/api/v1/chatbot/l2b/conversations/{clientId}:
+    get:
+      operationId: t_value
+      parameters:
+      - name: limit
+        required: false
+        in: query
+        description: Number of results per page (max 20)
+        schema:
+          example: 20
+          type: number
+      - name: page
+        required: false
+        in: query
+        description: Page number
+        schema:
+          example: 1
+          type: number
+      - name: clientId
+        required: true
+        in: path
+        description: Client ID to get conversations for
+        schema:
+          example: client_123456
+      responses:
+        '200':
+          description: Conversation history for the client
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/e_2'
+        '500':
+          description: Internal server error
+      summary: Get conversation history for a client
+      tags:
+      - chatbot
+      security:
+      - access-token: []
+    servers:
+    - url: https://tasks.zoca.ai
+      description: Production
+  /tasks/api/v1/chatbot/webhook-data:
+    post:
+      description: Store or update dynamic variables for a specific phone number. These variables will be used when the phone number calls the test number.
+      operationId: t_value
+      parameters: []
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/e_2'
+      responses:
+        '200':
+          description: Webhook data upserted successfully
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/e_2'
+        '400':
+          description: Bad request
+        '500':
+          description: Internal server error
+      summary: Upsert webhook data for a phone number
+      tags:
+      - chatbot
+      security:
+      - access-token: []
+    servers:
+    - url: https://tasks.zoca.ai
+      description: Production
+  /tasks/api/v1/chatbot/test/entity/{entityId}/phones:
+    get:
+      description: Retrieves phone numbers for an entity to test webhook phone number mappings
+      operationId: t_value
+      parameters:
+      - name: type
+        required: false
+        in: query
+        description: Type of phone number (e.g., WORK, PERSONAL, VIRTUAL_NUMBER)
+        schema: {}
+      - name: entityId
+        required: true
+        in: path
+        description: Entity ID to get phone numbers for
+        schema: {}
+      responses:
+        '200':
+          description: Phone numbers retrieved successfully
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  success:
+                    type: boolean
+                  phones:
+                    type: array
+                    items:
+                      type: object
+                      properties:
+                        entityId:
+                          type: string
+                        phoneNumber:
+                          type: string
+                        countryCode:
+                          type: string
+                        type:
+                          type: string
+                        id:
+                          type: number
+                        isPrimary:
+                          type: boolean
+        '500':
+          description: Internal server error
+      summary: Get phone numbers for an entity (testing)
+      tags:
+      - chatbot
+      security:
+      - access-token: []
+    post:
+      description: Adds a phone number to an entity for testing webhook phone number mappings
+      operationId: t_value
+      parameters:
+      - name: entityId
+        required: true
+        in: path
+        description: Entity ID to add phone number to
+        schema: {}
+      requestBody:
+        required: true
+        description: Phone number details
+        content:
+          application/json:
+            schema:
+              type: object
+              required:
+              - phoneNumber
+              - countryCode
+              - type
+              properties:
+                phoneNumber:
+                  type: string
+                  description: Phone number (e.g., 4155551234)
+                  example: '4155551234'
+                countryCode:
+                  type: string
+                  description: Country code with + (e.g., +1)
+                  example: '+1'
+                type:
+                  type: string
+                  description: Phone type
+                  enum:
+                  - WORK
+                  - PERSONAL
+                  - VIRTUAL_NUMBER
+                  example: WORK
+                isPrimary:
+                  type: boolean
+                  description: Whether this is the primary phone for this type
+                  example: true
+                skipTwilioPurchase:
+                  type: boolean
+                  description: Skip Twilio purchase (for testing)
+                  example: true
+      responses:
+        '200':
+          description: Phone number added successfully
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  success:
+                    type: boolean
+                  phone:
+                    type: object
+                    properties:
+                      entityId:
+                        type: string
+                      phoneNumber:
+                        type: string
+                      countryCode:
+                        type: string
+                      type:
+                        type: string
+                      id:
+                        type: number
+                      isPrimary:
+                        type: boolean
+                  message:
+                    type: string
+        '400':
+          description: Bad request
+        '500':
+          description: Internal server error
+      summary: Add phone number to entity (testing)
+      tags:
+      - chatbot
+      security:
+      - access-token: []
+    servers:
+    - url: https://tasks.zoca.ai
+      description: Production
+  /tasks/api/v1/chatbot/bookings:
+    post:
+      operationId: t_value
+      parameters: []
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/e_2'
+      responses:
+        '201':
+          description: Booking created successfully
+        '400':
+          description: Bad request - Invalid booking data
+      summary: Create a new booking
+      tags:
+      - chatbot
+      security:
+      - access-token: []
+    servers:
+    - url: https://tasks.zoca.ai
+      description: Production
+  /tasks/api/v1/chatbot/prompt-variables:
+    get:
+      description: Returns prompt variables for an entity. Optionally includes the full prompt with injected variables and contact details if clientId is provided.
+      operationId: t_value
+      parameters:
+      - name: clientId
+        required: false
+        in: query
+        description: Client ID to include contact details
+        schema:
+          type: string
+      - name: includePrompt
+        required: false
+        in: query
+        description: Include the full prompt with injected variables
+        schema:
+          type: boolean
+      - name: entityId
+        required: true
+        in: query
+        description: Entity ID (salon ID)
+        schema:
+          type: string
+      responses:
+        '200':
+          description: Successfully retrieved prompt variables
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  variables:
+                    type: object
+                    description: The prompt variables
+                  prompt:
+                    type: string
+                    description: The full prompt with injected variables (if includePrompt=true)
+                  contactDetails:
+                    type: object
+                    description: Contact details (if clientId is provided)
+        '400':
+          description: Invalid parameters
+        '500':
+          description: Internal server error
+      summary: Get prompt variables with optional full prompt
+      tags:
+      - chatbot
+      security:
+      - access-token: []
+    servers:
+    - url: https://tasks.zoca.ai
+      description: Production
+  /tasks/api/v1/chatbot/original-variables:
+    get:
+      description: Returns the original prompt variables for an entity without any test data modifications. This endpoint only works for non-test entities and will reject test entities.
+      operationId: t_value
+      parameters:
+      - name: entityId
+        required: true
+        in: query
+        description: Entity ID (salon ID) - must not be a test entity
+        schema:
+          type: string
+      responses:
+        '200':
+          description: Successfully retrieved original variables
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  variables:
+                    type: object
+                    description: The original prompt variables
+                  entityId:
+                    type: string
+                    description: The entity ID
+                  initialData:
+                    type: object
+                    description: The initial data (same as variables)
+                  message:
+                    type: string
+                    description: Success message
+        '400':
+          description: Invalid parameters or entity is a test entity
+        '500':
+          description: Internal server error
+      summary: Get original variables for non-test entities
+      tags:
+      - chatbot
+      security:
+      - access-token: []
+    servers:
+    - url: https://tasks.zoca.ai
+      description: Production
+  /tasks/api/v1/chatbot/internal/prompt-with-fallback:
+    get:
+      description: 'Retrieves a prompt using a 4-tier fallback system: entity preferences -> cohort preferences -> prompts service -> hardcoded default'
+      operationId: t_value
+      parameters:
+      - name: promptUseCase
+        required: false
+        in: query
+        description: Prompt use case for fallback lookup
+        schema:
+          type: string
+      - name: promptFunction
+        required: false
+        in: query
+        description: Prompt function for fallback lookup
+        schema:
+          type: string
+      - name: preferenceAttribute
+        required: false
+        in: query
+        description: Preference attribute key for prompt lookup
+        schema:
+          type: string
+      - name: entityId
+        required: false
+        in: query
+        description: Entity ID for prompt lookup
+        schema:
+          type: string
+      responses:
+        '200':
+          description: Successfully retrieved prompt
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  prompt:
+                    type: string
+                    description: The retrieved prompt text
+                  source:
+                    type: string
+                    enum:
+                    - entity_preference
+                    - cohort_preference
+                    - prompts_service
+                    - default
+                    description: The source from which the prompt was retrieved
+                  cohortId:
+                    type: string
+                    description: Cohort ID if prompt was retrieved from cohort preferences
+        '500':
+          description: Internal server error
+      summary: Get prompt with multi-tier fallback mechanism
+      tags:
+      - chatbot
+      security:
+      - access-token: []
+    servers:
+    - url: https://tasks.zoca.ai
+      description: Production
+  /tasks/api/v1/chatbot/rules/entity/{entityId}:
+    get:
+      description: Get all state rules configured for a specific entity with optional filters
+      operationId: t_value
+      parameters:
+      - name: isActive
+        required: false
+        in: query
+        description: Filter by active status
+        schema:
+          type: boolean
+      - name: state
+        required: false
+        in: query
+        description: Filter by conversation state
+        schema:
+          enum:
+          - AWAITING_FIRST_RESPONSE
+          - ACTIVE_CONVERSATION
+          - BOOKING_INTENT
+          - UNRESPONSIVE
+          - HUMAN_HANDOVER
+          - NOT_INTERESTED
+          - DO_NOT_CONTACT
+          - BOOKED
+          - DORMANT
+          type: string
+      - name: channel
+        required: false
+        in: query
+        description: Filter by channel type
+        schema:
+          enum:
+          - SMS
+          - PHONE
+          type: string
+      - name: entityId
+        required: true
+        in: path
+        description: Entity ID to fetch rules for
+        schema:
+          example: c65a879b-bf21-4b5c-ace5-51992c4a1e62
+          type: string
+      responses:
+        '200':
+          description: List of rules for the entity
+          content:
+            application/json:
+              schema:
+                type: array
+                items:
+                  $ref: '#/components/schemas/e_2'
+        '404':
+          description: Entity not found
+      summary: List all rules for an entity
+      tags:
+      - chatbot
+      security:
+      - access-token: []
+    servers:
+    - url: https://tasks.zoca.ai
+      description: Production
+  /tasks/api/v1/chatbot/rules:
+    post:
+      description: Create and persist a new state rule configuration
+      operationId: t_value
+      parameters: []
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/e_2'
+      responses:
+        '201':
+          description: Rule created successfully
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/e_2'
+        '400':
+          description: Invalid rule configuration
+      summary: Create a new ops team rule
+      tags:
+      - chatbot
+      security:
+      - access-token: []
+    servers:
+    - url: https://tasks.zoca.ai
+      description: Production
+  /tasks/api/v1/chatbot/rules/{ruleId}:
+    get:
+      description: Retrieve a specific rule configuration by its ID
+      operationId: t_value
+      parameters:
+      - name: ruleId
+        required: true
+        in: path
+        description: Rule ID
+        schema:
+          example: a1b2c3d4-e5f6-7890-abcd-ef1234567890
+          type: string
+      responses:
+        '200':
+          description: Rule details
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/e_2'
+        '404':
+          description: Rule not found
+      summary: Get a rule by ID
+      tags:
+      - chatbot
+      security:
+      - access-token: []
+    put:
+      description: Update an existing rule configuration
+      operationId: t_value
+      parameters:
+      - name: ruleId
+        required: true
+        in: path
+        description: Rule ID to update
+        schema:
+          example: a1b2c3d4-e5f6-7890-abcd-ef1234567890
+          type: string
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/e_2'
+      responses:
+        '200':
+          description: Rule updated successfully
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/e_2'
+        '400':
+          description: Invalid update data
+        '404':
+          description: Rule not found
+      summary: Update a rule
+      tags:
+      - chatbot
+      security:
+      - access-token: []
+    delete:
+      description: Remove a rule configuration from the system
+      operationId: t_value
+      parameters:
+      - name: ruleId
+        required: true
+        in: path
+        description: Rule ID to delete
+        schema:
+          example: a1b2c3d4-e5f6-7890-abcd-ef1234567890
+          type: string
+      responses:
+        '204':
+          description: Rule deleted successfully
+        '404':
+          description: Rule not found
+      summary: Delete a rule
+      tags:
+      - chatbot
+      security:
+      - access-token: []
+    servers:
+    - url: https://tasks.zoca.ai
+      description: Production
+  /tasks/api/v1/chatbot/test/category-grouping/{locationEntityId}:
+    get:
+      operationId: t_value
+      parameters:
+      - name: locationEntityId
+        required: true
+        in: path
+        description: ID of the location entity to test category grouping for
+        schema:
+          example: 5b2aa9ad-3fb0-456c-9ae8-4d79f67b294f
+      responses:
+        '200':
+          description: ''
+      summary: Test the category grouping function with a specific location entity ID
+      tags:
+      - chatbot
+      security:
+      - access-token: []
+    servers:
+    - url: https://tasks.zoca.ai
+      description: Production
+  /tasks/api/v1/chatbot/test/validate-ccof:
+    post:
+      operationId: t_value
+      parameters: []
+      responses:
+        '201':
+          description: ''
+      tags:
+      - chatbot
+      security:
+      - access-token: []
+    servers:
+    - url: https://tasks.zoca.ai
+      description: Production
+  /tasks/api/v1/chatbot/temp/square/bookings:
+    post:
+      operationId: t_value
+      parameters: []
+      responses:
+        '201':
+          description: ''
+      tags:
+      - chatbot
+      security:
+      - access-token: []
+    servers:
+    - url: https://tasks.zoca.ai
+      description: Production
+  /tasks/api/v1/chatbot/square/bookings/no-card-validation:
+    post:
+      operationId: t_value
+      parameters: []
+      responses:
+        '201':
+          description: ''
+      tags:
+      - chatbot
+      security:
+      - access-token: []
+    servers:
+    - url: https://tasks.zoca.ai
+      description: Production
+  /tasks/api/v1/chatbot/square/bookings/accepted:
+    post:
+      operationId: t_value
+      parameters: []
+      responses:
+        '201':
+          description: ''
+      tags:
+      - chatbot
+      security:
+      - access-token: []
+    servers:
+    - url: https://tasks.zoca.ai
+      description: Production
+  /tasks/api/v1/chatbot/test/schedule-response-followup:
+    post:
+      operationId: t_value
+      parameters: []
+      responses:
+        '201':
+          description: ''
+      tags:
+      - chatbot
+      security:
+      - access-token: []
+    servers:
+    - url: https://tasks.zoca.ai
+      description: Production
+  /tasks/api/v1/chatbot/functions:
+    get:
+      description: Returns the complete list of chatbot functions that can be configured for entities. This shows all functions available in the system regardless of entity configuration.
+      operationId: t_value
+      parameters: []
+      responses:
+        '200':
+          description: List of all available chatbot functions
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/e_2'
+        '500':
+          description: Internal server error
+      summary: Get all available chatbot functions
+      tags:
+      - chatbot
+      security:
+      - access-token: []
+    servers:
+    - url: https://tasks.zoca.ai
+      description: Production
+  /tasks/api/v1/chatbot/functions/entity/{entityId}:
+    get:
+      description: 'Returns the list of chatbot functions enabled for a specific entity. Implements hierarchy: entity preference → cohort preference → default (all functions). The isDefault flag indicates whether the entity is using custom configuration (false) or default all-functions configuration (true).'
+      operationId: t_value
+      parameters:
+      - name: entityId
+        required: true
+        in: path
+        description: Entity ID to get functions for
+        schema:
+          example: c65a879b-bf21-4b5c-ace5-51992c4a1e62
+          type: string
+      responses:
+        '200':
+          description: List of enabled chatbot functions for the entity
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/e_2'
+        '400':
+          description: Invalid entity ID format
+        '500':
+          description: Internal server error
+      summary: Get enabled chatbot functions for an entity
+      tags:
+      - chatbot
+      security:
+      - access-token: []
+    servers:
+    - url: https://tasks.zoca.ai
+      description: Production
+  /tasks/api/v1/chatbot/message-templates:
+    post:
+      operationId: t_value
+      parameters: []
+      responses:
+        '201':
+          description: Message template created successfully
+          content:
+            application/json:
+              schema:
+                type: object
+        '400':
+          description: Bad request - validation failed
+        '500':
+          description: Internal server error
+      summary: Create a new message template
+      tags:
+      - chatbot
+      security:
+      - access-token: []
+    get:
+      operationId: t_value
+      parameters:
+      - name: includeInactive
+        required: false
+        in: query
+        description: Include inactive templates
+        schema:
+          type: boolean
+      responses:
+        '200':
+          description: List of message templates
+          content:
+            application/json:
+              schema:
+                type: object
+        '500':
+          description: Internal server error
+      summary: Get all message templates
+      tags:
+      - chatbot
+      security:
+      - access-token: []
+    servers:
+    - url: https://tasks.zoca.ai
+      description: Production
+  /tasks/api/v1/chatbot/message-templates/{id}:
+    get:
+      operationId: t_value
+      parameters:
+      - name: id
+        required: true
+        in: path
+        description: Template ID
+        schema: {}
+      responses:
+        '200':
+          description: Message template found
+          content:
+            application/json:
+              schema:
+                type: object
+        '404':
+          description: Template not found
+        '500':
+          description: Internal server error
+      summary: Get a message template by ID
+      tags:
+      - chatbot
+      security:
+      - access-token: []
+    put:
+      operationId: t_value
+      parameters:
+      - name: id
+        required: true
+        in: path
+        description: Template ID
+        schema: {}
+      responses:
+        '200':
+          description: Message template updated successfully
+          content:
+            application/json:
+              schema:
+                type: object
+        '400':
+          description: Bad request - validation failed
+        '404':
+          description: Template not found
+        '500':
+          description: Internal server error
+      summary: Update a message template
+      tags:
+      - chatbot
+      security:
+      - access-token: []
+    delete:
+      operationId: t_value
+      parameters:
+      - name: soft
+        required: false
+        in: query
+        description: Perform soft delete (set is_active = false)
+        schema:
+          type: boolean
+      - name: id
+        required: true
+        in: path
+        description: Template ID
+        schema: {}
+      responses:
+        '200':
+          description: Message template deleted successfully
+        '404':
+          description: Template not found
+        '500':
+          description: Internal server error
+      summary: Delete a message template
+      tags:
+      - chatbot
+      security:
+      - access-token: []
+    servers:
+    - url: https://tasks.zoca.ai
+      description: Production
+  /tasks/api/v1/chatbot/entity/{entityId}/metadata:
+    put:
+      description: Updates the metadata field for an entity in l2b.entities table. Merges new metadata with existing metadata.
+      operationId: t_value
+      parameters:
+      - name: entityId
+        required: true
+        in: path
+        description: Entity ID to update metadata for
+        schema:
+          example: 123e4567-e89b-12d3-a456-426614174000
+          type: string
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/e_2'
+      responses:
+        '200':
+          description: Entity metadata updated successfully
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  success:
+                    type: boolean
+                    example: true
+                  metadata:
+                    type: object
+                    example:
+                      customField: value
+                      feature: true
+                      updatedAt: '2024-01-01T00:00:00.000Z'
+        '404':
+          description: Entity not found
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  success:
+                    type: boolean
+                    example: false
+                  error:
+                    type: string
+                    example: Entity with ID xxx not found
+        '500':
+          description: Internal server error
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  success:
+                    type: boolean
+                    example: false
+                  error:
+                    type: string
+                    example: 'Failed to update entity metadata: error message'
+      summary: Update entity metadata
+      tags:
+      - chatbot
+      security:
+      - access-token: []
+    servers:
+    - url: https://tasks.zoca.ai
+      description: Production
+  /tasks/api/v1/chatbot/metadata/bulk-update:
+    post:
+      description: Updates metadata fields including booking details, platform info, and credentials for multiple entities
+      operationId: t_value
+      parameters: []
+      responses:
+        '200':
+          description: Entity metadata updated successfully
+          content:
+            application/json:
+              schema:
+                type: array
+                items:
+                  type: object
+                  description: Updated entity record from l2b.entities table
+        '400':
+          description: Invalid request payload or validation error
+        '500':
+          description: Internal server error during metadata update
+      summary: Bulk update entity metadata for L2B entities
+      tags:
+      - chatbot
+      security:
+      - access-token: []
+    servers:
+    - url: https://tasks.zoca.ai
+      description: Production
+components:
+  schemas:
+    e:
+      type: object
+      properties:
+        id:
+          type: number
+        entityId:
+          type: string
+        attribute:
+          type: string
+        value:
+          type:
+          - object
+          - 'null'
+        metadata:
+          type:
+          - object
+          - 'null'
+        createdAt:
+          type:
+          - object
+          - 'null'
+      required:
+      - id
+      - entityId
+      - attribute
+    Object:
+      type: object
+      properties: {}
+    e_2:
+      type: object
+      properties:
+        scan:
+          $ref: '#/components/schemas/e_2'
+        businessLat:
+          type:
+          - number
+          - 'null'
+        businessLng:
+          type:
+          - number
+          - 'null'
+        points:
+          type: array
+          items:
+            $ref: '#/components/schemas/e_2'
+        heroMetrics:
+          $ref: '#/components/schemas/e_2'
+      required:
+      - scan
+      - businessLat
+      - businessLng
+      - points
+      - heroMetrics
+  securitySchemes:
+    access-token:
+      scheme: bearer
+      bearerFormat: JWT
+      type: http
+      name: Authorization
+      description: Enter JWT token in the format Bearer <token>
+      in: header
+x-refined-from:
+- zoca-platform-openapi.yml
+- zoca-tasks-openapi.yml

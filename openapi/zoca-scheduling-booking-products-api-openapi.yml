@@ -1,0 +1,82 @@
+openapi: 3.2.0
+info:
+  title: Zoca Platform Scheduling Booking Products API
+  description: 'The Zoca platform API behind the Zoca web app and mobile apps: scheduling, website generation, Google Business Profile, discovery/local SEO, social media, booking enquiries, offers, clients, staff, billing and the Zoca "brain" agent layer.'
+  version: 3.20.10
+  contact: {}
+  x-apievangelist-note: Harvested verbatim from https://api.zoca.ai/swagger.json. The provider ships the default NestJS Swagger metadata (title "API Documentation", empty servers[]); title/description/servers were set by API Evangelist for identification and the unmodified original is preserved at openapi/_original/zoca-platform-swagger.json. Every path, operation, summary, parameter and response is exactly as published.
+servers:
+- url: https://api.zoca.ai
+  description: Production
+tags:
+- name: Scheduling Booking Products
+paths:
+  /scheduling/bookings/{bookingId}/products:
+    get:
+      operationId: t_value
+      parameters: []
+      responses:
+        '200':
+          description: ''
+      security:
+      - bearer: []
+      summary: List product lines for a booking (read-only)
+      tags:
+      - Scheduling Booking Products
+    post:
+      operationId: t_value
+      parameters: []
+      responses:
+        '201':
+          description: Product attached to booking
+        '404':
+          description: Booking, product, or variant not found
+        '409':
+          description: Booking sale is settled or product archived
+      security:
+      - bearer: []
+      summary: Add a PRODUCT line to an existing booking (mirrors service-add)
+      tags:
+      - Scheduling Booking Products
+  /scheduling/bookings/{bookingId}/products/{lineId}:
+    put:
+      operationId: t_value
+      parameters: []
+      responses:
+        '200':
+          description: Line updated
+        '400':
+          description: Empty body or invalid field
+        '404':
+          description: Booking or line not found
+        '409':
+          description: Booking sale is settled or qty<1
+      security:
+      - bearer: []
+      summary: Update a PRODUCT line on an unsettled booking
+      tags:
+      - Scheduling Booking Products
+    delete:
+      operationId: t_value
+      parameters: []
+      responses:
+        '204':
+          description: Product line removed
+        '404':
+          description: Booking or line not found
+        '409':
+          description: Booking sale is settled
+      security:
+      - bearer: []
+      summary: Remove a PRODUCT line from an unsettled booking
+      tags:
+      - Scheduling Booking Products
+components:
+  securitySchemes:
+    access-token:
+      scheme: bearer
+      bearerFormat: JWT
+      type: http
+      name: Authorization
+      description: Enter JWT token in the format Bearer <token>
+      in: header

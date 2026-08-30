@@ -1,0 +1,512 @@
+openapi: 3.2.0
+info:
+  title: Zoca Square API
+  contact: {}
+  x-refined-note:
+  - x-apievangelist-note differs across the merged source definitions and was not carried
+  version: '1.0'
+  description: 'Operations tagged Square across 2 of this provider''s published API definitions: zoca-platform-openapi.yml, zoca-tasks-openapi.yml. Each path carries the servers of the definition it was published in.'
+servers:
+- url: https://api.zoca.ai
+  description: Production
+- url: https://tasks.zoca.ai
+  description: Production
+tags:
+- name: Square
+paths:
+  /square/merchants/{entityId}:
+    get:
+      operationId: t_value
+      parameters: []
+      responses:
+        '200':
+          description: ''
+      summary: Get merchant by entity ID
+      tags:
+      - Square
+    post:
+      operationId: t_value
+      parameters: []
+      responses:
+        '201':
+          description: ''
+      summary: Sync merchant data by entity ID
+      tags:
+      - Square
+    servers:
+    - url: https://api.zoca.ai
+      description: Production
+  /square/locations/{entityId}:
+    get:
+      operationId: t_value
+      parameters: []
+      responses:
+        '200':
+          description: ''
+      summary: Get Square locations by entity ID
+      tags:
+      - Square
+    post:
+      operationId: t_value
+      parameters: []
+      responses:
+        '201':
+          description: ''
+      summary: Sync Square locations by entity ID
+      tags:
+      - Square
+    servers:
+    - url: https://api.zoca.ai
+      description: Production
+  /square/team-members/{entityId}:
+    get:
+      operationId: t_value
+      parameters: []
+      responses:
+        '200':
+          description: Team members retrieved successfully
+        '404':
+          description: Entity not found or no team members
+        '500':
+          description: Internal server error
+      summary: Get Square team members by entity ID
+      tags:
+      - Square
+    servers:
+    - url: https://api.zoca.ai
+      description: Production
+  /square/bookings/search-availability:
+    post:
+      operationId: t_value
+      parameters: []
+      responses:
+        '200':
+          description: Available appointment slots
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/e'
+        '404':
+          description: Location or service not found
+        '500':
+          description: Internal server error
+      summary: Search for booking availability
+      tags:
+      - Square
+    servers:
+    - url: https://api.zoca.ai
+      description: Production
+  /square/bookings/cancel:
+    post:
+      operationId: t_value
+      parameters: []
+      responses:
+        '200':
+          description: Booking canceled successfully
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/e'
+        '404':
+          description: Booking or location not found
+        '500':
+          description: Internal server error
+      summary: Cancel a Square booking
+      tags:
+      - Square
+    servers:
+    - url: https://api.zoca.ai
+      description: Production
+  /square/test/create-booking:
+    post:
+      operationId: t_value
+      parameters: []
+      responses:
+        '200':
+          description: Booking created successfully
+        '400':
+          description: Invalid booking data
+      summary: Test Square booking with chatbot-compatible payload
+      tags:
+      - Square
+    servers:
+    - url: https://api.zoca.ai
+      description: Production
+  /square/test/search-slots:
+    post:
+      operationId: t_value
+      parameters: []
+      responses:
+        '200':
+          description: Available slots retrieved
+      summary: Test Square slot search with chatbot-compatible payload
+      tags:
+      - Square
+    servers:
+    - url: https://api.zoca.ai
+      description: Production
+  /tasks/api/v1/square/sync/{entityId}:
+    post:
+      operationId: t_value
+      parameters: []
+      responses:
+        '201':
+          description: ''
+      tags:
+      - Square
+      security:
+      - access-token: []
+    servers:
+    - url: https://tasks.zoca.ai
+      description: Production
+  /tasks/api/v1/square/syncSquareCustomers:
+    get:
+      operationId: t_value
+      parameters: []
+      responses:
+        '200':
+          description: ''
+      tags:
+      - Square
+      security:
+      - access-token: []
+    servers:
+    - url: https://tasks.zoca.ai
+      description: Production
+  /tasks/api/v1/square/sync-bookings:
+    post:
+      operationId: t_value
+      parameters: []
+      responses:
+        '201':
+          description: ''
+      tags:
+      - Square
+      security:
+      - access-token: []
+    servers:
+    - url: https://tasks.zoca.ai
+      description: Production
+  /tasks/api/v1/square/sync-payments:
+    post:
+      operationId: t_value
+      parameters: []
+      responses:
+        '201':
+          description: ''
+      tags:
+      - Square
+      security:
+      - access-token: []
+    servers:
+    - url: https://tasks.zoca.ai
+      description: Production
+  /tasks/api/v1/square/services/{entityId}:
+    get:
+      description: Fetches all Square catalog services with their variation IDs, prices, and durations for the given entity
+      operationId: t_value
+      parameters:
+      - name: entityId
+        required: true
+        in: path
+        description: The entity ID to fetch services for
+        schema:
+          example: c65a879b-bf21-4b5c-ace5-51992c4a1e62
+      responses:
+        '200':
+          description: Successfully retrieved services with variations
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  services:
+                    type: array
+                    items:
+                      type: object
+                      properties:
+                        id:
+                          type: string
+                          description: Square catalog item ID
+                        name:
+                          type: string
+                          description: Service name
+                        description:
+                          type:
+                          - string
+                          - 'null'
+                          description: Service description
+                        variations:
+                          type: array
+                          items:
+                            type: object
+                            properties:
+                              id:
+                                type: string
+                                description: Variation ID
+                              name:
+                                type: string
+                                description: Variation name
+                              version:
+                                type: number
+                                description: Variation version
+                              priceMoney:
+                                type:
+                                - object
+                                - 'null'
+                                properties:
+                                  amount:
+                                    type: number
+                                    description: Price in smallest currency unit (cents)
+                                  currency:
+                                    type: string
+                                    description: Currency code (e.g., USD)
+                              serviceDuration:
+                                type:
+                                - number
+                                - 'null'
+                                description: Service duration in milliseconds
+                  locationId:
+                    type: string
+                    description: Square location ID
+                  merchantId:
+                    type: string
+                    description: Square merchant ID
+        '404':
+          description: Entity or location not found
+        '500':
+          description: Error fetching services
+      summary: Get all services with variation IDs for an entity
+      tags:
+      - Square
+      security:
+      - access-token: []
+    servers:
+    - url: https://tasks.zoca.ai
+      description: Production
+  /tasks/api/v1/square/webhook:
+    post:
+      operationId: t_value
+      parameters: []
+      responses:
+        '201':
+          description: Webhook processed successfully
+        '400':
+          description: Invalid webhook type or payload
+        '500':
+          description: Error processing webhook
+      summary: Handle Square webhooks for payment and booking updates
+      tags:
+      - Square
+      security:
+      - access-token: []
+    servers:
+    - url: https://tasks.zoca.ai
+      description: Production
+  /tasks/api/v1/square/customer/{customerId}:
+    get:
+      description: Fetches customer details from Square by customer ID for a specific entity
+      operationId: t_value
+      parameters:
+      - name: customerId
+        required: true
+        in: path
+        description: Square customer ID to retrieve
+        schema:
+          example: CUST_123ABC
+      responses:
+        '200':
+          description: Successfully retrieved customer
+        '404':
+          description: Customer not found
+        '500':
+          description: Error retrieving customer
+      summary: Retrieve a Square customer by ID
+      tags:
+      - Square
+      security:
+      - access-token: []
+    servers:
+    - url: https://tasks.zoca.ai
+      description: Production
+  /tasks/api/v1/square/customer/{customerId}/cards:
+    get:
+      description: Retrieves all payment cards associated with a Square customer
+      operationId: t_value
+      parameters:
+      - name: customerId
+        required: true
+        in: path
+        description: Square customer ID
+        schema:
+          example: CUST_123ABC
+      responses:
+        '200':
+          description: Successfully retrieved customer cards
+          content:
+            application/json:
+              schema:
+                type: array
+                items:
+                  type: object
+                  properties:
+                    id:
+                      type: string
+                      description: Card ID
+                    cardBrand:
+                      type: string
+                      description: Card brand (VISA, MASTERCARD, etc.)
+                    last4:
+                      type: string
+                      description: Last 4 digits of card
+                    expMonth:
+                      type: number
+                      description: Expiration month
+                    expYear:
+                      type: number
+                      description: Expiration year
+                    cardholderName:
+                      type: string
+                      description: Name on card
+                    billingAddress:
+                      type: object
+                      description: Billing address
+        '404':
+          description: Customer not found
+        '500':
+          description: Error listing cards
+      summary: List all cards on file for a customer
+      tags:
+      - Square
+      security:
+      - access-token: []
+    servers:
+    - url: https://tasks.zoca.ai
+      description: Production
+  /tasks/api/v1/square/create/customer/{customerId}/cards:
+    post:
+      description: Adds a new payment card to a Square customer profile
+      operationId: t_value
+      parameters:
+      - name: customerId
+        required: true
+        in: path
+        description: Square customer ID
+        schema:
+          example: CUST_123ABC
+      requestBody:
+        required: true
+        description: Card creation parameters
+        content:
+          application/json:
+            schema:
+              type: object
+              required:
+              - entityId
+              - sourceId
+              - card
+              properties:
+                entityId:
+                  type: string
+                  description: Entity ID for authentication
+                  example: entity-123
+                sourceId:
+                  type: string
+                  description: Card nonce from Square Web Payments SDK
+                  example: cnon:card-nonce-ok
+                card:
+                  type: object
+                  required:
+                  - sourceId
+                  - cardholderName
+                  - billingAddress
+                  properties:
+                    sourceId:
+                      type: string
+                      description: Card nonce from Square Web Payments SDK
+                    cardholderName:
+                      type: string
+                      description: Name on card
+                      example: John Doe
+                    billingAddress:
+                      type: object
+                      required:
+                      - addressLine1
+                      - locality
+                      - administrativeDistrictLevel1
+                      - postalCode
+                      - country
+                      properties:
+                        addressLine1:
+                          type: string
+                          example: 123 Main St
+                        addressLine2:
+                          type: string
+                          example: Apt 4B
+                        locality:
+                          type: string
+                          example: San Francisco
+                        administrativeDistrictLevel1:
+                          type: string
+                          example: CA
+                        postalCode:
+                          type: string
+                          example: '94102'
+                        country:
+                          type: string
+                          example: US
+      responses:
+        '201':
+          description: Card created successfully
+        '400':
+          description: Invalid card data
+        '404':
+          description: Customer not found
+        '500':
+          description: Error creating card
+      summary: Create a new card on file for a customer
+      tags:
+      - Square
+      security:
+      - access-token: []
+    servers:
+    - url: https://tasks.zoca.ai
+      description: Production
+components:
+  schemas:
+    e:
+      type: object
+      properties:
+        id:
+          type: number
+        entityId:
+          type: string
+        attribute:
+          type: string
+        value:
+          type:
+          - object
+          - 'null'
+        metadata:
+          type:
+          - object
+          - 'null'
+        createdAt:
+          type:
+          - object
+          - 'null'
+      required:
+      - id
+      - entityId
+      - attribute
+  securitySchemes:
+    access-token:
+      scheme: bearer
+      bearerFormat: JWT
+      type: http
+      name: Authorization
+      description: Enter JWT token in the format Bearer <token>
+      in: header
+x-refined-from:
+- zoca-platform-openapi.yml
+- zoca-tasks-openapi.yml

@@ -1,0 +1,706 @@
+openapi: 3.2.0
+info:
+  title: Zoca Platform Misc/google Mock API
+  description: 'The Zoca platform API behind the Zoca web app and mobile apps: scheduling, website generation, Google Business Profile, discovery/local SEO, social media, booking enquiries, offers, clients, staff, billing and the Zoca "brain" agent layer.'
+  version: 3.20.10
+  contact: {}
+  x-apievangelist-note: Harvested verbatim from https://api.zoca.ai/swagger.json. The provider ships the default NestJS Swagger metadata (title "API Documentation", empty servers[]); title/description/servers were set by API Evangelist for identification and the unmodified original is preserved at openapi/_original/zoca-platform-swagger.json. Every path, operation, summary, parameter and response is exactly as published.
+servers:
+- url: https://api.zoca.ai
+  description: Production
+tags:
+- name: misc/google-mock
+paths:
+  /misc/google-mock/status:
+    get:
+      operationId: t_value
+      parameters: []
+      responses:
+        '200':
+          description: Mock status
+      summary: Check mock status
+      tags:
+      - misc/google-mock
+  /misc/google-mock/update-location:
+    post:
+      operationId: t_value
+      parameters: []
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              type: object
+              required:
+              - entityId
+              - locationName
+              - updateData
+              properties:
+                entityId:
+                  type: string
+                  example: 123e4567-e89b-12d3-a456-426614174000
+                locationEntityId:
+                  type: string
+                  example: 987fcdeb-51a2-43d1-9f12-123456789abc
+                locationName:
+                  type: string
+                  example: locations/123456
+                updateData:
+                  type: object
+                  properties:
+                    title:
+                      type: string
+                      example: Updated Business Name
+                    phoneNumbers:
+                      type: object
+                      properties:
+                        primaryPhone:
+                          type: string
+                          example: '+1234567890'
+      responses:
+        '200':
+          description: Update location result
+      summary: Test updateLocationData
+      tags:
+      - misc/google-mock
+  /misc/google-mock/create-media:
+    post:
+      operationId: t_value
+      parameters: []
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              type: object
+              required:
+              - entityId
+              - locationName
+              - mediaData
+              properties:
+                entityId:
+                  type: string
+                  example: 123e4567-e89b-12d3-a456-426614174000
+                locationEntityId:
+                  type: string
+                  example: 987fcdeb-51a2-43d1-9f12-123456789abc
+                locationName:
+                  type: string
+                  example: locations/123456
+                mediaData:
+                  type: object
+                  properties:
+                    sourceUrl:
+                      type: string
+                      example: https://example.com/image.jpg
+                    mediaFormat:
+                      type: string
+                      example: PHOTO
+                    description:
+                      type: string
+                      example: Test media
+      responses:
+        '200':
+          description: Create media result
+      summary: Test createMedia
+      tags:
+      - misc/google-mock
+  /misc/google-mock/delete-media:
+    delete:
+      operationId: t_value
+      parameters: []
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              type: object
+              required:
+              - entityId
+              - mediaName
+              properties:
+                entityId:
+                  type: string
+                  example: 123e4567-e89b-12d3-a456-426614174000
+                mediaName:
+                  type: string
+                  example: accounts/123/locations/456/media/789
+      responses:
+        '200':
+          description: Delete media result
+      summary: Test deleteMedia
+      tags:
+      - misc/google-mock
+  /misc/google-mock/update-notifications:
+    post:
+      operationId: t_value
+      parameters: []
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              type: object
+              required:
+              - entityId
+              - notificationData
+              properties:
+                entityId:
+                  type: string
+                  example: 123e4567-e89b-12d3-a456-426614174000
+                notificationData:
+                  type: object
+                  properties:
+                    pubsubTopic:
+                      type: string
+                      example: projects/my-project/topics/my-topic
+                    notificationTypes:
+                      type: array
+                      items:
+                        type: string
+                      example:
+                      - GOOGLE_UPDATE
+                      - NEW_REVIEW
+      responses:
+        '200':
+          description: Update notifications result
+      summary: Test updateNotifications
+      tags:
+      - misc/google-mock
+  /misc/google-mock/update-attributes:
+    post:
+      operationId: t_value
+      parameters: []
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              type: object
+              required:
+              - entityId
+              - attributeData
+              properties:
+                entityId:
+                  type: string
+                  example: 123e4567-e89b-12d3-a456-426614174000
+                locationEntityId:
+                  type: string
+                  example: 987fcdeb-51a2-43d1-9f12-123456789abc
+                locationName:
+                  type: string
+                  example: locations/123456
+                attributeData:
+                  type: array
+                  items:
+                    type: object
+                    properties:
+                      name:
+                        type: string
+                        example: has_wifi
+                      values:
+                        type: array
+                        items:
+                          type: object
+      responses:
+        '200':
+          description: Update attributes result
+      summary: Test updateAttributes
+      tags:
+      - misc/google-mock
+  /misc/google-mock/create-post:
+    post:
+      operationId: t_value
+      parameters: []
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              type: object
+              required:
+              - entityId
+              - postData
+              properties:
+                entityId:
+                  type: string
+                  example: 123e4567-e89b-12d3-a456-426614174000
+                locationEntityId:
+                  type: string
+                  example: 987fcdeb-51a2-43d1-9f12-123456789abc
+                locationName:
+                  type: string
+                  example: locations/123456
+                postData:
+                  type: object
+                  properties:
+                    summary:
+                      type: string
+                      example: Check out our special offer!
+                    languageCode:
+                      type: string
+                      example: en
+                    topicType:
+                      type: string
+                      example: STANDARD
+      responses:
+        '200':
+          description: Create post result
+      summary: Test createPost
+      tags:
+      - misc/google-mock
+  /misc/google-mock/update-post:
+    put:
+      operationId: t_value
+      parameters: []
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              type: object
+              required:
+              - entityId
+              - postName
+              - postData
+              properties:
+                entityId:
+                  type: string
+                  example: 123e4567-e89b-12d3-a456-426614174000
+                locationEntityId:
+                  type: string
+                  example: 987fcdeb-51a2-43d1-9f12-123456789abc
+                locationName:
+                  type: string
+                  example: locations/123456
+                postName:
+                  type: string
+                  example: accounts/123/locations/456/localPosts/789
+                postData:
+                  type: object
+                  properties:
+                    summary:
+                      type: string
+                      example: Updated post content
+                    topicType:
+                      type: string
+                      example: STANDARD
+      responses:
+        '200':
+          description: Update post result
+      summary: Test updatePost
+      tags:
+      - misc/google-mock
+  /misc/google-mock/delete-post:
+    delete:
+      operationId: t_value
+      parameters: []
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              type: object
+              required:
+              - entityId
+              - postName
+              properties:
+                entityId:
+                  type: string
+                  example: 123e4567-e89b-12d3-a456-426614174000
+                locationEntityId:
+                  type: string
+                  example: 987fcdeb-51a2-43d1-9f12-123456789abc
+                locationName:
+                  type: string
+                  example: locations/123456
+                postName:
+                  type: string
+                  example: accounts/123/locations/456/localPosts/789
+      responses:
+        '200':
+          description: Delete post result
+      summary: Test deletePost
+      tags:
+      - misc/google-mock
+  /misc/google-mock/create-review-reply:
+    post:
+      operationId: t_value
+      parameters: []
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              type: object
+              required:
+              - entityId
+              - reviewName
+              - replyComment
+              properties:
+                entityId:
+                  type: string
+                  example: 123e4567-e89b-12d3-a456-426614174000
+                reviewName:
+                  type: string
+                  example: accounts/123/locations/456/reviews/789
+                replyComment:
+                  type: string
+                  example: Thank you for your feedback!
+      responses:
+        '200':
+          description: Create review reply result
+      summary: Test createReviewReply
+      tags:
+      - misc/google-mock
+  /misc/google-mock/delete-review-reply:
+    delete:
+      operationId: t_value
+      parameters: []
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              type: object
+              required:
+              - entityId
+              - reviewName
+              properties:
+                entityId:
+                  type: string
+                  example: 123e4567-e89b-12d3-a456-426614174000
+                reviewName:
+                  type: string
+                  example: accounts/123/locations/456/reviews/789
+      responses:
+        '200':
+          description: Delete review reply result
+      summary: Test deleteReviewReply
+      tags:
+      - misc/google-mock
+  /misc/google-mock/create-admin:
+    post:
+      operationId: t_value
+      parameters: []
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              type: object
+              required:
+              - entityId
+              - adminData
+              properties:
+                entityId:
+                  type: string
+                  example: 123e4567-e89b-12d3-a456-426614174000
+                adminData:
+                  type: object
+                  properties:
+                    admin:
+                      type: string
+                      example: user@example.com
+                    role:
+                      type: string
+                      example: MANAGER
+      responses:
+        '200':
+          description: Create admin result
+      summary: Test createLocationAdmin
+      tags:
+      - misc/google-mock
+  /misc/google-mock/delete-admin:
+    delete:
+      operationId: t_value
+      parameters: []
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              type: object
+              required:
+              - entityId
+              - adminName
+              properties:
+                entityId:
+                  type: string
+                  example: 123e4567-e89b-12d3-a456-426614174000
+                adminName:
+                  type: string
+                  example: accounts/123/locations/456/admins/789
+      responses:
+        '200':
+          description: Delete admin result
+      summary: Test deleteLocationAdmin
+      tags:
+      - misc/google-mock
+  /misc/google-mock/create-place-action-link:
+    post:
+      operationId: t_value
+      parameters: []
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              type: object
+              required:
+              - entityId
+              - linkData
+              properties:
+                entityId:
+                  type: string
+                  example: 123e4567-e89b-12d3-a456-426614174000
+                locationEntityId:
+                  type: string
+                  example: 987fcdeb-51a2-43d1-9f12-123456789abc
+                locationName:
+                  type: string
+                  example: locations/123456
+                linkData:
+                  type: object
+                  properties:
+                    uri:
+                      type: string
+                      example: https://example.com/appointment
+                    placeActionType:
+                      type: string
+                      example: APPOINTMENT
+                    providerType:
+                      type: string
+                      example: MERCHANT
+      responses:
+        '200':
+          description: Create place action link result
+      summary: Test createPlaceActionLink
+      tags:
+      - misc/google-mock
+  /misc/google-mock/update-place-action-link:
+    put:
+      operationId: t_value
+      parameters: []
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              type: object
+              required:
+              - entityId
+              - linkData
+              properties:
+                entityId:
+                  type: string
+                  example: 123e4567-e89b-12d3-a456-426614174000
+                locationEntityId:
+                  type: string
+                  example: 987fcdeb-51a2-43d1-9f12-123456789abc
+                locationName:
+                  type: string
+                  example: locations/123456
+                linkName:
+                  type: string
+                  example: locations/123/placeActionLinks/456
+                linkData:
+                  type: object
+                  properties:
+                    uri:
+                      type: string
+                      example: https://example.com/updated-appointment
+      responses:
+        '200':
+          description: Update place action link result
+      summary: Test updatePlaceActionLink
+      tags:
+      - misc/google-mock
+  /misc/google-mock/delete-place-action-link:
+    delete:
+      operationId: t_value
+      parameters: []
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              type: object
+              required:
+              - entityId
+              - linkName
+              properties:
+                entityId:
+                  type: string
+                  example: 123e4567-e89b-12d3-a456-426614174000
+                linkName:
+                  type: string
+                  example: locations/123/placeActionLinks/456
+      responses:
+        '200':
+          description: Delete place action link result
+      summary: Test deletePlaceActionLink
+      tags:
+      - misc/google-mock
+  /misc/google-mock/create-question:
+    post:
+      operationId: t_value
+      parameters: []
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              type: object
+              required:
+              - entityId
+              - questionData
+              properties:
+                entityId:
+                  type: string
+                  example: 123e4567-e89b-12d3-a456-426614174000
+                locationEntityId:
+                  type: string
+                  example: 987fcdeb-51a2-43d1-9f12-123456789abc
+                locationName:
+                  type: string
+                  example: locations/123456
+                questionData:
+                  type: object
+                  properties:
+                    text:
+                      type: string
+                      example: What are your business hours?
+      responses:
+        '200':
+          description: Create question result
+      summary: Test createQuestion (Q&A API)
+      tags:
+      - misc/google-mock
+  /misc/google-mock/update-question:
+    put:
+      operationId: t_value
+      parameters: []
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              type: object
+              required:
+              - entityId
+              - questionName
+              - questionData
+              properties:
+                entityId:
+                  type: string
+                  example: 123e4567-e89b-12d3-a456-426614174000
+                questionName:
+                  type: string
+                  example: locations/123/questions/456
+                questionData:
+                  type: object
+                  properties:
+                    text:
+                      type: string
+                      example: Updated question text
+      responses:
+        '200':
+          description: Update question result
+      summary: Test patchQuestion (Q&A API)
+      tags:
+      - misc/google-mock
+  /misc/google-mock/delete-question:
+    delete:
+      operationId: t_value
+      parameters: []
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              type: object
+              required:
+              - entityId
+              - questionName
+              properties:
+                entityId:
+                  type: string
+                  example: 123e4567-e89b-12d3-a456-426614174000
+                questionName:
+                  type: string
+                  example: locations/123/questions/456
+      responses:
+        '200':
+          description: Delete question result
+      summary: Test deleteQuestion (Q&A API)
+      tags:
+      - misc/google-mock
+  /misc/google-mock/upsert-answer:
+    post:
+      operationId: t_value
+      parameters: []
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              type: object
+              required:
+              - entityId
+              - questionName
+              - answerData
+              properties:
+                entityId:
+                  type: string
+                  example: 123e4567-e89b-12d3-a456-426614174000
+                questionName:
+                  type: string
+                  example: locations/123/questions/456
+                answerData:
+                  type: object
+                  properties:
+                    text:
+                      type: string
+                      example: Thank you for your question! Our business hours are Monday-Friday 9AM-5PM.
+      responses:
+        '200':
+          description: Upsert answer result
+      summary: Test upsertAnswer (Q&A API)
+      tags:
+      - misc/google-mock
+  /misc/google-mock/delete-answer:
+    delete:
+      operationId: t_value
+      parameters: []
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              type: object
+              required:
+              - entityId
+              - questionName
+              properties:
+                entityId:
+                  type: string
+                  example: 123e4567-e89b-12d3-a456-426614174000
+                questionName:
+                  type: string
+                  example: locations/123/questions/456
+      responses:
+        '200':
+          description: Delete answer result
+      summary: Test deleteAnswer (Q&A API)
+      tags:
+      - misc/google-mock
+components:
+  securitySchemes:
+    access-token:
+      scheme: bearer
+      bearerFormat: JWT
+      type: http
+      name: Authorization
+      description: Enter JWT token in the format Bearer <token>
+      in: header

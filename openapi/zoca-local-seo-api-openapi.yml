@@ -1,0 +1,1312 @@
+openapi: 3.2.0
+info:
+  title: Zoca Tasks Local SEO API
+  description: 'The Zoca tasks/automation service: AI content queue and planning, FrontDesk (Retell/Twilio) voice + SMS agent onboarding, local-SEO grid scans, WIN conversion triggers, and inbound integration webhooks (Chargebee, Square, Pipedrive, Twilio, Retell, CallHippo, Sybill, Instantly).'
+  version: 3.20.9
+  contact: {}
+  x-apievangelist-note: Harvested verbatim from https://tasks.zoca.ai/swagger.json. The provider ships the default NestJS Swagger metadata (title "API Documentation", empty servers[]); title/description/servers were set by API Evangelist for identification and the unmodified original is preserved at openapi/_original/zoca-tasks-swagger.json. Every path, operation, summary, parameter and response is exactly as published.
+servers:
+- url: https://tasks.zoca.ai
+  description: Production
+security:
+- access-token: []
+tags:
+- name: Local SEO
+paths:
+  /tasks/api/v1/local-seo/rank-extraction:
+    post:
+      operationId: t_value
+      parameters: []
+      responses:
+        '202':
+          description: Accepted
+      summary: Trigger rank extraction
+      tags:
+      - Local SEO
+  /tasks/api/v1/local-seo/keyword-gen/trigger:
+    post:
+      operationId: t_value
+      parameters:
+      - name: source
+        required: false
+        in: query
+        schema: {}
+      responses:
+        '200':
+          description: Accepted or daily quota exhausted
+      summary: Trigger keyword-gen state machine (generate-keywords)
+      tags:
+      - Local SEO
+  /tasks/api/v1/local-seo/keyword-gen/custom-keyword-requests:
+    post:
+      operationId: t_value
+      parameters: []
+      responses:
+        '201':
+          description: ''
+      summary: Create custom keyword requests for future keyword-gen runs
+      tags:
+      - Local SEO
+    get:
+      operationId: t_value
+      parameters: []
+      responses:
+        '200':
+          description: ''
+      summary: List custom keyword requests for an entity
+      tags:
+      - Local SEO
+  /tasks/api/v1/local-seo/keyword-gen/custom-keyword-requests/{requestId}/archive:
+    put:
+      operationId: t_value
+      parameters: []
+      responses:
+        '200':
+          description: ''
+      summary: Archive a custom keyword request
+      tags:
+      - Local SEO
+  /tasks/api/v1/local-seo/keyword-gen/custom-keyword-requests/{requestId}/unarchive:
+    put:
+      operationId: t_value
+      parameters: []
+      responses:
+        '200':
+          description: ''
+      summary: Unarchive a custom keyword request
+      tags:
+      - Local SEO
+  /tasks/api/v1/local-seo/keyword-gen/run-step:
+    post:
+      operationId: t_value
+      parameters: []
+      responses:
+        '202':
+          description: Accepted
+      summary: Resume keyword-gen state machine from a step (run-step)
+      tags:
+      - Local SEO
+  /tasks/api/v1/local-seo/rank-extraction/{jobId}:
+    get:
+      operationId: t_value
+      parameters: []
+      responses:
+        '200':
+          description: ''
+      summary: Get rank extraction results
+      tags:
+      - Local SEO
+  /tasks/api/v1/local-seo/keywords/by-service:
+    get:
+      operationId: t_value
+      parameters:
+      - name: mappedId
+        required: false
+        in: query
+        schema:
+          type: string
+      - name: mappedName
+        required: false
+        in: query
+        schema:
+          type: string
+      - name: mappedType
+        required: true
+        in: query
+        schema:
+          enum:
+          - service
+          - provider
+          - category
+          - business_entity
+          type: string
+      - name: entityId
+        required: true
+        in: query
+        schema:
+          type: string
+      responses:
+        '200':
+          description: Mapped keyword metrics
+      summary: Get keywords associated to a mapped keyword group
+      tags:
+      - Local SEO
+  /tasks/api/v1/local-seo/keywords/services/buckets:
+    get:
+      operationId: t_value
+      parameters:
+      - name: page
+        required: false
+        in: query
+        schema:
+          type: number
+      - name: pageSize
+        required: false
+        in: query
+        schema:
+          type: number
+      - name: bucket
+        required: true
+        in: query
+        schema:
+          enum:
+          - HIGH
+          - MEDIUM
+          - LOW
+          type: string
+      - name: entityId
+        required: true
+        in: query
+        schema:
+          type: string
+      responses:
+        '200':
+          description: Mapped keyword demand buckets
+      summary: Get keyword mapped-type buckets (high/medium/low) ordered by demand percentile
+      tags:
+      - Local SEO
+  /tasks/api/v1/local-seo/keywords/relevance:
+    put:
+      description: 'Bulk update is_deleted for matching keywords. Use isDeleted: true to soft-delete or false to restore. Omit processId to update ALL rows for the (entityId, keyword) pair across every pipeline execution.'
+      operationId: t_value
+      parameters: []
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/e'
+      responses:
+        '200':
+          description: entityId, processId, updatedCount, isDeleted
+          content:
+            application/json:
+              schema:
+                type: object
+      summary: Set is_deleted on keyword_relevance rows
+      tags:
+      - Local SEO
+  /tasks/api/v1/local-seo/keywords/active-relevance:
+    get:
+      description: Returns paginated unique keywords from the latest completed RANK_EXTRACTION pipeline execution for the given entity, ordered by demand desc.
+      operationId: t_value
+      parameters:
+      - name: pageSize
+        required: false
+        in: query
+        schema:
+          type: number
+      - name: page
+        required: false
+        in: query
+        schema:
+          type: number
+      - name: entityId
+        required: true
+        in: query
+        schema:
+          type: string
+      responses:
+        '200':
+          description: Paginated unique active relevance keywords
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/e'
+      summary: Get unique active relevance keywords with pagination
+      tags:
+      - Local SEO
+  /tasks/api/v1/local-seo/keywords/archived:
+    get:
+      description: Returns paginated keywords where is_deleted = true from keyword_relevance. Omit processId to use the latest completed DUPLICATE_DEMAND_ADJ execution for the entity.
+      operationId: t_value
+      parameters:
+      - name: pageSize
+        required: false
+        in: query
+        schema:
+          type: number
+      - name: page
+        required: false
+        in: query
+        schema:
+          type: number
+      - name: processId
+        required: false
+        in: query
+        schema:
+          type: string
+      - name: entityId
+        required: true
+        in: query
+        schema:
+          type: string
+      responses:
+        '200':
+          description: Paginated archived keywords
+        '404':
+          description: No completed DUPLICATE_DEMAND_ADJ when processId omitted
+      summary: Get archived (soft-deleted) keywords with pagination
+      tags:
+      - Local SEO
+  /tasks/api/v1/local-seo/{entityId}/keyword-impressions/monthly:
+    get:
+      operationId: t_value
+      parameters:
+      - name: limit
+        required: false
+        in: query
+        schema:
+          type: number
+      - name: page
+        required: false
+        in: query
+        schema:
+          type: number
+      responses:
+        '200':
+          description: Keyword-level monthly impressions
+        '404':
+          description: Entity has no GBP locations
+      summary: Get monthly keyword impressions by entityId (paginated)
+      tags:
+      - Local SEO
+  /tasks/api/v1/local-seo/keywords/selected-keywords:
+    post:
+      operationId: t_value
+      parameters: []
+      responses:
+        '201':
+          description: ''
+      tags:
+      - Local SEO
+    get:
+      operationId: t_value
+      parameters: []
+      responses:
+        '200':
+          description: ''
+      tags:
+      - Local SEO
+    put:
+      operationId: t_value
+      parameters: []
+      responses:
+        '200':
+          description: ''
+      tags:
+      - Local SEO
+  /tasks/api/v1/local-seo/keywords/selected-keywords-by-entity-id:
+    get:
+      operationId: t_value
+      parameters:
+      - name: entityId
+        required: true
+        in: query
+        schema:
+          type: string
+      responses:
+        '200':
+          description: The selected keywords for the entity
+        '400':
+          description: 'Invalid input: entityId is required'
+        '404':
+          description: Entity not found
+        '500':
+          description: Internal server error
+      summary: Get selected keywords by entityId
+      tags:
+      - Local SEO
+  /tasks/api/v1/local-seo/fallback-services:
+    get:
+      operationId: t_value
+      parameters:
+      - name: placeId
+        required: true
+        in: query
+        schema:
+          type: string
+      responses:
+        '200':
+          description: The fallback services for the place
+        '400':
+          description: 'Invalid input: placeId is required'
+      summary: Get fallback services for a place
+      tags:
+      - Local SEO
+  /tasks/api/v1/local-seo/keyword-gen-execution:
+    post:
+      operationId: t_value
+      parameters:
+      - name: payload
+        required: true
+        in: query
+        schema:
+          $ref: '#/components/schemas/Object'
+      responses:
+        '200':
+          description: The keyword gen execution
+        '400':
+          description: 'Invalid input: payload is required'
+        '500':
+          description: Internal server error
+      summary: Upsert keyword gen execution
+      tags:
+      - Local SEO
+  /tasks/api/v1/local-seo/keyword-ranks:
+    post:
+      operationId: t_value
+      parameters:
+      - name: payload
+        required: true
+        in: query
+        schema:
+          $ref: '#/components/schemas/Object'
+      responses:
+        '200':
+          description: The keyword ranks
+        '400':
+          description: 'Invalid input: payload is required'
+        '500':
+          description: Internal server error
+      summary: Insert keyword ranks
+      tags:
+      - Local SEO
+  /tasks/api/v1/local-seo/google-ads-keywords/bulk:
+    post:
+      operationId: t_value
+      parameters: []
+      responses:
+        '201':
+          description: Keywords created/updated successfully
+          content:
+            application/json:
+              schema:
+                type: array
+                items:
+                  type: object
+        '400':
+          description: 'Invalid input: keywords array is required'
+        '500':
+          description: Internal server error
+      summary: Bulk create or update Google Ads keywords
+      tags:
+      - Local SEO
+  /tasks/api/v1/local-seo/semrush/fetch-keyword-data:
+    post:
+      description: Fetches keyword metrics (search volume, CPC, competition, etc.) from Semrush API for the provided keywords. Automatically handles batching for lists larger than 100 keywords. Stores all data in the semrushAttributes JSONB column.
+      operationId: t_value
+      parameters: []
+      responses:
+        '201':
+          description: Keyword data fetched from Semrush and stored successfully
+          schema:
+            type: array
+            items:
+              type: object
+              properties:
+                id:
+                  type: number
+                keyword:
+                  type: string
+                processId:
+                  type: string
+                semrushAttributes:
+                  type: object
+                  properties:
+                    keyword:
+                      type: string
+                    searchVolume:
+                      type: number
+                    cpc:
+                      type: number
+                    competition:
+                      type: number
+                    numberOfResults:
+                      type: number
+                    trends:
+                      type: array
+                      items:
+                        type: number
+                    intent:
+                      type: array
+                      items:
+                        type: string
+                    serpFeatures:
+                      type: array
+                      items:
+                        type: string
+          content:
+            application/json:
+              schema:
+                type: array
+                items:
+                  type: object
+        '400':
+          description: 'Invalid input: keywords array is required'
+        '500':
+          description: Internal server error or Semrush API error
+      summary: Fetch keyword data from Semrush API and store in database
+      tags:
+      - Local SEO
+  /tasks/api/v1/local-seo/duplicate-keyword-sets:
+    post:
+      description: Create or retrieve a duplicate keyword set and update associated keywords with the set ID
+      operationId: t_value
+      parameters: []
+      responses:
+        '201':
+          description: Duplicate keyword set created/retrieved successfully
+          schema:
+            type: object
+            properties:
+              id:
+                type: number
+              setSignature:
+                type: string
+              createdAt:
+                type: string
+                format: date-time
+              updatedAt:
+                type: string
+                format: date-time
+              isActive:
+                type: boolean
+          content:
+            application/json:
+              schema:
+                type: object
+        '400':
+          description: 'Invalid input: setSignature and keywords are required'
+        '500':
+          description: Internal server error
+      summary: Create duplicate keyword set
+      tags:
+      - Local SEO
+  /tasks/api/v1/local-seo/duplicate-keyword-sets/with-data:
+    post:
+      description: Create or retrieve a duplicate keyword set and insert keywords with their complete data including Semrush attributes
+      operationId: t_value
+      parameters: []
+      responses:
+        '201':
+          description: Duplicate keyword set created with keyword data successfully
+          schema:
+            type: object
+            properties:
+              id:
+                type: number
+              setSignature:
+                type: string
+              createdAt:
+                type: string
+                format: date-time
+              updatedAt:
+                type: string
+                format: date-time
+              isActive:
+                type: boolean
+          content:
+            application/json:
+              schema:
+                type: object
+        '400':
+          description: 'Invalid input: setSignature and keywords with data are required'
+        '500':
+          description: Internal server error
+      summary: Create duplicate keyword set with keyword data
+      tags:
+      - Local SEO
+  /tasks/api/v1/local-seo/duplicate-keyword-sets/all-keywords-by-keyword:
+    get:
+      description: Retrieve all keywords that belong to the same duplicate set as the provided keyword, including complete data and Semrush attributes
+      operationId: t_value
+      parameters:
+      - name: keyword
+        required: true
+        in: query
+        schema:
+          type: string
+      responses:
+        '200':
+          description: All keywords in the same duplicate set retrieved successfully
+          schema:
+            type: array
+            items:
+              type: object
+              properties:
+                id:
+                  type: number
+                keyword:
+                  type: string
+                setId:
+                  type:
+                  - number
+                  - 'null'
+                searchedCanonicalName:
+                  type:
+                  - string
+                  - 'null'
+                searchedKeywords:
+                  type:
+                  - object
+                  - 'null'
+                averageSearch:
+                  type:
+                  - number
+                  - 'null'
+                processId:
+                  type:
+                  - string
+                  - 'null'
+                multiplier:
+                  type:
+                  - number
+                  - 'null'
+                semrushAttributes:
+                  type:
+                  - object
+                  - 'null'
+                  properties:
+                    keyword:
+                      type: string
+                    searchVolume:
+                      type: number
+                    cpc:
+                      type: number
+                    competition:
+                      type: number
+                    numberOfResults:
+                      type: number
+                    trends:
+                      type: array
+                      items:
+                        type: number
+                    intent:
+                      type: array
+                      items:
+                        type: string
+                    serpFeatures:
+                      type: array
+                      items:
+                        type: string
+                createdAt:
+                  type: string
+                  format: date-time
+                updatedAt:
+                  type: string
+                  format: date-time
+          content:
+            application/json:
+              schema:
+                type: array
+                items:
+                  type: object
+        '400':
+          description: 'Invalid input: keyword is required'
+        '500':
+          description: Internal server error
+      summary: Get all keywords in duplicate set by keyword
+      tags:
+      - Local SEO
+  /tasks/api/v1/local-seo/bucketing/upload-csv:
+    post:
+      description: "Upload a CSV file to bulk import categories, themes, and keywords for the bucketing system.\n\n    Supports two CSV formats:\n\n    **Legacy Format:**\n    - Headers: category,theme,theme_description,keyword,keyword_type,cluster_id\n    - category: Category name (required)\n    - theme: Theme/bucket name (required)\n    - theme_description: Optional description for the theme\n    - keyword: The keyword to map (required)\n    - keyword_type: EXISTING or NEW (required)\n    - cluster_id: Numeric cluster ID (required)\n\n    **New Format:**\n    - Headers: parent_category,bucket,bucket_description,keyword,cluster_id,created_at,uuid,updated_at,centroid,description\n    - parent_category: Category name (required)\n    - bucket: Theme/bucket name (required)\n    - bucket_description: Optional description for the bucket\n    - keyword: The keyword to map (required)\n    - cluster_id: Numeric cluster ID (required)\n    - created_at: Optional timestamp (format: YYYY-MM-DD HH:MM:SS)\n    - uuid: Optional unique identifier\n    - updated_at: Optional timestamp (format: YYYY-MM-DD HH:MM:SS)\n    - centroid: Optional vector embedding as JSON array of numbers\n    - description: Optional additional description\n\n    Examples:\n\n    Legacy Format:\n    category,theme,theme_description,keyword,keyword_type,cluster_id\n    \"Food & Dining\",\"Restaurant Types\",\"Various types of restaurants\",\"italian restaurant\",EXISTING,1\n\n    New Format:\n    parent_category,bucket,bucket_description,keyword,cluster_id,centroid,description\n    \"hair_coloring_and_treatments\",\"highlights_and_balayage\",\"Highlighting techniques\",\"hair highlights near me\",0,\"[0.031, -0.032, 0.005]\",\"Comprehensive description\""
+      operationId: t_value
+      parameters: []
+      requestBody:
+        required: true
+        content:
+          multipart/form-data:
+            schema:
+              type: object
+              properties:
+                file:
+                  type: string
+                  format: binary
+                  description: CSV file to upload
+                updateExisting:
+                  type: boolean
+                  description: Whether to update existing keywords with new bucket mappings
+                  default: false
+                validateOnly:
+                  type: boolean
+                  description: If true, only validate the CSV without persisting data
+                  default: false
+              required:
+              - file
+      responses:
+        '201':
+          description: CSV file processed successfully
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  success:
+                    type: boolean
+                  totalRows:
+                    type: number
+                  processedRows:
+                    type: number
+                  categoriesCreated:
+                    type: number
+                  themesCreated:
+                    type: number
+                  keywordsCreated:
+                    type: number
+                  keywordsUpdated:
+                    type: number
+                  errors:
+                    type: array
+                    items:
+                      type: object
+                      properties:
+                        row:
+                          type: number
+                        errors:
+                          type: array
+                          items:
+                            type: string
+                        data:
+                          type: object
+                  warnings:
+                    type: array
+                    items:
+                      type: string
+                  processingTime:
+                    type: number
+                    description: Processing time in milliseconds
+        '400':
+          description: Invalid file or CSV format
+        '500':
+          description: Internal server error
+      summary: Upload CSV file with categories, themes, and keywords
+      tags:
+      - Local SEO
+  /tasks/api/v1/local-seo/bucketing/map-keywords:
+    post:
+      description: "Maps an array of keywords to their existing buckets and categories.\n    Returns a key-value mapping where each keyword is mapped to its bucket and category information.\n    Unmapped keywords will have a null value in the mapping."
+      operationId: t_value
+      parameters: []
+      requestBody:
+        required: true
+        description: Array of keywords to map
+        content:
+          application/json:
+            schema:
+              type: object
+              required:
+              - keywords
+              properties:
+                keywords:
+                  type: array
+                  description: Array of keywords to find mappings for
+                  items:
+                    type: string
+                  example:
+                  - hair coloring
+                  - highlights
+                  - root touch up
+                  - unknown service
+              $ref: '#/components/schemas/'
+      responses:
+        '200':
+          description: Keywords successfully mapped
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  success:
+                    type: boolean
+                    example: true
+                  totalKeywords:
+                    type: number
+                    example: 4
+                  totalMapped:
+                    type: number
+                    example: 3
+                  keywordMapping:
+                    type: object
+                    description: Key-value mapping of keywords to their bucket/category info
+                    example:
+                      hair coloring:
+                        bucketId: uuid-1
+                        bucketName: Hair Coloring Services
+                        categoryId: uuid-2
+                        categoryName: Hair Services
+                        mappingType: DIRECT
+                      unknown service: null
+                  unmappedKeywords:
+                    type: array
+                    items:
+                      type: string
+                    example:
+                    - unknown service
+                  processingTime:
+                    type: number
+                    description: Processing time in milliseconds
+        '400':
+          description: Invalid input
+        '500':
+          description: Internal server error
+      summary: Map keywords to existing buckets and categories
+      tags:
+      - Local SEO
+  /tasks/api/v1/local-seo/place-details:
+    post:
+      description: Handles both single and bulk inserts/updates of place details. For single insert, pass the place details object directly. For bulk insert, pass an array in placeDetails field. Maximum 100 records per request.
+      operationId: t_value
+      parameters: []
+      requestBody:
+        required: true
+        description: Place details data - either single object or bulk array
+        content:
+          application/json:
+            schema:
+              oneOf:
+              - type: object
+                description: Single place details object
+                properties:
+                  placeId:
+                    type: string
+                    description: Required place ID
+                  name:
+                    type: string
+                  website:
+                    type: string
+                required:
+                - placeId
+              - type: object
+                description: Bulk place details
+                properties:
+                  placeDetails:
+                    type: array
+                    items:
+                      type: object
+                      properties:
+                        placeId:
+                          type: string
+                          description: Required place ID
+                        name:
+                          type: string
+                        website:
+                          type: string
+                      required:
+                      - placeId
+                required:
+                - placeDetails
+      responses:
+        '201':
+          description: Place details created/updated successfully
+          schema:
+            type: array
+            items:
+              type: object
+              properties:
+                placeId:
+                  type: string
+                name:
+                  type: string
+                website:
+                  type: string
+                formattedAddress:
+                  type: string
+                rating:
+                  type: number
+                userRatingsTotal:
+                  type: number
+                createdAt:
+                  type: string
+                  format: date-time
+                updatedAt:
+                  type: string
+                  format: date-time
+          content:
+            application/json:
+              schema:
+                type: array
+                items:
+                  type: object
+        '400':
+          description: Invalid input or too many records (max 100)
+        '500':
+          description: Internal server error
+      summary: Create or update place details from Lambda scraper
+      tags:
+      - Local SEO
+  /tasks/api/v1/local-seo/keywords/final:
+    get:
+      description: Fetches keyword ideas, themes, and maximum total demand from the keywords database for a given place_id
+      operationId: t_value
+      parameters:
+      - name: placeId
+        required: true
+        in: query
+        description: The place ID to fetch keywords for
+        schema:
+          example: ChIJN1t_tDeuEmsRUsoyG83frY4
+          type: string
+      responses:
+        '200':
+          description: Successfully retrieved keywords data
+          content:
+            application/json:
+              schema:
+                type: array
+                items:
+                  type: object
+                  properties:
+                    keyword_idea:
+                      type: string
+                    keyword_theme:
+                      type: string
+                    max_total_demand:
+                      type: number
+        '400':
+          description: Invalid place_id provided
+      summary: Get final keyword ideas and themes
+      tags:
+      - Local SEO
+  /tasks/api/v1/local-seo/census-data/bulk-create:
+    post:
+      description: Uploads a CSV file (.csv), brotli-compressed CSV file (.br), or accepts a JSON array and upserts data into census tables in batches. Supports country_data, state_data, city_data, and block_data tables. Default batch size is 100.
+      operationId: t_value
+      parameters: []
+      requestBody:
+        required: true
+        description: Either a file upload (multipart/form-data) or JSON array (application/json). For file uploads, use multipart/form-data. For JSON arrays, use application/json.
+        content:
+          application/json:
+            schema:
+              oneOf:
+              - type: object
+                required:
+                - file
+                - tableType
+                properties:
+                  file:
+                    type: string
+                    format: binary
+                    description: CSV file (.csv) or Brotli-compressed CSV file (.br)
+                  tableType:
+                    type: string
+                    enum:
+                    - country_data
+                    - state_data
+                    - city_data
+                    - block_data
+                    description: Type of census data table
+                  batchSize:
+                    type: integer
+                    description: 'Batch size for processing (default: 100)'
+                    example: 100
+                  skipValidation:
+                    type: boolean
+                    description: 'Skip row validation (default: false)'
+                    example: false
+              - type: object
+                required:
+                - tableType
+                - data
+                properties:
+                  tableType:
+                    type: string
+                    enum:
+                    - country_data
+                    - state_data
+                    - city_data
+                    - block_data
+                    description: Type of census data table
+                  data:
+                    type: array
+                    description: Array of census data records matching table schema
+                    items:
+                      type: object
+                  batchSize:
+                    type: integer
+                    description: 'Batch size for processing (default: 100)'
+                    example: 100
+      responses:
+        '201':
+          description: Data uploaded and processing started
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/e'
+        '400':
+          description: Invalid file or request
+      summary: Bulk create census data from CSV, brotli-compressed CSV, or JSON array
+      tags:
+      - Local SEO
+  /tasks/api/v1/local-seo/keywords-demand/calculate:
+    post:
+      description: Calculates keyword demand synchronously. US and Canada use the existing block/city spatial radius path. India uses city/state/country density data with radiusKm, defaulting to 5 km. Returns success response with demand count. Process ID is auto-generated if not provided.
+      operationId: t_value
+      parameters: []
+      responses:
+        '200':
+          description: Keywords demand calculated successfully
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  success:
+                    type: boolean
+                    example: true
+                  message:
+                    type: string
+                    example: Keywords demand calculated successfully
+                  processId:
+                    type: string
+                    example: 123e4567-e89b-12d3-a456-426614174000
+                  lat:
+                    type: number
+                    example: 33.8379823
+                  lng:
+                    type: number
+                    example: -84.3134623
+                  keywords:
+                    type: array
+                    items:
+                      type: string
+                    example:
+                    - botox
+                    - facial
+                  demandCount:
+                    type: number
+                    example: 15
+        '400':
+          description: Invalid input data
+        '500':
+          description: Internal server error
+      summary: Calculate keywords demand for a location (synchronous)
+      tags:
+      - Local SEO
+  /tasks/api/v1/local-seo/keywords-demand:
+    get:
+      description: "\n      Retrieves keyword demand records with pagination support.\n      Filter by either coordinates (latitude + longitude) or processId.\n      Results are ordered by creation date (newest first).\n    "
+      operationId: t_value
+      parameters: []
+      responses:
+        '200':
+          description: Paginated keyword demand data
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  data:
+                    type: array
+                    items:
+                      type: object
+                      properties:
+                        pid:
+                          type: number
+                          example: 1
+                        latitude:
+                          type: number
+                          example: 33.8379823
+                        longitude:
+                          type: number
+                          example: -84.3134623
+                        keyword:
+                          type:
+                          - string
+                          - 'null'
+                          example: botox
+                        demand:
+                          type:
+                          - number
+                          - 'null'
+                          example: 150.5
+                        processId:
+                          type:
+                          - string
+                          - 'null'
+                          example: 123e4567-e89b-12d3-a456-426614174000
+                        createdAt:
+                          type:
+                          - string
+                          - 'null'
+                          example: '2025-01-01T10:30:00.000Z'
+                  pagination:
+                    type: object
+                    properties:
+                      total:
+                        type: number
+                        example: 100
+                      page:
+                        type: number
+                        example: 1
+                      limit:
+                        type: number
+                        example: 1000
+                      pages:
+                        type: number
+                        example: 1
+                      hasNextPage:
+                        type: boolean
+                        example: false
+                      hasPreviousPage:
+                        type: boolean
+                        example: false
+        '400':
+          description: Bad Request - Invalid parameters or missing required filters
+      summary: Get paginated keyword demand data
+      tags:
+      - Local SEO
+  /tasks/api/v1/local-seo/{entityId}/website-audit:
+    post:
+      description: Runs PageSpeed Insights and Schema Markup audits for the specified entity and stores results in the database.
+      operationId: t_value
+      parameters: []
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              type: object
+              properties:
+                websiteUrl:
+                  type: string
+                  format: uri
+                  description: Optional website URL. If not provided, will be fetched from GBP location metadata.
+                  example: https://example.com
+              required: []
+      responses:
+        '200':
+          description: Website audit completed successfully
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  pagespeedAudit:
+                    type: object
+                    description: PageSpeed Insights audit results
+                  schemaMarkupAudit:
+                    type: object
+                    description: Schema Markup audit results
+        '400':
+          description: Bad Request - Invalid entityId or missing website URL
+        '500':
+          description: Internal server error during audit processing
+      summary: Trigger website audit for an entity
+      tags:
+      - Local SEO
+    get:
+      description: Retrieves the latest PageSpeed Insights and/or Schema Markup audit results for the specified entity. Can filter by month (YYYY-MM format).
+      operationId: t_value
+      parameters:
+      - name: month
+        required: false
+        in: query
+        description: Filter by month in YYYY-MM format (e.g., 2025-12). If not provided, returns latest audit.
+        schema:
+          example: 2025-12
+          type: string
+      - name: type
+        required: false
+        in: query
+        description: Filter by audit type. If not provided, returns both audit types.
+        schema:
+          enum:
+          - pagespeed
+          - schema-markup
+          type: string
+      responses:
+        '200':
+          description: Audit results retrieved successfully
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  pagespeedAudit:
+                    type:
+                    - object
+                    - 'null'
+                    description: Latest PageSpeed Insights audit result
+                  schemaMarkupAudit:
+                    type:
+                    - object
+                    - 'null'
+                    description: Latest Schema Markup audit result
+        '404':
+          description: No audit results found for the specified entity
+      summary: Get website audit results for an entity
+      tags:
+      - Local SEO
+  /tasks/api/v1/local-seo/{entityId}/gbp-audit:
+    post:
+      description: Runs GBP insights audit (Zoca score and insights) for the specified entity and stores results in the database.
+      operationId: t_value
+      parameters: []
+      responses:
+        '200':
+          description: GBP insights audit completed successfully
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  insights:
+                    type: object
+                    description: Insights data generated from Zoca score
+                  zocaScoreData:
+                    type: object
+                    description: Complete Zoca score calculation with all components
+                  processId:
+                    type: string
+                    format: uuid
+                    description: Process ID used for this audit run
+        '400':
+          description: Invalid request parameters
+        '500':
+          description: Internal server error
+      summary: Trigger GBP insights audit for an entity
+      tags:
+      - Local SEO
+    get:
+      description: Retrieves the latest GBP insights audit result for the specified entity, optionally filtered by month.
+      operationId: t_value
+      parameters:
+      - name: month
+        required: false
+        in: query
+        description: Optional month filter in format YYYY-MM (e.g., 2025-12). If not provided, returns latest audit.
+        schema:
+          example: 2025-12
+          type: string
+      responses:
+        '200':
+          description: Audit results retrieved successfully
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  id:
+                    type: string
+                    format: uuid
+                    description: Audit record ID
+                  entityId:
+                    type: string
+                    format: uuid
+                    description: Entity ID
+                  result:
+                    type: object
+                    description: Complete audit result from getInsights
+                  createdAt:
+                    type: string
+                    format: date-time
+                    description: Audit creation timestamp
+        '404':
+          description: No audit results found for the specified entity
+      summary: Get GBP insights audit results for an entity
+      tags:
+      - Local SEO
+  /tasks/api/v1/local-seo/rca/health:
+    get:
+      operationId: t_value
+      parameters: []
+      responses:
+        '200':
+          description: Service is healthy
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/e'
+      summary: Health check for RCA service
+      tags:
+      - Local SEO
+  /tasks/api/v1/local-seo/rca/status/{entityId}:
+    get:
+      operationId: t_value
+      parameters: []
+      responses:
+        '200':
+          description: Analysis status retrieved successfully
+        '404':
+          description: Entity not found
+      summary: Get RCA analysis status for entity
+      tags:
+      - Local SEO
+  /tasks/api/v1/local-seo/rca/analyze-comprehensive:
+    post:
+      description: Analyzes all funnels comprehensively and provides detailed insights with priority-grouped problems. This is the enhanced version that evaluates all rules regardless of trigger status.
+      operationId: t_value
+      parameters: []
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/e'
+      responses:
+        '200':
+          description: Comprehensive RCA analysis completed successfully
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/e'
+        '400':
+          description: Invalid request parameters
+        '404':
+          description: Entity not found
+        '500':
+          description: Internal server error during analysis
+      summary: Comprehensive funnel-based RCA analysis
+      tags:
+      - Local SEO
+  /tasks/api/v1/local-seo/google-ad-api/key:
+    get:
+      operationId: t_value
+      parameters: []
+      responses:
+        '200':
+          description: ''
+      summary: Get rotated Google Ad API key
+      tags:
+      - Local SEO
+components:
+  schemas:
+    Object:
+      type: object
+      properties: {}
+    e:
+      type: object
+      properties:
+        scan:
+          $ref: '#/components/schemas/e'
+        businessLat:
+          type:
+          - number
+          - 'null'
+        businessLng:
+          type:
+          - number
+          - 'null'
+        points:
+          type: array
+          items:
+            $ref: '#/components/schemas/e'
+        heroMetrics:
+          $ref: '#/components/schemas/e'
+      required:
+      - scan
+      - businessLat
+      - businessLng
+      - points
+      - heroMetrics
+  securitySchemes:
+    access-token:
+      scheme: bearer
+      bearerFormat: JWT
+      type: http
+      name: Authorization
+      description: Enter JWT token in the format Bearer <token>
+      in: header

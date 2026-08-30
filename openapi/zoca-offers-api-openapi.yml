@@ -1,0 +1,680 @@
+openapi: 3.2.0
+info:
+  title: Zoca Platform Offers API
+  description: 'The Zoca platform API behind the Zoca web app and mobile apps: scheduling, website generation, Google Business Profile, discovery/local SEO, social media, booking enquiries, offers, clients, staff, billing and the Zoca "brain" agent layer.'
+  version: 3.20.10
+  contact: {}
+  x-apievangelist-note: Harvested verbatim from https://api.zoca.ai/swagger.json. The provider ships the default NestJS Swagger metadata (title "API Documentation", empty servers[]); title/description/servers were set by API Evangelist for identification and the unmodified original is preserved at openapi/_original/zoca-platform-swagger.json. Every path, operation, summary, parameter and response is exactly as published.
+servers:
+- url: https://api.zoca.ai
+  description: Production
+tags:
+- name: Offers
+paths:
+  /offers:
+    post:
+      operationId: t_value
+      parameters: []
+      responses:
+        '201':
+          description: Offer created successfully
+      summary: Create a new offer
+      tags:
+      - Offers
+    get:
+      operationId: t_value
+      parameters:
+      - name: app-version
+        in: header
+        description: Mobile app version header
+        required: false
+        schema:
+          type: string
+      - name: source
+        in: header
+        description: Request source identifier (e.g., "zoca-app")
+        required: false
+        schema:
+          type: string
+      responses:
+        '200':
+          description: Offers retrieved successfully
+      summary: List all offers
+      tags:
+      - Offers
+  /offers/draft:
+    post:
+      operationId: t_value
+      parameters: []
+      responses:
+        '201':
+          description: Draft offer created successfully
+      summary: Create a draft offer with optional fields
+      tags:
+      - Offers
+  /offers/{id}/draft:
+    put:
+      operationId: t_value
+      parameters: []
+      responses:
+        '200':
+          description: Draft offer updated successfully
+      summary: Update a draft offer with field-by-field updates
+      tags:
+      - Offers
+  /offers/{id}:
+    get:
+      operationId: t_value
+      parameters:
+      - name: source
+        in: header
+        description: Request source identifier (e.g., "zoca-app")
+        required: false
+        schema:
+          type: string
+      responses:
+        '200':
+          description: Offer details retrieved successfully
+      summary: Get offer details
+      tags:
+      - Offers
+    put:
+      operationId: t_value
+      parameters: []
+      responses:
+        '200':
+          description: Offer updated successfully
+      summary: Update an offer
+      tags:
+      - Offers
+    delete:
+      operationId: t_value
+      parameters: []
+      responses:
+        '200':
+          description: Offer soft deleted successfully
+      summary: Soft delete an offer
+      tags:
+      - Offers
+  /offers/v2/list:
+    get:
+      description: Optimized endpoint that only fetches from offers table, media, and CTAs. Uses efficient SQL aggregation for better performance. Supports pagination, filtering by active/draft status, search by title, and custom sorting.
+      operationId: t_value
+      parameters: []
+      responses:
+        '200':
+          description: Offers retrieved successfully with optimized data
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/e'
+        '400':
+          description: Invalid query parameters
+      summary: List offers with optimized data fetching (v2)
+      tags:
+      - Offers
+  /offers/channels/{entityId}:
+    get:
+      operationId: t_value
+      parameters: []
+      responses:
+        '200':
+          description: Channels retrieved successfully
+          content:
+            application/json:
+              schema:
+                type: array
+                items:
+                  $ref: '#/components/schemas/e'
+      summary: List available channels for offer creation with publishOn dates
+      tags:
+      - Offers
+  /offers/description/generate:
+    post:
+      description: Uses LLM to generate an offer description based on business category, services, and additional variables
+      operationId: t_value
+      parameters: []
+      responses:
+        '200':
+          description: Description generated successfully
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/e'
+        '400':
+          description: Bad request or prompt not found
+        '404':
+          description: Offer or entity not found
+      summary: Generate AI-powered description for an offer
+      tags:
+      - Offers
+  /offers/description/validate:
+    post:
+      description: Uses LLM to validate an offer description based on business category, services, and additional variables
+      operationId: t_value
+      parameters: []
+      responses:
+        '200':
+          description: Description validated successfully
+        '400':
+          description: Bad request or prompt not found
+        '404':
+          description: Offer or entity not found
+      summary: Validate AI-powered description for an offer
+      tags:
+      - Offers
+  /offers/title/generate:
+    post:
+      description: Uses LLM to generate an offer title based on business category, services, description, discount, and duration. The generated title is automatically stored in the offer.
+      operationId: t_value
+      parameters: []
+      responses:
+        '200':
+          description: Title generated and stored successfully
+        '400':
+          description: Bad request or prompt not found
+        '404':
+          description: Offer or entity not found
+      summary: Generate and store AI-powered title for an offer
+      tags:
+      - Offers
+  /offers/entities/{entityId}:
+    get:
+      operationId: t_value
+      parameters: []
+      responses:
+        '200':
+          description: Offers retrieved successfully
+      summary: List all offers on an entity
+      tags:
+      - Offers
+  /offers/entities/{entityId}/status:
+    get:
+      operationId: t_value
+      parameters:
+      - name: app-version
+        in: header
+        description: Mobile app version
+        required: false
+        schema:
+          type: string
+      - name: source
+        in: header
+        description: Source of the request (e.g., "zoca-app")
+        required: false
+        schema:
+          type: string
+      responses:
+        '200':
+          description: Offers retrieved successfully
+      summary: List all offers on an entity with status
+      tags:
+      - Offers
+  /offers/entities/{entityId}/status/count:
+    get:
+      description: Returns the count of offers for each status (DRAFT, FUTURE, LIVE, PAUSED, EXPIRED). Always returns all statuses even if count is 0. When requests come from zoca-app or mobile app (app-version header), offers with offerType = NOT_AN_OFFER are excluded.
+      operationId: t_value
+      parameters:
+      - name: app-version
+        in: header
+        description: Mobile app version
+        required: false
+        schema:
+          type: string
+      - name: source
+        in: header
+        description: Source of the request (e.g., "zoca-app")
+        required: false
+        schema:
+          type: string
+      responses:
+        '200':
+          description: Status counts retrieved successfully
+          content:
+            application/json:
+              schema:
+                type: array
+                items:
+                  type: object
+                  properties:
+                    status:
+                      type: string
+                      enum:
+                      - DRAFT
+                      - FUTURE
+                      - LIVE
+                      - PAUSED
+                      - EXPIRED
+                      example: LIVE
+                    count:
+                      type: number
+                      example: 10
+                example:
+                - status: DRAFT
+                  count: 2
+                - status: FUTURE
+                  count: 5
+                - status: LIVE
+                  count: 10
+                - status: PAUSED
+                  count: 1
+                - status: EXPIRED
+                  count: 0
+      summary: Get count of offers grouped by status for an entity
+      tags:
+      - Offers
+  /offers/entities/{entityId}/search:
+    get:
+      description: Performs case-insensitive partial matching on offer titles. Returns offers with all associations (services, media, CTAs, addons, channels) and calculated status (DRAFT, FUTURE, LIVE, PAUSED, EXPIRED). Uses page-based pagination for better UX.
+      operationId: t_value
+      parameters: []
+      responses:
+        '200':
+          description: Offers retrieved successfully with pagination metadata and calculated status
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  items:
+                    type: array
+                    items:
+                      type: object
+                  totalCount:
+                    type: number
+                    example: 25
+                  totalPages:
+                    type: number
+                    example: 3
+                  currentPage:
+                    type: number
+                    example: 1
+        '400':
+          description: Invalid search parameters
+      summary: Search offers by title with status calculation
+      tags:
+      - Offers
+  /offers/{offerId}/suggestions:
+    get:
+      description: Retrieves all suggestions for a specific offer from the requests table along with their request status and creation timestamp. The createdAt field is converted to a DateTime object with separate date and time components. Suggestions are ordered by creation date descending (newest first).
+      operationId: t_value
+      parameters: []
+      responses:
+        '200':
+          description: Suggestions retrieved successfully with status and creation timestamp
+          content:
+            application/json:
+              schema:
+                type: array
+                items:
+                  type: object
+                  properties:
+                    status:
+                      type: string
+                      example: COMPLETED
+                    suggestion:
+                      type: string
+                      example: Update the offer description to be more clear
+                    createdAt:
+                      type: object
+                      description: DateTime object with separate date and time components
+                      properties:
+                        date:
+                          type: object
+                          properties:
+                            year:
+                              type: number
+                              example: 2025
+                            month:
+                              type: number
+                              example: 12
+                            day:
+                              type: number
+                              example: 9
+                        time:
+                          type: object
+                          properties:
+                            hours:
+                              type: number
+                              example: 14
+                            minutes:
+                              type: number
+                              example: 30
+                            seconds:
+                              type: number
+                              example: 0
+                            nanos:
+                              type: number
+                              example: 0
+                example:
+                - status: COMPLETED
+                  suggestion: Update the offer description to be more clear
+                  createdAt:
+                    date:
+                      year: 2025
+                      month: 12
+                      day: 9
+                    time:
+                      hours: 14
+                      minutes: 30
+                      seconds: 0
+                      nanos: 0
+                - status: PENDING
+                  suggestion: Add more details about the discount
+                  createdAt:
+                    date:
+                      year: 2025
+                      month: 12
+                      day: 8
+                    time:
+                      hours: 10
+                      minutes: 15
+                      seconds: 30
+                      nanos: 0
+        '400':
+          description: Invalid request parameters
+      summary: Get suggestions for an offer
+      tags:
+      - Offers
+  /offers/{id}/duplicate:
+    post:
+      operationId: t_value
+      parameters: []
+      responses:
+        '201':
+          description: Offer duplicated successfully
+        '403':
+          description: Caller does not own the offer
+        '404':
+          description: Offer not found
+      summary: Duplicate an offer as a new draft
+      tags:
+      - Offers
+  /offers/{id}/toggle-active:
+    put:
+      description: Toggles the active status of an offer. If currently active, sets to inactive. If inactive, sets to active.
+      operationId: t_value
+      parameters: []
+      responses:
+        '200':
+          description: Offer status toggled successfully
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  success:
+                    type: boolean
+                    example: true
+                  message:
+                    type: string
+                    example: Offer status updated successfully
+                  isActive:
+                    type: boolean
+                    example: false
+        '404':
+          description: Offer not found
+      summary: Toggle offer active/inactive status
+      tags:
+      - Offers
+  /offers/{id}/entity:
+    post:
+      operationId: t_value
+      parameters: []
+      responses:
+        '201':
+          description: Entity associated successfully
+      summary: Associate an offer with an entity
+      tags:
+      - Offers
+    delete:
+      operationId: t_value
+      parameters: []
+      responses:
+        '200':
+          description: Entity association removed successfully
+      summary: Remove entity association
+      tags:
+      - Offers
+  /offers/{id}/services:
+    post:
+      operationId: t_value
+      parameters: []
+      responses:
+        '201':
+          description: Services added successfully
+      summary: Add services to an offer
+      tags:
+      - Offers
+    get:
+      operationId: t_value
+      parameters: []
+      responses:
+        '200':
+          description: Services retrieved successfully
+      summary: List services for an offer
+      tags:
+      - Offers
+  /offers/{id}/services/{serviceId}:
+    delete:
+      operationId: t_value
+      parameters: []
+      responses:
+        '200':
+          description: Service removed successfully
+      summary: Remove a service from an offer
+      tags:
+      - Offers
+  /offers/{id}/media:
+    post:
+      operationId: t_value
+      parameters: []
+      responses:
+        '201':
+          description: Media added successfully
+      summary: Add media to an offer
+      tags:
+      - Offers
+    get:
+      operationId: t_value
+      parameters: []
+      responses:
+        '200':
+          description: Media retrieved successfully
+      summary: List media for an offer
+      tags:
+      - Offers
+  /offers/{id}/media/{mediaId}:
+    delete:
+      operationId: t_value
+      parameters: []
+      responses:
+        '200':
+          description: Media removed successfully
+      summary: Remove media from an offer
+      tags:
+      - Offers
+  /offers/{id}/media/{mediaId}/replace:
+    post:
+      operationId: t_value
+      parameters: []
+      responses:
+        '200':
+          description: Media replaced successfully
+      summary: Replace media for an offer
+      tags:
+      - Offers
+  /offers/{id}/addons:
+    post:
+      operationId: t_value
+      parameters: []
+      responses:
+        '201':
+          description: Addon created successfully
+      summary: Add an addon to an offer
+      tags:
+      - Offers
+    get:
+      operationId: t_value
+      parameters: []
+      responses:
+        '200':
+          description: Addons retrieved successfully
+      summary: List addons for an offer
+      tags:
+      - Offers
+  /offers/{id}/addons/{addonId}:
+    put:
+      operationId: t_value
+      parameters: []
+      responses:
+        '200':
+          description: Addon updated successfully
+      summary: Update an addon
+      tags:
+      - Offers
+    delete:
+      operationId: t_value
+      parameters: []
+      responses:
+        '200':
+          description: Addon deleted successfully
+      summary: Delete an addon
+      tags:
+      - Offers
+  /offers/{id}/ctas:
+    post:
+      operationId: t_value
+      parameters: []
+      responses:
+        '201':
+          description: CTAs added successfully
+      summary: Add CTAs to an offer
+      tags:
+      - Offers
+    get:
+      operationId: t_value
+      parameters: []
+      responses:
+        '200':
+          description: CTAs retrieved successfully
+      summary: List CTAs for an offer
+      tags:
+      - Offers
+  /offers/{id}/ctas/{ctaId}:
+    delete:
+      operationId: t_value
+      parameters: []
+      responses:
+        '200':
+          description: CTA removed successfully
+      summary: Remove a CTA from an offer
+      tags:
+      - Offers
+  /offers/{id}/pause:
+    put:
+      operationId: t_value
+      parameters: []
+      responses:
+        '200':
+          description: Offer paused successfully
+      summary: Pause an active offer
+      tags:
+      - Offers
+  /offers/{id}/resume:
+    put:
+      operationId: t_value
+      parameters: []
+      responses:
+        '200':
+          description: Offer resumed successfully
+      summary: Resume a paused offer
+      tags:
+      - Offers
+  /offers/entity/{entityId}/active:
+    get:
+      operationId: t_value
+      parameters:
+      - name: appointmentTime
+        required: false
+        in: query
+        description: HH:MM — filter by appointment time constraints
+        schema:
+          type: string
+      - name: appointmentDate
+        required: false
+        in: query
+        description: YYYY-MM-DD — filter by appointment date constraints
+        schema:
+          type: string
+      responses:
+        '200':
+          description: Active offers returned
+      summary: Get active discount offers for entity
+      tags:
+      - Offers
+  /offers/entity/{entityId}/loyalty:
+    get:
+      operationId: t_value
+      parameters: []
+      responses:
+        '200':
+          description: Active loyalty offers returned
+      summary: Get active loyalty-channel offers for entity
+      tags:
+      - Offers
+  /offers/{id}/usage-stats:
+    get:
+      operationId: t_value
+      parameters: []
+      responses:
+        '200':
+          description: Usage stats returned
+      summary: Get usage statistics for an offer
+      tags:
+      - Offers
+  /offers/entity/{entityId}/usage-report:
+    get:
+      operationId: t_value
+      parameters: []
+      responses:
+        '200':
+          description: Usage report returned
+      summary: Get offer usage report for entity
+      tags:
+      - Offers
+components:
+  schemas:
+    e:
+      type: object
+      properties:
+        id:
+          type: number
+        entityId:
+          type: string
+        attribute:
+          type: string
+        value:
+          type:
+          - object
+          - 'null'
+        metadata:
+          type:
+          - object
+          - 'null'
+        createdAt:
+          type:
+          - object
+          - 'null'
+      required:
+      - id
+      - entityId
+      - attribute
+  securitySchemes:
+    access-token:
+      scheme: bearer
+      bearerFormat: JWT
+      type: http
+      name: Authorization
+      description: Enter JWT token in the format Bearer <token>
+      in: header

@@ -1,0 +1,74 @@
+openapi: 3.2.0
+info:
+  title: Zoca Tasks Loyalty Campaigns API
+  description: 'The Zoca tasks/automation service: AI content queue and planning, FrontDesk (Retell/Twilio) voice + SMS agent onboarding, local-SEO grid scans, WIN conversion triggers, and inbound integration webhooks (Chargebee, Square, Pipedrive, Twilio, Retell, CallHippo, Sybill, Instantly).'
+  version: 3.20.9
+  contact: {}
+  x-apievangelist-note: Harvested verbatim from https://tasks.zoca.ai/swagger.json. The provider ships the default NestJS Swagger metadata (title "API Documentation", empty servers[]); title/description/servers were set by API Evangelist for identification and the unmodified original is preserved at openapi/_original/zoca-tasks-swagger.json. Every path, operation, summary, parameter and response is exactly as published.
+servers:
+- url: https://tasks.zoca.ai
+  description: Production
+security:
+- access-token: []
+tags:
+- name: loyalty-campaigns
+paths:
+  /tasks/api/v1/loyalty-campaigns/preview:
+    post:
+      operationId: t_value
+      parameters: []
+      responses:
+        '200':
+          description: Preview returned
+      summary: Preview a loyalty campaign — total + 7-day overlap counts
+      tags:
+      - loyalty-campaigns
+  /tasks/api/v1/loyalty-campaigns/trigger:
+    post:
+      operationId: t_value
+      parameters: []
+      responses:
+        '201':
+          description: Campaign created and queued
+      summary: Create + trigger a loyalty campaign against a cohort
+      tags:
+      - loyalty-campaigns
+  /tasks/api/v1/loyalty-campaigns/{id}/cancel:
+    post:
+      operationId: t_value
+      parameters: []
+      responses:
+        '200':
+          description: Campaign cancelled
+      summary: Cancel a triggered loyalty campaign
+      tags:
+      - loyalty-campaigns
+  /tasks/api/v1/loyalty-campaigns/{id}:
+    get:
+      operationId: t_value
+      parameters: []
+      responses:
+        '200':
+          description: Campaign returned
+      summary: Get a loyalty campaign (status, counts)
+      tags:
+      - loyalty-campaigns
+  /tasks/api/v1/loyalty-campaigns/{id}/clients:
+    get:
+      operationId: t_value
+      parameters: []
+      responses:
+        '200':
+          description: Clients returned
+      summary: List campaign clients (reached / skipped / pending)
+      tags:
+      - loyalty-campaigns
+components:
+  securitySchemes:
+    access-token:
+      scheme: bearer
+      bearerFormat: JWT
+      type: http
+      name: Authorization
+      description: Enter JWT token in the format Bearer <token>
+      in: header

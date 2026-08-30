@@ -1,0 +1,229 @@
+openapi: 3.2.0
+info:
+  title: Zoca Platform Review Invites API
+  description: 'The Zoca platform API behind the Zoca web app and mobile apps: scheduling, website generation, Google Business Profile, discovery/local SEO, social media, booking enquiries, offers, clients, staff, billing and the Zoca "brain" agent layer.'
+  version: 3.20.10
+  contact: {}
+  x-apievangelist-note: Harvested verbatim from https://api.zoca.ai/swagger.json. The provider ships the default NestJS Swagger metadata (title "API Documentation", empty servers[]); title/description/servers were set by API Evangelist for identification and the unmodified original is preserved at openapi/_original/zoca-platform-swagger.json. Every path, operation, summary, parameter and response is exactly as published.
+servers:
+- url: https://api.zoca.ai
+  description: Production
+tags:
+- name: Review Invites
+paths:
+  /review-invites/client-sources:
+    get:
+      operationId: t_value
+      parameters: []
+      responses:
+        '200':
+          description: ''
+      summary: Get available client sources for an entity
+      tags:
+      - Review Invites
+  /review-invites/clients:
+    get:
+      operationId: t_value
+      parameters: []
+      responses:
+        '200':
+          description: ''
+      summary: Get clients filtered by source with pagination
+      tags:
+      - Review Invites
+  /review-invites/client-phone:
+    get:
+      operationId: t_value
+      parameters: []
+      responses:
+        '200':
+          description: ''
+      summary: Get client phone numbers for an entity
+      tags:
+      - Review Invites
+  /review-invites/search-clients:
+    get:
+      operationId: t_value
+      parameters: []
+      responses:
+        '200':
+          description: ''
+      summary: Search clients by term with pagination
+      tags:
+      - Review Invites
+  /review-invites/text-templates:
+    get:
+      operationId: t_value
+      parameters: []
+      responses:
+        '200':
+          description: ''
+      summary: Get SMS text templates for review invites
+      tags:
+      - Review Invites
+  /review-invites/text-templates/{templateId}:
+    put:
+      operationId: t_value
+      parameters: []
+      responses:
+        '200':
+          description: ''
+      summary: Update a text template by ID
+      tags:
+      - Review Invites
+  /review-invites/client:
+    post:
+      operationId: t_value
+      parameters: []
+      responses:
+        '201':
+          description: ''
+      summary: Create a new client for review invites
+      tags:
+      - Review Invites
+  /review-invites/client-conversation:
+    get:
+      operationId: t_value
+      parameters: []
+      responses:
+        '200':
+          description: ''
+      summary: Get conversation history for a client
+      tags:
+      - Review Invites
+    post:
+      operationId: t_value
+      parameters: []
+      responses:
+        '201':
+          description: ''
+      summary: Add a conversation message for a client
+      tags:
+      - Review Invites
+  /review-invites/stats:
+    get:
+      operationId: t_value
+      parameters: []
+      responses:
+        '200':
+          description: ''
+      summary: Get review invite statistics for an entity
+      tags:
+      - Review Invites
+  /review-invites/invites-status:
+    get:
+      operationId: t_value
+      parameters: []
+      responses:
+        '200':
+          description: ''
+      summary: Get all invite status counts for an entity
+      tags:
+      - Review Invites
+  /review-invites/invites-by-status:
+    get:
+      operationId: t_value
+      parameters: []
+      responses:
+        '200':
+          description: ''
+      summary: Get invites filtered by status with pagination
+      tags:
+      - Review Invites
+  /review-invites/{inviteId}/invite:
+    put:
+      operationId: t_value
+      parameters: []
+      responses:
+        '200':
+          description: ''
+      summary: Update the status of an invite
+      tags:
+      - Review Invites
+  /review-invites/{entityId}/invite:
+    post:
+      operationId: t_value
+      parameters: []
+      responses:
+        '201':
+          description: ''
+      summary: Send review invites to clients
+      tags:
+      - Review Invites
+    delete:
+      operationId: t_value
+      parameters: []
+      responses:
+        '204':
+          description: ''
+      summary: Delete a review invite
+      tags:
+      - Review Invites
+  /review-invites/{entityId}/invite-reminder:
+    post:
+      operationId: t_value
+      parameters: []
+      responses:
+        '201':
+          description: ''
+      summary: Send review invite reminders to clients
+      tags:
+      - Review Invites
+  /review-invites/qr-code:
+    get:
+      operationId: t_value
+      parameters: []
+      responses:
+        '200':
+          description: ''
+      summary: Get QR code for review invites
+      tags:
+      - Review Invites
+  /review-invites/formatted-text-template:
+    put:
+      operationId: t_value
+      parameters: []
+      responses:
+        '200':
+          description: ''
+      summary: Format a text template with client data
+      tags:
+      - Review Invites
+  /review-invites/email-ra-optin:
+    post:
+      operationId: t_value
+      parameters: []
+      responses:
+        '201':
+          description: ''
+      summary: Store email review automation opt-in status
+      tags:
+      - Review Invites
+    get:
+      operationId: t_value
+      parameters: []
+      responses:
+        '200':
+          description: ''
+      summary: Get email review automation opt-in status
+      tags:
+      - Review Invites
+  /review-invites/review-link:
+    get:
+      operationId: t_value
+      parameters: []
+      responses:
+        '200':
+          description: ''
+      summary: Get the review link for a location
+      tags:
+      - Review Invites
+components:
+  securitySchemes:
+    access-token:
+      scheme: bearer
+      bearerFormat: JWT
+      type: http
+      name: Authorization
+      description: Enter JWT token in the format Bearer <token>
+      in: header

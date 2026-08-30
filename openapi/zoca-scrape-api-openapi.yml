@@ -1,0 +1,143 @@
+openapi: 3.2.0
+info:
+  title: Zoca Tasks Scrape API
+  description: 'The Zoca tasks/automation service: AI content queue and planning, FrontDesk (Retell/Twilio) voice + SMS agent onboarding, local-SEO grid scans, WIN conversion triggers, and inbound integration webhooks (Chargebee, Square, Pipedrive, Twilio, Retell, CallHippo, Sybill, Instantly).'
+  version: 3.20.9
+  contact: {}
+  x-apievangelist-note: Harvested verbatim from https://tasks.zoca.ai/swagger.json. The provider ships the default NestJS Swagger metadata (title "API Documentation", empty servers[]); title/description/servers were set by API Evangelist for identification and the unmodified original is preserved at openapi/_original/zoca-tasks-swagger.json. Every path, operation, summary, parameter and response is exactly as published.
+servers:
+- url: https://tasks.zoca.ai
+  description: Production
+security:
+- access-token: []
+tags:
+- name: Scrape
+paths:
+  /tasks/api/v1/scrape/services:
+    post:
+      description: Retrieves all available services and categories from the specified booking platform URL
+      operationId: t_value
+      parameters: []
+      responses:
+        '200':
+          description: Successfully retrieved services
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/e'
+        '400':
+          description: Invalid request parameters
+        '500':
+          description: Failed to fetch services from the platform
+      summary: Fetch services from booking platform
+      tags:
+      - Scrape
+  /tasks/api/v1/scrape/slots:
+    post:
+      description: Retrieves available time slots for the specified services and date from the booking platform
+      operationId: t_value
+      parameters: []
+      responses:
+        '200':
+          description: Successfully retrieved available slots
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/e'
+        '400':
+          description: Invalid request parameters
+        '500':
+          description: Failed to fetch slots from the platform
+      summary: Fetch available appointment slots
+      tags:
+      - Scrape
+  /tasks/api/v1/scrape/provider-slots:
+    post:
+      description: Retrieves available time slots for the specified services and date, grouped by provider with provider names and GUIDs
+      operationId: t_value
+      parameters: []
+      responses:
+        '200':
+          description: Successfully retrieved available slots grouped by provider
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/e'
+        '400':
+          description: Invalid request parameters
+        '500':
+          description: Failed to fetch provider slots from the platform
+      summary: Fetch available appointment slots grouped by provider
+      tags:
+      - Scrape
+  /tasks/api/v1/scrape/book:
+    post:
+      description: Books an appointment on the specified booking platform with the provided services, date, time, and user/payment information
+      operationId: t_value
+      parameters: []
+      responses:
+        '200':
+          description: Successfully booked appointment
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/e'
+        '400':
+          description: Invalid request parameters or booking failed
+        '500':
+          description: Failed to complete booking due to server error
+      summary: Book an appointment
+      tags:
+      - Scrape
+  /tasks/api/v1/scrape/supported-sites:
+    get:
+      description: Returns a list of all supported booking platform site slugs
+      operationId: t_value
+      parameters: []
+      responses:
+        '200':
+          description: List of supported site slugs
+          content:
+            application/json:
+              schema:
+                type: array
+                items:
+                  type: string
+      summary: Get supported booking platforms
+      tags:
+      - Scrape
+components:
+  schemas:
+    e:
+      type: object
+      properties:
+        scan:
+          $ref: '#/components/schemas/e'
+        businessLat:
+          type:
+          - number
+          - 'null'
+        businessLng:
+          type:
+          - number
+          - 'null'
+        points:
+          type: array
+          items:
+            $ref: '#/components/schemas/e'
+        heroMetrics:
+          $ref: '#/components/schemas/e'
+      required:
+      - scan
+      - businessLat
+      - businessLng
+      - points
+      - heroMetrics
+  securitySchemes:
+    access-token:
+      scheme: bearer
+      bearerFormat: JWT
+      type: http
+      name: Authorization
+      description: Enter JWT token in the format Bearer <token>
+      in: header

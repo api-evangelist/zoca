@@ -1,0 +1,135 @@
+openapi: 3.2.0
+info:
+  title: Zoca Tasks API Keys API
+  description: 'The Zoca tasks/automation service: AI content queue and planning, FrontDesk (Retell/Twilio) voice + SMS agent onboarding, local-SEO grid scans, WIN conversion triggers, and inbound integration webhooks (Chargebee, Square, Pipedrive, Twilio, Retell, CallHippo, Sybill, Instantly).'
+  version: 3.20.9
+  contact: {}
+  x-apievangelist-note: Harvested verbatim from https://tasks.zoca.ai/swagger.json. The provider ships the default NestJS Swagger metadata (title "API Documentation", empty servers[]); title/description/servers were set by API Evangelist for identification and the unmodified original is preserved at openapi/_original/zoca-tasks-swagger.json. Every path, operation, summary, parameter and response is exactly as published.
+servers:
+- url: https://tasks.zoca.ai
+  description: Production
+security:
+- access-token: []
+tags:
+- name: API Keys
+paths:
+  /tasks/api/v1/auth/api-keys:
+    post:
+      description: Creates a new API key for the authenticated user. The full key is only shown once.
+      operationId: t_value
+      parameters: []
+      responses:
+        '201':
+          description: API key created successfully
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/e'
+        '400':
+          description: Invalid request
+      security:
+      - bearer: []
+      summary: Create a new API key
+      tags:
+      - API Keys
+    get:
+      description: Returns all API keys for the authenticated user. The actual key is not returned.
+      operationId: t_value
+      parameters: []
+      responses:
+        '200':
+          description: API keys retrieved successfully
+          content:
+            application/json:
+              schema:
+                type: array
+                items:
+                  $ref: '#/components/schemas/e'
+      security:
+      - bearer: []
+      summary: List all API keys for the current user
+      tags:
+      - API Keys
+  /tasks/api/v1/auth/api-keys/{id}/rotate:
+    post:
+      description: Generates a new key while keeping the old one valid for a grace period (default 24 hours)
+      operationId: t_value
+      parameters: []
+      responses:
+        '200':
+          description: API key rotated successfully
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  success:
+                    type: boolean
+                  newKey:
+                    type: string
+        '404':
+          description: API key not found
+      security:
+      - bearer: []
+      summary: Rotate an API key
+      tags:
+      - API Keys
+  /tasks/api/v1/auth/api-keys/{id}:
+    delete:
+      description: Permanently revokes an API key. This action cannot be undone.
+      operationId: t_value
+      parameters: []
+      responses:
+        '200':
+          description: API key revoked successfully
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  success:
+                    type: boolean
+                  message:
+                    type: string
+        '404':
+          description: API key not found
+      security:
+      - bearer: []
+      summary: Revoke an API key
+      tags:
+      - API Keys
+components:
+  schemas:
+    e:
+      type: object
+      properties:
+        scan:
+          $ref: '#/components/schemas/e'
+        businessLat:
+          type:
+          - number
+          - 'null'
+        businessLng:
+          type:
+          - number
+          - 'null'
+        points:
+          type: array
+          items:
+            $ref: '#/components/schemas/e'
+        heroMetrics:
+          $ref: '#/components/schemas/e'
+      required:
+      - scan
+      - businessLat
+      - businessLng
+      - points
+      - heroMetrics
+  securitySchemes:
+    access-token:
+      scheme: bearer
+      bearerFormat: JWT
+      type: http
+      name: Authorization
+      description: Enter JWT token in the format Bearer <token>
+      in: header

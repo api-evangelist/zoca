@@ -1,0 +1,274 @@
+openapi: 3.2.0
+info:
+  title: Zoca Platform Booking Enquiries Config API
+  description: 'The Zoca platform API behind the Zoca web app and mobile apps: scheduling, website generation, Google Business Profile, discovery/local SEO, social media, booking enquiries, offers, clients, staff, billing and the Zoca "brain" agent layer.'
+  version: 3.20.10
+  contact: {}
+  x-apievangelist-note: Harvested verbatim from https://api.zoca.ai/swagger.json. The provider ships the default NestJS Swagger metadata (title "API Documentation", empty servers[]); title/description/servers were set by API Evangelist for identification and the unmodified original is preserved at openapi/_original/zoca-platform-swagger.json. Every path, operation, summary, parameter and response is exactly as published.
+servers:
+- url: https://api.zoca.ai
+  description: Production
+tags:
+- name: booking-enquiries-config
+paths:
+  /booking-enquiries-config/preferences:
+    post:
+      operationId: t_value
+      parameters: []
+      responses:
+        '200':
+          description: Preference created or updated successfully
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/e'
+        '400':
+          description: Invalid request data
+        '404':
+          description: Entity not found
+      summary: Create or update a single preference for an entity
+      tags:
+      - booking-enquiries-config
+  /booking-enquiries-config/preferences/bulk:
+    post:
+      operationId: t_value
+      parameters: []
+      responses:
+        '200':
+          description: Preferences bulk upserted successfully
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/e'
+        '400':
+          description: Invalid request data
+        '404':
+          description: Entity not found
+      summary: Bulk upsert multiple preferences for a single entity
+      tags:
+      - booking-enquiries-config
+  /booking-enquiries-config/preferences/{entityId}:
+    get:
+      operationId: t_value
+      parameters:
+      - name: entityId
+        required: true
+        in: path
+        description: The entity ID to fetch preferences for
+        schema:
+          type: string
+      responses:
+        '200':
+          description: Preferences retrieved successfully
+          content:
+            application/json:
+              schema:
+                type: array
+                items:
+                  $ref: '#/components/schemas/e'
+      summary: Get all preferences for an entity
+      tags:
+      - booking-enquiries-config
+  /booking-enquiries-config/preferences/{entityId}/by-pattern:
+    get:
+      operationId: t_value
+      parameters:
+      - name: excludeAttributes
+        required: false
+        in: query
+        description: Attributes to exclude (comma-separated)
+        schema:
+          type: string
+      - name: attributes
+        required: false
+        in: query
+        description: Specific attributes to fetch (comma-separated)
+        schema:
+          type: string
+      - name: attributePattern
+        required: false
+        in: query
+        description: Pattern to match attributes (e.g., "bookingEnquiry.*")
+        schema:
+          type: string
+      - name: entityId
+        required: true
+        in: path
+        description: The entity ID to fetch preferences for
+        schema:
+          type: string
+      responses:
+        '200':
+          description: Filtered preferences retrieved successfully
+          content:
+            application/json:
+              schema:
+                type: array
+                items:
+                  $ref: '#/components/schemas/e'
+      summary: Get preferences by attribute pattern or filters
+      tags:
+      - booking-enquiries-config
+  /booking-enquiries-config/preferences/{entityId}/booking-enquiry:
+    get:
+      operationId: t_value
+      parameters:
+      - name: entityId
+        required: true
+        in: path
+        description: The entity ID to fetch booking enquiry preferences for
+        schema:
+          type: string
+      responses:
+        '200':
+          description: Booking enquiry preferences retrieved successfully
+          content:
+            application/json:
+              schema:
+                type: array
+                items:
+                  $ref: '#/components/schemas/e'
+      summary: Get booking enquiry specific preferences for an entity
+      tags:
+      - booking-enquiries-config
+  /booking-enquiries-config/preferences/{entityId}/value:
+    get:
+      operationId: t_value
+      parameters:
+      - name: attribute
+        required: true
+        in: query
+        description: The attribute name to fetch
+        schema:
+          type: string
+      - name: entityId
+        required: true
+        in: path
+        description: The entity ID
+        schema:
+          type: string
+      responses:
+        '200':
+          description: Preference value retrieved successfully
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/e'
+      summary: Get a single preference value by attribute
+      tags:
+      - booking-enquiries-config
+  /booking-enquiries-config/preferences/{entityId}/{attribute}:
+    delete:
+      operationId: t_value
+      parameters:
+      - name: attribute
+        required: true
+        in: path
+        description: The attribute to delete
+        schema:
+          type: string
+      - name: entityId
+        required: true
+        in: path
+        description: The entity ID
+        schema:
+          type: string
+      responses:
+        '200':
+          description: Preference deleted successfully
+      summary: Delete a preference by setting it to empty
+      tags:
+      - booking-enquiries-config
+  /booking-enquiries-config/preferences/{entityId}/with-metadata:
+    put:
+      operationId: t_value
+      parameters:
+      - name: entityId
+        required: true
+        in: path
+        description: The entity ID
+        schema:
+          type: string
+      responses:
+        '200':
+          description: Preferences updated with metadata successfully
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/e'
+      summary: Update preferences with tracking metadata
+      tags:
+      - booking-enquiries-config
+  /booking-enquiries-config/preferences/{entityId}/exists:
+    get:
+      operationId: t_value
+      parameters:
+      - name: attribute
+        required: true
+        in: query
+        description: The attribute to check
+        schema:
+          type: string
+      - name: entityId
+        required: true
+        in: path
+        description: The entity ID
+        schema:
+          type: string
+      responses:
+        '200':
+          description: Preference existence checked successfully
+      summary: Check if a preference exists for an entity
+      tags:
+      - booking-enquiries-config
+  /booking-enquiries-config/preferences/available:
+    get:
+      operationId: t_value
+      parameters: []
+      responses:
+        '200':
+          description: Available preferences retrieved successfully
+          content:
+            application/json:
+              schema:
+                type: array
+                items:
+                  $ref: '#/components/schemas/e'
+      summary: Get all available booking enquiry preferences with their metadata
+      tags:
+      - booking-enquiries-config
+components:
+  schemas:
+    e:
+      type: object
+      properties:
+        id:
+          type: number
+        entityId:
+          type: string
+        attribute:
+          type: string
+        value:
+          type:
+          - object
+          - 'null'
+        metadata:
+          type:
+          - object
+          - 'null'
+        createdAt:
+          type:
+          - object
+          - 'null'
+      required:
+      - id
+      - entityId
+      - attribute
+  securitySchemes:
+    access-token:
+      scheme: bearer
+      bearerFormat: JWT
+      type: http
+      name: Authorization
+      description: Enter JWT token in the format Bearer <token>
+      in: header

@@ -1,0 +1,2185 @@
+openapi: 3.2.0
+info:
+  title: Zoca Entities API
+  contact: {}
+  x-refined-note:
+  - x-apievangelist-note differs across the merged source definitions and was not carried
+  version: '1.0'
+  description: 'Operations tagged Entities across 2 of this provider''s published API definitions: zoca-platform-openapi.yml, zoca-tasks-openapi.yml. Each path carries the servers of the definition it was published in.'
+servers:
+- url: https://api.zoca.ai
+  description: Production
+- url: https://tasks.zoca.ai
+  description: Production
+tags:
+- name: Entities
+paths:
+  /entities/{entityId}/backfill-timezone:
+    post:
+      operationId: t_value
+      parameters:
+      - name: entityId
+        required: true
+        in: path
+        description: Location entity ID
+        schema: {}
+      responses:
+        '201':
+          description: ''
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/e'
+      summary: Backfill timezone for a single location from its address
+      tags:
+      - Entities
+    servers:
+    - url: https://api.zoca.ai
+      description: Production
+  /entities/backfill-timezone/batch:
+    post:
+      operationId: t_value
+      parameters: []
+      responses:
+        '201':
+          description: ''
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/e'
+      summary: Backfill timezone for all null-timezone locations (paged)
+      tags:
+      - Entities
+    servers:
+    - url: https://api.zoca.ai
+      description: Production
+  /entities/links:
+    get:
+      operationId: t_value
+      parameters: []
+      responses:
+        '200':
+          description: ''
+      summary: Get booking links for an entity
+      tags:
+      - Entities
+    put:
+      operationId: t_value
+      parameters: []
+      responses:
+        '200':
+          description: ''
+      summary: Update booking links for an entity
+      tags:
+      - Entities
+    servers:
+    - url: https://api.zoca.ai
+      description: Production
+  /entities/{entityId}/website-theme:
+    get:
+      operationId: t_value
+      parameters:
+      - name: entityId
+        required: true
+        in: path
+        description: Entity (location) ID
+        schema: {}
+      responses:
+        '200':
+          description: ''
+      summary: Get the scraped website theme (colors + fonts) for an entity
+      tags:
+      - Entities
+    servers:
+    - url: https://api.zoca.ai
+      description: Production
+  /entities/currency:
+    get:
+      operationId: t_value
+      parameters:
+      - name: type
+        required: true
+        in: query
+        description: Entity type | Pass LOCATION to get currency for location
+        schema: {}
+      - name: entityId
+        required: true
+        in: query
+        description: Use location entity id to get currency for location
+        schema: {}
+      responses:
+        '200':
+          description: Successfully fetched the currency for given entity id
+          content:
+            application/json:
+              schema:
+                example:
+                  status: true
+                  message: Success
+                  data:
+                    currency: USD
+      summary: Get currency for given entity id
+      tags:
+      - Entities
+    servers:
+    - url: https://api.zoca.ai
+      description: Production
+  /entities/locations:
+    get:
+      operationId: t_value
+      parameters: []
+      responses:
+        '200':
+          description: ''
+      summary: Get all locations for a user
+      tags:
+      - Entities
+    servers:
+    - url: https://api.zoca.ai
+      description: Production
+  /entities/trigger-event:
+    post:
+      operationId: t_value
+      parameters: []
+      responses:
+        '201':
+          description: ''
+      summary: Trigger a custom event for an entity
+      tags:
+      - Entities
+    servers:
+    - url: https://api.zoca.ai
+      description: Production
+  /entities/onboarding-state:
+    post:
+      operationId: t_value
+      parameters: []
+      responses:
+        '201':
+          description: ''
+      summary: Update onboarding state for an entity
+      tags:
+      - Entities
+    servers:
+    - url: https://api.zoca.ai
+      description: Production
+  /entities/location/{entityId}:
+    get:
+      operationId: t_value
+      parameters: []
+      responses:
+        '200':
+          description: ''
+      summary: Get GBP location data by entity ID
+      tags:
+      - Entities
+    put:
+      description: Updates any columns in the entities.locations table. All fields are optional. Attributes are merged with existing values (preserves old keys, updates matching keys).
+      operationId: t_value
+      parameters:
+      - name: entityId
+        required: true
+        in: path
+        description: UUID of the location entity to update
+        schema:
+          example: 123e4567-e89b-12d3-a456-426614174000
+      responses:
+        '200':
+          description: Successfully updated location
+          content:
+            application/json:
+              schema:
+                example:
+                  entityId: 123e4567-e89b-12d3-a456-426614174000
+                  name: Updated Business Name
+                  address:
+                    locality: New York
+                    postalCode: '10001'
+                    regionCode: US
+                    addressLines:
+                    - 123 Main Street
+                  category: Restaurant
+                  businessCategory: Beauty
+                  timezone: America/New_York
+                  attributes:
+                    customerSource:
+                    - Groupon
+                    - Yelp
+                    clientContactsNumber: 10
+        '400':
+          description: Invalid entity ID format
+          content:
+            application/json:
+              schema:
+                example:
+                  message: Invalid UUID format
+                  error: Bad Request
+                  statusCode: 400
+        '404':
+          description: Location entity not found
+          content:
+            application/json:
+              schema:
+                example:
+                  message: Location with entityId 123e4567-e89b-12d3-a456-426614174000 not found
+                  error: Not Found
+                  statusCode: 404
+      summary: Update location data
+      tags:
+      - Entities
+    servers:
+    - url: https://api.zoca.ai
+      description: Production
+  /entities/location/{entityId}/details:
+    get:
+      description: Retrieves core location information including name, address, category, timezone, lead masking status, and business hours for a specific location entity.
+      operationId: t_value
+      parameters:
+      - name: entityId
+        required: true
+        in: path
+        description: UUID of the location entity to retrieve details for
+        schema:
+          example: 123e4567-e89b-12d3-a456-426614174000
+      responses:
+        '200':
+          description: Successfully retrieved location details
+          content:
+            application/json:
+              schema:
+                example:
+                  entityId: 123e4567-e89b-12d3-a456-426614174000
+                  name: Sample Business
+                  address:
+                    locality: New York
+                    postalCode: '10001'
+                    regionCode: US
+                    addressLines:
+                    - 123 Main Street
+                    languageCode: en
+                    administrativeArea: NY
+                  category: Restaurant
+                  timezone: America/New_York
+                  leadMasking:
+                    status: true
+                    metadata: {}
+                  openInfo:
+                    status: OPEN
+                    canReopen: true
+        '400':
+          description: Invalid entity ID format
+          content:
+            application/json:
+              schema:
+                example:
+                  message: Invalid UUID format
+                  error: Bad Request
+                  statusCode: 400
+        '404':
+          description: Location entity not found
+          content:
+            application/json:
+              schema:
+                example:
+                  message: Location not found
+                  error: Not Found
+                  statusCode: 404
+      summary: Get essential location details
+      tags:
+      - Entities
+    servers:
+    - url: https://api.zoca.ai
+      description: Production
+  /entities/location/{entityId}/rwg-status:
+    get:
+      description: Retrieves whether the 'Book online' button on the Google Business Profile is enabled for a location (entities.locations.rwg_enabled).
+      operationId: t_value
+      parameters:
+      - name: entityId
+        required: true
+        in: path
+        description: UUID of the location entity
+        schema:
+          example: 123e4567-e89b-12d3-a456-426614174000
+      responses:
+        '200':
+          description: Successfully retrieved RWG status
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/e'
+      summary: Get Reserve with Google status
+      tags:
+      - Entities
+    servers:
+    - url: https://api.zoca.ai
+      description: Production
+  /entities/location/{entityId}/users:
+    get:
+      operationId: t_value
+      parameters: []
+      responses:
+        '200':
+          description: ''
+      summary: Get users associated with a location
+      tags:
+      - Entities
+    servers:
+    - url: https://api.zoca.ai
+      description: Production
+  /entities/location/{entityId}/offboard:
+    post:
+      operationId: t_value
+      parameters: []
+      responses:
+        '201':
+          description: ''
+      summary: Offboard a location and optionally cancel subscriptions
+      tags:
+      - Entities
+    servers:
+    - url: https://api.zoca.ai
+      description: Production
+  /entities/location/{entityId}/resurrect:
+    post:
+      operationId: t_value
+      parameters: []
+      responses:
+        '201':
+          description: ''
+      summary: Resurrect a previously offboarded location
+      tags:
+      - Entities
+    servers:
+    - url: https://api.zoca.ai
+      description: Production
+  /entities/location/{entityId}/test:
+    put:
+      operationId: t_value
+      parameters: []
+      responses:
+        '200':
+          description: ''
+      summary: Mark an entity as a test entity
+      tags:
+      - Entities
+    servers:
+    - url: https://api.zoca.ai
+      description: Production
+  /entities/{entityId}/is-test:
+    get:
+      description: Returns whether the specified entity is marked as a test entity in the system
+      operationId: t_value
+      parameters: []
+      responses:
+        '200':
+          description: Successfully retrieved test status
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/e'
+        '400':
+          description: Invalid entity ID format
+          content:
+            application/json:
+              schema:
+                example:
+                  message: Invalid UUID format
+                  error: Bad Request
+                  statusCode: 400
+      summary: Check if an entity is marked as a test entity
+      tags:
+      - Entities
+    servers:
+    - url: https://api.zoca.ai
+      description: Production
+  /entities/{entityId}/more-tab-cards:
+    get:
+      description: Returns boolean flags indicating which cards should be displayed in the More tab. Currently includes Instagram leads card visibility based on recent activity.
+      operationId: t_value
+      parameters:
+      - name: entityId
+        required: true
+        in: path
+        description: UUID of the entity to check card visibility for
+        schema:
+          example: 123e4567-e89b-12d3-a456-426614174000
+      responses:
+        '200':
+          description: Successfully retrieved More tab card visibility markers
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/e'
+        '400':
+          description: Invalid entity ID format
+          content:
+            application/json:
+              schema:
+                example:
+                  message: Invalid UUID format
+                  error: Bad Request
+                  statusCode: 400
+      summary: Get visibility markers for More tab cards
+      tags:
+      - Entities
+    servers:
+    - url: https://api.zoca.ai
+      description: Production
+  /entities/products/{entityId}:
+    get:
+      operationId: t_value
+      parameters:
+      - name: includeInactive
+        required: false
+        in: query
+        description: Include inactive products in the response
+        schema:
+          type: boolean
+      responses:
+        '200':
+          description: ''
+      summary: Get products for an entity
+      tags:
+      - Entities
+    put:
+      description: Associates a product with an entity or updates an existing product entity relationship
+      operationId: t_value
+      parameters: []
+      responses:
+        '200':
+          description: Successfully created or updated the product entity relationship
+          content:
+            application/json:
+              schema:
+                example:
+                  id: f47ac10b-58cc-4372-a567-0e02b2c3d479
+                  entityId: abc123-456-789
+                  productId: 1
+                  isActive: true
+                  attributes:
+                    feature: enabled
+                  createdAt: '2023-01-01T00:00:00.000Z'
+        '400':
+          description: Invalid request parameters
+          content:
+            application/json:
+              schema:
+                example:
+                  message: Validation failed
+                  error: Bad Request
+                  statusCode: 400
+      summary: Create or update a product entity relationship
+      tags:
+      - Entities
+    servers:
+    - url: https://api.zoca.ai
+      description: Production
+  /entities/{entityId}/scheduling-active:
+    get:
+      operationId: t_value
+      parameters: []
+      responses:
+        '200':
+          description: ''
+          content:
+            application/json:
+              schema:
+                example:
+                  active: true
+      summary: Check whether the scheduling product is active for an entity
+      tags:
+      - Entities
+    servers:
+    - url: https://api.zoca.ai
+      description: Production
+  /entities/products/{entityId}/features:
+    get:
+      operationId: t_value
+      parameters: []
+      responses:
+        '200':
+          description: ''
+      summary: Get features available for entity products
+      tags:
+      - Entities
+    servers:
+    - url: https://api.zoca.ai
+      description: Production
+  /entities/products/{entityId}/{productId}/deactivate:
+    put:
+      description: Deactivates an active product entity relationship by setting isActive to false. The relationship record is not deleted, only marked as inactive.
+      operationId: t_value
+      parameters: []
+      responses:
+        '200':
+          description: Successfully marked the product entity relationship as inactive
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/e'
+        '400':
+          description: Invalid request parameters (invalid UUID format or productId)
+          content:
+            application/json:
+              schema:
+                example:
+                  message: entityId must be a valid UUID
+                  error: Bad Request
+                  statusCode: 400
+        '404':
+          description: No active product entity relationship found for the specified entityId and productId
+          content:
+            application/json:
+              schema:
+                example:
+                  message: No active product entity relationship found for entityId abc123 and productId 1
+                  error: Not Found
+                  statusCode: 404
+      summary: Mark a product entity relationship as inactive
+      tags:
+      - Entities
+    servers:
+    - url: https://api.zoca.ai
+      description: Production
+  /entities/location/{entityId}/lead-masking:
+    put:
+      operationId: t_value
+      parameters: []
+      responses:
+        '200':
+          description: ''
+      summary: Update lead masking settings for a location
+      tags:
+      - Entities
+    servers:
+    - url: https://api.zoca.ai
+      description: Production
+  /entities/{entityId}/preferences:
+    post:
+      operationId: t_value
+      parameters: []
+      responses:
+        '201':
+          description: ''
+      summary: Create or update an entity preference
+      tags:
+      - Entities
+    get:
+      operationId: t_value
+      parameters: []
+      responses:
+        '200':
+          description: ''
+      summary: Get preferences for an entity
+      tags:
+      - Entities
+    delete:
+      description: Marks preferences as deleted by setting is_deleted=true. Supports single delete via query parameter or bulk delete via request body.
+      operationId: t_value
+      parameters:
+      - name: attribute
+        required: false
+        in: query
+        description: Single attribute to soft-delete (alternative to body)
+        schema:
+          example: content.active
+      responses:
+        '204':
+          description: Successfully soft-deleted preferences (no content)
+        '400':
+          description: Invalid request - must provide either attribute query param or attributes in body
+          content:
+            application/json:
+              schema:
+                example:
+                  message: Must provide either attribute query param or attributes array in body
+                  error: Bad Request
+                  statusCode: 400
+      summary: Soft-delete entity preferences
+      tags:
+      - Entities
+    servers:
+    - url: https://api.zoca.ai
+      description: Production
+  /entities/{entityId}/preferences/bulk:
+    post:
+      operationId: t_value
+      parameters: []
+      responses:
+        '200':
+          description: Preferences upserted successfully
+      summary: Bulk upsert multiple preferences for a single entity
+      tags:
+      - Entities
+    servers:
+    - url: https://api.zoca.ai
+      description: Production
+  /entities/account:
+    post:
+      operationId: t_value
+      parameters: []
+      responses:
+        '201':
+          description: ''
+      summary: Create a new entity account with user, location, and business
+      tags:
+      - Entities
+    servers:
+    - url: https://api.zoca.ai
+      description: Production
+  /entities/location/manual:
+    post:
+      operationId: t_value
+      parameters: []
+      responses:
+        '201':
+          description: ''
+      summary: Create a business + location without GBP (standalone bookings)
+      tags:
+      - Entities
+    servers:
+    - url: https://api.zoca.ai
+      description: Production
+  /entities/{entityId}/preferences/paginated:
+    get:
+      operationId: t_value
+      parameters: []
+      responses:
+        '200':
+          description: ''
+      summary: List entity preferences with pagination, search, and attribute-prefix filtering
+      tags:
+      - Entities
+    servers:
+    - url: https://api.zoca.ai
+      description: Production
+  /entities/{entityId}/preferences/bulk/fetch:
+    post:
+      operationId: t_value
+      parameters: []
+      responses:
+        '200':
+          description: Preferences fetched successfully
+      summary: Get preferences for an entity filtered to a list of attributes
+      tags:
+      - Entities
+    servers:
+    - url: https://api.zoca.ai
+      description: Production
+  /entities/{entityId}/effective-preferences:
+    get:
+      description: 'Fetches preferences following hierarchy: entity -> cohort -> default'
+      operationId: t_value
+      parameters: []
+      responses:
+        '200':
+          description: Successfully fetched effective preference
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/e'
+      summary: Get effective preferences with hierarchy resolution
+      tags:
+      - Entities
+    servers:
+    - url: https://api.zoca.ai
+      description: Production
+  /entities/users/{entityId}/locations:
+    get:
+      operationId: t_value
+      parameters: []
+      responses:
+        '200':
+          description: ''
+      summary: Get locations associated with a user
+      tags:
+      - Entities
+    servers:
+    - url: https://api.zoca.ai
+      description: Production
+  /entities/{entityId}/virtual-number:
+    post:
+      operationId: t_value
+      parameters: []
+      responses:
+        '201':
+          description: ''
+      summary: Create a virtual phone number for an entity
+      tags:
+      - Entities
+    servers:
+    - url: https://api.zoca.ai
+      description: Production
+  /entities/{entityId}/additional-phone:
+    post:
+      operationId: t_value
+      parameters: []
+      responses:
+        '201':
+          description: Successfully added additional phone number
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/e'
+        '400':
+          description: Invalid phone data provided
+      summary: Add additional phone number for a user/SP
+      tags:
+      - Entities
+    servers:
+    - url: https://api.zoca.ai
+      description: Production
+  /entities/{entityId}/phones:
+    get:
+      operationId: t_value
+      parameters: []
+      responses:
+        '200':
+          description: Successfully fetched phone numbers
+          content:
+            application/json:
+              schema:
+                type: array
+                items:
+                  $ref: '#/components/schemas/e'
+      summary: Get phone numbers for an entity with optional filters
+      tags:
+      - Entities
+    servers:
+    - url: https://api.zoca.ai
+      description: Production
+  /entities/location/{entityId}/booking-link:
+    get:
+      operationId: t_value
+      parameters: []
+      responses:
+        '200':
+          description: Successfully fetched the booking link
+      summary: Get booking link for a location
+      tags:
+      - Entities
+    put:
+      operationId: t_value
+      parameters: []
+      responses:
+        '200':
+          description: Successfully updated the booking link
+      summary: Update booking link for a location
+      tags:
+      - Entities
+    servers:
+    - url: https://api.zoca.ai
+      description: Production
+  /entities/phones:
+    put:
+      operationId: t_value
+      parameters: []
+      responses:
+        '200':
+          description: Successfully upserted the phone record
+      summary: Upsert a phone record
+      tags:
+      - Entities
+    servers:
+    - url: https://api.zoca.ai
+      description: Production
+  /entities/offboarding-reason-templates:
+    get:
+      description: Retrieves a list of active offboarding reason templates. Either agentId OR isDeleteAccount must be provided, but not both.
+      operationId: t_value
+      parameters:
+      - name: isDeleteAccount
+        required: false
+        in: query
+        description: Set to true to get account-level deletion reasons
+        schema:
+          example: true
+          type: boolean
+      - name: agentId
+        required: false
+        in: query
+        description: Agent entity ID to get agent-specific offboarding reasons
+        schema:
+          example: 123e4567-e89b-12d3-a456-426614174000
+      responses:
+        '200':
+          description: Successfully retrieved offboarding reason templates
+          content:
+            application/json:
+              schema:
+                type: array
+                items:
+                  $ref: '#/components/schemas/e'
+        '400':
+          description: Invalid request - exactly one parameter is required
+          content:
+            application/json:
+              schema:
+                example:
+                  message: 'At least one parameter is required: agentId or isDeleteAccount'
+                  error: Bad Request
+                  statusCode: 400
+      summary: Get active offboarding reason templates
+      tags:
+      - Entities
+    post:
+      description: Creates a new offboarding reason template that can be used when offboarding entities. This endpoint is used by internal teams to manage available offboarding reasons.
+      operationId: t_value
+      parameters: []
+      responses:
+        '201':
+          description: Successfully created offboarding reason template
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/e'
+        '400':
+          description: Invalid request body
+          content:
+            application/json:
+              schema:
+                example:
+                  message: Validation failed
+                  error: Bad Request
+                  statusCode: 400
+      summary: Add a new offboarding reason template
+      tags:
+      - Entities
+    servers:
+    - url: https://api.zoca.ai
+      description: Production
+  /entities/offboarding-reason-templates/{id}:
+    put:
+      description: Updates an offboarding reason template. At least one field must be provided for update.
+      operationId: t_value
+      parameters: []
+      responses:
+        '200':
+          description: Successfully updated offboarding reason template
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/e'
+        '400':
+          description: Invalid request - no fields to update
+          content:
+            application/json:
+              schema:
+                example:
+                  message: At least one field must be provided for update
+                  error: Bad Request
+                  statusCode: 400
+        '404':
+          description: Reason template not found
+          content:
+            application/json:
+              schema:
+                example:
+                  message: Offboarding reason template with ID 123 not found
+                  error: Not Found
+                  statusCode: 404
+      summary: Update an existing offboarding reason template
+      tags:
+      - Entities
+    servers:
+    - url: https://api.zoca.ai
+      description: Production
+  /entities/offboarding-reason-template-mappings:
+    post:
+      description: Maps an entity to a specific offboarding reason template. If mapping already exists, it will be reactivated.
+      operationId: t_value
+      parameters: []
+      responses:
+        '201':
+          description: Successfully created reason template mapping
+          content:
+            application/json:
+              schema:
+                example:
+                  success: true
+                  message: Reason template mapping created successfully
+        '404':
+          description: Reason template not found
+          content:
+            application/json:
+              schema:
+                example:
+                  message: Offboarding reason template with ID 123 not found or is inactive
+                  error: Not Found
+                  statusCode: 404
+      summary: Create a mapping between an entity and a reason template
+      tags:
+      - Entities
+    servers:
+    - url: https://api.zoca.ai
+      description: Production
+  /entities/offboarding-reason-template-mappings/{entityId}/{reasonId}:
+    put:
+      description: Updates the active status of a reason template mapping.
+      operationId: t_value
+      parameters: []
+      responses:
+        '200':
+          description: Successfully updated reason template mapping
+          content:
+            application/json:
+              schema:
+                example:
+                  success: true
+                  message: Reason template mapping updated successfully
+        '404':
+          description: Mapping not found
+          content:
+            application/json:
+              schema:
+                example:
+                  message: Reason template mapping not found for entity abc-123 and reason 1
+                  error: Not Found
+                  statusCode: 404
+      summary: Update a reason template mapping
+      tags:
+      - Entities
+    servers:
+    - url: https://api.zoca.ai
+      description: Production
+  /entities/offboarding/active-subscriptions/{entityId}:
+    get:
+      description: Retrieves active agent subscriptions, billing information, and delete account status for offboarding workflows. Returns agent details with meeting links if offboarding calls are scheduled.
+      operationId: t_value
+      parameters: []
+      responses:
+        '200':
+          description: Successfully retrieved active subscriptions and offboarding information
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/e'
+              examples:
+                no-delete-account:
+                  summary: Active subscriptions without delete account scheduled
+                  value:
+                    agents:
+                    - agentId: agent-123
+                      title: Zoca Discovery
+                      icon: discovery-icon.svg
+                      iconBgColor: '#4F46E5'
+                      description: Next bill - 24 Sep, 2025
+                      isDisabled: false
+                      isCallScheduled: false
+                      meetingLink: null
+                    deleteAccount: null
+                delete-account-scheduled:
+                  summary: Delete account call scheduled
+                  value:
+                    agents:
+                    - agentId: agent-123
+                      title: Zoca Discovery
+                      icon: discovery-icon.svg
+                      iconBgColor: '#4F46E5'
+                      description: Off-boarding call on 24 Aug, 12:30 PM
+                      isDisabled: true
+                      isCallScheduled: false
+                      meetingLink: null
+                    - agentId: agent-456
+                      title: Zoca Reviews
+                      icon: reviews-icon.svg
+                      iconBgColor: '#10B981'
+                      description: Off-boarding call on 24 Aug, 12:30 PM
+                      isDisabled: true
+                      isCallScheduled: true
+                      meetingLink: https://meet.google.com/abc-def-ghi
+                    deleteAccount:
+                      description: Off-boarding call on 24 Aug, 12:30 PM
+                      meetingLink: https://meet.google.com/abc-def-ghi
+                      isCallScheduled: true
+        '400':
+          description: Invalid entity ID format
+          content:
+            application/json:
+              schema:
+                example:
+                  message: Invalid UUID format
+                  error: Bad Request
+                  statusCode: 400
+        '401':
+          description: Missing or invalid JWT authentication
+          content:
+            application/json:
+              schema:
+                example:
+                  message: Unauthorized
+                  error: Unauthorized
+                  statusCode: 401
+        '403':
+          description: User not authorized for this entity
+          content:
+            application/json:
+              schema:
+                example:
+                  message: Forbidden
+                  error: Forbidden
+                  statusCode: 403
+        '404':
+          description: Entity not found
+          content:
+            application/json:
+              schema:
+                example:
+                  message: Entity not found
+                  error: Not Found
+                  statusCode: 404
+        '500':
+          description: Internal server error
+          content:
+            application/json:
+              schema:
+                example:
+                  message: Failed to retrieve active subscriptions
+                  error: Internal Server Error
+                  statusCode: 500
+      summary: Get active subscriptions and offboarding information for an entity
+      tags:
+      - Entities
+    servers:
+    - url: https://api.zoca.ai
+      description: Production
+  /entities/offboarding/active-subscriptions/v2/{entityId}:
+    get:
+      description: Retrieves active agent subscriptions, billing information, and delete account status for offboarding workflows. Includes HubSpot meeting data by default.
+      operationId: t_value
+      parameters: []
+      responses:
+        '200':
+          description: Successfully retrieved active subscriptions and offboarding information
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/e'
+        '400':
+          description: Invalid entity ID format
+          content:
+            application/json:
+              schema:
+                example:
+                  message: Invalid UUID format
+                  error: Bad Request
+                  statusCode: 400
+        '401':
+          description: Missing or invalid JWT authentication
+          content:
+            application/json:
+              schema:
+                example:
+                  message: Unauthorized
+                  error: Unauthorized
+                  statusCode: 401
+        '500':
+          description: Internal server error
+          content:
+            application/json:
+              schema:
+                example:
+                  message: Failed to retrieve active subscriptions
+                  error: Internal Server Error
+                  statusCode: 500
+      summary: Get active subscriptions and offboarding information for an entity (with HubSpot meeting)
+      tags:
+      - Entities
+    servers:
+    - url: https://api.zoca.ai
+      description: Production
+  /entities/defaults:
+    post:
+      description: Creates a new global default key-value pair or updates the existing one if the attribute already exists.
+      operationId: t_value
+      parameters: []
+      responses:
+        '201':
+          description: Successfully created or updated global default preference
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/e'
+        '400':
+          description: Invalid request body
+          content:
+            application/json:
+              schema:
+                example:
+                  message: Attribute cannot be empty
+                  error: Bad Request
+                  statusCode: 400
+      summary: Create or update a global default preference
+      tags:
+      - Entities
+    get:
+      description: Retrieves all global default key-value pairs or filters by attribute/ID.
+      operationId: t_value
+      parameters: []
+      responses:
+        '200':
+          description: Successfully retrieved global default preferences
+          content:
+            application/json:
+              schema:
+                type: array
+                items:
+                  $ref: '#/components/schemas/e'
+      summary: Get global default preferences
+      tags:
+      - Entities
+    servers:
+    - url: https://api.zoca.ai
+      description: Production
+  /entities/defaults/{id}:
+    put:
+      description: Updates an existing global default preference by its UUID.
+      operationId: t_value
+      parameters: []
+      responses:
+        '200':
+          description: Successfully updated global default preference
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/e'
+        '400':
+          description: Invalid request body - attribute cannot be empty if provided or invalid UUID
+          content:
+            application/json:
+              schema:
+                example:
+                  message: id must be a valid UUID
+                  error: Bad Request
+                  statusCode: 400
+        '404':
+          description: Global default preference not found
+          content:
+            application/json:
+              schema:
+                example:
+                  message: Global default preference not found
+                  error: Not Found
+                  statusCode: 404
+      summary: Update a global default preference
+      tags:
+      - Entities
+    delete:
+      description: Deletes a global default preference by its UUID.
+      operationId: t_value
+      parameters: []
+      responses:
+        '204':
+          description: Successfully deleted global default preference (no content)
+        '400':
+          description: Invalid UUID format
+          content:
+            application/json:
+              schema:
+                example:
+                  message: id must be a valid UUID
+                  error: Bad Request
+                  statusCode: 400
+        '404':
+          description: Global default preference not found
+          content:
+            application/json:
+              schema:
+                example:
+                  message: Global default preference not found
+                  error: Not Found
+                  statusCode: 404
+      summary: Delete a global default preference
+      tags:
+      - Entities
+    servers:
+    - url: https://api.zoca.ai
+      description: Production
+  /entities/links/credentials/{linkId}:
+    put:
+      description: Securely stores username and password credentials for a specific link using AWS Secrets Manager. The credentials are encrypted and the secret reference is stored in the database.
+      operationId: t_value
+      parameters:
+      - name: linkId
+        required: true
+        in: path
+        description: UUID of the link to update credentials for
+        schema:
+          example: f47ac10b-58cc-4372-a567-0e02b2c3d479
+      responses:
+        '200':
+          description: Successfully created or updated link credentials
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/e'
+        '400':
+          description: Invalid request parameters - invalid UUID format or missing credentials
+          content:
+            application/json:
+              schema:
+                example:
+                  message: linkId must be a valid UUID
+                  error: Bad Request
+                  statusCode: 400
+        '404':
+          description: Link not found or inactive
+          content:
+            application/json:
+              schema:
+                example:
+                  message: Link with ID 'f47ac10b-58cc-4372-a567-0e02b2c3d479' not found or inactive
+                  error: Not Found
+                  statusCode: 404
+        '500':
+          description: Internal server error - AWS Secrets Manager operation failed
+          content:
+            application/json:
+              schema:
+                example:
+                  message: 'Failed to update link credentials: AWS service unavailable'
+                  error: Internal Server Error
+                  statusCode: 500
+      summary: Create or update credentials for a link
+      tags:
+      - Entities
+    servers:
+    - url: https://api.zoca.ai
+      description: Production
+  /entities/links/{linkId}/scrape:
+    post:
+      description: Creates a scraping task for booking platform data (appointments or customers) using Optexity APIs. Returns a task ID for polling results.
+      operationId: t_value
+      parameters:
+      - name: linkId
+        required: true
+        in: path
+        description: UUID of the booking platform link to scrape data from
+        schema:
+          example: f47ac10b-58cc-4372-a567-0e02b2c3d479
+      responses:
+        '200':
+          description: Successfully created scraping task
+          schema:
+            example:
+              taskId: task_abc123def456
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/e'
+        '400':
+          description: Invalid request parameters or missing required fields
+          content:
+            application/json:
+              schema:
+                examples:
+                  missingCredentials:
+                    summary: Missing credentials
+                    value:
+                      message: Missing credentials for link f47ac10b-58cc-4372-a567-0e02b2c3d479
+                      error: Bad Request
+                      statusCode: 400
+                  invalidDataType:
+                    summary: Invalid data type
+                    value:
+                      message: dataType must be either "appointments" or "customers"
+                      error: Bad Request
+                      statusCode: 400
+                  missingDates:
+                    summary: Missing date range for appointments
+                    value:
+                      message: startDate is required when dataType is "appointments"
+                      error: Bad Request
+                      statusCode: 400
+        '404':
+          description: Booking platform link not found or invalid configuration
+          content:
+            application/json:
+              schema:
+                example:
+                  message: Booking platform link with ID 'f47ac10b-58cc-4372-a567-0e02b2c3d479' not found or invalid configuration
+                  error: Not Found
+                  statusCode: 404
+        '500':
+          description: Internal server error - Optexity API failure
+          content:
+            application/json:
+              schema:
+                example:
+                  message: 'Failed to start scraping task: Optexity API unavailable'
+                  error: Internal Server Error
+                  statusCode: 500
+      summary: Start scraping task for booking platform data
+      tags:
+      - Entities
+    servers:
+    - url: https://api.zoca.ai
+      description: Production
+  /entities/optexity/callback:
+    post:
+      description: Public endpoint called by Optexity to notify when a scraping task completes (success or failure). Triggers data processing and saves results to database.
+      operationId: t_value
+      parameters: []
+      responses:
+        '200':
+          description: Callback processed successfully
+          content:
+            application/json:
+              schema:
+                example:
+                  success: true
+                  message: Callback processed successfully
+                  taskId: 8b381ffe-4c40-4896-99e6-ba6dcc465d39
+        '400':
+          description: Invalid callback data or task not found
+          content:
+            application/json:
+              schema:
+                example:
+                  success: false
+                  message: Task not found
+      summary: Receive callback from Optexity when scraping task completes
+      tags:
+      - Entities
+    servers:
+    - url: https://api.zoca.ai
+      description: Production
+  /entities/location/{entityId}/social-media-churn:
+    post:
+      description: Deactivates social media features for a location by updating preferences in the third-party service. This disables automatic posting, Facebook/Instagram cards, and sets scheduling to manual mode.
+      operationId: t_value
+      parameters: []
+      responses:
+        '200':
+          description: Successfully marked location as churned for social media
+          content:
+            application/json:
+              schema:
+                example:
+                  status: true
+                  data:
+                    uid: 123e4567-e89b-12d3-a456-426614174000
+                    preferences:
+                      is_active: false
+                      show_facebook_card: false
+                      show_instagram: false
+                      scheduling_preference: MANUAL_SCHEDULING
+        '400':
+          description: Invalid entity ID format or missing entity ID
+          content:
+            application/json:
+              schema:
+                example:
+                  message: Location entity ID is required
+                  error: Bad Request
+                  statusCode: 400
+        '500':
+          description: Failed to update social media preferences
+          content:
+            application/json:
+              schema:
+                example:
+                  status: false
+                  data: Connection timeout to social media service
+      summary: Mark location as churned for social media
+      tags:
+      - Entities
+    servers:
+    - url: https://api.zoca.ai
+      description: Production
+  /entities/agent-activation-logs:
+    post:
+      description: Creates a new log entry to track agent activation status changes at a specific location. Used for historical tracking of when agents are activated/deactivated.
+      operationId: t_value
+      parameters: []
+      responses:
+        '201':
+          description: Successfully created agent activation log entry
+          content:
+            application/json:
+              schema:
+                example:
+                  logId: 1
+                  locationEntityId: 123e4567-e89b-12d3-a456-426614174000
+                  agentEntityId: 987e6543-e21b-12d3-a456-426614174000
+                  activationStatus: true
+                  createdAt: '2025-01-28T20:30:00.000Z'
+        '400':
+          description: Invalid request body - validation failed
+          content:
+            application/json:
+              schema:
+                example:
+                  message:
+                  - locationEntityId must be a valid UUID
+                  - activationStatus must be a boolean
+                  error: Bad Request
+                  statusCode: 400
+      summary: Create agent activation log entry
+      tags:
+      - Entities
+    servers:
+    - url: https://api.zoca.ai
+      description: Production
+  /entities/{entityId}/trigger-payment-link-comms:
+    post:
+      description: Triggers payment link communications for an entity by fetching the Chargebee payment link and sending it to all associated users via MoEngage. The entity must have an active or future subscription.
+      operationId: t_value
+      parameters:
+      - name: entityId
+        required: true
+        in: path
+        description: UUID of the entity to trigger payment link communications for
+        schema:
+          example: 123e4567-e89b-12d3-a456-426614174000
+      responses:
+        '200':
+          description: Successfully triggered payment link communications
+          schema:
+            example:
+              success: true
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/e'
+        '400':
+          description: Invalid entity ID format
+          content:
+            application/json:
+              schema:
+                example:
+                  message: 'Invalid entity ID format: invalid-uuid'
+                  error: Bad Request
+                  statusCode: 400
+        '404':
+          description: No active subscription found for the entity
+          content:
+            application/json:
+              schema:
+                example:
+                  message: 'No active subscription found for entity: 123e4567-e89b-12d3-a456-426614174000'
+                  error: Not Found
+                  statusCode: 404
+        '500':
+          description: Internal server error - Failed to trigger payment link communications
+          content:
+            application/json:
+              schema:
+                example:
+                  message: 'Failed to trigger payment link communications: Public server error'
+                  error: Internal Server Error
+                  statusCode: 500
+      summary: Trigger payment link communications for an entity
+      tags:
+      - Entities
+    servers:
+    - url: https://api.zoca.ai
+      description: Production
+  /entities/{entityId}/meetings:
+    get:
+      description: Retrieves the latest scheduled Calendly meetings for an entity based on UTM tracking parameters. Returns an array with call details including whether the meeting can be rescheduled and if joining is currently enabled.
+      operationId: t_value
+      parameters:
+      - name: limit
+        required: false
+        in: query
+        description: 'Maximum number of meetings to return (default: 1)'
+        schema:
+          example: 1
+          type: number
+      - name: entityId
+        required: true
+        in: path
+        description: UUID of the entity to retrieve the latest Calendly meeting for
+        schema:
+          example: 123e4567-e89b-12d3-a456-426614174000
+      responses:
+        '200':
+          description: Successfully retrieved latest meetings
+          schema:
+            example:
+            - callId: https://api.calendly.com/scheduled_events/abc123
+              date: '2025-01-28T21:00:00.000Z'
+              canReschedule: true
+              joinCallEnabled: false
+              callUrl: https://meet.google.com/abc-def-ghi
+          content:
+            application/json:
+              schema:
+                type: array
+                items:
+                  $ref: '#/components/schemas/e'
+        '400':
+          description: Invalid entity ID format
+          content:
+            application/json:
+              schema:
+                example:
+                  message: 'Invalid entity ID format: invalid-uuid'
+                  error: Bad Request
+                  statusCode: 400
+        '404':
+          description: No meetings found for the entity (returns empty array)
+          content:
+            application/json:
+              schema:
+                example: []
+        '500':
+          description: Internal server error - Failed to retrieve meetings
+          content:
+            application/json:
+              schema:
+                example:
+                  message: 'Failed to get latest meetings: Database connection error'
+                  error: Internal Server Error
+                  statusCode: 500
+      summary: Get latest meetings for an entity
+      tags:
+      - Entities
+    servers:
+    - url: https://api.zoca.ai
+      description: Production
+  /entities/{entityId}/review-insights:
+    post:
+      description: Retrieves review insights including lead predictions and review targets for a location entity. Accepts predictedLeads value in request body to calculate lead distributions. Review targets are fetched from the non-ICP pipeline.
+      operationId: t_value
+      parameters:
+      - name: entityId
+        required: true
+        in: path
+        description: UUID of the location entity to retrieve review insights for
+        schema:
+          example: 123e4567-e89b-12d3-a456-426614174000
+      responses:
+        '200':
+          description: Successfully retrieved review insights
+          schema:
+            example:
+              leadsWithoutReview: 10
+              leadsWithReview: 28
+              reviewTarget: 8 reviews per week
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/e'
+        '400':
+          description: Invalid entity ID format or invalid request body
+          content:
+            application/json:
+              schema:
+                example:
+                  message: 'Invalid entity ID format: invalid-uuid'
+                  error: Bad Request
+                  statusCode: 400
+        '500':
+          description: Internal server error - Failed to retrieve review insights
+          content:
+            application/json:
+              schema:
+                example:
+                  message: 'Failed to get review insights: Database connection error'
+                  error: Internal Server Error
+                  statusCode: 500
+      summary: Get review insights for an entity
+      tags:
+      - Entities
+    servers:
+    - url: https://api.zoca.ai
+      description: Production
+  /entities/website/{entityId}/faqs:
+    get:
+      description: Retrieves all active frequently asked questions for an entity.
+      operationId: t_value
+      parameters:
+      - name: entityId
+        required: true
+        in: path
+        description: UUID of the entity to retrieve FAQs for
+        schema:
+          example: 123e4567-e89b-12d3-a456-426614174000
+      responses:
+        '200':
+          description: Successfully retrieved FAQs
+          content:
+            application/json:
+              schema:
+                example:
+                - id: 1
+                  question: What is the best way to clean my teeth?
+                  answer: The best way to clean your teeth is to brush them twice a day.
+      summary: Get FAQs for an entity
+      tags:
+      - Entities
+    servers:
+    - url: https://api.zoca.ai
+      description: Production
+  /entities/website/faqs/bulk-upsert:
+    post:
+      description: Creates or updates multiple FAQs in a single operation. If a FAQ with the same question exists for an entity, it will be updated. Otherwise, a new FAQ will be created.
+      operationId: t_value
+      parameters: []
+      responses:
+        '201':
+          description: Successfully upserted FAQs
+          content:
+            application/json:
+              schema:
+                example:
+                - id: 1
+                  question: What are your business hours?
+                  answer: We are open Monday through Friday, 9 AM to 5 PM
+                  entityId: 123e4567-e89b-12d3-a456-426614174000
+                  orderId: 1
+                  isActive: true
+                  createdAt: '2025-01-28T21:00:00.000Z'
+                  updatedAt: '2025-01-28T21:00:00.000Z'
+                - id: 2
+                  question: Do you offer delivery?
+                  answer: Yes, we offer free delivery on orders over $50
+                  entityId: 123e4567-e89b-12d3-a456-426614174000
+                  orderId: 2
+                  isActive: true
+                  createdAt: '2025-01-28T21:00:00.000Z'
+                  updatedAt: '2025-01-28T21:00:00.000Z'
+        '400':
+          description: Invalid request body - validation failed or empty array
+          content:
+            application/json:
+              schema:
+                example:
+                  message: FAQs array cannot be empty
+                  error: Bad Request
+                  statusCode: 400
+        '500':
+          description: Internal server error - failed to upsert FAQs
+          content:
+            application/json:
+              schema:
+                example:
+                  message: 'Failed to bulk upsert FAQs: Database connection error'
+                  error: Internal Server Error
+                  statusCode: 500
+      summary: Bulk upsert FAQs for entities
+      tags:
+      - Entities
+    servers:
+    - url: https://api.zoca.ai
+      description: Production
+  /entities/{entityId}/status:
+    get:
+      description: Returns isDead, isActive, and leadMasking status for a given entity ID
+      operationId: t_value
+      parameters:
+      - name: entityId
+        required: true
+        in: path
+        description: Entity ID (UUID)
+        schema:
+          type: string
+      responses:
+        '200':
+          description: Entity status retrieved successfully
+        '404':
+          description: Entity not found
+      summary: Get entity status information
+      tags:
+      - Entities
+    servers:
+    - url: https://api.zoca.ai
+      description: Production
+  /entities/{entityId}/users/{userId}/service-provider:
+    put:
+      description: Marks or unmarks a user as the service provider for a location. Only one service provider allowed per location.
+      operationId: t_value
+      parameters:
+      - name: userId
+        required: true
+        in: path
+        description: User entity UUID
+        schema:
+          example: 987e6543-e89b-12d3-a456-426614174000
+      - name: entityId
+        required: true
+        in: path
+        description: Location entity UUID
+        schema:
+          example: 123e4567-e89b-12d3-a456-426614174000
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/e'
+      responses:
+        '200':
+          description: Service provider status updated successfully
+        '400':
+          description: Another user is already service provider for this location
+        '404':
+          description: User or location not found
+      summary: Toggle service provider status for user
+      tags:
+      - Entities
+    servers:
+    - url: https://api.zoca.ai
+      description: Production
+  /entities/{entityId}/service-providers:
+    get:
+      description: Returns array of service providers for a location. Currently limited to 1 provider, but returns array format for future multi-staff support.
+      operationId: t_value
+      parameters:
+      - name: entityId
+        required: true
+        in: path
+        description: Location entity UUID
+        schema:
+          example: 123e4567-e89b-12d3-a456-426614174000
+      responses:
+        '200':
+          description: Service providers retrieved successfully
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/e'
+        '404':
+          description: Location not found
+      summary: Get service providers for a location
+      tags:
+      - Entities
+    servers:
+    - url: https://api.zoca.ai
+      description: Production
+  /entities/{entityId}/hubspot/meetings:
+    get:
+      description: Retrieves upcoming HubSpot meetings for a location entity via its associated contact and deal. Returns meeting details including reschedule and cancel URLs extracted from the meeting body.
+      operationId: t_value
+      parameters:
+      - name: limit
+        required: false
+        in: query
+        description: 'Maximum number of upcoming meetings to return (default: 1)'
+        schema:
+          example: 1
+          type: number
+      - name: entityId
+        required: true
+        in: path
+        description: UUID of the location entity
+        schema:
+          example: 123e4567-e89b-12d3-a456-426614174000
+      responses:
+        '200':
+          description: Successfully retrieved upcoming HubSpot meetings
+          content:
+            application/json:
+              schema:
+                example:
+                - meetingId: 12345678
+                  date:
+                    date:
+                      year: 2025
+                      month: 6
+                      day: 15
+                    time:
+                      hour: 14
+                      minute: 0
+                      second: 0
+                  canReschedule: true
+                  rescheduleUrl: https://app-na2.hubspot.com/meetings/zoca-admin/demo-scheduled?rescheduleId=abc123
+                  joinMeetingEnabled: true
+                  meetingUrl: https://meet.google.com/abc-def-ghi
+                  cancelUrl: https://app-na2.hubspot.com/meetings/cancel?cancelUuid=xyz789
+        '400':
+          description: Invalid entity ID
+      summary: Get upcoming HubSpot meetings for an entity
+      tags:
+      - Entities
+    servers:
+    - url: https://api.zoca.ai
+      description: Production
+  /entities/{entityId}/call-now-settings:
+    get:
+      description: Retrieves the current Call Now button configuration for a website. Returns enabled status, phone number (from VIRTUAL_NUMBER or custom fallback), button text, and the source of the phone number.
+      operationId: t_value
+      parameters:
+      - name: entityId
+        required: true
+        in: path
+        description: Entity ID to get Call Now settings for
+        schema:
+          type: string
+      responses:
+        '200':
+          description: Call Now settings retrieved successfully
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/e'
+        '404':
+          description: Entity not found
+      summary: Get Call Now button settings
+      tags:
+      - Entities
+    put:
+      description: Updates the Call Now button configuration for a website. Set enabled to true/false, and optionally provide a custom phone number as fallback if no VIRTUAL_NUMBER exists.
+      operationId: t_value
+      parameters:
+      - name: entityId
+        required: true
+        in: path
+        description: Entity ID to update Call Now settings for
+        schema:
+          type: string
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/e'
+      responses:
+        '200':
+          description: Call Now settings updated successfully
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/e'
+        '400':
+          description: Invalid request body
+      summary: Update Call Now button settings
+      tags:
+      - Entities
+    servers:
+    - url: https://api.zoca.ai
+      description: Production
+  /entities/{entityId}/cta-config:
+    get:
+      description: Returns the complete CTA button configuration for a website, including eligibility status for Call/Callback buttons and the resolved phone number.
+      operationId: t_value
+      parameters:
+      - name: entityId
+        required: true
+        in: path
+        description: Entity ID
+        schema:
+          type: string
+      responses:
+        '200':
+          description: CTA config retrieved
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/e'
+      summary: Get CTA configuration
+      tags:
+      - Entities
+    put:
+      description: Saves the complete CTA button configuration for a website. Validates button type constraints and slot rules.
+      operationId: t_value
+      parameters:
+      - name: entityId
+        required: true
+        in: path
+        description: Entity ID
+        schema:
+          type: string
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/e'
+      responses:
+        '200':
+          description: CTA config saved
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/e'
+        '400':
+          description: Invalid config
+      summary: Update CTA configuration
+      tags:
+      - Entities
+    servers:
+    - url: https://api.zoca.ai
+      description: Production
+  /tasks/api/v1/entities/leads/demo/report:
+    post:
+      operationId: t_value
+      parameters: []
+      responses:
+        '201':
+          description: ''
+      summary: Trigger demo lead report notification
+      tags:
+      - Entities
+      security:
+      - access-token: []
+    servers:
+    - url: https://tasks.zoca.ai
+      description: Production
+  /tasks/api/v1/entities/keywords:
+    post:
+      operationId: t_value
+      parameters: []
+      responses:
+        '200':
+          description: Keywords upserted successfully
+        '400':
+          description: Invalid keyword type or validation error
+      summary: Create or update keyword entities for a given entity
+      tags:
+      - Entities
+      security:
+      - access-token: []
+    get:
+      operationId: t_value
+      parameters:
+      - name: type
+        required: false
+        in: query
+        description: Keyword type filter (REGULAR or RANKING)
+        schema:
+          enum:
+          - REGULAR
+          - RANKING
+          type: string
+      - name: entityId
+        required: true
+        in: query
+        description: Entity ID to get keywords for
+        schema: {}
+      responses:
+        '200':
+          description: Keywords retrieved successfully
+      summary: Get keywords for an entity by type
+      tags:
+      - Entities
+      security:
+      - access-token: []
+    servers:
+    - url: https://tasks.zoca.ai
+      description: Production
+  /tasks/api/v1/entities/businesses:
+    get:
+      operationId: t_value
+      parameters:
+      - name: limit
+        required: false
+        in: query
+        schema:
+          type: number
+      - name: page
+        required: false
+        in: query
+        schema:
+          type: number
+      - name: q
+        required: false
+        in: query
+        description: Optional search term (min 2 chars). Omit to list all.
+        schema:
+          type: string
+      responses:
+        '200':
+          description: Paginated list of businesses
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/e_2'
+      summary: List or search businesses by title (internal drill-down typeahead)
+      tags:
+      - Entities
+      security:
+      - access-token: []
+    servers:
+    - url: https://tasks.zoca.ai
+      description: Production
+  /tasks/api/v1/entities/businesses/{businessId}/locations:
+    get:
+      operationId: t_value
+      parameters:
+      - name: businessId
+        required: true
+        in: path
+        schema:
+          format: uuid
+      responses:
+        '200':
+          description: Array of location summaries (hard cap 500)
+          content:
+            application/json:
+              schema:
+                type: array
+                items:
+                  $ref: '#/components/schemas/e_2'
+      summary: List locations attached to a business (BUSINESS_LOCATION)
+      tags:
+      - Entities
+      security:
+      - access-token: []
+    servers:
+    - url: https://tasks.zoca.ai
+      description: Production
+  /tasks/api/v1/entities/locations/{locationId}/users-with-phones:
+    get:
+      operationId: t_value
+      parameters:
+      - name: locationId
+        required: true
+        in: path
+        schema:
+          format: uuid
+      responses:
+        '200':
+          description: Array of users each with inline phones[] (ordered primary first)
+          content:
+            application/json:
+              schema:
+                type: array
+                items:
+                  $ref: '#/components/schemas/e_2'
+      summary: List users at a location with their phone numbers bundled inline (VIRTUAL_NUMBER, WORK, PERSONAL)
+      tags:
+      - Entities
+      security:
+      - access-token: []
+    servers:
+    - url: https://tasks.zoca.ai
+      description: Production
+  /tasks/api/v1/entities/phone/{entityId}:
+    get:
+      operationId: t_value
+      parameters:
+      - name: type
+        required: false
+        in: query
+        description: Type of phone number (e.g., VIRTUAL_NUMBER, BUSINESS_NUMBER)
+        schema: {}
+      - name: entityId
+        required: true
+        in: path
+        description: Entity ID to get phone numbers for
+        schema: {}
+      responses:
+        '200':
+          description: Phone numbers retrieved successfully
+          content:
+            application/json:
+              schema:
+                type: array
+                items:
+                  type: object
+                  properties:
+                    entityId:
+                      type: string
+                    phoneNumber:
+                      type: string
+                    countryCode:
+                      type: string
+                    type:
+                      type: string
+                    id:
+                      type: number
+        '500':
+          description: Internal server error
+      summary: Get phone numbers for an entity (optionally filter by type)
+      tags:
+      - Entities
+      security:
+      - access-token: []
+    servers:
+    - url: https://tasks.zoca.ai
+      description: Production
+  /tasks/api/v1/entities/locations/backfill-coordinates:
+    post:
+      description: "Enqueues a job to backfill missing latitude/longitude coordinates for location entities.\n    \n    The job will:\n    1. Find all active, non-test location entities with missing coordinates\n    2. Try to fill coordinates from GBP (Google Business Profile) table first\n    3. If not available in GBP, use Google Maps API with the place_id\n    4. Process in batches with configurable delays to respect API rate limits\n    \n    Use dryRun=true to preview what would be updated without making changes."
+      operationId: t_value
+      parameters: []
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/e_2'
+      responses:
+        '201':
+          description: Backfill job enqueued successfully
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/e_2'
+        '500':
+          description: Failed to enqueue backfill job
+      summary: Backfill location coordinates
+      tags:
+      - Entities
+      security:
+      - access-token: []
+    servers:
+    - url: https://tasks.zoca.ai
+      description: Production
+components:
+  schemas:
+    e:
+      type: object
+      properties:
+        id:
+          type: number
+        entityId:
+          type: string
+        attribute:
+          type: string
+        value:
+          type:
+          - object
+          - 'null'
+        metadata:
+          type:
+          - object
+          - 'null'
+        createdAt:
+          type:
+          - object
+          - 'null'
+      required:
+      - id
+      - entityId
+      - attribute
+    e_2:
+      type: object
+      properties:
+        scan:
+          $ref: '#/components/schemas/e_2'
+        businessLat:
+          type:
+          - number
+          - 'null'
+        businessLng:
+          type:
+          - number
+          - 'null'
+        points:
+          type: array
+          items:
+            $ref: '#/components/schemas/e_2'
+        heroMetrics:
+          $ref: '#/components/schemas/e_2'
+      required:
+      - scan
+      - businessLat
+      - businessLng
+      - points
+      - heroMetrics
+  securitySchemes:
+    access-token:
+      scheme: bearer
+      bearerFormat: JWT
+      type: http
+      name: Authorization
+      description: Enter JWT token in the format Bearer <token>
+      in: header
+x-refined-from:
+- zoca-platform-openapi.yml
+- zoca-tasks-openapi.yml

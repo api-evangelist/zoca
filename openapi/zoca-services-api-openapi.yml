@@ -1,0 +1,2061 @@
+openapi: 3.2.0
+info:
+  title: Zoca Platform Services API
+  description: 'The Zoca platform API behind the Zoca web app and mobile apps: scheduling, website generation, Google Business Profile, discovery/local SEO, social media, booking enquiries, offers, clients, staff, billing and the Zoca "brain" agent layer.'
+  version: 3.20.10
+  contact: {}
+  x-apievangelist-note: Harvested verbatim from https://api.zoca.ai/swagger.json. The provider ships the default NestJS Swagger metadata (title "API Documentation", empty servers[]); title/description/servers were set by API Evangelist for identification and the unmodified original is preserved at openapi/_original/zoca-platform-swagger.json. Every path, operation, summary, parameter and response is exactly as published.
+servers:
+- url: https://api.zoca.ai
+  description: Production
+tags:
+- name: Services
+paths:
+  /services/colors:
+    get:
+      description: Returns a list of predefined colors that can be used for service calendar display.
+      operationId: t_value
+      parameters: []
+      responses:
+        '200':
+          description: Service colors retrieved successfully
+          content:
+            application/json:
+              schema:
+                type: array
+                items:
+                  $ref: '#/components/schemas/e'
+      security:
+      - bearer: []
+      summary: Get predefined service colors
+      tags:
+      - Services
+  /services/{entityId}:
+    get:
+      description: Retrieves a paginated list of services for a specific entity with optional filtering.
+      operationId: t_value
+      parameters:
+      - name: categoryId
+        required: false
+        in: query
+        description: UUID of category to filter services
+        schema:
+          format: uuid
+          type: string
+      - name: search
+        required: false
+        in: query
+        description: Search term to filter services by name
+        schema:
+          type: string
+      - name: limit
+        required: false
+        in: query
+        description: Number of items per page
+        schema:
+          example: 10
+          type: number
+      - name: page
+        required: false
+        in: query
+        description: Page number (starts from 1)
+        schema:
+          example: 1
+          type: number
+      - name: entityId
+        required: true
+        in: path
+        description: UUID of the entity
+        schema:
+          format: uuid
+          type: string
+      responses:
+        '200':
+          description: List of services retrieved successfully
+          content:
+            application/json:
+              schema:
+                type: array
+                items:
+                  $ref: '#/components/schemas/t'
+      security:
+      - bearer: []
+      summary: Get services by entity ID
+      tags:
+      - Services
+  /services/service/{id}:
+    get:
+      description: Retrieves detailed information about a specific service including variations and categories
+      operationId: t_value
+      parameters:
+      - name: id
+        required: true
+        in: path
+        description: UUID of the service
+        schema:
+          format: uuid
+          type: string
+      responses:
+        '200':
+          description: Service retrieved successfully
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/t'
+        '404':
+          description: Service not found
+      security:
+      - bearer: []
+      summary: Get service by ID
+      tags:
+      - Services
+    put:
+      description: Updates an existing service including its variations
+      operationId: t_value
+      parameters:
+      - name: id
+        required: true
+        in: path
+        description: UUID of the service
+        schema:
+          format: uuid
+          type: string
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/e'
+      responses:
+        '200':
+          description: Service updated successfully
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/t'
+      security:
+      - bearer: []
+      summary: Update service
+      tags:
+      - Services
+    delete:
+      description: Permanently deletes a service and all its associated data
+      operationId: t_value
+      parameters:
+      - name: id
+        required: true
+        in: path
+        description: UUID of the service
+        schema:
+          format: uuid
+          type: string
+      responses:
+        '200':
+          description: Service deleted successfully
+      security:
+      - bearer: []
+      summary: Delete service
+      tags:
+      - Services
+  /services/{entityId}/service:
+    post:
+      description: "Creates a new service for a specific entity with the following features:\n    - Optional category assignment\n    - Support for service variations\n    - Price and duration configuration\n    - Image attachment capability"
+      operationId: t_value
+      parameters:
+      - name: createDefaultVariation
+        required: false
+        in: query
+        description: If true and no variations are provided, creates a default variation with service name, price, and duration
+        schema:
+          type: boolean
+      - name: categoryId
+        required: false
+        in: query
+        description: Optional UUID of category to assign the service to
+        schema:
+          format: uuid
+          type: string
+      - name: entityId
+        required: true
+        in: path
+        description: UUID of the entity
+        schema:
+          format: uuid
+          type: string
+      requestBody:
+        required: true
+        description: Service creation data
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/e'
+      responses:
+        '201':
+          description: Service created successfully
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/t'
+        '400':
+          description: Invalid input data
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  status:
+                    type: number
+                    example: 400
+                  error:
+                    type: string
+                    example: Bad Request
+                  message:
+                    type: array
+                    items:
+                      type: string
+        '404':
+          description: Entity or category not found
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  status:
+                    type: number
+                    example: 404
+                  error:
+                    type: string
+                  message:
+                    type: string
+        '500':
+          description: Internal server error
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  status:
+                    type: number
+                    example: 500
+                  error:
+                    type: string
+                  message:
+                    type: string
+      security:
+      - bearer: []
+      summary: Create a new service
+      tags:
+      - Services
+  /services/{entityId}/services/{serviceId}/unarchive:
+    put:
+      description: Restores a soft-deleted (archived) service and all its associated data including variations and category relationships
+      operationId: t_value
+      parameters:
+      - name: serviceId
+        required: true
+        in: path
+        description: UUID of the service to unarchive
+        schema:
+          format: uuid
+          type: string
+      - name: entityId
+        required: true
+        in: path
+        description: UUID of the entity
+        schema:
+          format: uuid
+          type: string
+      responses:
+        '200':
+          description: Service unarchived successfully
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/t'
+        '404':
+          description: Service not found
+        '500':
+          description: Internal server error
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  status:
+                    type: number
+                    example: 500
+                  error:
+                    type: string
+                    example: Failed to unarchive service
+                  message:
+                    type: string
+      security:
+      - bearer: []
+      summary: Unarchive a service
+      tags:
+      - Services
+  /services/{entityId}/categories/unarchive:
+    put:
+      description: Restores all soft-deleted categories and their associated services for the given entity. This includes restoring service variations, service-category relationships, and service-entity relationships.
+      operationId: t_value
+      parameters:
+      - name: entityId
+        required: true
+        in: path
+        description: UUID of the entity
+        schema:
+          format: uuid
+          type: string
+      responses:
+        '200':
+          description: Categories and services unarchived successfully
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  message:
+                    type: string
+                    example: Categories unarchived successfully
+        '500':
+          description: Internal server error
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  status:
+                    type: number
+                    example: 500
+                  error:
+                    type: string
+                    example: Failed to unarchive categories
+                  message:
+                    type: string
+      security:
+      - bearer: []
+      summary: Unarchive all categories and services
+      tags:
+      - Services
+  /services/{entityId}/categories/unarchive/{categoryId}:
+    put:
+      description: Restores a soft-deleted category and all its associated services, including variations and relationships.
+      operationId: t_value
+      parameters:
+      - name: categoryId
+        required: true
+        in: path
+        description: UUID of the category to unarchive
+        schema:
+          format: uuid
+          type: string
+      - name: entityId
+        required: true
+        in: path
+        description: UUID of the entity
+        schema:
+          format: uuid
+          type: string
+      responses:
+        '200':
+          description: Category and services unarchived successfully
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  message:
+                    type: string
+                    example: Category unarchived successfully
+        '404':
+          description: Category not found
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  status:
+                    type: number
+                    example: 404
+                  error:
+                    type: string
+                    example: Category not found
+                  message:
+                    type: string
+        '500':
+          description: Internal server error
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  status:
+                    type: number
+                    example: 500
+                  error:
+                    type: string
+                    example: Failed to unarchive category
+                  message:
+                    type: string
+      security:
+      - bearer: []
+      summary: Unarchive a single category and its services
+      tags:
+      - Services
+  /services/{entityId}/uncategorized:
+    get:
+      description: Retrieves all services that are not assigned to any category
+      operationId: t_value
+      parameters:
+      - name: entityId
+        required: true
+        in: path
+        description: UUID of the entity
+        schema:
+          format: uuid
+          type: string
+      responses:
+        '200':
+          description: Uncategorized services retrieved successfully
+          content:
+            application/json:
+              schema:
+                type: array
+                items:
+                  $ref: '#/components/schemas/e'
+      security:
+      - bearer: []
+      summary: Get services without category
+      tags:
+      - Services
+  /services/{entityId}/categories/backfill:
+    post:
+      description: Creates categories_entities records from existing service relationships. This is an idempotent operation that can be safely called multiple times.
+      operationId: t_value
+      parameters:
+      - name: entityId
+        required: true
+        in: path
+        description: UUID of the entity
+        schema:
+          format: uuid
+          type: string
+      responses:
+        '200':
+          description: Backfill completed successfully
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  message:
+                    type: string
+                    example: Backfill completed successfully
+                  backfilledCount:
+                    type: number
+                    example: 5
+      security:
+      - bearer: []
+      summary: Backfill categories-entities relationships
+      tags:
+      - Services
+  /services/{entityId}/duration-audit:
+    get:
+      description: Reports every active variation with its resolved duration in minutes, an issue code (MISSING_VALUE / RANGE_NOT_BOOKABLE / UNKNOWN_TYPE), and a suggested repair sourced from the parent service, the variation range minimum, or the name. Read-only — apply fixes via PUT /variations/batch.
+      operationId: t_value
+      parameters:
+      - name: brokenOnly
+        required: false
+        in: query
+        description: Return only variations with a duration problem.
+        schema:
+          type: boolean
+      - name: limit
+        required: false
+        in: query
+        schema:
+          example: 50
+          type: number
+      - name: page
+        required: false
+        in: query
+        schema:
+          example: 1
+          type: number
+      - name: entityId
+        required: true
+        in: path
+        description: UUID of the location entity
+        schema:
+          format: uuid
+          type: string
+      responses:
+        '200':
+          description: Audit completed
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/e'
+      security:
+      - bearer: []
+      summary: Audit service variation durations for a location
+      tags:
+      - Services
+  /services/{entityId}/variations/backfill:
+    post:
+      description: Creates default variations for all active services that have no variations. The default variation copies the service name, price, and duration. This is an idempotent operation that can be safely called multiple times.
+      operationId: t_value
+      parameters:
+      - name: entityId
+        required: true
+        in: path
+        description: UUID of the entity
+        schema:
+          format: uuid
+          type: string
+      responses:
+        '200':
+          description: Backfill completed successfully
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  message:
+                    type: string
+                    example: Default variations backfill completed successfully
+                  createdCount:
+                    type: number
+                    example: 5
+                  servicesAffected:
+                    type: array
+                    items:
+                      type: string
+                      format: uuid
+                    example:
+                    - uuid-1
+                    - uuid-2
+        '500':
+          description: Internal server error
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  status:
+                    type: number
+                    example: 500
+                  error:
+                    type: string
+                    example: Failed to backfill variations
+                  message:
+                    type: string
+      security:
+      - bearer: []
+      summary: Backfill default variations for services without variations
+      tags:
+      - Services
+  /services/{entityId}/online-booking/backfill:
+    post:
+      description: Updates all active services for the entity to enable online booking. This is an idempotent operation that can be safely called multiple times.
+      operationId: t_value
+      parameters:
+      - name: entityId
+        required: true
+        in: path
+        description: UUID of the entity
+        schema:
+          format: uuid
+          type: string
+      responses:
+        '200':
+          description: Online booking enabled successfully
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  message:
+                    type: string
+                    example: Online booking enabled for all services
+                  updatedCount:
+                    type: number
+                    example: 5
+                  servicesAffected:
+                    type: array
+                    items:
+                      type: string
+                      format: uuid
+                    example:
+                    - uuid-1
+                    - uuid-2
+        '500':
+          description: Internal server error
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  status:
+                    type: number
+                    example: 500
+                  error:
+                    type: string
+                    example: Failed to enable online booking
+                  message:
+                    type: string
+      security:
+      - bearer: []
+      summary: Enable online booking for all services
+      tags:
+      - Services
+  /services/{entityId}/category:
+    post:
+      description: Creates a new service category and associates it with the specified entity via categories_entities table
+      operationId: t_value
+      parameters:
+      - name: entityId
+        required: true
+        in: path
+        description: UUID of the entity
+        schema:
+          format: uuid
+          type: string
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/e'
+      responses:
+        '201':
+          description: Category created successfully
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/e'
+      security:
+      - bearer: []
+      summary: Create a new category for an entity
+      tags:
+      - Services
+  /services/category:
+    post:
+      deprecated: true
+      description: 'Creates a new service category. DEPRECATED: Use POST /:entityId/category instead for proper entity association.'
+      operationId: t_value
+      parameters: []
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/e'
+      responses:
+        '201':
+          description: Category created successfully
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/e'
+      security:
+      - bearer: []
+      summary: Create a new category (deprecated)
+      tags:
+      - Services
+  /services/category/{id}:
+    get:
+      description: Retrieves detailed information about a specific category
+      operationId: t_value
+      parameters:
+      - name: id
+        required: true
+        in: path
+        description: UUID of the category
+        schema:
+          format: uuid
+          type: string
+      responses:
+        '200':
+          description: Category found
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/t'
+      security:
+      - bearer: []
+      summary: Get a category by ID
+      tags:
+      - Services
+    put:
+      description: Updates an existing category information
+      operationId: t_value
+      parameters:
+      - name: id
+        required: true
+        in: path
+        description: UUID of the category
+        schema:
+          format: uuid
+          type: string
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/e'
+      responses:
+        '200':
+          description: Category updated successfully
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/e'
+      security:
+      - bearer: []
+      summary: Update a category
+      tags:
+      - Services
+    delete:
+      description: Permanently deletes a category
+      operationId: t_value
+      parameters:
+      - name: id
+        required: true
+        in: path
+        description: UUID of the category
+        schema:
+          format: uuid
+          type: string
+      responses:
+        '200':
+          description: Category deleted successfully
+      security:
+      - bearer: []
+      summary: Delete a category
+      tags:
+      - Services
+  /services/{entityId}/categories:
+    get:
+      description: Retrieves all service categories associated with an entity. When source header is "zoca-web", includes categories even if they have no services. Use includeVariations=true to include service variations in the response.
+      operationId: t_value
+      parameters:
+      - name: includeVariations
+        required: false
+        in: query
+        description: Include service variations in the response
+        schema:
+          type: boolean
+      - name: entityId
+        required: true
+        in: path
+        description: UUID of the entity
+        schema:
+          format: uuid
+          type: string
+      responses:
+        '200':
+          description: Categories retrieved successfully
+          content:
+            application/json:
+              schema:
+                type: array
+                items:
+                  $ref: '#/components/schemas/t'
+      security:
+      - bearer: []
+      summary: Get all categories for an entity
+      tags:
+      - Services
+  /services/{entityId}/categories/services/archived:
+    get:
+      description: Retrieves all archived (soft-deleted) services for an entity, grouped by their categories. When source header is "zoca-web", includes all categories even if they have no archived services.
+      operationId: t_value
+      parameters:
+      - name: entityId
+        required: true
+        in: path
+        description: UUID of the entity
+        schema:
+          format: uuid
+          type: string
+      responses:
+        '200':
+          description: Archived services with categories retrieved successfully
+          content:
+            application/json:
+              schema:
+                type: array
+                items:
+                  $ref: '#/components/schemas/t'
+        '500':
+          description: Internal server error
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  status:
+                    type: number
+                    example: 500
+                  error:
+                    type: string
+                    example: Failed to retrieve archived services
+                  message:
+                    type: string
+      security:
+      - bearer: []
+      summary: Get archived services grouped by category
+      tags:
+      - Services
+  /services/service/{serviceId}/category/{categoryId}:
+    post:
+      description: Creates an association between a service and a category
+      operationId: t_value
+      parameters:
+      - name: categoryId
+        required: true
+        in: path
+        description: UUID of the category
+        schema:
+          format: uuid
+          type: string
+      - name: serviceId
+        required: true
+        in: path
+        description: UUID of the service
+        schema:
+          format: uuid
+          type: string
+      responses:
+        '201':
+          description: ''
+      security:
+      - bearer: []
+      summary: Assign a service to a category
+      tags:
+      - Services
+    delete:
+      description: Removes the association between a service and a category
+      operationId: t_value
+      parameters:
+      - name: categoryId
+        required: true
+        in: path
+        description: UUID of the category
+        schema:
+          format: uuid
+          type: string
+      - name: serviceId
+        required: true
+        in: path
+        description: UUID of the service
+        schema:
+          format: uuid
+          type: string
+      responses:
+        '200':
+          description: ''
+      security:
+      - bearer: []
+      summary: Remove a service from a category
+      tags:
+      - Services
+  /services/reorder:
+    put:
+      description: Updates the order of services
+      operationId: t_value
+      parameters: []
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              type: object
+              properties:
+                services:
+                  type: array
+                  items:
+                    type: string
+                  description: Array of service IDs in desired order
+      responses:
+        '200':
+          description: ''
+      security:
+      - bearer: []
+      summary: Reorder services
+      tags:
+      - Services
+  /services/reorder-categories-services:
+    put:
+      description: Updates the order of categories and their associated services
+      operationId: t_value
+      parameters: []
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/e'
+      responses:
+        '200':
+          description: ''
+      security:
+      - bearer: []
+      summary: Reorder categories and their services
+      tags:
+      - Services
+  /services/{serviceId}/images:
+    get:
+      description: Retrieves all images associated with a service
+      operationId: t_value
+      parameters:
+      - name: serviceId
+        required: true
+        in: path
+        description: UUID of the service
+        schema:
+          format: uuid
+          type: string
+      responses:
+        '200':
+          description: Service images retrieved successfully
+          content:
+            application/json:
+              schema:
+                type: array
+                items:
+                  $ref: '#/components/schemas/t'
+      security:
+      - bearer: []
+      summary: Get all images for a service
+      tags:
+      - Services
+    post:
+      description: Associates a new image with a service
+      operationId: t_value
+      parameters:
+      - name: serviceId
+        required: true
+        in: path
+        description: UUID of the service
+        schema:
+          format: uuid
+          type: string
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/e'
+      responses:
+        '201':
+          description: Image added successfully
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/t'
+      security:
+      - bearer: []
+      summary: Add a new image to a service
+      tags:
+      - Services
+  /services/{serviceId}/images/{imageId}:
+    delete:
+      description: Removes an image association from a service
+      operationId: t_value
+      parameters:
+      - name: imageId
+        required: true
+        in: path
+        description: ID of the image
+        schema:
+          type: string
+      - name: serviceId
+        required: true
+        in: path
+        description: UUID of the service
+        schema:
+          format: uuid
+          type: string
+      responses:
+        '200':
+          description: Image deleted successfully
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  message:
+                    type: string
+                    example: Image deleted successfully
+      security:
+      - bearer: []
+      summary: Delete an image from a service
+      tags:
+      - Services
+  /services/{serviceId}/images/{imageId}/primary:
+    post:
+      description: Sets the specified image as the primary image for a service
+      operationId: t_value
+      parameters:
+      - name: imageId
+        required: true
+        in: path
+        description: ID of the image
+        schema:
+          type: string
+      - name: serviceId
+        required: true
+        in: path
+        description: UUID of the service
+        schema:
+          format: uuid
+          type: string
+      responses:
+        '200':
+          description: Image set as primary successfully
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/t'
+      security:
+      - bearer: []
+      summary: Set an image as primary for a service
+      tags:
+      - Services
+  /services/variation/{id}:
+    get:
+      description: Retrieves a single service variation with its parent service and categories
+      operationId: t_value
+      parameters:
+      - name: id
+        required: true
+        in: path
+        description: UUID of the variation
+        schema:
+          format: uuid
+          type: string
+      responses:
+        '200':
+          description: Service variation retrieved successfully
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/t'
+        '404':
+          description: Service variation not found
+      security:
+      - bearer: []
+      summary: Get service variation by ID
+      tags:
+      - Services
+    put:
+      description: Updates an existing service variation
+      operationId: t_value
+      parameters:
+      - name: id
+        required: true
+        in: path
+        description: UUID of the variation
+        schema:
+          format: uuid
+          type: string
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/e'
+      responses:
+        '200':
+          description: Variation updated successfully
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/t'
+      security:
+      - bearer: []
+      summary: Update a variation
+      tags:
+      - Services
+    delete:
+      description: Deletes an existing service variation
+      operationId: t_value
+      parameters:
+      - name: id
+        required: true
+        in: path
+        description: UUID of the variation
+        schema:
+          format: uuid
+          type: string
+      responses:
+        '200':
+          description: Variation deleted successfully
+      security:
+      - bearer: []
+      summary: Delete a variation
+      tags:
+      - Services
+  /services/service/{serviceId}/variations:
+    get:
+      description: Retrieves all variations associated with a service
+      operationId: t_value
+      parameters:
+      - name: limit
+        required: false
+        in: query
+        description: Items per page
+        schema:
+          default: 10
+      - name: page
+        required: false
+        in: query
+        description: Page number
+        schema:
+          default: 1
+      - name: serviceId
+        required: true
+        in: path
+        description: UUID of the service
+        schema:
+          format: uuid
+          type: string
+      responses:
+        '200':
+          description: Service variations retrieved successfully
+          content:
+            application/json:
+              schema:
+                type: array
+                items:
+                  $ref: '#/components/schemas/t'
+      security:
+      - bearer: []
+      summary: Get variations for a service
+      tags:
+      - Services
+  /services/service/{serviceId}/variation:
+    post:
+      description: Creates a new variation for a service
+      operationId: t_value
+      parameters:
+      - name: serviceId
+        required: true
+        in: path
+        description: UUID of the service
+        schema:
+          format: uuid
+          type: string
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/e'
+      responses:
+        '201':
+          description: Variation created successfully
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/t'
+      security:
+      - bearer: []
+      summary: Create a new variation
+      tags:
+      - Services
+  /services/{entityId}/batch:
+    post:
+      description: Creates multiple services in a single request with optional category assignment
+      operationId: t_value
+      parameters:
+      - name: entityId
+        required: true
+        in: path
+        description: UUID of the entity
+        schema:
+          format: uuid
+          type: string
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/e'
+      responses:
+        '201':
+          description: Services created successfully
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/e'
+      security:
+      - bearer: []
+      summary: Create multiple services
+      tags:
+      - Services
+  /services/batch:
+    delete:
+      description: Deletes multiple services in a single request
+      operationId: t_value
+      parameters: []
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/e'
+      responses:
+        '200':
+          description: Services deleted successfully
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/e'
+      security:
+      - bearer: []
+      summary: Delete multiple services
+      tags:
+      - Services
+  /services/categories/batch:
+    post:
+      description: Creates multiple categories in a single request
+      operationId: t_value
+      parameters: []
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/e'
+      responses:
+        '201':
+          description: Categories created successfully
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/e'
+      security:
+      - bearer: []
+      summary: Create multiple categories
+      tags:
+      - Services
+    delete:
+      description: Deletes multiple categories in a single request
+      operationId: t_value
+      parameters: []
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/e'
+      responses:
+        '200':
+          description: Categories deleted successfully
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/e'
+      security:
+      - bearer: []
+      summary: Delete multiple categories
+      tags:
+      - Services
+  /services/default-categories:
+    get:
+      description: Returns hardcoded default service categories with subcategories and services. Used as templates for businesses without a service menu.
+      operationId: t_value
+      parameters:
+      - name: includeServices
+        required: false
+        in: query
+        description: 'Whether to include services within each subcategory (default: true)'
+        schema:
+          type: boolean
+      responses:
+        '200':
+          description: Default service categories returned successfully
+      security:
+      - bearer: []
+      summary: Get default service categories
+      tags:
+      - Services
+  /services/{entityId}/default-categories:
+    post:
+      description: Creates categories, services, and default variations from user-edited default templates. Transforms simplified price/duration values into full DTO format.
+      operationId: t_value
+      parameters:
+      - name: entityId
+        required: true
+        in: path
+        description: UUID of the entity
+        schema:
+          format: uuid
+          type: string
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/e'
+      responses:
+        '201':
+          description: Default categories and services created successfully
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/e'
+      security:
+      - bearer: []
+      summary: Add default service categories
+      tags:
+      - Services
+  /services/{entityId}/categories-with-services:
+    post:
+      description: Creates multiple categories along with their associated services
+      operationId: t_value
+      parameters:
+      - name: entityId
+        required: true
+        in: path
+        description: UUID of the entity
+        schema:
+          format: uuid
+          type: string
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/e'
+      responses:
+        '201':
+          description: Categories and services created successfully
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/e'
+      security:
+      - bearer: []
+      summary: Create categories with services
+      tags:
+      - Services
+  /services/category/{categoryId}/services/batch:
+    post:
+      description: Assigns multiple services to a specific category
+      operationId: t_value
+      parameters:
+      - name: categoryId
+        required: true
+        in: path
+        description: UUID of the category
+        schema:
+          type: string
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/e'
+      responses:
+        '200':
+          description: Services assigned successfully
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/e'
+      security:
+      - bearer: []
+      summary: Assign multiple services to category
+      tags:
+      - Services
+    delete:
+      description: Removes multiple services from a specific category
+      operationId: t_value
+      parameters:
+      - name: categoryId
+        required: true
+        in: path
+        description: UUID of the category
+        schema:
+          format: uuid
+          type: string
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/e'
+      responses:
+        '200':
+          description: Services removed successfully
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/e'
+      security:
+      - bearer: []
+      summary: Remove multiple services from category
+      tags:
+      - Services
+  /services/batch/status:
+    post:
+      description: Updates the active status of multiple services
+      operationId: t_value
+      parameters: []
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              type: object
+              properties:
+                ids:
+                  type: array
+                  items:
+                    type: string
+                    format: uuid
+                isActive:
+                  type: boolean
+      responses:
+        '200':
+          description: Service statuses updated successfully
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/e'
+      security:
+      - bearer: []
+      summary: Update status of multiple services
+      tags:
+      - Services
+  /services/categories/merge:
+    post:
+      description: Merges multiple source categories into a target category
+      operationId: t_value
+      parameters: []
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              type: object
+              properties:
+                sourceIds:
+                  type: array
+                  items:
+                    type: string
+                    format: uuid
+                targetId:
+                  type: string
+                  format: uuid
+      responses:
+        '200':
+          description: Categories merged successfully
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/e'
+      security:
+      - bearer: []
+      summary: Merge multiple categories
+      tags:
+      - Services
+  /services/{entityId}/batch/duplicate:
+    post:
+      description: Creates copies of multiple services optionally assigning them to a target category
+      operationId: t_value
+      parameters:
+      - name: entityId
+        required: true
+        in: path
+        description: UUID of the entity
+        schema:
+          format: uuid
+          type: string
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              type: object
+              properties:
+                ids:
+                  type: array
+                  items:
+                    type: string
+                    format: uuid
+                targetCategoryId:
+                  type:
+                  - string
+                  - 'null'
+                  format: uuid
+      responses:
+        '200':
+          description: Services duplicated successfully
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/e'
+      security:
+      - bearer: []
+      summary: Duplicate multiple services
+      tags:
+      - Services
+  /services/variations/batch:
+    put:
+      description: Updates multiple service variations in a single request
+      operationId: t_value
+      parameters: []
+      requestBody:
+        required: true
+        description: Array of variation updates
+        content:
+          application/json:
+            schema:
+              type: array
+              items:
+                $ref: '#/components/schemas/e'
+      responses:
+        '200':
+          description: Variations updated successfully
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/e'
+      security:
+      - bearer: []
+      summary: Batch update variations
+      tags:
+      - Services
+    delete:
+      description: Deletes multiple service variations in a single request
+      operationId: t_value
+      parameters: []
+      requestBody:
+        required: true
+        description: Array of variation IDs to delete
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/e'
+      responses:
+        '200':
+          description: Variations deleted successfully
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/e'
+      security:
+      - bearer: []
+      summary: Batch delete variations
+      tags:
+      - Services
+  /services/{entityId}/ai-description:
+    get:
+      description: Uses AI to generate a description for a given service name
+      operationId: t_value
+      parameters:
+      - name: type
+        required: false
+        in: query
+        description: Prompt variant. Defaults to `service`. `addon-group` returns a short client-facing nudge to browse the group; `addon` and future variants share the service prompt today.
+        schema:
+          enum:
+          - service
+          - addon
+          - addon-group
+          type: string
+      - name: service
+        required: true
+        in: query
+        description: Service name to generate description for
+        schema:
+          type: string
+      - name: entityId
+        required: true
+        in: path
+        description: UUID of the entity
+        schema:
+          format: uuid
+          type: string
+      responses:
+        '200':
+          description: AI description generated successfully
+          content:
+            text/event-stream:
+              schema:
+                type: string
+      security:
+      - bearer: []
+      summary: Generate AI description for a service
+      tags:
+      - Services
+  /services/{entityId}/categories/suggested:
+    get:
+      description: Retrieves AI-generated suggested categories based on the entity's primary category
+      operationId: t_value
+      parameters:
+      - name: currency
+        required: false
+        in: query
+        description: 'Currency code to use for pricing (default: USD)'
+        schema:
+          type: string
+      - name: refresh
+        required: false
+        in: query
+        description: Whether to refresh the suggestions (generate new ones)
+        schema:
+          type: boolean
+      - name: entityId
+        required: true
+        in: path
+        description: UUID of the entity
+        schema:
+          format: uuid
+          type: string
+      responses:
+        '200':
+          description: Suggested categories retrieved successfully
+          content:
+            application/json:
+              schema:
+                type: array
+                items:
+                  $ref: '#/components/schemas/e'
+      security:
+      - bearer: []
+      summary: Get suggested categories
+      tags:
+      - Services
+  /services/{entityId}/{categoryId}/suggested:
+    get:
+      description: Retrieves a list of suggested services for the specified entity and category
+      operationId: t_value
+      parameters:
+      - name: currency
+        required: false
+        in: query
+        description: 'Currency code to use for pricing (default: USD)'
+        schema:
+          type: string
+      - name: refresh
+        required: false
+        in: query
+        description: Whether to refresh the suggestions (generate new ones)
+        schema:
+          type: boolean
+      - name: categoryId
+        required: true
+        in: path
+        description: UUID of the category
+        schema:
+          format: uuid
+          type: string
+      - name: entityId
+        required: true
+        in: path
+        description: UUID of the entity
+        schema:
+          format: uuid
+          type: string
+      responses:
+        '200':
+          description: List of suggested services retrieved successfully
+          content:
+            application/json:
+              schema:
+                type: array
+                items:
+                  $ref: '#/components/schemas/e'
+      security:
+      - bearer: []
+      summary: Get suggested services for an entity and category
+      tags:
+      - Services
+  /services/{entityId}/categories/suggested-services:
+    get:
+      description: Retrieves AI-generated suggested services for each category in the entity
+      operationId: t_value
+      parameters:
+      - name: currency
+        required: false
+        in: query
+        description: 'Currency code to use for pricing (default: USD)'
+        schema:
+          type: string
+      - name: refresh
+        required: false
+        in: query
+        description: Whether to refresh the suggestions (generate new ones)
+        schema:
+          type: boolean
+      - name: entityId
+        required: true
+        in: path
+        description: UUID of the entity
+        schema:
+          format: uuid
+          type: string
+      responses:
+        '200':
+          description: Categories with suggested services retrieved successfully
+          content:
+            application/json:
+              schema:
+                type: array
+                items:
+                  $ref: '#/components/schemas/e'
+        '404':
+          description: Entity not found or has no categories
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  status:
+                    type: number
+                    example: 404
+                  error:
+                    type: string
+                    example: Not Found
+                  message:
+                    type: string
+                    example: No categories found for this entity
+        '500':
+          description: Internal server error
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  status:
+                    type: number
+                    example: 500
+                  error:
+                    type: string
+                    example: Internal Server Error
+                  message:
+                    type: string
+      security:
+      - bearer: []
+      summary: Get suggested services for all categories
+      tags:
+      - Services
+  /services/{entityId}/categories/check-duplicate:
+    get:
+      description: Checks if a category name already exists for the given entity
+      operationId: t_value
+      parameters:
+      - name: excludeCategoryId
+        required: false
+        in: query
+        description: Optional category ID to exclude from duplicate check
+        schema:
+          format: uuid
+          type: string
+      - name: name
+        required: true
+        in: query
+        description: Category name to check
+        schema:
+          type: string
+      - name: entityId
+        required: true
+        in: path
+        description: UUID of the entity
+        schema:
+          format: uuid
+          type: string
+      responses:
+        '200':
+          description: Duplicate check completed
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  isDuplicate:
+                    type: boolean
+                    description: True if category name already exists
+      security:
+      - bearer: []
+      summary: Check for duplicate category name
+      tags:
+      - Services
+  /services/{entityId}/export/csv:
+    get:
+      description: Exports all services for an entity to CSV format
+      operationId: t_value
+      parameters:
+      - name: entityId
+        required: true
+        in: path
+        description: UUID of the entity
+        schema:
+          format: uuid
+          type: string
+      responses:
+        '200':
+          description: CSV file containing services data
+          content:
+            text/csv:
+              schema:
+                type: string
+                example: 'Service Name,Category,Price,Duration,Description,Status,Variations,Created At
+
+                  "Service 1","Category 1","$50","60","Description 1","Active","Variation 1 ($60)","2024-03-20T10:00:00Z"'
+      security:
+      - bearer: []
+      summary: Export services to CSV
+      tags:
+      - Services
+  /services/sync-to-production/{linkId}:
+    post:
+      description: 'Syncs scraped services/variations to production using 3-tier matching: column map, fuzzy name match, then create new.'
+      operationId: t_value
+      parameters:
+      - name: linkId
+        required: true
+        in: path
+        description: Link UUID from entities.links
+        schema: {}
+      responses:
+        '200':
+          description: Sync completed successfully
+        '400':
+          description: Invalid link ID or sync failed
+      security:
+      - bearer: []
+      summary: Sync scraped services to production tables
+      tags:
+      - Services
+  /services/{serviceId}/staff:
+    get:
+      operationId: t_value
+      parameters: []
+      responses:
+        '200':
+          description: ''
+      security:
+      - bearer: []
+      summary: Get staff members assigned to a service at a location
+      tags:
+      - Services
+  /services/staff/location/{locationEntityId}/members:
+    get:
+      description: Returns every active member at the location with the locationMemberId that POST /staff/assign requires. The general staff list returns staff.members.id, which that endpoint does not accept, so a picker cannot be built from it.
+      operationId: t_value
+      parameters: []
+      responses:
+        '200':
+          description: ''
+      security:
+      - bearer: []
+      summary: List assignable staff members at a location
+      tags:
+      - Services
+  /services/staff/{locationMemberId}/services:
+    get:
+      operationId: t_value
+      parameters: []
+      responses:
+        '200':
+          description: ''
+          content:
+            application/json:
+              schema:
+                type: array
+                items:
+                  $ref: '#/components/schemas/e'
+      security:
+      - bearer: []
+      summary: Get services assigned to a location member (staff)
+      tags:
+      - Services
+    delete:
+      operationId: t_value
+      parameters: []
+      responses:
+        '200':
+          description: ''
+      security:
+      - bearer: []
+      summary: Unlink all service assignments for a staff member
+      tags:
+      - Services
+  /services/staff/assign:
+    post:
+      operationId: t_value
+      parameters: []
+      responses:
+        '201':
+          description: ''
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/e'
+      security:
+      - bearer: []
+      summary: Assign a single service to a staff member
+      tags:
+      - Services
+  /services/staff/assign/bulk:
+    post:
+      operationId: t_value
+      parameters: []
+      responses:
+        '201':
+          description: ''
+          content:
+            application/json:
+              schema:
+                type: array
+                items:
+                  $ref: '#/components/schemas/e'
+      security:
+      - bearer: []
+      summary: Assign multiple services to a staff member
+      tags:
+      - Services
+  /services/staff/sync/{locationMemberId}:
+    put:
+      operationId: t_value
+      parameters: []
+      responses:
+        '200':
+          description: ''
+      security:
+      - bearer: []
+      summary: Replace all service assignments for a staff member with the given list (additions + removals)
+      tags:
+      - Services
+  /services/staff/assignment/{id}:
+    put:
+      operationId: t_value
+      parameters: []
+      responses:
+        '200':
+          description: ''
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/e'
+      security:
+      - bearer: []
+      summary: Update a staff-service assignment (overrides, etc.)
+      tags:
+      - Services
+    delete:
+      operationId: t_value
+      parameters: []
+      responses:
+        '200':
+          description: ''
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/e'
+      security:
+      - bearer: []
+      summary: Unlink a single staff-service assignment
+      tags:
+      - Services
+components:
+  schemas:
+    t:
+      type: object
+      properties:
+        id:
+          type: number
+        planId:
+          type: number
+        agentEntityId:
+          type:
+          - object
+          - 'null'
+          format: uuid
+        agentName:
+          type: string
+        internalAddonName:
+          type: string
+          description: Chargebee item_price_id (internal addon name)
+        externalAddonName:
+          type: string
+          description: Human-readable addon label shown to end-users
+        active:
+          type: boolean
+          description: true if the location currently holds an active subscription for this addon
+        subscriptionId:
+          type:
+          - object
+          - 'null'
+        quantity:
+          type:
+          - object
+          - 'null'
+        trialEnd:
+          type:
+          - object
+          - 'null'
+          description: Unix epoch seconds (Chargebee trial_end)
+        addonPricingId:
+          type:
+          - object
+          - 'null'
+          description: chargebee.addon_pricing.id for this addon at the location's current cadence. Pass back to PATCH /billing/subscription as `update_items.items[].addonPricingId`.Null when no active addon_pricing row exists - surfaces a config gap and the FE should hide the buy CTA.
+        unitPriceCents:
+          type:
+          - object
+          - 'null'
+          description: Per-line price the location would be billed at this cadence (cents).
+      required:
+      - id
+      - planId
+      - agentEntityId
+      - agentName
+      - internalAddonName
+      - externalAddonName
+      - active
+      - subscriptionId
+      - quantity
+      - trialEnd
+      - addonPricingId
+      - unitPriceCents
+    e:
+      type: object
+      properties:
+        id:
+          type: number
+        entityId:
+          type: string
+        attribute:
+          type: string
+        value:
+          type:
+          - object
+          - 'null'
+        metadata:
+          type:
+          - object
+          - 'null'
+        createdAt:
+          type:
+          - object
+          - 'null'
+      required:
+      - id
+      - entityId
+      - attribute
+  securitySchemes:
+    access-token:
+      scheme: bearer
+      bearerFormat: JWT
+      type: http
+      name: Authorization
+      description: Enter JWT token in the format Bearer <token>
+      in: header

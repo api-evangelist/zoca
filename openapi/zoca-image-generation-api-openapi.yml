@@ -1,0 +1,387 @@
+openapi: 3.2.0
+info:
+  title: Zoca Tasks Image Generation API
+  description: 'The Zoca tasks/automation service: AI content queue and planning, FrontDesk (Retell/Twilio) voice + SMS agent onboarding, local-SEO grid scans, WIN conversion triggers, and inbound integration webhooks (Chargebee, Square, Pipedrive, Twilio, Retell, CallHippo, Sybill, Instantly).'
+  version: 3.20.9
+  contact: {}
+  x-apievangelist-note: Harvested verbatim from https://tasks.zoca.ai/swagger.json. The provider ships the default NestJS Swagger metadata (title "API Documentation", empty servers[]); title/description/servers were set by API Evangelist for identification and the unmodified original is preserved at openapi/_original/zoca-tasks-swagger.json. Every path, operation, summary, parameter and response is exactly as published.
+servers:
+- url: https://tasks.zoca.ai
+  description: Production
+security:
+- access-token: []
+tags:
+- name: Image Generation
+paths:
+  /tasks/api/v1/image-generation/generate:
+    post:
+      operationId: t_value
+      parameters: []
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/t'
+      responses:
+        '200':
+          description: Image generated successfully
+          schema:
+            properties:
+              imageData:
+                type: string
+                format: binary
+                description: Base64 encoded image data
+              mimeType:
+                type: string
+                example: image/png
+                description: MIME type of the generated image
+              url:
+                type: string
+                example: https://example.com/image.png
+                description: URL to the image if available
+              metadata:
+                type: object
+                description: Additional metadata about the generated image
+                example:
+                  provider: openai
+                  model: gpt-image-1
+                  promptText: A futuristic city with flying cars
+                  quality: high
+                  format: png
+          content:
+            application/json:
+              schema:
+                type: object
+        '400':
+          description: Invalid request parameters
+        '500':
+          description: Error generating image
+      summary: Generate an image from a text prompt
+      tags:
+      - Image Generation
+  /tasks/api/v1/image-generation/edit:
+    post:
+      operationId: t_value
+      parameters: []
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/t'
+      responses:
+        '200':
+          description: Image edited successfully
+          schema:
+            properties:
+              imageData:
+                type: string
+                format: binary
+                description: Base64 encoded edited image data
+              mimeType:
+                type: string
+                example: image/png
+                description: MIME type of the edited image
+              url:
+                type: string
+                example: https://example.com/edited-image.png
+                description: URL to the image if available
+              metadata:
+                type: object
+                description: Additional metadata about the edited image
+                example:
+                  provider: openai
+                  model: gpt-image-1
+                  promptText: Add snow to the mountains
+                  editOperation: true
+                  quality: high
+                  format: png
+          content:
+            application/json:
+              schema:
+                type: object
+        '400':
+          description: Invalid request parameters
+        '404':
+          description: Media not found
+        '500':
+          description: Error editing image
+      summary: Edit an existing image using a text prompt
+      tags:
+      - Image Generation
+  /tasks/api/v1/image-generation/supported-models:
+    post:
+      operationId: t_value
+      parameters: []
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/e'
+      responses:
+        '200':
+          description: Model information retrieved successfully
+          content:
+            application/json:
+              schema:
+                example:
+                  gpt-image-1:
+                    sizes:
+                    - 1024x1024
+                    - 1536x1024
+                    - 1024x1536
+                    qualities:
+                    - low
+                    - medium
+                    - high
+                    - auto
+                    formats:
+                    - png
+                    - jpeg
+                    - webp
+                    supportsEdit: true
+                    supportsVariation: false
+                    supportsTransparency: true
+                  dall-e-3:
+                    sizes:
+                    - 1024x1024
+                    - 1792x1024
+                    - 1024x1792
+                    supportsEdit: false
+                    supportsVariation: false
+                  dall-e-2:
+                    sizes:
+                    - 256x256
+                    - 512x512
+                    - 1024x1024
+                    supportsEdit: true
+                    supportsVariation: true
+        '400':
+          description: Invalid provider
+        '500':
+          description: Error retrieving model information
+      summary: Get supported models for a specific AI provider
+      tags:
+      - Image Generation
+  /tasks/api/v1/image-generation/generate-and-save:
+    post:
+      operationId: t_value
+      parameters: []
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/t'
+      responses:
+        '200':
+          description: Image generated and saved successfully
+          content:
+            application/json:
+              schema:
+                properties:
+                  mediaId:
+                    type: number
+                    example: 12345
+                    description: ID of the created media entry
+                  url:
+                    type: string
+                    example: https://zoca-media-bank.s3.amazonaws.com/generated/abc123.png
+                    description: URL to the saved image
+                  metadata:
+                    type: object
+                    description: Additional metadata about the saved image
+                    example:
+                      provider: openai
+                      model: gpt-image-1
+                      promptText: A mountain landscape
+                      quality: high
+                      format: png
+                      batchId: 678
+        '400':
+          description: Invalid request parameters
+        '500':
+          description: Error generating or saving image
+      summary: Generate an image and save it to the media library
+      tags:
+      - Image Generation
+  /tasks/api/v1/image-generation/generate-variation:
+    post:
+      operationId: t_value
+      parameters: []
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/t'
+      responses:
+        '200':
+          description: Image variation generated and saved successfully
+          content:
+            application/json:
+              schema:
+                properties:
+                  mediaId:
+                    type: number
+                    example: 12346
+                    description: ID of the created media variation
+                  url:
+                    type: string
+                    example: https://zoca-media-bank.s3.amazonaws.com/generated/variation-def456.png
+                    description: URL to the saved variation
+                  metadata:
+                    type: object
+                    description: Additional metadata about the saved variation
+                    example:
+                      provider: openai
+                      model: gpt-image-1
+                      quality: high
+                      format: png
+                      batchId: 679
+                      originalMediaId: 12345
+        '400':
+          description: Invalid request parameters
+        '404':
+          description: Original media not found
+        '500':
+          description: Error generating variation
+      summary: Generate a variation of an existing image
+      tags:
+      - Image Generation
+  /tasks/api/v1/image-generation/upscale-from-directory:
+    get:
+      operationId: t_value
+      parameters: []
+      responses:
+        '200':
+          description: Images upscaled successfully
+          content:
+            application/json:
+              schema:
+                type: array
+                items:
+                  properties:
+                    originalPath:
+                      type: string
+                      example: /input/edit/image1.jpg
+                      description: Path to original image
+                    upscaledPath:
+                      type: string
+                      example: /outputs/edit/image1-upscaled-123abc.png
+                      description: Path to upscaled image if saved locally
+                    url:
+                      type: string
+                      example: https://zoca-media-bank.s3.amazonaws.com/upscaled/image1-upscaled-123abc.png
+                      description: S3 URL of the upscaled image
+                    mediaId:
+                      type: number
+                      example: 12345
+                      description: ID of the created media entry
+                    metadata:
+                      type: object
+                      description: Additional metadata about the upscaled image
+                      example:
+                        originalFilename: image1.jpg
+                        batchId: 789
+                        provider: openai
+                        model: gpt-image-1
+        '400':
+          description: Invalid request parameters
+        '500':
+          description: Error upscaling images
+      summary: Upscale all images from a directory
+      tags:
+      - Image Generation
+components:
+  schemas:
+    t:
+      type: object
+      properties:
+        callId:
+          type: string
+          description: Unique call identifier
+          example: call_abcdef123456
+        entityId:
+          type: string
+          description: Entity ID associated with the call
+        startTime:
+          type: string
+          description: Call start time
+        endTime:
+          type: string
+          description: Call end time
+        status:
+          type: string
+          description: Call status
+          example: COMPLETED
+          enum:
+          - ONGOING
+          - COMPLETED
+        metadata:
+          type: object
+          description: Call metadata including transcript, recording URL, etc.
+        summary:
+          type: object
+          description: AI-generated call summary and analysis
+        createdAt:
+          type: string
+          description: Record creation timestamp
+        callback:
+          description: Callback associated with this call
+          allOf:
+          - $ref: '#/components/schemas/e'
+        clientId:
+          type: string
+          description: Client ID associated with the call
+        clientFirstName:
+          type: string
+          description: Client first name
+        clientLastName:
+          type: string
+          description: Client last name
+        clientPhoneNumber:
+          type: string
+          description: Client phone number
+      required:
+      - callId
+      - entityId
+      - startTime
+      - status
+      - createdAt
+      - clientId
+    e:
+      type: object
+      properties:
+        scan:
+          $ref: '#/components/schemas/e'
+        businessLat:
+          type:
+          - number
+          - 'null'
+        businessLng:
+          type:
+          - number
+          - 'null'
+        points:
+          type: array
+          items:
+            $ref: '#/components/schemas/e'
+        heroMetrics:
+          $ref: '#/components/schemas/e'
+      required:
+      - scan
+      - businessLat
+      - businessLng
+      - points
+      - heroMetrics
+  securitySchemes:
+    access-token:
+      scheme: bearer
+      bearerFormat: JWT
+      type: http
+      name: Authorization
+      description: Enter JWT token in the format Bearer <token>
+      in: header

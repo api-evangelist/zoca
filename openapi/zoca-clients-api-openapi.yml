@@ -1,0 +1,399 @@
+openapi: 3.2.0
+info:
+  title: Zoca Clients API
+  contact: {}
+  x-refined-note:
+  - x-apievangelist-note differs across the merged source definitions and was not carried
+  version: '1.0'
+  description: 'Operations tagged Clients across 2 of this provider''s published API definitions: zoca-platform-openapi.yml, zoca-tasks-openapi.yml. Each path carries the servers of the definition it was published in.'
+servers:
+- url: https://api.zoca.ai
+  description: Production
+- url: https://tasks.zoca.ai
+  description: Production
+tags:
+- name: Clients
+paths:
+  /clients:
+    post:
+      operationId: t_value
+      parameters: []
+      responses:
+        '201':
+          description: ''
+      summary: Create a new client with contact information
+      tags:
+      - Clients
+    get:
+      operationId: t_value
+      parameters: []
+      responses:
+        '200':
+          description: ''
+      summary: Get multiple clients by IDs
+      tags:
+      - Clients
+    servers:
+    - url: https://api.zoca.ai
+      description: Production
+  /clients/bulk:
+    post:
+      operationId: t_value
+      parameters: []
+      responses:
+        '201':
+          description: ''
+      summary: Bulk create clients with contact information
+      tags:
+      - Clients
+    servers:
+    - url: https://api.zoca.ai
+      description: Production
+  /clients/bulk-s3:
+    post:
+      operationId: t_value
+      parameters: []
+      responses:
+        '201':
+          description: ''
+      summary: Bulk import clients from S3 URL
+      tags:
+      - Clients
+    servers:
+    - url: https://api.zoca.ai
+      description: Production
+  /clients/entity/{entityId}:
+    get:
+      operationId: t_value
+      parameters: []
+      responses:
+        '200':
+          description: ''
+      summary: Get clients by entity ID with pagination
+      tags:
+      - Clients
+    servers:
+    - url: https://api.zoca.ai
+      description: Production
+  /clients/block:
+    put:
+      operationId: t_value
+      parameters: []
+      responses:
+        '200':
+          description: ''
+      summary: Block or restore clients
+      tags:
+      - Clients
+    servers:
+    - url: https://api.zoca.ai
+      description: Production
+  /clients/entity/{entityId}/blocked:
+    get:
+      operationId: t_value
+      parameters: []
+      responses:
+        '200':
+          description: ''
+      summary: Get blocked clients for an entity with pagination
+      tags:
+      - Clients
+    servers:
+    - url: https://api.zoca.ai
+      description: Production
+  /clients/{clientId}:
+    get:
+      operationId: t_value
+      parameters: []
+      responses:
+        '200':
+          description: ''
+      summary: Get a client by ID
+      tags:
+      - Clients
+    patch:
+      operationId: t_value
+      parameters: []
+      responses:
+        '200':
+          description: ''
+      summary: Update a client by ID
+      tags:
+      - Clients
+    servers:
+    - url: https://api.zoca.ai
+      description: Production
+  /clients/phone:
+    get:
+      operationId: t_value
+      parameters: []
+      responses:
+        '200':
+          description: ''
+      summary: Get clients by phone number
+      tags:
+      - Clients
+    servers:
+    - url: https://api.zoca.ai
+      description: Production
+  /clients/email:
+    get:
+      operationId: t_value
+      parameters: []
+      responses:
+        '200':
+          description: ''
+      summary: Get clients by email address
+      tags:
+      - Clients
+    servers:
+    - url: https://api.zoca.ai
+      description: Production
+  /clients/{clientId}/notes:
+    get:
+      operationId: t_value
+      parameters: []
+      responses:
+        '200':
+          description: ''
+      summary: Get notes for a client
+      tags:
+      - Clients
+    post:
+      operationId: t_value
+      parameters: []
+      responses:
+        '201':
+          description: ''
+      summary: Add a note to a client
+      tags:
+      - Clients
+    servers:
+    - url: https://api.zoca.ai
+      description: Production
+  /clients/{clientId}/notes/{noteId}:
+    put:
+      operationId: t_value
+      parameters: []
+      responses:
+        '200':
+          description: ''
+      summary: Update a client note
+      tags:
+      - Clients
+    delete:
+      operationId: t_value
+      parameters: []
+      responses:
+        '200':
+          description: ''
+      summary: Delete a client note
+      tags:
+      - Clients
+    servers:
+    - url: https://api.zoca.ai
+      description: Production
+  /clients/{entityId}/clientFile:
+    post:
+      operationId: t_value
+      parameters: []
+      responses:
+        '201':
+          description: ''
+      summary: Store a client file for an entity
+      tags:
+      - Clients
+    servers:
+    - url: https://api.zoca.ai
+      description: Production
+  /clients/temp/sendReviewAutomation:
+    get:
+      operationId: t_value
+      parameters: []
+      responses:
+        '200':
+          description: ''
+      summary: Trigger review automation job
+      tags:
+      - Clients
+    servers:
+    - url: https://api.zoca.ai
+      description: Production
+  /clients/comm-types:
+    get:
+      operationId: t_value
+      parameters: []
+      responses:
+        '200':
+          description: ''
+      summary: Get available communication types
+      tags:
+      - Clients
+    servers:
+    - url: https://api.zoca.ai
+      description: Production
+  /clients/comms/{commId}/status:
+    patch:
+      operationId: t_value
+      parameters: []
+      responses:
+        '200':
+          description: ''
+      summary: Update communication status
+      tags:
+      - Clients
+    servers:
+    - url: https://api.zoca.ai
+      description: Production
+  /clients/{clientId}/contacts:
+    post:
+      operationId: t_value
+      parameters: []
+      responses:
+        '201':
+          description: ''
+      summary: Add a contact to an existing client
+      tags:
+      - Clients
+    servers:
+    - url: https://api.zoca.ai
+      description: Production
+  /clients/{clientId}/contacts/{contactId}:
+    delete:
+      operationId: t_value
+      parameters: []
+      responses:
+        '200':
+          description: ''
+      summary: Remove a contact from a client
+      tags:
+      - Clients
+    put:
+      operationId: t_value
+      parameters: []
+      responses:
+        '200':
+          description: ''
+      summary: Replace a contact on a client
+      tags:
+      - Clients
+    servers:
+    - url: https://api.zoca.ai
+      description: Production
+  /tasks/api/v1/clients/sendReviewAutomation:
+    get:
+      operationId: t_value
+      parameters: []
+      responses:
+        '200':
+          description: ''
+      summary: Send review automation to Active Campaign
+      tags:
+      - Clients
+      security:
+      - access-token: []
+    servers:
+    - url: https://tasks.zoca.ai
+      description: Production
+  /tasks/api/v1/clients/manual-upload:
+    post:
+      operationId: t_value
+      parameters: []
+      responses:
+        '201':
+          description: ''
+      summary: Create client with manual upload
+      tags:
+      - Clients
+      security:
+      - access-token: []
+    servers:
+    - url: https://tasks.zoca.ai
+      description: Production
+  /tasks/api/v1/clients/bulk-update-limit-preferences:
+    post:
+      operationId: t_value
+      parameters: []
+      responses:
+        '201':
+          description: ''
+      summary: Bulk update limit preferences
+      tags:
+      - Clients
+      security:
+      - access-token: []
+    servers:
+    - url: https://tasks.zoca.ai
+      description: Production
+  /tasks/api/v1/clients/sync-active-campaign-export:
+    post:
+      operationId: t_value
+      parameters: []
+      responses:
+        '201':
+          description: ''
+      summary: Sync Active Campaign export
+      tags:
+      - Clients
+      security:
+      - access-token: []
+    servers:
+    - url: https://tasks.zoca.ai
+      description: Production
+  /tasks/api/v1/clients/loyalty/import:
+    post:
+      operationId: t_value
+      parameters: []
+      responses:
+        '201':
+          description: ''
+      summary: Import loyalty clients from CSV, optionally mapping to a cohort
+      tags:
+      - Clients
+      security:
+      - access-token: []
+    servers:
+    - url: https://tasks.zoca.ai
+      description: Production
+  /tasks/api/v1/clients/reviews/import:
+    post:
+      operationId: t_value
+      parameters: []
+      responses:
+        '201':
+          description: ''
+      summary: Import review-outreach clients from CSV into a new cohort
+      tags:
+      - Clients
+      security:
+      - access-token: []
+    servers:
+    - url: https://tasks.zoca.ai
+      description: Production
+  /tasks/api/v1/clients/reviews/validate:
+    post:
+      operationId: t_value
+      parameters: []
+      responses:
+        '201':
+          description: ''
+      summary: Pre-flight validate a reviews CSV — parses + validates, writes nothing
+      tags:
+      - Clients
+      security:
+      - access-token: []
+    servers:
+    - url: https://tasks.zoca.ai
+      description: Production
+components:
+  securitySchemes:
+    access-token:
+      scheme: bearer
+      bearerFormat: JWT
+      type: http
+      name: Authorization
+      description: Enter JWT token in the format Bearer <token>
+      in: header
+x-refined-from:
+- zoca-platform-openapi.yml
+- zoca-tasks-openapi.yml

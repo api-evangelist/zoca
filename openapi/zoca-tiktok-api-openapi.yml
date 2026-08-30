@@ -1,0 +1,151 @@
+openapi: 3.2.0
+info:
+  title: Zoca Platform Tiktok API
+  description: 'The Zoca platform API behind the Zoca web app and mobile apps: scheduling, website generation, Google Business Profile, discovery/local SEO, social media, booking enquiries, offers, clients, staff, billing and the Zoca "brain" agent layer.'
+  version: 3.20.10
+  contact: {}
+  x-apievangelist-note: Harvested verbatim from https://api.zoca.ai/swagger.json. The provider ships the default NestJS Swagger metadata (title "API Documentation", empty servers[]); title/description/servers were set by API Evangelist for identification and the unmodified original is preserved at openapi/_original/zoca-platform-swagger.json. Every path, operation, summary, parameter and response is exactly as published.
+servers:
+- url: https://api.zoca.ai
+  description: Production
+tags:
+- name: tiktok
+paths:
+  /tiktok/user-info:
+    get:
+      operationId: t_value
+      parameters: []
+      responses:
+        '200':
+          description: TikTok user information retrieved successfully
+          content:
+            application/json:
+              schema:
+                example:
+                  open_id: user_open_id_123
+                  display_name: John Doe
+                  avatar_url: https://example.com/avatar.jpg
+                  follower_count: 1000
+                  following_count: 500
+                  likes_count: 50000
+                  video_count: 100
+      summary: Get TikTok user information
+      tags:
+      - tiktok
+  /tiktok/videos:
+    get:
+      operationId: t_value
+      parameters: []
+      responses:
+        '200':
+          description: TikTok videos retrieved successfully
+          content:
+            application/json:
+              schema:
+                example:
+                  videos:
+                  - id: video_123
+                    title: My awesome video
+                    cover_image_url: https://example.com/cover.jpg
+                    create_time: 1643332803
+                    duration: 30
+                    share_url: https://tiktok.com/@user/video/123
+                  cursor: 1643332803000
+                  has_more: true
+      summary: Get user's TikTok videos
+      tags:
+      - tiktok
+  /tiktok/creator-info:
+    get:
+      operationId: t_value
+      parameters: []
+      responses:
+        '200':
+          description: TikTok creator information retrieved successfully
+          content:
+            application/json:
+              schema:
+                example:
+                  privacy_level_options:
+                  - PUBLIC_TO_EVERYONE
+                  - MUTUAL_FOLLOW_FRIENDS
+                  comment_disabled: false
+                  duet_disabled: false
+                  stitch_disabled: false
+                  max_video_post_duration_sec: 60
+      summary: Get TikTok creator information for publishing
+      tags:
+      - tiktok
+  /tiktok/upload-draft:
+    post:
+      operationId: t_value
+      parameters: []
+      responses:
+        '200':
+          description: Video upload to TikTok inbox initialized successfully
+          content:
+            application/json:
+              schema:
+                example:
+                  publish_id: publish_123
+                  upload_url: https://upload.tiktok.com/upload/123
+      summary: Upload video as draft to TikTok inbox (supports FILE_UPLOAD and PULL_FROM_URL)
+      tags:
+      - tiktok
+  /tiktok/publish-video:
+    post:
+      operationId: t_value
+      parameters: []
+      responses:
+        '200':
+          description: Video publish to TikTok profile initialized successfully
+          content:
+            application/json:
+              schema:
+                example:
+                  publish_id: publish_123
+                  upload_url: https://upload.tiktok.com/upload/123
+      summary: Publish video directly to TikTok profile (supports FILE_UPLOAD and PULL_FROM_URL)
+      tags:
+      - tiktok
+  /tiktok/publish-status:
+    get:
+      operationId: t_value
+      parameters: []
+      responses:
+        '200':
+          description: Video publishing status retrieved successfully
+          content:
+            application/json:
+              schema:
+                example:
+                  status: PUBLISH_COMPLETE
+                  uploaded_bytes: 50000000
+                  publicaly_available_post_id: post_123
+      summary: Get video publishing status
+      tags:
+      - tiktok
+  /tiktok/revoke-token:
+    post:
+      operationId: t_value
+      parameters: []
+      responses:
+        '200':
+          description: TikTok access token revoked successfully
+          content:
+            application/json:
+              schema:
+                example:
+                  message: TikTok access token revoked successfully
+      summary: Revoke TikTok access token
+      tags:
+      - tiktok
+components:
+  securitySchemes:
+    access-token:
+      scheme: bearer
+      bearerFormat: JWT
+      type: http
+      name: Authorization
+      description: Enter JWT token in the format Bearer <token>
+      in: header

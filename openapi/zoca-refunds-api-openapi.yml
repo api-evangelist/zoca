@@ -1,0 +1,241 @@
+openapi: 3.2.0
+info:
+  title: Zoca Platform Refunds API
+  description: 'The Zoca platform API behind the Zoca web app and mobile apps: scheduling, website generation, Google Business Profile, discovery/local SEO, social media, booking enquiries, offers, clients, staff, billing and the Zoca "brain" agent layer.'
+  version: 3.20.10
+  contact: {}
+  x-apievangelist-note: Harvested verbatim from https://api.zoca.ai/swagger.json. The provider ships the default NestJS Swagger metadata (title "API Documentation", empty servers[]); title/description/servers were set by API Evangelist for identification and the unmodified original is preserved at openapi/_original/zoca-platform-swagger.json. Every path, operation, summary, parameter and response is exactly as published.
+servers:
+- url: https://api.zoca.ai
+  description: Production
+tags:
+- name: Refunds
+paths:
+  /scheduling/refunds:
+    post:
+      description: Creates a refund for a completed payment. Card payments are refunded via Stripe. Cash payments are record-only. Supports partial refunds - amount cannot exceed remaining refundable amount.
+      operationId: t_value
+      parameters: []
+      responses:
+        '201':
+          description: Refund processed successfully
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  id:
+                    type: string
+                    format: uuid
+                    description: Refund ID
+                  paymentId:
+                    type: string
+                    format: uuid
+                  saleId:
+                    type: string
+                    format: uuid
+                  amount:
+                    type: number
+                    description: Refund amount in cents
+                  status:
+                    type: string
+                    enum:
+                    - PROCESSING
+                    - COMPLETED
+                    - FAILED
+                  stripeRefundId:
+                    type: string
+                    description: Stripe refund ID (card payments only)
+                  reason:
+                    type: string
+                    description: Refund reason
+                  createdAt:
+                    type: string
+                    format: date-time
+        '400':
+          description: Bad request - validation failed
+        '404':
+          description: Payment not found
+      summary: Process a refund for a payment
+      tags:
+      - Refunds
+    get:
+      description: Retrieves refunds with optional filters for status and pagination. Returns total count for pagination UI.
+      operationId: t_value
+      parameters:
+      - name: limit
+        required: false
+        in: query
+        description: Results per page (max 100)
+        schema:
+          example: 20
+          type: number
+      - name: page
+        required: false
+        in: query
+        description: Page number (starts at 1)
+        schema:
+          example: 1
+          type: number
+      - name: status
+        required: false
+        in: query
+        description: Filter by refund status
+        schema:
+          enum:
+          - PENDING
+          - PROCESSING
+          - COMPLETED
+          - FAILED
+          type: string
+      - name: entityId
+        required: true
+        in: query
+        description: Entity ID
+        schema:
+          type: string
+      responses:
+        '200':
+          description: Refunds retrieved successfully
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  refunds:
+                    type: array
+                    items:
+                      type: object
+                  totalCount:
+                    type: number
+                    description: Total number of refunds matching filters
+                  totalPages:
+                    type: number
+                    description: Total number of pages
+                  currentPage:
+                    type: number
+                    description: Current page number
+        '400':
+          description: Missing or invalid entityId
+      summary: List refunds for an entity
+      tags:
+      - Refunds
+  /scheduling/refunds/eligibility/{paymentId}:
+    get:
+      description: Returns whether a payment can be refunded and the remaining refundable amount. Useful for determining if a refund can be processed.
+      operationId: t_value
+      parameters:
+      - name: paymentId
+        required: true
+        in: path
+        description: Payment ID
+        schema:
+          type: string
+      responses:
+        '200':
+          description: Eligibility details retrieved successfully
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  eligible:
+                    type: boolean
+                    description: Whether payment can be refunded
+                  totalAmount:
+                    type: number
+                    description: Total payment amount in cents
+                  totalRefunded:
+                    type: number
+                    description: Total already refunded in cents
+                  remainingRefundable:
+                    type: number
+                    description: Remaining refundable amount in cents
+                  reason:
+                    type: string
+                    description: Reason if not eligible
+        '404':
+          description: Payment not found
+      summary: Check refund eligibility for a payment
+      tags:
+      - Refunds
+  /scheduling/refunds/{id}:
+    get:
+      description: Retrieves details of a specific refund.
+      operationId: t_value
+      parameters:
+      - name: id
+        required: true
+        in: path
+        description: Refund ID
+        schema:
+          type: string
+      responses:
+        '200':
+          description: Refund retrieved successfully
+        '404':
+          description: Refund not found
+      summary: Get refund by ID
+      tags:
+      - Refunds
+  /scheduling/refunds/payment/{paymentId}:
+    get:
+      description: Retrieves refund history for a specific payment.
+      operationId: t_value
+      parameters:
+      - name: paymentId
+        required: true
+        in: path
+        description: Payment ID
+        schema:
+          type: string
+      responses:
+        '200':
+          description: Refunds retrieved successfully
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  refunds:
+                    type: array
+                    items:
+                      type: object
+      summary: Get all refunds for a payment
+      tags:
+      - Refunds
+  /scheduling/refunds/sale/{saleId}:
+    get:
+      description: Retrieves all refunds associated with a sale (across all payments).
+      operationId: t_value
+      parameters:
+      - name: saleId
+        required: true
+        in: path
+        description: Sale ID
+        schema:
+          type: string
+      responses:
+        '200':
+          description: Refunds retrieved successfully
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  refunds:
+                    type: array
+                    items:
+                      type: object
+      summary: Get all refunds for a sale
+      tags:
+      - Refunds
+components:
+  securitySchemes:
+    access-token:
+      scheme: bearer
+      bearerFormat: JWT
+      type: http
+      name: Authorization
+      description: Enter JWT token in the format Bearer <token>
+      in: header

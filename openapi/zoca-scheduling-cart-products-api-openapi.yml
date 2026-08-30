@@ -1,0 +1,69 @@
+openapi: 3.2.0
+info:
+  title: Zoca Platform Scheduling Cart Products API
+  description: 'The Zoca platform API behind the Zoca web app and mobile apps: scheduling, website generation, Google Business Profile, discovery/local SEO, social media, booking enquiries, offers, clients, staff, billing and the Zoca "brain" agent layer.'
+  version: 3.20.10
+  contact: {}
+  x-apievangelist-note: Harvested verbatim from https://api.zoca.ai/swagger.json. The provider ships the default NestJS Swagger metadata (title "API Documentation", empty servers[]); title/description/servers were set by API Evangelist for identification and the unmodified original is preserved at openapi/_original/zoca-platform-swagger.json. Every path, operation, summary, parameter and response is exactly as published.
+servers:
+- url: https://api.zoca.ai
+  description: Production
+tags:
+- name: Scheduling Cart Products
+paths:
+  /scheduling/carts/{cartId}/products/add/entity/{entityId}:
+    post:
+      operationId: t_value
+      parameters: []
+      responses:
+        '201':
+          description: ''
+      security:
+      - bearer: []
+      summary: Add a product line to a cart
+      tags:
+      - Scheduling Cart Products
+  /scheduling/carts/{cartId}/products/{lineId}:
+    patch:
+      operationId: t_value
+      parameters: []
+      responses:
+        '200':
+          description: ''
+      security:
+      - bearer: []
+      summary: Update qty on a cart product line
+      tags:
+      - Scheduling Cart Products
+    delete:
+      operationId: t_value
+      parameters: []
+      responses:
+        '204':
+          description: ''
+      security:
+      - bearer: []
+      summary: Remove a product line from a cart
+      tags:
+      - Scheduling Cart Products
+  /scheduling/carts/{cartId}/products:
+    get:
+      operationId: t_value
+      parameters: []
+      responses:
+        '200':
+          description: ''
+      security:
+      - bearer: []
+      summary: List product lines for a cart
+      tags:
+      - Scheduling Cart Products
+components:
+  securitySchemes:
+    access-token:
+      scheme: bearer
+      bearerFormat: JWT
+      type: http
+      name: Authorization
+      description: Enter JWT token in the format Bearer <token>
+      in: header

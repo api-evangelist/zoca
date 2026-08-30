@@ -1,0 +1,252 @@
+openapi: 3.2.0
+info:
+  title: Zoca Tasks Chatbot Test Data API
+  description: 'The Zoca tasks/automation service: AI content queue and planning, FrontDesk (Retell/Twilio) voice + SMS agent onboarding, local-SEO grid scans, WIN conversion triggers, and inbound integration webhooks (Chargebee, Square, Pipedrive, Twilio, Retell, CallHippo, Sybill, Instantly).'
+  version: 3.20.9
+  contact: {}
+  x-apievangelist-note: Harvested verbatim from https://tasks.zoca.ai/swagger.json. The provider ships the default NestJS Swagger metadata (title "API Documentation", empty servers[]); title/description/servers were set by API Evangelist for identification and the unmodified original is preserved at openapi/_original/zoca-tasks-swagger.json. Every path, operation, summary, parameter and response is exactly as published.
+servers:
+- url: https://tasks.zoca.ai
+  description: Production
+security:
+- access-token: []
+tags:
+- name: Chatbot Test Data
+paths:
+  /tasks/api/v1/chatbot/test-data:
+    get:
+      description: Retrieves all test entity variables with pagination support.
+      operationId: t_value
+      parameters:
+      - name: limit
+        required: false
+        in: query
+        description: Number of items per page (max 100)
+        schema:
+          example: 20
+          type: number
+      - name: page
+        required: false
+        in: query
+        description: Page number (1-based)
+        schema:
+          example: 1
+          type: number
+      responses:
+        '200':
+          description: Test variables retrieved successfully
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/e'
+        '500':
+          description: Internal server error
+      security:
+      - api-key: []
+      summary: Get all test entity variables
+      tags:
+      - Chatbot Test Data
+  /tasks/api/v1/chatbot/test-data/{entityId}:
+    post:
+      description: Creates or updates cloned business variables for a test entity. The entity must have is_test=true.
+      operationId: t_value
+      parameters:
+      - name: entityId
+        required: true
+        in: path
+        description: The entity ID (must be a test entity)
+        schema:
+          example: 123e4567-e89b-12d3-a456-426614174000
+          type: string
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/e'
+      responses:
+        '200':
+          description: Test variables successfully created or updated
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/e'
+        '400':
+          description: Invalid request or entity is not a test entity
+        '404':
+          description: Entity not found
+      security:
+      - api-key: []
+      summary: Create or update test entity variables
+      tags:
+      - Chatbot Test Data
+    get:
+      description: Retrieves the cloned business variables for a test entity.
+      operationId: t_value
+      parameters:
+      - name: entityId
+        required: true
+        in: path
+        description: The entity ID
+        schema:
+          example: 123e4567-e89b-12d3-a456-426614174000
+          type: string
+      responses:
+        '200':
+          description: Test variables retrieved successfully
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/e'
+        '404':
+          description: Test variables not found for this entity
+      security:
+      - api-key: []
+      summary: Get test entity variables
+      tags:
+      - Chatbot Test Data
+    delete:
+      description: Removes the cloned business variables for a test entity.
+      operationId: t_value
+      parameters:
+      - name: entityId
+        required: true
+        in: path
+        description: The entity ID
+        schema:
+          example: 123e4567-e89b-12d3-a456-426614174000
+          type: string
+      responses:
+        '200':
+          description: Test variables deleted successfully
+        '404':
+          description: Test variables not found for this entity
+      security:
+      - api-key: []
+      summary: Delete test entity variables
+      tags:
+      - Chatbot Test Data
+  /tasks/api/v1/chatbot/test-data/{entityId}/revert:
+    post:
+      description: Restores test entity variables to their initial data captured at creation time. Only works for test entities (is_test=true).
+      operationId: t_value
+      parameters:
+      - name: entityId
+        required: true
+        in: path
+        description: The entity ID (must be a test entity)
+        schema:
+          example: 123e4567-e89b-12d3-a456-426614174000
+          type: string
+      responses:
+        '200':
+          description: Test variables successfully reverted to initial state
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/e'
+        '400':
+          description: Entity is not a test entity or no initial data available
+        '404':
+          description: Test variables not found for this entity
+      security:
+      - api-key: []
+      summary: Revert test entity variables to initial state
+      tags:
+      - Chatbot Test Data
+  /tasks/api/v1/chatbot/test-data/{entityId}/is-test:
+    get:
+      description: Checks if the specified entity has is_test=true flag.
+      operationId: t_value
+      parameters:
+      - name: entityId
+        required: true
+        in: path
+        description: The entity ID to check
+        schema:
+          example: 123e4567-e89b-12d3-a456-426614174000
+          type: string
+      responses:
+        '200':
+          description: Test status retrieved successfully
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/e'
+      security:
+      - api-key: []
+      summary: Check if entity is a test entity
+      tags:
+      - Chatbot Test Data
+  /tasks/api/v1/chatbot/test-data/{entityId}/initialize:
+    post:
+      description: Fetches all relevant initialization details that initializeNewContact needs and stores them in test_entity_variables table. This includes business details, services, working hours, etc. Only works for non-test entities as test entities already have their data managed differently.
+      operationId: t_value
+      parameters:
+      - name: entityId
+        required: true
+        in: path
+        description: The non-test entity ID to initialize
+        schema:
+          example: 123e4567-e89b-12d3-a456-426614174000
+          type: string
+      responses:
+        '200':
+          description: Initialization data fetched and stored successfully
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  entityId:
+                    type: string
+                  variables:
+                    type: object
+                  initialData:
+                    type: object
+                  message:
+                    type: string
+        '400':
+          description: Entity is a test entity (not allowed)
+        '500':
+          description: Failed to fetch or store initialization data
+      security:
+      - api-key: []
+      summary: Initialize non-test entity data for testing
+      tags:
+      - Chatbot Test Data
+components:
+  schemas:
+    e:
+      type: object
+      properties:
+        scan:
+          $ref: '#/components/schemas/e'
+        businessLat:
+          type:
+          - number
+          - 'null'
+        businessLng:
+          type:
+          - number
+          - 'null'
+        points:
+          type: array
+          items:
+            $ref: '#/components/schemas/e'
+        heroMetrics:
+          $ref: '#/components/schemas/e'
+      required:
+      - scan
+      - businessLat
+      - businessLng
+      - points
+      - heroMetrics
+  securitySchemes:
+    access-token:
+      scheme: bearer
+      bearerFormat: JWT
+      type: http
+      name: Authorization
+      description: Enter JWT token in the format Bearer <token>
+      in: header

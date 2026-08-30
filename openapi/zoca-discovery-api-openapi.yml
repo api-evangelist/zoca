@@ -1,0 +1,1051 @@
+openapi: 3.2.0
+info:
+  title: Zoca Platform Discovery API
+  description: 'The Zoca platform API behind the Zoca web app and mobile apps: scheduling, website generation, Google Business Profile, discovery/local SEO, social media, booking enquiries, offers, clients, staff, billing and the Zoca "brain" agent layer.'
+  version: 3.20.10
+  contact: {}
+  x-apievangelist-note: Harvested verbatim from https://api.zoca.ai/swagger.json. The provider ships the default NestJS Swagger metadata (title "API Documentation", empty servers[]); title/description/servers were set by API Evangelist for identification and the unmodified original is preserved at openapi/_original/zoca-platform-swagger.json. Every path, operation, summary, parameter and response is exactly as published.
+servers:
+- url: https://api.zoca.ai
+  description: Production
+tags:
+- name: Discovery
+paths:
+  /discovery/pre-onboarding:
+    get:
+      operationId: t_value
+      parameters:
+      - name: placeId
+        required: true
+        in: query
+        description: Google Place ID
+        schema:
+          type: string
+      responses:
+        '200':
+          description: Pre-onboarding business snapshot
+      summary: Get pre-onboarding business data by placeId
+      tags:
+      - Discovery
+  /discovery/aeo-reports:
+    post:
+      operationId: t_value
+      parameters: []
+      responses:
+        '200':
+          description: Queued AEO audit run
+      summary: Create an AEO/GEO visibility report audit run
+      tags:
+      - Discovery
+  /discovery/aeo-reports/latest:
+    get:
+      operationId: t_value
+      parameters: []
+      responses:
+        '200':
+          description: Latest AEO report data, or null when no run exists
+      summary: Get the latest AEO/GEO visibility audit data for a location
+      tags:
+      - Discovery
+  /discovery/aeo-reports/{auditRunId}:
+    get:
+      operationId: t_value
+      parameters: []
+      responses:
+        '200':
+          description: AEO report data
+      summary: Get report-ready AEO/GEO visibility audit data
+      tags:
+      - Discovery
+  /discovery/aeo-reports/{auditRunId}/raw:
+    get:
+      operationId: t_value
+      parameters: []
+      responses:
+        '200':
+          description: Raw AEO report data
+      summary: Get raw AEO/GEO visibility audit data and artifact references
+      tags:
+      - Discovery
+  /discovery/aeo-reports/{auditRunId}/custom-prompts:
+    post:
+      operationId: t_value
+      parameters: []
+      responses:
+        '202':
+          description: Custom prompt accepted and queued for measurement
+      summary: Add a user custom prompt to an existing AEO report
+      tags:
+      - Discovery
+  /discovery/multilocation/{businessEntityId}/overview:
+    get:
+      description: Resolves every location of the business and aggregates funnel steps, Google/AI visibility, and content totals across the network.
+      operationId: t_value
+      parameters:
+      - name: businessEntityId
+        required: true
+        in: path
+        description: Business entity UUID
+        schema:
+          example: c65a879b-bf21-4b5c-ace5-51992c4a1e62
+      responses:
+        '200':
+          description: ''
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/e'
+      summary: Get network-wide Discovery overview for a multi-location business
+      tags:
+      - Discovery
+  /discovery/multilocation/{businessEntityId}/keywords:
+    get:
+      description: Unions tracked keywords across every location, with per-keyword average position, volume, delta, and top-3 location counts.
+      operationId: t_value
+      parameters:
+      - name: businessEntityId
+        required: true
+        in: path
+        description: Business entity UUID
+        schema:
+          example: c65a879b-bf21-4b5c-ace5-51992c4a1e62
+      responses:
+        '200':
+          description: ''
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/e'
+      summary: Get network keywords & rankings for a multi-location business
+      tags:
+      - Discovery
+  /discovery/multilocation/{businessEntityId}/reviews-by-region:
+    get:
+      description: Groups locations by region (state / administrative area) with new reviews this period and a review-count-weighted average rating.
+      operationId: t_value
+      parameters:
+      - name: businessEntityId
+        required: true
+        in: path
+        description: Business entity UUID
+        schema:
+          example: c65a879b-bf21-4b5c-ace5-51992c4a1e62
+      responses:
+        '200':
+          description: ''
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/e'
+      summary: Get reviews velocity by region for a multi-location business
+      tags:
+      - Discovery
+  /discovery/multilocation/{businessEntityId}/location-health:
+    get:
+      description: One row per location with GBP completeness, reviews, keyword rankings, AI mention rate, and most-recent Google post.
+      operationId: t_value
+      parameters:
+      - name: businessEntityId
+        required: true
+        in: path
+        description: Business entity UUID
+        schema:
+          example: c65a879b-bf21-4b5c-ace5-51992c4a1e62
+      responses:
+        '200':
+          description: ''
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/e'
+      summary: Get per-location Discovery health for a multi-location business
+      tags:
+      - Discovery
+  /discovery/{locationEntityId}/impact-nudges:
+    get:
+      operationId: t_value
+      parameters: []
+      responses:
+        '200':
+          description: Returns impact nudges snapshot badges
+      summary: Get impact nudges for a location entity
+      tags:
+      - Discovery
+  /discovery/{locationEntityId}/gbp/metrics:
+    get:
+      description: Retrieves comprehensive GBP metrics including profile views, search appearances, direction requests, and phone calls with time series data and period-over-period comparisons.
+      operationId: t_value
+      parameters:
+      - name: locationEntityId
+        required: true
+        in: path
+        description: Location entity UUID
+        schema:
+          example: c65a879b-bf21-4b5c-ace5-51992c4a1e62
+      responses:
+        '200':
+          description: Successfully retrieved GBP metrics
+          content:
+            application/json:
+              schema:
+                example:
+                  overall:
+                    percentageChange: 18
+                    trend: up
+                  metrics:
+                    profileViews:
+                      label: Profile Views
+                      icon: https://ik.imagekit.io/zoca/app/assets/icons/profile-views.png
+                      total: 847
+                      previousTotal: 756
+                      delta:
+                        absolute: 91
+                        percentage: 12
+                        trend: up
+                      timeSeries:
+                      - date: '2025-12-22'
+                        value: 118
+                      - date: '2025-12-23'
+                        value: 121
+                      - date: '2025-12-24'
+                        value: 109
+                      - date: '2025-12-25'
+                        value: 96
+                      - date: '2025-12-26'
+                        value: 132
+                      - date: '2025-12-27'
+                        value: 141
+                      - date: '2025-12-28'
+                        value: 130
+                    searchAppearances:
+                      label: Website Clicks
+                      icon: https://ik.imagekit.io/zoca/app/assets/icons/search-appearances.png
+                      total: 2100
+                      previousTotal: 1707
+                      delta:
+                        absolute: 393
+                        percentage: 23
+                        trend: up
+                      timeSeries: []
+                    directionRequests:
+                      label: Direction Requests
+                      icon: https://ik.imagekit.io/zoca/app/assets/icons/direction-requests.png
+                      total: 156
+                      previousTotal: 144
+                      delta:
+                        absolute: 12
+                        percentage: 8
+                        trend: up
+                      timeSeries: []
+                    phoneCalls:
+                      label: Phone Calls
+                      icon: https://ik.imagekit.io/zoca/app/assets/icons/phone-calls.png
+                      total: 89
+                      previousTotal: 77
+                      delta:
+                        absolute: 12
+                        percentage: 15
+                        trend: up
+                      timeSeries: []
+        '400':
+          description: Bad request - invalid date format or parameters
+      summary: Get GBP analytics metrics for a location
+      tags:
+      - Discovery
+  /discovery/{locationEntityId}/gbp/optimization-score:
+    get:
+      description: Retrieves the GBP optimization score (zocaScore) indicating how well the Google Business Profile is optimized (0-100). The score is calculated dynamically using insights data.
+      operationId: t_value
+      parameters:
+      - name: locationEntityId
+        required: true
+        in: path
+        description: Location entity UUID
+        schema:
+          example: c65a879b-bf21-4b5c-ace5-51992c4a1e62
+      responses:
+        '200':
+          description: Successfully retrieved GBP optimization score (zocaScore)
+          content:
+            application/json:
+              schema:
+                example:
+                  score: 65
+                  maxScore: 100
+                  metadata:
+                    lastUpdated: '2025-01-07T00:00:00Z'
+                    category: GBP_OPTIMIZATION
+                    confidence: high
+        '400':
+          description: Bad request - invalid location entity ID
+        '404':
+          description: Location or placeId not found for the given location entity ID
+      summary: Get GBP Optimization Score for a location
+      tags:
+      - Discovery
+  /discovery/{locationEntityId}/website/metrics:
+    get:
+      description: Retrieves comprehensive website metrics including visitors, page views, average time on site, and leads with period-over-period comparisons.
+      operationId: t_value
+      parameters:
+      - name: locationEntityId
+        required: true
+        in: path
+        description: Location entity UUID
+        schema:
+          example: c65a879b-bf21-4b5c-ace5-51992c4a1e62
+      responses:
+        '200':
+          description: Successfully retrieved website metrics
+          content:
+            application/json:
+              schema:
+                example:
+                  overall:
+                    percentageChange: 10
+                    trend: up
+                  metrics:
+                    totalVisitors:
+                      label: Total Visitors
+                      total: 100
+                      previousTotal: 80
+                      delta:
+                        absolute: 20
+                        percentage: 25
+                        trend: up
+                      timeSeries:
+                      - date: '2025-06-30'
+                        value: 43
+                      - date: '2025-07-07'
+                        value: 31
+                      - date: '2025-07-14'
+                        value: 28
+                      - date: '2025-07-21'
+                        value: 26
+                    pageViews:
+                      label: Total Visitors
+                      total: 100
+                      previousTotal: 80
+                      delta:
+                        absolute: 20
+                        percentage: 25
+                        trend: up
+                      timeSeries:
+                      - date: '2025-06-30'
+                        value: 43
+                      - date: '2025-07-07'
+                        value: 31
+                      - date: '2025-07-14'
+                        value: 28
+                      - date: '2025-07-21'
+                        value: 26
+                    averageTimeSpent:
+                      label: Total Visitors
+                      total: 100
+                      previousTotal: 80
+                      delta:
+                        absolute: 20
+                        percentage: 25
+                        trend: up
+                      timeSeries:
+                      - date: '2025-06-30'
+                        value: 43
+                      - date: '2025-07-07'
+                        value: 31
+                      - date: '2025-07-14'
+                        value: 28
+                      - date: '2025-07-21'
+                        value: 26
+                    leads:
+                      label: Total Visitors
+                      total: 100
+                      previousTotal: 80
+                      delta:
+                        absolute: 20
+                        percentage: 25
+                        trend: up
+                      timeSeries:
+                      - date: '2025-06-30'
+                        value: 43
+                      - date: '2025-07-07'
+                        value: 31
+                      - date: '2025-07-14'
+                        value: 28
+                      - date: '2025-07-21'
+                        value: 26
+        '400':
+          description: Bad request - invalid date format or parameters
+      summary: Get website metrics for a location
+      tags:
+      - Discovery
+  /discovery/{locationEntityId}/keyword/performance/metrics:
+    get:
+      description: Returns KPI counts for the zocaweb keyword performance cards.
+      operationId: t_value
+      parameters: []
+      responses:
+        '200':
+          description: ''
+      summary: Get zocaweb keyword performance KPI metrics
+      tags:
+      - Discovery
+  /discovery/{locationEntityId}/keyword/performance/keywords:
+    get:
+      description: Returns backend-paginated keyword rows for a selected KPI bucket.
+      operationId: t_value
+      parameters: []
+      responses:
+        '200':
+          description: ''
+      summary: Get zocaweb paginated keyword performance rows
+      tags:
+      - Discovery
+  /discovery/{locationEntityId}/keyword/performance:
+    get:
+      description: Retrieves comprehensive keyword ranking performance metrics
+      operationId: t_value
+      parameters:
+      - name: limit
+        required: false
+        in: query
+        description: 'Items per page (default: 20, max: 50)'
+        schema:
+          type: number
+      - name: page
+        required: false
+        in: query
+        description: 'Page number (default: 1)'
+        schema:
+          type: number
+      - name: locationEntityId
+        required: true
+        in: path
+        description: Location entity UUID
+        schema:
+          example: c65a879b-bf21-4b5c-ace5-51992c4a1e62
+      responses:
+        '200':
+          description: Successfully retrieved keyword performance metrics
+          content:
+            application/json:
+              schema:
+                example:
+                  totalKeywords: 50
+                  keywordsImprovedPercentage: 50
+                  averageRankImprovementPercentage: 42.5
+                  top3Percentage: 42
+                  page: 1
+                  limit: 20
+                  totalPages: 3
+                  keywords:
+                    total: 50
+                    items:
+                    - keyword: facial near me
+                      joiningRank: 21
+                      currentRank: 1
+                      rankDelta: 20
+                    - keyword: hydrafacial near me
+                      joiningRank: 18
+                      currentRank: 1
+                      rankDelta: 17
+        '400':
+          description: Bad request - invalid date format or parameters
+      summary: Get keyword performance for a location
+      tags:
+      - Discovery
+  /discovery/{locationEntityId}/website/optimization-score:
+    get:
+      description: Retrieves the Website optimization score indicating how well the Website is optimized (0-100).
+      operationId: t_value
+      parameters:
+      - name: locationEntityId
+        required: true
+        in: path
+        description: Location entity UUID
+        schema:
+          example: c65a879b-bf21-4b5c-ace5-51992c4a1e62
+      responses:
+        '200':
+          description: Successfully retrieved Website optimization score
+          content:
+            application/json:
+              schema:
+                example:
+                  score: 94
+                  maxScore: 100
+                  metadata:
+                    lastUpdated: '2025-12-29T00:00:00Z'
+                    category: WEBSITE_OPTIMIZATION
+                    confidence: high
+                    factors:
+                      profileCompleteness: 98
+                      postFrequency: 92
+                      reviewResponseRate: 95
+                      photoQuality: 90
+        '400':
+          description: Bad request - invalid location entity ID
+      summary: Get Website Optimization Score for a location
+      tags:
+      - Discovery
+  /discovery/{locationEntityId}/review/metrics:
+    get:
+      description: Retrieves comprehensive review performance metrics including reviews received, automated invites, app invites, and QR scans with period-over-period comparisons.
+      operationId: t_value
+      parameters:
+      - name: locationEntityId
+        required: true
+        in: path
+        description: Location entity UUID
+        schema:
+          example: c65a879b-bf21-4b5c-ace5-51992c4a1e62
+      responses:
+        '200':
+          description: Successfully retrieved review metrics
+          content:
+            application/json:
+              schema:
+                example:
+                  overall:
+                    percentageChange: 8
+                    trend: up
+                  metrics:
+                    reviewsReceived:
+                      label: Reviews Received
+                      icon: https://ik.imagekit.io/zoca/app/assets/icons/speech-bubble.png
+                      total: 23
+                      previousTotal: 21
+                      delta:
+                        absolute: 2
+                        percentage: 8
+                        trend: up
+                    automatedInvites:
+                      label: Automated Invites
+                      icon: https://ik.imagekit.io/zoca/app/assets/icons/automated.png
+                      total: 30
+                      previousTotal: 25
+                      delta:
+                        absolute: 5
+                        percentage: 20
+                        trend: up
+                    appInvites:
+                      label: App Invites
+                      icon: https://ik.imagekit.io/zoca/app/assets/icons/app.png
+                      total: 24
+                      previousTotal: 16
+                      delta:
+                        absolute: 8
+                        percentage: 50
+                        trend: up
+                    qrScans:
+                      label: QR Scans
+                      icon: https://ik.imagekit.io/zoca/app/assets/icons/qr-code.png
+                      total: 24
+                      previousTotal: 9
+                      delta:
+                        absolute: 15
+                        percentage: 167
+                        trend: up
+        '400':
+          description: Bad request - invalid date format or parameters
+      summary: Get review metrics for a location
+      tags:
+      - Discovery
+  /discovery/{locationEntityId}/agent-journey/metrics:
+    get:
+      description: Retrieves comprehensive agent journey metrics including hours saved, tasks done, task categories, and key achievements with period-over-period comparisons.
+      operationId: t_value
+      parameters:
+      - name: locationEntityId
+        required: true
+        in: path
+        description: Location entity UUID
+        schema:
+          example: c65a879b-bf21-4b5c-ace5-51992c4a1e62
+      responses:
+        '200':
+          description: Successfully retrieved agent journey metrics
+          content:
+            application/json:
+              schema:
+                example:
+                  overall:
+                    hoursSaved:
+                      value: 23.3
+                      text: $1123 worth of work
+                    tasksDone:
+                      value: 20
+                      text: Since you joined
+                  taskCategories:
+                    gbpTasks: 9
+                    websiteTasks: 6
+                    reviewTasks: 5
+                  metrics:
+                    tasksLastWeek:
+                      label: Tasks last week
+                      total: 20
+                    rating:
+                      label: Rating
+                      total: 45
+                    reviews:
+                      label: Search Rank
+                      total: 3
+                    gbpScore:
+                      label: GBP Score
+                      total: 89
+        '400':
+          description: Bad request - invalid date format or parameters
+      summary: Get agent journey metrics for a location
+      tags:
+      - Discovery
+  /discovery/insights/new:
+    get:
+      description: Retrieves insights for a placeId using cached data. Rank extraction must be completed first via extractPrimaryCategoryRank endpoint. This endpoint directly computes insights without triggering rank extraction.
+      operationId: t_value
+      parameters:
+      - name: processId
+        required: false
+        in: query
+        description: Optional process ID. If not provided, will be retrieved from database
+        schema:
+          type: string
+      - name: placeId
+        required: true
+        in: query
+        description: Google Maps placeId of the business
+        schema:
+          type: string
+      responses:
+        '200':
+          description: Successfully retrieved insights
+          content:
+            application/json:
+              schema:
+                example:
+                  status: 200
+                  data:
+                    insights: {}
+                    zocaScoreData: {}
+                    processId: uuid-here
+        '400':
+          description: Bad request - missing placeId or invalid parameters
+        '500':
+          description: Internal server error - rank extraction data not ready or other error
+      summary: Get insights for a place (new version)
+      tags:
+      - Discovery
+  /discovery/{locationEntityId}/tasks-done:
+    get:
+      description: Retrieves the number of tasks done last week for a location
+      operationId: t_value
+      parameters:
+      - name: locationEntityId
+        required: true
+        in: path
+        description: Location entity UUID
+        schema:
+          example: c65a879b-bf21-4b5c-ace5-51992c4a1e62
+      responses:
+        '200':
+          description: Successfully retrieved tasks done last week
+          content:
+            application/json:
+              schema:
+                example:
+                  totalCount: 20
+                  tasksLastWeek: 20
+                  gbpCount: 20
+                  reviewsCount: 20
+                  websiteCount: 20
+        '400':
+          description: Bad request - invalid location entity ID
+      summary: Get tasks done last week for a location
+      tags:
+      - Discovery
+  /discovery/cx-report/{locationEntityId}/profile-completion:
+    get:
+      description: Retrieves the CX report for a location
+      operationId: t_value
+      parameters:
+      - name: locationEntityId
+        required: true
+        in: path
+        description: Location entity UUID
+        schema:
+          example: c65a879b-bf21-4b5c-ace5-51992c4a1e62
+      responses:
+        '200':
+          description: Successfully retrieved CX report
+          content:
+            application/json:
+              schema:
+                example:
+                  locationData: {}
+                  keywordImpression: []
+                  keywordDemand:
+                    data: []
+                    meta: {}
+                  keywordRanking: {}
+        '400':
+          description: Bad request - invalid location entity ID
+      summary: Get CX report for a location
+      tags:
+      - Discovery
+  /discovery/cx-report/{locationEntityId}/monthly-impressions:
+    get:
+      description: Retrieves a paginated keyword impression report with hero metrics (total impressions, new search terms, growth, active terms) and a keyword list with three-month comparison (current month, last month, onboarding month).
+      operationId: t_value
+      parameters:
+      - name: limit
+        required: false
+        in: query
+        description: 'Keywords per page (default: 20)'
+        schema:
+          example: 20
+      - name: page
+        required: false
+        in: query
+        description: 'Page number (1-indexed, default: 1)'
+        schema:
+          example: 1
+      - name: locationEntityId
+        required: true
+        in: path
+        description: Location entity UUID
+        schema:
+          example: c65a879b-bf21-4b5c-ace5-51992c4a1e62
+      responses:
+        '200':
+          description: Successfully retrieved keyword impression report
+          content:
+            application/json:
+              schema:
+                example:
+                  data:
+                    locationData:
+                      name: Hair Salon Hoboken
+                      address: 123 Main St, Hoboken, NJ 07030
+                      phone: 201-555-1234
+                      website: https://www.hairsalonhoboken.com
+                      email: info@hairsalonhoboken.com
+                      hours: Mon-Fri 9:00-18:00
+                    deviceClickBreakdown:
+                      desktopClicks: 300
+                      mobileClicks: 700
+                      totalClicks: 1000
+                      desktopPercentage: 30
+                      mobilePercentage: 70
+                    totalImpressions: 1000
+                    newSearchTerms:
+                      total: 10
+                      keywords:
+                      - hair salon hoboken
+                      - balayage near me
+                    growthVsLastMonth: 15.5
+                    activeSearchTerms: 85
+                    keywords:
+                    - keyword: hair salon hoboken
+                      count:
+                        currentMonth: 150
+                        lastMonth: 100
+                        onboardingMonth: 50
+                    onboardingDate: '2025-10-02'
+                    keywordRankingPerformance:
+                      totalKeywords: 10
+                      keywordsImprovedPercentage: 70
+                      averageRankImprovementPercentage: 3.5
+                      top3Percentage: 30
+                      keywords:
+                        total: 10
+                        items:
+                        - keyword: hair salon hoboken
+                          joiningRank: 8
+                          currentRank: 3
+                          rankDelta: 5
+                  pagination:
+                    total: 100
+                    page: 1
+                    limit: 20
+                    pages: 5
+        '400':
+          description: Bad request - invalid location entity ID
+      summary: Get keyword impression report for a location
+      tags:
+      - Discovery
+  /discovery/{locationEntityId}/competitor/table:
+    get:
+      description: Retrieves competitor data from the local pack for creating a comparative analysis table.
+      operationId: t_value
+      parameters:
+      - name: cached
+        required: false
+        in: query
+        description: 'Use cached data (default: true)'
+        schema:
+          type: boolean
+      responses:
+        '200':
+          description: Successfully retrieved competitor table data
+        '404':
+          description: No competitor data available for this entity
+      summary: Get competitor table data
+      tags:
+      - Discovery
+  /discovery/{locationEntityId}/competitor/pie-chart:
+    get:
+      description: Retrieves competitor data for generating pie chart visualization with revenue share analysis.
+      operationId: t_value
+      parameters:
+      - name: cached
+        required: false
+        in: query
+        description: 'Use cached data (default: true)'
+        schema:
+          type: boolean
+      responses:
+        '200':
+          description: Successfully retrieved competitor pie chart data
+        '404':
+          description: No competitor data available for this entity
+      summary: Get competitor pie chart data
+      tags:
+      - Discovery
+  /discovery/{locationEntityId}/competitor/gbp-audit:
+    get:
+      description: Retrieves GBP competitor audit data including competition factor score and mapped insights.
+      operationId: t_value
+      parameters: []
+      responses:
+        '200':
+          description: Successfully retrieved GBP competitor audit data
+        '404':
+          description: No competitor data available for this entity
+      summary: Get GBP competitor audit
+      tags:
+      - Discovery
+  /discovery/{locationEntityId}/website/dashboard-summary:
+    get:
+      description: 'Returns headline stats: leads (with delta), visitors (with delta), booking clicks, and pages live.'
+      operationId: t_value
+      parameters:
+      - name: locationEntityId
+        required: true
+        in: path
+        description: Location entity UUID
+        schema:
+          example: c65a879b-bf21-4b5c-ace5-51992c4a1e62
+      responses:
+        '200':
+          description: Successfully retrieved dashboard summary
+          content:
+            application/json:
+              schema:
+                example:
+                  leads:
+                    total: 24
+                    delta: 6
+                    deltaPercentage: 33.3
+                    trend: UP
+                  visitors:
+                    total: 842
+                    delta: 90
+                    deltaPercentage: 12
+                    trend: UP
+                  bookingClicks:
+                    total: 67
+                  pagesLive:
+                    total: 18
+        '400':
+          description: Bad request - invalid date format or parameters
+      summary: Get website dashboard summary for a location
+      tags:
+      - Discovery
+  /discovery/{locationEntityId}/website/recent-activity:
+    get:
+      description: Returns a chronological feed of recent entity events from the updates system.
+      operationId: t_value
+      parameters:
+      - name: locationEntityId
+        required: true
+        in: path
+        description: Location entity UUID
+        schema:
+          example: c65a879b-bf21-4b5c-ace5-51992c4a1e62
+      responses:
+        '200':
+          description: Successfully retrieved recent activity
+          content:
+            application/json:
+              schema:
+                example:
+                  activities:
+                  - type: NEW_LEAD_WITH_SERVICE
+                    title: New lead captured
+                    description: Contact form on Gel Manicure page
+                    feature: Website
+                    timestamp: '2026-03-29T14:00:00Z'
+      summary: Get recent activity feed for a location
+      tags:
+      - Discovery
+  /discovery/{locationEntityId}/website/top-pages:
+    get:
+      description: Returns page-type performance breakdown (services, home, other) with views, unique views, booking clicks, and trend.
+      operationId: t_value
+      parameters:
+      - name: locationEntityId
+        required: true
+        in: path
+        description: Location entity UUID
+        schema:
+          example: c65a879b-bf21-4b5c-ace5-51992c4a1e62
+      responses:
+        '200':
+          description: Successfully retrieved top pages
+          content:
+            application/json:
+              schema:
+                example:
+                  pages:
+                  - pageType: services
+                    label: Services
+                    views: 312
+                    uniqueViews: 278
+                    bookNowClicks: 67
+                    trend:
+                      deltaPercentage: 24
+                      direction: UP
+                  - pageType: home
+                    label: Home
+                    views: 174
+                    uniqueViews: 156
+                    bookNowClicks: 12
+                    trend:
+                      deltaPercentage: 9
+                      direction: UP
+        '400':
+          description: Bad request - invalid date format or parameters
+      summary: Get top pages by type for a location
+      tags:
+      - Discovery
+  /discovery/{locationEntityId}/gbp/update:
+    put:
+      operationId: t_value
+      parameters:
+      - name: locationEntityId
+        required: true
+        in: path
+        description: Location entity UUID
+        schema:
+          example: c65a879b-bf21-4b5c-ace5-51992c4a1e62
+      responses:
+        '200':
+          description: Successfully updated GBP profile data
+        '400':
+          description: Bad request - invalid update type or data
+      summary: Update GBP profile data directly (no approval)
+      tags:
+      - Discovery
+  /discovery/{locationEntityId}/audit/gbp-breakdown:
+    get:
+      description: Returns the GBP profile snapshot, completion score, and per-item presence details so the onboarding audit can surface exactly which items are missing.
+      operationId: t_value
+      parameters:
+      - name: locationEntityId
+        required: true
+        in: path
+        description: Location entity UUID
+        schema:
+          example: c65a879b-bf21-4b5c-ace5-51992c4a1e62
+      responses:
+        '200':
+          description: Successfully retrieved GBP audit breakdown
+        '404':
+          description: Location not found
+      summary: Get detailed GBP completion breakdown for the audit screen
+      tags:
+      - Discovery
+  /discovery/{locationEntityId}/leadership-report-v1:
+    get:
+      description: Composite report bundling narrative bullets, discovery metrics with deltas, keyword rank table, categorised issues, and ranked actions. Used by the Reports page (zocaweb /dashboard/reports).
+      operationId: t_value
+      parameters:
+      - name: locationEntityId
+        required: true
+        in: path
+        description: Location entity UUID
+        schema:
+          example: c65a879b-bf21-4b5c-ace5-51992c4a1e62
+      responses:
+        '200':
+          description: Successfully retrieved leadership report
+        '400':
+          description: Bad request - invalid date format
+        '404':
+          description: Location not found
+      summary: Get v1 leadership report for a location
+      tags:
+      - Discovery
+  /discovery/seo-predictor/analyze:
+    post:
+      description: Returns predicted Google indexing time, ranking position, and AI/GEO visibility score. Uses OpenAI for signal detection with heuristic fallback.
+      operationId: t_value
+      parameters: []
+      responses:
+        '200':
+          description: ''
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/e'
+      summary: Analyze a URL for SEO + GEO predictions
+      tags:
+      - Discovery
+  /discovery/seo-predictor/rescore:
+    post:
+      description: Takes an existing URL + partial signal overrides and returns updated predictions without re-running AI analysis.
+      operationId: t_value
+      parameters: []
+      responses:
+        '200':
+          description: ''
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/e'
+      summary: Re-score with signal overrides
+      tags:
+      - Discovery
+components:
+  schemas:
+    e:
+      type: object
+      properties:
+        id:
+          type: number
+        entityId:
+          type: string
+        attribute:
+          type: string
+        value:
+          type:
+          - object
+          - 'null'
+        metadata:
+          type:
+          - object
+          - 'null'
+        createdAt:
+          type:
+          - object
+          - 'null'
+      required:
+      - id
+      - entityId
+      - attribute
+  securitySchemes:
+    access-token:
+      scheme: bearer
+      bearerFormat: JWT
+      type: http
+      name: Authorization
+      description: Enter JWT token in the format Bearer <token>
+      in: header

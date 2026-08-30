@@ -1,0 +1,220 @@
+openapi: 3.2.0
+info:
+  title: Zoca Platform Cohorts API
+  description: 'The Zoca platform API behind the Zoca web app and mobile apps: scheduling, website generation, Google Business Profile, discovery/local SEO, social media, booking enquiries, offers, clients, staff, billing and the Zoca "brain" agent layer.'
+  version: 3.20.10
+  contact: {}
+  x-apievangelist-note: Harvested verbatim from https://api.zoca.ai/swagger.json. The provider ships the default NestJS Swagger metadata (title "API Documentation", empty servers[]); title/description/servers were set by API Evangelist for identification and the unmodified original is preserved at openapi/_original/zoca-platform-swagger.json. Every path, operation, summary, parameter and response is exactly as published.
+servers:
+- url: https://api.zoca.ai
+  description: Production
+tags:
+- name: cohorts
+paths:
+  /cohorts:
+    post:
+      operationId: t_value
+      parameters: []
+      responses:
+        '201':
+          description: Successfully created cohort
+      summary: Create a new cohort
+      tags:
+      - cohorts
+    get:
+      operationId: t_value
+      parameters:
+      - name: cohortKind
+        required: false
+        in: query
+        description: 'When entityId is set, choose the membership to scope by: entity cohorts (cohort_entities) or client cohorts (cohort_clients). Defaults to entity.'
+        schema:
+          enum:
+          - entity
+          - client
+          type: string
+      - name: entityId
+        required: false
+        in: query
+        description: Scope to cohorts associated with this entity
+        schema:
+          type: string
+      - name: search
+        required: false
+        in: query
+        description: Search cohorts by name
+        schema:
+          type: string
+      - name: isActive
+        required: false
+        in: query
+        schema:
+          type: boolean
+      responses:
+        '200':
+          description: Successfully fetched cohorts
+      summary: Get all cohorts
+      tags:
+      - cohorts
+  /cohorts/{cohortId}:
+    get:
+      operationId: t_value
+      parameters: []
+      responses:
+        '200':
+          description: Successfully fetched cohort
+      summary: Get cohort by ID
+      tags:
+      - cohorts
+    put:
+      operationId: t_value
+      parameters: []
+      responses:
+        '200':
+          description: Successfully updated cohort
+      summary: Update a cohort
+      tags:
+      - cohorts
+    delete:
+      operationId: t_value
+      parameters: []
+      responses:
+        '200':
+          description: Successfully deleted cohort
+      summary: Delete a cohort (soft delete)
+      tags:
+      - cohorts
+  /cohorts/{cohortId}/stats:
+    get:
+      operationId: t_value
+      parameters: []
+      responses:
+        '200':
+          description: Successfully fetched cohort with stats
+      summary: Get cohort with statistics
+      tags:
+      - cohorts
+  /cohorts/entities:
+    post:
+      operationId: t_value
+      parameters: []
+      responses:
+        '201':
+          description: Successfully added entity to cohort
+      summary: Add entity to cohort
+      tags:
+      - cohorts
+  /cohorts/{cohortId}/entities/{entityId}:
+    delete:
+      operationId: t_value
+      parameters: []
+      responses:
+        '200':
+          description: Successfully removed entity from cohort
+      summary: Remove entity from cohort
+      tags:
+      - cohorts
+  /cohorts/{cohortId}/entities:
+    get:
+      operationId: t_value
+      parameters:
+      - name: includeLocationName
+        required: false
+        in: query
+        description: Include location name in response
+        schema:
+          type: boolean
+      - name: isActive
+        required: false
+        in: query
+        schema:
+          type: boolean
+      responses:
+        '200':
+          description: Successfully fetched entities in cohort
+      summary: Get entities in a cohort
+      tags:
+      - cohorts
+  /cohorts/entities/{entityId}/cohorts:
+    get:
+      operationId: t_value
+      parameters:
+      - name: isActive
+        required: false
+        in: query
+        schema:
+          type: boolean
+      responses:
+        '200':
+          description: Successfully fetched cohorts for entity
+      summary: Get cohorts for an entity
+      tags:
+      - cohorts
+  /cohorts/clients/{clientId}/cohorts:
+    get:
+      operationId: t_value
+      parameters: []
+      responses:
+        '200':
+          description: Cohorts for client
+      summary: List cohorts a client belongs to
+      tags:
+      - cohorts
+  /cohorts/{cohortId}/clients:
+    get:
+      operationId: t_value
+      parameters: []
+      responses:
+        '200':
+          description: Clients in cohort
+      summary: List clients in a cohort
+      tags:
+      - cohorts
+    post:
+      operationId: t_value
+      parameters: []
+      responses:
+        '201':
+          description: Clients added
+      summary: Add clients to a cohort
+      tags:
+      - cohorts
+  /cohorts/{cohortId}/clients/{clientId}:
+    delete:
+      operationId: t_value
+      parameters: []
+      responses:
+        '200':
+          description: Client removed
+      summary: Remove a client from a cohort (soft delete)
+      tags:
+      - cohorts
+  /cohorts/entities/bulk-add:
+    post:
+      operationId: t_value
+      parameters: []
+      responses:
+        '201':
+          description: Successfully added entities to cohort
+      summary: Bulk add entities to cohort
+      tags:
+      - cohorts
+  /cohorts/entities/bulk-remove:
+    post:
+      operationId: t_value
+      parameters: []
+      responses:
+        '200':
+          description: Successfully removed entities from cohort
+      summary: Bulk remove entities from cohort
+      tags:
+      - cohorts
+components:
+  securitySchemes:
+    access-token:
+      scheme: bearer
+      bearerFormat: JWT
+      type: http
+      name: Authorization
+      description: Enter JWT token in the format Bearer <token>
+      in: header

@@ -1,0 +1,192 @@
+openapi: 3.2.0
+info:
+  title: Zoca Platform Scheduling Onboarding API
+  description: 'The Zoca platform API behind the Zoca web app and mobile apps: scheduling, website generation, Google Business Profile, discovery/local SEO, social media, booking enquiries, offers, clients, staff, billing and the Zoca "brain" agent layer.'
+  version: 3.20.10
+  contact: {}
+  x-apievangelist-note: Harvested verbatim from https://api.zoca.ai/swagger.json. The provider ships the default NestJS Swagger metadata (title "API Documentation", empty servers[]); title/description/servers were set by API Evangelist for identification and the unmodified original is preserved at openapi/_original/zoca-platform-swagger.json. Every path, operation, summary, parameter and response is exactly as published.
+servers:
+- url: https://api.zoca.ai
+  description: Production
+tags:
+- name: Scheduling Onboarding
+paths:
+  /scheduling/onboarding/opt-in:
+    post:
+      operationId: t_value
+      parameters:
+      - name: updateAppVersion
+        required: false
+        in: query
+        description: If true, updates user app version to 4.0.0
+        schema:
+          type: boolean
+      - name: addDefaultTimezone
+        required: false
+        in: query
+        description: If true, sets timezone to Asia/Calcutta if missing
+        schema:
+          type: boolean
+      responses:
+        '201':
+          description: ''
+      summary: Opt in to scheduling onboarding
+      tags:
+      - Scheduling Onboarding
+  /scheduling/onboarding/non-opted-locations:
+    get:
+      operationId: t_value
+      parameters:
+      - name: limit
+        required: false
+        in: query
+        description: Number of results per page (max 100)
+        schema:
+          type: number
+      - name: page
+        required: false
+        in: query
+        description: Page number for pagination (starts at 1)
+        schema:
+          type: number
+      - name: search
+        required: false
+        in: query
+        description: Filter locations by name (case-insensitive partial match)
+        schema:
+          type: string
+      - name: includeTestEntities
+        required: false
+        in: query
+        description: If true, includes test entities in results
+        schema:
+          type: boolean
+      responses:
+        '200':
+          description: ''
+      summary: Get all non-opted-in locations across all businesses
+      tags:
+      - Scheduling Onboarding
+  /scheduling/onboarding/{locationEntityId}/opt-in-data-summary:
+    get:
+      operationId: t_value
+      parameters: []
+      responses:
+        '200':
+          description: ''
+      summary: Get opt-in data summary for a location
+      tags:
+      - Scheduling Onboarding
+  /scheduling/onboarding/opted-in-businesses:
+    get:
+      operationId: t_value
+      parameters:
+      - name: limit
+        required: false
+        in: query
+        description: Number of results per page (max 100)
+        schema:
+          type: number
+      - name: page
+        required: false
+        in: query
+        description: Page number for pagination (starts at 1)
+        schema:
+          type: number
+      - name: search
+        required: false
+        in: query
+        description: Filter locations by name (case-insensitive partial match)
+        schema:
+          type: string
+      - name: includeTestEntities
+        required: false
+        in: query
+        description: If true, includes test entities in results
+        schema:
+          type: boolean
+      responses:
+        '200':
+          description: ''
+      summary: Get all opted-in businesses with details
+      tags:
+      - Scheduling Onboarding
+  /scheduling/onboarding/{entityId}/{locationEntityId}/status:
+    get:
+      operationId: t_value
+      parameters: []
+      responses:
+        '200':
+          description: ''
+      summary: Get onboarding status for an entity and location
+      tags:
+      - Scheduling Onboarding
+  /scheduling/onboarding/{entityId}/{locationEntityId}/basic-details:
+    patch:
+      operationId: t_value
+      parameters: []
+      responses:
+        '200':
+          description: ''
+      summary: Update basic details step (business/personal)
+      tags:
+      - Scheduling Onboarding
+  /scheduling/onboarding/{entityId}/{locationEntityId}/service-details:
+    patch:
+      operationId: t_value
+      parameters: []
+      responses:
+        '200':
+          description: ''
+      summary: Update service details step
+      tags:
+      - Scheduling Onboarding
+  /scheduling/onboarding/{entityId}/{locationEntityId}/booking-details:
+    patch:
+      operationId: t_value
+      parameters: []
+      responses:
+        '200':
+          description: ''
+      summary: Update booking details step (rules/policies/payments)
+      tags:
+      - Scheduling Onboarding
+  /scheduling/onboarding/{entityId}/{locationEntityId}/skip-payments:
+    patch:
+      operationId: t_value
+      parameters: []
+      responses:
+        '200':
+          description: ''
+      summary: Skip payments setup step
+      tags:
+      - Scheduling Onboarding
+  /scheduling/onboarding/{entityId}/{locationEntityId}/history:
+    get:
+      operationId: t_value
+      parameters: []
+      responses:
+        '200':
+          description: ''
+      summary: Get onboarding change history
+      tags:
+      - Scheduling Onboarding
+  /scheduling/onboarding/enable:
+    post:
+      operationId: t_value
+      parameters: []
+      responses:
+        '201':
+          description: ''
+      summary: Enable scheduling for a location entity
+      tags:
+      - Scheduling Onboarding
+components:
+  securitySchemes:
+    access-token:
+      scheme: bearer
+      bearerFormat: JWT
+      type: http
+      name: Authorization
+      description: Enter JWT token in the format Bearer <token>
+      in: header

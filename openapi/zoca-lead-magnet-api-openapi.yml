@@ -1,0 +1,492 @@
+openapi: 3.2.0
+info:
+  title: Zoca Public Lead Magnet API
+  description: 'Zoca''s unauthenticated public surface backing the free self-serve lead-magnet tools: Local Business Demand Tracker keyword/demand analysis, Google Business Profile competitor analysis, website strategy grading, pricing benchmarks, and short-link/app-link redirects.'
+  version: 3.20.9
+  contact: {}
+  x-apievangelist-note: Harvested verbatim from https://public.zoca.com/swagger.json. The provider ships the default NestJS Swagger metadata (title "API Documentation", empty servers[]); title/description/servers were set by API Evangelist for identification and the unmodified original is preserved at openapi/_original/zoca-public-swagger.json. Every path, operation, summary, parameter and response is exactly as published.
+servers:
+- url: https://public.zoca.com
+  description: Production
+tags:
+- name: lead-magnet
+paths:
+  /lead-magnet/standard/services:
+    get:
+      operationId: t_value
+      parameters: []
+      responses:
+        '200':
+          description: ''
+      summary: Autocomplete service names
+      tags:
+      - lead-magnet
+  /lead-magnet/services:
+    get:
+      operationId: t_value
+      parameters: []
+      responses:
+        '200':
+          description: ''
+      summary: Get services for a place
+      tags:
+      - lead-magnet
+  /lead-magnet/place/details/keywords-table:
+    get:
+      operationId: t_value
+      parameters: []
+      responses:
+        '200':
+          description: ''
+      summary: Get keywords table data for a place
+      tags:
+      - lead-magnet
+  /lead-magnet/place/details/competitor-pie-chart:
+    get:
+      operationId: t_value
+      parameters: []
+      responses:
+        '200':
+          description: ''
+      summary: Get competitor pie chart data for a place
+      tags:
+      - lead-magnet
+  /lead-magnet/place/details/competitor-table:
+    get:
+      operationId: t_value
+      parameters: []
+      responses:
+        '200':
+          description: ''
+      summary: Get competitor table data for a place
+      tags:
+      - lead-magnet
+  /lead-magnet/place/details/metrics-table:
+    get:
+      operationId: t_value
+      parameters: []
+      responses:
+        '200':
+          description: ''
+      summary: Get metrics table data for a place
+      tags:
+      - lead-magnet
+  /lead-magnet/keyword-intelligence:
+    post:
+      operationId: t_value
+      parameters: []
+      responses:
+        '201':
+          description: ''
+      summary: Create keyword intelligence lead magnet
+      tags:
+      - lead-magnet
+  /lead-magnet/place/details/keywords:
+    get:
+      operationId: t_value
+      parameters: []
+      responses:
+        '200':
+          description: ''
+      summary: Get place keywords
+      tags:
+      - lead-magnet
+  /lead-magnet/place/details:
+    get:
+      operationId: t_value
+      parameters: []
+      responses:
+        '200':
+          description: ''
+      summary: Get all lead magnet data for a place
+      tags:
+      - lead-magnet
+  /lead-magnet/gbp/competitor:
+    get:
+      operationId: t_value
+      parameters: []
+      responses:
+        '200':
+          description: ''
+      summary: Get GBP competitor data
+      tags:
+      - lead-magnet
+  /lead-magnet/keyword/demand:
+    get:
+      operationId: t_value
+      parameters: []
+      responses:
+        '200':
+          description: ''
+      summary: Get keyword demand data
+      tags:
+      - lead-magnet
+  /lead-magnet/pipeline/metrics:
+    post:
+      description: Store the lead magnet pipeline status and metrics
+      operationId: t_value
+      parameters: []
+      requestBody:
+        required: true
+        description: Metrics in JSON format as in the database
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/Object'
+      responses:
+        '201':
+          description: Metrics stored successfully
+      summary: Lead Magnet
+      tags:
+      - lead-magnet
+  /lead-magnet/update:
+    post:
+      description: Store search volume
+      operationId: t_value
+      parameters: []
+      requestBody:
+        required: true
+        description: Search volume Payload
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/Object'
+      responses:
+        '201':
+          description: Lead Magnet Job created successfully
+      summary: Lead Magnet
+      tags:
+      - lead-magnet
+  /lead-magnet/google-ad-api/key/{allocationId}/complete:
+    post:
+      operationId: t_value
+      parameters: []
+      responses:
+        '201':
+          description: ''
+      summary: Complete Google Ad API key usage
+      tags:
+      - lead-magnet
+  /lead-magnet/get-insights:
+    get:
+      description: Get insights
+      operationId: t_value
+      parameters: []
+      responses:
+        '200':
+          description: ''
+      summary: Lead Magnet
+      tags:
+      - lead-magnet
+  /lead-magnet/export:
+    post:
+      operationId: t_value
+      parameters: []
+      responses:
+        '201':
+          description: ''
+      summary: Export lead magnet data
+      tags:
+      - lead-magnet
+  /lead-magnet/website-strategy:
+    get:
+      operationId: t_value
+      parameters: []
+      responses:
+        '200':
+          description: ''
+      summary: Get website strategy analysis
+      tags:
+      - lead-magnet
+  /lead-magnet/website-strategy/callback:
+    post:
+      operationId: t_value
+      parameters: []
+      responses:
+        '201':
+          description: ''
+      summary: Website strategy callback
+      tags:
+      - lead-magnet
+  /lead-magnet/map-search/serp:
+    post:
+      description: Get map search data
+      operationId: t_value
+      parameters: []
+      requestBody:
+        required: true
+        description: Map search data payload
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/Object'
+      responses:
+        '201':
+          description: ''
+      summary: Lead Magnet
+      tags:
+      - lead-magnet
+  /lead-magnet/keyword/services:
+    get:
+      operationId: t_value
+      parameters: []
+      responses:
+        '200':
+          description: ''
+      summary: Get keyword services for a place
+      tags:
+      - lead-magnet
+  /lead-magnet/keyword/analyze:
+    post:
+      operationId: t_value
+      parameters: []
+      responses:
+        '201':
+          description: ''
+      summary: Analyze keyword lead magnet
+      tags:
+      - lead-magnet
+  /lead-magnet/keyword/keywords:
+    get:
+      operationId: t_value
+      parameters: []
+      responses:
+        '200':
+          description: ''
+      summary: Get keyword place keywords
+      tags:
+      - lead-magnet
+  /lead-magnet/keyword/keywords-table:
+    get:
+      operationId: t_value
+      parameters: []
+      responses:
+        '200':
+          description: ''
+      summary: Get keyword keywords table data
+      tags:
+      - lead-magnet
+  /lead-magnet/keyword/metrics-table:
+    get:
+      operationId: t_value
+      parameters: []
+      responses:
+        '200':
+          description: ''
+      summary: Get keyword metrics table data
+      tags:
+      - lead-magnet
+  /lead-magnet/keyword/competitor-table:
+    get:
+      operationId: t_value
+      parameters: []
+      responses:
+        '200':
+          description: ''
+      summary: Get keyword competitor table data
+      tags:
+      - lead-magnet
+  /lead-magnet/keyword/competitor-pie-chart:
+    get:
+      operationId: t_value
+      parameters: []
+      responses:
+        '200':
+          description: ''
+      summary: Get keyword competitor pie chart data
+      tags:
+      - lead-magnet
+  /lead-magnet/keyword/update:
+    post:
+      description: Update keyword lead magnet data with place ID, process ID, service, and additional key-value pairs
+      operationId: t_value
+      parameters: []
+      requestBody:
+        required: true
+        description: Update keyword place details data
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/e'
+      responses:
+        '201':
+          description: Keyword lead magnet data updated successfully
+      summary: Update Keyword Place Details
+      tags:
+      - lead-magnet
+  /lead-magnet/retell-demo/pre-warm:
+    post:
+      operationId: t_value
+      parameters: []
+      responses:
+        '201':
+          description: ''
+      summary: Pre-warm services extraction for faster call placement
+      tags:
+      - lead-magnet
+  /lead-magnet/retell-demo:
+    post:
+      operationId: t_value
+      parameters: []
+      responses:
+        '201':
+          description: ''
+      summary: Start a Hear Your Receptionist Retell demo call
+      tags:
+      - lead-magnet
+  /lead-magnet/retell-demo/partial-submit:
+    post:
+      operationId: t_value
+      parameters: []
+      responses:
+        '201':
+          description: ''
+      summary: Capture partial lead form fill for drop-off tracking
+      tags:
+      - lead-magnet
+  /lead-magnet/retell-demo/{sessionId}:
+    get:
+      operationId: t_value
+      parameters: []
+      responses:
+        '200':
+          description: ''
+      summary: Get current state of a Retell demo call session
+      tags:
+      - lead-magnet
+  /lead-magnet/retell-demo/webhook:
+    post:
+      operationId: t_value
+      parameters: []
+      responses:
+        '201':
+          description: ''
+      summary: Retell webhook for Hear Your Receptionist demo calls
+      tags:
+      - lead-magnet
+  /lead-magnet/pricing/benchmark:
+    post:
+      operationId: t_value
+      parameters: []
+      responses:
+        '201':
+          description: Estimated local price for the service
+        '400':
+          description: Invalid request parameters
+        '429':
+          description: Too many requests
+        '500':
+          description: Pricing benchmark failed
+      summary: Benchmark the local price for a service (web-searched + LLM)
+      tags:
+      - lead-magnet
+  /lead-magnet/pricing/services:
+    post:
+      operationId: t_value
+      parameters: []
+      responses:
+        '201':
+          description: List of services the business offers (may be empty)
+        '400':
+          description: Invalid request parameters
+        '429':
+          description: Too many requests
+      summary: Discover a business's actual services (for personalized suggestions)
+      tags:
+      - lead-magnet
+  /lead-magnet/pricing/recommend:
+    post:
+      operationId: t_value
+      parameters: []
+      responses:
+        '201':
+          description: Recommended price band
+        '400':
+          description: Invalid request parameters
+        '429':
+          description: Too many requests
+      summary: Recommend a realistic price band from experience + local market
+      tags:
+      - lead-magnet
+  /lead-magnet/pricing/menu-analysis:
+    post:
+      operationId: t_value
+      parameters: []
+      responses:
+        '201':
+          description: Per-service under/over-priced classification + counts
+        '400':
+          description: Invalid request parameters
+        '429':
+          description: Too many requests
+      summary: Count under/over-priced services across the menu vs the local market
+      tags:
+      - lead-magnet
+  /lead-magnet/pricing/callback:
+    post:
+      operationId: t_value
+      parameters: []
+      responses:
+        '201':
+          description: Callback request recorded
+        '400':
+          description: Invalid request parameters
+        '429':
+          description: Too many requests
+      summary: Record a callback request from the pricing-benchmark result page
+      tags:
+      - lead-magnet
+  /lead-magnet/pricing/report-unlocked:
+    post:
+      operationId: t_value
+      parameters: []
+      responses:
+        '201':
+          description: Report-unlock recorded
+        '400':
+          description: Invalid request parameters
+        '429':
+          description: Too many requests
+      summary: Record a full-report-unlock from the pricing-benchmark gate
+      tags:
+      - lead-magnet
+  /lead-magnet/pricing/search-notify:
+    post:
+      operationId: t_value
+      parameters: []
+      responses:
+        '201':
+          description: Search notification recorded
+        '429':
+          description: Too many requests
+      summary: Notify (Slack) that a visitor searched a business in the pricing tool
+      tags:
+      - lead-magnet
+  /lead-magnet/pricing/feedback:
+    post:
+      operationId: t_value
+      parameters: []
+      responses:
+        '201':
+          description: Feedback recorded
+        '429':
+          description: Too many requests
+      summary: Record "did you like the report?" feedback from the pricing tool
+      tags:
+      - lead-magnet
+components:
+  schemas:
+    Object:
+      type: object
+      properties: {}
+    e:
+      type: object
+      properties: {}
+  securitySchemes:
+    access-token:
+      scheme: bearer
+      bearerFormat: JWT
+      type: http
+      name: Authorization
+      description: Enter JWT token in the format Bearer <token>
+      in: header

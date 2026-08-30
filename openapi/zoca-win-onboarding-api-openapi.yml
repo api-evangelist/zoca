@@ -1,0 +1,1011 @@
+openapi: 3.2.0
+info:
+  title: Zoca Tasks Win Onboarding API
+  description: 'The Zoca tasks/automation service: AI content queue and planning, FrontDesk (Retell/Twilio) voice + SMS agent onboarding, local-SEO grid scans, WIN conversion triggers, and inbound integration webhooks (Chargebee, Square, Pipedrive, Twilio, Retell, CallHippo, Sybill, Instantly).'
+  version: 3.20.9
+  contact: {}
+  x-apievangelist-note: Harvested verbatim from https://tasks.zoca.ai/swagger.json. The provider ships the default NestJS Swagger metadata (title "API Documentation", empty servers[]); title/description/servers were set by API Evangelist for identification and the unmodified original is preserved at openapi/_original/zoca-tasks-swagger.json. Every path, operation, summary, parameter and response is exactly as published.
+servers:
+- url: https://tasks.zoca.ai
+  description: Production
+security:
+- access-token: []
+tags:
+- name: Win Onboarding
+paths:
+  /tasks/api/v1/win-onboarding:
+    post:
+      description: Starts the full Win onboarding process orchestration
+      operationId: t_value
+      parameters: []
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/e'
+      responses:
+        '201':
+          description: Win onboarding job created successfully
+      summary: Start Win Onboarding Process
+      tags:
+      - Win Onboarding
+  /tasks/api/v1/win-onboarding/create-chatbot-entity:
+    post:
+      description: Creates a chatbot entity record if it does not exist
+      operationId: t_value
+      parameters: []
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/e'
+      responses:
+        '201':
+          description: Chatbot entity creation job created successfully
+      summary: Create Chatbot Entity
+      tags:
+      - Win Onboarding
+  /tasks/api/v1/win-onboarding/create-virtual-number:
+    post:
+      description: Creates a virtual phone number for the entity
+      operationId: t_value
+      parameters: []
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/e'
+      responses:
+        '201':
+          description: Virtual number creation job created successfully
+      summary: Create Virtual Number
+      tags:
+      - Win Onboarding
+  /tasks/api/v1/win-onboarding/retry-virtual-number:
+    post:
+      description: Retries the virtual phone number purchase for an entity that previously failed
+      operationId: t_value
+      parameters: []
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/e'
+      responses:
+        '201':
+          description: Virtual number retry job created successfully
+          content:
+            application/json:
+              schema:
+                properties:
+                  jobId:
+                    type: string
+                    example: 123e4567-e89b-12d3-a456-426614174000
+                  message:
+                    type: string
+                    example: Virtual number purchase retry job queued successfully
+        '400':
+          description: Bad request - missing required fields
+      summary: Retry Virtual Number Purchase
+      tags:
+      - Win Onboarding
+  /tasks/api/v1/win-onboarding/import-retell:
+    post:
+      description: Imports a phone number to Retell AI
+      operationId: t_value
+      parameters: []
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/e'
+      responses:
+        '201':
+          description: Retell import job created successfully
+      summary: Import to Retell
+      tags:
+      - Win Onboarding
+  /tasks/api/v1/win-onboarding/provision-phone-number:
+    post:
+      description: Queues an entity phone-number provisioning job (Twilio purchase + Retell import + entities.phones persist + l2b.entities upsert + downstream onboarding side effects). Returns a jobId; poll /phone-provisioning/:jobId for completion + result.
+      operationId: t_value
+      parameters: []
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/e'
+      responses:
+        '201':
+          description: Phone provisioning job queued
+      summary: Provision phone number (async)
+      tags:
+      - Win Onboarding
+  /tasks/api/v1/win-onboarding/phone-provisioning/{jobId}:
+    get:
+      operationId: t_value
+      parameters:
+      - name: jobId
+        required: true
+        in: path
+        schema:
+          type: string
+      responses:
+        '200':
+          description: Job status retrieved
+      summary: Phone provisioning job status
+      tags:
+      - Win Onboarding
+  /tasks/api/v1/win-onboarding/build-context:
+    post:
+      description: Scrapes website and builds business context for the entity
+      operationId: t_value
+      parameters: []
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/e'
+      responses:
+        '201':
+          description: Context building job created successfully
+      summary: Build Context from Website
+      tags:
+      - Win Onboarding
+  /tasks/api/v1/win-onboarding/status/{entityId}:
+    get:
+      description: Retrieves comprehensive status including business info, virtual number, and context data
+      operationId: t_value
+      parameters:
+      - name: entityId
+        required: true
+        in: path
+        description: Entity ID to check status for
+        schema: {}
+      responses:
+        '200':
+          description: Onboarding status retrieved successfully
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/e'
+        '404':
+          description: Onboarding status not found
+      summary: Get Win Onboarding Status
+      tags:
+      - Win Onboarding
+  /tasks/api/v1/win-onboarding/context/{entityId}:
+    get:
+      description: Retrieves business context, address, and dynamic variables for an entity
+      operationId: t_value
+      parameters:
+      - name: entityId
+        required: true
+        in: path
+        description: Entity ID to fetch context for
+        schema: {}
+      responses:
+        '200':
+          description: Context retrieved successfully
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/e'
+      summary: Get context data for entity
+      tags:
+      - Win Onboarding
+  /tasks/api/v1/win-onboarding/retell/incoming-call:
+    post:
+      description: Processes incoming call, fetches entity context, and returns dynamic variables to Retell
+      operationId: t_value
+      parameters: []
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/e'
+      responses:
+        '200':
+          description: Webhook processed successfully
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/e'
+      summary: Handle incoming call webhook from Retell
+      tags:
+      - Win Onboarding
+  /tasks/api/v1/win-onboarding/retell/call-events:
+    post:
+      description: Processes call_started, call_ended, and call_analyzed events for WIN onboarding calls
+      operationId: t_value
+      parameters: []
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/e'
+      responses:
+        '200':
+          description: Webhook processed successfully
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/e'
+      summary: Handle call events webhook from Retell
+      tags:
+      - Win Onboarding
+  /tasks/api/v1/win-onboarding/client-history/{clientId}:
+    get:
+      description: Retrieves all call transcripts and history for a specific client
+      operationId: t_value
+      parameters:
+      - name: clientId
+        required: true
+        in: path
+        description: Client ID to fetch call history for
+        schema: {}
+      responses:
+        '200':
+          description: Client call history retrieved successfully
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/e'
+        '404':
+          description: No call history found for client
+      summary: Get client call history
+      tags:
+      - Win Onboarding
+  /tasks/api/v1/win-onboarding/entity-call-history/{entityId}:
+    get:
+      description: Retrieves paginated call transcripts for an entity with client information and callbacks
+      operationId: t_value
+      parameters:
+      - name: callbackStatus
+        required: false
+        in: query
+        description: 'Filter by callback status: pending, in_progress, completed, cancelled, has_callback, no_callback'
+        schema:
+          example: pending
+          type: string
+      - name: limit
+        required: false
+        in: query
+        description: Number of results per page (max 50)
+        schema:
+          example: 50
+          type: number
+      - name: page
+        required: false
+        in: query
+        description: Page number
+        schema:
+          example: 1
+          type: number
+      - name: entityId
+        required: true
+        in: path
+        description: Entity ID to fetch call history for
+        schema: {}
+      responses:
+        '200':
+          description: Entity call history retrieved successfully
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/e'
+        '404':
+          description: No call history found for entity
+      summary: Get entity call history
+      tags:
+      - Win Onboarding
+  /tasks/api/v1/win-onboarding/call/{callId}:
+    get:
+      description: Retrieves a single call transcript by callId with client information and callback
+      operationId: t_value
+      parameters:
+      - name: callId
+        required: true
+        in: path
+        description: Call ID to fetch call history for
+        schema: {}
+      responses:
+        '200':
+          description: Call history retrieved successfully
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/t'
+        '404':
+          description: No call history found for callId
+      summary: Get call history by call ID
+      tags:
+      - Win Onboarding
+  /tasks/api/v1/win-onboarding/call/{callId}/mark-test:
+    patch:
+      description: Marks a call record as a test call. Test calls are excluded from production call history queries.
+      operationId: t_value
+      parameters:
+      - name: callId
+        required: true
+        in: path
+        description: Call ID to mark as test
+        schema:
+          example: call_abc123xyz
+      responses:
+        '200':
+          description: Call marked as test successfully
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  success:
+                    type: boolean
+                    example: true
+                  message:
+                    type: string
+                    example: Call marked as test successfully
+                  callId:
+                    type: string
+                    example: call_abc123xyz
+                  isTest:
+                    type: boolean
+                    example: true
+        '404':
+          description: Call not found
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  success:
+                    type: boolean
+                    example: false
+                  message:
+                    type: string
+                    example: 'Call not found: call_xyz789'
+                  error:
+                    type: string
+                    example: NOT_FOUND
+      summary: Mark call as test
+      tags:
+      - Win Onboarding
+  /tasks/api/v1/win-onboarding/user/{userEntityId}/locations:
+    get:
+      description: Fetches user information and onboarding status for all locations associated with the user
+      operationId: t_value
+      parameters:
+      - name: userEntityId
+        required: true
+        in: path
+        description: User entity ID
+        schema: {}
+      responses:
+        '200':
+          description: User and locations onboarding status retrieved successfully
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/e'
+      summary: Get user info and locations onboarding status
+      tags:
+      - Win Onboarding
+  /tasks/api/v1/win-onboarding/voice-agents/{entityId}:
+    get:
+      description: Returns the 4 voices the merchant should see in the picker, with Retell agentIds resolved by (environment, platform, slot). `entityId` is the LOCATION entity id — the same one used by `/agent-context/:entityId`, `/status/:entityId`, etc. — because platform detection (Zoca scheduling / integrated_platforms / entities.links) is location-scoped, not user-scoped. Voice metadata (title, tone, sample audio, gradient) is shared across all platforms; only agentId varies. Platforms without a dedicated bucket fall through to externalDefault.
+      operationId: t_value
+      parameters:
+      - name: entityId
+        required: true
+        in: path
+        description: Location entity ID whose platform context drives the agent ID resolution
+        schema: {}
+      responses:
+        '200':
+          description: Voice agents retrieved successfully
+      summary: Get available voice agents (platform-aware) for a location
+      tags:
+      - Win Onboarding
+  /tasks/api/v1/win-onboarding/area-codes/{areaCode}/alternates:
+    get:
+      description: Returns all area codes (including the input) that serve the same geographic region. Useful for phone number matching across overlapping area codes.
+      operationId: t_value
+      parameters:
+      - name: areaCode
+        required: true
+        in: path
+        description: Area code to look up (e.g., "212", "646", "310")
+        schema:
+          example: '212'
+      responses:
+        '200':
+          description: Alternate area codes retrieved successfully
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  areaCode:
+                    type: string
+                    example: '212'
+                  alternates:
+                    type: array
+                    items:
+                      type: string
+                    example:
+                    - '212'
+                    - '646'
+                    - '332'
+      summary: Get alternate area codes
+      tags:
+      - Win Onboarding
+  /tasks/api/v1/win-onboarding/agent-context/{entityId}:
+    get:
+      description: Retrieves the AI agent context from l2b.agent_context table including business info, services, policies, transfer number, and custom instructions
+      operationId: t_value
+      parameters:
+      - name: entityId
+        required: true
+        in: path
+        description: Entity ID to fetch agent context for
+        schema: {}
+      responses:
+        '200':
+          description: Agent context retrieved successfully
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/e'
+        '404':
+          description: Agent context not found for entity
+      summary: Get agent context for entity
+      tags:
+      - Win Onboarding
+    put:
+      description: Updates or creates the AI agent context in l2b.agent_context table. All fields are optional - only provided fields will be updated. If no context exists, a new one will be created.
+      operationId: t_value
+      parameters:
+      - name: entityId
+        required: true
+        in: path
+        description: Entity ID to update agent context for
+        schema: {}
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/e'
+      responses:
+        '200':
+          description: Agent context updated successfully
+          content:
+            application/json:
+              schema:
+                properties:
+                  entityId:
+                    type: string
+                    example: 123e4567-e89b-12d3-a456-426614174000
+                  success:
+                    type: boolean
+                    example: true
+                  message:
+                    type: string
+                    example: Agent context updated successfully
+        '400':
+          description: Bad request - validation error
+      summary: Update agent context for entity
+      tags:
+      - Win Onboarding
+  /tasks/api/v1/win-onboarding/agent-context:
+    post:
+      description: Creates a new AI agent context in l2b.agent_context table. If context already exists for the entity, it will be updated (upsert behavior).
+      operationId: t_value
+      parameters: []
+      responses:
+        '201':
+          description: Agent context created successfully
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  entityId:
+                    type: string
+                    example: 123e4567-e89b-12d3-a456-426614174000
+                  success:
+                    type: boolean
+                    example: true
+                  message:
+                    type: string
+                    example: Agent context created successfully
+                  created:
+                    type: boolean
+                    example: true
+        '400':
+          description: Bad request - validation error
+      summary: Create agent context
+      tags:
+      - Win Onboarding
+  /tasks/api/v1/win-onboarding/agent-context/migrate:
+    post:
+      description: Queues a background job to migrate agent context data from entities.agent_business_context to l2b.agent_context. Can migrate a single entity or batch migrate multiple entities.
+      operationId: t_value
+      parameters: []
+      responses:
+        '200':
+          description: Migration job queued successfully
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/e'
+        '400':
+          description: Bad request - validation error
+      summary: Queue job to migrate agent context from legacy table to l2b
+      tags:
+      - Win Onboarding
+  /tasks/api/v1/win-onboarding/callback/status:
+    put:
+      description: Updates the status of an existing callback by callId and clientId. Can also update title and metadata.
+      operationId: t_value
+      parameters: []
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/e'
+      responses:
+        '200':
+          description: Callback status updated successfully
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/e'
+        '404':
+          description: Callback not found
+      summary: Update callback status
+      tags:
+      - Win Onboarding
+  /tasks/api/v1/win-onboarding/callback/statuses:
+    get:
+      description: Returns all available callback status values
+      operationId: t_value
+      parameters: []
+      responses:
+        '200':
+          description: Available callback statuses retrieved successfully
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/e'
+      summary: Get available callback statuses
+      tags:
+      - Win Onboarding
+  /tasks/api/v1/win-onboarding/callbacks/{entityId}:
+    get:
+      description: Retrieves paginated list of all callbacks for an entity with client information
+      operationId: t_value
+      parameters:
+      - name: status
+        required: false
+        in: query
+        description: 'Filter by callback status: pending, in_progress, completed, cancelled'
+        schema:
+          example: pending
+          type: string
+      - name: limit
+        required: false
+        in: query
+        description: Number of results per page (max 50)
+        schema:
+          example: 50
+          type: number
+      - name: page
+        required: false
+        in: query
+        description: Page number
+        schema:
+          example: 1
+          type: number
+      - name: entityId
+        required: true
+        in: path
+        description: Entity ID to fetch callbacks for
+        schema: {}
+      responses:
+        '200':
+          description: Callbacks retrieved successfully
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/e'
+      summary: Get all callbacks for entity
+      tags:
+      - Win Onboarding
+  /tasks/api/v1/win-onboarding/retell-call-sync:
+    post:
+      description: Fetches call details from Retell API and syncs transcript/analysis to the transcript_mapping table
+      operationId: t_value
+      parameters: []
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/e'
+      responses:
+        '201':
+          description: Retell call sync job created successfully
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/e'
+        '400':
+          description: Bad request - missing or invalid callId
+      summary: Sync call data from Retell
+      tags:
+      - Win Onboarding
+  /tasks/api/v1/win-onboarding/retell-call-sync/bulk:
+    post:
+      description: Queues retell-call-sync jobs for multiple call IDs to fetch and sync transcript/analysis data
+      operationId: t_value
+      parameters: []
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/e'
+      responses:
+        '201':
+          description: Bulk retell call sync jobs created successfully
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/e'
+        '400':
+          description: Bad request - missing or invalid callIds
+      summary: Bulk sync call data from Retell
+      tags:
+      - Win Onboarding
+  /tasks/api/v1/win-onboarding/quick-setup:
+    post:
+      description: Prepares agent context for WIN from existing entity data without requiring full onboarding. Pulls data from location info and legacy context to create agent context before webhook arrives.
+      operationId: t_value
+      parameters: []
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/e'
+      responses:
+        '201':
+          description: Agent context prepared successfully
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/e'
+        '400':
+          description: Bad request - validation error
+        '404':
+          description: Entity not found
+      summary: Quick setup - prepare agent context from existing data
+      tags:
+      - Win Onboarding
+  /tasks/api/v1/win-onboarding/feedback:
+    post:
+      description: Creates a new feedback entry for the WIN feature
+      operationId: t_value
+      parameters: []
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/e'
+      responses:
+        '201':
+          description: Feedback created successfully
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/e'
+        '400':
+          description: Bad request - validation error
+      summary: Create WIN feedback
+      tags:
+      - Win Onboarding
+  /tasks/api/v1/win-onboarding/feedback/{entityId}:
+    get:
+      description: Retrieves all feedback entries for a specific entity
+      operationId: t_value
+      parameters:
+      - name: isResolved
+        required: false
+        in: query
+        description: Filter by resolved status
+        schema: {}
+      - name: entityId
+        required: true
+        in: path
+        description: Entity ID
+        schema: {}
+      responses:
+        '200':
+          description: Feedback retrieved successfully
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/e'
+      summary: Get WIN feedback for entity
+      tags:
+      - Win Onboarding
+  /tasks/api/v1/win-onboarding/feedback/{id}:
+    patch:
+      description: Updates an existing feedback entry (e.g., mark as resolved)
+      operationId: t_value
+      parameters:
+      - name: id
+        required: true
+        in: path
+        description: Feedback ID
+        schema: {}
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/e'
+      responses:
+        '200':
+          description: Feedback updated successfully
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/e'
+        '404':
+          description: Feedback not found
+      summary: Update WIN feedback
+      tags:
+      - Win Onboarding
+  /tasks/api/v1/win-onboarding/status:
+    put:
+      description: Updates the onboarding status flags for an entity (accountCreated, chatbotEntityCreated, virtualNumberCreated, retellImported, contextBuilt, status)
+      operationId: t_value
+      parameters: []
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/e'
+      responses:
+        '200':
+          description: Onboarding status updated successfully
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/e'
+        '404':
+          description: Entity not found
+      summary: Update WIN onboarding status
+      tags:
+      - Win Onboarding
+  /tasks/api/v1/win-onboarding/reach-out-list:
+    post:
+      description: Creates a new reach-out list entry or updates existing in_progress entry. If an in_progress entry exists for the entity, updates its timestamp. Otherwise, creates a new entry with in_progress status.
+      operationId: t_value
+      parameters: []
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/e'
+      responses:
+        '201':
+          description: Reach-out list entry created or updated successfully
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/e'
+        '400':
+          description: Bad request - validation error
+      summary: Create or update reach-out list entry
+      tags:
+      - Win Onboarding
+  /tasks/api/v1/win-onboarding/publish-virtual-number-to-gbp:
+    post:
+      description: Updates the GBP location primary phone number with the WIN virtual number. Requires the location to have a virtual number configured in agent context and a linked GBP location. The previous primary phone is preserved in the response.
+      operationId: t_value
+      parameters: []
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/e'
+      responses:
+        '200':
+          description: Virtual number published to GBP successfully
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/e'
+        '400':
+          description: Bad request - validation error or missing data
+      summary: Publish virtual number to Google Business Profile
+      tags:
+      - Win Onboarding
+  /tasks/api/v1/win-onboarding/publish-virtual-number-to-all:
+    post:
+      description: Updates both the GBP location primary phone and the website footer phone with the WIN virtual number. Requires the location to have a virtual number configured in agent context, a linked GBP location, and a website. Returns detailed results for each update.
+      operationId: t_value
+      parameters: []
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/e'
+      responses:
+        '200':
+          description: Virtual number published to GBP and Website
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/e'
+        '400':
+          description: Bad request - validation error or missing data
+      summary: Publish virtual number to GBP and Website
+      tags:
+      - Win Onboarding
+  /tasks/api/v1/win-onboarding/preferences/{entityId}:
+    get:
+      description: Returns deposit, cancellation, card requirement, and booking window preferences.
+      operationId: t_value
+      parameters:
+      - name: entityId
+        required: true
+        in: path
+        description: Entity ID
+        schema: {}
+      responses:
+        '200':
+          description: Frontdesk preferences
+      summary: Get frontdesk booking preferences
+      tags:
+      - Win Onboarding
+    put:
+      description: Saves deposit, cancellation, card requirement, and booking window preferences.
+      operationId: t_value
+      parameters:
+      - name: entityId
+        required: true
+        in: path
+        description: Entity ID
+        schema: {}
+      responses:
+        '200':
+          description: Preferences saved
+      summary: Update frontdesk booking preferences
+      tags:
+      - Win Onboarding
+  /tasks/api/v1/win-onboarding/preferences/{entityId}/sync:
+    post:
+      description: Re-pulls preferences from the connected booking platform and updates the EAV store.
+      operationId: t_value
+      parameters:
+      - name: entityId
+        required: true
+        in: path
+        description: Entity ID
+        schema: {}
+      responses:
+        '200':
+          description: Preferences synced
+      summary: Sync frontdesk preferences from integrated platform
+      tags:
+      - Win Onboarding
+components:
+  schemas:
+    t:
+      type: object
+      properties:
+        callId:
+          type: string
+          description: Unique call identifier
+          example: call_abcdef123456
+        entityId:
+          type: string
+          description: Entity ID associated with the call
+        startTime:
+          type: string
+          description: Call start time
+        endTime:
+          type: string
+          description: Call end time
+        status:
+          type: string
+          description: Call status
+          example: COMPLETED
+          enum:
+          - ONGOING
+          - COMPLETED
+        metadata:
+          type: object
+          description: Call metadata including transcript, recording URL, etc.
+        summary:
+          type: object
+          description: AI-generated call summary and analysis
+        createdAt:
+          type: string
+          description: Record creation timestamp
+        callback:
+          description: Callback associated with this call
+          allOf:
+          - $ref: '#/components/schemas/e'
+        clientId:
+          type: string
+          description: Client ID associated with the call
+        clientFirstName:
+          type: string
+          description: Client first name
+        clientLastName:
+          type: string
+          description: Client last name
+        clientPhoneNumber:
+          type: string
+          description: Client phone number
+      required:
+      - callId
+      - entityId
+      - startTime
+      - status
+      - createdAt
+      - clientId
+    e:
+      type: object
+      properties:
+        scan:
+          $ref: '#/components/schemas/e'
+        businessLat:
+          type:
+          - number
+          - 'null'
+        businessLng:
+          type:
+          - number
+          - 'null'
+        points:
+          type: array
+          items:
+            $ref: '#/components/schemas/e'
+        heroMetrics:
+          $ref: '#/components/schemas/e'
+      required:
+      - scan
+      - businessLat
+      - businessLng
+      - points
+      - heroMetrics
+  securitySchemes:
+    access-token:
+      scheme: bearer
+      bearerFormat: JWT
+      type: http
+      name: Authorization
+      description: Enter JWT token in the format Bearer <token>
+      in: header

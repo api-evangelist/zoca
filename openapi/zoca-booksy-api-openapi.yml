@@ -1,0 +1,119 @@
+openapi: 3.2.0
+info:
+  title: Zoca Tasks Booksy API
+  description: 'The Zoca tasks/automation service: AI content queue and planning, FrontDesk (Retell/Twilio) voice + SMS agent onboarding, local-SEO grid scans, WIN conversion triggers, and inbound integration webhooks (Chargebee, Square, Pipedrive, Twilio, Retell, CallHippo, Sybill, Instantly).'
+  version: 3.20.9
+  contact: {}
+  x-apievangelist-note: Harvested verbatim from https://tasks.zoca.ai/swagger.json. The provider ships the default NestJS Swagger metadata (title "API Documentation", empty servers[]); title/description/servers were set by API Evangelist for identification and the unmodified original is preserved at openapi/_original/zoca-tasks-swagger.json. Every path, operation, summary, parameter and response is exactly as published.
+servers:
+- url: https://tasks.zoca.ai
+  description: Production
+security:
+- access-token: []
+tags:
+- name: Booksy
+paths:
+  /tasks/api/v1/booksy/create-scraping-task:
+    post:
+      description: Creates a scraping task for Booksy appointments or customers via Optexity API
+      operationId: t_value
+      parameters: []
+      responses:
+        '201':
+          description: Scraping task job created successfully
+        '400':
+          description: Invalid request parameters
+      summary: Create Booksy scraping task
+      tags:
+      - Booksy
+  /tasks/api/v1/booksy/process-scraped-task:
+    post:
+      description: Processes a SCRAPED task by saving appointments or customers to database
+      operationId: t_value
+      parameters: []
+      responses:
+        '201':
+          description: Process task job created successfully
+        '400':
+          description: Invalid request parameters
+      summary: Process SCRAPED task
+      tags:
+      - Booksy
+  /tasks/api/v1/booksy/sync-appointments/{entityId}:
+    post:
+      description: Syncs Booksy appointments for an entity by creating a scraping task and processing the data
+      operationId: t_value
+      parameters:
+      - name: entityId
+        required: true
+        in: path
+        description: The entity ID to sync appointments for
+        schema:
+          example: c65a879b-bf21-4b5c-ace5-51992c4a1e62
+      responses:
+        '201':
+          description: Sync appointments job created successfully
+        '404':
+          description: Entity not found or Booksy link not configured
+      summary: Sync Booksy appointments
+      tags:
+      - Booksy
+  /tasks/api/v1/booksy/sync-customers/{entityId}:
+    post:
+      description: Syncs Booksy customers for an entity by creating a scraping task and processing the data
+      operationId: t_value
+      parameters:
+      - name: entityId
+        required: true
+        in: path
+        description: The entity ID to sync customers for
+        schema:
+          example: c65a879b-bf21-4b5c-ace5-51992c4a1e62
+      responses:
+        '201':
+          description: Sync customers job created successfully
+        '404':
+          description: Entity not found or Booksy link not configured
+      summary: Sync Booksy customers
+      tags:
+      - Booksy
+  /tasks/api/v1/booksy/bulk-create-clients/{entityId}:
+    post:
+      description: Creates client records from Booksy customers who have finished appointments. Optionally filters by date range.
+      operationId: t_value
+      parameters:
+      - name: endDate
+        required: false
+        in: query
+        description: End date for filtering appointments (YYYY-MM-DD)
+        schema:
+          example: '2025-10-13'
+      - name: startDate
+        required: false
+        in: query
+        description: Start date for filtering appointments (YYYY-MM-DD)
+        schema:
+          example: '2025-01-01'
+      - name: entityId
+        required: true
+        in: path
+        description: The entity ID to create clients for
+        schema:
+          example: c65a879b-bf21-4b5c-ace5-51992c4a1e62
+      responses:
+        '201':
+          description: Bulk create clients job created successfully
+        '400':
+          description: Invalid entity ID
+      summary: Bulk create clients from Booksy customers
+      tags:
+      - Booksy
+components:
+  securitySchemes:
+    access-token:
+      scheme: bearer
+      bearerFormat: JWT
+      type: http
+      name: Authorization
+      description: Enter JWT token in the format Bearer <token>
+      in: header

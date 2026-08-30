@@ -1,0 +1,593 @@
+openapi: 3.2.0
+info:
+  title: Zoca Tasks Google Business Profile API
+  description: 'The Zoca tasks/automation service: AI content queue and planning, FrontDesk (Retell/Twilio) voice + SMS agent onboarding, local-SEO grid scans, WIN conversion triggers, and inbound integration webhooks (Chargebee, Square, Pipedrive, Twilio, Retell, CallHippo, Sybill, Instantly).'
+  version: 3.20.9
+  contact: {}
+  x-apievangelist-note: Harvested verbatim from https://tasks.zoca.ai/swagger.json. The provider ships the default NestJS Swagger metadata (title "API Documentation", empty servers[]); title/description/servers were set by API Evangelist for identification and the unmodified original is preserved at openapi/_original/zoca-tasks-swagger.json. Every path, operation, summary, parameter and response is exactly as published.
+servers:
+- url: https://tasks.zoca.ai
+  description: Production
+security:
+- access-token: []
+tags:
+- name: Google Business Profile
+paths:
+  /tasks/api/v1/gbp/businesses:
+    get:
+      operationId: t_value
+      parameters: []
+      responses:
+        '200':
+          description: Business listings retrieved successfully
+      summary: Get all business listings with filtering and pagination
+      tags:
+      - Google Business Profile
+  /tasks/api/v1/gbp/{businessId}:
+    get:
+      operationId: t_value
+      parameters: []
+      responses:
+        '200':
+          description: Business details retrieved successfully
+      summary: Get specific business details
+      tags:
+      - Google Business Profile
+    put:
+      operationId: t_value
+      parameters: []
+      responses:
+        '200':
+          description: Business information updated successfully
+      summary: Update business information
+      tags:
+      - Google Business Profile
+  /tasks/api/v1/gbp/sync-media:
+    post:
+      description: Enqueues a job to synchronize Google Business Profile media
+      operationId: t_value
+      parameters: []
+      responses:
+        '201':
+          description: Media sync job enqueued successfully
+          content:
+            application/json:
+              schema:
+                properties:
+                  jobId:
+                    type: string
+        '400':
+          description: Invalid input data
+        '500':
+          description: Failed to enqueue job
+      summary: Sync GBP media
+      tags:
+      - Google Business Profile
+  /tasks/api/v1/gbp/{entityId}/generate-description:
+    get:
+      description: Generates a business description for the specified entity ID
+      operationId: t_value
+      parameters: []
+      responses:
+        '200':
+          description: Business description generated successfully
+        '400':
+          description: Invalid entity ID
+        '500':
+          description: Failed to generate business description
+      summary: Generate business description
+      tags:
+      - Google Business Profile
+  /tasks/api/v1/gbp/reserve-with-google/status:
+    post:
+      operationId: t_value
+      parameters: []
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/e'
+      responses:
+        '200':
+          description: Reserve with Google status updated successfully
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  success:
+                    type: boolean
+                    example: true
+                  results:
+                    type: array
+                    items:
+                      type: object
+                      properties:
+                        entityId:
+                          type: string
+                          example: 550e8400-e29b-41d4-a716-446655440000
+                        success:
+                          type: boolean
+                          example: true
+                        rwgEnabled:
+                          type: boolean
+                          example: true
+                        error:
+                          type: string
+                          example: Entity not found in entities.locations
+                  summary:
+                    type: object
+                    properties:
+                      total:
+                        type: number
+                        example: 2
+                      succeeded:
+                        type: number
+                        example: 1
+                      failed:
+                        type: number
+                        example: 1
+        '500':
+          description: Failed to update Reserve with Google status
+      summary: Update Reserve with Google availability for multiple locations
+      tags:
+      - Google Business Profile
+  /tasks/api/v1/gbp/{entityId}/generate-primary-category:
+    get:
+      operationId: t_value
+      parameters: []
+      responses:
+        '200':
+          description: ''
+      tags:
+      - Google Business Profile
+  /tasks/api/v1/gbp/{entityId}/generate-additional-categories:
+    get:
+      operationId: t_value
+      parameters: []
+      responses:
+        '200':
+          description: ''
+      tags:
+      - Google Business Profile
+  /tasks/api/v1/gbp/{entityId}/generate-gbp-faqs:
+    get:
+      operationId: t_value
+      parameters: []
+      responses:
+        '200':
+          description: ''
+      tags:
+      - Google Business Profile
+  /tasks/api/v1/gbp/{entityId}/generate-content:
+    get:
+      operationId: t_value
+      parameters: []
+      responses:
+        '200':
+          description: ''
+      tags:
+      - Google Business Profile
+  /tasks/api/v1/gbp/{entityId}/generate-services-categories:
+    post:
+      description: Generates optimized category assignments for services using AI/LLM processing
+      operationId: t_value
+      parameters: []
+      responses:
+        '201':
+          description: Services categories generated successfully
+        '400':
+          description: Invalid input data
+        '500':
+          description: Failed to generate services categories
+      summary: Generate services categories using LLM
+      tags:
+      - Google Business Profile
+  /tasks/api/v1/gbp/upsert-qanda:
+    post:
+      description: Upsert Qanda
+      operationId: t_value
+      parameters: []
+      responses:
+        '200':
+          description: Qanda upserted successfully
+        '400':
+          description: Invalid input data
+        '500':
+          description: Failed to upsert Qanda
+      summary: Upsert Qanda
+      tags:
+      - Google Business Profile
+  /tasks/api/v1/gbp/{entityId}/get-ops-services:
+    get:
+      operationId: t_value
+      parameters: []
+      responses:
+        '200':
+          description: ''
+      tags:
+      - Google Business Profile
+  /tasks/api/v1/gbp/{entityId}/create-ops-services-updates:
+    post:
+      operationId: t_value
+      parameters: []
+      responses:
+        '201':
+          description: ''
+      tags:
+      - Google Business Profile
+  /tasks/api/v1/gbp/{entityId}/create-ops-categories-updates:
+    post:
+      operationId: t_value
+      parameters: []
+      responses:
+        '201':
+          description: ''
+      tags:
+      - Google Business Profile
+  /tasks/api/v1/gbp/additional-categories/{industry}:
+    get:
+      operationId: t_value
+      parameters: []
+      responses:
+        '200':
+          description: ''
+      tags:
+      - Google Business Profile
+  /tasks/api/v1/gbp/zoca/auth:
+    get:
+      operationId: t_value
+      parameters: []
+      responses:
+        '200':
+          description: ''
+      tags:
+      - Google Business Profile
+  /tasks/api/v1/gbp/location/details:
+    get:
+      operationId: t_value
+      parameters: []
+      responses:
+        '200':
+          description: ''
+      tags:
+      - Google Business Profile
+  /tasks/api/v1/gbp/location/entity-details:
+    get:
+      operationId: t_value
+      parameters: []
+      responses:
+        '200':
+          description: ''
+      tags:
+      - Google Business Profile
+  /tasks/api/v1/gbp/website/status:
+    post:
+      operationId: t_value
+      parameters: []
+      responses:
+        '201':
+          description: ''
+      tags:
+      - Google Business Profile
+  /tasks/api/v1/gbp/csv-geocoding/process:
+    post:
+      description: Queues CSV file from S3 URL for geocoding processing. The worker will download, validate, and process the file.
+      operationId: t_value
+      parameters: []
+      responses:
+        '201':
+          description: CSV geocoding job queued successfully
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  jobId:
+                    type: string
+                  message:
+                    type: string
+                  s3Url:
+                    type: string
+        '400':
+          description: Invalid request - S3 URL is required
+      security:
+      - {}
+      summary: Process CSV file from S3 for geocoding
+      tags:
+      - Google Business Profile
+  /tasks/api/v1/gbp/process-gbp-data-from-s3:
+    post:
+      description: Accepts an S3 URL to a CSV file containing place_ids, downloads and processes it to fetch GBP L2 business data. Supports lead enrichment for qualified leads.
+      operationId: t_value
+      parameters: []
+      responses:
+        '201':
+          description: GBP L2 data processing job queued successfully
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  jobId:
+                    type: string
+                  message:
+                    type: string
+                  s3Url:
+                    type: string
+        '400':
+          description: Invalid S3 URL or failed to queue job
+      summary: Process GBP L2 data from S3 CSV file
+      tags:
+      - Google Business Profile
+  /tasks/api/v1/gbp/process-gbp-data:
+    post:
+      description: Accepts a CSV file containing Google Business place_ids or URLs, processes them in batches to fetch business data from external API, and returns a comprehensive CSV report via Slack notification.
+      operationId: t_value
+      parameters: []
+      requestBody:
+        required: true
+        content:
+          multipart/form-data:
+            schema:
+              type: object
+              required:
+              - file
+              properties:
+                file:
+                  type: string
+                  format: binary
+                  description: CSV file containing place_id or gbp_url columns
+                runLeadEnrichment:
+                  type: boolean
+                  description: 'Enable lead enrichment for qualified leads (reviews >= 20 AND rating >= 4). Default: false'
+                  default: false
+      responses:
+        '201':
+          description: CSV file validated and queued for GBP data processing
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  jobId:
+                    type: string
+                  message:
+                    type: string
+                  rowCount:
+                    type: number
+        '400':
+          description: CSV validation failed - missing required columns or invalid format
+      summary: Process GBP URLs and place IDs to fetch business data
+      tags:
+      - Google Business Profile
+  /tasks/api/v1/gbp/locations/by-place-id:
+    get:
+      description: Fetches all GBP locations associated with a specific Google Places ID. Returns array even for single results. Handles multiple locations sharing the same placeId.
+      operationId: t_value
+      parameters: []
+      responses:
+        '200':
+          description: Successfully fetched locations for the given placeId
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/e'
+        '404':
+          description: No locations found for the provided placeId
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/e'
+      summary: Get locations by Google Places ID
+      tags:
+      - Google Business Profile
+  /tasks/api/v1/gbp/keyword-impressions/trigger:
+    post:
+      description: Triggers the monthly keyword impressions data collection job that normally runs on the 5th of each month. Optionally specify a month/year to fetch data for.
+      operationId: t_value
+      parameters: []
+      requestBody:
+        required: false
+        content:
+          application/json:
+            schema:
+              type: object
+              properties:
+                monthYear:
+                  type: string
+                  description: 'Optional month/year to fetch data for (format: YYYY-MM)'
+                  example: 2024-01
+      responses:
+        '200':
+          description: Keyword impressions cron job triggered successfully
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  status:
+                    type: boolean
+                    example: true
+                  message:
+                    type: string
+                    example: Keyword impressions cron job triggered successfully
+                  totalLocations:
+                    type: number
+                    example: 150
+                  jobsQueued:
+                    type: number
+                    example: 150
+                  queueErrors:
+                    type: number
+                    example: 0
+                  estimatedTimeMinutes:
+                    type: number
+                    example: 6
+                  monthYear:
+                    type: string
+                    example: 2024-01
+        '500':
+          description: Failed to trigger keyword impressions cron job
+      security:
+      - jwt: []
+      summary: Manually trigger keyword impressions cron job
+      tags:
+      - Google Business Profile
+  /tasks/api/v1/gbp/{locationEntityId}/publish-website:
+    post:
+      description: 'Publishes website links to GBP with UTM tracking parameters. Updates website field, booking link, and service link. Optionally marks trial as started (activateTrial, default: true) and activates content generation (activateContent, default: true).'
+      operationId: t_value
+      parameters:
+      - name: locationEntityId
+        required: true
+        in: path
+        description: Location entity identifier (must be a valid UUID format)
+        schema:
+          example: 550e8400-e29b-41d4-a716-446655440000
+          type: string
+      responses:
+        '201':
+          description: Website published successfully to GBP
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  success:
+                    type: boolean
+                  locationEntityId:
+                    type: string
+                  websiteUrl:
+                    type: string
+                  fieldsUpdated:
+                    type: array
+                    items:
+                      type: string
+                  utmLinks:
+                    type: object
+                    properties:
+                      website:
+                        type: string
+                      booking:
+                        type: string
+                      service:
+                        type: string
+                  trialActivated:
+                    type: boolean
+                  contentActivated:
+                    type: boolean
+                  message:
+                    type: string
+        '400':
+          description: Invalid input data
+        '401':
+          description: OAuth token not found
+        '403':
+          description: Unverified profile or pending mask conflicts
+        '404':
+          description: Website not found for location
+        '500':
+          description: Failed to publish website to GBP
+      summary: Publish website links to Google Business Profile
+      tags:
+      - Google Business Profile
+  /tasks/api/v1/gbp/{entityId}/generate-content-v2:
+    post:
+      description: Generates GBP post content using the simplified V2 pipeline with generator → corrector workflow. The entityId parameter refers to the location entity ID (locationEntityId) for the business location.
+      operationId: t_value
+      parameters:
+      - name: entityId
+        required: true
+        in: path
+        description: Location entity identifier (must be a valid UUID format). This is the locationEntityId for the business location.
+        schema:
+          example: 550e8400-e29b-41d4-a716-446655440000
+          type: string
+      responses:
+        '201':
+          description: Content generated successfully using V2 pipeline
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  success:
+                    type: boolean
+                  data:
+                    type: object
+                    properties:
+                      content:
+                        type: object
+                      metadata:
+                        type: object
+                      status:
+                        type: string
+                        enum:
+                        - success
+                        - failed
+                        - draft
+        '400':
+          description: Invalid entity ID or parameters
+        '500':
+          description: Content generation failed
+      summary: Generate GBP content using V2 pipeline
+      tags:
+      - Google Business Profile
+  /tasks/api/v1/gbp/swap-entities:
+    post:
+      description: Enqueues a job to swap location IDs between two GBP entities
+      operationId: t_value
+      parameters: []
+      responses:
+        '201':
+          description: Entity swap job enqueued successfully
+          content:
+            application/json:
+              schema:
+                properties:
+                  jobId:
+                    type: string
+        '400':
+          description: Invalid input data
+        '500':
+          description: Failed to enqueue job
+      summary: Swap GBP entities
+      tags:
+      - Google Business Profile
+components:
+  schemas:
+    e:
+      type: object
+      properties:
+        scan:
+          $ref: '#/components/schemas/e'
+        businessLat:
+          type:
+          - number
+          - 'null'
+        businessLng:
+          type:
+          - number
+          - 'null'
+        points:
+          type: array
+          items:
+            $ref: '#/components/schemas/e'
+        heroMetrics:
+          $ref: '#/components/schemas/e'
+      required:
+      - scan
+      - businessLat
+      - businessLng
+      - points
+      - heroMetrics
+  securitySchemes:
+    access-token:
+      scheme: bearer
+      bearerFormat: JWT
+      type: http
+      name: Authorization
+      description: Enter JWT token in the format Bearer <token>
+      in: header

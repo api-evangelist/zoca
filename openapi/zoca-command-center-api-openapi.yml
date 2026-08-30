@@ -1,0 +1,232 @@
+openapi: 3.2.0
+info:
+  title: Zoca Tasks Command Center API
+  description: 'The Zoca tasks/automation service: AI content queue and planning, FrontDesk (Retell/Twilio) voice + SMS agent onboarding, local-SEO grid scans, WIN conversion triggers, and inbound integration webhooks (Chargebee, Square, Pipedrive, Twilio, Retell, CallHippo, Sybill, Instantly).'
+  version: 3.20.9
+  contact: {}
+  x-apievangelist-note: Harvested verbatim from https://tasks.zoca.ai/swagger.json. The provider ships the default NestJS Swagger metadata (title "API Documentation", empty servers[]); title/description/servers were set by API Evangelist for identification and the unmodified original is preserved at openapi/_original/zoca-tasks-swagger.json. Every path, operation, summary, parameter and response is exactly as published.
+servers:
+- url: https://tasks.zoca.ai
+  description: Production
+security:
+- access-token: []
+tags:
+- name: Command Center
+paths:
+  /tasks/api/v1/command-center/chat:
+    post:
+      operationId: t_value
+      parameters: []
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/e'
+      responses:
+        '200':
+          description: ''
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/e'
+      summary: Chat with the Scheduling Agent
+      tags:
+      - Command Center
+  /tasks/api/v1/command-center/chat/stream:
+    post:
+      operationId: t_value
+      parameters: []
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/e'
+      responses:
+        '201':
+          description: ''
+      summary: Chat with streaming via SSE
+      tags:
+      - Command Center
+  /tasks/api/v1/command-center/message:
+    post:
+      operationId: t_value
+      parameters: []
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/e'
+      responses:
+        '200':
+          description: ''
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/e'
+      summary: Single message (no conversation history)
+      tags:
+      - Command Center
+  /tasks/api/v1/command-center/status:
+    get:
+      operationId: t_value
+      parameters:
+      - name: entityId
+        required: true
+        in: query
+        schema:
+          type: string
+      responses:
+        '200':
+          description: ''
+      summary: Check agent setup status for an entity
+      tags:
+      - Command Center
+  /tasks/api/v1/command-center/setup:
+    post:
+      operationId: t_value
+      parameters: []
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              type: object
+              properties:
+                entityId:
+                  type: string
+      responses:
+        '200':
+          description: ''
+      summary: Set up the Scheduling Agent for an entity
+      tags:
+      - Command Center
+  /tasks/api/v1/command-center/conversations/{conversationId}:
+    get:
+      operationId: t_value
+      parameters:
+      - name: entityId
+        required: true
+        in: query
+        description: Business entity UUID
+        schema:
+          type: string
+      - name: conversationId
+        required: true
+        in: path
+        schema:
+          type: string
+      responses:
+        '200':
+          description: ''
+      summary: Get conversation info
+      tags:
+      - Command Center
+    delete:
+      operationId: t_value
+      parameters:
+      - name: entityId
+        required: true
+        in: query
+        description: Business entity UUID
+        schema:
+          type: string
+      - name: conversationId
+        required: true
+        in: path
+        schema:
+          type: string
+      responses:
+        '200':
+          description: ''
+      summary: End a conversation
+      tags:
+      - Command Center
+  /tasks/api/v1/command-center/conversations:
+    get:
+      operationId: t_value
+      parameters:
+      - name: mine
+        required: false
+        in: query
+        description: If true, return only conversations the authenticated user participated in
+        schema:
+          type: boolean
+      - name: limit
+        required: false
+        in: query
+        schema:
+          type: number
+      - name: entityId
+        required: true
+        in: query
+        schema:
+          type: string
+      responses:
+        '200':
+          description: ''
+      summary: List conversations for an entity
+      tags:
+      - Command Center
+  /tasks/api/v1/command-center/conversations/{conversationId}/messages:
+    get:
+      operationId: t_value
+      parameters:
+      - name: limit
+        required: false
+        in: query
+        schema:
+          type: number
+      - name: entityId
+        required: true
+        in: query
+        schema:
+          type: string
+      - name: conversationId
+        required: true
+        in: path
+        schema:
+          type: string
+      responses:
+        '200':
+          description: ''
+      summary: Get conversation messages
+      tags:
+      - Command Center
+components:
+  schemas:
+    e:
+      type: object
+      properties:
+        scan:
+          $ref: '#/components/schemas/e'
+        businessLat:
+          type:
+          - number
+          - 'null'
+        businessLng:
+          type:
+          - number
+          - 'null'
+        points:
+          type: array
+          items:
+            $ref: '#/components/schemas/e'
+        heroMetrics:
+          $ref: '#/components/schemas/e'
+      required:
+      - scan
+      - businessLat
+      - businessLng
+      - points
+      - heroMetrics
+  securitySchemes:
+    access-token:
+      scheme: bearer
+      bearerFormat: JWT
+      type: http
+      name: Authorization
+      description: Enter JWT token in the format Bearer <token>
+      in: header

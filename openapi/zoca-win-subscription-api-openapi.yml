@@ -1,0 +1,303 @@
+openapi: 3.2.0
+info:
+  title: Zoca Tasks Win Subscription API
+  description: 'The Zoca tasks/automation service: AI content queue and planning, FrontDesk (Retell/Twilio) voice + SMS agent onboarding, local-SEO grid scans, WIN conversion triggers, and inbound integration webhooks (Chargebee, Square, Pipedrive, Twilio, Retell, CallHippo, Sybill, Instantly).'
+  version: 3.20.9
+  contact: {}
+  x-apievangelist-note: Harvested verbatim from https://tasks.zoca.ai/swagger.json. The provider ships the default NestJS Swagger metadata (title "API Documentation", empty servers[]); title/description/servers were set by API Evangelist for identification and the unmodified original is preserved at openapi/_original/zoca-tasks-swagger.json. Every path, operation, summary, parameter and response is exactly as published.
+servers:
+- url: https://tasks.zoca.ai
+  description: Production
+security:
+- access-token: []
+tags:
+- name: Win Subscription
+paths:
+  /tasks/api/v1/win/subscription/config:
+    get:
+      description: Returns Chargebee site and plan configuration for frontend
+      operationId: t_value
+      parameters: []
+      responses:
+        '200':
+          description: Subscription configuration retrieved successfully
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/e'
+      summary: Get subscription configuration
+      tags:
+      - Win Subscription
+  /tasks/api/v1/win/subscription/status/by-hosted-page/{hostedPageId}:
+    get:
+      description: Returns subscription status by looking up the hosted page ID. Checks local DB first, then Chargebee if needed.
+      operationId: t_value
+      parameters:
+      - name: hostedPageId
+        required: true
+        in: path
+        description: Chargebee hosted page ID from checkout
+        schema: {}
+      responses:
+        '200':
+          description: Subscription status retrieved successfully
+      summary: Get subscription status by hosted page ID
+      tags:
+      - Win Subscription
+  /tasks/api/v1/win/subscription/status/{entityId}:
+    get:
+      description: Returns subscription status and usage for an entity
+      operationId: t_value
+      parameters:
+      - name: entityId
+        required: true
+        in: path
+        description: Entity ID to check subscription for
+        schema: {}
+      responses:
+        '200':
+          description: Subscription status retrieved successfully
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/e'
+      summary: Get subscription status
+      tags:
+      - Win Subscription
+  /tasks/api/v1/win/subscription/checkout:
+    post:
+      description: Generates a Chargebee hosted checkout page for the Win Agent subscription
+      operationId: t_value
+      parameters: []
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/e'
+      responses:
+        '201':
+          description: Checkout session created successfully
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/e'
+      summary: Create checkout session
+      tags:
+      - Win Subscription
+  /tasks/api/v1/win/subscription/confirm:
+    post:
+      description: Confirms subscription after successful checkout and initializes usage tracking
+      operationId: t_value
+      parameters: []
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/e'
+      responses:
+        '200':
+          description: Subscription confirmed successfully
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/e'
+      summary: Confirm subscription
+      tags:
+      - Win Subscription
+  /tasks/api/v1/win/subscription/usage/{entityId}:
+    get:
+      description: Returns current usage metrics for an entity
+      operationId: t_value
+      parameters:
+      - name: entityId
+        required: true
+        in: path
+        description: Entity ID to get usage for
+        schema: {}
+      responses:
+        '200':
+          description: Usage metrics retrieved successfully
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/e'
+      summary: Get usage metrics
+      tags:
+      - Win Subscription
+  /tasks/api/v1/win/subscription/can-make-call/{entityId}:
+    get:
+      description: Returns whether the entity has an active subscription and is within usage limits
+      operationId: t_value
+      parameters:
+      - name: entityId
+        required: true
+        in: path
+        description: Entity ID to check
+        schema: {}
+      responses:
+        '200':
+          description: Call eligibility checked successfully
+      summary: Check if entity can make calls
+      tags:
+      - Win Subscription
+  /tasks/api/v1/win/subscription/check-checkout/{hostedPageId}:
+    post:
+      description: Checks if a specific checkout session completed and syncs the subscription if so.
+      operationId: t_value
+      parameters:
+      - name: hostedPageId
+        required: true
+        in: path
+        description: Hosted page ID from checkout creation
+        schema: {}
+      responses:
+        '200':
+          description: Checkout status retrieved
+      summary: Check checkout status
+      tags:
+      - Win Subscription
+  /tasks/api/v1/win/subscription/sync/{entityId}:
+    post:
+      description: Manually fetches and syncs subscription data from Chargebee. Use for local dev or webhook failures.
+      operationId: t_value
+      parameters:
+      - name: entityId
+        required: true
+        in: path
+        description: Entity ID to sync subscription for
+        schema: {}
+      responses:
+        '200':
+          description: Subscription synced successfully
+      summary: Sync subscription from Chargebee
+      tags:
+      - Win Subscription
+  /tasks/api/v1/win/subscription/cancel/{entityId}:
+    post:
+      description: Cancels the subscription at the end of the current billing period. The subscription will remain active until then.
+      operationId: t_value
+      parameters:
+      - name: entityId
+        required: true
+        in: path
+        description: Entity ID to cancel subscription for
+        schema: {}
+      responses:
+        '200':
+          description: Subscription cancelled successfully
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/e'
+      summary: Cancel subscription
+      tags:
+      - Win Subscription
+  /tasks/api/v1/win/subscription/activate-trial:
+    post:
+      description: Creates a FrontDesk subscription in Chargebee with a 7-day free trial. After trial ends, billing begins automatically.
+      operationId: t_value
+      parameters:
+      - name: bypass
+        required: false
+        in: query
+        schema:
+          type: boolean
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/e'
+      responses:
+        '201':
+          description: Trial subscription created successfully
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/e'
+      summary: Activate FrontDesk trial subscription
+      tags:
+      - Win Subscription
+  /tasks/api/v1/win/subscription/user/{userEntityId}:
+    get:
+      description: Returns subscription status for all locations the user has access to
+      operationId: t_value
+      parameters:
+      - name: userEntityId
+        required: true
+        in: path
+        description: User entity ID
+        schema: {}
+      responses:
+        '200':
+          description: User subscriptions retrieved successfully
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/e'
+      summary: Get subscriptions for user
+      tags:
+      - Win Subscription
+  /tasks/api/v1/win/subscription/manual/{entityId}:
+    put:
+      description: Updates subscription status, end date, or limits for a manual subscription
+      operationId: t_value
+      parameters:
+      - name: entityId
+        required: true
+        in: path
+        description: Entity ID to update subscription for
+        schema: {}
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/e'
+      responses:
+        '200':
+          description: Subscription updated successfully
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/e'
+      summary: Update manual subscription
+      tags:
+      - Win Subscription
+components:
+  schemas:
+    e:
+      type: object
+      properties:
+        scan:
+          $ref: '#/components/schemas/e'
+        businessLat:
+          type:
+          - number
+          - 'null'
+        businessLng:
+          type:
+          - number
+          - 'null'
+        points:
+          type: array
+          items:
+            $ref: '#/components/schemas/e'
+        heroMetrics:
+          $ref: '#/components/schemas/e'
+      required:
+      - scan
+      - businessLat
+      - businessLng
+      - points
+      - heroMetrics
+  securitySchemes:
+    access-token:
+      scheme: bearer
+      bearerFormat: JWT
+      type: http
+      name: Authorization
+      description: Enter JWT token in the format Bearer <token>
+      in: header

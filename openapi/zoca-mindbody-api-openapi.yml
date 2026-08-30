@@ -1,0 +1,233 @@
+openapi: 3.2.0
+info:
+  title: Zoca Mindbody API
+  contact: {}
+  x-refined-note:
+  - x-apievangelist-note differs across the merged source definitions and was not carried
+  version: '1.0'
+  description: 'Operations tagged Mindbody across 2 of this provider''s published API definitions: zoca-platform-openapi.yml, zoca-tasks-openapi.yml. Each path carries the servers of the definition it was published in.'
+servers:
+- url: https://api.zoca.ai
+  description: Production
+- url: https://tasks.zoca.ai
+  description: Production
+tags:
+- name: Mindbody
+paths:
+  /mindbody/locations/{entityId}:
+    get:
+      operationId: t_value
+      parameters: []
+      responses:
+        '200':
+          description: ''
+      summary: Get Mindbody locations by entity ID
+      tags:
+      - Mindbody
+    servers:
+    - url: https://api.zoca.ai
+      description: Production
+  /mindbody/location-bind/{entityId}:
+    get:
+      operationId: t_value
+      parameters: []
+      responses:
+        '200':
+          description: ''
+      summary: Resolve or auto-bind the Mindbody booking location
+      tags:
+      - Mindbody
+    servers:
+    - url: https://api.zoca.ai
+      description: Production
+  /mindbody/available-slots:
+    get:
+      operationId: t_value
+      parameters: []
+      responses:
+        '200':
+          description: ''
+      summary: Get available slots
+      tags:
+      - Mindbody
+    servers:
+    - url: https://api.zoca.ai
+      description: Production
+  /mindbody/validate-client-and-card:
+    post:
+      operationId: t_value
+      parameters: []
+      responses:
+        '201':
+          description: ''
+      summary: Validate client and card on file
+      tags:
+      - Mindbody
+    servers:
+    - url: https://api.zoca.ai
+      description: Production
+  /mindbody/add-card-to-client:
+    post:
+      operationId: t_value
+      parameters: []
+      responses:
+        '201':
+          description: ''
+      summary: Add card to client
+      tags:
+      - Mindbody
+    servers:
+    - url: https://api.zoca.ai
+      description: Production
+  /mindbody/create-booking:
+    post:
+      operationId: t_value
+      parameters: []
+      responses:
+        '201':
+          description: ''
+      summary: Create Mindbody booking
+      tags:
+      - Mindbody
+    servers:
+    - url: https://api.zoca.ai
+      description: Production
+  /mindbody/card-on-file:
+    post:
+      operationId: t_value
+      parameters: []
+      responses:
+        '201':
+          description: ''
+      summary: Create card on file and booking
+      tags:
+      - Mindbody
+    servers:
+    - url: https://api.zoca.ai
+      description: Production
+  /mindbody/get-appointment-id:
+    get:
+      operationId: t_value
+      parameters: []
+      responses:
+        '200':
+          description: ''
+      summary: Get appointment ID
+      tags:
+      - Mindbody
+    servers:
+    - url: https://api.zoca.ai
+      description: Production
+  /mindbody/cancel-booking:
+    post:
+      operationId: t_value
+      parameters: []
+      responses:
+        '201':
+          description: ''
+      summary: Cancel booking
+      tags:
+      - Mindbody
+    servers:
+    - url: https://api.zoca.ai
+      description: Production
+  /mindbody/reschedule-booking:
+    post:
+      operationId: t_value
+      parameters: []
+      responses:
+        '201':
+          description: ''
+      summary: Reschedule booking
+      tags:
+      - Mindbody
+    servers:
+    - url: https://api.zoca.ai
+      description: Production
+  /tasks/api/v1/mindbody/get-slots:
+    post:
+      operationId: t_value
+      parameters: []
+      responses:
+        '201':
+          description: ''
+      summary: Get available Mindbody slots for inbound bookings
+      tags:
+      - Mindbody
+      security:
+      - access-token: []
+    servers:
+    - url: https://tasks.zoca.ai
+      description: Production
+  /tasks/api/v1/mindbody/validate-client-and-card:
+    post:
+      operationId: t_value
+      parameters: []
+      responses:
+        '201':
+          description: ''
+      summary: Validate Mindbody client and check card on file
+      tags:
+      - Mindbody
+      security:
+      - access-token: []
+    servers:
+    - url: https://tasks.zoca.ai
+      description: Production
+  /tasks/api/v1/mindbody/create-booking:
+    post:
+      operationId: t_value
+      parameters: []
+      responses:
+        '201':
+          description: ''
+      summary: Create a Mindbody booking
+      tags:
+      - Mindbody
+      security:
+      - access-token: []
+    servers:
+    - url: https://tasks.zoca.ai
+      description: Production
+  /tasks/api/v1/mindbody/cancel-booking:
+    post:
+      operationId: t_value
+      parameters: []
+      responses:
+        '201':
+          description: ''
+      summary: Cancel a Mindbody booking
+      tags:
+      - Mindbody
+      security:
+      - access-token: []
+    servers:
+    - url: https://tasks.zoca.ai
+      description: Production
+  /tasks/api/v1/mindbody/reschedule-booking:
+    post:
+      operationId: t_value
+      parameters: []
+      responses:
+        '201':
+          description: ''
+      summary: Reschedule a Mindbody booking
+      tags:
+      - Mindbody
+      security:
+      - access-token: []
+    servers:
+    - url: https://tasks.zoca.ai
+      description: Production
+components:
+  securitySchemes:
+    access-token:
+      scheme: bearer
+      bearerFormat: JWT
+      type: http
+      name: Authorization
+      description: Enter JWT token in the format Bearer <token>
+      in: header
+x-refined-from:
+- zoca-platform-openapi.yml
+- zoca-tasks-openapi.yml

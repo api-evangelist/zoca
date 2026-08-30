@@ -1,0 +1,516 @@
+openapi: 3.2.0
+info:
+  title: Zoca Pipedrive Webhook API
+  contact: {}
+  x-refined-note:
+  - x-apievangelist-note differs across the merged source definitions and was not carried
+  version: '1.0'
+  description: 'Operations tagged Pipedrive Webhook across 3 of this provider''s published API definitions: zoca-platform-openapi.yml, zoca-public-openapi.yml, zoca-tasks-openapi.yml. Each path carries the servers of the definition it was published in.'
+servers:
+- url: https://api.zoca.ai
+  description: Production
+- url: https://public.zoca.com
+  description: Production
+- url: https://tasks.zoca.ai
+  description: Production
+tags:
+- name: Pipedrive Webhook
+paths:
+  /pipedrive/person/create:
+    post:
+      description: Processes incoming request to create a pipedrive person
+      operationId: t_value
+      parameters: []
+      responses:
+        '201':
+          description: ''
+      summary: Create Pipedirve Person
+      tags:
+      - Pipedrive Webhook
+    servers:
+    - url: https://api.zoca.ai
+      description: Production
+  /pipedrive/person/upsert:
+    post:
+      description: Processes incoming request to create a pipedrive person
+      operationId: t_value
+      parameters: []
+      requestBody:
+        required: true
+        description: Pipedrive person payload
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/Object'
+      responses:
+        '201':
+          description: Pipedrive person created successfully
+      summary: Create Pipedirve Person
+      tags:
+      - Pipedrive Webhook
+    servers:
+    - url: https://api.zoca.ai
+      description: Production
+  /pipedrive/organization/upsert:
+    post:
+      description: Processes incoming request to create a pipedrive organization
+      operationId: t_value
+      parameters: []
+      requestBody:
+        required: true
+        description: Pipedrive organization payload
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/Object'
+      responses:
+        '201':
+          description: Pipedrive organization created successfully
+      summary: Create Pipedirve Organization
+      tags:
+      - Pipedrive Webhook
+    servers:
+    - url: https://api.zoca.ai
+      description: Production
+  /pipedrive/lead/status:
+    get:
+      description: Processes incoming request to get the lead status
+      operationId: t_value
+      parameters: []
+      responses:
+        '200':
+          description: ''
+      summary: Get Lead Status
+      tags:
+      - Pipedrive Webhook
+    servers:
+    - url: https://api.zoca.ai
+      description: Production
+  /pipedrive/lead/callback:
+    get:
+      description: Processes incoming request to request a callback
+      operationId: t_value
+      parameters: []
+      responses:
+        '200':
+          description: ''
+      summary: Requested a callback
+      tags:
+      - Pipedrive Webhook
+    servers:
+    - url: https://api.zoca.ai
+      description: Production
+  /pipedrive/lead/demo-attended:
+    post:
+      description: Processes incoming request to update the lead demo attended
+      operationId: t_value
+      parameters: []
+      responses:
+        '201':
+          description: ''
+      summary: Update Lead Demo Attended
+      tags:
+      - Pipedrive Webhook
+    servers:
+    - url: https://api.zoca.ai
+      description: Production
+  /pipedrive/account-manager/tracking/{entityId}:
+    get:
+      description: Retrieves account manager tracking data including deal information, AM details, and trackable Calendly URLs. Optionally includes UTM campaign parameters for meeting tracking.
+      operationId: t_value
+      parameters:
+      - name: meetingType
+        required: false
+        in: query
+        description: Optional customer meeting type for UTM campaign tracking. Use enum keys like MARKETING_DISCOVERY, QUARTERLY_REVIEW, etc.
+        schema:
+          enum:
+          - TRIAL
+          - customer_meeting_trial
+          - PAID_ONBOARDING
+          - customer_meeting_paid_onbo
+          - CHECK_IN
+          - customer_meeting_check_in
+          - QUARTERLY_REVIEW
+          - customer_meeting_quaterly_
+          - CLIENT_OFFBOARDING
+          - customer_meeting_client_of
+          - USER_RESEARCH
+          - customer_meeting_user_rese
+          - MARKETING_DISCOVERY
+          - customer_meeting_marketing
+          - MARKETING_CHECK_IN
+          - customer_meeting_marketing1
+          - MARKETING_T2P
+          - customer_meeting_marketing2
+          - MARKETING_REQUIREMENTS
+          - customer_meeting_marketing3
+          type: string
+      - name: entityId
+        required: true
+        in: path
+        description: Location entity ID
+        schema:
+          example: e7f8a9b0-1c2d-3e4f-5a6b-7c8d9e0f1a2b
+      responses:
+        '200':
+          description: Account manager tracking data retrieved successfully
+          content:
+            application/json:
+              schema:
+                type: array
+                items:
+                  $ref: '#/components/schemas/e'
+        '400':
+          description: Bad request - invalid entity ID or meeting type
+      summary: Get Account Manager Tracking Data
+      tags:
+      - Pipedrive Webhook
+    servers:
+    - url: https://api.zoca.ai
+      description: Production
+  /pipedrive/activity/create:
+    post:
+      description: Processes incoming request to create a pipedrive activity
+      operationId: t_value
+      parameters: []
+      requestBody:
+        required: true
+        description: Pipedrive activity payload
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/Object'
+      responses:
+        '201':
+          description: Pipedrive activity created successfully
+      summary: Create Pipedirve Activity
+      tags:
+      - Pipedrive Webhook
+    servers:
+    - url: https://public.zoca.com
+      description: Production
+  /pipedrive/lead/contact-form:
+    post:
+      description: Processes incoming request to process the contact form
+      operationId: t_value
+      parameters: []
+      responses:
+        '201':
+          description: ''
+      summary: Process Contact Form
+      tags:
+      - Pipedrive Webhook
+    servers:
+    - url: https://public.zoca.com
+      description: Production
+  /tasks/api/v1/pipedrive/person-webhook:
+    post:
+      description: Processes incoming Pipedrive webhook data and queues it for handling
+      operationId: t_value
+      parameters: []
+      requestBody:
+        required: true
+        description: Pipedrive webhook payload
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/Object'
+      responses:
+        '201':
+          description: Pipedrive webhook processed successfully
+      security:
+      - {}
+      summary: Process Pipedrive webhook
+      tags:
+      - Pipedrive Webhook
+    servers:
+    - url: https://tasks.zoca.ai
+      description: Production
+  /tasks/api/v1/pipedrive/webhook:
+    post:
+      description: Processes incoming Pipedrive webhook data and queues it for handling
+      operationId: t_value
+      parameters: []
+      requestBody:
+        required: true
+        description: Pipedrive webhook payload
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/Object'
+      responses:
+        '201':
+          description: Pipedrive webhook processed successfully
+      security:
+      - {}
+      summary: Process Pipedrive webhook
+      tags:
+      - Pipedrive Webhook
+    servers:
+    - url: https://tasks.zoca.ai
+      description: Production
+  /tasks/api/v1/pipedrive/deal/update:
+    post:
+      description: Processes incoming request to update a pipedrive deal
+      operationId: t_value
+      parameters: []
+      requestBody:
+        required: true
+        description: Pipedrive deal payload
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/Object'
+      responses:
+        '201':
+          description: Pipedrive deal updated successfully
+      security:
+      - {}
+      summary: Update Pipedirve Deal
+      tags:
+      - Pipedrive Webhook
+    servers:
+    - url: https://tasks.zoca.ai
+      description: Production
+  /tasks/api/v1/pipedrive/deal/sync:
+    post:
+      description: Processes incoming request to update a pipedrive deal
+      operationId: t_value
+      parameters: []
+      requestBody:
+        required: true
+        description: Pipedrive deal payload
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/Object'
+      responses:
+        '201':
+          description: Pipedrive deal updated successfully
+      security:
+      - {}
+      summary: Update Pipedirve Deal
+      tags:
+      - Pipedrive Webhook
+    servers:
+    - url: https://tasks.zoca.ai
+      description: Production
+  /tasks/api/v1/pipedrive/lead/status/update:
+    post:
+      description: Processes incoming request to update a pipedrive lead status
+      operationId: t_value
+      parameters: []
+      requestBody:
+        required: true
+        description: Pipedrive lead status payload
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/Object'
+      responses:
+        '201':
+          description: Pipedrive lead status updated successfully
+      security:
+      - {}
+      summary: Update Pipedirve Lead Status
+      tags:
+      - Pipedrive Webhook
+    servers:
+    - url: https://tasks.zoca.ai
+      description: Production
+  /tasks/api/v1/pipedrive/person/upsert:
+    post:
+      description: Processes incoming request to create a pipedrive person
+      operationId: t_value
+      parameters: []
+      requestBody:
+        required: true
+        description: Pipedrive person payload
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/Object'
+      responses:
+        '201':
+          description: Pipedrive person created successfully
+      security:
+      - {}
+      summary: Create Pipedirve Person
+      tags:
+      - Pipedrive Webhook
+    servers:
+    - url: https://tasks.zoca.ai
+      description: Production
+  /tasks/api/v1/pipedrive/organization/create:
+    post:
+      description: Processes incoming request to create a pipedrive organization
+      operationId: t_value
+      parameters: []
+      requestBody:
+        required: true
+        description: Pipedrive organization payload
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/Object'
+      responses:
+        '201':
+          description: Pipedrive organization created successfully
+      security:
+      - {}
+      summary: Create Pipedirve Organization
+      tags:
+      - Pipedrive Webhook
+    servers:
+    - url: https://tasks.zoca.ai
+      description: Production
+  /tasks/api/v1/pipedrive/process/demo-booking:
+    post:
+      description: Processes incoming request to create a demo booking
+      operationId: t_value
+      parameters: []
+      requestBody:
+        required: true
+        description: Pipedrive demo booking payload
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/Object'
+      responses:
+        '201':
+          description: Pipedrive demo booking processed successfully
+      security:
+      - {}
+      summary: Process Demo Booking
+      tags:
+      - Pipedrive Webhook
+    servers:
+    - url: https://tasks.zoca.ai
+      description: Production
+  /tasks/api/v1/pipedrive/persons/upsert/bulk:
+    post:
+      description: Processes incoming request to upsert pipedrive persons from a CSV file stored in S3. The worker will download, validate, and process the file.
+      operationId: t_value
+      parameters: []
+      requestBody:
+        required: true
+        description: S3 URL of the CSV file containing Pipedrive persons data
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/e_2'
+      responses:
+        '201':
+          description: Pipedrive persons upsert job queued successfully
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  jobId:
+                    type: string
+                  message:
+                    type: string
+                  s3Url:
+                    type: string
+        '400':
+          description: Invalid request - S3 URL is required
+      security:
+      - {}
+      summary: Upsert Pipedrive Persons from S3
+      tags:
+      - Pipedrive Webhook
+    servers:
+    - url: https://tasks.zoca.ai
+      description: Production
+  /tasks/api/v1/pipedrive/process/moengage/event:
+    post:
+      description: Processes incoming request to process a moengage event
+      operationId: t_value
+      parameters: []
+      requestBody:
+        required: true
+        description: Moengage event payload
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/Object'
+      responses:
+        '201':
+          description: ''
+      security:
+      - {}
+      summary: Process Moengage Event
+      tags:
+      - Pipedrive Webhook
+    servers:
+    - url: https://tasks.zoca.ai
+      description: Production
+components:
+  schemas:
+    Object:
+      type: object
+      properties: {}
+    e:
+      type: object
+      properties:
+        id:
+          type: number
+        entityId:
+          type: string
+        attribute:
+          type: string
+        value:
+          type:
+          - object
+          - 'null'
+        metadata:
+          type:
+          - object
+          - 'null'
+        createdAt:
+          type:
+          - object
+          - 'null'
+      required:
+      - id
+      - entityId
+      - attribute
+    e_2:
+      type: object
+      properties:
+        scan:
+          $ref: '#/components/schemas/e_2'
+        businessLat:
+          type:
+          - number
+          - 'null'
+        businessLng:
+          type:
+          - number
+          - 'null'
+        points:
+          type: array
+          items:
+            $ref: '#/components/schemas/e_2'
+        heroMetrics:
+          $ref: '#/components/schemas/e_2'
+      required:
+      - scan
+      - businessLat
+      - businessLng
+      - points
+      - heroMetrics
+  securitySchemes:
+    access-token:
+      scheme: bearer
+      bearerFormat: JWT
+      type: http
+      name: Authorization
+      description: Enter JWT token in the format Bearer <token>
+      in: header
+x-refined-from:
+- zoca-platform-openapi.yml
+- zoca-public-openapi.yml
+- zoca-tasks-openapi.yml

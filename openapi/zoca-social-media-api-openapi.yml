@@ -1,0 +1,1044 @@
+openapi: 3.2.0
+info:
+  title: Zoca Social Media API
+  contact: {}
+  x-refined-note:
+  - x-apievangelist-note differs across the merged source definitions and was not carried
+  version: '1.0'
+  description: 'Operations tagged Social Media across 2 of this provider''s published API definitions: zoca-platform-openapi.yml, zoca-tasks-openapi.yml. Each path carries the servers of the definition it was published in.'
+servers:
+- url: https://api.zoca.ai
+  description: Production
+- url: https://tasks.zoca.ai
+  description: Production
+tags:
+- name: Social Media
+paths:
+  /social-media/posts:
+    get:
+      operationId: t_value
+      parameters: []
+      responses:
+        '200':
+          description: ''
+      summary: Get posts by UID
+      tags:
+      - Social Media
+    post:
+      operationId: t_value
+      parameters: []
+      responses:
+        '201':
+          description: ''
+      summary: Create social media posts
+      tags:
+      - Social Media
+    servers:
+    - url: https://api.zoca.ai
+      description: Production
+  /social-media/instagram-posts:
+    post:
+      operationId: t_value
+      parameters: []
+      responses:
+        '201':
+          description: ''
+      summary: Create Instagram posts
+      tags:
+      - Social Media
+    servers:
+    - url: https://api.zoca.ai
+      description: Production
+  /social-media/social-media-calendar:
+    post:
+      operationId: t_value
+      parameters: []
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              type: object
+              properties:
+                uid:
+                  type: string
+                  format: uuid
+                expectedTimeGapInHours:
+                  type: number
+                expectedNumberOfPosts:
+                  type: number
+                expectedStartDate:
+                  type: string
+                  format: date-time
+                calendarName:
+                  type:
+                  - string
+                  - 'null'
+                editorId:
+                  type:
+                  - number
+                  - 'null'
+                designerId:
+                  type:
+                  - number
+                  - 'null'
+              required:
+              - uid
+              - expectedTimeGapInHours
+              - expectedNumberOfPosts
+              - expectedStartDate
+      responses:
+        '201':
+          description: ''
+      summary: Create a social media calendar
+      tags:
+      - Social Media
+    get:
+      operationId: t_value
+      parameters:
+      - name: viewerId
+        required: false
+        in: query
+        schema:
+          type: number
+      - name: designerId
+        required: false
+        in: query
+        schema:
+          type: number
+      - name: editorId
+        required: true
+        in: query
+        schema:
+          type: number
+      responses:
+        '200':
+          description: ''
+      summary: Get social media calendars by editor ID
+      tags:
+      - Social Media
+    servers:
+    - url: https://api.zoca.ai
+      description: Production
+  /social-media/calendar-posts:
+    get:
+      operationId: t_value
+      parameters:
+      - name: calendarId
+        required: true
+        in: query
+        schema:
+          type: string
+      responses:
+        '200':
+          description: ''
+      summary: Get posts by calendar ID
+      tags:
+      - Social Media
+    servers:
+    - url: https://api.zoca.ai
+      description: Production
+  /social-media/attach-media:
+    post:
+      operationId: t_value
+      parameters: []
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              type: object
+              properties:
+                postId:
+                  type: string
+                  format: uuid
+                postEntity:
+                  type: string
+                mediaRefs:
+                  type: array
+              required:
+              - postId
+              - postEntity
+              - mediaRefs
+      responses:
+        '201':
+          description: ''
+      summary: Attach media to posts
+      tags:
+      - Social Media
+    servers:
+    - url: https://api.zoca.ai
+      description: Production
+  /social-media/update-caption:
+    post:
+      operationId: t_value
+      parameters: []
+      responses:
+        '201':
+          description: ''
+      summary: Update post caption
+      tags:
+      - Social Media
+    servers:
+    - url: https://api.zoca.ai
+      description: Production
+  /social-media/update-scheduled-at:
+    post:
+      operationId: t_value
+      parameters: []
+      responses:
+        '201':
+          description: ''
+      summary: Update scheduled post time
+      tags:
+      - Social Media
+    servers:
+    - url: https://api.zoca.ai
+      description: Production
+  /social-media/update-scheduled-post-status:
+    post:
+      operationId: t_value
+      parameters: []
+      responses:
+        '201':
+          description: ''
+      summary: Update scheduled post status
+      tags:
+      - Social Media
+    servers:
+    - url: https://api.zoca.ai
+      description: Production
+  /social-media/update-scheduled-status:
+    post:
+      operationId: t_value
+      parameters: []
+      responses:
+        '201':
+          description: ''
+      summary: Update schedule status
+      tags:
+      - Social Media
+    servers:
+    - url: https://api.zoca.ai
+      description: Production
+  /social-media/scheduled-post:
+    delete:
+      operationId: t_value
+      parameters: []
+      responses:
+        '200':
+          description: ''
+      summary: Delete a scheduled post
+      tags:
+      - Social Media
+    servers:
+    - url: https://api.zoca.ai
+      description: Production
+  /social-media/set-schedule-for-posts:
+    post:
+      operationId: t_value
+      parameters: []
+      responses:
+        '201':
+          description: ''
+      summary: Set schedule for posts
+      tags:
+      - Social Media
+    servers:
+    - url: https://api.zoca.ai
+      description: Production
+  /social-media/detach-medias-from-post:
+    delete:
+      operationId: t_value
+      parameters: []
+      responses:
+        '200':
+          description: ''
+      summary: Detach media from a post
+      tags:
+      - Social Media
+    servers:
+    - url: https://api.zoca.ai
+      description: Production
+  /social-media/scheduled-post-by-id:
+    get:
+      operationId: t_value
+      parameters: []
+      responses:
+        '200':
+          description: ''
+      summary: Get scheduled post by ID
+      tags:
+      - Social Media
+    servers:
+    - url: https://api.zoca.ai
+      description: Production
+  /social-media/get-feed-posts:
+    post:
+      operationId: t_value
+      parameters: []
+      responses:
+        '201':
+          description: ''
+      summary: Get feed posts with pagination
+      tags:
+      - Social Media
+    servers:
+    - url: https://api.zoca.ai
+      description: Production
+  /social-media/posts-pending-admin-approval:
+    get:
+      operationId: t_value
+      parameters: []
+      responses:
+        '200':
+          description: ''
+      summary: Get posts pending admin approval
+      tags:
+      - Social Media
+    servers:
+    - url: https://api.zoca.ai
+      description: Production
+  /social-media/get-instagram-post:
+    get:
+      operationId: t_value
+      parameters: []
+      responses:
+        '200':
+          description: ''
+      summary: Get Instagram post by ID
+      tags:
+      - Social Media
+    servers:
+    - url: https://api.zoca.ai
+      description: Production
+  /social-media/add-feedback:
+    post:
+      operationId: t_value
+      parameters: []
+      responses:
+        '201':
+          description: ''
+      summary: Add feedback to a post
+      tags:
+      - Social Media
+    servers:
+    - url: https://api.zoca.ai
+      description: Production
+  /social-media/editor-list:
+    get:
+      operationId: t_value
+      parameters: []
+      responses:
+        '200':
+          description: ''
+      summary: Get list of editors
+      tags:
+      - Social Media
+    servers:
+    - url: https://api.zoca.ai
+      description: Production
+  /social-media/set-instagram-post-type:
+    put:
+      operationId: t_value
+      parameters: []
+      responses:
+        '200':
+          description: ''
+      summary: Set Instagram post type
+      tags:
+      - Social Media
+    servers:
+    - url: https://api.zoca.ai
+      description: Production
+  /social-media/add-feedback-to-post:
+    post:
+      operationId: t_value
+      parameters: []
+      responses:
+        '201':
+          description: ''
+      summary: Add feedback to a post
+      tags:
+      - Social Media
+    servers:
+    - url: https://api.zoca.ai
+      description: Production
+  /social-media/get-feedback-for-post:
+    get:
+      operationId: t_value
+      parameters: []
+      responses:
+        '200':
+          description: ''
+      summary: Get feedback for a post
+      tags:
+      - Social Media
+    servers:
+    - url: https://api.zoca.ai
+      description: Production
+  /social-media/remove-feedback-from-post:
+    put:
+      operationId: t_value
+      parameters: []
+      responses:
+        '200':
+          description: ''
+      summary: Remove feedback from a post
+      tags:
+      - Social Media
+    servers:
+    - url: https://api.zoca.ai
+      description: Production
+  /social-media/set-feedback-status:
+    post:
+      operationId: t_value
+      parameters: []
+      responses:
+        '201':
+          description: ''
+      summary: Set feedback status
+      tags:
+      - Social Media
+    servers:
+    - url: https://api.zoca.ai
+      description: Production
+  /social-media/get-user-insta-details:
+    get:
+      operationId: t_value
+      parameters: []
+      responses:
+        '200':
+          description: ''
+      summary: Get user Instagram details
+      tags:
+      - Social Media
+    servers:
+    - url: https://api.zoca.ai
+      description: Production
+  /social-media/set-user-insta-details:
+    put:
+      operationId: t_value
+      parameters: []
+      responses:
+        '200':
+          description: ''
+      summary: Set user Instagram details
+      tags:
+      - Social Media
+    servers:
+    - url: https://api.zoca.ai
+      description: Production
+  /social-media/get-user-overdue-count:
+    get:
+      operationId: t_value
+      parameters: []
+      responses:
+        '200':
+          description: ''
+      summary: Get user overdue post count
+      tags:
+      - Social Media
+    servers:
+    - url: https://api.zoca.ai
+      description: Production
+  /social-media/approve-all-posts-by-uid:
+    put:
+      operationId: t_value
+      parameters: []
+      responses:
+        '200':
+          description: ''
+      summary: Approve all posts by user ID
+      tags:
+      - Social Media
+    servers:
+    - url: https://api.zoca.ai
+      description: Production
+  /social-media/set-user-post-status:
+    put:
+      operationId: t_value
+      parameters: []
+      responses:
+        '200':
+          description: ''
+      summary: Set user post status
+      tags:
+      - Social Media
+    servers:
+    - url: https://api.zoca.ai
+      description: Production
+  /social-media/approve-user-overdue-post-status:
+    put:
+      operationId: t_value
+      parameters: []
+      responses:
+        '200':
+          description: ''
+      summary: Approve user overdue post status
+      tags:
+      - Social Media
+    servers:
+    - url: https://api.zoca.ai
+      description: Production
+  /social-media/get-all-posting-dates-for-month:
+    get:
+      operationId: t_value
+      parameters: []
+      responses:
+        '200':
+          description: ''
+      summary: Get all posting dates for a month
+      tags:
+      - Social Media
+    servers:
+    - url: https://api.zoca.ai
+      description: Production
+  /social-media/posts-by-ops-status:
+    get:
+      operationId: t_value
+      parameters: []
+      responses:
+        '200':
+          description: ''
+      summary: Get all posts by ops status
+      tags:
+      - Social Media
+    servers:
+    - url: https://api.zoca.ai
+      description: Production
+  /social-media/pending-feedback:
+    get:
+      operationId: t_value
+      parameters: []
+      responses:
+        '200':
+          description: ''
+      summary: Get all pending feedback
+      tags:
+      - Social Media
+    servers:
+    - url: https://api.zoca.ai
+      description: Production
+  /social-media/edit-status:
+    post:
+      operationId: t_value
+      parameters: []
+      responses:
+        '201':
+          description: ''
+      summary: Set edit status
+      tags:
+      - Social Media
+    servers:
+    - url: https://api.zoca.ai
+      description: Production
+  /social-media/raw-instagram-post:
+    post:
+      operationId: t_value
+      parameters: []
+      responses:
+        '201':
+          description: ''
+      summary: Get raw Instagram post data
+      tags:
+      - Social Media
+    servers:
+    - url: https://api.zoca.ai
+      description: Production
+  /social-media/generate-presigned-url:
+    post:
+      operationId: t_value
+      parameters: []
+      responses:
+        '201':
+          description: ''
+      summary: Generate presigned URL for file upload
+      tags:
+      - Social Media
+    servers:
+    - url: https://api.zoca.ai
+      description: Production
+  /social-media/update-media-order:
+    post:
+      operationId: t_value
+      parameters: []
+      responses:
+        '201':
+          description: ''
+      summary: Update media order
+      tags:
+      - Social Media
+    servers:
+    - url: https://api.zoca.ai
+      description: Production
+  /social-media/calendar:
+    delete:
+      operationId: t_value
+      parameters: []
+      responses:
+        '200':
+          description: ''
+      summary: Remove calendar by ID
+      tags:
+      - Social Media
+    put:
+      operationId: t_value
+      parameters: []
+      responses:
+        '200':
+          description: ''
+      summary: Update calendar
+      tags:
+      - Social Media
+    servers:
+    - url: https://api.zoca.ai
+      description: Production
+  /social-media/get-calendar-by-filter:
+    post:
+      operationId: t_value
+      parameters: []
+      responses:
+        '201':
+          description: ''
+      summary: Get calendar by filter
+      tags:
+      - Social Media
+    servers:
+    - url: https://api.zoca.ai
+      description: Production
+  /social-media/sm-user-list:
+    get:
+      operationId: t_value
+      parameters: []
+      responses:
+        '200':
+          description: ''
+      summary: Get social media user list
+      tags:
+      - Social Media
+    servers:
+    - url: https://api.zoca.ai
+      description: Production
+  /social-media/set-time-sensitive:
+    post:
+      operationId: t_value
+      parameters: []
+      responses:
+        '201':
+          description: ''
+      summary: Set post time sensitivity
+      tags:
+      - Social Media
+    servers:
+    - url: https://api.zoca.ai
+      description: Production
+  /social-media/set-post-attributes:
+    post:
+      operationId: t_value
+      parameters: []
+      responses:
+        '201':
+          description: ''
+      summary: Set post attributes
+      tags:
+      - Social Media
+    servers:
+    - url: https://api.zoca.ai
+      description: Production
+  /social-media/post-design-types:
+    get:
+      operationId: t_value
+      parameters: []
+      responses:
+        '200':
+          description: ''
+      summary: Get all post design types
+      tags:
+      - Social Media
+    servers:
+    - url: https://api.zoca.ai
+      description: Production
+  /social-media/post-subtypes:
+    get:
+      operationId: t_value
+      parameters: []
+      responses:
+        '200':
+          description: ''
+      summary: Get post subtypes by type ID
+      tags:
+      - Social Media
+    servers:
+    - url: https://api.zoca.ai
+      description: Production
+  /social-media/get-preference-request:
+    get:
+      operationId: t_value
+      parameters: []
+      responses:
+        '200':
+          description: ''
+      summary: Get preference update request status
+      tags:
+      - Social Media
+    servers:
+    - url: https://api.zoca.ai
+      description: Production
+  /social-media/put-preference-request:
+    put:
+      operationId: t_value
+      parameters: []
+      responses:
+        '200':
+          description: ''
+      summary: Update preference request status
+      tags:
+      - Social Media
+    servers:
+    - url: https://api.zoca.ai
+      description: Production
+  /social-media/card-view-click:
+    post:
+      operationId: t_value
+      parameters: []
+      responses:
+        '201':
+          description: ''
+      summary: Track card view click
+      tags:
+      - Social Media
+    servers:
+    - url: https://api.zoca.ai
+      description: Production
+  /social-media/designer-list:
+    get:
+      operationId: t_value
+      parameters: []
+      responses:
+        '200':
+          description: ''
+      summary: Get list of designers
+      tags:
+      - Social Media
+    servers:
+    - url: https://api.zoca.ai
+      description: Production
+  /social-media/post-qc-metrics:
+    get:
+      operationId: t_value
+      parameters: []
+      responses:
+        '200':
+          description: ''
+      summary: Get post QC metrics
+      tags:
+      - Social Media
+    servers:
+    - url: https://api.zoca.ai
+      description: Production
+  /social-media/user-preferences:
+    get:
+      operationId: t_value
+      parameters: []
+      responses:
+        '200':
+          description: ''
+      summary: Get user preferences
+      tags:
+      - Social Media
+    post:
+      operationId: t_value
+      parameters: []
+      responses:
+        '201':
+          description: ''
+      summary: Set user preferences
+      tags:
+      - Social Media
+    servers:
+    - url: https://api.zoca.ai
+      description: Production
+  /social-media/register-help-request:
+    post:
+      operationId: t_value
+      parameters: []
+      responses:
+        '201':
+          description: ''
+      summary: Register social media help request
+      tags:
+      - Social Media
+    servers:
+    - url: https://api.zoca.ai
+      description: Production
+  /social-media/help-request-status:
+    put:
+      operationId: t_value
+      parameters: []
+      responses:
+        '200':
+          description: ''
+      summary: Update help request status
+      tags:
+      - Social Media
+    servers:
+    - url: https://api.zoca.ai
+      description: Production
+  /social-media/instagram-post-reject-reason:
+    post:
+      operationId: t_value
+      parameters: []
+      responses:
+        '201':
+          description: ''
+      summary: Set Instagram post rejection reason
+      tags:
+      - Social Media
+    servers:
+    - url: https://api.zoca.ai
+      description: Production
+  /social-media/onboard-user:
+    post:
+      operationId: t_value
+      parameters: []
+      responses:
+        '201':
+          description: ''
+      summary: Onboard social media user
+      tags:
+      - Social Media
+    servers:
+    - url: https://api.zoca.ai
+      description: Production
+  /social-media/post-by-id:
+    delete:
+      operationId: t_value
+      parameters: []
+      responses:
+        '200':
+          description: ''
+      summary: Delete post by ID
+      tags:
+      - Social Media
+    servers:
+    - url: https://api.zoca.ai
+      description: Production
+  /social-media/feedback-by-uid:
+    get:
+      operationId: t_value
+      parameters: []
+      responses:
+        '200':
+          description: ''
+      summary: Get feedback by user ID
+      tags:
+      - Social Media
+    servers:
+    - url: https://api.zoca.ai
+      description: Production
+  /social-media/feedback-for-calendar:
+    get:
+      operationId: t_value
+      parameters: []
+      responses:
+        '200':
+          description: ''
+      summary: Get feedback for calendar
+      tags:
+      - Social Media
+    servers:
+    - url: https://api.zoca.ai
+      description: Production
+  /social-media/update-viewer-access:
+    post:
+      operationId: t_value
+      parameters: []
+      responses:
+        '201':
+          description: ''
+      summary: Update viewer access
+      tags:
+      - Social Media
+    servers:
+    - url: https://api.zoca.ai
+      description: Production
+  /social-media/business-attributes-props:
+    post:
+      operationId: t_value
+      parameters: []
+      responses:
+        '201':
+          description: ''
+      summary: Add business attributes properties
+      tags:
+      - Social Media
+    servers:
+    - url: https://api.zoca.ai
+      description: Production
+  /social-media/service-category:
+    post:
+      operationId: t_value
+      parameters: []
+      responses:
+        '201':
+          description: ''
+      summary: Add service category
+      tags:
+      - Social Media
+    servers:
+    - url: https://api.zoca.ai
+      description: Production
+  /social-media/service-categories:
+    get:
+      operationId: t_value
+      parameters: []
+      responses:
+        '200':
+          description: ''
+      summary: Get service categories
+      tags:
+      - Social Media
+    servers:
+    - url: https://api.zoca.ai
+      description: Production
+  /social-media/sm-access-list:
+    get:
+      operationId: t_value
+      parameters: []
+      responses:
+        '200':
+          description: ''
+      summary: Get social media access list
+      tags:
+      - Social Media
+    servers:
+    - url: https://api.zoca.ai
+      description: Production
+  /social-media/predefined-social-media-attributes:
+    get:
+      operationId: t_value
+      parameters: []
+      responses:
+        '200':
+          description: ''
+      summary: Get predefined social media attributes
+      tags:
+      - Social Media
+    servers:
+    - url: https://api.zoca.ai
+      description: Production
+  /social-media/authenticate-user:
+    post:
+      operationId: t_value
+      parameters: []
+      responses:
+        '201':
+          description: ''
+      summary: Authenticate social media user
+      tags:
+      - Social Media
+    servers:
+    - url: https://api.zoca.ai
+      description: Production
+  /social-media/add-instagram-post-rejection-reason:
+    post:
+      operationId: t_value
+      parameters: []
+      responses:
+        '201':
+          description: ''
+      summary: Add Instagram post rejection reason
+      tags:
+      - Social Media
+    servers:
+    - url: https://api.zoca.ai
+      description: Production
+  /tasks/api/v1/social-media/proposal:
+    post:
+      description: Creates a new social media campaign proposal and queues it for processing
+      operationId: t_value
+      parameters: []
+      requestBody:
+        required: true
+        description: Social media proposal payload
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/e'
+      responses:
+        '201':
+          description: Social media proposal created successfully
+        '400':
+          description: Bad request - Invalid input data
+      summary: Create Social Media Proposal
+      tags:
+      - Social Media
+      security:
+      - access-token: []
+    servers:
+    - url: https://tasks.zoca.ai
+      description: Production
+  /tasks/api/v1/social-media/moengage/event:
+    post:
+      description: Sends a custom Moengage event for social media proposals
+      operationId: t_value
+      parameters: []
+      requestBody:
+        required: true
+        description: Custom social media event payload
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/e'
+      responses:
+        '201':
+          description: Custom social media Moengage event sent successfully
+        '400':
+          description: Bad request - Invalid input data
+      summary: Send Custom Social Media Moengage Event
+      tags:
+      - Social Media
+      security:
+      - access-token: []
+    servers:
+    - url: https://tasks.zoca.ai
+      description: Production
+components:
+  schemas:
+    e:
+      type: object
+      properties:
+        scan:
+          $ref: '#/components/schemas/e'
+        businessLat:
+          type:
+          - number
+          - 'null'
+        businessLng:
+          type:
+          - number
+          - 'null'
+        points:
+          type: array
+          items:
+            $ref: '#/components/schemas/e'
+        heroMetrics:
+          $ref: '#/components/schemas/e'
+      required:
+      - scan
+      - businessLat
+      - businessLng
+      - points
+      - heroMetrics
+  securitySchemes:
+    access-token:
+      scheme: bearer
+      bearerFormat: JWT
+      type: http
+      name: Authorization
+      description: Enter JWT token in the format Bearer <token>
+      in: header
+x-refined-from:
+- zoca-platform-openapi.yml
+- zoca-tasks-openapi.yml

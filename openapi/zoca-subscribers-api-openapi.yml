@@ -1,0 +1,213 @@
+openapi: 3.2.0
+info:
+  title: Zoca Platform Subscribers API
+  description: 'The Zoca platform API behind the Zoca web app and mobile apps: scheduling, website generation, Google Business Profile, discovery/local SEO, social media, booking enquiries, offers, clients, staff, billing and the Zoca "brain" agent layer.'
+  version: 3.20.10
+  contact: {}
+  x-apievangelist-note: Harvested verbatim from https://api.zoca.ai/swagger.json. The provider ships the default NestJS Swagger metadata (title "API Documentation", empty servers[]); title/description/servers were set by API Evangelist for identification and the unmodified original is preserved at openapi/_original/zoca-platform-swagger.json. Every path, operation, summary, parameter and response is exactly as published.
+servers:
+- url: https://api.zoca.ai
+  description: Production
+tags:
+- name: Subscribers
+paths:
+  /enquiry/subscribers:
+    post:
+      operationId: t_value
+      parameters: []
+      responses:
+        '201':
+          description: Subscriber created successfully.
+        '400':
+          description: Invalid input data.
+        '409':
+          description: Subscriber already exists for this entity and platform.
+        '500':
+          description: Internal server error.
+      summary: Add a new webhook subscriber
+      tags:
+      - Subscribers
+  /enquiry/subscribers/configured-entities:
+    get:
+      operationId: t_value
+      parameters:
+      - name: limit
+        required: false
+        in: query
+        description: Page size (default 20, max 100).
+        schema: {}
+      - name: page
+        required: false
+        in: query
+        description: 1-based page number (default 1).
+        schema: {}
+      - name: status
+        required: false
+        in: query
+        schema:
+          enum:
+          - active
+          - inactive
+          type: string
+      - name: platform
+        required: false
+        in: query
+        description: Filter by exact platform value.
+        schema: {}
+      - name: search
+        required: false
+        in: query
+        description: Match entity ID or location name.
+        schema: {}
+      responses:
+        '200':
+          description: Paginated list of entities with subscriber integration summaries.
+        '500':
+          description: Internal server error.
+      summary: List entities with subscriber integrations configured
+      tags:
+      - Subscribers
+  /enquiry/subscribers/non-configured-entities:
+    get:
+      operationId: t_value
+      parameters:
+      - name: limit
+        required: false
+        in: query
+        description: Page size (default 20, max 100).
+        schema: {}
+      - name: page
+        required: false
+        in: query
+        description: 1-based page number (default 1).
+        schema: {}
+      - name: search
+        required: false
+        in: query
+        description: Match entity ID or location name.
+        schema: {}
+      responses:
+        '200':
+          description: Paginated list of entities without subscriber integrations.
+        '500':
+          description: Internal server error.
+      summary: List entities without subscriber integrations
+      tags:
+      - Subscribers
+  /enquiry/subscribers/entity/{entityId}:
+    get:
+      operationId: t_value
+      parameters:
+      - name: entityId
+        required: true
+        in: path
+        description: The ID of the entity to list subscribers for
+        schema:
+          type: string
+      responses:
+        '200':
+          description: List of subscribers.
+        '500':
+          description: Internal server error.
+      summary: List all subscribers for a specific entity
+      tags:
+      - Subscribers
+  /enquiry/subscribers/{subscriberId}:
+    get:
+      operationId: t_value
+      parameters:
+      - name: subscriberId
+        required: true
+        in: path
+        description: The ID of the subscriber
+        schema:
+          type: string
+      responses:
+        '200':
+          description: Subscriber details.
+        '404':
+          description: Subscriber not found.
+        '500':
+          description: Internal server error.
+      summary: Get a specific subscriber by its ID
+      tags:
+      - Subscribers
+    put:
+      operationId: t_value
+      parameters:
+      - name: subscriberId
+        required: true
+        in: path
+        description: The ID of the subscriber to update
+        schema:
+          type: string
+      responses:
+        '200':
+          description: Subscriber updated successfully.
+        '400':
+          description: Invalid input data.
+        '404':
+          description: Subscriber not found.
+        '500':
+          description: Internal server error.
+      summary: Update an existing subscriber
+      tags:
+      - Subscribers
+    delete:
+      operationId: t_value
+      parameters:
+      - name: subscriberId
+        required: true
+        in: path
+        description: The ID of the subscriber to deactivate
+        schema:
+          type: string
+      responses:
+        '204':
+          description: Subscriber deactivated successfully.
+        '404':
+          description: Subscriber not found.
+        '500':
+          description: Internal server error.
+      summary: Deactivate (soft delete) a subscriber
+      tags:
+      - Subscribers
+  /enquiry/subscribers/{subscriberId}/event-logs:
+    get:
+      operationId: t_value
+      parameters:
+      - name: offset
+        required: false
+        in: query
+        description: Records to skip (default 0)
+        schema:
+          type: number
+      - name: limit
+        required: false
+        in: query
+        description: Max records to return (default 10)
+        schema:
+          type: number
+      - name: subscriberId
+        required: true
+        in: path
+        description: The ID of the subscriber
+        schema:
+          type: string
+      responses:
+        '200':
+          description: Paginated event logs.
+        '500':
+          description: Internal server error.
+      summary: Get event logs for a subscriber with pagination
+      tags:
+      - Subscribers
+components:
+  securitySchemes:
+    access-token:
+      scheme: bearer
+      bearerFormat: JWT
+      type: http
+      name: Authorization
+      description: Enter JWT token in the format Bearer <token>
+      in: header

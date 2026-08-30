@@ -1,0 +1,156 @@
+openapi: 3.2.0
+info:
+  title: Zoca Tasks Local SEO Map Grid API
+  description: 'The Zoca tasks/automation service: AI content queue and planning, FrontDesk (Retell/Twilio) voice + SMS agent onboarding, local-SEO grid scans, WIN conversion triggers, and inbound integration webhooks (Chargebee, Square, Pipedrive, Twilio, Retell, CallHippo, Sybill, Instantly).'
+  version: 3.20.9
+  contact: {}
+  x-apievangelist-note: Harvested verbatim from https://tasks.zoca.ai/swagger.json. The provider ships the default NestJS Swagger metadata (title "API Documentation", empty servers[]); title/description/servers were set by API Evangelist for identification and the unmodified original is preserved at openapi/_original/zoca-tasks-swagger.json. Every path, operation, summary, parameter and response is exactly as published.
+servers:
+- url: https://tasks.zoca.ai
+  description: Production
+security:
+- access-token: []
+tags:
+- name: Local SEO Map Grid
+paths:
+  /tasks/api/v1/local-seo/keywords/flat:
+    get:
+      operationId: t_value
+      parameters: []
+      responses:
+        '200':
+          description: ''
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/e'
+      summary: Flat paginated keyword list for the By keyword tab
+      tags:
+      - Local SEO Map Grid
+  /tasks/api/v1/local-seo/map/keyword-options:
+    get:
+      operationId: t_value
+      parameters: []
+      responses:
+        '200':
+          description: ''
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/e'
+      summary: Keyword dropdown options for the Map view
+      tags:
+      - Local SEO Map Grid
+  /tasks/api/v1/local-seo/map/heatmap:
+    get:
+      operationId: t_value
+      parameters: []
+      responses:
+        '200':
+          description: ''
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/e'
+      summary: 5-point heatmap + hero metrics + trend
+      tags:
+      - Local SEO Map Grid
+  /tasks/api/v1/local-seo/map/competitors:
+    get:
+      operationId: t_value
+      parameters: []
+      responses:
+        '200':
+          description: ''
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/e'
+      summary: Top competitors per point for the Map view
+      tags:
+      - Local SEO Map Grid
+  /tasks/api/v1/local-seo/grid/request:
+    post:
+      operationId: t_value
+      parameters: []
+      responses:
+        '201':
+          description: ''
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/e'
+        '400':
+          description: Invalid keyword
+        '429':
+          description: Daily limit reached
+      summary: Enqueue an on-demand 7×7 grid scan
+      tags:
+      - Local SEO Map Grid
+  /tasks/api/v1/local-seo/grid/requests:
+    get:
+      operationId: t_value
+      parameters: []
+      responses:
+        '200':
+          description: ''
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/e'
+      summary: List 7×7 grid scans for an entity + daily cap state
+      tags:
+      - Local SEO Map Grid
+  /tasks/api/v1/local-seo/grid/scan/{scanId}:
+    get:
+      operationId: t_value
+      parameters: []
+      responses:
+        '200':
+          description: ''
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/e'
+        '404':
+          description: Not found
+        '409':
+          description: Scan still queued/running
+      summary: 7×7 scan detail (49-point heatmap + hero metrics)
+      tags:
+      - Local SEO Map Grid
+components:
+  schemas:
+    e:
+      type: object
+      properties:
+        scan:
+          $ref: '#/components/schemas/e'
+        businessLat:
+          type:
+          - number
+          - 'null'
+        businessLng:
+          type:
+          - number
+          - 'null'
+        points:
+          type: array
+          items:
+            $ref: '#/components/schemas/e'
+        heroMetrics:
+          $ref: '#/components/schemas/e'
+      required:
+      - scan
+      - businessLat
+      - businessLng
+      - points
+      - heroMetrics
+  securitySchemes:
+    access-token:
+      scheme: bearer
+      bearerFormat: JWT
+      type: http
+      name: Authorization
+      description: Enter JWT token in the format Bearer <token>
+      in: header

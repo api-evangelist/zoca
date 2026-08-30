@@ -1,0 +1,533 @@
+openapi: 3.2.0
+info:
+  title: Zoca Tasks Employees API
+  description: 'The Zoca tasks/automation service: AI content queue and planning, FrontDesk (Retell/Twilio) voice + SMS agent onboarding, local-SEO grid scans, WIN conversion triggers, and inbound integration webhooks (Chargebee, Square, Pipedrive, Twilio, Retell, CallHippo, Sybill, Instantly).'
+  version: 3.20.9
+  contact: {}
+  x-apievangelist-note: Harvested verbatim from https://tasks.zoca.ai/swagger.json. The provider ships the default NestJS Swagger metadata (title "API Documentation", empty servers[]); title/description/servers were set by API Evangelist for identification and the unmodified original is preserved at openapi/_original/zoca-tasks-swagger.json. Every path, operation, summary, parameter and response is exactly as published.
+servers:
+- url: https://tasks.zoca.ai
+  description: Production
+security:
+- access-token: []
+tags:
+- name: Employees
+paths:
+  /tasks/api/v1/employees:
+    get:
+      description: Retrieves a paginated list of employees with simplified data (entityId, name, email only). Ideal for dropdown lists and selection interfaces.
+      operationId: t_value
+      parameters:
+      - name: search
+        required: false
+        in: query
+        description: Search by first name or last name (case-insensitive)
+        schema:
+          example: John
+          type: string
+      - name: isActive
+        required: false
+        in: query
+        description: Filter by active status
+        schema:
+          example: true
+          type: boolean
+      - name: type
+        required: false
+        in: query
+        description: Filter by employee type
+        schema:
+          enum:
+          - AM
+          - AE
+          - DEVELOPER
+          - SALES_LEAD
+          - CX_LEAD
+          - SOCIAL_MEDIA
+          - DEVELOPER_3P
+          - ADMIN
+          - SDR
+          - AI_AGENT
+          - MARKETING_TEAM
+          - CUSTOMER_SUPPORT
+          type: string
+      - name: limit
+        required: false
+        in: query
+        description: Number of items per page
+        schema:
+          example: 10
+          type: number
+      - name: page
+        required: false
+        in: query
+        description: Page number (starts from 1)
+        schema:
+          example: 1
+          type: number
+      responses:
+        '200':
+          description: Successfully retrieved employees with simplified data
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  employees:
+                    type: array
+                    items:
+                      type: object
+                      properties:
+                        entityId:
+                          type: string
+                          example: 123e4567-e89b-12d3-a456-426614174000
+                          description: Unique employee entity identifier
+                        name:
+                          type: string
+                          example: John Doe
+                          description: Full name of the employee
+                        email:
+                          type:
+                          - string
+                          - 'null'
+                          example: john.doe@example.com
+                          description: Email address of the employee (from attributes)
+                        isActive:
+                          type: boolean
+                          example: true
+                          description: Whether the employee is currently active
+                  totalCount:
+                    type: number
+                    example: 50
+                    description: Total number of employees
+                  totalPages:
+                    type: number
+                    example: 5
+                    description: Total number of pages
+                  currentPage:
+                    type: number
+                    example: 1
+                    description: Current page number
+        '500':
+          description: Internal server error
+          content:
+            application/json:
+              schema:
+                type: string
+                example: Failed to retrieve employees
+      security:
+      - {}
+      summary: Get employees with pagination and filters
+      tags:
+      - Employees
+  /tasks/api/v1/employees/add:
+    post:
+      description: Creates a new employee with the specified details including name, email, and employee type
+      operationId: t_value
+      parameters: []
+      requestBody:
+        required: true
+        description: Employee details for creation
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/e'
+            examples:
+              Account Manager:
+                value:
+                  firstName: John
+                  lastName: Doe
+                  emailAddress: john.doe@example.com
+                  employeeType: AM
+                  isActive: true
+                  attributes:
+                    amConfig:
+                      categories:
+                      - retail
+                      - restaurant
+                      capacity: 50
+                      notes:
+                      - Experienced with high-volume accounts
+                description: Example for creating an Account Manager
+              Developer:
+                value:
+                  firstName: Jane
+                  lastName: Smith
+                  emailAddress: jane.smith@example.com
+                  employeeType: DEVELOPER
+                  isActive: true
+                description: Example for creating a Developer
+              Sales Lead:
+                value:
+                  firstName: Mike
+                  lastName: Johnson
+                  emailAddress: mike.johnson@example.com
+                  employeeType: SALES_LEAD
+                  isActive: true
+                  attributes:
+                    calendlyConfig:
+                      checkInUrl: https://calendly.com/mike-johnson/check-in
+                      checkinUrlEventTypeUri: mike-johnson/check-in
+                description: Example for creating a Sales Lead with Calendly configuration
+              AI Agent:
+                value:
+                  firstName: AI
+                  lastName: Assistant
+                  emailAddress: loyalty@zoca.com
+                  employeeType: AI_AGENT
+                  isActive: true
+                  attributes:
+                    model: gpt-4
+                    capabilities:
+                    - code-review
+                    - documentation
+                description: Example for creating an AI Agent
+              Marketing Team:
+                value:
+                  firstName: Marketing
+                  lastName: Team
+                  emailAddress: marketing@zoca.com
+                  employeeType: MARKETING_TEAM
+                  isActive: true
+                description: Example for creating a Marketing Team
+      responses:
+        '201':
+          description: Employee successfully created
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  success:
+                    type: boolean
+                    example: true
+                  message:
+                    type: string
+                    example: Employee added successfully
+                  data:
+                    type: object
+                    properties:
+                      entityId:
+                        type: string
+                        example: 123e4567-e89b-12d3-a456-426614174000
+                      firstName:
+                        type: string
+                        example: John
+                      lastName:
+                        type: string
+                        example: Doe
+                      emailAddress:
+                        type: string
+                        example: john.doe@example.com
+                      employeeType:
+                        type: string
+                        enum:
+                        - AM
+                        - AE
+                        - DEVELOPER
+                        - SALES_LEAD
+                        - CX_LEAD
+                        - SOCIAL_MEDIA
+                        - DEVELOPER_3P
+                        - ADMIN
+                        - SDR
+                        - AI_AGENT
+                        - MARKETING_TEAM
+                        example: AM
+                      isActive:
+                        type: boolean
+                        example: true
+                      attributes:
+                        type: object
+                        description: Optional employee-specific configuration
+        '500':
+          description: Internal server error
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  success:
+                    type: boolean
+                    example: false
+                  message:
+                    type: string
+                    example: Failed to add employee
+      security:
+      - {}
+      summary: Add a new employee
+      tags:
+      - Employees
+  /tasks/api/v1/employees/internal-emails:
+    post:
+      description: Adds a new internal email address associated with an entity
+      operationId: t_value
+      parameters: []
+      requestBody:
+        required: true
+        description: Internal email details
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/e'
+            examples:
+              Basic internal email:
+                value:
+                  emailAddress: support@company.com
+                  isActive: true
+                description: Add an internal email (entity is auto-created)
+      responses:
+        '201':
+          description: Internal email successfully added
+        '500':
+          description: Internal server error
+      security:
+      - {}
+      summary: Add an internal email
+      tags:
+      - Employees
+  /tasks/api/v1/employees/internal-emails/{entityId}:
+    patch:
+      description: Updates the isActive status of an internal email by entity ID
+      operationId: t_value
+      parameters: []
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              type: object
+              properties:
+                isActive:
+                  type: boolean
+                  example: false
+              required:
+              - isActive
+      responses:
+        '200':
+          description: Internal email status updated successfully
+        '404':
+          description: Internal email not found
+        '500':
+          description: Internal server error
+      security:
+      - {}
+      summary: Update internal email active status
+      tags:
+      - Employees
+  /tasks/api/v1/employees/{entityId}:
+    patch:
+      description: Updates employee information including regular columns, complete attributes, or specific attribute keys. All fields are optional.
+      operationId: t_value
+      parameters: []
+      requestBody:
+        required: true
+        description: Employee update data with optional fields
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/e'
+            examples:
+              Update Name Only:
+                value:
+                  firstName: John
+                  lastName: Doe
+                description: Update only first and last name
+              Update Active Status:
+                value:
+                  isActive: false
+                description: Deactivate employee
+              Update AM Capacity (Partial):
+                value:
+                  attributesPartial:
+                    amConfig:
+                      capacity: 75
+                description: Update only AM capacity without affecting other AM config
+              Enable Handover:
+                value:
+                  attributesPartial:
+                    isHandoverActive: true
+                description: Enable handover status for employee
+              Update Multiple Fields:
+                value:
+                  firstName: Jane
+                  isActive: true
+                  attributesPartial:
+                    isHandoverActive: false
+                    amConfig:
+                      capacity: 50
+                      categories:
+                      - retail
+                      - healthcare
+                description: Update name, active status, and partial attributes
+              Replace Complete Attributes:
+                value:
+                  attributes:
+                    amConfig:
+                      categories:
+                      - restaurant
+                      - retail
+                      capacity: 100
+                      notes:
+                      - Senior account manager
+                      - Handles enterprise clients
+                    calendlyConfig:
+                      checkInUrl: https://calendly.com/jane-doe/check-in
+                      checkinUrlEventTypeUri: jane-doe/check-in
+                    isHandoverActive: true
+                description: Replace entire attributes object
+              Update Calendly Config:
+                value:
+                  attributesPartial:
+                    calendlyConfig:
+                      checkInUrl: https://calendly.com/new-url/meeting
+                description: Update only Calendly URL
+              Change Employee Type:
+                value:
+                  type: AM
+                description: Change employee type/role
+      responses:
+        '200':
+          description: Employee successfully updated
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  success:
+                    type: boolean
+                    example: true
+                  message:
+                    type: string
+                    example: Employee updated successfully
+                  data:
+                    type: object
+                    properties:
+                      entityId:
+                        type: string
+                        example: 123e4567-e89b-12d3-a456-426614174000
+                      firstName:
+                        type: string
+                        example: John
+                      lastName:
+                        type: string
+                        example: Doe
+                      type:
+                        type: string
+                        enum:
+                        - AM
+                        - AE
+                        - DEVELOPER
+                        - SALES_LEAD
+                        - CX_LEAD
+                        - SOCIAL_MEDIA
+                        - DEVELOPER_3P
+                        - ADMIN
+                        - SDR
+                        - AI_AGENT
+                        - MARKETING_TEAM
+                        example: AM
+                      isActive:
+                        type: boolean
+                        example: true
+                      attributes:
+                        type: object
+                        description: Employee-specific configuration
+                        properties:
+                          amConfig:
+                            type: object
+                            properties:
+                              categories:
+                                type: array
+                                items:
+                                  type: string
+                                example:
+                                - retail
+                                - restaurant
+                              capacity:
+                                type: number
+                                example: 50
+                              notes:
+                                type: array
+                                items:
+                                  type: string
+                                example:
+                                - Experienced AM
+                          calendlyConfig:
+                            type: object
+                            properties:
+                              checkInUrl:
+                                type: string
+                                example: https://calendly.com/...
+                              checkinUrlEventTypeUri:
+                                type: string
+                                example: user/check-in
+                          isHandoverActive:
+                            type: boolean
+                            example: true
+        '404':
+          description: Employee not found
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  success:
+                    type: boolean
+                    example: false
+                  message:
+                    type: string
+                    example: 'Employee not found with entityId: xxx'
+        '500':
+          description: Internal server error
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  success:
+                    type: boolean
+                    example: false
+                  message:
+                    type: string
+                    example: Failed to update employee
+      security:
+      - {}
+      summary: Update an existing employee
+      tags:
+      - Employees
+components:
+  schemas:
+    e:
+      type: object
+      properties:
+        scan:
+          $ref: '#/components/schemas/e'
+        businessLat:
+          type:
+          - number
+          - 'null'
+        businessLng:
+          type:
+          - number
+          - 'null'
+        points:
+          type: array
+          items:
+            $ref: '#/components/schemas/e'
+        heroMetrics:
+          $ref: '#/components/schemas/e'
+      required:
+      - scan
+      - businessLat
+      - businessLng
+      - points
+      - heroMetrics
+  securitySchemes:
+    access-token:
+      scheme: bearer
+      bearerFormat: JWT
+      type: http
+      name: Authorization
+      description: Enter JWT token in the format Bearer <token>
+      in: header

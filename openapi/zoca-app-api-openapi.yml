@@ -1,0 +1,6516 @@
+openapi: 3.2.0
+info:
+  title: Zoca App API
+  contact: {}
+  x-refined-note:
+  - x-apievangelist-note differs across the merged source definitions and was not carried
+  version: '1.0'
+  description: 'Operations tagged App across 3 of this provider''s published API definitions: zoca-platform-openapi.yml, zoca-public-openapi.yml, zoca-tasks-openapi.yml. Each path carries the servers of the definition it was published in.'
+servers:
+- url: https://api.zoca.ai
+  description: Production
+- url: https://public.zoca.com
+  description: Production
+- url: https://tasks.zoca.ai
+  description: Production
+tags:
+- name: App
+  description: Endpoints consumed by the mobile App
+paths:
+  /business-profile:
+    get:
+      operationId: t_value
+      parameters: []
+      responses:
+        '201':
+          description: Sucessfully onboarded the location for given entity id
+      summary: Get business profile information by entity Id
+      tags:
+      - App
+    servers:
+    - url: https://api.zoca.ai
+      description: Production
+  /business-profile/primary-category-suggestion:
+    get:
+      operationId: t_value
+      parameters: []
+      responses:
+        '200':
+          description: ''
+      summary: Get primary category suggestions
+      tags:
+      - App
+    servers:
+    - url: https://api.zoca.ai
+      description: Production
+  /business-profile/additional-category-suggestion:
+    get:
+      operationId: t_value
+      parameters: []
+      responses:
+        '200':
+          description: ''
+      summary: Get additional category suggestions
+      tags:
+      - App
+    put:
+      operationId: t_value
+      parameters: []
+      responses:
+        '200':
+          description: ''
+      summary: Get additional category suggestions (v2)
+      tags:
+      - App
+    servers:
+    - url: https://api.zoca.ai
+      description: Production
+  /business-profile/booking-platforms:
+    get:
+      description: Retrieves a list of all active booking platforms including Vagaro, GlossGenius, StyleSeat, and Booksy.
+      operationId: t_value
+      parameters: []
+      responses:
+        '200':
+          description: List of booking platforms retrieved successfully
+          content:
+            application/json:
+              schema:
+                type: array
+                items:
+                  $ref: '#/components/schemas/e'
+      summary: Get all booking platforms
+      tags:
+      - App
+    servers:
+    - url: https://api.zoca.ai
+      description: Production
+  /business-profile/social-platforms:
+    get:
+      description: Retrieves a list of all active social media platforms including Facebook, Instagram, LinkedIn, TikTok, Twitter, YouTube, and Pinterest.
+      operationId: t_value
+      parameters: []
+      responses:
+        '200':
+          description: List of social media platforms retrieved successfully
+          content:
+            application/json:
+              schema:
+                type: array
+                items:
+                  $ref: '#/components/schemas/e'
+      summary: Get all social media platforms
+      tags:
+      - App
+    servers:
+    - url: https://api.zoca.ai
+      description: Production
+  /business-profile/{entityId}/booking-link:
+    put:
+      description: Updates the booking link for a specified platform, deactivating any existing active link for that platform.
+      operationId: t_value
+      parameters:
+      - name: entityId
+        required: true
+        in: path
+        description: Entity ID of the user/business
+        schema:
+          format: uuid
+          type: string
+      requestBody:
+        required: true
+        description: Service creation data
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/e'
+      responses:
+        '200':
+          description: Booking link updated successfully
+      summary: Update booking link for a platform
+      tags:
+      - App
+    get:
+      description: Updates the booking link for a specified platform, deactivating any existing active link for that platform.
+      operationId: t_value
+      parameters:
+      - name: entityId
+        required: true
+        in: path
+        description: Entity ID of the user/business
+        schema:
+          format: uuid
+          type: string
+      responses:
+        '200':
+          description: Booking link updated successfully
+          content:
+            application/json:
+              schema:
+                type: array
+                items:
+                  $ref: '#/components/schemas/e'
+      summary: Update booking link for a platform
+      tags:
+      - App
+    servers:
+    - url: https://api.zoca.ai
+      description: Production
+  /business-profile/update-profile-data:
+    put:
+      operationId: t_value
+      parameters: []
+      responses:
+        '200':
+          description: ''
+      summary: Update business profile data
+      tags:
+      - App
+    servers:
+    - url: https://api.zoca.ai
+      description: Production
+  /business-profile/website-domain/{entityId}:
+    put:
+      operationId: t_value
+      parameters: []
+      responses:
+        '200':
+          description: ''
+      summary: Update website domain data
+      tags:
+      - App
+    servers:
+    - url: https://api.zoca.ai
+      description: Production
+  /business-profile/website-domain-quotation/{entityId}:
+    put:
+      operationId: t_value
+      parameters: []
+      responses:
+        '200':
+          description: ''
+      summary: Get domain quotation
+      tags:
+      - App
+    servers:
+    - url: https://api.zoca.ai
+      description: Production
+  /webview:
+    get:
+      operationId: t_value
+      parameters: []
+      responses:
+        '200':
+          description: ''
+      summary: Get webviews by query parameters
+      tags:
+      - App
+    servers:
+    - url: https://api.zoca.ai
+      description: Production
+  /app-blocker/updates/{id}:
+    get:
+      operationId: t_value
+      parameters: []
+      responses:
+        '200':
+          description: Update retrieved successfully
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/e'
+        '404':
+          description: Update not found
+      security:
+      - bearer: []
+      summary: Get update by ID
+      tags:
+      - App
+    delete:
+      operationId: t_value
+      parameters: []
+      responses:
+        '204':
+          description: Update deleted successfully
+        '404':
+          description: Update not found
+      security:
+      - bearer: []
+      summary: Delete an app blocker update
+      tags:
+      - App
+    servers:
+    - url: https://api.zoca.ai
+      description: Production
+  /auth/check:
+    get:
+      operationId: t_value
+      parameters: []
+      responses:
+        '200':
+          description: Returns authentication status
+          content:
+            application/json:
+              schema:
+                type: boolean
+                example: true
+      summary: Check authentication status
+      tags:
+      - App
+    servers:
+    - url: https://api.zoca.ai
+      description: Production
+  /auth/google-auth-url:
+    get:
+      operationId: t_value
+      parameters:
+      - name: redirectUrl
+        required: false
+        in: query
+        description: Optional redirect URL after authentication
+        schema: {}
+      - name: clientId
+        required: true
+        in: query
+        description: Client application ID (e.g., zoca-web, zoca-app)
+        schema: {}
+      responses:
+        '200':
+          description: Google Authentication URL
+          content:
+            application/json:
+              schema:
+                example:
+                  url: https://api.zoca.ai/auth/
+      summary: Google Authentication URL
+      tags:
+      - App
+    servers:
+    - url: https://api.zoca.ai
+      description: Production
+  /auth/square/authorize:
+    get:
+      description: Generates the Square OAuth authorization URL for entity integration. Use isWinAgent=true to request Win Agent specific permissions.
+      operationId: t_value
+      parameters: []
+      responses:
+        '200':
+          description: Square OAuth authorization URL generated successfully
+          content:
+            application/json:
+              schema:
+                example:
+                  url: https://squareup.com/oauth2/authorize?client_id=...&scope=...
+        '400':
+          description: Invalid request - missing entityId
+          content:
+            application/json:
+              schema:
+                example:
+                  message: entityId is required
+                  error: Bad Request
+                  statusCode: 400
+      summary: Square OAuth Authorization URL
+      tags:
+      - App
+    servers:
+    - url: https://api.zoca.ai
+      description: Production
+  /auth/instagram/authorize:
+    get:
+      operationId: t_value
+      parameters: []
+      responses:
+        '200':
+          description: Instagram OAuth authorization URL
+          content:
+            application/json:
+              schema:
+                example:
+                  url: https://www.instagram.com/oauth/authorize?client_id=...
+      summary: Instagram OAuth Authorization URL
+      tags:
+      - App
+    servers:
+    - url: https://api.zoca.ai
+      description: Production
+  /auth/tiktok/authorize:
+    get:
+      operationId: t_value
+      parameters: []
+      responses:
+        '200':
+          description: TikTok OAuth authorization URL
+          content:
+            application/json:
+              schema:
+                example:
+                  url: https://www.tiktok.com/v2/auth/authorize?client_key=...
+      summary: TikTok OAuth Authorization URL
+      tags:
+      - App
+    servers:
+    - url: https://api.zoca.ai
+      description: Production
+  /auth/magic-link/verify:
+    post:
+      description: Validates the magic link token and returns JWT access token and refresh token. Tokens are single-use - the magic link cannot be used again after verification.
+      operationId: t_value
+      parameters: []
+      responses:
+        '200':
+          description: Token verified, auth tokens returned
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/e'
+        '400':
+          description: Invalid or expired token
+          content:
+            application/json:
+              schema:
+                example:
+                  statusCode: 400
+                  message: Invalid or expired magic link
+                  error: Bad Request
+      summary: Verify a magic link token and get auth tokens
+      tags:
+      - App
+    servers:
+    - url: https://api.zoca.ai
+      description: Production
+  /campaigns/requests:
+    get:
+      operationId: t_value
+      parameters: []
+      responses:
+        '200':
+          description: ''
+      summary: List campaign requests for an entity
+      tags:
+      - App
+    post:
+      operationId: t_value
+      parameters: []
+      responses:
+        '201':
+          description: ''
+      summary: Create a new campaign request
+      tags:
+      - App
+    patch:
+      operationId: t_value
+      parameters: []
+      responses:
+        '200':
+          description: ''
+      summary: Update a campaign request
+      tags:
+      - App
+    servers:
+    - url: https://api.zoca.ai
+      description: Production
+  /campaigns/requests/count:
+    get:
+      operationId: t_value
+      parameters: []
+      responses:
+        '200':
+          description: ''
+      summary: Get campaign request counts by status
+      tags:
+      - App
+    servers:
+    - url: https://api.zoca.ai
+      description: Production
+  /campaigns/requests/{id}:
+    get:
+      operationId: t_value
+      parameters: []
+      responses:
+        '200':
+          description: ''
+      summary: Get a campaign request by ID
+      tags:
+      - App
+    delete:
+      operationId: t_value
+      parameters: []
+      responses:
+        '200':
+          description: ''
+      summary: Delete a campaign request
+      tags:
+      - App
+    servers:
+    - url: https://api.zoca.ai
+      description: Production
+  /campaigns/suggestions:
+    get:
+      operationId: t_value
+      parameters: []
+      responses:
+        '200':
+          description: ''
+      summary: List all campaign suggestions
+      tags:
+      - App
+    servers:
+    - url: https://api.zoca.ai
+      description: Production
+  /campaigns/flyers:
+    get:
+      operationId: t_value
+      parameters: []
+      responses:
+        '200':
+          description: ''
+      summary: List all campaign flyers
+      tags:
+      - App
+    servers:
+    - url: https://api.zoca.ai
+      description: Production
+  /chatbot/calls/{callId}:
+    get:
+      operationId: t_value
+      parameters: []
+      responses:
+        '200':
+          description: Call details retrieved successfully
+      summary: Get call details by call ID
+      tags:
+      - App
+    servers:
+    - url: https://api.zoca.ai
+      description: Production
+  /chatbot/calls/{callId}/regenerate-summary:
+    get:
+      operationId: t_value
+      parameters:
+      - name: callId
+        required: true
+        in: path
+        description: Unique identifier for the call
+        schema:
+          type: string
+      responses:
+        '200':
+          description: Call summary retrieved successfully
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  summary:
+                    type: string
+                    description: The call summary or "No summary available"
+                  regenerateSummary:
+                    type: boolean
+                    description: Indicates if the summary was newly generated
+        '400':
+          description: Bad request - CallId is required
+        '404':
+          description: Call record not found
+      summary: Regenerate call summary by call ID
+      tags:
+      - App
+    servers:
+    - url: https://api.zoca.ai
+      description: Production
+  /chatbot/retell/phone/{phoneNumber}:
+    put:
+      operationId: t_value
+      parameters:
+      - name: phoneNumber
+        required: true
+        in: path
+        description: Phone number to update
+        schema:
+          type: string
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/e'
+      responses:
+        '200':
+          description: Phone number configuration updated successfully
+        '400':
+          description: Invalid request payload
+        '404':
+          description: Phone number not found
+      summary: Update a phone number configuration
+      tags:
+      - App
+    servers:
+    - url: https://api.zoca.ai
+      description: Production
+  /chatbot/phone/purchase:
+    post:
+      operationId: t_value
+      parameters: []
+      responses:
+        '201':
+          description: ''
+      summary: Purchase a new phone number
+      tags:
+      - App
+    servers:
+    - url: https://api.zoca.ai
+      description: Production
+  /chatbot/feedback:
+    post:
+      operationId: t_value
+      parameters: []
+      responses:
+        '201':
+          description: Feedback created successfully
+        '400':
+          description: Invalid request payload or missing entityId
+      summary: Create a new feedback record
+      tags:
+      - App
+    get:
+      operationId: t_value
+      parameters:
+      - name: limit
+        required: false
+        in: query
+        description: Number of items per page
+        schema:
+          type: number
+      - name: page
+        required: false
+        in: query
+        description: Page number (1-indexed)
+        schema:
+          type: number
+      - name: entityId
+        required: true
+        in: query
+        description: Entity ID to retrieve feedback for
+        schema:
+          type: string
+      responses:
+        '200':
+          description: Feedback list retrieved successfully
+        '400':
+          description: entityId is required
+      summary: Get all feedback records for an entity with pagination
+      tags:
+      - App
+    servers:
+    - url: https://api.zoca.ai
+      description: Production
+  /chatbot/feedback/{id}:
+    put:
+      operationId: t_value
+      parameters:
+      - name: id
+        required: true
+        in: path
+        description: Feedback record ID to update
+        schema:
+          type: string
+      responses:
+        '200':
+          description: Feedback updated successfully
+        '400':
+          description: Invalid request payload or missing entityId
+        '404':
+          description: Feedback not found or not accessible
+      summary: Update an existing feedback record
+      tags:
+      - App
+    servers:
+    - url: https://api.zoca.ai
+      description: Production
+  /chat/conversations:
+    get:
+      operationId: t_value
+      parameters: []
+      responses:
+        '200':
+          description: Returns conversation(s) based on filters
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/e'
+        '400':
+          description: Invalid parameters
+      summary: Get conversations list or single conversation details
+      tags:
+      - App
+    servers:
+    - url: https://api.zoca.ai
+      description: Production
+  /chat/message:
+    post:
+      operationId: t_value
+      parameters: []
+      responses:
+        '201':
+          description: Message created successfully
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/e'
+        '400':
+          description: Invalid message data
+      summary: Create a new message in a conversation
+      tags:
+      - App
+    put:
+      operationId: t_value
+      parameters: []
+      responses:
+        '200':
+          description: Message updated successfully
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/t'
+        '400':
+          description: Invalid update data
+        '404':
+          description: Message not found
+      summary: Update message text or soft delete
+      tags:
+      - App
+    servers:
+    - url: https://api.zoca.ai
+      description: Production
+  /chat/reaction:
+    post:
+      operationId: t_value
+      parameters: []
+      responses:
+        '201':
+          description: Reaction added successfully
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/t'
+        '400':
+          description: Invalid reaction data
+        '404':
+          description: Message not found
+      summary: Add reaction to a message
+      tags:
+      - App
+    put:
+      operationId: t_value
+      parameters: []
+      responses:
+        '200':
+          description: Reaction updated successfully
+          content:
+            application/json:
+              schema:
+                type: array
+                items:
+                  $ref: '#/components/schemas/e'
+        '400':
+          description: Invalid update data
+        '404':
+          description: Reaction not found
+      summary: Update or soft delete a reaction
+      tags:
+      - App
+    servers:
+    - url: https://api.zoca.ai
+      description: Production
+  /chat/message-receipt:
+    post:
+      operationId: t_value
+      parameters: []
+      responses:
+        '200':
+          description: Messages marked as read
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/e'
+        '400':
+          description: Invalid receipt data
+      summary: Mark messages as read in a conversation
+      tags:
+      - App
+    servers:
+    - url: https://api.zoca.ai
+      description: Production
+  /clients:
+    post:
+      operationId: t_value
+      parameters: []
+      responses:
+        '201':
+          description: ''
+      summary: Create a new client with contact information
+      tags:
+      - App
+    servers:
+    - url: https://api.zoca.ai
+      description: Production
+  /clients/bulk:
+    post:
+      operationId: t_value
+      parameters: []
+      responses:
+        '201':
+          description: ''
+      summary: Bulk create clients with contact information
+      tags:
+      - App
+    servers:
+    - url: https://api.zoca.ai
+      description: Production
+  /clients/bulk-s3:
+    post:
+      operationId: t_value
+      parameters: []
+      responses:
+        '201':
+          description: ''
+      summary: Bulk import clients from S3 URL
+      tags:
+      - App
+    servers:
+    - url: https://api.zoca.ai
+      description: Production
+  /clients/entity/{entityId}:
+    get:
+      operationId: t_value
+      parameters: []
+      responses:
+        '200':
+          description: ''
+      summary: Get clients by entity ID with pagination
+      tags:
+      - App
+    servers:
+    - url: https://api.zoca.ai
+      description: Production
+  /clients/block:
+    put:
+      operationId: t_value
+      parameters: []
+      responses:
+        '200':
+          description: ''
+      summary: Block or restore clients
+      tags:
+      - App
+    servers:
+    - url: https://api.zoca.ai
+      description: Production
+  /clients/entity/{entityId}/blocked:
+    get:
+      operationId: t_value
+      parameters: []
+      responses:
+        '200':
+          description: ''
+      summary: Get blocked clients for an entity with pagination
+      tags:
+      - App
+    servers:
+    - url: https://api.zoca.ai
+      description: Production
+  /clients/{clientId}:
+    get:
+      operationId: t_value
+      parameters: []
+      responses:
+        '200':
+          description: ''
+      summary: Get a client by ID
+      tags:
+      - App
+    servers:
+    - url: https://api.zoca.ai
+      description: Production
+  /clients/{entityId}/clientFile:
+    post:
+      operationId: t_value
+      parameters: []
+      responses:
+        '201':
+          description: ''
+      summary: Store a client file for an entity
+      tags:
+      - App
+    servers:
+    - url: https://api.zoca.ai
+      description: Production
+  /clients/comm-types:
+    get:
+      operationId: t_value
+      parameters: []
+      responses:
+        '200':
+          description: ''
+      summary: Get available communication types
+      tags:
+      - App
+    servers:
+    - url: https://api.zoca.ai
+      description: Production
+  /clients/comms/{commId}/status:
+    patch:
+      operationId: t_value
+      parameters: []
+      responses:
+        '200':
+          description: ''
+      summary: Update communication status
+      tags:
+      - App
+    servers:
+    - url: https://api.zoca.ai
+      description: Production
+  /booking-enquiries:
+    get:
+      operationId: t_value
+      parameters: []
+      responses:
+        '200':
+          description: ''
+      summary: List all booking enquiries with pagination and filters
+      tags:
+      - App
+    servers:
+    - url: https://api.zoca.ai
+      description: Production
+  /booking-enquiries/sources:
+    get:
+      operationId: t_value
+      parameters: []
+      responses:
+        '200':
+          description: ''
+      summary: List distinct enquiry sources for an entity (source filter options)
+      tags:
+      - App
+    servers:
+    - url: https://api.zoca.ai
+      description: Production
+  /booking-enquiries/enquiry-status:
+    get:
+      operationId: t_value
+      parameters: []
+      responses:
+        '200':
+          description: ''
+      summary: Get enquiry status statistics for an entity
+      tags:
+      - App
+    servers:
+    - url: https://api.zoca.ai
+      description: Production
+  /booking-enquiries/{entityId}/search:
+    get:
+      operationId: t_value
+      parameters: []
+      responses:
+        '200':
+          description: ''
+      summary: Search clients by name, number, or query
+      tags:
+      - App
+    servers:
+    - url: https://api.zoca.ai
+      description: Production
+  /booking-enquiries/enquiry-stats:
+    get:
+      operationId: t_value
+      parameters: []
+      responses:
+        '200':
+          description: ''
+      summary: Get detailed enquiry statistics for an entity
+      tags:
+      - App
+    servers:
+    - url: https://api.zoca.ai
+      description: Production
+  /booking-enquiries/multilocation/{businessEntityId}:
+    get:
+      operationId: t_value
+      parameters: []
+      responses:
+        '200':
+          description: ''
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/e'
+      summary: List enquiries across all locations of a business with network stats
+      tags:
+      - App
+    servers:
+    - url: https://api.zoca.ai
+      description: Production
+  /booking-enquiries/{enquiryId}/enquiry:
+    get:
+      operationId: t_value
+      parameters: []
+      responses:
+        '200':
+          description: ''
+      summary: Get enquiry details by ID
+      tags:
+      - App
+    servers:
+    - url: https://api.zoca.ai
+      description: Production
+  /booking-enquiries/{enquiryId}/status:
+    put:
+      operationId: t_value
+      parameters: []
+      responses:
+        '200':
+          description: ''
+      summary: Update enquiry status with reason and services
+      tags:
+      - App
+    servers:
+    - url: https://api.zoca.ai
+      description: Production
+  /booking-enquiries/{clientId}/notes:
+    post:
+      operationId: t_value
+      parameters: []
+      responses:
+        '201':
+          description: ''
+      summary: Add a note to a client
+      tags:
+      - App
+    get:
+      operationId: t_value
+      parameters: []
+      responses:
+        '200':
+          description: ''
+      summary: Get all notes for a client
+      tags:
+      - App
+    servers:
+    - url: https://api.zoca.ai
+      description: Production
+  /booking-enquiries/{clientId}/enquiries:
+    get:
+      operationId: t_value
+      parameters: []
+      responses:
+        '200':
+          description: ''
+      summary: Get all enquiries for a client with status filter
+      tags:
+      - App
+    servers:
+    - url: https://api.zoca.ai
+      description: Production
+  /booking-enquiries/notes/{noteId}:
+    put:
+      operationId: t_value
+      parameters: []
+      responses:
+        '200':
+          description: ''
+      summary: Update an existing client note
+      tags:
+      - App
+    delete:
+      operationId: t_value
+      parameters: []
+      responses:
+        '200':
+          description: ''
+      summary: Delete a client note
+      tags:
+      - App
+    servers:
+    - url: https://api.zoca.ai
+      description: Production
+  /booking-enquiries/{clientId}/communication-logs:
+    post:
+      operationId: t_value
+      parameters: []
+      responses:
+        '201':
+          description: ''
+      summary: Add communication log for a client
+      tags:
+      - App
+    servers:
+    - url: https://api.zoca.ai
+      description: Production
+  /booking-enquiries/client-conversation:
+    post:
+      operationId: t_value
+      parameters: []
+      responses:
+        '201':
+          description: ''
+      summary: Add a conversation message for a client
+      tags:
+      - App
+    servers:
+    - url: https://api.zoca.ai
+      description: Production
+  /booking-enquiries/{clientId}/app/chat:
+    get:
+      operationId: t_value
+      parameters: []
+      responses:
+        '200':
+          description: ''
+      summary: Get chat data for mobile app
+      tags:
+      - App
+    servers:
+    - url: https://api.zoca.ai
+      description: Production
+  /booking-enquiries/{clientId}/summary:
+    get:
+      operationId: t_value
+      parameters: []
+      responses:
+        '200':
+          description: ''
+      summary: Get summary of client interactions
+      tags:
+      - App
+    servers:
+    - url: https://api.zoca.ai
+      description: Production
+  /booking-enquiries/{entityId}/text-templates:
+    get:
+      operationId: t_value
+      parameters: []
+      responses:
+        '200':
+          description: ''
+      summary: List all text templates for an entity
+      tags:
+      - App
+    servers:
+    - url: https://api.zoca.ai
+      description: Production
+  /booking-enquiries/text-templates/{templateId}:
+    put:
+      operationId: t_value
+      parameters: []
+      responses:
+        '200':
+          description: ''
+      summary: Update an existing text template
+      tags:
+      - App
+    servers:
+    - url: https://api.zoca.ai
+      description: Production
+  /booking-enquiries/{entityId}/text-template-preferences:
+    put:
+      operationId: t_value
+      parameters: []
+      responses:
+        '200':
+          description: ''
+      summary: Update text template preferences
+      tags:
+      - App
+    get:
+      operationId: t_value
+      parameters: []
+      responses:
+        '200':
+          description: ''
+      summary: Get text template preferences for an entity
+      tags:
+      - App
+    servers:
+    - url: https://api.zoca.ai
+      description: Production
+  /booking-enquiries/formatted-text-template:
+    put:
+      operationId: t_value
+      parameters: []
+      responses:
+        '200':
+          description: ''
+      summary: Format text template with client data
+      tags:
+      - App
+    servers:
+    - url: https://api.zoca.ai
+      description: Production
+  /booking-enquiries/{entityId}/automated-text-templates:
+    get:
+      operationId: t_value
+      parameters: []
+      responses:
+        '200':
+          description: ''
+      summary: Get default lead communication templates
+      tags:
+      - App
+    put:
+      operationId: t_value
+      parameters: []
+      responses:
+        '200':
+          description: ''
+      summary: Update lead communication templates
+      tags:
+      - App
+    servers:
+    - url: https://api.zoca.ai
+      description: Production
+  /booking-enquiries/{locationEntityId}/automated-text-templates/variables:
+    get:
+      operationId: t_value
+      parameters: []
+      responses:
+        '200':
+          description: ''
+      summary: Get lead communication template variable values
+      tags:
+      - App
+    servers:
+    - url: https://api.zoca.ai
+      description: Production
+  /booking-enquiries/automated-text-templates/variables:
+    get:
+      operationId: t_value
+      parameters: []
+      responses:
+        '200':
+          description: ''
+      summary: Get available automated communication variables
+      tags:
+      - App
+    servers:
+    - url: https://api.zoca.ai
+      description: Production
+  /booking-enquiries/{entityId}/automated-text-templates/preferences:
+    get:
+      operationId: t_value
+      parameters: []
+      responses:
+        '200':
+          description: ''
+      summary: Get automated communication template preferences
+      tags:
+      - App
+    put:
+      operationId: t_value
+      parameters: []
+      responses:
+        '200':
+          description: ''
+      summary: Update automated communication template preferences
+      tags:
+      - App
+    servers:
+    - url: https://api.zoca.ai
+      description: Production
+  /booking-enquiries/{entityId}/text-template-order:
+    get:
+      operationId: t_value
+      parameters: []
+      responses:
+        '200':
+          description: ''
+      summary: Get text template order for a client
+      tags:
+      - App
+    servers:
+    - url: https://api.zoca.ai
+      description: Production
+  /booking-enquiries/conversation-activity:
+    get:
+      operationId: t_value
+      parameters: []
+      responses:
+        '200':
+          description: ''
+      summary: Get conversation activity details for a client or enquiry
+      tags:
+      - App
+    servers:
+    - url: https://api.zoca.ai
+      description: Production
+  /booking-enquiries/client-conversations:
+    get:
+      operationId: t_value
+      parameters: []
+      responses:
+        '200':
+          description: Returns paginated list of client conversations
+      summary: Get client conversations including SMS and calls
+      tags:
+      - App
+    servers:
+    - url: https://api.zoca.ai
+      description: Production
+  /entities/locations:
+    get:
+      operationId: t_value
+      parameters: []
+      responses:
+        '200':
+          description: ''
+      summary: Get all locations for a user
+      tags:
+      - App
+    servers:
+    - url: https://api.zoca.ai
+      description: Production
+  /entities/onboarding-state:
+    post:
+      operationId: t_value
+      parameters: []
+      responses:
+        '201':
+          description: ''
+      summary: Update onboarding state for an entity
+      tags:
+      - App
+    servers:
+    - url: https://api.zoca.ai
+      description: Production
+  /entities/location/{entityId}:
+    put:
+      description: Updates any columns in the entities.locations table. All fields are optional. Attributes are merged with existing values (preserves old keys, updates matching keys).
+      operationId: t_value
+      parameters:
+      - name: entityId
+        required: true
+        in: path
+        description: UUID of the location entity to update
+        schema:
+          example: 123e4567-e89b-12d3-a456-426614174000
+      responses:
+        '200':
+          description: Successfully updated location
+          content:
+            application/json:
+              schema:
+                example:
+                  entityId: 123e4567-e89b-12d3-a456-426614174000
+                  name: Updated Business Name
+                  address:
+                    locality: New York
+                    postalCode: '10001'
+                    regionCode: US
+                    addressLines:
+                    - 123 Main Street
+                  category: Restaurant
+                  businessCategory: Beauty
+                  timezone: America/New_York
+                  attributes:
+                    customerSource:
+                    - Groupon
+                    - Yelp
+                    clientContactsNumber: 10
+        '400':
+          description: Invalid entity ID format
+          content:
+            application/json:
+              schema:
+                example:
+                  message: Invalid UUID format
+                  error: Bad Request
+                  statusCode: 400
+        '404':
+          description: Location entity not found
+          content:
+            application/json:
+              schema:
+                example:
+                  message: Location with entityId 123e4567-e89b-12d3-a456-426614174000 not found
+                  error: Not Found
+                  statusCode: 404
+      summary: Update location data
+      tags:
+      - App
+    servers:
+    - url: https://api.zoca.ai
+      description: Production
+  /entities/location/{entityId}/details:
+    get:
+      description: Retrieves core location information including name, address, category, timezone, lead masking status, and business hours for a specific location entity.
+      operationId: t_value
+      parameters:
+      - name: entityId
+        required: true
+        in: path
+        description: UUID of the location entity to retrieve details for
+        schema:
+          example: 123e4567-e89b-12d3-a456-426614174000
+      responses:
+        '200':
+          description: Successfully retrieved location details
+          content:
+            application/json:
+              schema:
+                example:
+                  entityId: 123e4567-e89b-12d3-a456-426614174000
+                  name: Sample Business
+                  address:
+                    locality: New York
+                    postalCode: '10001'
+                    regionCode: US
+                    addressLines:
+                    - 123 Main Street
+                    languageCode: en
+                    administrativeArea: NY
+                  category: Restaurant
+                  timezone: America/New_York
+                  leadMasking:
+                    status: true
+                    metadata: {}
+                  openInfo:
+                    status: OPEN
+                    canReopen: true
+        '400':
+          description: Invalid entity ID format
+          content:
+            application/json:
+              schema:
+                example:
+                  message: Invalid UUID format
+                  error: Bad Request
+                  statusCode: 400
+        '404':
+          description: Location entity not found
+          content:
+            application/json:
+              schema:
+                example:
+                  message: Location not found
+                  error: Not Found
+                  statusCode: 404
+      summary: Get essential location details
+      tags:
+      - App
+    servers:
+    - url: https://api.zoca.ai
+      description: Production
+  /entities/location/{entityId}/rwg-status:
+    get:
+      description: Retrieves whether the 'Book online' button on the Google Business Profile is enabled for a location (entities.locations.rwg_enabled).
+      operationId: t_value
+      parameters:
+      - name: entityId
+        required: true
+        in: path
+        description: UUID of the location entity
+        schema:
+          example: 123e4567-e89b-12d3-a456-426614174000
+      responses:
+        '200':
+          description: Successfully retrieved RWG status
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/e'
+      summary: Get Reserve with Google status
+      tags:
+      - App
+    servers:
+    - url: https://api.zoca.ai
+      description: Production
+  /entities/{entityId}/more-tab-cards:
+    get:
+      description: Returns boolean flags indicating which cards should be displayed in the More tab. Currently includes Instagram leads card visibility based on recent activity.
+      operationId: t_value
+      parameters:
+      - name: entityId
+        required: true
+        in: path
+        description: UUID of the entity to check card visibility for
+        schema:
+          example: 123e4567-e89b-12d3-a456-426614174000
+      responses:
+        '200':
+          description: Successfully retrieved More tab card visibility markers
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/e'
+        '400':
+          description: Invalid entity ID format
+          content:
+            application/json:
+              schema:
+                example:
+                  message: Invalid UUID format
+                  error: Bad Request
+                  statusCode: 400
+      summary: Get visibility markers for More tab cards
+      tags:
+      - App
+    servers:
+    - url: https://api.zoca.ai
+      description: Production
+  /entities/products/{entityId}:
+    get:
+      operationId: t_value
+      parameters:
+      - name: includeInactive
+        required: false
+        in: query
+        description: Include inactive products in the response
+        schema:
+          type: boolean
+      responses:
+        '200':
+          description: ''
+      summary: Get products for an entity
+      tags:
+      - App
+    put:
+      description: Associates a product with an entity or updates an existing product entity relationship
+      operationId: t_value
+      parameters: []
+      responses:
+        '200':
+          description: Successfully created or updated the product entity relationship
+          content:
+            application/json:
+              schema:
+                example:
+                  id: f47ac10b-58cc-4372-a567-0e02b2c3d479
+                  entityId: abc123-456-789
+                  productId: 1
+                  isActive: true
+                  attributes:
+                    feature: enabled
+                  createdAt: '2023-01-01T00:00:00.000Z'
+        '400':
+          description: Invalid request parameters
+          content:
+            application/json:
+              schema:
+                example:
+                  message: Validation failed
+                  error: Bad Request
+                  statusCode: 400
+      summary: Create or update a product entity relationship
+      tags:
+      - App
+    servers:
+    - url: https://api.zoca.ai
+      description: Production
+  /entities/{entityId}/preferences:
+    post:
+      operationId: t_value
+      parameters: []
+      responses:
+        '201':
+          description: ''
+      summary: Create or update an entity preference
+      tags:
+      - App
+    servers:
+    - url: https://api.zoca.ai
+      description: Production
+  /entities/location/{entityId}/booking-link:
+    get:
+      operationId: t_value
+      parameters: []
+      responses:
+        '200':
+          description: Successfully fetched the booking link
+      summary: Get booking link for a location
+      tags:
+      - App
+    put:
+      operationId: t_value
+      parameters: []
+      responses:
+        '200':
+          description: Successfully updated the booking link
+      summary: Update booking link for a location
+      tags:
+      - App
+    servers:
+    - url: https://api.zoca.ai
+      description: Production
+  /entities/offboarding-reason-templates:
+    get:
+      description: Retrieves a list of active offboarding reason templates. Either agentId OR isDeleteAccount must be provided, but not both.
+      operationId: t_value
+      parameters:
+      - name: isDeleteAccount
+        required: false
+        in: query
+        description: Set to true to get account-level deletion reasons
+        schema:
+          example: true
+          type: boolean
+      - name: agentId
+        required: false
+        in: query
+        description: Agent entity ID to get agent-specific offboarding reasons
+        schema:
+          example: 123e4567-e89b-12d3-a456-426614174000
+      responses:
+        '200':
+          description: Successfully retrieved offboarding reason templates
+          content:
+            application/json:
+              schema:
+                type: array
+                items:
+                  $ref: '#/components/schemas/e'
+        '400':
+          description: Invalid request - exactly one parameter is required
+          content:
+            application/json:
+              schema:
+                example:
+                  message: 'At least one parameter is required: agentId or isDeleteAccount'
+                  error: Bad Request
+                  statusCode: 400
+      summary: Get active offboarding reason templates
+      tags:
+      - App
+    servers:
+    - url: https://api.zoca.ai
+      description: Production
+  /entities/offboarding/active-subscriptions/v2/{entityId}:
+    get:
+      description: Retrieves active agent subscriptions, billing information, and delete account status for offboarding workflows. Includes HubSpot meeting data by default.
+      operationId: t_value
+      parameters: []
+      responses:
+        '200':
+          description: Successfully retrieved active subscriptions and offboarding information
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/e'
+        '400':
+          description: Invalid entity ID format
+          content:
+            application/json:
+              schema:
+                example:
+                  message: Invalid UUID format
+                  error: Bad Request
+                  statusCode: 400
+        '401':
+          description: Missing or invalid JWT authentication
+          content:
+            application/json:
+              schema:
+                example:
+                  message: Unauthorized
+                  error: Unauthorized
+                  statusCode: 401
+        '500':
+          description: Internal server error
+          content:
+            application/json:
+              schema:
+                example:
+                  message: Failed to retrieve active subscriptions
+                  error: Internal Server Error
+                  statusCode: 500
+      summary: Get active subscriptions and offboarding information for an entity (with HubSpot meeting)
+      tags:
+      - App
+    servers:
+    - url: https://api.zoca.ai
+      description: Production
+  /entities/{entityId}/trigger-payment-link-comms:
+    post:
+      description: Triggers payment link communications for an entity by fetching the Chargebee payment link and sending it to all associated users via MoEngage. The entity must have an active or future subscription.
+      operationId: t_value
+      parameters:
+      - name: entityId
+        required: true
+        in: path
+        description: UUID of the entity to trigger payment link communications for
+        schema:
+          example: 123e4567-e89b-12d3-a456-426614174000
+      responses:
+        '200':
+          description: Successfully triggered payment link communications
+          schema:
+            example:
+              success: true
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/e'
+        '400':
+          description: Invalid entity ID format
+          content:
+            application/json:
+              schema:
+                example:
+                  message: 'Invalid entity ID format: invalid-uuid'
+                  error: Bad Request
+                  statusCode: 400
+        '404':
+          description: No active subscription found for the entity
+          content:
+            application/json:
+              schema:
+                example:
+                  message: 'No active subscription found for entity: 123e4567-e89b-12d3-a456-426614174000'
+                  error: Not Found
+                  statusCode: 404
+        '500':
+          description: Internal server error - Failed to trigger payment link communications
+          content:
+            application/json:
+              schema:
+                example:
+                  message: 'Failed to trigger payment link communications: Public server error'
+                  error: Internal Server Error
+                  statusCode: 500
+      summary: Trigger payment link communications for an entity
+      tags:
+      - App
+    servers:
+    - url: https://api.zoca.ai
+      description: Production
+  /entities/{entityId}/review-insights:
+    post:
+      description: Retrieves review insights including lead predictions and review targets for a location entity. Accepts predictedLeads value in request body to calculate lead distributions. Review targets are fetched from the non-ICP pipeline.
+      operationId: t_value
+      parameters:
+      - name: entityId
+        required: true
+        in: path
+        description: UUID of the location entity to retrieve review insights for
+        schema:
+          example: 123e4567-e89b-12d3-a456-426614174000
+      responses:
+        '200':
+          description: Successfully retrieved review insights
+          schema:
+            example:
+              leadsWithoutReview: 10
+              leadsWithReview: 28
+              reviewTarget: 8 reviews per week
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/e'
+        '400':
+          description: Invalid entity ID format or invalid request body
+          content:
+            application/json:
+              schema:
+                example:
+                  message: 'Invalid entity ID format: invalid-uuid'
+                  error: Bad Request
+                  statusCode: 400
+        '500':
+          description: Internal server error - Failed to retrieve review insights
+          content:
+            application/json:
+              schema:
+                example:
+                  message: 'Failed to get review insights: Database connection error'
+                  error: Internal Server Error
+                  statusCode: 500
+      summary: Get review insights for an entity
+      tags:
+      - App
+    servers:
+    - url: https://api.zoca.ai
+      description: Production
+  /entities/{entityId}/hubspot/meetings:
+    get:
+      description: Retrieves upcoming HubSpot meetings for a location entity via its associated contact and deal. Returns meeting details including reschedule and cancel URLs extracted from the meeting body.
+      operationId: t_value
+      parameters:
+      - name: limit
+        required: false
+        in: query
+        description: 'Maximum number of upcoming meetings to return (default: 1)'
+        schema:
+          example: 1
+          type: number
+      - name: entityId
+        required: true
+        in: path
+        description: UUID of the location entity
+        schema:
+          example: 123e4567-e89b-12d3-a456-426614174000
+      responses:
+        '200':
+          description: Successfully retrieved upcoming HubSpot meetings
+          content:
+            application/json:
+              schema:
+                example:
+                - meetingId: 12345678
+                  date:
+                    date:
+                      year: 2025
+                      month: 6
+                      day: 15
+                    time:
+                      hour: 14
+                      minute: 0
+                      second: 0
+                  canReschedule: true
+                  rescheduleUrl: https://app-na2.hubspot.com/meetings/zoca-admin/demo-scheduled?rescheduleId=abc123
+                  joinMeetingEnabled: true
+                  meetingUrl: https://meet.google.com/abc-def-ghi
+                  cancelUrl: https://app-na2.hubspot.com/meetings/cancel?cancelUuid=xyz789
+        '400':
+          description: Invalid entity ID
+      summary: Get upcoming HubSpot meetings for an entity
+      tags:
+      - App
+    servers:
+    - url: https://api.zoca.ai
+      description: Production
+  /events:
+    post:
+      operationId: t_value
+      parameters: []
+      responses:
+        '201':
+          description: ''
+      summary: Handle incoming event from Lambda
+      tags:
+      - App
+    servers:
+    - url: https://api.zoca.ai
+      description: Production
+  /features:
+    get:
+      operationId: t_value
+      parameters:
+      - name: businessEntityId
+        required: true
+        in: query
+        description: The business entity id
+        schema:
+          type: string
+      - name: locationEntityId
+        required: true
+        in: query
+        description: The location entity id
+        schema:
+          type: string
+      - name: userEntityId
+        required: true
+        in: query
+        description: The user entity id
+        schema:
+          type: string
+      responses:
+        '200':
+          description: ''
+      summary: Get all available features for an entity based on active products
+      tags:
+      - App
+    servers:
+    - url: https://api.zoca.ai
+      description: Production
+  /features/insights-tabs:
+    get:
+      operationId: t_value
+      parameters:
+      - name: businessEntityId
+        required: true
+        in: query
+        description: The business entity id
+        schema:
+          type: string
+      - name: locationEntityId
+        required: true
+        in: query
+        description: The location entity id
+        schema:
+          type: string
+      - name: userEntityId
+        required: true
+        in: query
+        description: The user entity id
+        schema:
+          type: string
+      responses:
+        '200':
+          description: ''
+      summary: Get Insights tabs with URLs based on active products
+      tags:
+      - App
+    servers:
+    - url: https://api.zoca.ai
+      description: Production
+  /gbp-location/list:
+    get:
+      operationId: t_value
+      parameters: []
+      responses:
+        '200':
+          description: ''
+      summary: List all locations for entity
+      tags:
+      - App
+    servers:
+    - url: https://api.zoca.ai
+      description: Production
+  /gbp-location/create:
+    post:
+      operationId: t_value
+      parameters: []
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              type: object
+              properties:
+                entityId:
+                  type: string
+                  example: e5318b53-cb09-4edb-a8d6-fa19d8fb3250
+                locationName:
+                  type: string
+                  example: locations/6151354253777559174
+              required:
+              - entityId
+              - locationName
+      responses:
+        '201':
+          description: Sucessfully onboarded the location for given entity id
+          content:
+            application/json:
+              schema:
+                example:
+                  status: true
+                  message: Success
+                  data:
+                    entityId: e5318b53-cb09-4edb-a8d6-fa19d8fb3250
+                    firstName: Deepesh
+                    lastName: Rathod
+                    createdAt: '2024-10-21T05:01:04.138Z'
+                  code: 200
+      summary: Onboard a gbp location for entity
+      tags:
+      - App
+    servers:
+    - url: https://api.zoca.ai
+      description: Production
+  /gbp-location/posts/list:
+    get:
+      operationId: t_value
+      parameters: []
+      responses:
+        '200':
+          description: ''
+      summary: List posts for location
+      tags:
+      - App
+    servers:
+    - url: https://api.zoca.ai
+      description: Production
+  /gbp-location/posts:
+    get:
+      operationId: t_value
+      parameters: []
+      responses:
+        '200':
+          description: ''
+      summary: Get a single post by name
+      tags:
+      - App
+    patch:
+      operationId: t_value
+      parameters: []
+      responses:
+        '200':
+          description: ''
+      summary: Update a post
+      tags:
+      - App
+    delete:
+      operationId: t_value
+      parameters: []
+      responses:
+        '200':
+          description: ''
+      summary: Delete a post
+      tags:
+      - App
+    servers:
+    - url: https://api.zoca.ai
+      description: Production
+  /gbp-location/keyword-impression-insights:
+    get:
+      operationId: t_value
+      parameters: []
+      responses:
+        '200':
+          description: Successfully retrieved keyword impression insights
+      summary: Get keyword impression insights for a location
+      tags:
+      - App
+    servers:
+    - url: https://api.zoca.ai
+      description: Production
+  /gbp-location/performance-insights:
+    get:
+      operationId: t_value
+      parameters: []
+      responses:
+        '200':
+          description: ''
+      summary: Get performance insights for location
+      tags:
+      - App
+    servers:
+    - url: https://api.zoca.ai
+      description: Production
+  /google-maps/place-auto-complete:
+    get:
+      operationId: t_value
+      parameters: []
+      responses:
+        '200':
+          description: ''
+      summary: Get place autocomplete suggestions
+      tags:
+      - App
+    servers:
+    - url: https://api.zoca.ai
+      description: Production
+  /google-maps/place-id-details:
+    get:
+      operationId: t_value
+      parameters: []
+      responses:
+        '200':
+          description: ''
+      summary: Get place details by place ID
+      tags:
+      - App
+    servers:
+    - url: https://api.zoca.ai
+      description: Production
+  /homepage/activation-steps:
+    get:
+      operationId: t_value
+      parameters: []
+      responses:
+        '200':
+          description: ''
+      summary: Get activation steps status
+      tags:
+      - App
+    servers:
+    - url: https://api.zoca.ai
+      description: Production
+  /homepage:
+    get:
+      operationId: t_value
+      parameters: []
+      responses:
+        '200':
+          description: ''
+      summary: Get homepage data
+      tags:
+      - App
+    servers:
+    - url: https://api.zoca.ai
+      description: Production
+  /homepage/homepage-components:
+    get:
+      operationId: t_value
+      parameters: []
+      responses:
+        '200':
+          description: ''
+      summary: Get homepage components
+      tags:
+      - App
+    servers:
+    - url: https://api.zoca.ai
+      description: Production
+  /homepage/activation-steps-data:
+    get:
+      operationId: t_value
+      parameters: []
+      responses:
+        '200':
+          description: ''
+      summary: Get activation steps data
+      tags:
+      - App
+    servers:
+    - url: https://api.zoca.ai
+      description: Production
+  /homepage/check-website-status:
+    get:
+      operationId: t_value
+      parameters: []
+      responses:
+        '200':
+          description: ''
+      summary: Check website status
+      tags:
+      - App
+    servers:
+    - url: https://api.zoca.ai
+      description: Production
+  /homepage/monthly-report:
+    get:
+      description: When listAll=true returns all active reports; otherwise returns the single report (by reportType or default PERFORMANCE_REPORT).
+      operationId: t_value
+      parameters: []
+      responses:
+        '200':
+          description: Monthly report(s) retrieved successfully
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/e'
+        '404':
+          description: No report found
+      summary: Get monthly report(s) for an entity
+      tags:
+      - App
+    put:
+      operationId: t_value
+      parameters: []
+      responses:
+        '200':
+          description: Monthly report updated successfully
+      summary: Update monthly report status
+      tags:
+      - App
+    servers:
+    - url: https://api.zoca.ai
+      description: Production
+  /homepage/referrals/link/{businessEntityId}:
+    get:
+      operationId: t_value
+      parameters: []
+      responses:
+        '200':
+          description: ''
+      summary: Get referral link for business
+      tags:
+      - App
+    servers:
+    - url: https://api.zoca.ai
+      description: Production
+  /homepage/referrals:
+    post:
+      operationId: t_value
+      parameters: []
+      responses:
+        '201':
+          description: ''
+      summary: Create a referral
+      tags:
+      - App
+    servers:
+    - url: https://api.zoca.ai
+      description: Production
+  /homepage/carousel-cards:
+    get:
+      operationId: t_value
+      parameters: []
+      responses:
+        '200':
+          description: Carousel cards data retrieved successfully
+      summary: Get carousel cards for Win Agent onboarding
+      tags:
+      - App
+    servers:
+    - url: https://api.zoca.ai
+      description: Production
+  /homepage/discovery-metrics:
+    get:
+      operationId: t_value
+      parameters: []
+      responses:
+        '200':
+          description: ''
+      summary: Get cumulative discovery metrics since onboarding
+      tags:
+      - App
+    servers:
+    - url: https://api.zoca.ai
+      description: Production
+  /media:
+    post:
+      operationId: t_value
+      parameters: []
+      responses:
+        '201':
+          description: Media created successfully
+      summary: Create a new media
+      tags:
+      - App
+    get:
+      operationId: t_value
+      parameters: []
+      responses:
+        '200':
+          description: Return all media
+      summary: Get all media
+      tags:
+      - App
+    delete:
+      operationId: t_value
+      parameters: []
+      responses:
+        '200':
+          description: Media deleted successfully
+      summary: Delete a media
+      tags:
+      - App
+    servers:
+    - url: https://api.zoca.ai
+      description: Production
+  /media/scheduled-media:
+    get:
+      operationId: t_value
+      parameters: []
+      responses:
+        '200':
+          description: ''
+      summary: Get scheduled media for a location
+      tags:
+      - App
+    servers:
+    - url: https://api.zoca.ai
+      description: Production
+  /media/logo-and-cover-image:
+    get:
+      operationId: t_value
+      parameters: []
+      responses:
+        '200':
+          description: ''
+      summary: Get logo and cover image for a location
+      tags:
+      - App
+    servers:
+    - url: https://api.zoca.ai
+      description: Production
+  /media/log-failed-media-time:
+    post:
+      operationId: t_value
+      parameters: []
+      responses:
+        '201':
+          description: ''
+      summary: Log failed media upload time
+      tags:
+      - App
+    servers:
+    - url: https://api.zoca.ai
+      description: Production
+  /meta/business-discovery:
+    get:
+      operationId: t_value
+      parameters: []
+      responses:
+        '200':
+          description: ''
+      summary: Get Instagram business discovery data
+      tags:
+      - App
+    servers:
+    - url: https://api.zoca.ai
+      description: Production
+  /meta/media:
+    get:
+      operationId: t_value
+      parameters: []
+      responses:
+        '200':
+          description: ''
+      summary: Get all media for a specific Instagram business account
+      tags:
+      - App
+    servers:
+    - url: https://api.zoca.ai
+      description: Production
+  /meta/connect-instagram:
+    post:
+      operationId: t_value
+      parameters: []
+      responses:
+        '201':
+          description: ''
+      summary: Connect an Instagram business account to a location entity
+      tags:
+      - App
+    servers:
+    - url: https://api.zoca.ai
+      description: Production
+  /meta/upload-media:
+    post:
+      operationId: t_value
+      parameters: []
+      responses:
+        '201':
+          description: ''
+      summary: Upload selected media to specified destinations
+      tags:
+      - App
+    servers:
+    - url: https://api.zoca.ai
+      description: Production
+  /meta/account-status:
+    get:
+      operationId: t_value
+      parameters: []
+      responses:
+        '200':
+          description: ''
+      summary: Check if an Instagram business account is already connected to a location entity
+      tags:
+      - App
+    servers:
+    - url: https://api.zoca.ai
+      description: Production
+  /meta/disconnect-instagram:
+    post:
+      operationId: t_value
+      parameters: []
+      responses:
+        '201':
+          description: ''
+      summary: Disconnect an Instagram business account from a location entity
+      tags:
+      - App
+    servers:
+    - url: https://api.zoca.ai
+      description: Production
+  /tiktok/videos:
+    get:
+      operationId: t_value
+      parameters: []
+      responses:
+        '200':
+          description: TikTok videos retrieved successfully
+          content:
+            application/json:
+              schema:
+                example:
+                  videos:
+                  - id: video_123
+                    title: My awesome video
+                    cover_image_url: https://example.com/cover.jpg
+                    create_time: 1643332803
+                    duration: 30
+                    share_url: https://tiktok.com/@user/video/123
+                  cursor: 1643332803000
+                  has_more: true
+      summary: Get user's TikTok videos
+      tags:
+      - App
+    servers:
+    - url: https://api.zoca.ai
+      description: Production
+  /tiktok/creator-info:
+    get:
+      operationId: t_value
+      parameters: []
+      responses:
+        '200':
+          description: TikTok creator information retrieved successfully
+          content:
+            application/json:
+              schema:
+                example:
+                  privacy_level_options:
+                  - PUBLIC_TO_EVERYONE
+                  - MUTUAL_FOLLOW_FRIENDS
+                  comment_disabled: false
+                  duet_disabled: false
+                  stitch_disabled: false
+                  max_video_post_duration_sec: 60
+      summary: Get TikTok creator information for publishing
+      tags:
+      - App
+    servers:
+    - url: https://api.zoca.ai
+      description: Production
+  /offers/draft:
+    post:
+      operationId: t_value
+      parameters: []
+      responses:
+        '201':
+          description: Draft offer created successfully
+      summary: Create a draft offer with optional fields
+      tags:
+      - App
+    servers:
+    - url: https://api.zoca.ai
+      description: Production
+  /offers/{id}/draft:
+    put:
+      operationId: t_value
+      parameters: []
+      responses:
+        '200':
+          description: Draft offer updated successfully
+      summary: Update a draft offer with field-by-field updates
+      tags:
+      - App
+    servers:
+    - url: https://api.zoca.ai
+      description: Production
+  /offers/{id}:
+    get:
+      operationId: t_value
+      parameters:
+      - name: source
+        in: header
+        description: Request source identifier (e.g., "zoca-app")
+        required: false
+        schema:
+          type: string
+      responses:
+        '200':
+          description: Offer details retrieved successfully
+      summary: Get offer details
+      tags:
+      - App
+    delete:
+      operationId: t_value
+      parameters: []
+      responses:
+        '200':
+          description: Offer soft deleted successfully
+      summary: Soft delete an offer
+      tags:
+      - App
+    servers:
+    - url: https://api.zoca.ai
+      description: Production
+  /offers/channels/{entityId}:
+    get:
+      operationId: t_value
+      parameters: []
+      responses:
+        '200':
+          description: Channels retrieved successfully
+          content:
+            application/json:
+              schema:
+                type: array
+                items:
+                  $ref: '#/components/schemas/e'
+      summary: List available channels for offer creation with publishOn dates
+      tags:
+      - App
+    servers:
+    - url: https://api.zoca.ai
+      description: Production
+  /offers/description/generate:
+    post:
+      description: Uses LLM to generate an offer description based on business category, services, and additional variables
+      operationId: t_value
+      parameters: []
+      responses:
+        '200':
+          description: Description generated successfully
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/e'
+        '400':
+          description: Bad request or prompt not found
+        '404':
+          description: Offer or entity not found
+      summary: Generate AI-powered description for an offer
+      tags:
+      - App
+    servers:
+    - url: https://api.zoca.ai
+      description: Production
+  /offers/description/validate:
+    post:
+      description: Uses LLM to validate an offer description based on business category, services, and additional variables
+      operationId: t_value
+      parameters: []
+      responses:
+        '200':
+          description: Description validated successfully
+        '400':
+          description: Bad request or prompt not found
+        '404':
+          description: Offer or entity not found
+      summary: Validate AI-powered description for an offer
+      tags:
+      - App
+    servers:
+    - url: https://api.zoca.ai
+      description: Production
+  /offers/entities/{entityId}/status:
+    get:
+      operationId: t_value
+      parameters:
+      - name: app-version
+        in: header
+        description: Mobile app version
+        required: false
+        schema:
+          type: string
+      - name: source
+        in: header
+        description: Source of the request (e.g., "zoca-app")
+        required: false
+        schema:
+          type: string
+      responses:
+        '200':
+          description: Offers retrieved successfully
+      summary: List all offers on an entity with status
+      tags:
+      - App
+    servers:
+    - url: https://api.zoca.ai
+      description: Production
+  /offers/entities/{entityId}/status/count:
+    get:
+      description: Returns the count of offers for each status (DRAFT, FUTURE, LIVE, PAUSED, EXPIRED). Always returns all statuses even if count is 0. When requests come from zoca-app or mobile app (app-version header), offers with offerType = NOT_AN_OFFER are excluded.
+      operationId: t_value
+      parameters:
+      - name: app-version
+        in: header
+        description: Mobile app version
+        required: false
+        schema:
+          type: string
+      - name: source
+        in: header
+        description: Source of the request (e.g., "zoca-app")
+        required: false
+        schema:
+          type: string
+      responses:
+        '200':
+          description: Status counts retrieved successfully
+          content:
+            application/json:
+              schema:
+                type: array
+                items:
+                  type: object
+                  properties:
+                    status:
+                      type: string
+                      enum:
+                      - DRAFT
+                      - FUTURE
+                      - LIVE
+                      - PAUSED
+                      - EXPIRED
+                      example: LIVE
+                    count:
+                      type: number
+                      example: 10
+                example:
+                - status: DRAFT
+                  count: 2
+                - status: FUTURE
+                  count: 5
+                - status: LIVE
+                  count: 10
+                - status: PAUSED
+                  count: 1
+                - status: EXPIRED
+                  count: 0
+      summary: Get count of offers grouped by status for an entity
+      tags:
+      - App
+    servers:
+    - url: https://api.zoca.ai
+      description: Production
+  /offers/entities/{entityId}/search:
+    get:
+      description: Performs case-insensitive partial matching on offer titles. Returns offers with all associations (services, media, CTAs, addons, channels) and calculated status (DRAFT, FUTURE, LIVE, PAUSED, EXPIRED). Uses page-based pagination for better UX.
+      operationId: t_value
+      parameters: []
+      responses:
+        '200':
+          description: Offers retrieved successfully with pagination metadata and calculated status
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  items:
+                    type: array
+                    items:
+                      type: object
+                  totalCount:
+                    type: number
+                    example: 25
+                  totalPages:
+                    type: number
+                    example: 3
+                  currentPage:
+                    type: number
+                    example: 1
+        '400':
+          description: Invalid search parameters
+      summary: Search offers by title with status calculation
+      tags:
+      - App
+    servers:
+    - url: https://api.zoca.ai
+      description: Production
+  /offers/{offerId}/suggestions:
+    get:
+      description: Retrieves all suggestions for a specific offer from the requests table along with their request status and creation timestamp. The createdAt field is converted to a DateTime object with separate date and time components. Suggestions are ordered by creation date descending (newest first).
+      operationId: t_value
+      parameters: []
+      responses:
+        '200':
+          description: Suggestions retrieved successfully with status and creation timestamp
+          content:
+            application/json:
+              schema:
+                type: array
+                items:
+                  type: object
+                  properties:
+                    status:
+                      type: string
+                      example: COMPLETED
+                    suggestion:
+                      type: string
+                      example: Update the offer description to be more clear
+                    createdAt:
+                      type: object
+                      description: DateTime object with separate date and time components
+                      properties:
+                        date:
+                          type: object
+                          properties:
+                            year:
+                              type: number
+                              example: 2025
+                            month:
+                              type: number
+                              example: 12
+                            day:
+                              type: number
+                              example: 9
+                        time:
+                          type: object
+                          properties:
+                            hours:
+                              type: number
+                              example: 14
+                            minutes:
+                              type: number
+                              example: 30
+                            seconds:
+                              type: number
+                              example: 0
+                            nanos:
+                              type: number
+                              example: 0
+                example:
+                - status: COMPLETED
+                  suggestion: Update the offer description to be more clear
+                  createdAt:
+                    date:
+                      year: 2025
+                      month: 12
+                      day: 9
+                    time:
+                      hours: 14
+                      minutes: 30
+                      seconds: 0
+                      nanos: 0
+                - status: PENDING
+                  suggestion: Add more details about the discount
+                  createdAt:
+                    date:
+                      year: 2025
+                      month: 12
+                      day: 8
+                    time:
+                      hours: 10
+                      minutes: 15
+                      seconds: 30
+                      nanos: 0
+        '400':
+          description: Invalid request parameters
+      summary: Get suggestions for an offer
+      tags:
+      - App
+    servers:
+    - url: https://api.zoca.ai
+      description: Production
+  /onboarding/app-visitor:
+    get:
+      operationId: t_value
+      parameters: []
+      responses:
+        '200':
+          description: ''
+      summary: Register app visitor
+      tags:
+      - App
+    servers:
+    - url: https://api.zoca.ai
+      description: Production
+  /onboarding/update-user:
+    post:
+      operationId: t_value
+      parameters: []
+      requestBody:
+        required: true
+        description: User profile update data
+        content:
+          application/json:
+            schema:
+              type: object
+              properties:
+                entity_id:
+                  type: string
+                  description: Unique identifier for the user
+                firstName:
+                  type: string
+                  description: User's first name
+                lastName:
+                  type: string
+                  description: User's last name
+                primaryPhone:
+                  type: object
+                  properties:
+                    phone_number:
+                      type: string
+                      description: Primary phone number
+                    country_code:
+                      type: string
+                      description: Country code for primary phone
+                secondaryPhone:
+                  type: object
+                  properties:
+                    phone_number:
+                      type: string
+                      description: Secondary phone number
+                    country_code:
+                      type: string
+                      description: Country code for secondary phone
+                primaryEmail:
+                  type: string
+                  format: email
+                  description: Primary email address
+                secondaryEmail:
+                  type: string
+                  format: email
+                  description: Secondary email address
+              required:
+              - entity_id
+      responses:
+        '200':
+          description: User profile updated successfully
+          content:
+            application/json:
+              schema:
+                example:
+                  status: success
+                  message: User profile updated
+                  data:
+                    entityId: '1234567890'
+                    firstName: John
+                    lastName: Doe
+        '400':
+          description: Bad Request
+        '404':
+          description: User not found
+      summary: Update User Profile
+      tags:
+      - App
+    servers:
+    - url: https://api.zoca.ai
+      description: Production
+  /onboarding/onboarding-state:
+    get:
+      operationId: t_value
+      parameters: []
+      responses:
+        '200':
+          description: ''
+      summary: Get onboarding state for entity
+      tags:
+      - App
+    servers:
+    - url: https://api.zoca.ai
+      description: Production
+  /onboarding/user-profile:
+    get:
+      operationId: t_value
+      parameters: []
+      responses:
+        '200':
+          description: ''
+      summary: Get user profile information
+      tags:
+      - App
+    servers:
+    - url: https://api.zoca.ai
+      description: Production
+  /onboarding/quick-recap:
+    get:
+      operationId: t_value
+      parameters: []
+      responses:
+        '200':
+          description: Onboarding quick recap pointers retrieved successfully
+          content:
+            application/json:
+              schema:
+                example:
+                - I trust Zoca to select the best keywords for my business.
+                - I'll collect regular 5-star reviews to boost my visibility
+                - Zoca will help me get both new and returning clients
+                - I expect steady growth, not overnight results
+                - I'll reach out to leads on the Zoca app to ensure they book
+      summary: Get onboarding quick recap pointers
+      tags:
+      - App
+    servers:
+    - url: https://api.zoca.ai
+      description: Production
+  /onboarding/business-categories:
+    get:
+      operationId: t_value
+      parameters: []
+      responses:
+        '200':
+          description: Business categories retrieved successfully
+          content:
+            application/json:
+              schema:
+                example:
+                - Hair salon
+                - Facial
+                - Lash & brow
+                - Permanent makeup
+                - Med spa
+                - Nail salon
+                - Waxing
+                - Braider
+                - Barber
+                - Massage
+                - Other
+      summary: Get list of business categories
+      tags:
+      - App
+    servers:
+    - url: https://api.zoca.ai
+      description: Production
+  /onboarding/customer-sources:
+    get:
+      operationId: t_value
+      parameters: []
+      responses:
+        '200':
+          description: Customer sources retrieved successfully
+          content:
+            application/json:
+              schema:
+                example:
+                - Groupon
+                - Yelp
+                - ClassPass
+                - Google
+                - Word of Mouth
+      summary: Get list of customer sources
+      tags:
+      - App
+    servers:
+    - url: https://api.zoca.ai
+      description: Production
+  /onboarding/search-booking-link:
+    get:
+      operationId: t_value
+      parameters: []
+      responses:
+        '200':
+          description: ''
+      summary: Search for booking platform link
+      tags:
+      - App
+    servers:
+    - url: https://api.zoca.ai
+      description: Production
+  /onboarding/check-platform-selection/{locationEntityId}:
+    get:
+      operationId: t_value
+      parameters: []
+      responses:
+        '200':
+          description: Platform selection status retrieved successfully (within 10 hours of onboarding)
+          schema:
+            example:
+              isPlatformSelected: true
+              platformName: square,vagaro
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/e'
+        '400':
+          description: Bad Request - Invalid UUID format or missing platform names
+        '404':
+          description: Onboarding record not found
+      summary: Check if specific platforms were selected during onboarding within 10 hours
+      tags:
+      - App
+    servers:
+    - url: https://api.zoca.ai
+      description: Production
+  /onboarding/trigger-comms:
+    post:
+      description: Triggers onboarding communication events based on user actions during onboarding flow. For REVIEW_SCREEN_VIEW type, calculates and includes review insights data.
+      operationId: t_value
+      parameters: []
+      responses:
+        '200':
+          description: Onboarding communication event triggered successfully
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/e'
+        '400':
+          description: Bad Request - Missing required fields or invalid data
+        '500':
+          description: Internal Server Error - Failed to trigger onboarding communication
+      summary: Trigger onboarding communications for MoEngage notifications
+      tags:
+      - App
+    servers:
+    - url: https://api.zoca.ai
+      description: Production
+  /pipedrive/person/upsert:
+    post:
+      description: Processes incoming request to create a pipedrive person
+      operationId: t_value
+      parameters: []
+      requestBody:
+        required: true
+        description: Pipedrive person payload
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/Object'
+      responses:
+        '201':
+          description: Pipedrive person created successfully
+      summary: Create Pipedirve Person
+      tags:
+      - App
+    servers:
+    - url: https://api.zoca.ai
+      description: Production
+  /pipedrive/organization/upsert:
+    post:
+      description: Processes incoming request to create a pipedrive organization
+      operationId: t_value
+      parameters: []
+      requestBody:
+        required: true
+        description: Pipedrive organization payload
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/Object'
+      responses:
+        '201':
+          description: Pipedrive organization created successfully
+      summary: Create Pipedirve Organization
+      tags:
+      - App
+    servers:
+    - url: https://api.zoca.ai
+      description: Production
+  /pipedrive/lead/status:
+    get:
+      description: Processes incoming request to get the lead status
+      operationId: t_value
+      parameters: []
+      responses:
+        '200':
+          description: ''
+      summary: Get Lead Status
+      tags:
+      - App
+    servers:
+    - url: https://api.zoca.ai
+      description: Production
+  /pipedrive/lead/callback:
+    get:
+      description: Processes incoming request to request a callback
+      operationId: t_value
+      parameters: []
+      responses:
+        '200':
+          description: ''
+      summary: Requested a callback
+      tags:
+      - App
+    servers:
+    - url: https://api.zoca.ai
+      description: Production
+  /requests-api/fromTemplate:
+    post:
+      operationId: t_value
+      parameters: []
+      responses:
+        '201':
+          description: ''
+      summary: Create a request from a template
+      tags:
+      - App
+    servers:
+    - url: https://api.zoca.ai
+      description: Production
+  /requests-api/{id}:
+    delete:
+      operationId: t_value
+      parameters: []
+      responses:
+        '200':
+          description: ''
+      summary: Delete a request by ID
+      tags:
+      - App
+    put:
+      operationId: t_value
+      parameters: []
+      responses:
+        '200':
+          description: ''
+      summary: Update a request by ID
+      tags:
+      - App
+    servers:
+    - url: https://api.zoca.ai
+      description: Production
+  /requests-api/{entityId}/list:
+    get:
+      operationId: t_value
+      parameters: []
+      responses:
+        '200':
+          description: ''
+      summary: List requests for an entity with optional pagination
+      tags:
+      - App
+    servers:
+    - url: https://api.zoca.ai
+      description: Production
+  /requests-api/filters:
+    post:
+      operationId: t_value
+      parameters: []
+      responses:
+        '201':
+          description: ''
+      summary: Filter requests excluding specified types
+      tags:
+      - App
+    servers:
+    - url: https://api.zoca.ai
+      description: Production
+  /requests-api/{id}/additionalData:
+    patch:
+      operationId: t_value
+      parameters: []
+      responses:
+        '200':
+          description: ''
+      summary: Patch additional data for a request
+      tags:
+      - App
+    servers:
+    - url: https://api.zoca.ai
+      description: Production
+  /requests-api/categories/{entityId}:
+    get:
+      operationId: t_value
+      parameters: []
+      responses:
+        '200':
+          description: ''
+      summary: Get ticket categories for an entity
+      tags:
+      - App
+    servers:
+    - url: https://api.zoca.ai
+      description: Production
+  /services-sync/request:
+    get:
+      operationId: t_value
+      parameters: []
+      responses:
+        '200':
+          description: ''
+      summary: Get current sync request for a location
+      tags:
+      - App
+    servers:
+    - url: https://api.zoca.ai
+      description: Production
+  /services-sync/resync/request:
+    post:
+      operationId: t_value
+      parameters: []
+      responses:
+        '201':
+          description: ''
+      summary: Create a resync request
+      tags:
+      - App
+    servers:
+    - url: https://api.zoca.ai
+      description: Production
+  /review-invites/client-sources:
+    get:
+      operationId: t_value
+      parameters: []
+      responses:
+        '200':
+          description: ''
+      summary: Get available client sources for an entity
+      tags:
+      - App
+    servers:
+    - url: https://api.zoca.ai
+      description: Production
+  /review-invites/clients:
+    get:
+      operationId: t_value
+      parameters: []
+      responses:
+        '200':
+          description: ''
+      summary: Get clients filtered by source with pagination
+      tags:
+      - App
+    servers:
+    - url: https://api.zoca.ai
+      description: Production
+  /review-invites/client-phone:
+    get:
+      operationId: t_value
+      parameters: []
+      responses:
+        '200':
+          description: ''
+      summary: Get client phone numbers for an entity
+      tags:
+      - App
+    servers:
+    - url: https://api.zoca.ai
+      description: Production
+  /review-invites/search-clients:
+    get:
+      operationId: t_value
+      parameters: []
+      responses:
+        '200':
+          description: ''
+      summary: Search clients by term with pagination
+      tags:
+      - App
+    servers:
+    - url: https://api.zoca.ai
+      description: Production
+  /review-invites/text-templates:
+    get:
+      operationId: t_value
+      parameters: []
+      responses:
+        '200':
+          description: ''
+      summary: Get SMS text templates for review invites
+      tags:
+      - App
+    servers:
+    - url: https://api.zoca.ai
+      description: Production
+  /review-invites/text-templates/{templateId}:
+    put:
+      operationId: t_value
+      parameters: []
+      responses:
+        '200':
+          description: ''
+      summary: Update a text template by ID
+      tags:
+      - App
+    servers:
+    - url: https://api.zoca.ai
+      description: Production
+  /review-invites/invites-status:
+    get:
+      operationId: t_value
+      parameters: []
+      responses:
+        '200':
+          description: ''
+      summary: Get all invite status counts for an entity
+      tags:
+      - App
+    servers:
+    - url: https://api.zoca.ai
+      description: Production
+  /review-invites/invites-by-status:
+    get:
+      operationId: t_value
+      parameters: []
+      responses:
+        '200':
+          description: ''
+      summary: Get invites filtered by status with pagination
+      tags:
+      - App
+    servers:
+    - url: https://api.zoca.ai
+      description: Production
+  /review-invites/{entityId}/invite:
+    post:
+      operationId: t_value
+      parameters: []
+      responses:
+        '201':
+          description: ''
+      summary: Send review invites to clients
+      tags:
+      - App
+    delete:
+      operationId: t_value
+      parameters: []
+      responses:
+        '204':
+          description: ''
+      summary: Delete a review invite
+      tags:
+      - App
+    servers:
+    - url: https://api.zoca.ai
+      description: Production
+  /review-invites/{entityId}/invite-reminder:
+    post:
+      operationId: t_value
+      parameters: []
+      responses:
+        '201':
+          description: ''
+      summary: Send review invite reminders to clients
+      tags:
+      - App
+    servers:
+    - url: https://api.zoca.ai
+      description: Production
+  /review-invites/qr-code:
+    get:
+      operationId: t_value
+      parameters: []
+      responses:
+        '200':
+          description: ''
+      summary: Get QR code for review invites
+      tags:
+      - App
+    servers:
+    - url: https://api.zoca.ai
+      description: Production
+  /review-invites/formatted-text-template:
+    put:
+      operationId: t_value
+      parameters: []
+      responses:
+        '200':
+          description: ''
+      summary: Format a text template with client data
+      tags:
+      - App
+    servers:
+    - url: https://api.zoca.ai
+      description: Production
+  /review-invites/email-ra-optin:
+    post:
+      operationId: t_value
+      parameters: []
+      responses:
+        '201':
+          description: ''
+      summary: Store email review automation opt-in status
+      tags:
+      - App
+    get:
+      operationId: t_value
+      parameters: []
+      responses:
+        '200':
+          description: ''
+      summary: Get email review automation opt-in status
+      tags:
+      - App
+    servers:
+    - url: https://api.zoca.ai
+      description: Production
+  /review-invites/review-link:
+    get:
+      operationId: t_value
+      parameters: []
+      responses:
+        '200':
+          description: ''
+      summary: Get the review link for a location
+      tags:
+      - App
+    servers:
+    - url: https://api.zoca.ai
+      description: Production
+  /reviews/{entityId}/reviews:
+    get:
+      description: Retrieves paginated list of reviews for a specific entity with optional sorting and search functionality
+      operationId: t_value
+      parameters: []
+      responses:
+        '200':
+          description: ''
+      summary: Get paginated reviews for an entity
+      tags:
+      - App
+    servers:
+    - url: https://api.zoca.ai
+      description: Production
+  /reviews/review-id:
+    get:
+      description: Retrieves a specific review by its ID along with reply status
+      operationId: t_value
+      parameters: []
+      responses:
+        '200':
+          description: ''
+      summary: Get review by ID
+      tags:
+      - App
+    servers:
+    - url: https://api.zoca.ai
+      description: Production
+  /reviews/{reviewId}/reply:
+    post:
+      description: Creates a reply to a specific review, can be AI-generated or manual
+      operationId: t_value
+      parameters: []
+      responses:
+        '201':
+          description: ''
+      summary: Create a reply to a review
+      tags:
+      - App
+    put:
+      description: Updates an existing reply to a review with new content or AI-generated status
+      operationId: t_value
+      parameters: []
+      responses:
+        '200':
+          description: ''
+      summary: Update a review reply
+      tags:
+      - App
+    delete:
+      description: Deletes an existing reply to a review
+      operationId: t_value
+      parameters: []
+      responses:
+        '204':
+          description: ''
+      summary: Delete a review reply
+      tags:
+      - App
+    servers:
+    - url: https://api.zoca.ai
+      description: Production
+  /reviews/stats:
+    get:
+      description: Retrieves statistical data about reviews for a specific entity
+      operationId: t_value
+      parameters: []
+      responses:
+        '200':
+          description: ''
+      summary: Get review statistics
+      tags:
+      - App
+    servers:
+    - url: https://api.zoca.ai
+      description: Production
+  /reviews/{entityId}/preferences:
+    post:
+      description: Updates review preferences for a specific entity including reply settings and templates
+      operationId: t_value
+      parameters: []
+      responses:
+        '201':
+          description: ''
+      summary: Set review preferences
+      tags:
+      - App
+    get:
+      description: Retrieves review preferences for a specific entity including reply settings and templates
+      operationId: t_value
+      parameters: []
+      responses:
+        '200':
+          description: ''
+      summary: Get review preferences
+      tags:
+      - App
+    servers:
+    - url: https://api.zoca.ai
+      description: Production
+  /reviews/{entityId}/app/gbp-component:
+    get:
+      description: Retrieves component data for Google Business Profile reviews display in the app
+      operationId: t_value
+      parameters: []
+      responses:
+        '200':
+          description: ''
+      summary: Get Google Business Profile component data
+      tags:
+      - App
+    servers:
+    - url: https://api.zoca.ai
+      description: Production
+  /reviews/{entityId}/app/card:
+    get:
+      description: Retrieves review-related cards data for display in the app dashboard based on review metrics
+      operationId: t_value
+      parameters: []
+      responses:
+        '200':
+          description: ''
+      summary: Get review cards for app dashboard
+      tags:
+      - App
+    servers:
+    - url: https://api.zoca.ai
+      description: Production
+  /scheduling/bookings/{id}:
+    get:
+      operationId: t_value
+      parameters:
+      - name: id
+        required: true
+        in: path
+        description: Booking ID
+        schema:
+          type: string
+      responses:
+        '200':
+          description: Booking retrieved successfully
+        '404':
+          description: Booking not found
+      summary: Get booking by ID with aggregated data
+      tags:
+      - App
+    servers:
+    - url: https://api.zoca.ai
+      description: Production
+  /scheduling/onboarding/{entityId}/{locationEntityId}/status:
+    get:
+      operationId: t_value
+      parameters: []
+      responses:
+        '200':
+          description: ''
+      summary: Get onboarding status for an entity and location
+      tags:
+      - App
+    servers:
+    - url: https://api.zoca.ai
+      description: Production
+  /scheduling/stripe/terminal/connection-token:
+    post:
+      operationId: t_value
+      parameters: []
+      responses:
+        '200':
+          description: ''
+      security:
+      - bearer: []
+      summary: Create Stripe Terminal connection token
+      tags:
+      - App
+    servers:
+    - url: https://api.zoca.ai
+      description: Production
+  /scheduling/stripe/terminal/tap-to-pay-config:
+    get:
+      operationId: t_value
+      parameters: []
+      responses:
+        '200':
+          description: ''
+      security:
+      - bearer: []
+      summary: Get Tap to Pay configuration
+      tags:
+      - App
+    servers:
+    - url: https://api.zoca.ai
+      description: Production
+  /scheduling/stripe/terminal/ensure-location:
+    post:
+      description: Creates a Stripe Terminal Location (tml_...) for the connected account using the stored address for locationEntityId, persists it to entities.locations, and returns it.
+      operationId: t_value
+      parameters: []
+      responses:
+        '200':
+          description: ''
+      security:
+      - bearer: []
+      summary: Provision Stripe Terminal location for a connected account
+      tags:
+      - App
+    servers:
+    - url: https://api.zoca.ai
+      description: Production
+  /scheduling/checkout-tip-config:
+    get:
+      operationId: t_value
+      parameters: []
+      responses:
+        '200':
+          description: ''
+      security:
+      - bearer: []
+      summary: List checkout tip presets for a location
+      tags:
+      - App
+    servers:
+    - url: https://api.zoca.ai
+      description: Production
+  /scheduling/checkout/pay:
+    post:
+      description: Unified payment endpoint supporting CASH, CARD, CARD_ON_FILE, and TAP_TO_PAY. Cash payments are immediately COMPLETED. Card payments return PROCESSING status and are confirmed via webhook.
+      operationId: t_value
+      parameters: []
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/e'
+      responses:
+        '200':
+          description: Payment processed successfully
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  paymentId:
+                    type: string
+                    format: uuid
+                    description: Payment record ID
+                  status:
+                    type: string
+                    enum:
+                    - COMPLETED
+                    - PROCESSING
+                    - FAILED
+                    description: Payment status
+                  saleStatus:
+                    type: string
+                    enum:
+                    - OPEN
+                    - PARTIALLY_PAID
+                    - PAID
+                    description: Updated sale status
+                  amountPaid:
+                    type: number
+                    description: Total amount paid in cents
+                  amountDue:
+                    type: number
+                    description: Remaining amount due in cents
+                  processingFeeAmount:
+                    type: number
+                    description: Processing fee charged for this payment in dollars
+                  preProcessingAmount:
+                    type: number
+                    description: Base amount used for fee calculation in dollars
+                  chargeAmount:
+                    type: number
+                    description: Gross amount charged to the customer in dollars
+                  stripePaymentIntentId:
+                    type: string
+                    description: Stripe PaymentIntent ID (card payments only)
+                  clientSecret:
+                    type: string
+                    description: Client secret for confirming payment (new card only)
+                  cardBrand:
+                    type: string
+                    description: Card brand (visa, mastercard, etc.)
+                  cardLast4:
+                    type: string
+                    description: Last 4 digits of card
+                  latestAttemptId:
+                    type: string
+                    description: CARD_READER only — id of the reader attempt row for cancel/retry polling
+                  message:
+                    type: string
+                    description: Status message
+        '400':
+          description: Bad request - validation failed
+        '404':
+          description: Sale not found
+      summary: Process a payment for a sale
+      tags:
+      - App
+    servers:
+    - url: https://api.zoca.ai
+      description: Production
+  /scheduling/checkout/processing-fee-quote:
+    post:
+      description: Returns the pass-through processing fee and gross customer charge for the selected payment method.
+      operationId: t_value
+      parameters: []
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/e'
+      responses:
+        '200':
+          description: ''
+      summary: Quote checkout processing fee
+      tags:
+      - App
+    servers:
+    - url: https://api.zoca.ai
+      description: Production
+  /scheduling/checkout/sale/{saleId}/tip:
+    patch:
+      description: Persists the tip on the sale (override, not accumulate) before collecting payment so the checkout total and processing-fee quote stay correct. Omitting additionalTip (or sending a zero value) clears the tip.
+      operationId: t_value
+      parameters:
+      - name: saleId
+        required: true
+        in: path
+        description: Sale ID
+        schema:
+          type: string
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/e'
+      responses:
+        '200':
+          description: Tip updated; returns the updated sale summary
+        '404':
+          description: Sale not found
+      summary: Update the tip on a sale
+      tags:
+      - App
+    servers:
+    - url: https://api.zoca.ai
+      description: Production
+  /scheduling/checkout/cancel-payment/{paymentId}:
+    post:
+      description: Marks a payment as CANCELLED. Only PENDING or PROCESSING payments can be cancelled. If Stripe processes the payment after cancellation, an automatic refund is triggered.
+      operationId: t_value
+      parameters:
+      - name: paymentId
+        required: true
+        in: path
+        description: Payment ID
+        schema:
+          type: string
+      responses:
+        '200':
+          description: Payment cancelled successfully
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  id:
+                    type: string
+                    format: uuid
+                    description: Payment ID
+                  status:
+                    type: string
+                    enum:
+                    - CANCELLED
+                    description: Payment status
+                  saleId:
+                    type: string
+                    format: uuid
+                    description: Sale ID
+                  stripePaymentIntentCancelled:
+                    type: boolean
+                    description: Whether Stripe PaymentIntent was successfully cancelled
+        '400':
+          description: Payment cannot be cancelled
+        '404':
+          description: Payment not found
+      summary: Cancel a payment
+      tags:
+      - App
+    servers:
+    - url: https://api.zoca.ai
+      description: Production
+  /services/service/{id}:
+    get:
+      description: Retrieves detailed information about a specific service including variations and categories
+      operationId: t_value
+      parameters:
+      - name: id
+        required: true
+        in: path
+        description: UUID of the service
+        schema:
+          format: uuid
+          type: string
+      responses:
+        '200':
+          description: Service retrieved successfully
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/t'
+        '404':
+          description: Service not found
+      security:
+      - bearer: []
+      summary: Get service by ID
+      tags:
+      - App
+    put:
+      description: Updates an existing service including its variations
+      operationId: t_value
+      parameters:
+      - name: id
+        required: true
+        in: path
+        description: UUID of the service
+        schema:
+          format: uuid
+          type: string
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/e'
+      responses:
+        '200':
+          description: Service updated successfully
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/t'
+      security:
+      - bearer: []
+      summary: Update service
+      tags:
+      - App
+    delete:
+      description: Permanently deletes a service and all its associated data
+      operationId: t_value
+      parameters:
+      - name: id
+        required: true
+        in: path
+        description: UUID of the service
+        schema:
+          format: uuid
+          type: string
+      responses:
+        '200':
+          description: Service deleted successfully
+      security:
+      - bearer: []
+      summary: Delete service
+      tags:
+      - App
+    servers:
+    - url: https://api.zoca.ai
+      description: Production
+  /services/{entityId}/service:
+    post:
+      description: "Creates a new service for a specific entity with the following features:\n    - Optional category assignment\n    - Support for service variations\n    - Price and duration configuration\n    - Image attachment capability"
+      operationId: t_value
+      parameters:
+      - name: createDefaultVariation
+        required: false
+        in: query
+        description: If true and no variations are provided, creates a default variation with service name, price, and duration
+        schema:
+          type: boolean
+      - name: categoryId
+        required: false
+        in: query
+        description: Optional UUID of category to assign the service to
+        schema:
+          format: uuid
+          type: string
+      - name: entityId
+        required: true
+        in: path
+        description: UUID of the entity
+        schema:
+          format: uuid
+          type: string
+      requestBody:
+        required: true
+        description: Service creation data
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/e'
+      responses:
+        '201':
+          description: Service created successfully
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/t'
+        '400':
+          description: Invalid input data
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  status:
+                    type: number
+                    example: 400
+                  error:
+                    type: string
+                    example: Bad Request
+                  message:
+                    type: array
+                    items:
+                      type: string
+        '404':
+          description: Entity or category not found
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  status:
+                    type: number
+                    example: 404
+                  error:
+                    type: string
+                  message:
+                    type: string
+        '500':
+          description: Internal server error
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  status:
+                    type: number
+                    example: 500
+                  error:
+                    type: string
+                  message:
+                    type: string
+      security:
+      - bearer: []
+      summary: Create a new service
+      tags:
+      - App
+    servers:
+    - url: https://api.zoca.ai
+      description: Production
+  /services/category:
+    post:
+      deprecated: true
+      description: 'Creates a new service category. DEPRECATED: Use POST /:entityId/category instead for proper entity association.'
+      operationId: t_value
+      parameters: []
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/e'
+      responses:
+        '201':
+          description: Category created successfully
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/e'
+      security:
+      - bearer: []
+      summary: Create a new category (deprecated)
+      tags:
+      - App
+    servers:
+    - url: https://api.zoca.ai
+      description: Production
+  /services/category/{id}:
+    get:
+      description: Retrieves detailed information about a specific category
+      operationId: t_value
+      parameters:
+      - name: id
+        required: true
+        in: path
+        description: UUID of the category
+        schema:
+          format: uuid
+          type: string
+      responses:
+        '200':
+          description: Category found
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/t'
+      security:
+      - bearer: []
+      summary: Get a category by ID
+      tags:
+      - App
+    put:
+      description: Updates an existing category information
+      operationId: t_value
+      parameters:
+      - name: id
+        required: true
+        in: path
+        description: UUID of the category
+        schema:
+          format: uuid
+          type: string
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/e'
+      responses:
+        '200':
+          description: Category updated successfully
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/e'
+      security:
+      - bearer: []
+      summary: Update a category
+      tags:
+      - App
+    delete:
+      description: Permanently deletes a category
+      operationId: t_value
+      parameters:
+      - name: id
+        required: true
+        in: path
+        description: UUID of the category
+        schema:
+          format: uuid
+          type: string
+      responses:
+        '200':
+          description: Category deleted successfully
+      security:
+      - bearer: []
+      summary: Delete a category
+      tags:
+      - App
+    servers:
+    - url: https://api.zoca.ai
+      description: Production
+  /services/{entityId}/categories:
+    get:
+      description: Retrieves all service categories associated with an entity. When source header is "zoca-web", includes categories even if they have no services. Use includeVariations=true to include service variations in the response.
+      operationId: t_value
+      parameters:
+      - name: includeVariations
+        required: false
+        in: query
+        description: Include service variations in the response
+        schema:
+          type: boolean
+      - name: entityId
+        required: true
+        in: path
+        description: UUID of the entity
+        schema:
+          format: uuid
+          type: string
+      responses:
+        '200':
+          description: Categories retrieved successfully
+          content:
+            application/json:
+              schema:
+                type: array
+                items:
+                  $ref: '#/components/schemas/t'
+      security:
+      - bearer: []
+      summary: Get all categories for an entity
+      tags:
+      - App
+    servers:
+    - url: https://api.zoca.ai
+      description: Production
+  /services/service/{serviceId}/category/{categoryId}:
+    post:
+      description: Creates an association between a service and a category
+      operationId: t_value
+      parameters:
+      - name: categoryId
+        required: true
+        in: path
+        description: UUID of the category
+        schema:
+          format: uuid
+          type: string
+      - name: serviceId
+        required: true
+        in: path
+        description: UUID of the service
+        schema:
+          format: uuid
+          type: string
+      responses:
+        '201':
+          description: ''
+      security:
+      - bearer: []
+      summary: Assign a service to a category
+      tags:
+      - App
+    delete:
+      description: Removes the association between a service and a category
+      operationId: t_value
+      parameters:
+      - name: categoryId
+        required: true
+        in: path
+        description: UUID of the category
+        schema:
+          format: uuid
+          type: string
+      - name: serviceId
+        required: true
+        in: path
+        description: UUID of the service
+        schema:
+          format: uuid
+          type: string
+      responses:
+        '200':
+          description: ''
+      security:
+      - bearer: []
+      summary: Remove a service from a category
+      tags:
+      - App
+    servers:
+    - url: https://api.zoca.ai
+      description: Production
+  /services/reorder-categories-services:
+    put:
+      description: Updates the order of categories and their associated services
+      operationId: t_value
+      parameters: []
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/e'
+      responses:
+        '200':
+          description: ''
+      security:
+      - bearer: []
+      summary: Reorder categories and their services
+      tags:
+      - App
+    servers:
+    - url: https://api.zoca.ai
+      description: Production
+  /services/{serviceId}/images:
+    get:
+      description: Retrieves all images associated with a service
+      operationId: t_value
+      parameters:
+      - name: serviceId
+        required: true
+        in: path
+        description: UUID of the service
+        schema:
+          format: uuid
+          type: string
+      responses:
+        '200':
+          description: Service images retrieved successfully
+          content:
+            application/json:
+              schema:
+                type: array
+                items:
+                  $ref: '#/components/schemas/t'
+      security:
+      - bearer: []
+      summary: Get all images for a service
+      tags:
+      - App
+    post:
+      description: Associates a new image with a service
+      operationId: t_value
+      parameters:
+      - name: serviceId
+        required: true
+        in: path
+        description: UUID of the service
+        schema:
+          format: uuid
+          type: string
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/e'
+      responses:
+        '201':
+          description: Image added successfully
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/t'
+      security:
+      - bearer: []
+      summary: Add a new image to a service
+      tags:
+      - App
+    servers:
+    - url: https://api.zoca.ai
+      description: Production
+  /services/{serviceId}/images/{imageId}:
+    delete:
+      description: Removes an image association from a service
+      operationId: t_value
+      parameters:
+      - name: imageId
+        required: true
+        in: path
+        description: ID of the image
+        schema:
+          type: string
+      - name: serviceId
+        required: true
+        in: path
+        description: UUID of the service
+        schema:
+          format: uuid
+          type: string
+      responses:
+        '200':
+          description: Image deleted successfully
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  message:
+                    type: string
+                    example: Image deleted successfully
+      security:
+      - bearer: []
+      summary: Delete an image from a service
+      tags:
+      - App
+    servers:
+    - url: https://api.zoca.ai
+      description: Production
+  /services/variation/{id}:
+    put:
+      description: Updates an existing service variation
+      operationId: t_value
+      parameters:
+      - name: id
+        required: true
+        in: path
+        description: UUID of the variation
+        schema:
+          format: uuid
+          type: string
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/e'
+      responses:
+        '200':
+          description: Variation updated successfully
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/t'
+      security:
+      - bearer: []
+      summary: Update a variation
+      tags:
+      - App
+    delete:
+      description: Deletes an existing service variation
+      operationId: t_value
+      parameters:
+      - name: id
+        required: true
+        in: path
+        description: UUID of the variation
+        schema:
+          format: uuid
+          type: string
+      responses:
+        '200':
+          description: Variation deleted successfully
+      security:
+      - bearer: []
+      summary: Delete a variation
+      tags:
+      - App
+    servers:
+    - url: https://api.zoca.ai
+      description: Production
+  /services/service/{serviceId}/variations:
+    get:
+      description: Retrieves all variations associated with a service
+      operationId: t_value
+      parameters:
+      - name: limit
+        required: false
+        in: query
+        description: Items per page
+        schema:
+          default: 10
+      - name: page
+        required: false
+        in: query
+        description: Page number
+        schema:
+          default: 1
+      - name: serviceId
+        required: true
+        in: path
+        description: UUID of the service
+        schema:
+          format: uuid
+          type: string
+      responses:
+        '200':
+          description: Service variations retrieved successfully
+          content:
+            application/json:
+              schema:
+                type: array
+                items:
+                  $ref: '#/components/schemas/t'
+      security:
+      - bearer: []
+      summary: Get variations for a service
+      tags:
+      - App
+    servers:
+    - url: https://api.zoca.ai
+      description: Production
+  /services/service/{serviceId}/variation:
+    post:
+      description: Creates a new variation for a service
+      operationId: t_value
+      parameters:
+      - name: serviceId
+        required: true
+        in: path
+        description: UUID of the service
+        schema:
+          format: uuid
+          type: string
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/e'
+      responses:
+        '201':
+          description: Variation created successfully
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/t'
+      security:
+      - bearer: []
+      summary: Create a new variation
+      tags:
+      - App
+    servers:
+    - url: https://api.zoca.ai
+      description: Production
+  /services/{entityId}/categories-with-services:
+    post:
+      description: Creates multiple categories along with their associated services
+      operationId: t_value
+      parameters:
+      - name: entityId
+        required: true
+        in: path
+        description: UUID of the entity
+        schema:
+          format: uuid
+          type: string
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/e'
+      responses:
+        '201':
+          description: Categories and services created successfully
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/e'
+      security:
+      - bearer: []
+      summary: Create categories with services
+      tags:
+      - App
+    servers:
+    - url: https://api.zoca.ai
+      description: Production
+  /services/variations/batch:
+    put:
+      description: Updates multiple service variations in a single request
+      operationId: t_value
+      parameters: []
+      requestBody:
+        required: true
+        description: Array of variation updates
+        content:
+          application/json:
+            schema:
+              type: array
+              items:
+                $ref: '#/components/schemas/e'
+      responses:
+        '200':
+          description: Variations updated successfully
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/e'
+      security:
+      - bearer: []
+      summary: Batch update variations
+      tags:
+      - App
+    servers:
+    - url: https://api.zoca.ai
+      description: Production
+  /services/{entityId}/categories/suggested:
+    get:
+      description: Retrieves AI-generated suggested categories based on the entity's primary category
+      operationId: t_value
+      parameters:
+      - name: currency
+        required: false
+        in: query
+        description: 'Currency code to use for pricing (default: USD)'
+        schema:
+          type: string
+      - name: refresh
+        required: false
+        in: query
+        description: Whether to refresh the suggestions (generate new ones)
+        schema:
+          type: boolean
+      - name: entityId
+        required: true
+        in: path
+        description: UUID of the entity
+        schema:
+          format: uuid
+          type: string
+      responses:
+        '200':
+          description: Suggested categories retrieved successfully
+          content:
+            application/json:
+              schema:
+                type: array
+                items:
+                  $ref: '#/components/schemas/e'
+      security:
+      - bearer: []
+      summary: Get suggested categories
+      tags:
+      - App
+    servers:
+    - url: https://api.zoca.ai
+      description: Production
+  /services/{entityId}/{categoryId}/suggested:
+    get:
+      description: Retrieves a list of suggested services for the specified entity and category
+      operationId: t_value
+      parameters:
+      - name: currency
+        required: false
+        in: query
+        description: 'Currency code to use for pricing (default: USD)'
+        schema:
+          type: string
+      - name: refresh
+        required: false
+        in: query
+        description: Whether to refresh the suggestions (generate new ones)
+        schema:
+          type: boolean
+      - name: categoryId
+        required: true
+        in: path
+        description: UUID of the category
+        schema:
+          format: uuid
+          type: string
+      - name: entityId
+        required: true
+        in: path
+        description: UUID of the entity
+        schema:
+          format: uuid
+          type: string
+      responses:
+        '200':
+          description: List of suggested services retrieved successfully
+          content:
+            application/json:
+              schema:
+                type: array
+                items:
+                  $ref: '#/components/schemas/e'
+      security:
+      - bearer: []
+      summary: Get suggested services for an entity and category
+      tags:
+      - App
+    servers:
+    - url: https://api.zoca.ai
+      description: Production
+  /services/{entityId}/categories/suggested-services:
+    get:
+      description: Retrieves AI-generated suggested services for each category in the entity
+      operationId: t_value
+      parameters:
+      - name: currency
+        required: false
+        in: query
+        description: 'Currency code to use for pricing (default: USD)'
+        schema:
+          type: string
+      - name: refresh
+        required: false
+        in: query
+        description: Whether to refresh the suggestions (generate new ones)
+        schema:
+          type: boolean
+      - name: entityId
+        required: true
+        in: path
+        description: UUID of the entity
+        schema:
+          format: uuid
+          type: string
+      responses:
+        '200':
+          description: Categories with suggested services retrieved successfully
+          content:
+            application/json:
+              schema:
+                type: array
+                items:
+                  $ref: '#/components/schemas/e'
+        '404':
+          description: Entity not found or has no categories
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  status:
+                    type: number
+                    example: 404
+                  error:
+                    type: string
+                    example: Not Found
+                  message:
+                    type: string
+                    example: No categories found for this entity
+        '500':
+          description: Internal server error
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  status:
+                    type: number
+                    example: 500
+                  error:
+                    type: string
+                    example: Internal Server Error
+                  message:
+                    type: string
+      security:
+      - bearer: []
+      summary: Get suggested services for all categories
+      tags:
+      - App
+    servers:
+    - url: https://api.zoca.ai
+      description: Production
+  /services/{entityId}/categories/check-duplicate:
+    get:
+      description: Checks if a category name already exists for the given entity
+      operationId: t_value
+      parameters:
+      - name: excludeCategoryId
+        required: false
+        in: query
+        description: Optional category ID to exclude from duplicate check
+        schema:
+          format: uuid
+          type: string
+      - name: name
+        required: true
+        in: query
+        description: Category name to check
+        schema:
+          type: string
+      - name: entityId
+        required: true
+        in: path
+        description: UUID of the entity
+        schema:
+          format: uuid
+          type: string
+      responses:
+        '200':
+          description: Duplicate check completed
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  isDuplicate:
+                    type: boolean
+                    description: True if category name already exists
+      security:
+      - bearer: []
+      summary: Check for duplicate category name
+      tags:
+      - App
+    servers:
+    - url: https://api.zoca.ai
+      description: Production
+  /social-media/update-caption:
+    post:
+      operationId: t_value
+      parameters: []
+      responses:
+        '201':
+          description: ''
+      summary: Update post caption
+      tags:
+      - App
+    servers:
+    - url: https://api.zoca.ai
+      description: Production
+  /social-media/get-feed-posts:
+    post:
+      operationId: t_value
+      parameters: []
+      responses:
+        '201':
+          description: ''
+      summary: Get feed posts with pagination
+      tags:
+      - App
+    servers:
+    - url: https://api.zoca.ai
+      description: Production
+  /social-media/get-instagram-post:
+    get:
+      operationId: t_value
+      parameters: []
+      responses:
+        '200':
+          description: ''
+      summary: Get Instagram post by ID
+      tags:
+      - App
+    servers:
+    - url: https://api.zoca.ai
+      description: Production
+  /social-media/add-feedback-to-post:
+    post:
+      operationId: t_value
+      parameters: []
+      responses:
+        '201':
+          description: ''
+      summary: Add feedback to a post
+      tags:
+      - App
+    servers:
+    - url: https://api.zoca.ai
+      description: Production
+  /social-media/get-feedback-for-post:
+    get:
+      operationId: t_value
+      parameters: []
+      responses:
+        '200':
+          description: ''
+      summary: Get feedback for a post
+      tags:
+      - App
+    servers:
+    - url: https://api.zoca.ai
+      description: Production
+  /social-media/remove-feedback-from-post:
+    put:
+      operationId: t_value
+      parameters: []
+      responses:
+        '200':
+          description: ''
+      summary: Remove feedback from a post
+      tags:
+      - App
+    servers:
+    - url: https://api.zoca.ai
+      description: Production
+  /social-media/get-user-insta-details:
+    get:
+      operationId: t_value
+      parameters: []
+      responses:
+        '200':
+          description: ''
+      summary: Get user Instagram details
+      tags:
+      - App
+    servers:
+    - url: https://api.zoca.ai
+      description: Production
+  /social-media/set-user-insta-details:
+    put:
+      operationId: t_value
+      parameters: []
+      responses:
+        '200':
+          description: ''
+      summary: Set user Instagram details
+      tags:
+      - App
+    servers:
+    - url: https://api.zoca.ai
+      description: Production
+  /social-media/get-user-overdue-count:
+    get:
+      operationId: t_value
+      parameters: []
+      responses:
+        '200':
+          description: ''
+      summary: Get user overdue post count
+      tags:
+      - App
+    servers:
+    - url: https://api.zoca.ai
+      description: Production
+  /social-media/approve-all-posts-by-uid:
+    put:
+      operationId: t_value
+      parameters: []
+      responses:
+        '200':
+          description: ''
+      summary: Approve all posts by user ID
+      tags:
+      - App
+    servers:
+    - url: https://api.zoca.ai
+      description: Production
+  /social-media/set-user-post-status:
+    put:
+      operationId: t_value
+      parameters: []
+      responses:
+        '200':
+          description: ''
+      summary: Set user post status
+      tags:
+      - App
+    servers:
+    - url: https://api.zoca.ai
+      description: Production
+  /social-media/approve-user-overdue-post-status:
+    put:
+      operationId: t_value
+      parameters: []
+      responses:
+        '200':
+          description: ''
+      summary: Approve user overdue post status
+      tags:
+      - App
+    servers:
+    - url: https://api.zoca.ai
+      description: Production
+  /social-media/get-all-posting-dates-for-month:
+    get:
+      operationId: t_value
+      parameters: []
+      responses:
+        '200':
+          description: ''
+      summary: Get all posting dates for a month
+      tags:
+      - App
+    servers:
+    - url: https://api.zoca.ai
+      description: Production
+  /social-media/get-preference-request:
+    get:
+      operationId: t_value
+      parameters: []
+      responses:
+        '200':
+          description: ''
+      summary: Get preference update request status
+      tags:
+      - App
+    servers:
+    - url: https://api.zoca.ai
+      description: Production
+  /social-media/put-preference-request:
+    put:
+      operationId: t_value
+      parameters: []
+      responses:
+        '200':
+          description: ''
+      summary: Update preference request status
+      tags:
+      - App
+    servers:
+    - url: https://api.zoca.ai
+      description: Production
+  /social-media/add-instagram-post-rejection-reason:
+    post:
+      operationId: t_value
+      parameters: []
+      responses:
+        '201':
+          description: ''
+      summary: Add Instagram post rejection reason
+      tags:
+      - App
+    servers:
+    - url: https://api.zoca.ai
+      description: Production
+  /square/locations/{entityId}:
+    get:
+      operationId: t_value
+      parameters: []
+      responses:
+        '200':
+          description: ''
+      summary: Get Square locations by entity ID
+      tags:
+      - App
+    servers:
+    - url: https://api.zoca.ai
+      description: Production
+  /ui-components:
+    get:
+      operationId: t_value
+      parameters: []
+      responses:
+        '200':
+          description: ''
+      summary: Get UI component by ID or get all components
+      tags:
+      - App
+    servers:
+    - url: https://api.zoca.ai
+      description: Production
+  /updates/{id}:
+    patch:
+      operationId: t_value
+      parameters: []
+      responses:
+        '200':
+          description: The update has been successfully patched.
+      summary: Patch an update record
+      tags:
+      - App
+    servers:
+    - url: https://api.zoca.ai
+      description: Production
+  /updates/entity/{entityId}:
+    get:
+      operationId: t_value
+      parameters:
+      - name: isApproved
+        required: false
+        in: query
+        description: Filter for approved updates (status = APPROVED)
+        schema:
+          type: boolean
+      - name: isPending
+        required: false
+        in: query
+        description: Filter for pending updates (status != APPROVED)
+        schema:
+          type: boolean
+      - name: updateType
+        required: false
+        in: query
+        description: Type of updates to filter (UPDATE or APPROVAL)
+        schema:
+          enum:
+          - UPDATE
+          - APPROVAL
+          type: string
+      - name: limit
+        required: false
+        in: query
+        description: Number of items per page
+        schema:
+          type: number
+      - name: page
+        required: false
+        in: query
+        description: Page number
+        schema:
+          type: number
+      - name: entityId
+        required: true
+        in: path
+        description: ID of the entity
+        schema: {}
+      responses:
+        '200':
+          description: List of updates for the entity.
+      summary: Get all updates for a specific entity
+      tags:
+      - App
+    patch:
+      operationId: t_value
+      parameters:
+      - name: entityId
+        required: true
+        in: path
+        description: ID of the entity
+        schema: {}
+      responses:
+        '200':
+          description: ''
+      summary: Mark all updates as read for a specific entity
+      tags:
+      - App
+    servers:
+    - url: https://api.zoca.ai
+      description: Production
+  /updates/count/{entityId}:
+    get:
+      operationId: t_value
+      parameters:
+      - name: updateType
+        required: false
+        in: query
+        description: Type of updates to filter (UPDATE or APPROVAL)
+        schema:
+          enum:
+          - UPDATE
+          - APPROVAL
+          type: string
+      - name: entityId
+        required: true
+        in: path
+        description: ID of the entity
+        schema: {}
+      responses:
+        '200':
+          description: ''
+      summary: Get the count of updates for a specific entity
+      tags:
+      - App
+    servers:
+    - url: https://api.zoca.ai
+      description: Production
+  /website/add-booking-link:
+    post:
+      operationId: t_value
+      parameters: []
+      responses:
+        '201':
+          description: ''
+      summary: Add booking link and trigger website creation
+      tags:
+      - App
+    servers:
+    - url: https://api.zoca.ai
+      description: Production
+  /website/onboarding-creation-status:
+    get:
+      description: 'Returns status for the two onboarding flows tracked in website.processes: WEBSITE_CREATION_ONBOARDING (Orca user.onboarded path) and WEBSITE_CREATION_ONBOARDING_WITH_BOOKING_LINK (add-booking-link path). Either websiteId or locationEntityId must be provided.'
+      operationId: t_value
+      parameters:
+      - name: locationEntityId
+        required: false
+        in: query
+        schema:
+          format: uuid
+          type: string
+      - name: websiteId
+        required: false
+        in: query
+        schema:
+          format: uuid
+          type: string
+      responses:
+        '200':
+          description: ''
+      summary: Get onboarding website-creation status
+      tags:
+      - App
+    servers:
+    - url: https://api.zoca.ai
+      description: Production
+  /website/generate-website:
+    get:
+      operationId: t_value
+      parameters: []
+      responses:
+        '200':
+          description: ''
+      summary: Generate website for a location
+      tags:
+      - App
+    servers:
+    - url: https://api.zoca.ai
+      description: Production
+  /website/platforms:
+    get:
+      operationId: t_value
+      parameters: []
+      responses:
+        '200':
+          description: ''
+      summary: Get available booking platforms
+      tags:
+      - App
+    servers:
+    - url: https://api.zoca.ai
+      description: Production
+  /website/templates:
+    get:
+      operationId: t_value
+      parameters: []
+      responses:
+        '200':
+          description: ''
+      summary: Get templates, optionally filtered by website ID
+      tags:
+      - App
+    servers:
+    - url: https://api.zoca.ai
+      description: Production
+  /website/section-media:
+    get:
+      operationId: t_value
+      parameters: []
+      responses:
+        '200':
+          description: ''
+      summary: Get section media data
+      tags:
+      - App
+    servers:
+    - url: https://api.zoca.ai
+      description: Production
+  /website/replace-media-in-section:
+    post:
+      operationId: t_value
+      parameters: []
+      responses:
+        '201':
+          description: ''
+      summary: Replace media in section
+      tags:
+      - App
+    servers:
+    - url: https://api.zoca.ai
+      description: Production
+  /website/save-theme-template:
+    post:
+      operationId: t_value
+      parameters: []
+      responses:
+        '201':
+          description: ''
+      summary: Save selected theme and template
+      tags:
+      - App
+    servers:
+    - url: https://api.zoca.ai
+      description: Production
+  /website/{websiteId}/themes/generate-palette:
+    post:
+      operationId: t_value
+      parameters: []
+      responses:
+        '201':
+          description: ''
+      summary: Generate AI color palettes from a prompt
+      tags:
+      - App
+    servers:
+    - url: https://api.zoca.ai
+      description: Production
+  /website/{websiteId}/ai-colors:
+    get:
+      operationId: t_value
+      parameters: []
+      responses:
+        '200':
+          description: ''
+      summary: List a website's AI-generated color palettes
+      tags:
+      - App
+    servers:
+    - url: https://api.zoca.ai
+      description: Production
+  /website/{websiteId}/ai-colors/{id}:
+    delete:
+      operationId: t_value
+      parameters: []
+      responses:
+        '200':
+          description: ''
+      summary: Delete an AI-generated color palette
+      tags:
+      - App
+    servers:
+    - url: https://api.zoca.ai
+      description: Production
+  /website/{websiteId}/ai-colors/{id}/persist:
+    post:
+      operationId: t_value
+      parameters: []
+      responses:
+        '201':
+          description: ''
+      summary: Persist a stored AI palette as a theme (returns themeId)
+      tags:
+      - App
+    servers:
+    - url: https://api.zoca.ai
+      description: Production
+  /website/{websiteId}/ai-colors/{id}/apply:
+    post:
+      operationId: t_value
+      parameters: []
+      responses:
+        '201':
+          description: ''
+      summary: Apply a stored AI palette to the website and publish
+      tags:
+      - App
+    servers:
+    - url: https://api.zoca.ai
+      description: Production
+  /website/{websiteId}/theme-template:
+    get:
+      operationId: t_value
+      parameters: []
+      responses:
+        '200':
+          description: ''
+      summary: Get theme and template for website
+      tags:
+      - App
+    servers:
+    - url: https://api.zoca.ai
+      description: Production
+  /website/reorder-media-in-section:
+    post:
+      operationId: t_value
+      parameters: []
+      responses:
+        '201':
+          description: ''
+      summary: Reorder media in section
+      tags:
+      - App
+    servers:
+    - url: https://api.zoca.ai
+      description: Production
+  /website/get-website-status:
+    get:
+      operationId: t_value
+      parameters: []
+      responses:
+        '200':
+          description: ''
+      summary: Get website status and preferences
+      tags:
+      - App
+    servers:
+    - url: https://api.zoca.ai
+      description: Production
+  /website/subdomain:
+    get:
+      operationId: t_value
+      parameters: []
+      responses:
+        '200':
+          description: ''
+      summary: Get website subdomain
+      tags:
+      - App
+    put:
+      operationId: t_value
+      parameters: []
+      responses:
+        '200':
+          description: ''
+      summary: Update website subdomain (preserves current domain)
+      tags:
+      - App
+    servers:
+    - url: https://api.zoca.ai
+      description: Production
+  /website/subdomain-validate:
+    get:
+      operationId: t_value
+      parameters: []
+      responses:
+        '200':
+          description: ''
+      summary: Validate subdomain availability
+      tags:
+      - App
+    servers:
+    - url: https://api.zoca.ai
+      description: Production
+  /website/add-user-preferences:
+    post:
+      operationId: t_value
+      parameters: []
+      responses:
+        '201':
+          description: ''
+      summary: Add user preferences
+      tags:
+      - App
+    servers:
+    - url: https://api.zoca.ai
+      description: Production
+  /discovery/aeo-reports/{auditRunId}/custom-prompts:
+    post:
+      operationId: t_value
+      parameters: []
+      responses:
+        '202':
+          description: Custom prompt accepted and queued for measurement
+      summary: Add a user custom prompt to an existing AEO report
+      tags:
+      - App
+    servers:
+    - url: https://api.zoca.ai
+      description: Production
+  /discovery/{locationEntityId}/impact-nudges:
+    get:
+      operationId: t_value
+      parameters: []
+      responses:
+        '200':
+          description: Returns impact nudges snapshot badges
+      summary: Get impact nudges for a location entity
+      tags:
+      - App
+    servers:
+    - url: https://api.zoca.ai
+      description: Production
+  /discovery/{locationEntityId}/gbp/metrics:
+    get:
+      description: Retrieves comprehensive GBP metrics including profile views, search appearances, direction requests, and phone calls with time series data and period-over-period comparisons.
+      operationId: t_value
+      parameters:
+      - name: locationEntityId
+        required: true
+        in: path
+        description: Location entity UUID
+        schema:
+          example: c65a879b-bf21-4b5c-ace5-51992c4a1e62
+      responses:
+        '200':
+          description: Successfully retrieved GBP metrics
+          content:
+            application/json:
+              schema:
+                example:
+                  overall:
+                    percentageChange: 18
+                    trend: up
+                  metrics:
+                    profileViews:
+                      label: Profile Views
+                      icon: https://ik.imagekit.io/zoca/app/assets/icons/profile-views.png
+                      total: 847
+                      previousTotal: 756
+                      delta:
+                        absolute: 91
+                        percentage: 12
+                        trend: up
+                      timeSeries:
+                      - date: '2025-12-22'
+                        value: 118
+                      - date: '2025-12-23'
+                        value: 121
+                      - date: '2025-12-24'
+                        value: 109
+                      - date: '2025-12-25'
+                        value: 96
+                      - date: '2025-12-26'
+                        value: 132
+                      - date: '2025-12-27'
+                        value: 141
+                      - date: '2025-12-28'
+                        value: 130
+                    searchAppearances:
+                      label: Website Clicks
+                      icon: https://ik.imagekit.io/zoca/app/assets/icons/search-appearances.png
+                      total: 2100
+                      previousTotal: 1707
+                      delta:
+                        absolute: 393
+                        percentage: 23
+                        trend: up
+                      timeSeries: []
+                    directionRequests:
+                      label: Direction Requests
+                      icon: https://ik.imagekit.io/zoca/app/assets/icons/direction-requests.png
+                      total: 156
+                      previousTotal: 144
+                      delta:
+                        absolute: 12
+                        percentage: 8
+                        trend: up
+                      timeSeries: []
+                    phoneCalls:
+                      label: Phone Calls
+                      icon: https://ik.imagekit.io/zoca/app/assets/icons/phone-calls.png
+                      total: 89
+                      previousTotal: 77
+                      delta:
+                        absolute: 12
+                        percentage: 15
+                        trend: up
+                      timeSeries: []
+        '400':
+          description: Bad request - invalid date format or parameters
+      summary: Get GBP analytics metrics for a location
+      tags:
+      - App
+    servers:
+    - url: https://api.zoca.ai
+      description: Production
+  /discovery/{locationEntityId}/gbp/optimization-score:
+    get:
+      description: Retrieves the GBP optimization score (zocaScore) indicating how well the Google Business Profile is optimized (0-100). The score is calculated dynamically using insights data.
+      operationId: t_value
+      parameters:
+      - name: locationEntityId
+        required: true
+        in: path
+        description: Location entity UUID
+        schema:
+          example: c65a879b-bf21-4b5c-ace5-51992c4a1e62
+      responses:
+        '200':
+          description: Successfully retrieved GBP optimization score (zocaScore)
+          content:
+            application/json:
+              schema:
+                example:
+                  score: 65
+                  maxScore: 100
+                  metadata:
+                    lastUpdated: '2025-01-07T00:00:00Z'
+                    category: GBP_OPTIMIZATION
+                    confidence: high
+        '400':
+          description: Bad request - invalid location entity ID
+        '404':
+          description: Location or placeId not found for the given location entity ID
+      summary: Get GBP Optimization Score for a location
+      tags:
+      - App
+    servers:
+    - url: https://api.zoca.ai
+      description: Production
+  /discovery/{locationEntityId}/website/metrics:
+    get:
+      description: Retrieves comprehensive website metrics including visitors, page views, average time on site, and leads with period-over-period comparisons.
+      operationId: t_value
+      parameters:
+      - name: locationEntityId
+        required: true
+        in: path
+        description: Location entity UUID
+        schema:
+          example: c65a879b-bf21-4b5c-ace5-51992c4a1e62
+      responses:
+        '200':
+          description: Successfully retrieved website metrics
+          content:
+            application/json:
+              schema:
+                example:
+                  overall:
+                    percentageChange: 10
+                    trend: up
+                  metrics:
+                    totalVisitors:
+                      label: Total Visitors
+                      total: 100
+                      previousTotal: 80
+                      delta:
+                        absolute: 20
+                        percentage: 25
+                        trend: up
+                      timeSeries:
+                      - date: '2025-06-30'
+                        value: 43
+                      - date: '2025-07-07'
+                        value: 31
+                      - date: '2025-07-14'
+                        value: 28
+                      - date: '2025-07-21'
+                        value: 26
+                    pageViews:
+                      label: Total Visitors
+                      total: 100
+                      previousTotal: 80
+                      delta:
+                        absolute: 20
+                        percentage: 25
+                        trend: up
+                      timeSeries:
+                      - date: '2025-06-30'
+                        value: 43
+                      - date: '2025-07-07'
+                        value: 31
+                      - date: '2025-07-14'
+                        value: 28
+                      - date: '2025-07-21'
+                        value: 26
+                    averageTimeSpent:
+                      label: Total Visitors
+                      total: 100
+                      previousTotal: 80
+                      delta:
+                        absolute: 20
+                        percentage: 25
+                        trend: up
+                      timeSeries:
+                      - date: '2025-06-30'
+                        value: 43
+                      - date: '2025-07-07'
+                        value: 31
+                      - date: '2025-07-14'
+                        value: 28
+                      - date: '2025-07-21'
+                        value: 26
+                    leads:
+                      label: Total Visitors
+                      total: 100
+                      previousTotal: 80
+                      delta:
+                        absolute: 20
+                        percentage: 25
+                        trend: up
+                      timeSeries:
+                      - date: '2025-06-30'
+                        value: 43
+                      - date: '2025-07-07'
+                        value: 31
+                      - date: '2025-07-14'
+                        value: 28
+                      - date: '2025-07-21'
+                        value: 26
+        '400':
+          description: Bad request - invalid date format or parameters
+      summary: Get website metrics for a location
+      tags:
+      - App
+    servers:
+    - url: https://api.zoca.ai
+      description: Production
+  /discovery/{locationEntityId}/keyword/performance/metrics:
+    get:
+      description: Returns KPI counts for the zocaweb keyword performance cards.
+      operationId: t_value
+      parameters: []
+      responses:
+        '200':
+          description: ''
+      summary: Get zocaweb keyword performance KPI metrics
+      tags:
+      - App
+    servers:
+    - url: https://api.zoca.ai
+      description: Production
+  /discovery/{locationEntityId}/keyword/performance/keywords:
+    get:
+      description: Returns backend-paginated keyword rows for a selected KPI bucket.
+      operationId: t_value
+      parameters: []
+      responses:
+        '200':
+          description: ''
+      summary: Get zocaweb paginated keyword performance rows
+      tags:
+      - App
+    servers:
+    - url: https://api.zoca.ai
+      description: Production
+  /discovery/{locationEntityId}/keyword/performance:
+    get:
+      description: Retrieves comprehensive keyword ranking performance metrics
+      operationId: t_value
+      parameters:
+      - name: limit
+        required: false
+        in: query
+        description: 'Items per page (default: 20, max: 50)'
+        schema:
+          type: number
+      - name: page
+        required: false
+        in: query
+        description: 'Page number (default: 1)'
+        schema:
+          type: number
+      - name: locationEntityId
+        required: true
+        in: path
+        description: Location entity UUID
+        schema:
+          example: c65a879b-bf21-4b5c-ace5-51992c4a1e62
+      responses:
+        '200':
+          description: Successfully retrieved keyword performance metrics
+          content:
+            application/json:
+              schema:
+                example:
+                  totalKeywords: 50
+                  keywordsImprovedPercentage: 50
+                  averageRankImprovementPercentage: 42.5
+                  top3Percentage: 42
+                  page: 1
+                  limit: 20
+                  totalPages: 3
+                  keywords:
+                    total: 50
+                    items:
+                    - keyword: facial near me
+                      joiningRank: 21
+                      currentRank: 1
+                      rankDelta: 20
+                    - keyword: hydrafacial near me
+                      joiningRank: 18
+                      currentRank: 1
+                      rankDelta: 17
+        '400':
+          description: Bad request - invalid date format or parameters
+      summary: Get keyword performance for a location
+      tags:
+      - App
+    servers:
+    - url: https://api.zoca.ai
+      description: Production
+  /discovery/{locationEntityId}/website/optimization-score:
+    get:
+      description: Retrieves the Website optimization score indicating how well the Website is optimized (0-100).
+      operationId: t_value
+      parameters:
+      - name: locationEntityId
+        required: true
+        in: path
+        description: Location entity UUID
+        schema:
+          example: c65a879b-bf21-4b5c-ace5-51992c4a1e62
+      responses:
+        '200':
+          description: Successfully retrieved Website optimization score
+          content:
+            application/json:
+              schema:
+                example:
+                  score: 94
+                  maxScore: 100
+                  metadata:
+                    lastUpdated: '2025-12-29T00:00:00Z'
+                    category: WEBSITE_OPTIMIZATION
+                    confidence: high
+                    factors:
+                      profileCompleteness: 98
+                      postFrequency: 92
+                      reviewResponseRate: 95
+                      photoQuality: 90
+        '400':
+          description: Bad request - invalid location entity ID
+      summary: Get Website Optimization Score for a location
+      tags:
+      - App
+    servers:
+    - url: https://api.zoca.ai
+      description: Production
+  /discovery/{locationEntityId}/review/metrics:
+    get:
+      description: Retrieves comprehensive review performance metrics including reviews received, automated invites, app invites, and QR scans with period-over-period comparisons.
+      operationId: t_value
+      parameters:
+      - name: locationEntityId
+        required: true
+        in: path
+        description: Location entity UUID
+        schema:
+          example: c65a879b-bf21-4b5c-ace5-51992c4a1e62
+      responses:
+        '200':
+          description: Successfully retrieved review metrics
+          content:
+            application/json:
+              schema:
+                example:
+                  overall:
+                    percentageChange: 8
+                    trend: up
+                  metrics:
+                    reviewsReceived:
+                      label: Reviews Received
+                      icon: https://ik.imagekit.io/zoca/app/assets/icons/speech-bubble.png
+                      total: 23
+                      previousTotal: 21
+                      delta:
+                        absolute: 2
+                        percentage: 8
+                        trend: up
+                    automatedInvites:
+                      label: Automated Invites
+                      icon: https://ik.imagekit.io/zoca/app/assets/icons/automated.png
+                      total: 30
+                      previousTotal: 25
+                      delta:
+                        absolute: 5
+                        percentage: 20
+                        trend: up
+                    appInvites:
+                      label: App Invites
+                      icon: https://ik.imagekit.io/zoca/app/assets/icons/app.png
+                      total: 24
+                      previousTotal: 16
+                      delta:
+                        absolute: 8
+                        percentage: 50
+                        trend: up
+                    qrScans:
+                      label: QR Scans
+                      icon: https://ik.imagekit.io/zoca/app/assets/icons/qr-code.png
+                      total: 24
+                      previousTotal: 9
+                      delta:
+                        absolute: 15
+                        percentage: 167
+                        trend: up
+        '400':
+          description: Bad request - invalid date format or parameters
+      summary: Get review metrics for a location
+      tags:
+      - App
+    servers:
+    - url: https://api.zoca.ai
+      description: Production
+  /discovery/{locationEntityId}/agent-journey/metrics:
+    get:
+      description: Retrieves comprehensive agent journey metrics including hours saved, tasks done, task categories, and key achievements with period-over-period comparisons.
+      operationId: t_value
+      parameters:
+      - name: locationEntityId
+        required: true
+        in: path
+        description: Location entity UUID
+        schema:
+          example: c65a879b-bf21-4b5c-ace5-51992c4a1e62
+      responses:
+        '200':
+          description: Successfully retrieved agent journey metrics
+          content:
+            application/json:
+              schema:
+                example:
+                  overall:
+                    hoursSaved:
+                      value: 23.3
+                      text: $1123 worth of work
+                    tasksDone:
+                      value: 20
+                      text: Since you joined
+                  taskCategories:
+                    gbpTasks: 9
+                    websiteTasks: 6
+                    reviewTasks: 5
+                  metrics:
+                    tasksLastWeek:
+                      label: Tasks last week
+                      total: 20
+                    rating:
+                      label: Rating
+                      total: 45
+                    reviews:
+                      label: Search Rank
+                      total: 3
+                    gbpScore:
+                      label: GBP Score
+                      total: 89
+        '400':
+          description: Bad request - invalid date format or parameters
+      summary: Get agent journey metrics for a location
+      tags:
+      - App
+    servers:
+    - url: https://api.zoca.ai
+      description: Production
+  /integrations/website/{entityId}/list:
+    get:
+      operationId: t_value
+      parameters: []
+      responses:
+        '200':
+          description: Platform list with per-entity status
+      security:
+      - access-token: []
+      summary: List all platforms with link status for an entity
+      tags:
+      - App
+    servers:
+    - url: https://api.zoca.ai
+      description: Production
+  /integrations/{entityId}/{id}:
+    get:
+      operationId: t_value
+      parameters: []
+      responses:
+        '200':
+          description: Full platform detail for steps page
+      security:
+      - access-token: []
+      summary: Get platform detail by id
+      tags:
+      - App
+    servers:
+    - url: https://api.zoca.ai
+      description: Production
+  /integrations/website/{entityId}/status:
+    patch:
+      operationId: t_value
+      parameters: []
+      responses:
+        '200':
+          description: Updated link status
+      security:
+      - access-token: []
+      summary: Link or unlink a platform for an entity
+      tags:
+      - App
+    servers:
+    - url: https://api.zoca.ai
+      description: Production
+  /hubspot/am-meeting-url/{entityId}:
+    get:
+      description: Builds a trackable HubSpot meeting URL for the account manager assigned to the given location entity. Pre-fills contact details when available.
+      operationId: t_value
+      parameters:
+      - name: entityId
+        required: true
+        in: path
+        description: Location entity ID
+        schema:
+          example: e7f8a9b0-1c2d-3e4f-5a6b-7c8d9e0f1a2b
+      responses:
+        '200':
+          description: HubSpot meeting URL retrieved successfully
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  url:
+                    type:
+                    - string
+                    - 'null'
+                    example: https://meetings.hubspot.com/am/check-in?firstName=John&lastName=Doe&email=john@example.com
+        '400':
+          description: Bad request - entityId is required
+      summary: Get AM Meeting URL for Location
+      tags:
+      - App
+    servers:
+    - url: https://api.zoca.ai
+      description: Production
+  /hubspot/offboarding-meeting-url/{entityId}:
+    get:
+      description: Builds a pre-filled HubSpot offboarding meeting URL for the given location entity. Pre-fills contact details when available.
+      operationId: t_value
+      parameters:
+      - name: agentEntityId
+        required: false
+        in: query
+        description: The agent entity ID(s) to pre-fill in the meeting form (comma-separated for multiple). Optional for delete account meetings.
+        schema: {}
+      - name: requestId
+        required: true
+        in: query
+        description: The request ID to pre-fill in the meeting form
+        schema: {}
+      - name: entityId
+        required: true
+        in: path
+        description: Location entity ID
+        schema:
+          example: e7f8a9b0-1c2d-3e4f-5a6b-7c8d9e0f1a2b
+      responses:
+        '200':
+          description: Offboarding meeting URL retrieved successfully
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  url:
+                    type: string
+                    example: https://meetings-na2.hubspot.com/siranjith?firstName=John&lastName=Doe&email=john@example.com
+        '400':
+          description: Bad request - entityId, requestId and agentEntityId are required
+      summary: Get Offboarding Meeting URL for Location
+      tags:
+      - App
+    servers:
+    - url: https://api.zoca.ai
+      description: Production
+  /:
+    get:
+      operationId: e_value
+      parameters: []
+      responses:
+        '200':
+          description: ''
+      summary: Get app data
+      tags:
+      - App
+    servers:
+    - url: https://public.zoca.com
+      description: Production
+  /r/{alias}:
+    get:
+      operationId: e_value
+      parameters: []
+      responses:
+        '200':
+          description: ''
+      summary: Redirect link by alias
+      tags:
+      - App
+    servers:
+    - url: https://public.zoca.com
+      description: Production
+  /get-app:
+    get:
+      operationId: e_value
+      parameters: []
+      responses:
+        '200':
+          description: ''
+      summary: Serve app redirect page
+      tags:
+      - App
+    servers:
+    - url: https://public.zoca.com
+      description: Production
+  /applink:
+    get:
+      operationId: e_value
+      parameters: []
+      responses:
+        '200':
+          description: ''
+      summary: Handle app deep link redirect
+      tags:
+      - App
+    servers:
+    - url: https://public.zoca.com
+      description: Production
+  /tasks/api/v1/chatbot/l2b/entity-phone-numbers/{entityId}:
+    get:
+      operationId: t_value
+      parameters:
+      - name: type
+        required: false
+        in: query
+        description: Type of phone numbers to retrieve
+        schema: {}
+      - name: entityId
+        required: true
+        in: path
+        description: Entity ID to retrieve phone numbers for
+        schema: {}
+      responses:
+        '200':
+          description: All L2B entity phone numbers retrieved successfully
+        '500':
+          description: Internal server error
+      summary: Get all L2B entity phone numbers
+      tags:
+      - App
+      security:
+      - access-token: []
+    servers:
+    - url: https://tasks.zoca.ai
+      description: Production
+  /tasks/api/v1/twilio/phone/search:
+    get:
+      operationId: t_value
+      parameters: []
+      responses:
+        '200':
+          description: ''
+      tags:
+      - App
+      security:
+      - access-token: []
+    servers:
+    - url: https://tasks.zoca.ai
+      description: Production
+  /tasks/api/v1/win-onboarding/status/{entityId}:
+    get:
+      description: Retrieves comprehensive status including business info, virtual number, and context data
+      operationId: t_value
+      parameters:
+      - name: entityId
+        required: true
+        in: path
+        description: Entity ID to check status for
+        schema: {}
+      responses:
+        '200':
+          description: Onboarding status retrieved successfully
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/e_2'
+        '404':
+          description: Onboarding status not found
+      summary: Get Win Onboarding Status
+      tags:
+      - App
+      security:
+      - access-token: []
+    servers:
+    - url: https://tasks.zoca.ai
+      description: Production
+  /tasks/api/v1/win-onboarding/client-history/{clientId}:
+    get:
+      description: Retrieves all call transcripts and history for a specific client
+      operationId: t_value
+      parameters:
+      - name: clientId
+        required: true
+        in: path
+        description: Client ID to fetch call history for
+        schema: {}
+      responses:
+        '200':
+          description: Client call history retrieved successfully
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/e_2'
+        '404':
+          description: No call history found for client
+      summary: Get client call history
+      tags:
+      - App
+      security:
+      - access-token: []
+    servers:
+    - url: https://tasks.zoca.ai
+      description: Production
+  /tasks/api/v1/win-onboarding/call/{callId}:
+    get:
+      description: Retrieves a single call transcript by callId with client information and callback
+      operationId: t_value
+      parameters:
+      - name: callId
+        required: true
+        in: path
+        description: Call ID to fetch call history for
+        schema: {}
+      responses:
+        '200':
+          description: Call history retrieved successfully
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/t_2'
+        '404':
+          description: No call history found for callId
+      summary: Get call history by call ID
+      tags:
+      - App
+      security:
+      - access-token: []
+    servers:
+    - url: https://tasks.zoca.ai
+      description: Production
+  /tasks/api/v1/win-onboarding/user/{userEntityId}/locations:
+    get:
+      description: Fetches user information and onboarding status for all locations associated with the user
+      operationId: t_value
+      parameters:
+      - name: userEntityId
+        required: true
+        in: path
+        description: User entity ID
+        schema: {}
+      responses:
+        '200':
+          description: User and locations onboarding status retrieved successfully
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/e_2'
+      summary: Get user info and locations onboarding status
+      tags:
+      - App
+      security:
+      - access-token: []
+    servers:
+    - url: https://tasks.zoca.ai
+      description: Production
+  /tasks/api/v1/win-onboarding/voice-agents/{entityId}:
+    get:
+      description: Returns the 4 voices the merchant should see in the picker, with Retell agentIds resolved by (environment, platform, slot). `entityId` is the LOCATION entity id — the same one used by `/agent-context/:entityId`, `/status/:entityId`, etc. — because platform detection (Zoca scheduling / integrated_platforms / entities.links) is location-scoped, not user-scoped. Voice metadata (title, tone, sample audio, gradient) is shared across all platforms; only agentId varies. Platforms without a dedicated bucket fall through to externalDefault.
+      operationId: t_value
+      parameters:
+      - name: entityId
+        required: true
+        in: path
+        description: Location entity ID whose platform context drives the agent ID resolution
+        schema: {}
+      responses:
+        '200':
+          description: Voice agents retrieved successfully
+      summary: Get available voice agents (platform-aware) for a location
+      tags:
+      - App
+      security:
+      - access-token: []
+    servers:
+    - url: https://tasks.zoca.ai
+      description: Production
+  /tasks/api/v1/win-onboarding/area-codes/{areaCode}/alternates:
+    get:
+      description: Returns all area codes (including the input) that serve the same geographic region. Useful for phone number matching across overlapping area codes.
+      operationId: t_value
+      parameters:
+      - name: areaCode
+        required: true
+        in: path
+        description: Area code to look up (e.g., "212", "646", "310")
+        schema:
+          example: '212'
+      responses:
+        '200':
+          description: Alternate area codes retrieved successfully
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  areaCode:
+                    type: string
+                    example: '212'
+                  alternates:
+                    type: array
+                    items:
+                      type: string
+                    example:
+                    - '212'
+                    - '646'
+                    - '332'
+      summary: Get alternate area codes
+      tags:
+      - App
+      security:
+      - access-token: []
+    servers:
+    - url: https://tasks.zoca.ai
+      description: Production
+  /tasks/api/v1/win-onboarding/agent-context/{entityId}:
+    get:
+      description: Retrieves the AI agent context from l2b.agent_context table including business info, services, policies, transfer number, and custom instructions
+      operationId: t_value
+      parameters:
+      - name: entityId
+        required: true
+        in: path
+        description: Entity ID to fetch agent context for
+        schema: {}
+      responses:
+        '200':
+          description: Agent context retrieved successfully
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/e_2'
+        '404':
+          description: Agent context not found for entity
+      summary: Get agent context for entity
+      tags:
+      - App
+      security:
+      - access-token: []
+    put:
+      description: Updates or creates the AI agent context in l2b.agent_context table. All fields are optional - only provided fields will be updated. If no context exists, a new one will be created.
+      operationId: t_value
+      parameters:
+      - name: entityId
+        required: true
+        in: path
+        description: Entity ID to update agent context for
+        schema: {}
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/e_2'
+      responses:
+        '200':
+          description: Agent context updated successfully
+          content:
+            application/json:
+              schema:
+                properties:
+                  entityId:
+                    type: string
+                    example: 123e4567-e89b-12d3-a456-426614174000
+                  success:
+                    type: boolean
+                    example: true
+                  message:
+                    type: string
+                    example: Agent context updated successfully
+        '400':
+          description: Bad request - validation error
+      summary: Update agent context for entity
+      tags:
+      - App
+      security:
+      - access-token: []
+    servers:
+    - url: https://tasks.zoca.ai
+      description: Production
+  /tasks/api/v1/win-onboarding/callback/status:
+    put:
+      description: Updates the status of an existing callback by callId and clientId. Can also update title and metadata.
+      operationId: t_value
+      parameters: []
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/e_2'
+      responses:
+        '200':
+          description: Callback status updated successfully
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/e_2'
+        '404':
+          description: Callback not found
+      summary: Update callback status
+      tags:
+      - App
+      security:
+      - access-token: []
+    servers:
+    - url: https://tasks.zoca.ai
+      description: Production
+  /tasks/api/v1/win-onboarding/quick-setup:
+    post:
+      description: Prepares agent context for WIN from existing entity data without requiring full onboarding. Pulls data from location info and legacy context to create agent context before webhook arrives.
+      operationId: t_value
+      parameters: []
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/e_2'
+      responses:
+        '201':
+          description: Agent context prepared successfully
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/e_2'
+        '400':
+          description: Bad request - validation error
+        '404':
+          description: Entity not found
+      summary: Quick setup - prepare agent context from existing data
+      tags:
+      - App
+      security:
+      - access-token: []
+    servers:
+    - url: https://tasks.zoca.ai
+      description: Production
+  /tasks/api/v1/win-onboarding/feedback:
+    post:
+      description: Creates a new feedback entry for the WIN feature
+      operationId: t_value
+      parameters: []
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/e_2'
+      responses:
+        '201':
+          description: Feedback created successfully
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/e_2'
+        '400':
+          description: Bad request - validation error
+      summary: Create WIN feedback
+      tags:
+      - App
+      security:
+      - access-token: []
+    servers:
+    - url: https://tasks.zoca.ai
+      description: Production
+  /tasks/api/v1/win-onboarding/feedback/{id}:
+    patch:
+      description: Updates an existing feedback entry (e.g., mark as resolved)
+      operationId: t_value
+      parameters:
+      - name: id
+        required: true
+        in: path
+        description: Feedback ID
+        schema: {}
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/e_2'
+      responses:
+        '200':
+          description: Feedback updated successfully
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/e_2'
+        '404':
+          description: Feedback not found
+      summary: Update WIN feedback
+      tags:
+      - App
+      security:
+      - access-token: []
+    servers:
+    - url: https://tasks.zoca.ai
+      description: Production
+  /tasks/api/v1/win-onboarding/status:
+    put:
+      description: Updates the onboarding status flags for an entity (accountCreated, chatbotEntityCreated, virtualNumberCreated, retellImported, contextBuilt, status)
+      operationId: t_value
+      parameters: []
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/e_2'
+      responses:
+        '200':
+          description: Onboarding status updated successfully
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/e_2'
+        '404':
+          description: Entity not found
+      summary: Update WIN onboarding status
+      tags:
+      - App
+      security:
+      - access-token: []
+    servers:
+    - url: https://tasks.zoca.ai
+      description: Production
+  /tasks/api/v1/win-onboarding/reach-out-list:
+    post:
+      description: Creates a new reach-out list entry or updates existing in_progress entry. If an in_progress entry exists for the entity, updates its timestamp. Otherwise, creates a new entry with in_progress status.
+      operationId: t_value
+      parameters: []
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/e_2'
+      responses:
+        '201':
+          description: Reach-out list entry created or updated successfully
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/e_2'
+        '400':
+          description: Bad request - validation error
+      summary: Create or update reach-out list entry
+      tags:
+      - App
+      security:
+      - access-token: []
+    servers:
+    - url: https://tasks.zoca.ai
+      description: Production
+  /tasks/api/v1/win/subscription/config:
+    get:
+      description: Returns Chargebee site and plan configuration for frontend
+      operationId: t_value
+      parameters: []
+      responses:
+        '200':
+          description: Subscription configuration retrieved successfully
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/e_2'
+      summary: Get subscription configuration
+      tags:
+      - App
+      security:
+      - access-token: []
+    servers:
+    - url: https://tasks.zoca.ai
+      description: Production
+  /tasks/api/v1/win/subscription/status/{entityId}:
+    get:
+      description: Returns subscription status and usage for an entity
+      operationId: t_value
+      parameters:
+      - name: entityId
+        required: true
+        in: path
+        description: Entity ID to check subscription for
+        schema: {}
+      responses:
+        '200':
+          description: Subscription status retrieved successfully
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/e_2'
+      summary: Get subscription status
+      tags:
+      - App
+      security:
+      - access-token: []
+    servers:
+    - url: https://tasks.zoca.ai
+      description: Production
+  /tasks/api/v1/win/subscription/activate-trial:
+    post:
+      description: Creates a FrontDesk subscription in Chargebee with a 7-day free trial. After trial ends, billing begins automatically.
+      operationId: t_value
+      parameters:
+      - name: bypass
+        required: false
+        in: query
+        schema:
+          type: boolean
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/e_2'
+      responses:
+        '201':
+          description: Trial subscription created successfully
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/e_2'
+      summary: Activate FrontDesk trial subscription
+      tags:
+      - App
+      security:
+      - access-token: []
+    servers:
+    - url: https://tasks.zoca.ai
+      description: Production
+components:
+  schemas:
+    Object:
+      type: object
+      properties: {}
+    t:
+      type: object
+      properties:
+        id:
+          type: number
+        planId:
+          type: number
+        agentEntityId:
+          type:
+          - object
+          - 'null'
+          format: uuid
+        agentName:
+          type: string
+        internalAddonName:
+          type: string
+          description: Chargebee item_price_id (internal addon name)
+        externalAddonName:
+          type: string
+          description: Human-readable addon label shown to end-users
+        active:
+          type: boolean
+          description: true if the location currently holds an active subscription for this addon
+        subscriptionId:
+          type:
+          - object
+          - 'null'
+        quantity:
+          type:
+          - object
+          - 'null'
+        trialEnd:
+          type:
+          - object
+          - 'null'
+          description: Unix epoch seconds (Chargebee trial_end)
+        addonPricingId:
+          type:
+          - object
+          - 'null'
+          description: chargebee.addon_pricing.id for this addon at the location's current cadence. Pass back to PATCH /billing/subscription as `update_items.items[].addonPricingId`.Null when no active addon_pricing row exists - surfaces a config gap and the FE should hide the buy CTA.
+        unitPriceCents:
+          type:
+          - object
+          - 'null'
+          description: Per-line price the location would be billed at this cadence (cents).
+      required:
+      - id
+      - planId
+      - agentEntityId
+      - agentName
+      - internalAddonName
+      - externalAddonName
+      - active
+      - subscriptionId
+      - quantity
+      - trialEnd
+      - addonPricingId
+      - unitPriceCents
+    e:
+      type: object
+      properties:
+        id:
+          type: number
+        entityId:
+          type: string
+        attribute:
+          type: string
+        value:
+          type:
+          - object
+          - 'null'
+        metadata:
+          type:
+          - object
+          - 'null'
+        createdAt:
+          type:
+          - object
+          - 'null'
+      required:
+      - id
+      - entityId
+      - attribute
+    t_2:
+      type: object
+      properties:
+        callId:
+          type: string
+          description: Unique call identifier
+          example: call_abcdef123456
+        entityId:
+          type: string
+          description: Entity ID associated with the call
+        startTime:
+          type: string
+          description: Call start time
+        endTime:
+          type: string
+          description: Call end time
+        status:
+          type: string
+          description: Call status
+          example: COMPLETED
+          enum:
+          - ONGOING
+          - COMPLETED
+        metadata:
+          type: object
+          description: Call metadata including transcript, recording URL, etc.
+        summary:
+          type: object
+          description: AI-generated call summary and analysis
+        createdAt:
+          type: string
+          description: Record creation timestamp
+        callback:
+          description: Callback associated with this call
+          allOf:
+          - $ref: '#/components/schemas/e_2'
+        clientId:
+          type: string
+          description: Client ID associated with the call
+        clientFirstName:
+          type: string
+          description: Client first name
+        clientLastName:
+          type: string
+          description: Client last name
+        clientPhoneNumber:
+          type: string
+          description: Client phone number
+      required:
+      - callId
+      - entityId
+      - startTime
+      - status
+      - createdAt
+      - clientId
+    e_2:
+      type: object
+      properties:
+        scan:
+          $ref: '#/components/schemas/e_2'
+        businessLat:
+          type:
+          - number
+          - 'null'
+        businessLng:
+          type:
+          - number
+          - 'null'
+        points:
+          type: array
+          items:
+            $ref: '#/components/schemas/e_2'
+        heroMetrics:
+          $ref: '#/components/schemas/e_2'
+      required:
+      - scan
+      - businessLat
+      - businessLng
+      - points
+      - heroMetrics
+  securitySchemes:
+    access-token:
+      scheme: bearer
+      bearerFormat: JWT
+      type: http
+      name: Authorization
+      description: Enter JWT token in the format Bearer <token>
+      in: header
+x-refined-from:
+- zoca-platform-openapi.yml
+- zoca-public-openapi.yml
+- zoca-tasks-openapi.yml

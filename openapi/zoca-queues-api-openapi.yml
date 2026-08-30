@@ -1,0 +1,318 @@
+openapi: 3.2.0
+info:
+  title: Zoca Tasks Queues API
+  description: 'The Zoca tasks/automation service: AI content queue and planning, FrontDesk (Retell/Twilio) voice + SMS agent onboarding, local-SEO grid scans, WIN conversion triggers, and inbound integration webhooks (Chargebee, Square, Pipedrive, Twilio, Retell, CallHippo, Sybill, Instantly).'
+  version: 3.20.9
+  contact: {}
+  x-apievangelist-note: Harvested verbatim from https://tasks.zoca.ai/swagger.json. The provider ships the default NestJS Swagger metadata (title "API Documentation", empty servers[]); title/description/servers were set by API Evangelist for identification and the unmodified original is preserved at openapi/_original/zoca-tasks-swagger.json. Every path, operation, summary, parameter and response is exactly as published.
+servers:
+- url: https://tasks.zoca.ai
+  description: Production
+security:
+- access-token: []
+tags:
+- name: Queues
+paths:
+  /tasks/api/v1/queues:
+    get:
+      description: Retrieves a list of all available queues
+      operationId: t_value
+      parameters: []
+      responses:
+        '200':
+          description: List of queues
+      summary: Get all queues
+      tags:
+      - Queues
+  /tasks/api/v1/queues/pending:
+    get:
+      description: Retrieves all pending tasks across all queues (waiting, delayed, and active states)
+      operationId: t_value
+      parameters:
+      - name: includeDatabase
+        required: false
+        in: query
+        description: 'Include jobs from database history (default: true)'
+        schema:
+          type: boolean
+      - name: sortOrder
+        required: false
+        in: query
+        description: 'Sort order (default: desc)'
+        schema:
+          enum:
+          - asc
+          - desc
+          type: string
+      - name: sortBy
+        required: false
+        in: query
+        description: 'Field to sort by (default: timestamp)'
+        schema:
+          enum:
+          - timestamp
+          - processedOn
+          - finishedOn
+          type: string
+      - name: search
+        required: false
+        in: query
+        description: Search term to filter jobs by name or data
+        schema:
+          type: string
+      - name: queues
+        required: false
+        in: query
+        description: Comma-separated list of queue names to filter
+        schema:
+          type: string
+      - name: pageSize
+        required: false
+        in: query
+        description: 'Items per page (default: 10)'
+        schema:
+          type: number
+      - name: page
+        required: false
+        in: query
+        description: 'Page number (default: 1)'
+        schema:
+          type: number
+      responses:
+        '200':
+          description: Pending tasks retrieved successfully
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  jobs:
+                    type: array
+                    items:
+                      type: object
+                      properties:
+                        queue:
+                          type: string
+                        job:
+                          type: object
+                        state:
+                          type: string
+                        source:
+                          type: string
+                          enum:
+                          - redis
+                          - database
+                  pagination:
+                    type: object
+                    properties:
+                      total:
+                        type: number
+                      page:
+                        type: number
+                      pageSize:
+                        type: number
+                      totalPages:
+                        type: number
+      summary: Get all pending tasks
+      tags:
+      - Queues
+  /tasks/api/v1/queues/add-jobs:
+    post:
+      description: Adds multiple jobs to their respective queues. Accepts the response format from GET /queues/pending
+      operationId: t_value
+      parameters: []
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              type: object
+              properties:
+                jobs:
+                  type: array
+                  items:
+                    type: object
+                    properties:
+                      queue:
+                        type: string
+                        description: Queue name
+                      job:
+                        type: object
+                        properties:
+                          name:
+                            type: string
+                            description: Job name/type
+                          data:
+                            type: object
+                            description: Job data payload
+                          opts:
+                            type: object
+                            description: Job options (optional)
+                        required:
+                        - name
+                        - data
+                    required:
+                    - queue
+                    - job
+              required:
+              - jobs
+      responses:
+        '201':
+          description: Jobs added successfully
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  success:
+                    type: boolean
+                  total:
+                    type: number
+                  added:
+                    type: number
+                  failed:
+                    type: number
+                  results:
+                    type: array
+                    items:
+                      type: object
+                      properties:
+                        queue:
+                          type: string
+                        jobName:
+                          type: string
+                        jobId:
+                          type: string
+                        status:
+                          type: string
+                          enum:
+                          - success
+                          - error
+                        error:
+                          type: string
+        '400':
+          description: Invalid request format
+      summary: Add multiple jobs to queues
+      tags:
+      - Queues
+  /tasks/api/v1/queues/{name}/counts:
+    get:
+      description: Retrieves job counts by state for a specific queue
+      operationId: t_value
+      parameters:
+      - name: name
+        required: true
+        in: path
+        description: Queue name
+        schema: {}
+      responses:
+        '200':
+          description: Job counts retrieved successfully
+      summary: Get job counts
+      tags:
+      - Queues
+  /tasks/api/v1/queues/{name}/metrics:
+    get:
+      description: Retrieves metrics for a specific queue
+      operationId: t_value
+      parameters:
+      - name: name
+        required: true
+        in: path
+        description: Queue name
+        schema: {}
+      responses:
+        '200':
+          description: Queue metrics retrieved successfully
+      summary: Get queue metrics
+      tags:
+      - Queues
+  /tasks/api/v1/queues/{name}/jobs:
+    post:
+      description: Adds a single job to the specified queue
+      operationId: t_value
+      parameters:
+      - name: name
+        required: true
+        in: path
+        description: Queue name
+        schema: {}
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              type: object
+              properties:
+                name:
+                  type: string
+                  description: Job name/type
+                data:
+                  type: object
+                  description: Job data payload
+                opts:
+                  type: object
+                  description: Job options (optional)
+              required:
+              - name
+              - data
+      responses:
+        '201':
+          description: Job added successfully
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  success:
+                    type: boolean
+                  queue:
+                    type: string
+                  jobId:
+                    type: string
+                  jobName:
+                    type: string
+        '400':
+          description: Invalid request format
+        '404':
+          description: Queue not found
+      summary: Add a job to a queue
+      tags:
+      - Queues
+  /tasks/api/v1/queues/{name}/jobs/{state}:
+    delete:
+      description: Removes all jobs in a specific state from a queue
+      operationId: t_value
+      parameters:
+      - name: state
+        required: true
+        in: path
+        description: Job state
+        schema:
+          enum:
+          - completed
+          - failed
+          - delayed
+          - active
+          - waiting
+          type: string
+      - name: name
+        required: true
+        in: path
+        description: Queue name
+        schema: {}
+      responses:
+        '200':
+          description: ''
+      summary: Remove jobs by state
+      tags:
+      - Queues
+components:
+  securitySchemes:
+    access-token:
+      scheme: bearer
+      bearerFormat: JWT
+      type: http
+      name: Authorization
+      description: Enter JWT token in the format Bearer <token>
+      in: header

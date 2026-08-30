@@ -1,0 +1,197 @@
+openapi: 3.2.0
+info:
+  title: Zoca Platform Scheduling - Stripe Connect API
+  description: 'The Zoca platform API behind the Zoca web app and mobile apps: scheduling, website generation, Google Business Profile, discovery/local SEO, social media, booking enquiries, offers, clients, staff, billing and the Zoca "brain" agent layer.'
+  version: 3.20.10
+  contact: {}
+  x-apievangelist-note: Harvested verbatim from https://api.zoca.ai/swagger.json. The provider ships the default NestJS Swagger metadata (title "API Documentation", empty servers[]); title/description/servers were set by API Evangelist for identification and the unmodified original is preserved at openapi/_original/zoca-platform-swagger.json. Every path, operation, summary, parameter and response is exactly as published.
+servers:
+- url: https://api.zoca.ai
+  description: Production
+tags:
+- name: Scheduling - Stripe Connect
+paths:
+  /scheduling/stripe/customers:
+    post:
+      operationId: t_value
+      parameters: []
+      responses:
+        '201':
+          description: ''
+      security:
+      - bearer: []
+      summary: Create Stripe Customer on connected account
+      tags:
+      - Scheduling - Stripe Connect
+  /scheduling/stripe/customers/from-client:
+    post:
+      operationId: t_value
+      parameters: []
+      responses:
+        '201':
+          description: ''
+      security:
+      - bearer: []
+      summary: Create Stripe Customer from existing client
+      tags:
+      - Scheduling - Stripe Connect
+  /scheduling/stripe/setup-intents:
+    post:
+      operationId: t_value
+      parameters: []
+      responses:
+        '201':
+          description: ''
+      security:
+      - bearer: []
+      summary: Create SetupIntent for card collection
+      tags:
+      - Scheduling - Stripe Connect
+  /scheduling/stripe/payment-methods:
+    get:
+      operationId: t_value
+      parameters: []
+      responses:
+        '200':
+          description: ''
+      security:
+      - bearer: []
+      summary: List payment methods for customer
+      tags:
+      - Scheduling - Stripe Connect
+  /scheduling/stripe/payment-methods/{paymentMethodId}:
+    delete:
+      operationId: t_value
+      parameters: []
+      responses:
+        '200':
+          description: ''
+      security:
+      - bearer: []
+      summary: Remove payment method
+      tags:
+      - Scheduling - Stripe Connect
+  /scheduling/stripe/clients/{clientId}/payment-methods/{paymentMethodId}:
+    delete:
+      description: Detaches a payment method from a client. Automatically resolves entity and Stripe customer from clientId.
+      operationId: t_value
+      parameters: []
+      responses:
+        '200':
+          description: ''
+      security:
+      - bearer: []
+      summary: Detach payment method from client
+      tags:
+      - Scheduling - Stripe Connect
+  /scheduling/stripe/verify/{locationEntityId}:
+    get:
+      operationId: t_value
+      parameters: []
+      responses:
+        '200':
+          description: ''
+      security:
+      - bearer: []
+      summary: Verify Stripe Connect configuration for a business
+      tags:
+      - Scheduling - Stripe Connect
+  /scheduling/stripe/account:
+    post:
+      operationId: t_value
+      parameters: []
+      responses:
+        '201':
+          description: ''
+      security:
+      - bearer: []
+      summary: Set or update Stripe Connected Account ID for a business
+      tags:
+      - Scheduling - Stripe Connect
+  /scheduling/stripe/account-session:
+    post:
+      description: Creates account session for embedded components (ConnectPayments, etc.)
+      operationId: t_value
+      parameters: []
+      responses:
+        '200':
+          description: ''
+      security:
+      - bearer: []
+      summary: Create Stripe Connect account session
+      tags:
+      - Scheduling - Stripe Connect
+  /scheduling/stripe/terminal/hardware-account-session:
+    post:
+      description: Creates a preview-scoped account session for the ConnectTerminalHardwareShop and ConnectTerminalHardwareOrders embedded components.
+      operationId: t_value
+      parameters: []
+      responses:
+        '200':
+          description: ''
+      security:
+      - bearer: []
+      summary: Create Stripe Terminal hardware account session
+      tags:
+      - Scheduling - Stripe Connect
+  /scheduling/stripe/payment-intent:
+    post:
+      description: 'Creates PaymentIntent with capture_method: manual for deposit authorization'
+      operationId: t_value
+      parameters: []
+      responses:
+        '200':
+          description: ''
+      security:
+      - bearer: []
+      summary: Create PaymentIntent for deposit
+      tags:
+      - Scheduling - Stripe Connect
+  /scheduling/stripe/connect-account:
+    post:
+      description: Creates a new Stripe Connect Express account for a business, or returns existing if already configured
+      operationId: t_value
+      parameters: []
+      responses:
+        '200':
+          description: ''
+      security:
+      - bearer: []
+      summary: Create Stripe Connect Express account
+      tags:
+      - Scheduling - Stripe Connect
+  /scheduling/stripe/onboarding-link:
+    post:
+      description: Returns a Stripe-hosted URL for merchant onboarding. Creates account if needed.
+      operationId: t_value
+      parameters: []
+      responses:
+        '200':
+          description: ''
+      security:
+      - bearer: []
+      summary: Get Stripe Connect onboarding link
+      tags:
+      - Scheduling - Stripe Connect
+  /scheduling/stripe/onboarding-status/{entityId}:
+    get:
+      description: Returns the current onboarding status of the business Stripe Connect account
+      operationId: t_value
+      parameters: []
+      responses:
+        '200':
+          description: ''
+      security:
+      - bearer: []
+      summary: Check Stripe Connect onboarding status
+      tags:
+      - Scheduling - Stripe Connect
+components:
+  securitySchemes:
+    access-token:
+      scheme: bearer
+      bearerFormat: JWT
+      type: http
+      name: Authorization
+      description: Enter JWT token in the format Bearer <token>
+      in: header

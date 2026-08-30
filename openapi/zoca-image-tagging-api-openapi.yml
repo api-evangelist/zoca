@@ -1,0 +1,175 @@
+openapi: 3.2.0
+info:
+  title: Zoca Tasks Image Tagging API
+  description: 'The Zoca tasks/automation service: AI content queue and planning, FrontDesk (Retell/Twilio) voice + SMS agent onboarding, local-SEO grid scans, WIN conversion triggers, and inbound integration webhooks (Chargebee, Square, Pipedrive, Twilio, Retell, CallHippo, Sybill, Instantly).'
+  version: 3.20.9
+  contact: {}
+  x-apievangelist-note: Harvested verbatim from https://tasks.zoca.ai/swagger.json. The provider ships the default NestJS Swagger metadata (title "API Documentation", empty servers[]); title/description/servers were set by API Evangelist for identification and the unmodified original is preserved at openapi/_original/zoca-tasks-swagger.json. Every path, operation, summary, parameter and response is exactly as published.
+servers:
+- url: https://tasks.zoca.ai
+  description: Production
+security:
+- access-token: []
+tags:
+- name: Image Tagging
+paths:
+  /tasks/api/v1/image-tagging:
+    post:
+      description: Creates a new job to analyze a single image
+      operationId: t_value
+      parameters: []
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/e'
+      responses:
+        '201':
+          description: Image tagging job created successfully
+      summary: Enqueue image tagging job
+      tags:
+      - Image Tagging
+  /tasks/api/v1/image-tagging/batch:
+    post:
+      description: Creates a new job to analyze multiple images
+      operationId: t_value
+      parameters: []
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/e'
+      responses:
+        '201':
+          description: Batch image tagging job created successfully
+      summary: Enqueue batch image tagging job
+      tags:
+      - Image Tagging
+  /tasks/api/v1/image-tagging/media:
+    post:
+      description: Creates a new job to tag a media item by its ID
+      operationId: t_value
+      parameters: []
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/e'
+      responses:
+        '201':
+          description: Media tagging job created successfully
+      summary: Enqueue media tagging job by ID
+      tags:
+      - Image Tagging
+  /tasks/api/v1/image-tagging/media/backfill:
+    post:
+      description: Creates a fan-out job that selects active PHOTO media which still needs tagging, then enqueues one tagging job per media item. Scope by entityId (via media.media_entities), by a createdFrom/createdTo window, or both — at least one is required. Media that is already tagged is skipped unless includeAlreadyEnriched is true. Pass dryRun to see what would be enqueued without enqueuing.
+      operationId: t_value
+      parameters: []
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/e'
+      responses:
+        '201':
+          description: Backfill job created successfully
+        '400':
+          description: Neither entityId nor createdFrom was supplied
+      summary: Enqueue a media tagging backfill for an entity and/or a created_at window
+      tags:
+      - Image Tagging
+  /tasks/api/v1/image-tagging/media/backfill-service-tags:
+    post:
+      description: Creates a fan-out job that resolves the entity's active service catalogue, then enqueues one service-tagging job per media item. This writes relevantServices / relevantCategories, which the plain media backfill cannot produce — that path has no access to the entity's catalogue. Media that already has service relevance is skipped unless includeAlreadyEnriched is true. The catalogue is capped at maxServices (default 200) because the whole list is injected into a single prompt per image. Pass dryRun to see what would be enqueued without enqueuing.
+      operationId: t_value
+      parameters: []
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/e'
+      responses:
+        '201':
+          description: Service tagging backfill job created successfully
+        '400':
+          description: entityId missing or not a UUID
+      summary: Enqueue service/category relevance tagging for an entity's media
+      tags:
+      - Image Tagging
+  /tasks/api/v1/image-tagging/media/{mediaId}/authenticity:
+    post:
+      description: Sets authenticity directly, bypassing the classifier. The classifier sees only pixels, so it returns `unknown_provenance` whenever nothing visible ties an image to the business — true of plenty of genuine first-party work, which the GBP posting filter then excludes. Use this to confirm such media as `real` and return it to the posting pool, or to demote a misread image to `stock`. Applies immediately; no re-tagging job is queued, and service/category enrichment is preserved.
+      operationId: t_value
+      parameters: []
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/e'
+      responses:
+        '201':
+          description: Authenticity updated
+        '404':
+          description: Media has no tag row to update
+      summary: Override a media item's authenticity verdict
+      tags:
+      - Image Tagging
+  /tasks/api/v1/image-tagging/media/batch:
+    post:
+      description: Creates multiple jobs to tag media items by their IDs
+      operationId: t_value
+      parameters: []
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/e'
+      responses:
+        '201':
+          description: Batch media tagging jobs created successfully
+      summary: Enqueue multiple media tagging jobs by IDs
+      tags:
+      - Image Tagging
+components:
+  schemas:
+    e:
+      type: object
+      properties:
+        scan:
+          $ref: '#/components/schemas/e'
+        businessLat:
+          type:
+          - number
+          - 'null'
+        businessLng:
+          type:
+          - number
+          - 'null'
+        points:
+          type: array
+          items:
+            $ref: '#/components/schemas/e'
+        heroMetrics:
+          $ref: '#/components/schemas/e'
+      required:
+      - scan
+      - businessLat
+      - businessLng
+      - points
+      - heroMetrics
+  securitySchemes:
+    access-token:
+      scheme: bearer
+      bearerFormat: JWT
+      type: http
+      name: Authorization
+      description: Enter JWT token in the format Bearer <token>
+      in: header

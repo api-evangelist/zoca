@@ -1,0 +1,143 @@
+openapi: 3.2.0
+info:
+  title: Zoca Platform Inventory Products API
+  description: 'The Zoca platform API behind the Zoca web app and mobile apps: scheduling, website generation, Google Business Profile, discovery/local SEO, social media, booking enquiries, offers, clients, staff, billing and the Zoca "brain" agent layer.'
+  version: 3.20.10
+  contact: {}
+  x-apievangelist-note: Harvested verbatim from https://api.zoca.ai/swagger.json. The provider ships the default NestJS Swagger metadata (title "API Documentation", empty servers[]); title/description/servers were set by API Evangelist for identification and the unmodified original is preserved at openapi/_original/zoca-platform-swagger.json. Every path, operation, summary, parameter and response is exactly as published.
+servers:
+- url: https://api.zoca.ai
+  description: Production
+tags:
+- name: Inventory Products
+paths:
+  /inventory/products/entity/{entityId}:
+    post:
+      operationId: t_value
+      parameters: []
+      responses:
+        '201':
+          description: Product created
+        '400':
+          description: Validation failure (e.g. OD-spec-1, currency)
+        '403':
+          description: Caller lacks SP role
+        '409':
+          description: SKU or barcode already in use
+      summary: Create a product (SP role required)
+      tags:
+      - Inventory Products
+    get:
+      operationId: t_value
+      parameters: []
+      responses:
+        '200':
+          description: ''
+      summary: List products (paginated, filterable)
+      tags:
+      - Inventory Products
+  /inventory/products/entity/{entityId}/by-barcode/{barcode}:
+    get:
+      operationId: t_value
+      parameters: []
+      responses:
+        '200':
+          description: ''
+      summary: Look up product by barcode (includes archived per spec L553)
+      tags:
+      - Inventory Products
+  /inventory/products/entity/{entityId}/{id}:
+    get:
+      operationId: t_value
+      parameters: []
+      responses:
+        '404':
+          description: Product not found
+      summary: Get product by id
+      tags:
+      - Inventory Products
+    patch:
+      operationId: t_value
+      parameters: []
+      responses:
+        '200':
+          description: Product updated
+        '400':
+          description: Validation failure or isActive PATCH
+        '404':
+          description: Product not found
+        '409':
+          description: SKU or barcode collision
+        '412':
+          description: Stale version — reload and retry
+        '428':
+          description: If-Match header missing
+      summary: 'Update a product (SP role required; optimistic-lock via If-Match: W/"<version>")'
+      tags:
+      - Inventory Products
+    delete:
+      operationId: t_value
+      parameters: []
+      responses:
+        '200':
+          description: Deleted or archived (see archived flag)
+        '404':
+          description: Product not found
+      summary: Hard-delete a product (SP role required), falling back to soft-archive on FK history
+      tags:
+      - Inventory Products
+  /inventory/products/entity/{entityId}/{id}/archive:
+    post:
+      operationId: t_value
+      parameters: []
+      responses:
+        '204':
+          description: Archived (or already archived — idempotent)
+        '404':
+          description: Product not found
+      summary: Soft-archive a product (SP role required)
+      tags:
+      - Inventory Products
+  /inventory/products/entity/{entityId}/{id}/unarchive:
+    post:
+      operationId: t_value
+      parameters: []
+      responses:
+        '204':
+          description: Restored (or already active — idempotent)
+        '404':
+          description: Product not found
+        '409':
+          description: SKU or barcode now in use by another active product
+      summary: Restore a soft-archived product (SP role required; SE-5 collision pre-check)
+      tags:
+      - Inventory Products
+  /inventory/products/entity/{entityId}/bulk:
+    post:
+      operationId: t_value
+      parameters: []
+      responses:
+        '201':
+          description: Bulk create result with per-row errors
+      summary: Bulk-create products (max 50 per request, SP role)
+      tags:
+      - Inventory Products
+  /inventory/products/entity/{entityId}/quick-create:
+    post:
+      operationId: t_value
+      parameters: []
+      responses:
+        '201':
+          description: Product created
+      summary: Quick-create-from-scan (slim DTO, FRONT_DESK + PROVIDER allowed per AMEND-8)
+      tags:
+      - Inventory Products
+components:
+  securitySchemes:
+    access-token:
+      scheme: bearer
+      bearerFormat: JWT
+      type: http
+      name: Authorization
+      description: Enter JWT token in the format Bearer <token>
+      in: header

@@ -1,0 +1,127 @@
+openapi: 3.2.0
+info:
+  title: Zoca Frontdesk Review API
+  contact: {}
+  x-refined-note:
+  - x-apievangelist-note differs across the merged source definitions and was not carried
+  version: '1.0'
+  description: 'Operations tagged Frontdesk Review across 2 of this provider''s published API definitions: zoca-platform-openapi.yml, zoca-tasks-openapi.yml. Each path carries the servers of the definition it was published in.'
+servers:
+- url: https://api.zoca.ai
+  description: Production
+- url: https://tasks.zoca.ai
+  description: Production
+tags:
+- name: Frontdesk Review
+paths:
+  /frontdesk/review/tracking:
+    get:
+      operationId: t_value
+      parameters:
+      - name: pageSize
+        required: false
+        in: query
+        schema:
+          type: number
+      - name: page
+        required: false
+        in: query
+        schema:
+          type: number
+      - name: status
+        required: false
+        in: query
+        schema:
+          enum:
+          - all
+          - caught
+          - awaiting
+          - opened
+          type: string
+      - name: entityId
+        required: true
+        in: query
+        schema:
+          type: string
+      responses:
+        '200':
+          description: Paginated tracking list
+      summary: List post-booking review feedback tracking rows for an entity
+      tags:
+      - Frontdesk Review
+    servers:
+    - url: https://api.zoca.ai
+      description: Production
+  /frontdesk/review/tracking/stats:
+    get:
+      operationId: t_value
+      parameters:
+      - name: entityId
+        required: true
+        in: query
+        schema:
+          type: string
+      responses:
+        '200':
+          description: Current-month aggregate stats
+      summary: Current-month Review Campaign tile stats for an entity
+      tags:
+      - Frontdesk Review
+    servers:
+    - url: https://api.zoca.ai
+      description: Production
+  /tasks/api/v1/frontdesk/review/booking-event:
+    post:
+      operationId: t_value
+      parameters: []
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              type: object
+              required:
+              - eventType
+              - platform
+              - bookingId
+              - entityId
+              - clientId
+              properties:
+                eventType:
+                  type: string
+                  example: booking.created
+                platform:
+                  type: string
+                  example: zoca
+                bookingId:
+                  type: string
+                  format: uuid
+                entityId:
+                  type: string
+                  format: uuid
+                clientId:
+                  type: string
+                  format: uuid
+      responses:
+        '200':
+          description: Event processed successfully
+      summary: Receive a booking event and schedule review feedback
+      tags:
+      - Frontdesk Review
+      security:
+      - access-token: []
+    servers:
+    - url: https://tasks.zoca.ai
+      description: Production
+components:
+  securitySchemes:
+    access-token:
+      scheme: bearer
+      bearerFormat: JWT
+      type: http
+      name: Authorization
+      description: Enter JWT token in the format Bearer <token>
+      in: header
+x-refined-from:
+- zoca-platform-openapi.yml
+- zoca-tasks-openapi.yml

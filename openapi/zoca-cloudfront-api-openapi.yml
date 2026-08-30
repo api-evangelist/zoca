@@ -1,0 +1,240 @@
+openapi: 3.2.0
+info:
+  title: Zoca Platform Cloud Front API
+  description: 'The Zoca platform API behind the Zoca web app and mobile apps: scheduling, website generation, Google Business Profile, discovery/local SEO, social media, booking enquiries, offers, clients, staff, billing and the Zoca "brain" agent layer.'
+  version: 3.20.10
+  contact: {}
+  x-apievangelist-note: Harvested verbatim from https://api.zoca.ai/swagger.json. The provider ships the default NestJS Swagger metadata (title "API Documentation", empty servers[]); title/description/servers were set by API Evangelist for identification and the unmodified original is preserved at openapi/_original/zoca-platform-swagger.json. Every path, operation, summary, parameter and response is exactly as published.
+servers:
+- url: https://api.zoca.ai
+  description: Production
+tags:
+- name: CloudFront
+paths:
+  /dns/cloudfront/distributions:
+    get:
+      description: Retrieves CloudFront distributions with optional search filter and pagination. Supports searching by domain name, alias, or comment (partial match). Can filter by primary distribution status.
+      operationId: t_value
+      parameters:
+      - name: primary
+        required: false
+        in: query
+        description: Filter by primary distribution (matches CLOUDFRONT_DOMAIN)
+        schema:
+          example: true
+          type: boolean
+      - name: limit
+        required: false
+        in: query
+        description: Number of items per page
+        schema:
+          example: 10
+          type: number
+      - name: page
+        required: false
+        in: query
+        description: Page number (starts from 1)
+        schema:
+          example: 1
+          type: number
+      - name: search
+        required: false
+        in: query
+        description: Search by domain name, alias, or comment (partial match)
+        schema:
+          type: string
+      responses:
+        '200':
+          description: Paginated list of distributions
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/e'
+      security:
+      - bearer: []
+      summary: List CloudFront distributions with pagination and search
+      tags:
+      - CloudFront
+  /dns/cloudfront/distributions/{distributionId}:
+    get:
+      description: Retrieves detailed information about a specific CloudFront distribution including configuration, aliases (alternate domain names), ACM certificate, origins, and status.
+      operationId: t_value
+      parameters:
+      - name: distributionId
+        required: true
+        in: path
+        description: CloudFront distribution ID
+        schema:
+          example: E1EXAMPLE123456
+      responses:
+        '200':
+          description: Distribution details retrieved
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/e'
+        '404':
+          description: Distribution not found
+      security:
+      - bearer: []
+      summary: Get CloudFront distribution details
+      tags:
+      - CloudFront
+  /dns/cloudfront/distributions/certificate:
+    put:
+      description: Associates an ACM certificate with a CloudFront distribution to enable HTTPS for custom domains. The certificate must be in the US East (N. Virginia) Region (us-east-1) and must be validated.
+      operationId: t_value
+      parameters: []
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/e'
+      responses:
+        '200':
+          description: ACM certificate added/updated successfully
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/e'
+        '400':
+          description: Invalid certificate or distribution
+      security:
+      - bearer: []
+      summary: Add or update ACM certificate for CloudFront distribution
+      tags:
+      - CloudFront
+  /dns/cloudfront/distributions/alternate-domains:
+    post:
+      description: Adds custom domain names as alternate domain names (CNAMEs) to an existing CloudFront distribution. The domains must be covered by the ACM certificate attached to the distribution. You must also create DNS records (CNAME or ALIAS) pointing to the CloudFront domain.
+      operationId: t_value
+      parameters: []
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/e'
+      responses:
+        '200':
+          description: Alternate domain names added successfully
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/e'
+        '400':
+          description: Invalid domain configuration or certificate mismatch
+      security:
+      - bearer: []
+      summary: Add alternate domain names (CNAMEs) to CloudFront distribution
+      tags:
+      - CloudFront
+  /dns/cloudfront/domain-mapping:
+    post:
+      description: 'Maps a custom domain to an internal subdomain in CloudFront Key-Value Store. This allows CloudFront edge functions to route requests from custom domains to internal subdomains. Key: Custom domain (e.g., customdomain.com), Value: Internal subdomain (e.g., internal123.zocatest.live)'
+      operationId: t_value
+      parameters: []
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/e'
+      responses:
+        '200':
+          description: Domain mapping added successfully
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/e'
+        '400':
+          description: Invalid domain mapping data
+      security:
+      - bearer: []
+      summary: Add domain mapping to CloudFront KVS
+      tags:
+      - CloudFront
+  /dns/cloudfront/domain-mapping/batch:
+    post:
+      description: Adds or updates multiple custom domain to internal subdomain mappings in CloudFront Key-Value Store. This is useful for bulk operations when setting up multiple custom domains.
+      operationId: t_value
+      parameters: []
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/e'
+      responses:
+        '200':
+          description: Domain mappings added successfully
+          content:
+            application/json:
+              schema:
+                type: array
+                items:
+                  $ref: '#/components/schemas/e'
+        '400':
+          description: Invalid batch mapping data
+      security:
+      - bearer: []
+      summary: Add multiple domain mappings to CloudFront KVS
+      tags:
+      - CloudFront
+  /dns/cloudfront/domain-mapping/{customDomain}:
+    get:
+      description: Retrieves the internal subdomain mapped to a custom domain from CloudFront Key-Value Store.
+      operationId: t_value
+      parameters:
+      - name: customDomain
+        required: true
+        in: path
+        description: Custom domain name
+        schema:
+          example: customdomain.com
+      responses:
+        '200':
+          description: Domain mapping retrieved successfully
+        '404':
+          description: Domain mapping not found
+      security:
+      - bearer: []
+      summary: Get internal subdomain for a custom domain
+      tags:
+      - CloudFront
+components:
+  schemas:
+    e:
+      type: object
+      properties:
+        id:
+          type: number
+        entityId:
+          type: string
+        attribute:
+          type: string
+        value:
+          type:
+          - object
+          - 'null'
+        metadata:
+          type:
+          - object
+          - 'null'
+        createdAt:
+          type:
+          - object
+          - 'null'
+      required:
+      - id
+      - entityId
+      - attribute
+  securitySchemes:
+    access-token:
+      scheme: bearer
+      bearerFormat: JWT
+      type: http
+      name: Authorization
+      description: Enter JWT token in the format Bearer <token>
+      in: header

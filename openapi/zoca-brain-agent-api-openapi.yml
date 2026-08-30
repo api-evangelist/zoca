@@ -1,0 +1,197 @@
+openapi: 3.2.0
+info:
+  title: Zoca Tasks Brain Agent API
+  description: 'The Zoca tasks/automation service: AI content queue and planning, FrontDesk (Retell/Twilio) voice + SMS agent onboarding, local-SEO grid scans, WIN conversion triggers, and inbound integration webhooks (Chargebee, Square, Pipedrive, Twilio, Retell, CallHippo, Sybill, Instantly).'
+  version: 3.20.9
+  contact: {}
+  x-apievangelist-note: Harvested verbatim from https://tasks.zoca.ai/swagger.json. The provider ships the default NestJS Swagger metadata (title "API Documentation", empty servers[]); title/description/servers were set by API Evangelist for identification and the unmodified original is preserved at openapi/_original/zoca-tasks-swagger.json. Every path, operation, summary, parameter and response is exactly as published.
+servers:
+- url: https://tasks.zoca.ai
+  description: Production
+security:
+- access-token: []
+tags:
+- name: Brain Agent
+paths:
+  /tasks/api/v1/brain-agent/chat/stream:
+    post:
+      operationId: t_value
+      parameters: []
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/e'
+      responses:
+        '201':
+          description: ''
+      summary: Chat with the Brain agent via SSE streaming
+      tags:
+      - Brain Agent
+  /tasks/api/v1/brain-agent/topic-question:
+    post:
+      operationId: t_value
+      parameters: []
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/e'
+      responses:
+        '201':
+          description: ''
+      summary: Generate a fresh personalised opening question for a selected topic
+      tags:
+      - Brain Agent
+  /tasks/api/v1/brain-agent/conversations:
+    get:
+      operationId: t_value
+      parameters:
+      - name: mine
+        required: false
+        in: query
+        schema:
+          type: boolean
+      - name: limit
+        required: false
+        in: query
+        schema:
+          type: number
+      - name: entityId
+        required: true
+        in: query
+        schema:
+          type: string
+      responses:
+        '200':
+          description: ''
+      summary: List the entity's Brain conversations
+      tags:
+      - Brain Agent
+  /tasks/api/v1/brain-agent/conversations/{conversationId}/messages:
+    get:
+      operationId: t_value
+      parameters:
+      - name: limit
+        required: false
+        in: query
+        schema:
+          type: number
+      - name: entityId
+        required: true
+        in: query
+        schema:
+          type: string
+      - name: conversationId
+        required: true
+        in: path
+        schema:
+          type: string
+      responses:
+        '200':
+          description: ''
+      summary: Get a Brain conversation transcript
+      tags:
+      - Brain Agent
+  /tasks/api/v1/brain-agent/conversations/{conversationId}/memories:
+    get:
+      operationId: t_value
+      parameters:
+      - name: entityId
+        required: true
+        in: query
+        schema:
+          type: string
+      - name: conversationId
+        required: true
+        in: path
+        schema:
+          type: string
+      responses:
+        '200':
+          description: ''
+      summary: Memories extracted from a Brain conversation (chip data)
+      tags:
+      - Brain Agent
+  /tasks/api/v1/brain-agent/conversations/{conversationId}:
+    patch:
+      operationId: t_value
+      parameters:
+      - name: entityId
+        required: true
+        in: query
+        schema:
+          type: string
+      - name: conversationId
+        required: true
+        in: path
+        schema:
+          type: string
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/e'
+      responses:
+        '200':
+          description: ''
+      summary: Rename a Brain conversation
+      tags:
+      - Brain Agent
+    delete:
+      operationId: t_value
+      parameters:
+      - name: entityId
+        required: true
+        in: query
+        schema:
+          type: string
+      - name: conversationId
+        required: true
+        in: path
+        schema:
+          type: string
+      responses:
+        '200':
+          description: ''
+      summary: Delete (soft-deactivate) a Brain conversation
+      tags:
+      - Brain Agent
+components:
+  schemas:
+    e:
+      type: object
+      properties:
+        scan:
+          $ref: '#/components/schemas/e'
+        businessLat:
+          type:
+          - number
+          - 'null'
+        businessLng:
+          type:
+          - number
+          - 'null'
+        points:
+          type: array
+          items:
+            $ref: '#/components/schemas/e'
+        heroMetrics:
+          $ref: '#/components/schemas/e'
+      required:
+      - scan
+      - businessLat
+      - businessLng
+      - points
+      - heroMetrics
+  securitySchemes:
+    access-token:
+      scheme: bearer
+      bearerFormat: JWT
+      type: http
+      name: Authorization
+      description: Enter JWT token in the format Bearer <token>
+      in: header

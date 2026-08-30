@@ -1,0 +1,313 @@
+openapi: 3.2.0
+info:
+  title: Zoca Tasks Frontdesk Widget API
+  description: 'The Zoca tasks/automation service: AI content queue and planning, FrontDesk (Retell/Twilio) voice + SMS agent onboarding, local-SEO grid scans, WIN conversion triggers, and inbound integration webhooks (Chargebee, Square, Pipedrive, Twilio, Retell, CallHippo, Sybill, Instantly).'
+  version: 3.20.9
+  contact: {}
+  x-apievangelist-note: Harvested verbatim from https://tasks.zoca.ai/swagger.json. The provider ships the default NestJS Swagger metadata (title "API Documentation", empty servers[]); title/description/servers were set by API Evangelist for identification and the unmodified original is preserved at openapi/_original/zoca-tasks-swagger.json. Every path, operation, summary, parameter and response is exactly as published.
+servers:
+- url: https://tasks.zoca.ai
+  description: Production
+security:
+- access-token: []
+tags:
+- name: frontdesk-widget
+paths:
+  /tasks/api/v1/frontdesk/widget/{entityId}/agent/turn:
+    get:
+      operationId: t_value
+      parameters: []
+      responses:
+        '200':
+          description: ''
+      summary: Conversational booking-agent turn (SSE stream)
+      tags:
+      - frontdesk-widget
+  /tasks/api/v1/frontdesk/widget/{entityId}/home-suggestions:
+    get:
+      operationId: t_value
+      parameters: []
+      responses:
+        '200':
+          description: ''
+      summary: Quick-book suggestion cards for the widget home
+      tags:
+      - frontdesk-widget
+  /tasks/api/v1/frontdesk/widget/{entityId}/service-slots:
+    get:
+      operationId: t_value
+      parameters: []
+      responses:
+        '200':
+          description: ''
+      summary: On-demand slot options for one home-card service
+      tags:
+      - frontdesk-widget
+  /tasks/api/v1/frontdesk/widget/{entityId}/card/setup-intent:
+    post:
+      operationId: t_value
+      parameters: []
+      responses:
+        '201':
+          description: ''
+      summary: Create a Stripe SetupIntent to vault a card in the widget
+      tags:
+      - frontdesk-widget
+  /tasks/api/v1/frontdesk/widget/{entityId}/client/identity:
+    post:
+      operationId: t_value
+      parameters: []
+      responses:
+        '201':
+          description: ''
+      summary: Attach name + phone to a web client before a card-on-file booking
+      tags:
+      - frontdesk-widget
+  /tasks/api/v1/frontdesk/widget/{entityId}/card-on-file:
+    get:
+      operationId: t_value
+      parameters: []
+      responses:
+        '200':
+          description: ''
+      summary: Whether the widget's client already has a saved card
+      tags:
+      - frontdesk-widget
+  /tasks/api/v1/frontdesk/widget/{entityId}/quick-book:
+    post:
+      operationId: t_value
+      parameters: []
+      responses:
+        '201':
+          description: ''
+      summary: One-click deterministic booking for a quick-book slot
+      tags:
+      - frontdesk-widget
+  /tasks/api/v1/frontdesk/widget/{entityId}/learn:
+    post:
+      operationId: t_value
+      parameters: []
+      responses:
+        '201':
+          description: ''
+      summary: Ingest a business website into the agent knowledge base (internal)
+      tags:
+      - frontdesk-widget
+  /tasks/api/v1/frontdesk/widget/{entityId}/config:
+    get:
+      operationId: t_value
+      parameters: []
+      responses:
+        '200':
+          description: ''
+      summary: 'Booking-widget config: first page of services + categories + prefs'
+      tags:
+      - frontdesk-widget
+  /tasks/api/v1/frontdesk/widget/{entityId}/services:
+    get:
+      operationId: t_value
+      parameters: []
+      responses:
+        '200':
+          description: ''
+      summary: 'Booking-widget: paginated/searchable services'
+      tags:
+      - frontdesk-widget
+  /tasks/api/v1/frontdesk/widget/{entityId}/staff:
+    get:
+      operationId: t_value
+      parameters: []
+      responses:
+        '200':
+          description: ''
+      summary: Booking-widget staff/providers for an entity
+      tags:
+      - frontdesk-widget
+  /tasks/api/v1/frontdesk/widget/{entityId}/addons:
+    get:
+      operationId: t_value
+      parameters: []
+      responses:
+        '200':
+          description: ''
+      summary: Booking-widget add-ons (suggestable extras + staff surcharges)
+      tags:
+      - frontdesk-widget
+  /tasks/api/v1/frontdesk/widget/{entityId}/slots:
+    get:
+      operationId: t_value
+      parameters: []
+      responses:
+        '200':
+          description: ''
+      summary: Booking-widget available slots for a service + date
+      tags:
+      - frontdesk-widget
+  /tasks/api/v1/frontdesk/widget/{entityId}/availability:
+    get:
+      operationId: t_value
+      parameters: []
+      responses:
+        '200':
+          description: ''
+      summary: 'Booking-widget: dates with openings (grouped by date) for a service'
+      tags:
+      - frontdesk-widget
+  /tasks/api/v1/frontdesk/widget/{entityId}/client:
+    post:
+      operationId: t_value
+      parameters: []
+      responses:
+        '201':
+          description: ''
+      summary: 'Booking-widget: find-or-create the platform client'
+      tags:
+      - frontdesk-widget
+  /tasks/api/v1/frontdesk/widget/{entityId}/identify:
+    post:
+      operationId: t_value
+      parameters: []
+      responses:
+        '201':
+          description: ''
+      summary: 'Booking-widget: resolve the customer pricing tier'
+      tags:
+      - frontdesk-widget
+  /tasks/api/v1/frontdesk/widget/{entityId}/price:
+    post:
+      operationId: t_value
+      parameters: []
+      responses:
+        '201':
+          description: ''
+      summary: 'Booking-widget: display-only price quote (never charges)'
+      tags:
+      - frontdesk-widget
+  /tasks/api/v1/frontdesk/widget/{entityId}/verify-promo:
+    post:
+      operationId: t_value
+      parameters: []
+      responses:
+        '201':
+          description: ''
+      summary: 'Booking-widget: verify a promo code (no charge, no redemption)'
+      tags:
+      - frontdesk-widget
+  /tasks/api/v1/frontdesk/widget/{entityId}/lead:
+    post:
+      operationId: t_value
+      parameters: []
+      responses:
+        '201':
+          description: ''
+      summary: 'Booking-widget: create a booking inquiry (engages lead follow-up)'
+      tags:
+      - frontdesk-widget
+  /tasks/api/v1/frontdesk/widget/{entityId}/funnel:
+    post:
+      operationId: t_value
+      parameters: []
+      responses:
+        '201':
+          description: ''
+      summary: 'Booking-widget: report a funnel step (service/slot selected)'
+      tags:
+      - frontdesk-widget
+  /tasks/api/v1/frontdesk/widget/{entityId}/card-status:
+    post:
+      operationId: t_value
+      parameters: []
+      responses:
+        '201':
+          description: ''
+      summary: 'Booking-widget: card-on-file requirement + on-file status'
+      tags:
+      - frontdesk-widget
+  /tasks/api/v1/frontdesk/widget/{entityId}/collect-card:
+    post:
+      operationId: t_value
+      parameters: []
+      responses:
+        '201':
+          description: ''
+      summary: 'Booking-widget: mint a secure card-collection link'
+      tags:
+      - frontdesk-widget
+  /tasks/api/v1/frontdesk/widget/{entityId}/book:
+    post:
+      operationId: t_value
+      parameters: []
+      responses:
+        '201':
+          description: ''
+      summary: 'Booking-widget: create an appointment'
+      tags:
+      - frontdesk-widget
+  /tasks/api/v1/frontdesk/widget/{entityId}/hold:
+    post:
+      operationId: t_value
+      parameters: []
+      responses:
+        '201':
+          description: ''
+      summary: 'Booking-widget: hold a slot (reserve timer)'
+      tags:
+      - frontdesk-widget
+  /tasks/api/v1/frontdesk/widget/{entityId}/cart/items:
+    post:
+      operationId: t_value
+      parameters: []
+      responses:
+        '201':
+          description: ''
+      summary: 'Booking-widget: add a service (its own slot + staff) to the cart'
+      tags:
+      - frontdesk-widget
+  /tasks/api/v1/frontdesk/widget/{entityId}/cart/items/{itemId}:
+    patch:
+      operationId: t_value
+      parameters: []
+      responses:
+        '200':
+          description: ''
+      summary: 'Booking-widget: re-slot / re-staff a cart item'
+      tags:
+      - frontdesk-widget
+    delete:
+      operationId: t_value
+      parameters: []
+      responses:
+        '200':
+          description: ''
+      summary: 'Booking-widget: remove a cart item'
+      tags:
+      - frontdesk-widget
+  /tasks/api/v1/frontdesk/widget/{entityId}/cart:
+    get:
+      operationId: t_value
+      parameters: []
+      responses:
+        '200':
+          description: ''
+      summary: 'Booking-widget: read the cached cart'
+      tags:
+      - frontdesk-widget
+  /tasks/api/v1/frontdesk/widget/{entityId}/cart/checkout:
+    post:
+      operationId: t_value
+      parameters: []
+      responses:
+        '201':
+          description: ''
+      summary: 'Booking-widget: book the whole cart as one multi-service appointment'
+      tags:
+      - frontdesk-widget
+components:
+  securitySchemes:
+    access-token:
+      scheme: bearer
+      bearerFormat: JWT
+      type: http
+      name: Authorization
+      description: Enter JWT token in the format Bearer <token>
+      in: header
