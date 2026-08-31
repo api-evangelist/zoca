@@ -170,6 +170,8 @@ apis:
   humanURL: https://app.zoca.com/
   baseURL: https://api.zoca.ai
   tags:
+  - APIKeys
+  tags_raw:
   - API Keys
   properties:
   - type: OpenAPI
@@ -230,6 +232,8 @@ apis:
   humanURL: https://app.zoca.com/
   baseURL: https://api.zoca.ai
   tags:
+  - Authentication
+  tags_raw:
   - auth
   properties:
   - type: OpenAPI
@@ -242,6 +246,8 @@ apis:
   humanURL: https://app.zoca.com/
   baseURL: https://api.zoca.ai
   tags:
+  - Billing
+  tags_raw:
   - billing
   properties:
   - type: OpenAPI
@@ -327,6 +333,8 @@ apis:
   humanURL: https://app.zoca.com/
   baseURL: https://api.zoca.ai
   tags:
+  - Bulk SMS
+  tags_raw:
   - bulk-sms
   properties:
   - type: OpenAPI
@@ -363,6 +371,8 @@ apis:
   humanURL: https://app.zoca.com/
   baseURL: https://api.zoca.ai
   tags:
+  - Business Profile
+  tags_raw:
   - business-profile
   properties:
   - type: OpenAPI
@@ -411,6 +421,8 @@ apis:
   humanURL: https://app.zoca.com/
   baseURL: https://api.zoca.ai
   tags:
+  - Chargebee
+  tags_raw:
   - chargebee
   properties:
   - type: OpenAPI
@@ -435,6 +447,8 @@ apis:
   humanURL: https://app.zoca.com/
   baseURL: https://api.zoca.ai
   tags:
+  - Chatbots
+  tags_raw:
   - chatbot
   properties:
   - type: OpenAPI
@@ -495,6 +509,8 @@ apis:
   humanURL: https://app.zoca.com/
   baseURL: https://api.zoca.ai
   tags:
+  - Cohorts
+  tags_raw:
   - cohorts
   properties:
   - type: OpenAPI
@@ -627,6 +643,8 @@ apis:
   humanURL: https://app.zoca.com/
   baseURL: https://api.zoca.ai
   tags:
+  - Copilot
+  tags_raw:
   - copilot
   properties:
   - type: OpenAPI
@@ -771,6 +789,8 @@ apis:
   humanURL: https://app.zoca.com/
   baseURL: https://api.zoca.ai
   tags:
+  - Eval
+  tags_raw:
   - eval
   properties:
   - type: OpenAPI
@@ -783,6 +803,8 @@ apis:
   humanURL: https://app.zoca.com/
   baseURL: https://api.zoca.ai
   tags:
+  - Event
+  tags_raw:
   - Events
   properties:
   - type: OpenAPI
@@ -819,6 +841,8 @@ apis:
   humanURL: https://app.zoca.com/
   baseURL: https://api.zoca.ai
   tags:
+  - Figma
+  tags_raw:
   - figma
   properties:
   - type: OpenAPI
@@ -867,6 +891,8 @@ apis:
   humanURL: https://app.zoca.com/
   baseURL: https://api.zoca.ai
   tags:
+  - Front Desk
+  tags_raw:
   - Frontdesk
   properties:
   - type: OpenAPI
@@ -999,6 +1025,8 @@ apis:
   humanURL: https://app.zoca.com/
   baseURL: https://api.zoca.ai
   tags:
+  - Gmail
+  tags_raw:
   - gmail
   properties:
   - type: OpenAPI
@@ -1047,6 +1075,8 @@ apis:
   humanURL: https://app.zoca.com/
   baseURL: https://api.zoca.ai
   tags:
+  - Homepage
+  tags_raw:
   - homepage
   properties:
   - type: OpenAPI
@@ -1097,6 +1127,8 @@ apis:
   humanURL: https://app.zoca.com/
   baseURL: https://api.zoca.ai
   tags:
+  - Image-Generation
+  tags_raw:
   - Image Generation
   properties:
   - type: OpenAPI
@@ -1133,6 +1165,8 @@ apis:
   humanURL: https://app.zoca.com/
   baseURL: https://api.zoca.ai
   tags:
+  - Integration
+  tags_raw:
   - Integrations
   properties:
   - type: OpenAPI
@@ -1194,6 +1228,8 @@ apis:
   humanURL: https://app.zoca.com/
   baseURL: https://api.zoca.ai
   tags:
+  - Job
+  tags_raw:
   - Jobs
   properties:
   - type: OpenAPI
@@ -1338,6 +1374,8 @@ apis:
   humanURL: https://app.zoca.com/
   baseURL: https://api.zoca.ai
   tags:
+  - Media
+  tags_raw:
   - media
   properties:
   - type: OpenAPI
@@ -1350,6 +1388,8 @@ apis:
   humanURL: https://app.zoca.com/
   baseURL: https://api.zoca.ai
   tags:
+  - Meta
+  tags_raw:
   - meta
   properties:
   - type: OpenAPI
@@ -1373,7 +1413,8 @@ apis:
   description: The misc API from Zoca — 7 operation(s) for misc.
   humanURL: https://app.zoca.com/
   baseURL: https://api.zoca.ai
-  tags:
+  tags: []
+  tags_raw:
   - misc
   properties:
   - type: OpenAPI
@@ -1434,6 +1475,8 @@ apis:
   humanURL: https://app.zoca.com/
   baseURL: https://api.zoca.ai
   tags:
+  - Onboarding
+  tags_raw:
   - onboarding
   properties:
   - type: OpenAPI
@@ -1518,6 +1561,8 @@ apis:
   humanURL: https://app.zoca.com/
   baseURL: https://api.zoca.ai
   tags:
+  - Places
+  tags_raw:
   - places
   properties:
   - type: OpenAPI
@@ -1554,6 +1599,8 @@ apis:
   humanURL: https://app.zoca.com/
   baseURL: https://api.zoca.ai
   tags:
+  - Prompts
+  tags_raw:
   - prompts
   properties:
   - type: OpenAPI
@@ -1973,6 +2020,8 @@ apis:
   humanURL: https://app.zoca.com/
   baseURL: https://api.zoca.ai
   tags:
+  - Slack
+  tags_raw:
   - slack
   properties:
   - type: OpenAPI
@@ -1997,6 +2046,8 @@ apis:
   humanURL: https://app.zoca.com/
   baseURL: https://api.zoca.ai
   tags:
+  - Social-Media
+  tags_raw:
   - Social Media
   properties:
   - type: OpenAPI
@@ -2165,6 +2216,8 @@ apis:
   humanURL: https://app.zoca.com/
   baseURL: https://api.zoca.ai
   tags:
+  - TikTok
+  tags_raw:
   - tiktok
   properties:
   - type: OpenAPI
@@ -2201,6 +2254,8 @@ apis:
   humanURL: https://app.zoca.com/
   baseURL: https://api.zoca.ai
   tags:
+  - Twilio
+  tags_raw:
   - twilio
   properties:
   - type: OpenAPI
@@ -2225,6 +2280,8 @@ apis:
   humanURL: https://app.zoca.com/
   baseURL: https://api.zoca.ai
   tags:
+  - Updates
+  tags_raw:
   - updates
   properties:
   - type: OpenAPI
@@ -2249,6 +2306,8 @@ apis:
   humanURL: https://app.zoca.com/
   baseURL: https://api.zoca.ai
   tags:
+  - Webhook
+  tags_raw:
   - Webhooks
   properties:
   - type: OpenAPI
@@ -2323,6 +2382,8 @@ apis:
   humanURL: https://app.zoca.com/
   baseURL: https://api.zoca.ai
   tags:
+  - WebView
+  tags_raw:
   - Webview
   properties:
   - type: OpenAPI
@@ -2419,6 +2480,8 @@ apis:
   humanURL: https://app.zoca.com/
   baseURL: https://api.zoca.ai
   tags:
+  - Zoho
+  tags_raw:
   - zoho
   properties:
   - type: OpenAPI
