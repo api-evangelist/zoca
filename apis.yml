@@ -128,18 +128,6 @@ apis:
     url: openapi/zoca-addongroups-api-openapi.yml
   - type: Components
     url: components/zoca-components.yml
-- aid: zoca:zoca-addons-api
-  name: Zoca Addons API
-  description: The Addons API from Zoca — 8 operation(s) for addons.
-  humanURL: https://app.zoca.com/
-  baseURL: https://api.zoca.ai
-  tags:
-  - Addons
-  properties:
-  - type: OpenAPI
-    url: openapi/zoca-addons-api-openapi.yml
-  - type: Components
-    url: components/zoca-components.yml
 - aid: zoca:zoca-aeo-lead-magnet-api
   name: Zoca Aeo Lead Magnet API
   description: The aeo-lead-magnet API from Zoca — 3 operation(s) for aeo-lead-magnet.
@@ -1709,6 +1697,8 @@ apis:
   humanURL: https://app.zoca.com/
   baseURL: https://api.zoca.ai
   tags:
+  - Route 53
+  tags_raw:
   - Route53
   properties:
   - type: OpenAPI
@@ -2486,6 +2476,18 @@ apis:
   properties:
   - type: OpenAPI
     url: openapi/zoca-zoho-api-openapi.yml
+  - type: Components
+    url: components/zoca-components.yml
+- aid: zoca:zoca-add-ons-api
+  name: Zoca Add Ons API
+  description: The Add Ons API from Zoca — 8 operation(s) for add ons.
+  humanURL: https://app.zoca.com/
+  baseURL: https://api.zoca.ai
+  tags:
+  - Add Ons
+  properties:
+  - type: OpenAPI
+    url: openapi/zoca-add-ons-api-openapi.yml
   - type: Components
     url: components/zoca-components.yml
 maintainers:
