@@ -285,6 +285,8 @@ apis:
   humanURL: https://app.zoca.com/
   baseURL: https://api.zoca.ai
   tags:
+  - Booking
+  tags_raw:
   - Bookings
   properties:
   - type: OpenAPI
@@ -1242,6 +1244,8 @@ apis:
   humanURL: https://app.zoca.com/
   baseURL: https://api.zoca.ai
   tags:
+  - Landing Pages
+  tags_raw:
   - Landing Page
   properties:
   - type: OpenAPI
@@ -2310,6 +2314,8 @@ apis:
   humanURL: https://app.zoca.com/
   baseURL: https://api.zoca.ai
   tags:
+  - Websites
+  tags_raw:
   - Website
   properties:
   - type: OpenAPI
@@ -2484,6 +2490,8 @@ apis:
   humanURL: https://app.zoca.com/
   baseURL: https://api.zoca.ai
   tags:
+  - Addons
+  tags_raw:
   - Add Ons
   properties:
   - type: OpenAPI
