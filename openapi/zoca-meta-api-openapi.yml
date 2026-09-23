@@ -9,7 +9,7 @@ servers:
 - url: https://api.zoca.ai
   description: Production
 tags:
-- name: meta
+- name: Meta
 paths:
   /meta/business-discovery:
     get:
@@ -20,7 +20,7 @@ paths:
           description: ''
       summary: Get Instagram business discovery data
       tags:
-      - meta
+      - Meta
   /meta/media:
     get:
       operationId: t_value
@@ -30,7 +30,7 @@ paths:
           description: ''
       summary: Get all media for a specific Instagram business account
       tags:
-      - meta
+      - Meta
   /meta/connect-instagram:
     post:
       operationId: t_value
@@ -40,7 +40,7 @@ paths:
           description: ''
       summary: Connect an Instagram business account to a location entity
       tags:
-      - meta
+      - Meta
   /meta/upload-media:
     post:
       operationId: t_value
@@ -50,7 +50,7 @@ paths:
           description: ''
       summary: Upload selected media to specified destinations
       tags:
-      - meta
+      - Meta
   /meta/account-status:
     get:
       operationId: t_value
@@ -60,7 +60,7 @@ paths:
           description: ''
       summary: Check if an Instagram business account is already connected to a location entity
       tags:
-      - meta
+      - Meta
   /meta/disconnect-instagram:
     post:
       operationId: t_value
@@ -70,7 +70,7 @@ paths:
           description: ''
       summary: Disconnect an Instagram business account from a location entity
       tags:
-      - meta
+      - Meta
 components:
   securitySchemes:
     access-token:

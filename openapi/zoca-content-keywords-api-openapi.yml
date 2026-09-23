@@ -23,6 +23,8 @@ paths:
           description: ''
       tags:
       - Content Keywords
+      summary: T value
+      x-summary-source: derived
     servers:
     - url: https://api.zoca.ai
       description: Production
@@ -35,6 +37,8 @@ paths:
           description: ''
       tags:
       - Content Keywords
+      summary: T value
+      x-summary-source: derived
     servers:
     - url: https://api.zoca.ai
       description: Production
@@ -47,6 +51,8 @@ paths:
           description: ''
       tags:
       - Content Keywords
+      summary: T value
+      x-summary-source: derived
     servers:
     - url: https://api.zoca.ai
       description: Production
@@ -61,6 +67,8 @@ paths:
       - Content Keywords
       security:
       - access-token: []
+      summary: T value
+      x-summary-source: derived
     servers:
     - url: https://tasks.zoca.ai
       description: Production
@@ -75,6 +83,8 @@ paths:
       - Content Keywords
       security:
       - access-token: []
+      summary: T value
+      x-summary-source: derived
     servers:
     - url: https://tasks.zoca.ai
       description: Production
@@ -89,6 +99,8 @@ paths:
       - Content Keywords
       security:
       - access-token: []
+      summary: T value
+      x-summary-source: derived
     servers:
     - url: https://tasks.zoca.ai
       description: Production

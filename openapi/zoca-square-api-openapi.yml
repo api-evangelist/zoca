@@ -156,6 +156,8 @@ paths:
       - Square
       security:
       - access-token: []
+      summary: T value
+      x-summary-source: derived
     servers:
     - url: https://tasks.zoca.ai
       description: Production
@@ -170,6 +172,8 @@ paths:
       - Square
       security:
       - access-token: []
+      summary: T value
+      x-summary-source: derived
     servers:
     - url: https://tasks.zoca.ai
       description: Production
@@ -184,6 +188,8 @@ paths:
       - Square
       security:
       - access-token: []
+      summary: T value
+      x-summary-source: derived
     servers:
     - url: https://tasks.zoca.ai
       description: Production
@@ -198,6 +204,8 @@ paths:
       - Square
       security:
       - access-token: []
+      summary: T value
+      x-summary-source: derived
     servers:
     - url: https://tasks.zoca.ai
       description: Production

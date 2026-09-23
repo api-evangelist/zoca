@@ -9,7 +9,7 @@ servers:
 - url: https://public.zoca.com
   description: Production
 tags:
-- name: places
+- name: Places
 paths:
   /places/autocomplete:
     get:
@@ -20,7 +20,7 @@ paths:
           description: ''
       summary: Get places autocomplete suggestions
       tags:
-      - places
+      - Places
   /places/details:
     get:
       operationId: e_value
@@ -30,7 +30,7 @@ paths:
           description: ''
       summary: Get place details by place ID
       tags:
-      - places
+      - Places
   /places/search:
     get:
       operationId: e_value
@@ -40,7 +40,7 @@ paths:
           description: ''
       summary: Search places
       tags:
-      - places
+      - Places
   /places/search-text:
     post:
       operationId: e_value
@@ -50,7 +50,7 @@ paths:
           description: ''
       summary: Search places using Google Places API v2
       tags:
-      - places
+      - Places
 components:
   securitySchemes:
     access-token:

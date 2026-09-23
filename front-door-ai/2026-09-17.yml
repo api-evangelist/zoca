@@ -1,0 +1,29 @@
+# Front Door AI Index — zoca — 2026-09-17
+# AI vocabulary counted on the provider's root page. Generated; do not edit.
+# `score` is null unless ownership is `own` — see front_door_ai.py.
+front_door_ai:
+  slug: zoca
+  lexicon_version: '1.0'
+  probed_at: '2026-09-17'
+  host: zoca.com
+  final_host: zoca.com
+  ownership: own
+  owner: zoca
+  shares_host_with: null
+  inherited_from: null
+  verdict: scored
+  score: 34
+  host_score: 34
+  density: 19.03
+  words: 1787
+  tiers:
+    agentic: 2
+    core: 21
+    model: 11
+  ambiguous: 13
+  top_terms:
+    AI: 21
+    agent: 13
+    ChatGPT: 6
+    Gemini: 5
+    AI agent: 2

@@ -31,7 +31,7 @@ paths:
           description: Feature disabled (killswitch).
       security:
       - bearer: []
-      summary: Create a staff member at a business + location (member-first).
+      summary: Create a staff member at a business + location (member-first)
       tags:
       - Staff
     get:
@@ -94,7 +94,7 @@ paths:
           description: Archived in this business.
       security:
       - bearer: []
-      summary: Fetch the calling staff member's own profile.
+      summary: Fetch the calling staff member's own profile
       tags:
       - Staff
     patch:
@@ -109,7 +109,7 @@ paths:
           description: Denied `staff:member.self.update` action (e.g., archived staff).
       security:
       - bearer: []
-      summary: Patch the calling staff member's own profile.
+      summary: Patch the calling staff member's own profile
       tags:
       - Staff
   /staff/directory:
@@ -127,7 +127,7 @@ paths:
           description: Feature disabled (killswitch).
       security:
       - bearer: []
-      summary: List staff members at a business (cursor-paginated, rich view).
+      summary: List staff members at a business (cursor-paginated, rich view)
       tags:
       - Staff
   /staff/{memberId}:
@@ -147,7 +147,7 @@ paths:
           description: Feature disabled (killswitch).
       security:
       - bearer: []
-      summary: Fetch a single staff member by memberId (rich view).
+      summary: Fetch a single staff member by memberId (rich view)
       tags:
       - Staff
   /staff/{memberId}/archive:
@@ -167,7 +167,7 @@ paths:
           description: Feature disabled (killswitch).
       security:
       - bearer: []
-      summary: Archive a staff member at a business (soft-delete).
+      summary: Archive a staff member at a business (soft-delete)
       tags:
       - Staff
   /staff/{memberId}/unarchive:
@@ -187,7 +187,7 @@ paths:
           description: Feature disabled (killswitch).
       security:
       - bearer: []
-      summary: Unarchive a staff member at a business.
+      summary: Unarchive a staff member at a business
       tags:
       - Staff
   /staff/{id}:

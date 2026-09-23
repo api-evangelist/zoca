@@ -139,7 +139,7 @@ paths:
       responses:
         '200':
           description: ImportFromProviderResult with per-step status
-      summary: One-click "import legacy entity into WIN" — hydrate + rebind phone + repair agent webhook
+      summary: One-click "import legacy entity into WIN" — hydrate + rebind phone + repair…
       tags:
       - Frontdesk Onboarding
   /tasks/api/v1/frontdesk/onboarding/{entityId}/repair-agent-webhook:
@@ -446,7 +446,7 @@ paths:
       responses:
         '200':
           description: FullTwilioNumber or null
-      summary: Comprehensive Twilio IncomingPhoneNumber resource for the panel's Twilio Number card
+      summary: Comprehensive Twilio IncomingPhoneNumber resource for the panel's Twilio Number…
       tags:
       - Frontdesk Onboarding
   /tasks/api/v1/frontdesk/onboarding/{entityId}/twilio/numbers/available:

@@ -43,7 +43,7 @@ paths:
                   $ref: '#/components/schemas/e'
       security:
       - bearer: []
-      summary: List addon groups for entity.
+      summary: List addon groups for entity
       tags:
       - AddonGroups
     post:
@@ -58,7 +58,7 @@ paths:
                 $ref: '#/components/schemas/e'
       security:
       - bearer: []
-      summary: Create a standalone addon group.
+      summary: Create a standalone addon group
       tags:
       - AddonGroups
   /addon-groups/{entityId}/{groupId}:
@@ -74,7 +74,7 @@ paths:
                 $ref: '#/components/schemas/t'
       security:
       - bearer: []
-      summary: Get an addon group with its member addons + linked services.
+      summary: Get an addon group with its member addons + linked services
       tags:
       - AddonGroups
     patch:
@@ -85,7 +85,7 @@ paths:
           description: ''
       security:
       - bearer: []
-      summary: Update an addon group.
+      summary: Update an addon group
       tags:
       - AddonGroups
   /addon-groups/{entityId}/{groupId}/archive:
@@ -97,7 +97,7 @@ paths:
           description: ''
       security:
       - bearer: []
-      summary: Soft-archive a group (does not archive member addons).
+      summary: Soft-archive a group (does not archive member addons)
       tags:
       - AddonGroups
   /addon-groups/{entityId}/{groupId}/unarchive:
@@ -109,7 +109,7 @@ paths:
           description: ''
       security:
       - bearer: []
-      summary: Restore an archived group.
+      summary: Restore an archived group
       tags:
       - AddonGroups
   /addon-groups/{entityId}/{groupId}/addons:
@@ -121,7 +121,7 @@ paths:
           description: ''
       security:
       - bearer: []
-      summary: Add existing addons to a group (via addon_group_items).
+      summary: Add existing addons to a group (via addon_group_items)
       tags:
       - AddonGroups
   /addon-groups/{entityId}/{groupId}/addons/{addonId}:
@@ -133,7 +133,7 @@ paths:
           description: ''
       security:
       - bearer: []
-      summary: Remove an addon from a group.
+      summary: Remove an addon from a group
       tags:
       - AddonGroups
   /addon-groups/{entityId}/{groupId}/addons/reorder:
@@ -145,7 +145,7 @@ paths:
           description: ''
       security:
       - bearer: []
-      summary: Reorder addons within a group.
+      summary: Reorder addons within a group
       tags:
       - AddonGroups
   /addon-groups/{entityId}/{groupId}/services:
@@ -157,7 +157,7 @@ paths:
           description: ''
       security:
       - bearer: []
-      summary: 'Group-attach: bulk-link group to services (writes service_addons rows with addon_id=NULL).'
+      summary: 'Group-attach: bulk-link group to services (writes service_addons rows with…'
       tags:
       - AddonGroups
   /addon-groups/{entityId}/{groupId}/services/{serviceId}:
@@ -169,11 +169,36 @@ paths:
           description: ''
       security:
       - bearer: []
-      summary: Unlink group from a service.
+      summary: Unlink group from a service
       tags:
       - AddonGroups
 components:
   schemas:
+    e:
+      type: object
+      properties:
+        id:
+          type: number
+        entityId:
+          type: string
+        attribute:
+          type: string
+        value:
+          type:
+          - object
+          - 'null'
+        metadata:
+          type:
+          - object
+          - 'null'
+        createdAt:
+          type:
+          - object
+          - 'null'
+      required:
+      - id
+      - entityId
+      - attribute
     t:
       type: object
       properties:
@@ -233,31 +258,6 @@ components:
       - trialEnd
       - addonPricingId
       - unitPriceCents
-    e:
-      type: object
-      properties:
-        id:
-          type: number
-        entityId:
-          type: string
-        attribute:
-          type: string
-        value:
-          type:
-          - object
-          - 'null'
-        metadata:
-          type:
-          - object
-          - 'null'
-        createdAt:
-          type:
-          - object
-          - 'null'
-      required:
-      - id
-      - entityId
-      - attribute
   securitySchemes:
     access-token:
       scheme: bearer

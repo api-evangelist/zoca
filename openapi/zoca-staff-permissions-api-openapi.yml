@@ -27,7 +27,7 @@ paths:
           description: Feature disabled (killswitch).
       security:
       - bearer: []
-      summary: Read a user’s per-business override map.
+      summary: Read a user’s per-business override map
       tags:
       - Staff Permissions
   /staff/permissions/users/{userEntityId}/apply:
@@ -48,7 +48,7 @@ paths:
           description: Feature disabled (killswitch).
       security:
       - bearer: []
-      summary: Apply per-business permission overrides for a user.
+      summary: Apply per-business permission overrides for a user
       tags:
       - Staff Permissions
 components:

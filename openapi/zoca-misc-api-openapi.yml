@@ -9,7 +9,7 @@ servers:
 - url: https://api.zoca.ai
   description: Production
 tags:
-- name: misc
+- name: Misc
 paths:
   /misc/sandbox/locations/{locationEntityId}/seed:
     patch:
@@ -20,7 +20,7 @@ paths:
           description: ''
       summary: Seed location lat/lng, services, and place_id
       tags:
-      - misc
+      - Misc
   /misc/signed-url:
     get:
       operationId: t_value
@@ -61,7 +61,7 @@ paths:
           description: ''
       summary: Generate S3 signed URL for file upload
       tags:
-      - misc
+      - Misc
   /misc/secret:
     get:
       operationId: t_value
@@ -71,7 +71,7 @@ paths:
           description: ''
       summary: Get secret from AWS Secrets Manager
       tags:
-      - misc
+      - Misc
   /misc/upload-to-s3:
     post:
       operationId: t_value
@@ -81,7 +81,7 @@ paths:
           description: ''
       summary: Upload file to S3 from URL
       tags:
-      - misc
+      - Misc
   /misc/redis-timer:
     get:
       operationId: t_value
@@ -91,7 +91,7 @@ paths:
           description: ''
       summary: Start Redis timer for entity
       tags:
-      - misc
+      - Misc
   /misc/offboard-location:
     post:
       operationId: t_value
@@ -101,7 +101,7 @@ paths:
           description: ''
       summary: Offboard a location
       tags:
-      - misc
+      - Misc
   /misc/zoca-test:
     get:
       operationId: t_value
@@ -111,7 +111,7 @@ paths:
           description: ''
       summary: Zoca test endpoint
       tags:
-      - misc
+      - Misc
 components:
   securitySchemes:
     access-token:

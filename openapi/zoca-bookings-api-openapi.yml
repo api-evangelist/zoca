@@ -1129,7 +1129,7 @@ paths:
       responses:
         '200':
           description: Backfill completed successfully
-      summary: Backfill service, serviceVariation, and client snapshots on migrated booking items
+      summary: Backfill service, serviceVariation, and client snapshots on migrated booking…
       tags:
       - Bookings
 components:

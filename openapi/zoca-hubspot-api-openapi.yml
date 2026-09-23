@@ -12,7 +12,7 @@ servers:
 - url: https://tasks.zoca.ai
   description: Production
 tags:
-- name: HubSpot
+- name: Hubspot
 paths:
   /hubspot/am-meeting-url/{entityId}:
     get:
@@ -42,7 +42,7 @@ paths:
           description: Bad request - entityId is required
       summary: Get AM Meeting URL for Location
       tags:
-      - HubSpot
+      - Hubspot
     servers:
     - url: https://api.zoca.ai
       description: Production
@@ -82,7 +82,7 @@ paths:
           description: Bad request - entityId, requestId and agentEntityId are required
       summary: Get Offboarding Meeting URL for Location
       tags:
-      - HubSpot
+      - Hubspot
     servers:
     - url: https://api.zoca.ai
       description: Production
@@ -140,7 +140,7 @@ paths:
           description: Bad request - entityId is required
       summary: Get Upcoming Meetings for Location
       tags:
-      - HubSpot
+      - Hubspot
     servers:
     - url: https://api.zoca.ai
       description: Production
@@ -161,7 +161,7 @@ paths:
           description: Onboarding job queued successfully
       summary: Process HubSpot onboarding
       tags:
-      - HubSpot
+      - Hubspot
       security:
       - access-token: []
     servers:
@@ -188,7 +188,7 @@ paths:
           description: Internal server error
       summary: Sync HubSpot data
       tags:
-      - HubSpot
+      - Hubspot
       security:
       - access-token: []
     servers:
@@ -202,9 +202,11 @@ paths:
         '200':
           description: ''
       tags:
-      - HubSpot
+      - Hubspot
       security:
       - access-token: []
+      summary: T value
+      x-summary-source: derived
     servers:
     - url: https://tasks.zoca.ai
       description: Production
@@ -216,9 +218,11 @@ paths:
         '200':
           description: ''
       tags:
-      - HubSpot
+      - Hubspot
       security:
       - access-token: []
+      summary: T value
+      x-summary-source: derived
     servers:
     - url: https://tasks.zoca.ai
       description: Production
@@ -232,7 +236,7 @@ paths:
           description: Ticket chat webhook received successfully
       summary: Handle HubSpot ticket chat webhook
       tags:
-      - HubSpot
+      - Hubspot
       security:
       - access-token: []
     servers:
@@ -248,7 +252,7 @@ paths:
           description: Ticket creation received successfully
       summary: Handle request created event for ticket creation
       tags:
-      - HubSpot
+      - Hubspot
       security:
       - access-token: []
     servers:
@@ -271,7 +275,7 @@ paths:
           description: Message sent successfully
       summary: Send message to HubSpot ticket conversation
       tags:
-      - HubSpot
+      - Hubspot
       security:
       - access-token: []
     servers:
@@ -287,7 +291,7 @@ paths:
           description: Ticket update webhook received successfully
       summary: Handle HubSpot ticket update webhook
       tags:
-      - HubSpot
+      - Hubspot
       security:
       - access-token: []
     servers:
@@ -303,7 +307,7 @@ paths:
           description: HubSpot ticket status updated successfully
       summary: Handle request completion and update HubSpot ticket
       tags:
-      - HubSpot
+      - Hubspot
       security:
       - access-token: []
     servers:
@@ -330,7 +334,7 @@ paths:
           description: Demo Call sync job queued successfully
       summary: Manually trigger Demo Call stage sync
       tags:
-      - HubSpot
+      - Hubspot
       security:
       - access-token: []
     servers:
@@ -346,7 +350,7 @@ paths:
           description: Location → Demo Call sync job queued successfully
       summary: Manually trigger Location → Demo Call sync
       tags:
-      - HubSpot
+      - Hubspot
       security:
       - access-token: []
     servers:
@@ -362,7 +366,7 @@ paths:
           description: Check-in Meeting URL sync job queued successfully
       summary: Manually trigger Check-in Meeting URL sync
       tags:
-      - HubSpot
+      - Hubspot
       security:
       - access-token: []
     servers:
@@ -405,7 +409,7 @@ paths:
           description: Invalid event data (missing eventName or identifier)
       summary: Send custom event to HubSpot
       tags:
-      - HubSpot
+      - Hubspot
       security:
       - access-token: []
     servers:
@@ -421,7 +425,7 @@ paths:
           description: Deal update result
       summary: Update deal to TRIAL_STARTED
       tags:
-      - HubSpot
+      - Hubspot
       security:
       - access-token: []
     servers:
@@ -443,7 +447,7 @@ paths:
           description: Lead upsert job queued successfully
       summary: Upsert a lead in HubSpot
       tags:
-      - HubSpot
+      - Hubspot
       security:
       - access-token: []
     servers:
@@ -465,7 +469,7 @@ paths:
           description: Bulk lead upsert job queued successfully
       summary: Bulk upsert leads in HubSpot from CSV
       tags:
-      - HubSpot
+      - Hubspot
       security:
       - access-token: []
     servers:
@@ -489,7 +493,7 @@ paths:
           description: Invalid filter operator/value combination
       summary: Search HubSpot contacts
       tags:
-      - HubSpot
+      - Hubspot
       security:
       - access-token: []
     servers:
@@ -507,7 +511,7 @@ paths:
           description: Failed to queue potential resurrection job
       summary: Trigger Potential Resurrection Pipeline
       tags:
-      - HubSpot
+      - Hubspot
       security:
       - access-token: []
     servers:
@@ -525,7 +529,7 @@ paths:
           description: Failed to fetch HubSpot properties
       summary: List HubSpot Contact + Company Properties
       tags:
-      - HubSpot
+      - Hubspot
       security:
       - access-token: []
     servers:

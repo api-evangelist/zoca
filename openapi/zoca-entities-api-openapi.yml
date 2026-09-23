@@ -1083,7 +1083,7 @@ paths:
                   message: Failed to retrieve active subscriptions
                   error: Internal Server Error
                   statusCode: 500
-      summary: Get active subscriptions and offboarding information for an entity (with HubSpot meeting)
+      summary: Get active subscriptions and offboarding information for an entity (with…
       tags:
       - Entities
     servers:
@@ -2040,7 +2040,7 @@ paths:
                 type: array
                 items:
                   $ref: '#/components/schemas/e_2'
-      summary: List users at a location with their phone numbers bundled inline (VIRTUAL_NUMBER, WORK, PERSONAL)
+      summary: List users at a location with their phone numbers bundled inline…
       tags:
       - Entities
       security:
@@ -2094,7 +2094,21 @@ paths:
       description: Production
   /tasks/api/v1/entities/locations/backfill-coordinates:
     post:
-      description: "Enqueues a job to backfill missing latitude/longitude coordinates for location entities.\n    \n    The job will:\n    1. Find all active, non-test location entities with missing coordinates\n    2. Try to fill coordinates from GBP (Google Business Profile) table first\n    3. If not available in GBP, use Google Maps API with the place_id\n    4. Process in batches with configurable delays to respect API rate limits\n    \n    Use dryRun=true to preview what would be updated without making changes."
+      description: 'Enqueues a job to backfill missing latitude/longitude coordinates for location entities.
+
+
+        The job will:
+
+        1. Find all active, non-test location entities with missing coordinates
+
+        2. Try to fill coordinates from GBP (Google Business Profile) table first
+
+        3. If not available in GBP, use Google Maps API with the place_id
+
+        4. Process in batches with configurable delays to respect API rate limits
+
+
+        Use dryRun=true to preview what would be updated without making changes.'
       operationId: t_value
       parameters: []
       requestBody:

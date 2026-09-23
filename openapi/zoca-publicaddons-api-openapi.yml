@@ -30,7 +30,7 @@ paths:
       responses:
         '200':
           description: ''
-      summary: 'Public: fetch direct-attached addons + mapped groups (with members) for a service.'
+      summary: 'Public: fetch direct-attached addons + mapped groups (with members) for a…'
       tags:
       - PublicAddons
 components:

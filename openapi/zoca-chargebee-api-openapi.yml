@@ -12,7 +12,7 @@ servers:
 - url: https://tasks.zoca.ai
   description: Production
 tags:
-- name: chargebee
+- name: Chargebee
 paths:
   /chargebee/missed/payment/{entityId}:
     get:
@@ -23,7 +23,7 @@ paths:
           description: ''
       summary: Handle missed payment redirect
       tags:
-      - chargebee
+      - Chargebee
     servers:
     - url: https://public.zoca.com
       description: Production
@@ -36,7 +36,7 @@ paths:
           description: ''
       summary: Update payment method redirect
       tags:
-      - chargebee
+      - Chargebee
     servers:
     - url: https://public.zoca.com
       description: Production
@@ -49,7 +49,7 @@ paths:
           description: ''
       summary: Handle contract payment redirect
       tags:
-      - chargebee
+      - Chargebee
     servers:
     - url: https://public.zoca.com
       description: Production
@@ -62,7 +62,7 @@ paths:
           description: ''
       summary: Generate and redirect to invoice PDF
       tags:
-      - chargebee
+      - Chargebee
     servers:
     - url: https://public.zoca.com
       description: Production
@@ -99,7 +99,7 @@ paths:
       - {}
       summary: Handle all Chargebee webhooks
       tags:
-      - chargebee
+      - Chargebee
     servers:
     - url: https://tasks.zoca.ai
       description: Production
@@ -163,7 +163,7 @@ paths:
       - {}
       summary: Upsert ignore payments status for an entity
       tags:
-      - chargebee
+      - Chargebee
     servers:
     - url: https://tasks.zoca.ai
       description: Production
@@ -233,7 +233,7 @@ paths:
       - {}
       summary: Upsert auto-collection status for a Chargebee entity
       tags:
-      - chargebee
+      - Chargebee
     servers:
     - url: https://tasks.zoca.ai
       description: Production
@@ -249,7 +249,7 @@ paths:
       - {}
       summary: Handle all Chargebee webhooks
       tags:
-      - chargebee
+      - Chargebee
     servers:
     - url: https://tasks.zoca.ai
       description: Production
@@ -296,7 +296,7 @@ paths:
       - {}
       summary: Manually trigger missed payment detection jobs
       tags:
-      - chargebee
+      - Chargebee
     servers:
     - url: https://tasks.zoca.ai
       description: Production
@@ -310,7 +310,7 @@ paths:
           description: Line item override created successfully
       summary: Create a line item override
       tags:
-      - chargebee
+      - Chargebee
       security:
       - access-token: []
     get:
@@ -322,7 +322,7 @@ paths:
           description: Line item overrides fetched successfully
       summary: List line item overrides
       tags:
-      - chargebee
+      - Chargebee
       security:
       - access-token: []
     servers:
@@ -345,7 +345,7 @@ paths:
           description: Line item override not found
       summary: Get a line item override by id
       tags:
-      - chargebee
+      - Chargebee
       security:
       - access-token: []
     patch:
@@ -364,7 +364,7 @@ paths:
           description: Line item override not found
       summary: Update a line item override
       tags:
-      - chargebee
+      - Chargebee
       security:
       - access-token: []
     delete:
@@ -384,7 +384,7 @@ paths:
           description: Line item override not found
       summary: Deactivate a line item override
       tags:
-      - chargebee
+      - Chargebee
       security:
       - access-token: []
     servers:

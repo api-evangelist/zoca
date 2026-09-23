@@ -12,7 +12,7 @@ servers:
 - url: https://tasks.zoca.ai
   description: Production
 tags:
-- name: chatbot
+- name: Chatbot
 paths:
   /chatbot/calls/{callId}:
     get:
@@ -23,7 +23,7 @@ paths:
           description: Call details retrieved successfully
       summary: Get call details by call ID
       tags:
-      - chatbot
+      - Chatbot
     servers:
     - url: https://api.zoca.ai
       description: Production
@@ -57,7 +57,7 @@ paths:
           description: Call record not found
       summary: Regenerate call summary by call ID
       tags:
-      - chatbot
+      - Chatbot
     servers:
     - url: https://api.zoca.ai
       description: Production
@@ -80,7 +80,7 @@ paths:
                 $ref: '#/components/schemas/e'
       summary: Get service provider context for an entity
       tags:
-      - chatbot
+      - Chatbot
     servers:
     - url: https://api.zoca.ai
       description: Production
@@ -101,7 +101,7 @@ paths:
           description: Invalid request payload
       summary: Import a phone number to Retell
       tags:
-      - chatbot
+      - Chatbot
     servers:
     - url: https://api.zoca.ai
       description: Production
@@ -130,7 +130,7 @@ paths:
           description: Phone number not found
       summary: Update a phone number configuration
       tags:
-      - chatbot
+      - Chatbot
     servers:
     - url: https://api.zoca.ai
       description: Production
@@ -143,7 +143,7 @@ paths:
           description: ''
       summary: Purchase a new phone number
       tags:
-      - chatbot
+      - Chatbot
     servers:
     - url: https://api.zoca.ai
       description: Production
@@ -168,7 +168,7 @@ paths:
           description: Invalid request payload
       summary: Verify that a virtual number is properly configured
       tags:
-      - chatbot
+      - Chatbot
     servers:
     - url: https://api.zoca.ai
       description: Production
@@ -200,7 +200,7 @@ paths:
                     type: boolean
       summary: Test endpoint to check followup status for a client
       tags:
-      - chatbot
+      - Chatbot
     servers:
     - url: https://api.zoca.ai
       description: Production
@@ -219,7 +219,7 @@ paths:
           description: ''
       summary: Get conversation state by client ID
       tags:
-      - chatbot
+      - Chatbot
     servers:
     - url: https://api.zoca.ai
       description: Production
@@ -232,7 +232,7 @@ paths:
           description: ''
       summary: Create card on file
       tags:
-      - chatbot
+      - Chatbot
     servers:
     - url: https://api.zoca.ai
       description: Production
@@ -245,7 +245,7 @@ paths:
           description: ''
       summary: Get card on file link
       tags:
-      - chatbot
+      - Chatbot
     servers:
     - url: https://api.zoca.ai
       description: Production
@@ -260,7 +260,7 @@ paths:
           description: Invalid request payload or missing entityId
       summary: Create a new feedback record
       tags:
-      - chatbot
+      - Chatbot
     get:
       operationId: t_value
       parameters:
@@ -289,7 +289,7 @@ paths:
           description: entityId is required
       summary: Get all feedback records for an entity with pagination
       tags:
-      - chatbot
+      - Chatbot
     servers:
     - url: https://api.zoca.ai
       description: Production
@@ -312,7 +312,7 @@ paths:
           description: Feedback not found or not accessible
       summary: Update an existing feedback record
       tags:
-      - chatbot
+      - Chatbot
     delete:
       operationId: t_value
       parameters:
@@ -329,7 +329,7 @@ paths:
           description: Feedback not found or not accessible
       summary: Soft delete a feedback record
       tags:
-      - chatbot
+      - Chatbot
     get:
       operationId: t_value
       parameters:
@@ -346,7 +346,7 @@ paths:
           description: Feedback not found
       summary: Get a feedback record by ID
       tags:
-      - chatbot
+      - Chatbot
     servers:
     - url: https://api.zoca.ai
       description: Production
@@ -397,7 +397,7 @@ paths:
           description: Internal server error
       summary: Get all human handover records for a client
       tags:
-      - chatbot
+      - Chatbot
     servers:
     - url: https://api.zoca.ai
       description: Production
@@ -423,7 +423,7 @@ paths:
       - {}
       summary: Handle incoming SMS messages from CallHippo
       tags:
-      - chatbot
+      - Chatbot
     servers:
     - url: https://tasks.zoca.ai
       description: Production
@@ -448,7 +448,7 @@ paths:
           description: Internal server error
       summary: Continue a conversation with the chatbot for testing
       tags:
-      - chatbot
+      - Chatbot
       security:
       - access-token: []
     servers:
@@ -480,7 +480,7 @@ paths:
           description: Internal server error
       summary: Soft delete messages from a conversation
       tags:
-      - chatbot
+      - Chatbot
       security:
       - access-token: []
     servers:
@@ -510,7 +510,7 @@ paths:
           description: Internal server error
       summary: Start a new conversation with a customer
       tags:
-      - chatbot
+      - Chatbot
       security:
       - access-token: []
     servers:
@@ -540,7 +540,7 @@ paths:
           description: Internal server error
       summary: Start a new conversation with a customer (Production - No Restrictions)
       tags:
-      - chatbot
+      - Chatbot
       security:
       - access-token: []
     servers:
@@ -567,7 +567,7 @@ paths:
           description: Internal server error during processing
       summary: Process due follow-ups
       tags:
-      - chatbot
+      - Chatbot
       security:
       - access-token: []
     servers:
@@ -600,7 +600,7 @@ paths:
           description: Internal server error during deactivation
       summary: Deactivate human handover for a client
       tags:
-      - chatbot
+      - Chatbot
       security:
       - access-token: []
     servers:
@@ -622,7 +622,7 @@ paths:
           description: Internal server error during activation
       summary: Activate human handover for a client
       tags:
-      - chatbot
+      - Chatbot
       security:
       - access-token: []
     servers:
@@ -655,7 +655,7 @@ paths:
           description: Internal server error
       summary: Get all due followups
       tags:
-      - chatbot
+      - Chatbot
       security:
       - access-token: []
     servers:
@@ -694,7 +694,7 @@ paths:
           description: Internal server error
       summary: Get all followups for a client
       tags:
-      - chatbot
+      - Chatbot
       security:
       - access-token: []
     servers:
@@ -732,7 +732,7 @@ paths:
           description: Internal server error
       summary: Calculate next follow-up for a client
       tags:
-      - chatbot
+      - Chatbot
       security:
       - access-token: []
     servers:
@@ -755,7 +755,7 @@ paths:
           description: Internal server error
       summary: Handle various application events
       tags:
-      - chatbot
+      - Chatbot
       security:
       - access-token: []
     servers:
@@ -778,7 +778,7 @@ paths:
           description: Internal server error
       summary: Test the getSpContext function with a specific location entity ID
       tags:
-      - chatbot
+      - Chatbot
       security:
       - access-token: []
     servers:
@@ -808,7 +808,7 @@ paths:
           description: Internal server error
       summary: Update booking requests with available slots
       tags:
-      - chatbot
+      - Chatbot
       security:
       - access-token: []
     servers:
@@ -831,7 +831,7 @@ paths:
           description: Internal server error
       summary: Get all pending booking requests
       tags:
-      - chatbot
+      - Chatbot
       security:
       - access-token: []
     servers:
@@ -897,7 +897,7 @@ paths:
           description: Internal server error
       summary: Test the getBookingInfo function with direct parameters
       tags:
-      - chatbot
+      - Chatbot
       security:
       - access-token: []
     servers:
@@ -952,7 +952,7 @@ paths:
           description: Internal server error
       summary: Get available booking slots for a specific service and date
       tags:
-      - chatbot
+      - Chatbot
       security:
       - access-token: []
     servers:
@@ -1006,7 +1006,7 @@ paths:
           description: Internal server error
       summary: Get an entity record for L2B bot configuration
       tags:
-      - chatbot
+      - Chatbot
       security:
       - access-token: []
     servers:
@@ -1065,7 +1065,7 @@ paths:
           description: Internal server error
       summary: Get enabled chatbot functions for an entity
       tags:
-      - chatbot
+      - Chatbot
       security:
       - access-token: []
     servers:
@@ -1101,7 +1101,7 @@ paths:
           description: Internal server error
       summary: Create an entity record for L2B bot configuration
       tags:
-      - chatbot
+      - Chatbot
       security:
       - access-token: []
     servers:
@@ -1145,7 +1145,7 @@ paths:
           description: Internal server error
       summary: Update an entity record for L2B bot configuration
       tags:
-      - chatbot
+      - Chatbot
       security:
       - access-token: []
     servers:
@@ -1203,7 +1203,7 @@ paths:
           description: Internal server error
       summary: Save business information for L2B entity
       tags:
-      - chatbot
+      - Chatbot
       security:
       - access-token: []
     get:
@@ -1270,7 +1270,7 @@ paths:
           description: Internal server error
       summary: Get business information and onboarding data for entity
       tags:
-      - chatbot
+      - Chatbot
       security:
       - access-token: []
     servers:
@@ -1354,7 +1354,7 @@ paths:
           description: Internal server error
       summary: Get entities not configured for L2B or with L2B disabled
       tags:
-      - chatbot
+      - Chatbot
       security:
       - access-token: []
     servers:
@@ -1376,7 +1376,7 @@ paths:
           description: Internal server error
       summary: Get all L2B entity phone numbers
       tags:
-      - chatbot
+      - Chatbot
       security:
       - access-token: []
     servers:
@@ -1403,7 +1403,7 @@ paths:
           description: Internal server error
       summary: Get all L2B entity phone numbers
       tags:
-      - chatbot
+      - Chatbot
       security:
       - access-token: []
     servers:
@@ -1525,7 +1525,7 @@ paths:
           description: Internal server error
       summary: Get recent conversation partners
       tags:
-      - chatbot
+      - Chatbot
       security:
       - access-token: []
     servers:
@@ -1569,7 +1569,7 @@ paths:
           description: Internal server error
       summary: Mark conversation as read for a client
       tags:
-      - chatbot
+      - Chatbot
       security:
       - access-token: []
     servers:
@@ -1594,7 +1594,7 @@ paths:
           description: Internal server error
       summary: Get conversation history
       tags:
-      - chatbot
+      - Chatbot
       security:
       - access-token: []
     servers:
@@ -1680,7 +1680,7 @@ paths:
           description: Internal server error
       summary: Get L2B leads for an entity with their most recent message
       tags:
-      - chatbot
+      - Chatbot
       security:
       - access-token: []
     servers:
@@ -1726,7 +1726,7 @@ paths:
           description: Internal server error
       summary: Get L2B conversations for a phone number
       tags:
-      - chatbot
+      - Chatbot
       security:
       - access-token: []
     servers:
@@ -1765,7 +1765,7 @@ paths:
           description: Internal server error
       summary: Get virtual phone numbers for an entity
       tags:
-      - chatbot
+      - Chatbot
       security:
       - access-token: []
     servers:
@@ -1794,7 +1794,7 @@ paths:
           description: Internal server error
       summary: Initiate a call to a customer
       tags:
-      - chatbot
+      - Chatbot
       security:
       - access-token: []
     servers:
@@ -1845,7 +1845,7 @@ paths:
           description: Internal server error
       summary: Get call history for a client
       tags:
-      - chatbot
+      - Chatbot
       security:
       - access-token: []
     servers:
@@ -1868,7 +1868,7 @@ paths:
           description: Bad request
       summary: Handle incoming call webhook and events from Retell
       tags:
-      - chatbot
+      - Chatbot
       security:
       - access-token: []
     servers:
@@ -1905,7 +1905,7 @@ paths:
                 $ref: '#/components/schemas/e_2'
       summary: Get call context for incoming calls
       tags:
-      - chatbot
+      - Chatbot
       security:
       - access-token: []
     servers:
@@ -1927,7 +1927,7 @@ paths:
           description: Internal server error
       summary: Retrieve call details from Retell
       tags:
-      - chatbot
+      - Chatbot
       security:
       - access-token: []
     servers:
@@ -1954,7 +1954,7 @@ paths:
       - {}
       summary: Handle all call events webhook from Retell (unified endpoint)
       tags:
-      - chatbot
+      - Chatbot
     servers:
     - url: https://tasks.zoca.ai
       description: Production
@@ -2005,7 +2005,7 @@ paths:
                     type: string
       summary: Make a test outbound call
       tags:
-      - chatbot
+      - Chatbot
       security:
       - access-token: []
     servers:
@@ -2058,7 +2058,7 @@ paths:
                     type: string
       summary: Handle test incoming call setup
       tags:
-      - chatbot
+      - Chatbot
       security:
       - access-token: []
     servers:
@@ -2085,7 +2085,7 @@ paths:
           description: Internal server error
       summary: Check if human handover is active for a client
       tags:
-      - chatbot
+      - Chatbot
       security:
       - access-token: []
     servers:
@@ -2104,9 +2104,9 @@ paths:
                 type: string
         '500':
           description: Internal server error
-      summary: Get the call brige number to which calls will be forwarded if EC calls to virtual number.
+      summary: Get the call brige number to which calls will be forwarded if EC calls to…
       tags:
-      - chatbot
+      - Chatbot
       security:
       - access-token: []
     servers:
@@ -2147,7 +2147,7 @@ paths:
           description: Internal server error
       summary: Get formatted message history for a client
       tags:
-      - chatbot
+      - Chatbot
       security:
       - access-token: []
     servers:
@@ -2182,7 +2182,7 @@ paths:
           description: Internal server error
       summary: Get all businesses with active L2B bot
       tags:
-      - chatbot
+      - Chatbot
       security:
       - access-token: []
     servers:
@@ -2220,7 +2220,7 @@ paths:
                       type: string
       summary: Get all chatbot-related preferences for an entity
       tags:
-      - chatbot
+      - Chatbot
       security:
       - access-token: []
     servers:
@@ -2261,7 +2261,7 @@ paths:
           description: Internal server error
       summary: Get clients for a business with conversation and handover status
       tags:
-      - chatbot
+      - Chatbot
       security:
       - access-token: []
     servers:
@@ -2342,7 +2342,7 @@ paths:
           description: Internal server error
       summary: Get formatted webhook data for a business entity
       tags:
-      - chatbot
+      - Chatbot
       security:
       - access-token: []
     servers:
@@ -2383,7 +2383,7 @@ paths:
           description: Internal server error
       summary: Get conversation history for a client
       tags:
-      - chatbot
+      - Chatbot
       security:
       - access-token: []
     servers:
@@ -2413,7 +2413,7 @@ paths:
           description: Internal server error
       summary: Upsert webhook data for a phone number
       tags:
-      - chatbot
+      - Chatbot
       security:
       - access-token: []
     servers:
@@ -2465,7 +2465,7 @@ paths:
           description: Internal server error
       summary: Get phone numbers for an entity (testing)
       tags:
-      - chatbot
+      - Chatbot
       security:
       - access-token: []
     post:
@@ -2546,7 +2546,7 @@ paths:
           description: Internal server error
       summary: Add phone number to entity (testing)
       tags:
-      - chatbot
+      - Chatbot
       security:
       - access-token: []
     servers:
@@ -2569,7 +2569,7 @@ paths:
           description: Bad request - Invalid booking data
       summary: Create a new booking
       tags:
-      - chatbot
+      - Chatbot
       security:
       - access-token: []
     servers:
@@ -2621,7 +2621,7 @@ paths:
           description: Internal server error
       summary: Get prompt variables with optional full prompt
       tags:
-      - chatbot
+      - Chatbot
       security:
       - access-token: []
     servers:
@@ -2664,7 +2664,7 @@ paths:
           description: Internal server error
       summary: Get original variables for non-test entities
       tags:
-      - chatbot
+      - Chatbot
       security:
       - access-token: []
     servers:
@@ -2725,7 +2725,7 @@ paths:
           description: Internal server error
       summary: Get prompt with multi-tier fallback mechanism
       tags:
-      - chatbot
+      - Chatbot
       security:
       - access-token: []
     servers:
@@ -2787,7 +2787,7 @@ paths:
           description: Entity not found
       summary: List all rules for an entity
       tags:
-      - chatbot
+      - Chatbot
       security:
       - access-token: []
     servers:
@@ -2815,7 +2815,7 @@ paths:
           description: Invalid rule configuration
       summary: Create a new ops team rule
       tags:
-      - chatbot
+      - Chatbot
       security:
       - access-token: []
     servers:
@@ -2844,7 +2844,7 @@ paths:
           description: Rule not found
       summary: Get a rule by ID
       tags:
-      - chatbot
+      - Chatbot
       security:
       - access-token: []
     put:
@@ -2877,7 +2877,7 @@ paths:
           description: Rule not found
       summary: Update a rule
       tags:
-      - chatbot
+      - Chatbot
       security:
       - access-token: []
     delete:
@@ -2898,7 +2898,7 @@ paths:
           description: Rule not found
       summary: Delete a rule
       tags:
-      - chatbot
+      - Chatbot
       security:
       - access-token: []
     servers:
@@ -2919,7 +2919,7 @@ paths:
           description: ''
       summary: Test the category grouping function with a specific location entity ID
       tags:
-      - chatbot
+      - Chatbot
       security:
       - access-token: []
     servers:
@@ -2933,9 +2933,11 @@ paths:
         '201':
           description: ''
       tags:
-      - chatbot
+      - Chatbot
       security:
       - access-token: []
+      summary: T value
+      x-summary-source: derived
     servers:
     - url: https://tasks.zoca.ai
       description: Production
@@ -2947,9 +2949,11 @@ paths:
         '201':
           description: ''
       tags:
-      - chatbot
+      - Chatbot
       security:
       - access-token: []
+      summary: T value
+      x-summary-source: derived
     servers:
     - url: https://tasks.zoca.ai
       description: Production
@@ -2961,9 +2965,11 @@ paths:
         '201':
           description: ''
       tags:
-      - chatbot
+      - Chatbot
       security:
       - access-token: []
+      summary: T value
+      x-summary-source: derived
     servers:
     - url: https://tasks.zoca.ai
       description: Production
@@ -2975,9 +2981,11 @@ paths:
         '201':
           description: ''
       tags:
-      - chatbot
+      - Chatbot
       security:
       - access-token: []
+      summary: T value
+      x-summary-source: derived
     servers:
     - url: https://tasks.zoca.ai
       description: Production
@@ -2989,9 +2997,11 @@ paths:
         '201':
           description: ''
       tags:
-      - chatbot
+      - Chatbot
       security:
       - access-token: []
+      summary: T value
+      x-summary-source: derived
     servers:
     - url: https://tasks.zoca.ai
       description: Production
@@ -3011,7 +3021,7 @@ paths:
           description: Internal server error
       summary: Get all available chatbot functions
       tags:
-      - chatbot
+      - Chatbot
       security:
       - access-token: []
     servers:
@@ -3042,7 +3052,7 @@ paths:
           description: Internal server error
       summary: Get enabled chatbot functions for an entity
       tags:
-      - chatbot
+      - Chatbot
       security:
       - access-token: []
     servers:
@@ -3065,7 +3075,7 @@ paths:
           description: Internal server error
       summary: Create a new message template
       tags:
-      - chatbot
+      - Chatbot
       security:
       - access-token: []
     get:
@@ -3088,7 +3098,7 @@ paths:
           description: Internal server error
       summary: Get all message templates
       tags:
-      - chatbot
+      - Chatbot
       security:
       - access-token: []
     servers:
@@ -3116,7 +3126,7 @@ paths:
           description: Internal server error
       summary: Get a message template by ID
       tags:
-      - chatbot
+      - Chatbot
       security:
       - access-token: []
     put:
@@ -3142,7 +3152,7 @@ paths:
           description: Internal server error
       summary: Update a message template
       tags:
-      - chatbot
+      - Chatbot
       security:
       - access-token: []
     delete:
@@ -3168,7 +3178,7 @@ paths:
           description: Internal server error
       summary: Delete a message template
       tags:
-      - chatbot
+      - Chatbot
       security:
       - access-token: []
     servers:
@@ -3237,7 +3247,7 @@ paths:
                     example: 'Failed to update entity metadata: error message'
       summary: Update entity metadata
       tags:
-      - chatbot
+      - Chatbot
       security:
       - access-token: []
     servers:
@@ -3264,7 +3274,7 @@ paths:
           description: Internal server error during metadata update
       summary: Bulk update entity metadata for L2B entities
       tags:
-      - chatbot
+      - Chatbot
       security:
       - access-token: []
     servers:

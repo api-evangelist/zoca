@@ -139,6 +139,8 @@ paths:
       - bearer: []
       tags:
       - Website Creation
+      summary: T value
+      x-summary-source: derived
   /tasks/api/v1/website/recreate:
     post:
       operationId: t_value
@@ -150,6 +152,8 @@ paths:
       - bearer: []
       tags:
       - Website Creation
+      summary: T value
+      x-summary-source: derived
   /tasks/api/v1/website/store-scraped-services:
     post:
       description: Stores the raw JSON response from the service scraper for a given entity

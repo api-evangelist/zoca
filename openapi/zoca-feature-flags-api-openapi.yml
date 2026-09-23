@@ -32,7 +32,7 @@ paths:
           description: ''
       security:
       - bearer: []
-      summary: Global ZocaWeb product feature flags resolved for the current environment (read-only)
+      summary: Global ZocaWeb product feature flags resolved for the current environment…
       tags:
       - Feature Flags
   /feature-flags/bulk-toggle:

@@ -436,7 +436,7 @@ paths:
                 type: array
                 items:
                   $ref: '#/components/schemas/e_2'
-      summary: 'Get Posting Platforms '
+      summary: Get Posting Platforms
       tags:
       - Content
       security:
@@ -1164,7 +1164,7 @@ paths:
             application/json:
               schema:
                 $ref: '#/components/schemas/e_2'
-      summary: Create and Schedule a post for an entity ID if the current date post are not available
+      summary: Create and Schedule a post for an entity ID if the current date post are not…
       tags:
       - Content
       security:
@@ -1190,7 +1190,7 @@ paths:
                   failed:
                     type: number
                     example: 0
-      summary: Schedule posts for all active entities that do not have a post scheduled for today.
+      summary: Schedule posts for all active entities that do not have a post scheduled for…
       tags:
       - Content
       security:

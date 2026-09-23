@@ -142,6 +142,8 @@ paths:
           description: ''
       tags:
       - Google Business Profile
+      summary: T value
+      x-summary-source: derived
   /tasks/api/v1/gbp/{entityId}/generate-additional-categories:
     get:
       operationId: t_value
@@ -151,6 +153,8 @@ paths:
           description: ''
       tags:
       - Google Business Profile
+      summary: T value
+      x-summary-source: derived
   /tasks/api/v1/gbp/{entityId}/generate-gbp-faqs:
     get:
       operationId: t_value
@@ -160,6 +164,8 @@ paths:
           description: ''
       tags:
       - Google Business Profile
+      summary: T value
+      x-summary-source: derived
   /tasks/api/v1/gbp/{entityId}/generate-content:
     get:
       operationId: t_value
@@ -169,6 +175,8 @@ paths:
           description: ''
       tags:
       - Google Business Profile
+      summary: T value
+      x-summary-source: derived
   /tasks/api/v1/gbp/{entityId}/generate-services-categories:
     post:
       description: Generates optimized category assignments for services using AI/LLM processing
@@ -186,7 +194,6 @@ paths:
       - Google Business Profile
   /tasks/api/v1/gbp/upsert-qanda:
     post:
-      description: Upsert Qanda
       operationId: t_value
       parameters: []
       responses:
@@ -208,6 +215,8 @@ paths:
           description: ''
       tags:
       - Google Business Profile
+      summary: T value
+      x-summary-source: derived
   /tasks/api/v1/gbp/{entityId}/create-ops-services-updates:
     post:
       operationId: t_value
@@ -217,6 +226,8 @@ paths:
           description: ''
       tags:
       - Google Business Profile
+      summary: T value
+      x-summary-source: derived
   /tasks/api/v1/gbp/{entityId}/create-ops-categories-updates:
     post:
       operationId: t_value
@@ -226,6 +237,8 @@ paths:
           description: ''
       tags:
       - Google Business Profile
+      summary: T value
+      x-summary-source: derived
   /tasks/api/v1/gbp/additional-categories/{industry}:
     get:
       operationId: t_value
@@ -235,6 +248,8 @@ paths:
           description: ''
       tags:
       - Google Business Profile
+      summary: T value
+      x-summary-source: derived
   /tasks/api/v1/gbp/zoca/auth:
     get:
       operationId: t_value
@@ -244,6 +259,8 @@ paths:
           description: ''
       tags:
       - Google Business Profile
+      summary: T value
+      x-summary-source: derived
   /tasks/api/v1/gbp/location/details:
     get:
       operationId: t_value
@@ -253,6 +270,8 @@ paths:
           description: ''
       tags:
       - Google Business Profile
+      summary: T value
+      x-summary-source: derived
   /tasks/api/v1/gbp/location/entity-details:
     get:
       operationId: t_value
@@ -262,6 +281,8 @@ paths:
           description: ''
       tags:
       - Google Business Profile
+      summary: T value
+      x-summary-source: derived
   /tasks/api/v1/gbp/website/status:
     post:
       operationId: t_value
@@ -271,6 +292,8 @@ paths:
           description: ''
       tags:
       - Google Business Profile
+      summary: T value
+      x-summary-source: derived
   /tasks/api/v1/gbp/csv-geocoding/process:
     post:
       description: Queues CSV file from S3 URL for geocoding processing. The worker will download, validate, and process the file.

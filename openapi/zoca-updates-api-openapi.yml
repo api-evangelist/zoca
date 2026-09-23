@@ -9,7 +9,7 @@ servers:
 - url: https://api.zoca.ai
   description: Production
 tags:
-- name: updates
+- name: Updates
 paths:
   /updates:
     post:
@@ -26,7 +26,7 @@ paths:
           description: The update has been successfully created.
       summary: Create a new update record
       tags:
-      - updates
+      - Updates
   /updates/backfill-gbp-posts:
     post:
       description: Finds posts that were successfully published on GBP but do not have corresponding updates, and creates the missing updates with createdAt set to the original executedAt timestamp.
@@ -63,7 +63,7 @@ paths:
                       type: string
       summary: Backfill missing GBP post updates for a specific date
       tags:
-      - updates
+      - Updates
   /updates/{id}:
     patch:
       operationId: t_value
@@ -73,7 +73,7 @@ paths:
           description: The update has been successfully patched.
       summary: Patch an update record
       tags:
-      - updates
+      - Updates
     get:
       operationId: t_value
       parameters:
@@ -87,7 +87,7 @@ paths:
           description: The update details.
       summary: Get a single update by its ID
       tags:
-      - updates
+      - Updates
   /updates/entity/{entityId}:
     get:
       operationId: t_value
@@ -135,7 +135,7 @@ paths:
           description: List of updates for the entity.
       summary: Get all updates for a specific entity
       tags:
-      - updates
+      - Updates
     patch:
       operationId: t_value
       parameters:
@@ -149,7 +149,7 @@ paths:
           description: ''
       summary: Mark all updates as read for a specific entity
       tags:
-      - updates
+      - Updates
   /updates/count/{entityId}:
     get:
       operationId: t_value
@@ -173,7 +173,7 @@ paths:
           description: ''
       summary: Get the count of updates for a specific entity
       tags:
-      - updates
+      - Updates
   /updates/highlights/entity/{entityId}:
     get:
       operationId: t_value
@@ -188,7 +188,7 @@ paths:
           description: ''
       summary: Get the highlights for a specific entity
       tags:
-      - updates
+      - Updates
   /updates/templates:
     post:
       operationId: t_value
@@ -204,7 +204,7 @@ paths:
           description: The template has been successfully created.
       summary: Create a new update template
       tags:
-      - updates
+      - Updates
     get:
       operationId: t_value
       parameters: []
@@ -213,7 +213,7 @@ paths:
           description: List of all update templates.
       summary: Get all update templates
       tags:
-      - updates
+      - Updates
   /updates/templates/{key}:
     get:
       operationId: t_value
@@ -228,7 +228,7 @@ paths:
           description: The template details.
       summary: Get a single update template by key
       tags:
-      - updates
+      - Updates
     patch:
       operationId: t_value
       parameters:
@@ -248,7 +248,7 @@ paths:
           description: The template has been successfully updated.
       summary: Update an existing update template
       tags:
-      - updates
+      - Updates
 components:
   schemas:
     e:

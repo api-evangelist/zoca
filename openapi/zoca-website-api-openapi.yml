@@ -647,7 +647,7 @@ paths:
       responses:
         '201':
           description: ''
-      summary: Queue a URL-only theme scrape (colors + fonts); no DB writes — poll for the result
+      summary: Queue a URL-only theme scrape (colors + fonts); no DB writes — poll for the…
       tags:
       - Website
   /website/scrape-theme-preview/{jobId}:

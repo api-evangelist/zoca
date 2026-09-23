@@ -9,7 +9,7 @@ servers:
 - url: https://api.zoca.ai
   description: Production
 tags:
-- name: copilot
+- name: Copilot
 paths:
   /copilot/chat:
     post:
@@ -26,7 +26,7 @@ paths:
       - bearer: []
       summary: Chat with the copilot
       tags:
-      - copilot
+      - Copilot
   /copilot/discover:
     post:
       operationId: t_value
@@ -42,7 +42,7 @@ paths:
       - bearer: []
       summary: Discover insights using the copilot
       tags:
-      - copilot
+      - Copilot
   /copilot/conversations:
     get:
       operationId: t_value
@@ -58,7 +58,7 @@ paths:
       - bearer: []
       summary: Get user conversations with optional pagination
       tags:
-      - copilot
+      - Copilot
   /copilot/conversations/{conversationId}:
     get:
       operationId: t_value
@@ -74,7 +74,7 @@ paths:
       - bearer: []
       summary: Get conversation history with optional pagination
       tags:
-      - copilot
+      - Copilot
   /copilot/chat/stream:
     options:
       operationId: t_value
@@ -85,7 +85,9 @@ paths:
       security:
       - bearer: []
       tags:
-      - copilot
+      - Copilot
+      summary: T value
+      x-summary-source: derived
     get:
       operationId: t_value
       parameters: []
@@ -96,7 +98,7 @@ paths:
       - bearer: []
       summary: Stream chat responses from the copilot
       tags:
-      - copilot
+      - Copilot
   /copilot/stream:
     get:
       operationId: t_value
@@ -108,7 +110,7 @@ paths:
       - bearer: []
       summary: Stream responses from the copilot
       tags:
-      - copilot
+      - Copilot
   /copilot/enquiry-stats-with-roi:
     post:
       operationId: t_value
@@ -123,7 +125,9 @@ paths:
       security:
       - bearer: []
       tags:
-      - copilot
+      - Copilot
+      summary: T value
+      x-summary-source: derived
   /copilot/discovery-insights:
     post:
       description: Analyzes location data from the last 12 months including reviews, media, bookings, and metrics to generate insights
@@ -153,7 +157,7 @@ paths:
       - bearer: []
       summary: Get discovery insights for a specific location
       tags:
-      - copilot
+      - Copilot
 components:
   schemas:
     e:

@@ -135,7 +135,7 @@ paths:
       responses:
         '200':
           description: ''
-      summary: Get special hours for an entity within a date range (staff one-time-override week hydrate)
+      summary: Get special hours for an entity within a date range (staff one-time-override…
       tags:
       - Working Hours
   /working-hours/special-hours/bulk:
@@ -145,7 +145,7 @@ paths:
       responses:
         '200':
           description: ''
-      summary: 'Sync a week of per-date special-hour overrides for an entity (staff one-time schedule): upsert the diff, soft-delete reverted/unchanged in-range dates'
+      summary: Sync a week of per-date special-hour overrides for an entity (staff one-time…
       tags:
       - Working Hours
   /working-hours/special-hours/{id}:

@@ -159,7 +159,15 @@ paths:
       - Services
   /services/{entityId}/service:
     post:
-      description: "Creates a new service for a specific entity with the following features:\n    - Optional category assignment\n    - Support for service variations\n    - Price and duration configuration\n    - Image attachment capability"
+      description: 'Creates a new service for a specific entity with the following features:
+
+        - Optional category assignment
+
+        - Support for service variations
+
+        - Price and duration configuration
+
+        - Image attachment capability'
       operationId: t_value
       parameters:
       - name: createDefaultVariation
@@ -1931,7 +1939,7 @@ paths:
           description: ''
       security:
       - bearer: []
-      summary: Replace all service assignments for a staff member with the given list (additions + removals)
+      summary: Replace all service assignments for a staff member with the given list…
       tags:
       - Services
   /services/staff/assignment/{id}:
@@ -1967,6 +1975,31 @@ paths:
       - Services
 components:
   schemas:
+    e:
+      type: object
+      properties:
+        id:
+          type: number
+        entityId:
+          type: string
+        attribute:
+          type: string
+        value:
+          type:
+          - object
+          - 'null'
+        metadata:
+          type:
+          - object
+          - 'null'
+        createdAt:
+          type:
+          - object
+          - 'null'
+      required:
+      - id
+      - entityId
+      - attribute
     t:
       type: object
       properties:
@@ -2026,31 +2059,6 @@ components:
       - trialEnd
       - addonPricingId
       - unitPriceCents
-    e:
-      type: object
-      properties:
-        id:
-          type: number
-        entityId:
-          type: string
-        attribute:
-          type: string
-        value:
-          type:
-          - object
-          - 'null'
-        metadata:
-          type:
-          - object
-          - 'null'
-        createdAt:
-          type:
-          - object
-          - 'null'
-      required:
-      - id
-      - entityId
-      - attribute
   securitySchemes:
     access-token:
       scheme: bearer

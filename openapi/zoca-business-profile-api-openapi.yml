@@ -9,7 +9,7 @@ servers:
 - url: https://api.zoca.ai
   description: Production
 tags:
-- name: business-profile
+- name: Business Profile
 paths:
   /business-profile:
     get:
@@ -20,7 +20,7 @@ paths:
           description: Sucessfully onboarded the location for given entity id
       summary: Get business profile information by entity Id
       tags:
-      - business-profile
+      - Business Profile
   /business-profile/address-auto-complete:
     get:
       operationId: t_value
@@ -30,7 +30,7 @@ paths:
           description: ''
       summary: Get address auto-complete suggestions
       tags:
-      - business-profile
+      - Business Profile
   /business-profile/domain-suggestion:
     get:
       operationId: t_value
@@ -40,7 +40,7 @@ paths:
           description: ''
       summary: Get domain suggestions
       tags:
-      - business-profile
+      - Business Profile
   /business-profile/primary-category-suggestion:
     get:
       operationId: t_value
@@ -50,7 +50,7 @@ paths:
           description: ''
       summary: Get primary category suggestions
       tags:
-      - business-profile
+      - Business Profile
     put:
       operationId: t_value
       parameters: []
@@ -59,7 +59,7 @@ paths:
           description: ''
       summary: Get primary category suggestions (v2)
       tags:
-      - business-profile
+      - Business Profile
   /business-profile/additional-category-suggestion:
     get:
       operationId: t_value
@@ -69,7 +69,7 @@ paths:
           description: ''
       summary: Get additional category suggestions
       tags:
-      - business-profile
+      - Business Profile
     put:
       operationId: t_value
       parameters: []
@@ -78,7 +78,7 @@ paths:
           description: ''
       summary: Get additional category suggestions (v2)
       tags:
-      - business-profile
+      - Business Profile
   /business-profile/booking-platforms:
     get:
       description: Retrieves a list of all active booking platforms including Vagaro, GlossGenius, StyleSeat, and Booksy.
@@ -95,7 +95,7 @@ paths:
                   $ref: '#/components/schemas/e'
       summary: Get all booking platforms
       tags:
-      - business-profile
+      - Business Profile
   /business-profile/social-platforms:
     get:
       description: Retrieves a list of all active social media platforms including Facebook, Instagram, LinkedIn, TikTok, Twitter, YouTube, and Pinterest.
@@ -112,7 +112,7 @@ paths:
                   $ref: '#/components/schemas/e'
       summary: Get all social media platforms
       tags:
-      - business-profile
+      - Business Profile
   /business-profile/{entityId}/booking-link:
     put:
       description: Updates the booking link for a specified platform, deactivating any existing active link for that platform.
@@ -137,7 +137,7 @@ paths:
           description: Booking link updated successfully
       summary: Update booking link for a platform
       tags:
-      - business-profile
+      - Business Profile
     get:
       description: Updates the booking link for a specified platform, deactivating any existing active link for that platform.
       operationId: t_value
@@ -160,7 +160,7 @@ paths:
                   $ref: '#/components/schemas/e'
       summary: Update booking link for a platform
       tags:
-      - business-profile
+      - Business Profile
   /business-profile/{entityId}/links:
     get:
       description: Retrieves all links (both active and inactive) associated with the specified entity.
@@ -184,7 +184,7 @@ paths:
                   $ref: '#/components/schemas/e'
       summary: Get all links for an entity
       tags:
-      - business-profile
+      - Business Profile
   /business-profile/ai-description:
     get:
       operationId: t_value
@@ -194,7 +194,7 @@ paths:
           description: ''
       summary: Generate AI-based business description
       tags:
-      - business-profile
+      - Business Profile
   /business-profile/update-profile-data:
     put:
       operationId: t_value
@@ -204,7 +204,7 @@ paths:
           description: ''
       summary: Update business profile data
       tags:
-      - business-profile
+      - Business Profile
   /business-profile/update-profile-data-ops:
     put:
       deprecated: true
@@ -216,7 +216,7 @@ paths:
           description: ''
       summary: Update business profile data (ops)
       tags:
-      - business-profile
+      - Business Profile
   /business-profile/website-domain/{entityId}:
     get:
       operationId: t_value
@@ -226,7 +226,7 @@ paths:
           description: ''
       summary: Get website domain data
       tags:
-      - business-profile
+      - Business Profile
     put:
       operationId: t_value
       parameters: []
@@ -235,7 +235,7 @@ paths:
           description: ''
       summary: Update website domain data
       tags:
-      - business-profile
+      - Business Profile
   /business-profile/website-domain-quotation/{entityId}:
     put:
       operationId: t_value
@@ -245,7 +245,7 @@ paths:
           description: ''
       summary: Get domain quotation
       tags:
-      - business-profile
+      - Business Profile
 components:
   schemas:
     e:

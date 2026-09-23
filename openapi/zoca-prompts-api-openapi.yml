@@ -11,7 +11,7 @@ servers:
 security:
 - access-token: []
 tags:
-- name: prompts
+- name: Prompts
 paths:
   /tasks/api/v1/prompts:
     get:
@@ -94,7 +94,7 @@ paths:
                         type: boolean
       summary: List all prompts with optional filters and pagination
       tags:
-      - prompts
+      - Prompts
   /tasks/api/v1/prompts/upsert:
     post:
       operationId: t_value
@@ -114,7 +114,7 @@ paths:
                 $ref: '#/components/schemas/e'
       summary: Create or update a prompt
       tags:
-      - prompts
+      - Prompts
   /tasks/api/v1/prompts/prompt:
     get:
       operationId: t_value
@@ -128,7 +128,7 @@ paths:
                 type: string
       summary: Get a prompt by function and useCase
       tags:
-      - prompts
+      - Prompts
   /tasks/api/v1/prompts/prompt/fallback:
     get:
       operationId: t_value
@@ -142,7 +142,7 @@ paths:
                 type: string
       summary: Get a prompt by function and useCase with fallback
       tags:
-      - prompts
+      - Prompts
   /tasks/api/v1/prompts/cohort/set:
     post:
       description: Sets a prompt value for all entities in a cohort in their preferences table against the specified attribute
@@ -165,10 +165,10 @@ paths:
           description: Bad Request - Invalid input data
       summary: Set prompt for a cohort of entities
       tags:
-      - prompts
+      - Prompts
   /tasks/api/v1/prompts/cohort/update-to-latest:
     post:
-      description: Updates a cohort's prompt to the latest version by function and useCase. Stores the prompt reference (PROMPT:<id>) against the cohortId in entity_preferences using the specified attribute key (e.g., chatbot.prompt.initializer). This is used by tier 2 of getPromptWithFallback for cohort-level prompt resolution.
+      description: Updates a cohort's prompt to the latest version by function and useCase. Stores the prompt reference (PROMPT:) against the cohortId in entity_preferences using the specified attribute key (e.g., chatbot.prompt.initializer). This is used by tier 2 of getPromptWithFallback for cohort-level prompt resolution.
       operationId: t_value
       parameters: []
       requestBody:
@@ -188,7 +188,7 @@ paths:
           description: Bad Request - Invalid input data, cohort not found, or prompt not found
       summary: Update cohort prompt to latest version
       tags:
-      - prompts
+      - Prompts
   /tasks/api/v1/prompts/cohort/{cohortId}:
     get:
       description: Retrieves the prompt value that was set for entities in a cohort from their preferences table
@@ -247,7 +247,7 @@ paths:
           description: Cohort not found
       summary: Get prompt that was set for a cohort
       tags:
-      - prompts
+      - Prompts
   /tasks/api/v1/prompts/functions:
     get:
       operationId: t_value
@@ -263,7 +263,7 @@ paths:
                   type: string
       summary: List all available business functions
       tags:
-      - prompts
+      - Prompts
   /tasks/api/v1/prompts/use-cases:
     get:
       operationId: t_value
@@ -285,7 +285,7 @@ paths:
                   type: string
       summary: List all use cases across all functions
       tags:
-      - prompts
+      - Prompts
   /tasks/api/v1/prompts/functions/{function}/use-cases:
     get:
       operationId: t_value
@@ -316,7 +316,7 @@ paths:
                   type: string
       summary: List use cases for a specific business function
       tags:
-      - prompts
+      - Prompts
   /tasks/api/v1/prompts/{id}:
     delete:
       operationId: t_value
@@ -341,7 +341,7 @@ paths:
           description: Prompt not found
       summary: Delete a prompt by ID
       tags:
-      - prompts
+      - Prompts
 components:
   schemas:
     e:

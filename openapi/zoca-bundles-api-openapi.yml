@@ -44,7 +44,17 @@ paths:
       tags:
       - Bundles
     post:
-      description: "Creates a new service bundle for a specific entity with the following features:\n    - Bundle multiple services together\n    - Set combined bundle price\n    - Configure deposit requirements\n    - Assign specific providers\n    - Add bundle images"
+      description: 'Creates a new service bundle for a specific entity with the following features:
+
+        - Bundle multiple services together
+
+        - Set combined bundle price
+
+        - Configure deposit requirements
+
+        - Assign specific providers
+
+        - Add bundle images'
       operationId: t_value
       parameters:
       - name: entityId
@@ -714,6 +724,31 @@ paths:
       - Bundles
 components:
   schemas:
+    e:
+      type: object
+      properties:
+        id:
+          type: number
+        entityId:
+          type: string
+        attribute:
+          type: string
+        value:
+          type:
+          - object
+          - 'null'
+        metadata:
+          type:
+          - object
+          - 'null'
+        createdAt:
+          type:
+          - object
+          - 'null'
+      required:
+      - id
+      - entityId
+      - attribute
     t:
       type: object
       properties:
@@ -773,31 +808,6 @@ components:
       - trialEnd
       - addonPricingId
       - unitPriceCents
-    e:
-      type: object
-      properties:
-        id:
-          type: number
-        entityId:
-          type: string
-        attribute:
-          type: string
-        value:
-          type:
-          - object
-          - 'null'
-        metadata:
-          type:
-          - object
-          - 'null'
-        createdAt:
-          type:
-          - object
-          - 'null'
-      required:
-      - id
-      - entityId
-      - attribute
   securitySchemes:
     access-token:
       scheme: bearer

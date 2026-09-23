@@ -9,7 +9,7 @@ servers:
 - url: https://api.zoca.ai
   description: Production
 tags:
-- name: homepage
+- name: Homepage
 paths:
   /homepage/activation-steps:
     get:
@@ -20,7 +20,7 @@ paths:
           description: ''
       summary: Get activation steps status
       tags:
-      - homepage
+      - Homepage
   /homepage:
     get:
       operationId: t_value
@@ -30,7 +30,7 @@ paths:
           description: ''
       summary: Get homepage data
       tags:
-      - homepage
+      - Homepage
   /homepage/homepage-components:
     get:
       operationId: t_value
@@ -40,7 +40,7 @@ paths:
           description: ''
       summary: Get homepage components
       tags:
-      - homepage
+      - Homepage
   /homepage/user-data:
     get:
       operationId: t_value
@@ -50,7 +50,7 @@ paths:
           description: ''
       summary: Get user data
       tags:
-      - homepage
+      - Homepage
   /homepage/leads-data:
     get:
       operationId: t_value
@@ -60,7 +60,7 @@ paths:
           description: ''
       summary: Get leads data
       tags:
-      - homepage
+      - Homepage
   /homepage/activation-steps-data:
     get:
       operationId: t_value
@@ -70,7 +70,7 @@ paths:
           description: ''
       summary: Get activation steps data
       tags:
-      - homepage
+      - Homepage
   /homepage/performance-data:
     get:
       operationId: t_value
@@ -80,7 +80,7 @@ paths:
           description: ''
       summary: Get performance data
       tags:
-      - homepage
+      - Homepage
   /homepage/oauth-status:
     get:
       operationId: t_value
@@ -90,7 +90,7 @@ paths:
           description: ''
       summary: Get OAuth status
       tags:
-      - homepage
+      - Homepage
   /homepage/footer:
     get:
       operationId: t_value
@@ -100,7 +100,7 @@ paths:
           description: ''
       summary: Get footer data
       tags:
-      - homepage
+      - Homepage
   /homepage/check-website-status:
     get:
       operationId: t_value
@@ -110,7 +110,7 @@ paths:
           description: ''
       summary: Check website status
       tags:
-      - homepage
+      - Homepage
   /homepage/fetch-page-views:
     get:
       operationId: t_value
@@ -120,7 +120,7 @@ paths:
           description: ''
       summary: Fetch page views
       tags:
-      - homepage
+      - Homepage
   /homepage/extend-trial:
     put:
       operationId: t_value
@@ -130,7 +130,7 @@ paths:
           description: ''
       summary: Extend trial period
       tags:
-      - homepage
+      - Homepage
   /homepage/monthly-report:
     get:
       description: When listAll=true returns all active reports; otherwise returns the single report (by reportType or default PERFORMANCE_REPORT).
@@ -147,7 +147,7 @@ paths:
           description: No report found
       summary: Get monthly report(s) for an entity
       tags:
-      - homepage
+      - Homepage
     post:
       operationId: t_value
       parameters: []
@@ -160,7 +160,7 @@ paths:
                 $ref: '#/components/schemas/e'
       summary: Create a new monthly report
       tags:
-      - homepage
+      - Homepage
     put:
       operationId: t_value
       parameters: []
@@ -169,7 +169,7 @@ paths:
           description: Monthly report updated successfully
       summary: Update monthly report status
       tags:
-      - homepage
+      - Homepage
   /homepage/referrals/link/{businessEntityId}:
     get:
       operationId: t_value
@@ -179,7 +179,7 @@ paths:
           description: ''
       summary: Get referral link for business
       tags:
-      - homepage
+      - Homepage
   /homepage/referrals:
     post:
       operationId: t_value
@@ -189,7 +189,7 @@ paths:
           description: ''
       summary: Create a referral
       tags:
-      - homepage
+      - Homepage
   /homepage/review-tracker:
     get:
       operationId: t_value
@@ -199,7 +199,7 @@ paths:
           description: ''
       summary: Get review tracker metrics
       tags:
-      - homepage
+      - Homepage
   /homepage/opening-date:
     put:
       operationId: t_value
@@ -211,7 +211,7 @@ paths:
           description: Invalid request parameters
       summary: Update opening date for a GBP location
       tags:
-      - homepage
+      - Homepage
   /homepage/carousel-cards:
     get:
       operationId: t_value
@@ -221,7 +221,7 @@ paths:
           description: Carousel cards data retrieved successfully
       summary: Get carousel cards for Win Agent onboarding
       tags:
-      - homepage
+      - Homepage
   /homepage/website-card-state:
     get:
       operationId: t_value
@@ -239,7 +239,7 @@ paths:
           description: Entity not found
       summary: Get website card state for entity
       tags:
-      - homepage
+      - Homepage
   /homepage/discovery-metrics:
     get:
       operationId: t_value
@@ -249,7 +249,7 @@ paths:
           description: ''
       summary: Get cumulative discovery metrics since onboarding
       tags:
-      - homepage
+      - Homepage
 components:
   schemas:
     e:

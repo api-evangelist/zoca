@@ -9,7 +9,7 @@ servers:
 - url: https://api.zoca.ai
   description: Production
 tags:
-- name: slack
+- name: Slack
 paths:
   /slack/slack-send-message:
     post:
@@ -20,7 +20,7 @@ paths:
           description: ''
       summary: Send a Slack message
       tags:
-      - slack
+      - Slack
   /slack/send:
     post:
       operationId: t_value
@@ -30,7 +30,7 @@ paths:
           description: ''
       summary: Send a Slack message (alternative endpoint)
       tags:
-      - slack
+      - Slack
   /slack/schedule-send:
     post:
       operationId: t_value
@@ -40,7 +40,7 @@ paths:
           description: ''
       summary: Schedule a Slack message
       tags:
-      - slack
+      - Slack
 components:
   securitySchemes:
     access-token:

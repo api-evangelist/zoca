@@ -409,7 +409,17 @@ paths:
       - booking-enquiries
   /booking-enquiries/leads-tracker-stats:
     get:
-      description: "Retrieves comprehensive leads/enquiries statistics with time-series buckets:\n    - Returns time-bucketed metrics for leads count and revenue\n    - Automatic granularity: Weekly for < 1 year periods, Monthly for >= 1 year\n    - Includes year-over-year growth percentages for comparison\n    - Provides total aggregates, currency info, and entity onboarding date\n    - Date range defaults to last 90 days if not specified"
+      description: 'Retrieves comprehensive leads/enquiries statistics with time-series buckets:
+
+        - Returns time-bucketed metrics for leads count and revenue
+
+        - Automatic granularity: Weekly for = 1 year
+
+        - Includes year-over-year growth percentages for comparison
+
+        - Provides total aggregates, currency info, and entity onboarding date
+
+        - Date range defaults to last 90 days if not specified'
       operationId: t_value
       parameters: []
       responses:

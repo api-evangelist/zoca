@@ -9,7 +9,7 @@ servers:
 - url: https://api.zoca.ai
   description: Production
 tags:
-- name: billing
+- name: Billing
 paths:
   /billing/customers:
     get:
@@ -25,7 +25,7 @@ paths:
                 $ref: '#/components/schemas/e'
       summary: Get Chargebee customer ID for a location entity
       tags:
-      - billing
+      - Billing
   /billing/agents:
     get:
       description: One row per addon, inner-joined with entities.agents for the agentName. Filter by planId; defaults to Zoca-Agents-USD when omitted.
@@ -42,7 +42,7 @@ paths:
                   $ref: '#/components/schemas/e'
       summary: List buyable agents with Chargebee addon info for a plan
       tags:
-      - billing
+      - Billing
   /billing/payment-method/hosted-page:
     post:
       description: 'Returns a hosted_page object (id, url, type, state, expiresAt). FE: `cbInstance.openCheckout({ hostedPage: response.data.hostedPage })`. Chargebee auto-attaches the card; on success the FE just advances to the next step.'
@@ -57,7 +57,7 @@ paths:
                 $ref: '#/components/schemas/e'
       summary: Create Chargebee hosted-page for drop-in payment modal
       tags:
-      - billing
+      - Billing
   /billing/invoices/{invoiceId}/payment-intent:
     post:
       operationId: t_value
@@ -71,7 +71,7 @@ paths:
                 $ref: '#/components/schemas/e'
       summary: Create payment_intent for an unpaid invoice (handlePayment 3DS)
       tags:
-      - billing
+      - Billing
   /billing/invoices/{invoiceId}/collect-payment:
     post:
       description: When paymentIntentId is supplied, Chargebee finalises that confirmed intent. Otherwise it tries the customer card on file directly.
@@ -84,9 +84,9 @@ paths:
             application/json:
               schema:
                 $ref: '#/components/schemas/e'
-      summary: Collect payment for an unpaid invoice (card on file or authorised payment_intent)
+      summary: Collect payment for an unpaid invoice (card on file or authorised…
       tags:
-      - billing
+      - Billing
   /billing/portal-session:
     post:
       description: 'Returns a portal_session (id, token, access_url, expires_at). FE: cbInstance.setPortalSession(() => session); cbPortal.openSection({ sectionType: "billing_history" }).'
@@ -101,7 +101,7 @@ paths:
                 $ref: '#/components/schemas/e'
       summary: Create Chargebee portal_session for Customer Portal drop-in
       tags:
-      - billing
+      - Billing
   /billing/contract/prefill:
     get:
       operationId: t_value
@@ -115,7 +115,7 @@ paths:
                 $ref: '#/components/schemas/e'
       summary: Prefill data for the contract Confirm step
       tags:
-      - billing
+      - Billing
   /billing/contract/confirm:
     post:
       operationId: t_value
@@ -129,7 +129,7 @@ paths:
                 $ref: '#/components/schemas/e'
       summary: Confirm contract details and trigger Zoho signing
       tags:
-      - billing
+      - Billing
   /billing/contract/{contractId}:
     get:
       operationId: t_value
@@ -149,7 +149,7 @@ paths:
                 $ref: '#/components/schemas/e'
       summary: Poll a single contract by id
       tags:
-      - billing
+      - Billing
   /billing/subscription:
     patch:
       description: Single endpoint covering every CB mutation. `operation.type` is the discriminator; remaining fields depend on the op.
@@ -164,7 +164,7 @@ paths:
                 $ref: '#/components/schemas/e'
       summary: Update subscription (items/plan/coupons/pause/resume/reactivate/…)
       tags:
-      - billing
+      - Billing
     delete:
       operationId: t_value
       parameters: []
@@ -179,7 +179,7 @@ paths:
           description: No cancellation response logged - call POST /billing/cancellation/responses first.
       summary: Cancel subscription
       tags:
-      - billing
+      - Billing
     get:
       description: Returns status (8-state enum), trial info, subscription block, default payment method, and outstanding dues. Live Chargebee SDK reads.
       operationId: t_value
@@ -193,7 +193,7 @@ paths:
                 $ref: '#/components/schemas/e'
       summary: Get the unified billing state for a location
       tags:
-      - billing
+      - Billing
   /billing/cancellation-stats:
     get:
       description: Returns days active (since subscription start), virtual number, landing-page subdomain, lifetime totals (calls answered, bookings, reviews, content), and per-month projections.
@@ -210,7 +210,7 @@ paths:
           description: subscriptionId not found in chargebee.subscriptions
       summary: Aggregated location stats for the cancellation flow
       tags:
-      - billing
+      - Billing
   /billing/cancellation/reasons:
     get:
       description: Filter with `?flow=trial` for the trial-cancellation reason set. Defaults to `subscription` (paying-customer cancellation) when omitted.
@@ -227,7 +227,7 @@ paths:
                   $ref: '#/components/schemas/e'
       summary: List active cancellation reasons for the cancellation flow
       tags:
-      - billing
+      - Billing
   /billing/cancellation/faqs:
     get:
       description: Filter with `?flow=trial` for the trial FAQ set. `subscriptionId` (optional) narrows the response to the union of (universal FAQs ∪ per-agent FAQs whose `attributes.agentScope` intersects the sub's addon item-IDs).
@@ -244,7 +244,7 @@ paths:
                   $ref: '#/components/schemas/e'
       summary: List active cancellation FAQs (optionally scoped to a subscription)
       tags:
-      - billing
+      - Billing
   /billing/cancellation/responses:
     post:
       description: Records the user's selected reasonKey + optional freeText. Decoupled from the actual sub cancel - call this first, then DELETE /billing/subscription. Re-submits overwrite the prior row for the same (location, sub) pair.
@@ -259,7 +259,7 @@ paths:
                 $ref: '#/components/schemas/e'
       summary: Log the cancellation reason answer (upsert per location × subscription)
       tags:
-      - billing
+      - Billing
   /billing/admin/cancellation-reasons:
     get:
       operationId: t_value
@@ -275,7 +275,7 @@ paths:
                   $ref: '#/components/schemas/e'
       summary: Admin - list all cancellation reasons (incl. archived)
       tags:
-      - billing
+      - Billing
     post:
       description: '`reasonKey` is the stable analytics id (e.g. "win_back_ad"). `attributes.tellUsMore` (optional) drives the FE textarea - `{ required, label, placeholder, minChars }`.'
       operationId: t_value
@@ -289,7 +289,7 @@ paths:
                 $ref: '#/components/schemas/e'
       summary: Admin - create a new cancellation reason
       tags:
-      - billing
+      - Billing
   /billing/admin/cancellation-reasons/{id}:
     get:
       operationId: t_value
@@ -303,7 +303,7 @@ paths:
                 $ref: '#/components/schemas/e'
       summary: Admin - get a single cancellation reason
       tags:
-      - billing
+      - Billing
     patch:
       operationId: t_value
       parameters: []
@@ -316,7 +316,7 @@ paths:
                 $ref: '#/components/schemas/e'
       summary: Admin - update title, description, displayOrder, status, or attributes
       tags:
-      - billing
+      - Billing
     delete:
       description: Flips status to `archived` so the row stops appearing in GET /billing/cancellation/reasons. Hard delete is refused - historical responses reference it via reason_id.
       operationId: t_value
@@ -330,7 +330,7 @@ paths:
                 $ref: '#/components/schemas/e'
       summary: Admin - soft-archive a cancellation reason
       tags:
-      - billing
+      - Billing
   /billing/admin/cancellation-reasons/bulk:
     post:
       description: 'Takes `{ reasons: [...] }` - creates each reason; re-POSTing a `reasonKey` updates that row. Set `attributes.flow="trial"` to add reasons to the trial-cancellation set. Handy for seeding a fresh environment.'
@@ -347,7 +347,7 @@ paths:
                   $ref: '#/components/schemas/e'
       summary: Admin - bulk-upsert cancellation reasons (idempotent on reasonKey)
       tags:
-      - billing
+      - Billing
   /billing/admin/cancellation-faqs:
     get:
       operationId: t_value
@@ -363,7 +363,7 @@ paths:
                   $ref: '#/components/schemas/e'
       summary: Admin - list all cancellation FAQs (incl. archived)
       tags:
-      - billing
+      - Billing
     post:
       description: '`faqKey` is the stable analytics id. Set `attributes.flow="trial"` for trial-flow FAQs, `attributes.agentScope=["Loyalty-Agent",...]` to scope to specific addons (Chargebee item-IDs), `attributes.icon="phone"` for the lucide glyph.'
       operationId: t_value
@@ -377,7 +377,7 @@ paths:
                 $ref: '#/components/schemas/e'
       summary: Admin - create a new cancellation FAQ
       tags:
-      - billing
+      - Billing
   /billing/admin/cancellation-faqs/{id}:
     get:
       operationId: t_value
@@ -391,7 +391,7 @@ paths:
                 $ref: '#/components/schemas/e'
       summary: Admin - get a single cancellation FAQ
       tags:
-      - billing
+      - Billing
     patch:
       operationId: t_value
       parameters: []
@@ -404,7 +404,7 @@ paths:
                 $ref: '#/components/schemas/e'
       summary: Admin - update question, answer, displayOrder, status, or attributes
       tags:
-      - billing
+      - Billing
     delete:
       description: Flips status to `archived` so the row stops appearing in GET /billing/cancellation/faqs. Mirrors reasons - soft-archive for recoverability.
       operationId: t_value
@@ -418,7 +418,7 @@ paths:
                 $ref: '#/components/schemas/e'
       summary: Admin - soft-archive a cancellation FAQ
       tags:
-      - billing
+      - Billing
   /billing/admin/cancellation-faqs/bulk:
     post:
       description: 'Takes `{ faqs: [...] }` - creates each FAQ; re-POSTing a `faqKey` updates that row. Use this to seed a fresh environment or refresh copy across rows in one call.'
@@ -435,7 +435,7 @@ paths:
                   $ref: '#/components/schemas/e'
       summary: Admin - bulk-upsert cancellation FAQs (idempotent on faqKey)
       tags:
-      - billing
+      - Billing
   /billing/admin/cancellation-responses:
     get:
       description: Append-only log. Filter by `subscriptionId` to scope to a specific sub. Most recent first.
@@ -452,7 +452,7 @@ paths:
                   $ref: '#/components/schemas/e'
       summary: Admin - list cancellation responses for a location (optionally a sub)
       tags:
-      - billing
+      - Billing
   /billing/subscription/change-estimate:
     post:
       operationId: t_value
@@ -466,7 +466,7 @@ paths:
                 $ref: '#/components/schemas/e'
       summary: Estimate proration for a subscription change
       tags:
-      - billing
+      - Billing
   /billing/addons/catalog:
     get:
       description: Caller passes the desired billing cadence via `frequency` - the stable Chargebee name (e.g. "Monthly", "Every-3-months", "Yearly"). Addressing by name (not id) keeps the contract stable across envs since chargebee.frequency.id is serial.
@@ -483,7 +483,7 @@ paths:
                   $ref: '#/components/schemas/t'
       summary: Addons available to add to the subscription
       tags:
-      - billing
+      - Billing
   /billing/admin/locations/{locationEntityId}/addons-toggle:
     get:
       description: Returns one entry per catalog-eligible addon on the location's plan with its current on/off flag.
@@ -498,7 +498,7 @@ paths:
                 $ref: '#/components/schemas/e'
       summary: Admin - read the per-addon visibility toggles for a location
       tags:
-      - billing
+      - Billing
     post:
       description: 'Body: { addonId, enabled }. Throws 400 when the addon has no preference_key (catalog-excluded).'
       operationId: t_value
@@ -512,7 +512,7 @@ paths:
                 $ref: '#/components/schemas/e'
       summary: Admin - flip the visibility toggle for a single addon at a location
       tags:
-      - billing
+      - Billing
   /billing/locations/{locationEntityId}/addons-toggle:
     post:
       operationId: t_value
@@ -526,7 +526,7 @@ paths:
                 $ref: '#/components/schemas/e'
       summary: User - flip a single addon on/off for the location (persists to preferences)
       tags:
-      - billing
+      - Billing
   /billing/addons:
     post:
       description: Creates a brand-new Chargebee subscription holding only the requested addons (plus a $0 plan item). Does NOT mutate the existing primary subscription. Cadence is derived from the addonPricingIds - every row must share one frequency and one plan; mixed cadences/plans 400.
@@ -541,7 +541,7 @@ paths:
                 $ref: '#/components/schemas/e'
       summary: Add addons by creating a new subscription at the chosen frequency
       tags:
-      - billing
+      - Billing
     get:
       operationId: t_value
       parameters: []
@@ -556,7 +556,7 @@ paths:
                   $ref: '#/components/schemas/e'
       summary: Addons currently attached to the subscription
       tags:
-      - billing
+      - Billing
   /billing/missed-payments:
     get:
       operationId: t_value
@@ -570,7 +570,7 @@ paths:
                 $ref: '#/components/schemas/e'
       summary: List overdue invoices + next retry
       tags:
-      - billing
+      - Billing
   /billing/subscription/frequency-options:
     get:
       description: Pure pricing projection from chargebee.addon_pricing - does NOT call Chargebee per cadence. Single live read of the subscription_items, then per-cadence math against the local catalog.
@@ -585,7 +585,7 @@ paths:
                 $ref: '#/components/schemas/e'
       summary: Project current addon set onto every supported billing frequency
       tags:
-      - billing
+      - Billing
   /billing/payment-methods:
     get:
       description: Live Chargebee SDK. Filtered to status=valid.
@@ -600,7 +600,7 @@ paths:
                 $ref: '#/components/schemas/e'
       summary: List payment methods on the customer
       tags:
-      - billing
+      - Billing
   /billing/invoices:
     get:
       operationId: t_value
@@ -614,7 +614,7 @@ paths:
                 $ref: '#/components/schemas/e'
       summary: List invoices for a location
       tags:
-      - billing
+      - Billing
   /billing/invoices/{id}/download:
     get:
       operationId: t_value
@@ -624,7 +624,7 @@ paths:
           description: ''
       summary: Redirect to signed Chargebee PDF URL
       tags:
-      - billing
+      - Billing
   /billing/pricing:
     get:
       description: Ordered monthly → quarterly → annual. `attributes` contains every configurable display key (label, commitmentMonths, amountCents, savings, badge, offer_type, …).
@@ -639,7 +639,7 @@ paths:
                 $ref: '#/components/schemas/e'
       summary: List active pricing plans for the checkout plan-selection step
       tags:
-      - billing
+      - Billing
   /billing/pricing/quote:
     get:
       operationId: t_value
@@ -649,7 +649,7 @@ paths:
           description: ''
       summary: Quote bundle pricing for a specific (frequency, addons) combination
       tags:
-      - billing
+      - Billing
   /billing/admin/plan-pricing:
     get:
       operationId: t_value
@@ -665,7 +665,7 @@ paths:
                   $ref: '#/components/schemas/e'
       summary: Admin - list all plan_pricing rows (incl. inactive)
       tags:
-      - billing
+      - Billing
     post:
       description: Enforces uniqueness on (plan_id, frequency_id) and on chargebee_item_price_id. `attributes` is a free-form jsonb, intentionally unvalidated to stay forward-compatible.
       operationId: t_value
@@ -679,7 +679,7 @@ paths:
                 $ref: '#/components/schemas/e'
       summary: Admin - create a plan_pricing row
       tags:
-      - billing
+      - Billing
   /billing/admin/plan-pricing/{id}:
     get:
       operationId: t_value
@@ -693,7 +693,7 @@ paths:
                 $ref: '#/components/schemas/e'
       summary: Admin - get a single plan_pricing row
       tags:
-      - billing
+      - Billing
     patch:
       operationId: t_value
       parameters: []
@@ -706,7 +706,7 @@ paths:
                 $ref: '#/components/schemas/e'
       summary: Admin - update status, validity window, attributes, or CB item price id
       tags:
-      - billing
+      - Billing
     delete:
       operationId: t_value
       parameters: []
@@ -715,7 +715,7 @@ paths:
           description: ''
       summary: Admin - hard-delete a plan_pricing row
       tags:
-      - billing
+      - Billing
   /billing/admin/addon-pricing:
     get:
       operationId: t_value
@@ -731,7 +731,7 @@ paths:
                   $ref: '#/components/schemas/e'
       summary: Admin - list addon_pricing rows (incl. inactive)
       tags:
-      - billing
+      - Billing
     post:
       description: Enforces uniqueness on (addon_id, frequency_id) and on chargebee_item_price_id. Top-level unit_price_cents drives Chargebee invoicing; attributes is free-form jsonb for FE display metadata.
       operationId: t_value
@@ -745,7 +745,7 @@ paths:
                 $ref: '#/components/schemas/e'
       summary: Admin - create an addon_pricing row
       tags:
-      - billing
+      - Billing
   /billing/admin/addon-pricing/{id}:
     get:
       operationId: t_value
@@ -759,7 +759,7 @@ paths:
                 $ref: '#/components/schemas/e'
       summary: Admin - get a single addon_pricing row
       tags:
-      - billing
+      - Billing
     patch:
       operationId: t_value
       parameters: []
@@ -772,7 +772,7 @@ paths:
                 $ref: '#/components/schemas/e'
       summary: Admin - update unit_price_cents, status, validity, attributes, or CB id
       tags:
-      - billing
+      - Billing
     delete:
       operationId: t_value
       parameters: []
@@ -781,7 +781,7 @@ paths:
           description: ''
       summary: Admin - hard-delete an addon_pricing row
       tags:
-      - billing
+      - Billing
   /billing/agents/status:
     get:
       description: Cross-references plan addons with live Chargebee subscriptions (status in active/in_trial/non_renewing) filtered by cf_entity_id.
@@ -798,7 +798,7 @@ paths:
                   $ref: '#/components/schemas/t'
       summary: List agents with active-subscription status for a location
       tags:
-      - billing
+      - Billing
   /billing/state:
     get:
       description: Reads entities.billing_state. State transitions are driven by /contract/confirm, the Zoho signing webhook, /payment-method/hosted-page, the trial.started event (event-driven subscription creation), and (future) CB subscription webhooks.
@@ -815,7 +815,7 @@ paths:
           description: No billing activity yet for this entity
       summary: Get current billing state for a location
       tags:
-      - billing
+      - Billing
     patch:
       description: 'Body: { locationEntityId, state }. Writes to entities.billing_state. Returns the resulting state row. Use sparingly - most transitions are owned by domain endpoints (contract/confirm, the event-driven trial subscription start, DELETE subscription).'
       operationId: t_value
@@ -831,7 +831,7 @@ paths:
           description: Unknown billing state value
       summary: Update billing_state for a location (FE-driven transitions only)
       tags:
-      - billing
+      - Billing
   /billing/admin/subscriptions/{subscriptionId}/schedule-price-change:
     post:
       operationId: t_value
@@ -841,7 +841,7 @@ paths:
           description: ''
       summary: Admin - manually schedule a future-dated unit_price change on a subscription
       tags:
-      - billing
+      - Billing
   /billing/admin/contracts/{contractId}/mark-signed:
     post:
       description: Mirrors the Zoho signed-webhook side-effects starting from a known contractId. Use when the signing webhook did not land - does NOT call Zoho, only updates local state.
@@ -856,7 +856,7 @@ paths:
                 $ref: '#/components/schemas/e'
       summary: Force-mark a contract as signed (admin override for missed Zoho webhook)
       tags:
-      - billing
+      - Billing
   /billing/subscription/start:
     post:
       description: Gated on the trial checklist. Creates subscription with 7-day trial_end, stamps cf_entity_id + cf_unique_id (contractId), upserts trial.attributes, transitions billing_state to TRIAL_ACTIVE.
@@ -871,7 +871,7 @@ paths:
                 $ref: '#/components/schemas/e'
       summary: Create trial subscription for the signed contract
       tags:
-      - billing
+      - Billing
   /billing/subscription/renew:
     post:
       description: Creates a new Chargebee subscription using plan_pricing + addon_pricing rows for the selected planPeriod (monthly|annual) and optional addon item_price_ids (FrontDesk, Booking). Skips the contracts pipeline. Chains entityService.resurrectLocation so GBP/Website/MoEngage rehydrate. Idempotent against double-resurrect; CB-side double-create is the caller’s responsibility (disable button on in-flight mutation).
@@ -882,7 +882,7 @@ paths:
           description: ''
       summary: Renew a cancelled subscription with a fresh plan combination
       tags:
-      - billing
+      - Billing
   /billing/trial/extend:
     post:
       description: Only valid while the current trial is still open. Adds extendByDays to Chargebee trial_end and bumps trial.attributes.extension_days.
@@ -897,7 +897,7 @@ paths:
                 $ref: '#/components/schemas/e'
       summary: Extend the active trial for a location
       tags:
-      - billing
+      - Billing
   /billing/trial/end:
     post:
       description: Sets trial_end to now in Chargebee, invoices the first paid term, and re-anchors ramps against the new billing start.
@@ -912,7 +912,7 @@ paths:
                 $ref: '#/components/schemas/e'
       summary: End the active trial for a location immediately
       tags:
-      - billing
+      - Billing
   /billing/customers/ensure:
     post:
       description: Creates the CB customer with data pulled from our DB (user name/email, phone, company, storefront address) if not already present, and links it via chargebee.entity_customer_mappings. Idempotent.
@@ -927,9 +927,34 @@ paths:
                 $ref: '#/components/schemas/e'
       summary: Ensure a Chargebee customer exists for a location entity
       tags:
-      - billing
+      - Billing
 components:
   schemas:
+    e:
+      type: object
+      properties:
+        id:
+          type: number
+        entityId:
+          type: string
+        attribute:
+          type: string
+        value:
+          type:
+          - object
+          - 'null'
+        metadata:
+          type:
+          - object
+          - 'null'
+        createdAt:
+          type:
+          - object
+          - 'null'
+      required:
+      - id
+      - entityId
+      - attribute
     t:
       type: object
       properties:
@@ -989,31 +1014,6 @@ components:
       - trialEnd
       - addonPricingId
       - unitPriceCents
-    e:
-      type: object
-      properties:
-        id:
-          type: number
-        entityId:
-          type: string
-        attribute:
-          type: string
-        value:
-          type:
-          - object
-          - 'null'
-        metadata:
-          type:
-          - object
-          - 'null'
-        createdAt:
-          type:
-          - object
-          - 'null'
-      required:
-      - id
-      - entityId
-      - attribute
   securitySchemes:
     access-token:
       scheme: bearer

@@ -11,7 +11,7 @@ servers:
 security:
 - access-token: []
 tags:
-- name: eval
+- name: Eval
 paths:
   /tasks/api/v1/eval/scenarios:
     get:
@@ -21,7 +21,9 @@ paths:
         '200':
           description: ''
       tags:
-      - eval
+      - Eval
+      summary: T value
+      x-summary-source: derived
   /tasks/api/v1/eval/scenarios/summary:
     get:
       operationId: t_value
@@ -30,7 +32,9 @@ paths:
         '200':
           description: ''
       tags:
-      - eval
+      - Eval
+      summary: T value
+      x-summary-source: derived
   /tasks/api/v1/eval/run:
     post:
       operationId: t_value
@@ -39,7 +43,9 @@ paths:
         '201':
           description: ''
       tags:
-      - eval
+      - Eval
+      summary: T value
+      x-summary-source: derived
 components:
   securitySchemes:
     access-token:

@@ -72,7 +72,7 @@ paths:
           description: Stale version — reload and retry
         '428':
           description: If-Match header missing
-      summary: 'Update a product (SP role required; optimistic-lock via If-Match: W/"<version>")'
+      summary: 'Update a product (SP role required; optimistic-lock via If-Match: W/"")'
       tags:
       - Inventory Products
     delete:
@@ -83,7 +83,7 @@ paths:
           description: Deleted or archived (see archived flag)
         '404':
           description: Product not found
-      summary: Hard-delete a product (SP role required), falling back to soft-archive on FK history
+      summary: Hard-delete a product (SP role required), falling back to soft-archive on FK…
       tags:
       - Inventory Products
   /inventory/products/entity/{entityId}/{id}/archive:

@@ -9,7 +9,7 @@ servers:
 - url: https://api.zoca.ai
   description: Production
 tags:
-- name: Addons
+- name: Add Ons
 paths:
   /addons/{entityId}:
     get:
@@ -49,9 +49,9 @@ paths:
                   $ref: '#/components/schemas/e'
       security:
       - bearer: []
-      summary: List addons for entity (with optional filters).
+      summary: List addons for entity (with optional filters)
       tags:
-      - Addons
+      - Add Ons
     post:
       operationId: t_value
       parameters: []
@@ -64,9 +64,9 @@ paths:
                 $ref: '#/components/schemas/e'
       security:
       - bearer: []
-      summary: Create a standalone addon.
+      summary: Create a standalone addon
       tags:
-      - Addons
+      - Add Ons
   /addons/{entityId}/{addonId}:
     get:
       operationId: t_value
@@ -80,9 +80,9 @@ paths:
                 $ref: '#/components/schemas/t'
       security:
       - bearer: []
-      summary: Get an addon with linked services + groups.
+      summary: Get an addon with linked services + groups
       tags:
-      - Addons
+      - Add Ons
     patch:
       operationId: t_value
       parameters: []
@@ -91,9 +91,9 @@ paths:
           description: ''
       security:
       - bearer: []
-      summary: Update an addon.
+      summary: Update an addon
       tags:
-      - Addons
+      - Add Ons
   /addons/{entityId}/{addonId}/archive:
     patch:
       operationId: t_value
@@ -103,9 +103,9 @@ paths:
           description: ''
       security:
       - bearer: []
-      summary: Soft-archive an addon (isActive=false).
+      summary: Soft-archive an addon (isActive=false)
       tags:
-      - Addons
+      - Add Ons
   /addons/{entityId}/{addonId}/unarchive:
     patch:
       operationId: t_value
@@ -115,9 +115,9 @@ paths:
           description: ''
       security:
       - bearer: []
-      summary: Restore an archived addon.
+      summary: Restore an archived addon
       tags:
-      - Addons
+      - Add Ons
   /addons/{entityId}/{addonId}/services:
     post:
       operationId: t_value
@@ -127,9 +127,9 @@ paths:
           description: ''
       security:
       - bearer: []
-      summary: Direct-attach addon to services (writes service_addons rows with addon_group_id=NULL).
+      summary: Direct-attach addon to services (writes service_addons rows with…
       tags:
-      - Addons
+      - Add Ons
   /addons/{entityId}/{addonId}/services/{serviceId}:
     delete:
       operationId: t_value
@@ -139,9 +139,9 @@ paths:
           description: ''
       security:
       - bearer: []
-      summary: Direct-detach addon from a service.
+      summary: Direct-detach addon from a service
       tags:
-      - Addons
+      - Add Ons
   /addons/{entityId}/{addonId}/groups:
     post:
       operationId: t_value
@@ -151,9 +151,9 @@ paths:
           description: ''
       security:
       - bearer: []
-      summary: Add addon to one or more groups (via addon_group_items).
+      summary: Add addon to one or more groups (via addon_group_items)
       tags:
-      - Addons
+      - Add Ons
   /addons/{entityId}/{addonId}/groups/{groupId}:
     delete:
       operationId: t_value
@@ -163,11 +163,36 @@ paths:
           description: ''
       security:
       - bearer: []
-      summary: Remove addon from a group.
+      summary: Remove addon from a group
       tags:
-      - Addons
+      - Add Ons
 components:
   schemas:
+    e:
+      type: object
+      properties:
+        id:
+          type: number
+        entityId:
+          type: string
+        attribute:
+          type: string
+        value:
+          type:
+          - object
+          - 'null'
+        metadata:
+          type:
+          - object
+          - 'null'
+        createdAt:
+          type:
+          - object
+          - 'null'
+      required:
+      - id
+      - entityId
+      - attribute
     t:
       type: object
       properties:
@@ -227,31 +252,6 @@ components:
       - trialEnd
       - addonPricingId
       - unitPriceCents
-    e:
-      type: object
-      properties:
-        id:
-          type: number
-        entityId:
-          type: string
-        attribute:
-          type: string
-        value:
-          type:
-          - object
-          - 'null'
-        metadata:
-          type:
-          - object
-          - 'null'
-        createdAt:
-          type:
-          - object
-          - 'null'
-      required:
-      - id
-      - entityId
-      - attribute
   securitySchemes:
     access-token:
       scheme: bearer

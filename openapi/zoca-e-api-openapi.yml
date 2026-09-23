@@ -22,6 +22,8 @@ paths:
           description: ''
       tags:
       - e
+      summary: E value
+      x-summary-source: derived
   /tasks/api/v1/learning-center/attempts/{id}:
     get:
       operationId: e_value
@@ -31,6 +33,8 @@ paths:
           description: ''
       tags:
       - e
+      summary: E value
+      x-summary-source: derived
   /tasks/api/v1/learning-center/attempts/{id}/answers:
     put:
       operationId: e_value
@@ -40,6 +44,8 @@ paths:
           description: ''
       tags:
       - e
+      summary: E value
+      x-summary-source: derived
   /tasks/api/v1/learning-center/attempts/{id}/submit:
     post:
       operationId: e_value
@@ -49,6 +55,8 @@ paths:
           description: ''
       tags:
       - e
+      summary: E value
+      x-summary-source: derived
   /tasks/api/v1/learning-center/users/{userId}/attempts:
     get:
       operationId: e_value
@@ -58,6 +66,8 @@ paths:
           description: ''
       tags:
       - e
+      summary: E value
+      x-summary-source: derived
   /tasks/api/v1/learning-center/certifications:
     get:
       operationId: e_value
@@ -67,6 +77,8 @@ paths:
           description: ''
       tags:
       - e
+      summary: E value
+      x-summary-source: derived
   /tasks/api/v1/learning-center/users/{userId}/certifications:
     get:
       operationId: e_value
@@ -76,6 +88,8 @@ paths:
           description: ''
       tags:
       - e
+      summary: E value
+      x-summary-source: derived
 components:
   securitySchemes:
     access-token:

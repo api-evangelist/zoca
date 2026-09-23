@@ -15,7 +15,6 @@ tags:
 paths:
   /tasks/api/v1/load-testing:
     get:
-      description: Load Test
       operationId: t_value
       parameters: []
       responses:

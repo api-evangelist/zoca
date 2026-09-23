@@ -11,7 +11,7 @@ servers:
 security:
 - access-token: []
 tags:
-- name: twilio
+- name: Twilio
 paths:
   /tasks/api/v1/twilio/send-sms:
     post:
@@ -21,7 +21,9 @@ paths:
         '201':
           description: ''
       tags:
-      - twilio
+      - Twilio
+      summary: T value
+      x-summary-source: derived
   /tasks/api/v1/twilio/status-callback:
     post:
       operationId: t_value
@@ -30,7 +32,9 @@ paths:
         '201':
           description: ''
       tags:
-      - twilio
+      - Twilio
+      summary: T value
+      x-summary-source: derived
   /tasks/api/v1/twilio/incoming-sms:
     post:
       operationId: t_value
@@ -39,7 +43,9 @@ paths:
         '201':
           description: ''
       tags:
-      - twilio
+      - Twilio
+      summary: T value
+      x-summary-source: derived
   /tasks/api/v1/twilio/phone/search:
     get:
       operationId: t_value
@@ -48,7 +54,9 @@ paths:
         '200':
           description: ''
       tags:
-      - twilio
+      - Twilio
+      summary: T value
+      x-summary-source: derived
   /tasks/api/v1/twilio/phone/purchase:
     post:
       operationId: t_value
@@ -57,7 +65,9 @@ paths:
         '201':
           description: ''
       tags:
-      - twilio
+      - Twilio
+      summary: T value
+      x-summary-source: derived
   /tasks/api/v1/twilio/phone/search/{entityId}:
     get:
       operationId: t_value
@@ -66,7 +76,9 @@ paths:
         '200':
           description: ''
       tags:
-      - twilio
+      - Twilio
+      summary: T value
+      x-summary-source: derived
   /tasks/api/v1/twilio/connect-call:
     post:
       operationId: t_value
@@ -75,7 +87,9 @@ paths:
         '201':
           description: ''
       tags:
-      - twilio
+      - Twilio
+      summary: T value
+      x-summary-source: derived
   /tasks/api/v1/twilio/voice-bridge:
     get:
       description: Generates TwiML response for Twilio voice bridge with recording enabled
@@ -111,7 +125,7 @@ paths:
                 example: <?xml version="1.0" encoding="UTF-8"?><Response><Dial record="record-from-answer-dual">+1234567890</Dial></Response>
       summary: Generate TwiML for voice bridge (GET)
       tags:
-      - twilio
+      - Twilio
     post:
       description: Generates TwiML response for Twilio voice bridge with recording enabled
       operationId: t_value
@@ -148,7 +162,7 @@ paths:
                 example: <?xml version="1.0" encoding="UTF-8"?><Response><Dial record="record-from-answer-dual">+1234567890</Dial></Response>
       summary: Generate TwiML for voice bridge (POST)
       tags:
-      - twilio
+      - Twilio
   /tasks/api/v1/twilio/outgoing-call:
     post:
       operationId: t_value
@@ -157,7 +171,9 @@ paths:
         '201':
           description: ''
       tags:
-      - twilio
+      - Twilio
+      summary: T value
+      x-summary-source: derived
   /tasks/api/v1/twilio/outgoing-call-dash:
     post:
       operationId: t_value
@@ -166,7 +182,9 @@ paths:
         '201':
           description: ''
       tags:
-      - twilio
+      - Twilio
+      summary: T value
+      x-summary-source: derived
   /tasks/api/v1/twilio/initiate-call:
     post:
       operationId: t_value
@@ -175,7 +193,9 @@ paths:
         '201':
           description: ''
       tags:
-      - twilio
+      - Twilio
+      summary: T value
+      x-summary-source: derived
   /tasks/api/v1/twilio/recording-callback:
     post:
       description: Processes callbacks from Twilio when call recordings are completed and transcribed by Deepgram
@@ -199,7 +219,7 @@ paths:
           description: Invalid callback payload
       summary: Handle Twilio recording status callbacks with Deepgram transcription
       tags:
-      - twilio
+      - Twilio
   /tasks/api/v1/twilio/phone/purchased:
     get:
       description: Returns a paginated list of phone numbers purchased on the Twilio account. Supports searching by phone number or friendly name. Total count is included for un-filtered requests (sourced from DB).
@@ -251,7 +271,7 @@ paths:
                   totalPages: 3
       summary: List purchased phone numbers (paginated)
       tags:
-      - twilio
+      - Twilio
   /tasks/api/v1/twilio/messaging-services:
     get:
       description: Returns a paginated list of messaging services configured on the Twilio account.
@@ -300,7 +320,7 @@ paths:
                   hasPreviousPage: false
       summary: List Twilio messaging services (paginated)
       tags:
-      - twilio
+      - Twilio
   /tasks/api/v1/twilio/messaging-services/{sid}:
     get:
       operationId: t_value
@@ -309,7 +329,9 @@ paths:
         '200':
           description: ''
       tags:
-      - twilio
+      - Twilio
+      summary: T value
+      x-summary-source: derived
   /tasks/api/v1/twilio/phone/{sid}:
     delete:
       description: Releases a phone number from the Twilio account and removes it from the database. This action is irreversible.
@@ -329,7 +351,7 @@ paths:
           description: Failed to release phone number
       summary: Release a purchased phone number
       tags:
-      - twilio
+      - Twilio
     get:
       description: Retrieves detailed information about a Twilio phone number using its SID
       operationId: t_value
@@ -353,7 +375,7 @@ paths:
           description: Failed to fetch phone number details
       summary: Fetch Twilio phone number details
       tags:
-      - twilio
+      - Twilio
     put:
       description: Updates settings for a Twilio phone number such as SMS URL, method and trunk SID
       operationId: t_value
@@ -371,7 +393,7 @@ paths:
           description: Failed to update phone number
       summary: Update Twilio phone number configuration
       tags:
-      - twilio
+      - Twilio
 components:
   schemas:
     e:

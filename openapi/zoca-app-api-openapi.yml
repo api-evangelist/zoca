@@ -1624,7 +1624,7 @@ paths:
                   message: Failed to retrieve active subscriptions
                   error: Internal Server Error
                   statusCode: 500
-      summary: Get active subscriptions and offboarding information for an entity (with HubSpot meeting)
+      summary: Get active subscriptions and offboarding information for an entity (with…
       tags:
       - App
     servers:
@@ -3762,7 +3762,15 @@ paths:
       description: Production
   /services/{entityId}/service:
     post:
-      description: "Creates a new service for a specific entity with the following features:\n    - Optional category assignment\n    - Support for service variations\n    - Price and duration configuration\n    - Image attachment capability"
+      description: 'Creates a new service for a specific entity with the following features:
+
+        - Optional category assignment
+
+        - Support for service variations
+
+        - Price and duration configuration
+
+        - Image attachment capability'
       operationId: t_value
       parameters:
       - name: createDefaultVariation
@@ -5849,6 +5857,8 @@ paths:
       - App
       security:
       - access-token: []
+      summary: T value
+      x-summary-source: derived
     servers:
     - url: https://tasks.zoca.ai
       description: Production
@@ -6338,6 +6348,31 @@ components:
     Object:
       type: object
       properties: {}
+    e:
+      type: object
+      properties:
+        id:
+          type: number
+        entityId:
+          type: string
+        attribute:
+          type: string
+        value:
+          type:
+          - object
+          - 'null'
+        metadata:
+          type:
+          - object
+          - 'null'
+        createdAt:
+          type:
+          - object
+          - 'null'
+      required:
+      - id
+      - entityId
+      - attribute
     t:
       type: object
       properties:
@@ -6397,31 +6432,31 @@ components:
       - trialEnd
       - addonPricingId
       - unitPriceCents
-    e:
+    e_2:
       type: object
       properties:
-        id:
-          type: number
-        entityId:
-          type: string
-        attribute:
-          type: string
-        value:
+        scan:
+          $ref: '#/components/schemas/e_2'
+        businessLat:
           type:
-          - object
+          - number
           - 'null'
-        metadata:
+        businessLng:
           type:
-          - object
+          - number
           - 'null'
-        createdAt:
-          type:
-          - object
-          - 'null'
+        points:
+          type: array
+          items:
+            $ref: '#/components/schemas/e_2'
+        heroMetrics:
+          $ref: '#/components/schemas/e_2'
       required:
-      - id
-      - entityId
-      - attribute
+      - scan
+      - businessLat
+      - businessLng
+      - points
+      - heroMetrics
     t_2:
       type: object
       properties:
@@ -6477,31 +6512,6 @@ components:
       - status
       - createdAt
       - clientId
-    e_2:
-      type: object
-      properties:
-        scan:
-          $ref: '#/components/schemas/e_2'
-        businessLat:
-          type:
-          - number
-          - 'null'
-        businessLng:
-          type:
-          - number
-          - 'null'
-        points:
-          type: array
-          items:
-            $ref: '#/components/schemas/e_2'
-        heroMetrics:
-          $ref: '#/components/schemas/e_2'
-      required:
-      - scan
-      - businessLat
-      - businessLng
-      - points
-      - heroMetrics
   securitySchemes:
     access-token:
       scheme: bearer

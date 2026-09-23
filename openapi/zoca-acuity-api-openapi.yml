@@ -58,7 +58,7 @@ paths:
       responses:
         '200':
           description: ''
-      summary: Get unique acuity locations.
+      summary: Get unique acuity locations
       tags:
       - Acuity
   /acuity/book-appointment:

@@ -280,6 +280,8 @@ paths:
           description: ''
       tags:
       - Local SEO
+      summary: T value
+      x-summary-source: derived
     get:
       operationId: t_value
       parameters: []
@@ -288,6 +290,8 @@ paths:
           description: ''
       tags:
       - Local SEO
+      summary: T value
+      x-summary-source: derived
     put:
       operationId: t_value
       parameters: []
@@ -296,6 +300,8 @@ paths:
           description: ''
       tags:
       - Local SEO
+      summary: T value
+      x-summary-source: derived
   /tasks/api/v1/local-seo/keywords/selected-keywords-by-entity-id:
     get:
       operationId: t_value
@@ -611,7 +617,69 @@ paths:
       - Local SEO
   /tasks/api/v1/local-seo/bucketing/upload-csv:
     post:
-      description: "Upload a CSV file to bulk import categories, themes, and keywords for the bucketing system.\n\n    Supports two CSV formats:\n\n    **Legacy Format:**\n    - Headers: category,theme,theme_description,keyword,keyword_type,cluster_id\n    - category: Category name (required)\n    - theme: Theme/bucket name (required)\n    - theme_description: Optional description for the theme\n    - keyword: The keyword to map (required)\n    - keyword_type: EXISTING or NEW (required)\n    - cluster_id: Numeric cluster ID (required)\n\n    **New Format:**\n    - Headers: parent_category,bucket,bucket_description,keyword,cluster_id,created_at,uuid,updated_at,centroid,description\n    - parent_category: Category name (required)\n    - bucket: Theme/bucket name (required)\n    - bucket_description: Optional description for the bucket\n    - keyword: The keyword to map (required)\n    - cluster_id: Numeric cluster ID (required)\n    - created_at: Optional timestamp (format: YYYY-MM-DD HH:MM:SS)\n    - uuid: Optional unique identifier\n    - updated_at: Optional timestamp (format: YYYY-MM-DD HH:MM:SS)\n    - centroid: Optional vector embedding as JSON array of numbers\n    - description: Optional additional description\n\n    Examples:\n\n    Legacy Format:\n    category,theme,theme_description,keyword,keyword_type,cluster_id\n    \"Food & Dining\",\"Restaurant Types\",\"Various types of restaurants\",\"italian restaurant\",EXISTING,1\n\n    New Format:\n    parent_category,bucket,bucket_description,keyword,cluster_id,centroid,description\n    \"hair_coloring_and_treatments\",\"highlights_and_balayage\",\"Highlighting techniques\",\"hair highlights near me\",0,\"[0.031, -0.032, 0.005]\",\"Comprehensive description\""
+      description: 'Upload a CSV file to bulk import categories, themes, and keywords for the bucketing system.
+
+
+        Supports two CSV formats:
+
+
+        **Legacy Format:**
+
+        - Headers: category,theme,theme_description,keyword,keyword_type,cluster_id
+
+        - category: Category name (required)
+
+        - theme: Theme/bucket name (required)
+
+        - theme_description: Optional description for the theme
+
+        - keyword: The keyword to map (required)
+
+        - keyword_type: EXISTING or NEW (required)
+
+        - cluster_id: Numeric cluster ID (required)
+
+
+        **New Format:**
+
+        - Headers: parent_category,bucket,bucket_description,keyword,cluster_id,created_at,uuid,updated_at,centroid,description
+
+        - parent_category: Category name (required)
+
+        - bucket: Theme/bucket name (required)
+
+        - bucket_description: Optional description for the bucket
+
+        - keyword: The keyword to map (required)
+
+        - cluster_id: Numeric cluster ID (required)
+
+        - created_at: Optional timestamp (format: YYYY-MM-DD HH:MM:SS)
+
+        - uuid: Optional unique identifier
+
+        - updated_at: Optional timestamp (format: YYYY-MM-DD HH:MM:SS)
+
+        - centroid: Optional vector embedding as JSON array of numbers
+
+        - description: Optional additional description
+
+
+        Examples:
+
+
+        Legacy Format:
+
+        category,theme,theme_description,keyword,keyword_type,cluster_id
+
+        "Food & Dining","Restaurant Types","Various types of restaurants","italian restaurant",EXISTING,1
+
+
+        New Format:
+
+        parent_category,bucket,bucket_description,keyword,cluster_id,centroid,description
+
+        "hair_coloring_and_treatments","highlights_and_balayage","Highlighting techniques","hair highlights near me",0,"[0.031, -0.032, 0.005]","Comprehensive description"'
       operationId: t_value
       parameters: []
       requestBody:
@@ -686,7 +754,11 @@ paths:
       - Local SEO
   /tasks/api/v1/local-seo/bucketing/map-keywords:
     post:
-      description: "Maps an array of keywords to their existing buckets and categories.\n    Returns a key-value mapping where each keyword is mapped to its bucket and category information.\n    Unmapped keywords will have a null value in the mapping."
+      description: 'Maps an array of keywords to their existing buckets and categories.
+
+        Returns a key-value mapping where each keyword is mapped to its bucket and category information.
+
+        Unmapped keywords will have a null value in the mapping.'
       operationId: t_value
       parameters: []
       requestBody:
@@ -987,7 +1059,11 @@ paths:
       - Local SEO
   /tasks/api/v1/local-seo/keywords-demand:
     get:
-      description: "\n      Retrieves keyword demand records with pagination support.\n      Filter by either coordinates (latitude + longitude) or processId.\n      Results are ordered by creation date (newest first).\n    "
+      description: 'Retrieves keyword demand records with pagination support.
+
+        Filter by either coordinates (latitude + longitude) or processId.
+
+        Results are ordered by creation date (newest first).'
       operationId: t_value
       parameters: []
       responses:

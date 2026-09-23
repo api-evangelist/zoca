@@ -105,7 +105,7 @@ paths:
                 example:
                   publish_id: publish_123
                   upload_url: https://upload.tiktok.com/upload/123
-      summary: Publish video directly to TikTok profile (supports FILE_UPLOAD and PULL_FROM_URL)
+      summary: Publish video directly to TikTok profile (supports FILE_UPLOAD and…
       tags:
       - tiktok
   /tiktok/publish-status:

@@ -12,7 +12,7 @@ servers:
 - url: https://tasks.zoca.ai
   description: Production
 tags:
-- name: media
+- name: Media
 paths:
   /media/primary-category-stock:
     post:
@@ -23,7 +23,7 @@ paths:
           description: Primary category stock created successfully
       summary: Create a new primary category stock
       tags:
-      - media
+      - Media
     get:
       operationId: t_value
       parameters: []
@@ -32,7 +32,7 @@ paths:
           description: Return all primary category stock
       summary: Get all primary category stock
       tags:
-      - media
+      - Media
     servers:
     - url: https://api.zoca.ai
       description: Production
@@ -45,7 +45,7 @@ paths:
           description: Return all primary categories with counts
       summary: Get all primary categories with counts
       tags:
-      - media
+      - Media
     servers:
     - url: https://api.zoca.ai
       description: Production
@@ -58,7 +58,7 @@ paths:
           description: Return the primary category stock
       summary: Get a primary category stock by id
       tags:
-      - media
+      - Media
     patch:
       operationId: t_value
       parameters: []
@@ -67,7 +67,7 @@ paths:
           description: Primary category stock updated successfully
       summary: Update a primary category stock
       tags:
-      - media
+      - Media
     delete:
       operationId: t_value
       parameters: []
@@ -76,7 +76,7 @@ paths:
           description: Primary category stock deleted successfully
       summary: Delete a primary category stock
       tags:
-      - media
+      - Media
     servers:
     - url: https://api.zoca.ai
       description: Production
@@ -94,7 +94,7 @@ paths:
           description: Returns processing status and success percentage
       summary: Get media processing status for a batch
       tags:
-      - media
+      - Media
     servers:
     - url: https://api.zoca.ai
       description: Production
@@ -107,7 +107,7 @@ paths:
           description: Media created successfully
       summary: Create a new media
       tags:
-      - media
+      - Media
     get:
       operationId: t_value
       parameters: []
@@ -116,7 +116,7 @@ paths:
           description: Return all media
       summary: Get all media
       tags:
-      - media
+      - Media
     delete:
       operationId: t_value
       parameters: []
@@ -125,7 +125,7 @@ paths:
           description: Media deleted successfully
       summary: Delete a media
       tags:
-      - media
+      - Media
     servers:
     - url: https://api.zoca.ai
       description: Production
@@ -138,7 +138,7 @@ paths:
           description: Return the media
       summary: Get a media by id
       tags:
-      - media
+      - Media
     patch:
       operationId: t_value
       parameters: []
@@ -147,7 +147,7 @@ paths:
           description: Media updated successfully
       summary: Update a media
       tags:
-      - media
+      - Media
     servers:
     - url: https://api.zoca.ai
       description: Production
@@ -160,7 +160,7 @@ paths:
           description: ''
       summary: Get scheduled media for a location
       tags:
-      - media
+      - Media
     servers:
     - url: https://api.zoca.ai
       description: Production
@@ -173,7 +173,7 @@ paths:
           description: ''
       summary: Get GBP scheduled media metrics for an entity
       tags:
-      - media
+      - Media
     servers:
     - url: https://api.zoca.ai
       description: Production
@@ -186,7 +186,7 @@ paths:
           description: ''
       summary: Get GBP scheduled media by status (offset pagination)
       tags:
-      - media
+      - Media
     servers:
     - url: https://api.zoca.ai
       description: Production
@@ -199,7 +199,7 @@ paths:
           description: ''
       summary: Get logo and cover image for a location
       tags:
-      - media
+      - Media
     servers:
     - url: https://api.zoca.ai
       description: Production
@@ -212,7 +212,7 @@ paths:
           description: ''
       summary: Log failed media upload time
       tags:
-      - media
+      - Media
     servers:
     - url: https://api.zoca.ai
       description: Production
@@ -243,7 +243,7 @@ paths:
           description: Failed to enqueue job
       summary: Handle media input
       tags:
-      - media
+      - Media
       security:
       - access-token: []
     servers:
@@ -265,7 +265,7 @@ paths:
           description: Processing error
       summary: Handle media processing callback
       tags:
-      - media
+      - Media
       security:
       - access-token: []
     servers:
@@ -291,7 +291,7 @@ paths:
           description: Failed to enqueue job
       summary: Check for duplicate media
       tags:
-      - media
+      - Media
       security:
       - access-token: []
     servers:
@@ -317,7 +317,7 @@ paths:
           description: Failed to enqueue job
       summary: Process media destinations
       tags:
-      - media
+      - Media
       security:
       - access-token: []
     servers:
@@ -347,7 +347,7 @@ paths:
           description: Failed to convert URL
       summary: Convert S3 URL to ImageKit URL
       tags:
-      - media
+      - Media
       security:
       - access-token: []
     servers:
@@ -377,7 +377,7 @@ paths:
           description: Failed to convert URLs
       summary: Convert multiple S3 URLs to ImageKit URLs
       tags:
-      - media
+      - Media
       security:
       - access-token: []
     servers:
@@ -409,7 +409,7 @@ paths:
           description: Failed to create mapping
       summary: Add S3 to ImageKit URL mapping
       tags:
-      - media
+      - Media
       security:
       - access-token: []
     servers:
@@ -431,7 +431,7 @@ paths:
           description: Failed to retrieve mappings
       summary: Get all S3 to ImageKit URL mappings
       tags:
-      - media
+      - Media
       security:
       - access-token: []
     servers:

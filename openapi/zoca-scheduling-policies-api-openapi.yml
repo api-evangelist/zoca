@@ -9,7 +9,7 @@ servers:
 - url: https://api.zoca.ai
   description: Production
 tags:
-- name: Scheduling - Policies
+- name: Scheduling Policies
 paths:
   /scheduling/policies/fee:
     post:
@@ -24,7 +24,7 @@ paths:
                 $ref: '#/components/schemas/e'
       summary: Create a new fee policy (cancellation or no-show)
       tags:
-      - Scheduling - Policies
+      - Scheduling Policies
     get:
       operationId: t_value
       parameters:
@@ -49,7 +49,7 @@ paths:
                   $ref: '#/components/schemas/e'
       summary: List all fee policies
       tags:
-      - Scheduling - Policies
+      - Scheduling Policies
   /scheduling/policies/fee/{id}:
     get:
       operationId: t_value
@@ -70,7 +70,7 @@ paths:
           description: Fee policy not found
       summary: Get a fee policy by ID
       tags:
-      - Scheduling - Policies
+      - Scheduling Policies
     put:
       operationId: t_value
       parameters:
@@ -90,7 +90,7 @@ paths:
           description: Fee policy not found
       summary: Update a fee policy
       tags:
-      - Scheduling - Policies
+      - Scheduling Policies
     delete:
       operationId: t_value
       parameters:
@@ -106,7 +106,7 @@ paths:
           description: Fee policy not found
       summary: Delete a fee policy (soft delete)
       tags:
-      - Scheduling - Policies
+      - Scheduling Policies
   /scheduling/policies/fee/entity/{entityId}:
     get:
       operationId: t_value
@@ -148,7 +148,7 @@ paths:
                   $ref: '#/components/schemas/e'
       summary: Get fee policies for an entity
       tags:
-      - Scheduling - Policies
+      - Scheduling Policies
   /scheduling/policies/fee/effective:
     get:
       operationId: t_value
@@ -192,7 +192,7 @@ paths:
                 $ref: '#/components/schemas/e'
       summary: Get effective fee policy with inheritance
       tags:
-      - Scheduling - Policies
+      - Scheduling Policies
   /scheduling/policies/fee/deposit/preview:
     post:
       operationId: t_value
@@ -206,7 +206,7 @@ paths:
                 $ref: '#/components/schemas/e'
       summary: Preview service variations cheaper than a proposed fixed deposit
       tags:
-      - Scheduling - Policies
+      - Scheduling Policies
   /scheduling/policies/effective-preference:
     get:
       operationId: t_value
@@ -241,7 +241,7 @@ paths:
                   preference: NO_PAYMENT_REQUIRED
       summary: Get the effective fee-policies preference for a specific client (F2 exemptions)
       tags:
-      - Scheduling - Policies
+      - Scheduling Policies
   /scheduling/policies/fee/acknowledgment-text:
     get:
       description: Returns formatted acknowledgment text for fee policies (cancellation and no-show) applicable to an entity, including a combined text for display
@@ -272,7 +272,7 @@ paths:
                 $ref: '#/components/schemas/e'
       summary: Get policy acknowledgment texts
       tags:
-      - Scheduling - Policies
+      - Scheduling Policies
   /scheduling/policies/payment:
     post:
       operationId: t_value
@@ -286,7 +286,7 @@ paths:
                 $ref: '#/components/schemas/e'
       summary: Create a new payment policy
       tags:
-      - Scheduling - Policies
+      - Scheduling Policies
     get:
       operationId: t_value
       parameters: []
@@ -301,7 +301,7 @@ paths:
                   $ref: '#/components/schemas/e'
       summary: List all payment policies
       tags:
-      - Scheduling - Policies
+      - Scheduling Policies
   /scheduling/policies/payment/{id}:
     get:
       operationId: t_value
@@ -322,7 +322,7 @@ paths:
           description: Payment policy not found
       summary: Get a payment policy by ID
       tags:
-      - Scheduling - Policies
+      - Scheduling Policies
     put:
       operationId: t_value
       parameters:
@@ -342,7 +342,7 @@ paths:
           description: Payment policy not found
       summary: Update a payment policy
       tags:
-      - Scheduling - Policies
+      - Scheduling Policies
     delete:
       operationId: t_value
       parameters:
@@ -358,7 +358,7 @@ paths:
           description: Payment policy not found
       summary: Delete a payment policy (soft delete)
       tags:
-      - Scheduling - Policies
+      - Scheduling Policies
   /scheduling/policies/payment/entity/{entityId}:
     get:
       operationId: t_value
@@ -390,7 +390,7 @@ paths:
                   $ref: '#/components/schemas/e'
       summary: Get payment policies for an entity
       tags:
-      - Scheduling - Policies
+      - Scheduling Policies
   /scheduling/policies/booking:
     post:
       operationId: t_value
@@ -404,7 +404,7 @@ paths:
                 $ref: '#/components/schemas/e'
       summary: Create a new booking policy (advanced restrictions)
       tags:
-      - Scheduling - Policies
+      - Scheduling Policies
     get:
       operationId: t_value
       parameters:
@@ -428,7 +428,7 @@ paths:
                   $ref: '#/components/schemas/e'
       summary: List all booking policies
       tags:
-      - Scheduling - Policies
+      - Scheduling Policies
   /scheduling/policies/booking/{id}:
     get:
       operationId: t_value
@@ -449,7 +449,7 @@ paths:
           description: Booking policy not found
       summary: Get a booking policy by ID
       tags:
-      - Scheduling - Policies
+      - Scheduling Policies
     put:
       operationId: t_value
       parameters:
@@ -469,7 +469,7 @@ paths:
           description: Booking policy not found
       summary: Update a booking policy
       tags:
-      - Scheduling - Policies
+      - Scheduling Policies
     delete:
       operationId: t_value
       parameters:
@@ -485,7 +485,7 @@ paths:
           description: Booking policy not found
       summary: Delete a booking policy (soft delete)
       tags:
-      - Scheduling - Policies
+      - Scheduling Policies
   /scheduling/policies/booking/entity/{entityId}:
     get:
       operationId: t_value
@@ -517,7 +517,7 @@ paths:
                   $ref: '#/components/schemas/e'
       summary: Get booking policies for an entity
       tags:
-      - Scheduling - Policies
+      - Scheduling Policies
   /scheduling/policies/map:
     post:
       operationId: t_value
@@ -531,7 +531,7 @@ paths:
                 $ref: '#/components/schemas/e'
       summary: Map a policy to an entity
       tags:
-      - Scheduling - Policies
+      - Scheduling Policies
   /scheduling/policies/map/{mappingId}:
     delete:
       operationId: t_value
@@ -546,7 +546,7 @@ paths:
           description: Mapping removed
       summary: Remove a policy mapping
       tags:
-      - Scheduling - Policies
+      - Scheduling Policies
   /scheduling/policies/map/{mappingId}/default:
     put:
       operationId: t_value
@@ -565,7 +565,7 @@ paths:
                 $ref: '#/components/schemas/e'
       summary: Set a policy mapping as default
       tags:
-      - Scheduling - Policies
+      - Scheduling Policies
   /scheduling/policies/map/policy/{policyId}:
     get:
       operationId: t_value
@@ -596,7 +596,7 @@ paths:
                   $ref: '#/components/schemas/e'
       summary: Get all mappings for a policy
       tags:
-      - Scheduling - Policies
+      - Scheduling Policies
   /scheduling/policies/map/entity/{entityId}:
     get:
       operationId: t_value
@@ -638,7 +638,7 @@ paths:
                   $ref: '#/components/schemas/e'
       summary: Get all policy mappings for an entity
       tags:
-      - Scheduling - Policies
+      - Scheduling Policies
 components:
   schemas:
     e:

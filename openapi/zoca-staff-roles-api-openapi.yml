@@ -27,7 +27,7 @@ paths:
           description: Feature disabled (killswitch).
       security:
       - bearer: []
-      summary: List staff roles and permission sets available at a business.
+      summary: List staff roles and permission sets available at a business
       tags:
       - Staff Roles
     post:
@@ -49,7 +49,7 @@ paths:
           description: Feature disabled (killswitch).
       security:
       - bearer: []
-      summary: Create a per-business custom role.
+      summary: Create a per-business custom role
       tags:
       - Staff Roles
   /staff/roles/{roleId}:
@@ -72,7 +72,7 @@ paths:
           description: Feature disabled (killswitch).
       security:
       - bearer: []
-      summary: Replace the scope preset on a custom role.
+      summary: Replace the scope preset on a custom role
       tags:
       - Staff Roles
     delete:
@@ -92,7 +92,7 @@ paths:
           description: Feature disabled (killswitch).
       security:
       - bearer: []
-      summary: Delete a custom role (cascades to `auth.user_roles`).
+      summary: Delete a custom role (cascades to `auth.user_roles`)
       tags:
       - Staff Roles
   /staff/roles/{roleId}/scopes:
@@ -115,7 +115,7 @@ paths:
           description: Feature disabled (killswitch).
       security:
       - bearer: []
-      summary: Replace the scope preset on a custom role.
+      summary: Replace the scope preset on a custom role
       tags:
       - Staff Roles
   /staff/roles/assignments:
@@ -138,7 +138,7 @@ paths:
           description: Feature disabled (killswitch).
       security:
       - bearer: []
-      summary: Assign a role to a user at a business.
+      summary: Assign a role to a user at a business
       tags:
       - Staff Roles
     put:
@@ -160,7 +160,7 @@ paths:
           description: Feature disabled (killswitch).
       security:
       - bearer: []
-      summary: Set (replace) a user's role at a business.
+      summary: Set (replace) a user's role at a business
       tags:
       - Staff Roles
   /staff/roles/assignments/{userRoleId}:
@@ -179,7 +179,7 @@ paths:
           description: Feature disabled (killswitch).
       security:
       - bearer: []
-      summary: Revoke a `auth.user_roles` assignment by id.
+      summary: Revoke a `auth.user_roles` assignment by id
       tags:
       - Staff Roles
 components:

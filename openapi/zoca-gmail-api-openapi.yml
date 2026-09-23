@@ -11,7 +11,7 @@ servers:
 security:
 - access-token: []
 tags:
-- name: gmail
+- name: Gmail
 paths:
   /tasks/api/v1/gmail/webhook:
     post:
@@ -22,7 +22,7 @@ paths:
           description: ''
       summary: Handle Gmail webhook
       tags:
-      - gmail
+      - Gmail
   /tasks/api/v1/gmail/watch/initialize:
     post:
       operationId: t_value
@@ -32,7 +32,7 @@ paths:
           description: ''
       summary: Initialize Gmail watch subscription
       tags:
-      - gmail
+      - Gmail
   /tasks/api/v1/gmail/workspace/watch/initialize:
     post:
       operationId: t_value
@@ -42,7 +42,7 @@ paths:
           description: ''
       summary: Initialize Gmail workspace watch subscription via domain-wide delegation
       tags:
-      - gmail
+      - Gmail
   /tasks/api/v1/gmail/workspace/backfill:
     post:
       operationId: t_value
@@ -52,7 +52,7 @@ paths:
           description: ''
       summary: Backfill all Gmail emails for a workspace entity into gmail.emails
       tags:
-      - gmail
+      - Gmail
 components:
   securitySchemes:
     access-token:

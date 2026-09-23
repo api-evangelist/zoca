@@ -12,7 +12,7 @@ servers:
 - url: https://tasks.zoca.ai
   description: Production
 tags:
-- name: auth
+- name: Auth
 paths:
   /auth/me:
     get:
@@ -25,7 +25,7 @@ paths:
           description: Unauthenticated.
       summary: The caller's identity and per-context permissions
       tags:
-      - auth
+      - Auth
     servers:
     - url: https://api.zoca.ai
       description: Production
@@ -38,7 +38,7 @@ paths:
           description: ''
       summary: Health check for auth service
       tags:
-      - auth
+      - Auth
     servers:
     - url: https://api.zoca.ai
       description: Production
@@ -56,7 +56,7 @@ paths:
                 example: true
       summary: Check authentication status
       tags:
-      - auth
+      - Auth
     servers:
     - url: https://api.zoca.ai
       description: Production
@@ -70,7 +70,7 @@ paths:
           description: ''
       summary: Exchange Google token (client-side flow)
       tags:
-      - auth
+      - Auth
     servers:
     - url: https://api.zoca.ai
       description: Production
@@ -90,7 +90,7 @@ paths:
                   entity_id: '1234567890'
       summary: Google Authentication callback
       tags:
-      - auth
+      - Auth
     servers:
     - url: https://api.zoca.ai
       description: Production
@@ -118,7 +118,7 @@ paths:
                   url: https://api.zoca.ai/auth/
       summary: Google Authentication URL
       tags:
-      - auth
+      - Auth
     servers:
     - url: https://api.zoca.ai
       description: Production
@@ -141,7 +141,7 @@ paths:
                   url: https://api.zoca.ai/auth/
       summary: Gmail Authentication URL
       tags:
-      - auth
+      - Auth
     servers:
     - url: https://api.zoca.ai
       description: Production
@@ -169,7 +169,7 @@ paths:
                   url: https://accounts.google.com/o/oauth2/v2/auth?client_id=...
       summary: Win Standalone Authentication URL
       tags:
-      - auth
+      - Auth
     servers:
     - url: https://api.zoca.ai
       description: Production
@@ -189,7 +189,7 @@ paths:
                   entity_id: '1234567890'
       summary: Win Standalone Google Authentication callback
       tags:
-      - auth
+      - Auth
     servers:
     - url: https://api.zoca.ai
       description: Production
@@ -202,7 +202,7 @@ paths:
           description: ''
       summary: Get Google dummy URL for testing
       tags:
-      - auth
+      - Auth
     servers:
     - url: https://api.zoca.ai
       description: Production
@@ -215,7 +215,7 @@ paths:
           description: ''
       summary: Simulate Google browser authentication
       tags:
-      - auth
+      - Auth
     servers:
     - url: https://api.zoca.ai
       description: Production
@@ -243,7 +243,7 @@ paths:
                   statusCode: 400
       summary: Square OAuth Authorization URL
       tags:
-      - auth
+      - Auth
     servers:
     - url: https://api.zoca.ai
       description: Production
@@ -256,7 +256,7 @@ paths:
           description: ''
       summary: Square OAuth callback
       tags:
-      - auth
+      - Auth
     servers:
     - url: https://api.zoca.ai
       description: Production
@@ -269,7 +269,7 @@ paths:
           description: ''
       summary: Refresh Square access token
       tags:
-      - auth
+      - Auth
     servers:
     - url: https://api.zoca.ai
       description: Production
@@ -282,7 +282,7 @@ paths:
           description: ''
       summary: Revoke Square access token
       tags:
-      - auth
+      - Auth
     servers:
     - url: https://api.zoca.ai
       description: Production
@@ -303,7 +303,7 @@ paths:
                     example: true
       summary: Get Google Business Profile authentication status
       tags:
-      - auth
+      - Auth
     servers:
     - url: https://api.zoca.ai
       description: Production
@@ -316,7 +316,7 @@ paths:
           description: ''
       summary: Refresh JWT token
       tags:
-      - auth
+      - Auth
     servers:
     - url: https://api.zoca.ai
       description: Production
@@ -329,7 +329,7 @@ paths:
           description: ''
       summary: Refresh authentication token
       tags:
-      - auth
+      - Auth
     servers:
     - url: https://api.zoca.ai
       description: Production
@@ -342,7 +342,7 @@ paths:
           description: ''
       summary: Validate JWT token
       tags:
-      - auth
+      - Auth
     servers:
     - url: https://api.zoca.ai
       description: Production
@@ -355,7 +355,7 @@ paths:
           description: ''
       summary: Get Meta OAuth authorization URL
       tags:
-      - auth
+      - Auth
     servers:
     - url: https://api.zoca.ai
       description: Production
@@ -368,7 +368,7 @@ paths:
           description: ''
       summary: Meta OAuth callback
       tags:
-      - auth
+      - Auth
     servers:
     - url: https://api.zoca.ai
       description: Production
@@ -386,7 +386,7 @@ paths:
                   url: https://www.instagram.com/oauth/authorize?client_id=...
       summary: Instagram OAuth Authorization URL
       tags:
-      - auth
+      - Auth
     servers:
     - url: https://api.zoca.ai
       description: Production
@@ -399,7 +399,7 @@ paths:
           description: Redirects after successful Instagram OAuth
       summary: Instagram OAuth Callback
       tags:
-      - auth
+      - Auth
     servers:
     - url: https://api.zoca.ai
       description: Production
@@ -417,7 +417,7 @@ paths:
                   url: https://www.tiktok.com/v2/auth/authorize?client_key=...
       summary: TikTok OAuth Authorization URL
       tags:
-      - auth
+      - Auth
     servers:
     - url: https://api.zoca.ai
       description: Production
@@ -430,7 +430,7 @@ paths:
           description: Redirects after successful TikTok OAuth
       summary: TikTok OAuth Callback
       tags:
-      - auth
+      - Auth
     servers:
     - url: https://api.zoca.ai
       description: Production
@@ -447,7 +447,7 @@ paths:
                 $ref: '#/components/schemas/e'
       summary: Get Acuity OAuth authorization URL
       tags:
-      - auth
+      - Auth
     servers:
     - url: https://api.zoca.ai
       description: Production
@@ -460,7 +460,7 @@ paths:
           description: ''
       summary: Acuity OAuth callback
       tags:
-      - auth
+      - Auth
     servers:
     - url: https://api.zoca.ai
       description: Production
@@ -473,7 +473,7 @@ paths:
           description: ''
       summary: Register Mindbody site and connect
       tags:
-      - auth
+      - Auth
     servers:
     - url: https://api.zoca.ai
       description: Production
@@ -486,7 +486,7 @@ paths:
           description: ''
       summary: List Meevo tenant locations
       tags:
-      - auth
+      - Auth
     servers:
     - url: https://api.zoca.ai
       description: Production
@@ -499,7 +499,7 @@ paths:
           description: ''
       summary: Register Meevo location and connect
       tags:
-      - auth
+      - Auth
     servers:
     - url: https://api.zoca.ai
       description: Production
@@ -513,7 +513,7 @@ paths:
           description: ''
       summary: Poll-safe Mindbody activation status
       tags:
-      - auth
+      - Auth
     servers:
     - url: https://api.zoca.ai
       description: Production
@@ -526,7 +526,7 @@ paths:
           description: ''
       summary: Connect existing Mindbody site
       tags:
-      - auth
+      - Auth
     servers:
     - url: https://api.zoca.ai
       description: Production
@@ -553,7 +553,7 @@ paths:
                   error: Too Many Requests
       summary: Request a magic link for passwordless login
       tags:
-      - auth
+      - Auth
     servers:
     - url: https://api.zoca.ai
       description: Production
@@ -580,7 +580,7 @@ paths:
                   error: Bad Request
       summary: Verify a magic link token and get auth tokens
       tags:
-      - auth
+      - Auth
     servers:
     - url: https://api.zoca.ai
       description: Production
@@ -613,7 +613,7 @@ paths:
                     example: https://accounts.google.com/o/oauth2/v2/auth?...
       summary: Get Google OAuth URL
       tags:
-      - auth
+      - Auth
       security:
       - access-token: []
     servers:
@@ -645,7 +645,7 @@ paths:
           description: Redirects after authentication (when redirectUrl provided)
       summary: Google OAuth callback
       tags:
-      - auth
+      - Auth
       security:
       - access-token: []
     servers:
@@ -664,7 +664,7 @@ paths:
       - bearer: []
       summary: Get current user profile
       tags:
-      - auth
+      - Auth
     servers:
     - url: https://tasks.zoca.ai
       description: Production
@@ -689,7 +689,7 @@ paths:
           description: Invalid refresh token
       summary: Refresh authentication token
       tags:
-      - auth
+      - Auth
       security:
       - access-token: []
     servers:
@@ -706,7 +706,7 @@ paths:
       - bearer: []
       summary: Logout and invalidate session
       tags:
-      - auth
+      - Auth
     servers:
     - url: https://tasks.zoca.ai
       description: Production
@@ -721,7 +721,7 @@ paths:
       - bearer: []
       summary: Get all active sessions for the current user
       tags:
-      - auth
+      - Auth
     servers:
     - url: https://tasks.zoca.ai
       description: Production
@@ -736,7 +736,7 @@ paths:
       - bearer: []
       summary: Revoke all sessions for the current user
       tags:
-      - auth
+      - Auth
     servers:
     - url: https://tasks.zoca.ai
       description: Production

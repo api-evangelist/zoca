@@ -297,6 +297,31 @@ paths:
       - Image Generation
 components:
   schemas:
+    e:
+      type: object
+      properties:
+        scan:
+          $ref: '#/components/schemas/e'
+        businessLat:
+          type:
+          - number
+          - 'null'
+        businessLng:
+          type:
+          - number
+          - 'null'
+        points:
+          type: array
+          items:
+            $ref: '#/components/schemas/e'
+        heroMetrics:
+          $ref: '#/components/schemas/e'
+      required:
+      - scan
+      - businessLat
+      - businessLng
+      - points
+      - heroMetrics
     t:
       type: object
       properties:
@@ -352,31 +377,6 @@ components:
       - status
       - createdAt
       - clientId
-    e:
-      type: object
-      properties:
-        scan:
-          $ref: '#/components/schemas/e'
-        businessLat:
-          type:
-          - number
-          - 'null'
-        businessLng:
-          type:
-          - number
-          - 'null'
-        points:
-          type: array
-          items:
-            $ref: '#/components/schemas/e'
-        heroMetrics:
-          $ref: '#/components/schemas/e'
-      required:
-      - scan
-      - businessLat
-      - businessLng
-      - points
-      - heroMetrics
   securitySchemes:
     access-token:
       scheme: bearer

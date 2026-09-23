@@ -9,7 +9,7 @@ servers:
 - url: https://api.zoca.ai
   description: Production
 tags:
-- name: cohorts
+- name: Cohorts
 paths:
   /cohorts:
     post:
@@ -20,7 +20,7 @@ paths:
           description: Successfully created cohort
       summary: Create a new cohort
       tags:
-      - cohorts
+      - Cohorts
     get:
       operationId: t_value
       parameters:
@@ -55,7 +55,7 @@ paths:
           description: Successfully fetched cohorts
       summary: Get all cohorts
       tags:
-      - cohorts
+      - Cohorts
   /cohorts/{cohortId}:
     get:
       operationId: t_value
@@ -65,7 +65,7 @@ paths:
           description: Successfully fetched cohort
       summary: Get cohort by ID
       tags:
-      - cohorts
+      - Cohorts
     put:
       operationId: t_value
       parameters: []
@@ -74,7 +74,7 @@ paths:
           description: Successfully updated cohort
       summary: Update a cohort
       tags:
-      - cohorts
+      - Cohorts
     delete:
       operationId: t_value
       parameters: []
@@ -83,7 +83,7 @@ paths:
           description: Successfully deleted cohort
       summary: Delete a cohort (soft delete)
       tags:
-      - cohorts
+      - Cohorts
   /cohorts/{cohortId}/stats:
     get:
       operationId: t_value
@@ -93,7 +93,7 @@ paths:
           description: Successfully fetched cohort with stats
       summary: Get cohort with statistics
       tags:
-      - cohorts
+      - Cohorts
   /cohorts/entities:
     post:
       operationId: t_value
@@ -103,7 +103,7 @@ paths:
           description: Successfully added entity to cohort
       summary: Add entity to cohort
       tags:
-      - cohorts
+      - Cohorts
   /cohorts/{cohortId}/entities/{entityId}:
     delete:
       operationId: t_value
@@ -113,7 +113,7 @@ paths:
           description: Successfully removed entity from cohort
       summary: Remove entity from cohort
       tags:
-      - cohorts
+      - Cohorts
   /cohorts/{cohortId}/entities:
     get:
       operationId: t_value
@@ -134,7 +134,7 @@ paths:
           description: Successfully fetched entities in cohort
       summary: Get entities in a cohort
       tags:
-      - cohorts
+      - Cohorts
   /cohorts/entities/{entityId}/cohorts:
     get:
       operationId: t_value
@@ -149,7 +149,7 @@ paths:
           description: Successfully fetched cohorts for entity
       summary: Get cohorts for an entity
       tags:
-      - cohorts
+      - Cohorts
   /cohorts/clients/{clientId}/cohorts:
     get:
       operationId: t_value
@@ -159,7 +159,7 @@ paths:
           description: Cohorts for client
       summary: List cohorts a client belongs to
       tags:
-      - cohorts
+      - Cohorts
   /cohorts/{cohortId}/clients:
     get:
       operationId: t_value
@@ -169,7 +169,7 @@ paths:
           description: Clients in cohort
       summary: List clients in a cohort
       tags:
-      - cohorts
+      - Cohorts
     post:
       operationId: t_value
       parameters: []
@@ -178,7 +178,7 @@ paths:
           description: Clients added
       summary: Add clients to a cohort
       tags:
-      - cohorts
+      - Cohorts
   /cohorts/{cohortId}/clients/{clientId}:
     delete:
       operationId: t_value
@@ -188,7 +188,7 @@ paths:
           description: Client removed
       summary: Remove a client from a cohort (soft delete)
       tags:
-      - cohorts
+      - Cohorts
   /cohorts/entities/bulk-add:
     post:
       operationId: t_value
@@ -198,7 +198,7 @@ paths:
           description: Successfully added entities to cohort
       summary: Bulk add entities to cohort
       tags:
-      - cohorts
+      - Cohorts
   /cohorts/entities/bulk-remove:
     post:
       operationId: t_value
@@ -208,7 +208,7 @@ paths:
           description: Successfully removed entities from cohort
       summary: Bulk remove entities from cohort
       tags:
-      - cohorts
+      - Cohorts
 components:
   securitySchemes:
     access-token:

@@ -31,7 +31,7 @@ paths:
           description: Feature disabled (killswitch).
       security:
       - bearer: []
-      summary: Send a staff invite to an existing or prospective user.
+      summary: Send a staff invite to an existing or prospective user
       tags:
       - Staff Invites
     get:
@@ -51,7 +51,7 @@ paths:
           description: Feature disabled (killswitch).
       security:
       - bearer: []
-      summary: List invites at a business (cursor-paginated).
+      summary: List invites at a business (cursor-paginated)
       tags:
       - Staff Invites
   /staff/invites/{token}:
@@ -68,7 +68,7 @@ paths:
           description: Invite expired.
       security:
       - bearer: []
-      summary: Public lookup of an invite by token.
+      summary: Public lookup of an invite by token
       tags:
       - Staff Invites
   /staff/invites/{token}/email-match:
@@ -84,7 +84,7 @@ paths:
           description: Invite not found / token invalid.
       security:
       - bearer: []
-      summary: Precheck the acceptor's email against the invite (read-only).
+      summary: Precheck the acceptor's email against the invite (read-only)
       tags:
       - Staff Invites
   /staff/invites/{token}/accept:
@@ -109,7 +109,7 @@ paths:
           description: Feature disabled (killswitch).
       security:
       - bearer: []
-      summary: Accept an invite — authenticated as the invitee.
+      summary: Accept an invite — authenticated as the invitee
       tags:
       - Staff Invites
   /staff/invites/{inviteId}:
@@ -134,7 +134,7 @@ paths:
           description: Feature disabled (killswitch).
       security:
       - bearer: []
-      summary: Update the role on a pending invite (applied when the invitee accepts).
+      summary: Update the role on a pending invite (applied when the invitee accepts)
       tags:
       - Staff Invites
     delete:
@@ -155,7 +155,7 @@ paths:
           description: Feature disabled (killswitch).
       security:
       - bearer: []
-      summary: Revoke a pending invite (idempotent flip to CANCELLED).
+      summary: Revoke a pending invite (idempotent flip to CANCELLED)
       tags:
       - Staff Invites
 components:
