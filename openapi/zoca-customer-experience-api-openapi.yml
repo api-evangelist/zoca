@@ -27,7 +27,7 @@ paths:
       - Customer Experience
   /tasks/api/v1/cx/handover:
     post:
-      operationId: t_value
+      operationId: postTasksApiV1CxHandover
       parameters: []
       responses:
         '201':
@@ -37,9 +37,11 @@ paths:
       summary: Save handover form data and assign account manager
       tags:
       - Customer Experience
+      x-operation-id-source: normalized
+      x-operation-id-original: t_value
   /tasks/api/v1/cx/ae/{entityId}:
     get:
-      operationId: t_value
+      operationId: getTasksApiV1CxAeByEntityId
       parameters: []
       responses:
         '200':
@@ -49,9 +51,11 @@ paths:
       summary: Get account executive for a given entity
       tags:
       - Customer Experience
+      x-operation-id-source: normalized
+      x-operation-id-original: t_value
   /tasks/api/v1/cx/ae/{entityId}/assign:
     post:
-      operationId: t_value
+      operationId: postTasksApiV1CxAeByEntityIdAssign
       parameters: []
       responses:
         '201':
@@ -61,9 +65,11 @@ paths:
       summary: Assign an account executive to a given entity
       tags:
       - Customer Experience
+      x-operation-id-source: normalized
+      x-operation-id-original: t_value
   /tasks/api/v1/cx/am/bulk-upsert:
     post:
-      operationId: t_value
+      operationId: postTasksApiV1CxAmBulkUpsert
       parameters: []
       responses:
         '201':
@@ -73,10 +79,12 @@ paths:
       summary: Bulk upsert AM mappings from S3 data or raw payload
       tags:
       - Customer Experience
+      x-operation-id-source: normalized
+      x-operation-id-original: t_value
   /tasks/api/v1/cx/mom/regenerate/{customerMeetingId}:
     post:
       description: Triggers regeneration of meeting minutes (MOM) for a specific customer meeting. This endpoint processes the meeting data and generates updated meeting minutes. Use the forceRegenerate query parameter to control whether to regenerate if MOM already exists.
-      operationId: t_value
+      operationId: postTasksApiV1CxMomRegenerateByCustomerMeetingId
       parameters:
       - name: forceRegenerate
         required: false
@@ -192,10 +200,12 @@ paths:
       summary: Regenerate meeting minutes for a customer meeting
       tags:
       - Customer Experience
+      x-operation-id-source: normalized
+      x-operation-id-original: t_value
   /tasks/api/v1/cx/notes/upsert:
     post:
       description: Creates or updates notes for a given entity in the cx.notes table. Notes are stored as an array of objects with type and note fields. If a note with the same type already exists, it will be updated with the new content. If the type is new, it will be added to the array. Existing notes with different types are preserved.
-      operationId: t_value
+      operationId: postTasksApiV1CxNotesUpsert
       parameters: []
       responses:
         '200':
@@ -266,9 +276,11 @@ paths:
       summary: Upsert notes for an entity
       tags:
       - Customer Experience
+      x-operation-id-source: normalized
+      x-operation-id-original: t_value
   /tasks/api/v1/cx/{entityId}/rm:
     get:
-      operationId: t_value
+      operationId: getTasksApiV1CxByEntityIdRm
       parameters: []
       responses:
         '200':
@@ -278,6 +290,8 @@ paths:
       summary: Get the relationship manager for a given entity
       tags:
       - Customer Experience
+      x-operation-id-source: normalized
+      x-operation-id-original: t_value
 components:
   securitySchemes:
     access-token:

@@ -53,7 +53,7 @@ paths:
   /scheduling/sales/{id}:
     get:
       description: Retrieves a sale with all associated payments and calculated amounts.
-      operationId: t_value
+      operationId: getSchedulingSalesById
       parameters:
       - name: id
         required: true
@@ -136,10 +136,12 @@ paths:
       summary: Get sale by ID
       tags:
       - Sales
+      x-operation-id-source: normalized
+      x-operation-id-original: t_value
   /scheduling/sales/booking/{bookingId}:
     get:
       description: Retrieves the sale associated with a booking (1:1 relationship).
-      operationId: t_value
+      operationId: getSchedulingSalesBookingByBookingId
       parameters:
       - name: bookingId
         required: true
@@ -155,10 +157,12 @@ paths:
       summary: Get sale by booking ID
       tags:
       - Sales
+      x-operation-id-source: normalized
+      x-operation-id-original: t_value
   /scheduling/sales:
     get:
       description: Retrieves sales with optional filters for status, date range, item/client search, amount ranges, and pagination. Returns total count for pagination UI.
-      operationId: t_value
+      operationId: getSchedulingSales
       parameters:
       - name: limit
         required: false
@@ -300,10 +304,12 @@ paths:
       summary: List sales for an entity
       tags:
       - Sales
+      x-operation-id-source: normalized
+      x-operation-id-original: t_value
   /scheduling/sales/{saleId}/payments:
     get:
       description: Retrieves payment history for a sale, including status, method, amounts, and timestamps.
-      operationId: t_value
+      operationId: getSchedulingSalesBySaleIdPayments
       parameters:
       - name: saleId
         required: true
@@ -383,10 +389,12 @@ paths:
       summary: Get all payments for a sale
       tags:
       - Sales
+      x-operation-id-source: normalized
+      x-operation-id-original: t_value
   /scheduling/sales/{id}/void:
     post:
       description: Voids a sale if no payments have been made. Use this for cancellations or mistakes before payment. Cannot void sales with payments.
-      operationId: t_value
+      operationId: postSchedulingSalesByIdVoid
       parameters:
       - name: id
         required: true
@@ -408,6 +416,8 @@ paths:
       summary: Void a sale
       tags:
       - Sales
+      x-operation-id-source: normalized
+      x-operation-id-original: t_value
 components:
   securitySchemes:
     access-token:

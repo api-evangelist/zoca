@@ -29,7 +29,7 @@ paths:
   /tasks/api/v1/booksy/process-scraped-task:
     post:
       description: Processes a SCRAPED task by saving appointments or customers to database
-      operationId: t_value
+      operationId: postTasksApiV1BooksyProcessScrapedTask
       parameters: []
       responses:
         '201':
@@ -39,10 +39,12 @@ paths:
       summary: Process SCRAPED task
       tags:
       - Booksy
+      x-operation-id-source: normalized
+      x-operation-id-original: t_value
   /tasks/api/v1/booksy/sync-appointments/{entityId}:
     post:
       description: Syncs Booksy appointments for an entity by creating a scraping task and processing the data
-      operationId: t_value
+      operationId: postTasksApiV1BooksySyncAppointmentsByEntityId
       parameters:
       - name: entityId
         required: true
@@ -58,10 +60,12 @@ paths:
       summary: Sync Booksy appointments
       tags:
       - Booksy
+      x-operation-id-source: normalized
+      x-operation-id-original: t_value
   /tasks/api/v1/booksy/sync-customers/{entityId}:
     post:
       description: Syncs Booksy customers for an entity by creating a scraping task and processing the data
-      operationId: t_value
+      operationId: postTasksApiV1BooksySyncCustomersByEntityId
       parameters:
       - name: entityId
         required: true
@@ -77,10 +81,12 @@ paths:
       summary: Sync Booksy customers
       tags:
       - Booksy
+      x-operation-id-source: normalized
+      x-operation-id-original: t_value
   /tasks/api/v1/booksy/bulk-create-clients/{entityId}:
     post:
       description: Creates client records from Booksy customers who have finished appointments. Optionally filters by date range.
-      operationId: t_value
+      operationId: postTasksApiV1BooksyBulkCreateClientsByEntityId
       parameters:
       - name: endDate
         required: false
@@ -108,6 +114,8 @@ paths:
       summary: Bulk create clients from Booksy customers
       tags:
       - Booksy
+      x-operation-id-source: normalized
+      x-operation-id-original: t_value
 components:
   securitySchemes:
     access-token:

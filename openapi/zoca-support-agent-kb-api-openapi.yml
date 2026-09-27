@@ -24,7 +24,7 @@ paths:
       tags:
       - support-agent/kb
     get:
-      operationId: t_value
+      operationId: getTasksApiV1SupportAgentKbArticles
       parameters:
       - name: limit
         required: false
@@ -54,8 +54,10 @@ paths:
       summary: List KB articles with filters
       tags:
       - support-agent/kb
+      x-operation-id-source: normalized
+      x-operation-id-original: t_value
     delete:
-      operationId: t_value
+      operationId: deleteTasksApiV1SupportAgentKbArticles
       parameters: []
       responses:
         '200':
@@ -63,9 +65,11 @@ paths:
       summary: Delete all KB articles (hard delete)
       tags:
       - support-agent/kb
+      x-operation-id-source: normalized
+      x-operation-id-original: t_value
   /tasks/api/v1/support-agent/kb/articles/{id}:
     get:
-      operationId: t_value
+      operationId: getTasksApiV1SupportAgentKbArticlesById
       parameters:
       - name: id
         required: true
@@ -78,8 +82,10 @@ paths:
       summary: Get a KB article by ID
       tags:
       - support-agent/kb
+      x-operation-id-source: normalized
+      x-operation-id-original: t_value
     put:
-      operationId: t_value
+      operationId: putTasksApiV1SupportAgentKbArticlesById
       parameters:
       - name: id
         required: true
@@ -92,8 +98,10 @@ paths:
       summary: Update a KB article
       tags:
       - support-agent/kb
+      x-operation-id-source: normalized
+      x-operation-id-original: t_value
     delete:
-      operationId: t_value
+      operationId: deleteTasksApiV1SupportAgentKbArticlesById
       parameters:
       - name: id
         required: true
@@ -106,9 +114,11 @@ paths:
       summary: Archive a KB article
       tags:
       - support-agent/kb
+      x-operation-id-source: normalized
+      x-operation-id-original: t_value
   /tasks/api/v1/support-agent/kb/articles/bulk:
     post:
-      operationId: t_value
+      operationId: postTasksApiV1SupportAgentKbArticlesBulk
       parameters: []
       responses:
         '201':
@@ -116,9 +126,11 @@ paths:
       summary: Bulk upload KB articles
       tags:
       - support-agent/kb
+      x-operation-id-source: normalized
+      x-operation-id-original: t_value
   /tasks/api/v1/support-agent/kb/articles/{id}/status:
     get:
-      operationId: t_value
+      operationId: getTasksApiV1SupportAgentKbArticlesByIdStatus
       parameters:
       - name: id
         required: true
@@ -131,9 +143,11 @@ paths:
       summary: Check KB article processing status
       tags:
       - support-agent/kb
+      x-operation-id-source: normalized
+      x-operation-id-original: t_value
   /tasks/api/v1/support-agent/kb/categories:
     get:
-      operationId: t_value
+      operationId: getTasksApiV1SupportAgentKbCategories
       parameters: []
       responses:
         '200':
@@ -141,9 +155,11 @@ paths:
       summary: List all KB categories
       tags:
       - support-agent/kb
+      x-operation-id-source: normalized
+      x-operation-id-original: t_value
   /tasks/api/v1/support-agent/kb/search:
     post:
-      operationId: t_value
+      operationId: postTasksApiV1SupportAgentKbSearch
       parameters: []
       responses:
         '201':
@@ -151,6 +167,8 @@ paths:
       summary: Test KB search/retrieval (debug endpoint)
       tags:
       - support-agent/kb
+      x-operation-id-source: normalized
+      x-operation-id-original: t_value
 components:
   securitySchemes:
     access-token:

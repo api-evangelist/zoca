@@ -23,7 +23,7 @@ paths:
       - Meta
   /meta/media:
     get:
-      operationId: t_value
+      operationId: getMetaMedia
       parameters: []
       responses:
         '200':
@@ -31,9 +31,11 @@ paths:
       summary: Get all media for a specific Instagram business account
       tags:
       - Meta
+      x-operation-id-source: normalized
+      x-operation-id-original: t_value
   /meta/connect-instagram:
     post:
-      operationId: t_value
+      operationId: postMetaConnectInstagram
       parameters: []
       responses:
         '201':
@@ -41,9 +43,11 @@ paths:
       summary: Connect an Instagram business account to a location entity
       tags:
       - Meta
+      x-operation-id-source: normalized
+      x-operation-id-original: t_value
   /meta/upload-media:
     post:
-      operationId: t_value
+      operationId: postMetaUploadMedia
       parameters: []
       responses:
         '201':
@@ -51,9 +55,11 @@ paths:
       summary: Upload selected media to specified destinations
       tags:
       - Meta
+      x-operation-id-source: normalized
+      x-operation-id-original: t_value
   /meta/account-status:
     get:
-      operationId: t_value
+      operationId: getMetaAccountStatus
       parameters: []
       responses:
         '200':
@@ -61,9 +67,11 @@ paths:
       summary: Check if an Instagram business account is already connected to a location entity
       tags:
       - Meta
+      x-operation-id-source: normalized
+      x-operation-id-original: t_value
   /meta/disconnect-instagram:
     post:
-      operationId: t_value
+      operationId: postMetaDisconnectInstagram
       parameters: []
       responses:
         '201':
@@ -71,6 +79,8 @@ paths:
       summary: Disconnect an Instagram business account from a location entity
       tags:
       - Meta
+      x-operation-id-source: normalized
+      x-operation-id-original: t_value
 components:
   securitySchemes:
     access-token:

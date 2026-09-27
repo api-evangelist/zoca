@@ -23,7 +23,7 @@ paths:
       - Linear
   /linear/templates/{id}:
     get:
-      operationId: t_value
+      operationId: getLinearTemplatesById
       parameters: []
       responses:
         '200':
@@ -31,9 +31,11 @@ paths:
       summary: Get a Linear issue template by ID
       tags:
       - Linear
+      x-operation-id-source: normalized
+      x-operation-id-original: t_value
   /linear/customers:
     post:
-      operationId: t_value
+      operationId: postLinearCustomers
       parameters: []
       responses:
         '201':
@@ -41,9 +43,11 @@ paths:
       summary: Upsert a Linear customer
       tags:
       - Linear
+      x-operation-id-source: normalized
+      x-operation-id-original: t_value
   /linear/issues/{entityId}:
     post:
-      operationId: t_value
+      operationId: postLinearIssuesByEntityId
       parameters: []
       responses:
         '201':
@@ -51,9 +55,11 @@ paths:
       summary: Create a Linear issue for an entity
       tags:
       - Linear
+      x-operation-id-source: normalized
+      x-operation-id-original: t_value
   /linear/issues/{issueId}:
     patch:
-      operationId: t_value
+      operationId: patchLinearIssuesByIssueId
       parameters: []
       responses:
         '200':
@@ -63,9 +69,11 @@ paths:
       summary: Update a Linear issue
       tags:
       - Linear
+      x-operation-id-source: normalized
+      x-operation-id-original: t_value
   /linear/issues/sync:
     post:
-      operationId: t_value
+      operationId: postLinearIssuesSync
       parameters: []
       responses:
         '201':
@@ -73,10 +81,12 @@ paths:
       summary: Sync all Linear issues
       tags:
       - Linear
+      x-operation-id-source: normalized
+      x-operation-id-original: t_value
   /linear/webhook:
     post:
       description: Processes incoming Linear webhook events for issue synchronization
-      operationId: t_value
+      operationId: postLinearWebhook
       parameters: []
       requestBody:
         required: true
@@ -91,6 +101,8 @@ paths:
       summary: Linear Webhook
       tags:
       - Linear
+      x-operation-id-source: normalized
+      x-operation-id-original: t_value
 components:
   schemas:
     Object:

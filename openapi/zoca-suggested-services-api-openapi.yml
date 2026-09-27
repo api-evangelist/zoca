@@ -25,7 +25,7 @@ paths:
       - suggested-services
   /tasks/api/v1/suggested-services/services/{entityId}:
     post:
-      operationId: t_value
+      operationId: postTasksApiV1SuggestedServicesServicesByEntityId
       parameters: []
       responses:
         '201':
@@ -33,9 +33,11 @@ paths:
       summary: Sync suggested services for entity
       tags:
       - suggested-services
+      x-operation-id-source: normalized
+      x-operation-id-original: t_value
   /tasks/api/v1/suggested-services/services-categories/{entityId}:
     post:
-      operationId: t_value
+      operationId: postTasksApiV1SuggestedServicesServicesCategoriesByEntityId
       parameters: []
       responses:
         '201':
@@ -43,6 +45,8 @@ paths:
       summary: Sync suggested services and categories for entity
       tags:
       - suggested-services
+      x-operation-id-source: normalized
+      x-operation-id-original: t_value
 components:
   securitySchemes:
     access-token:

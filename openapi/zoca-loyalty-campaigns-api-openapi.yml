@@ -25,7 +25,7 @@ paths:
       - loyalty-campaigns
   /tasks/api/v1/loyalty-campaigns/trigger:
     post:
-      operationId: t_value
+      operationId: postTasksApiV1LoyaltyCampaignsTrigger
       parameters: []
       responses:
         '201':
@@ -33,9 +33,11 @@ paths:
       summary: Create + trigger a loyalty campaign against a cohort
       tags:
       - loyalty-campaigns
+      x-operation-id-source: normalized
+      x-operation-id-original: t_value
   /tasks/api/v1/loyalty-campaigns/{id}/cancel:
     post:
-      operationId: t_value
+      operationId: postTasksApiV1LoyaltyCampaignsByIdCancel
       parameters: []
       responses:
         '200':
@@ -43,9 +45,11 @@ paths:
       summary: Cancel a triggered loyalty campaign
       tags:
       - loyalty-campaigns
+      x-operation-id-source: normalized
+      x-operation-id-original: t_value
   /tasks/api/v1/loyalty-campaigns/{id}:
     get:
-      operationId: t_value
+      operationId: getTasksApiV1LoyaltyCampaignsById
       parameters: []
       responses:
         '200':
@@ -53,9 +57,11 @@ paths:
       summary: Get a loyalty campaign (status, counts)
       tags:
       - loyalty-campaigns
+      x-operation-id-source: normalized
+      x-operation-id-original: t_value
   /tasks/api/v1/loyalty-campaigns/{id}/clients:
     get:
-      operationId: t_value
+      operationId: getTasksApiV1LoyaltyCampaignsByIdClients
       parameters: []
       responses:
         '200':
@@ -63,6 +69,8 @@ paths:
       summary: List campaign clients (reached / skipped / pending)
       tags:
       - loyalty-campaigns
+      x-operation-id-source: normalized
+      x-operation-id-original: t_value
 components:
   securitySchemes:
     access-token:

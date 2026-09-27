@@ -30,7 +30,7 @@ paths:
       tags:
       - Gift Card Designs
     post:
-      operationId: t_value
+      operationId: postGiftCardDesigns
       parameters: []
       responses:
         '201':
@@ -44,9 +44,11 @@ paths:
       summary: Create a custom gift card design (Owner only)
       tags:
       - Gift Card Designs
+      x-operation-id-source: normalized
+      x-operation-id-original: t_value
   /gift-card-designs/{id}:
     patch:
-      operationId: t_value
+      operationId: patchGiftCardDesignsById
       parameters: []
       responses:
         '200':
@@ -60,8 +62,10 @@ paths:
       summary: Update a gift card design (Owner only)
       tags:
       - Gift Card Designs
+      x-operation-id-source: normalized
+      x-operation-id-original: t_value
     delete:
-      operationId: t_value
+      operationId: deleteGiftCardDesignsById
       parameters: []
       responses:
         '204':
@@ -71,6 +75,8 @@ paths:
       summary: Soft-delete a gift card design (Owner only)
       tags:
       - Gift Card Designs
+      x-operation-id-source: normalized
+      x-operation-id-original: t_value
 components:
   schemas:
     e:

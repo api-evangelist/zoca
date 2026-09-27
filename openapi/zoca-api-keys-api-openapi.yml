@@ -34,7 +34,7 @@ paths:
       - API Keys
     get:
       description: Returns all API keys for the authenticated user. The actual key is not returned.
-      operationId: t_value
+      operationId: getTasksApiV1AuthApiKeys
       parameters: []
       responses:
         '200':
@@ -50,10 +50,12 @@ paths:
       summary: List all API keys for the current user
       tags:
       - API Keys
+      x-operation-id-source: normalized
+      x-operation-id-original: t_value
   /tasks/api/v1/auth/api-keys/{id}/rotate:
     post:
       description: Generates a new key while keeping the old one valid for a grace period (default 24 hours)
-      operationId: t_value
+      operationId: postTasksApiV1AuthApiKeysByIdRotate
       parameters: []
       responses:
         '200':
@@ -74,10 +76,12 @@ paths:
       summary: Rotate an API key
       tags:
       - API Keys
+      x-operation-id-source: normalized
+      x-operation-id-original: t_value
   /tasks/api/v1/auth/api-keys/{id}:
     delete:
       description: Permanently revokes an API key. This action cannot be undone.
-      operationId: t_value
+      operationId: deleteTasksApiV1AuthApiKeysById
       parameters: []
       responses:
         '200':
@@ -98,6 +102,8 @@ paths:
       summary: Revoke an API key
       tags:
       - API Keys
+      x-operation-id-source: normalized
+      x-operation-id-original: t_value
 components:
   schemas:
     e:

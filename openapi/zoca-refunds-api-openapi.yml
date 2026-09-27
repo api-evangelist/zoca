@@ -61,7 +61,7 @@ paths:
       - Refunds
     get:
       description: Retrieves refunds with optional filters for status and pagination. Returns total count for pagination UI.
-      operationId: t_value
+      operationId: getSchedulingRefunds
       parameters:
       - name: limit
         required: false
@@ -120,10 +120,12 @@ paths:
       summary: List refunds for an entity
       tags:
       - Refunds
+      x-operation-id-source: normalized
+      x-operation-id-original: t_value
   /scheduling/refunds/eligibility/{paymentId}:
     get:
       description: Returns whether a payment can be refunded and the remaining refundable amount. Useful for determining if a refund can be processed.
-      operationId: t_value
+      operationId: getSchedulingRefundsEligibilityByPaymentId
       parameters:
       - name: paymentId
         required: true
@@ -159,10 +161,12 @@ paths:
       summary: Check refund eligibility for a payment
       tags:
       - Refunds
+      x-operation-id-source: normalized
+      x-operation-id-original: t_value
   /scheduling/refunds/{id}:
     get:
       description: Retrieves details of a specific refund.
-      operationId: t_value
+      operationId: getSchedulingRefundsById
       parameters:
       - name: id
         required: true
@@ -178,10 +182,12 @@ paths:
       summary: Get refund by ID
       tags:
       - Refunds
+      x-operation-id-source: normalized
+      x-operation-id-original: t_value
   /scheduling/refunds/payment/{paymentId}:
     get:
       description: Retrieves refund history for a specific payment.
-      operationId: t_value
+      operationId: getSchedulingRefundsPaymentByPaymentId
       parameters:
       - name: paymentId
         required: true
@@ -204,10 +210,12 @@ paths:
       summary: Get all refunds for a payment
       tags:
       - Refunds
+      x-operation-id-source: normalized
+      x-operation-id-original: t_value
   /scheduling/refunds/sale/{saleId}:
     get:
       description: Retrieves all refunds associated with a sale (across all payments).
-      operationId: t_value
+      operationId: getSchedulingRefundsSaleBySaleId
       parameters:
       - name: saleId
         required: true
@@ -230,6 +238,8 @@ paths:
       summary: Get all refunds for a sale
       tags:
       - Refunds
+      x-operation-id-source: normalized
+      x-operation-id-original: t_value
 components:
   securitySchemes:
     access-token:

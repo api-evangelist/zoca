@@ -25,7 +25,7 @@ paths:
       - Google Business Profile
   /tasks/api/v1/gbp/{businessId}:
     get:
-      operationId: t_value
+      operationId: getTasksApiV1GbpByBusinessId
       parameters: []
       responses:
         '200':
@@ -33,8 +33,10 @@ paths:
       summary: Get specific business details
       tags:
       - Google Business Profile
+      x-operation-id-source: normalized
+      x-operation-id-original: t_value
     put:
-      operationId: t_value
+      operationId: putTasksApiV1GbpByBusinessId
       parameters: []
       responses:
         '200':
@@ -42,10 +44,12 @@ paths:
       summary: Update business information
       tags:
       - Google Business Profile
+      x-operation-id-source: normalized
+      x-operation-id-original: t_value
   /tasks/api/v1/gbp/sync-media:
     post:
       description: Enqueues a job to synchronize Google Business Profile media
-      operationId: t_value
+      operationId: postTasksApiV1GbpSyncMedia
       parameters: []
       responses:
         '201':
@@ -63,10 +67,12 @@ paths:
       summary: Sync GBP media
       tags:
       - Google Business Profile
+      x-operation-id-source: normalized
+      x-operation-id-original: t_value
   /tasks/api/v1/gbp/{entityId}/generate-description:
     get:
       description: Generates a business description for the specified entity ID
-      operationId: t_value
+      operationId: getTasksApiV1GbpByEntityIdGenerateDescription
       parameters: []
       responses:
         '200':
@@ -78,9 +84,11 @@ paths:
       summary: Generate business description
       tags:
       - Google Business Profile
+      x-operation-id-source: normalized
+      x-operation-id-original: t_value
   /tasks/api/v1/gbp/reserve-with-google/status:
     post:
-      operationId: t_value
+      operationId: postTasksApiV1GbpReserveWithGoogleStatus
       parameters: []
       requestBody:
         required: true
@@ -133,9 +141,11 @@ paths:
       summary: Update Reserve with Google availability for multiple locations
       tags:
       - Google Business Profile
+      x-operation-id-source: normalized
+      x-operation-id-original: t_value
   /tasks/api/v1/gbp/{entityId}/generate-primary-category:
     get:
-      operationId: t_value
+      operationId: getTasksApiV1GbpByEntityIdGeneratePrimaryCategory
       parameters: []
       responses:
         '200':
@@ -144,9 +154,11 @@ paths:
       - Google Business Profile
       summary: T value
       x-summary-source: derived
+      x-operation-id-source: normalized
+      x-operation-id-original: t_value
   /tasks/api/v1/gbp/{entityId}/generate-additional-categories:
     get:
-      operationId: t_value
+      operationId: getTasksApiV1GbpByEntityIdGenerateAdditionalCategories
       parameters: []
       responses:
         '200':
@@ -155,9 +167,11 @@ paths:
       - Google Business Profile
       summary: T value
       x-summary-source: derived
+      x-operation-id-source: normalized
+      x-operation-id-original: t_value
   /tasks/api/v1/gbp/{entityId}/generate-gbp-faqs:
     get:
-      operationId: t_value
+      operationId: getTasksApiV1GbpByEntityIdGenerateGbpFaqs
       parameters: []
       responses:
         '200':
@@ -166,9 +180,11 @@ paths:
       - Google Business Profile
       summary: T value
       x-summary-source: derived
+      x-operation-id-source: normalized
+      x-operation-id-original: t_value
   /tasks/api/v1/gbp/{entityId}/generate-content:
     get:
-      operationId: t_value
+      operationId: getTasksApiV1GbpByEntityIdGenerateContent
       parameters: []
       responses:
         '200':
@@ -177,10 +193,12 @@ paths:
       - Google Business Profile
       summary: T value
       x-summary-source: derived
+      x-operation-id-source: normalized
+      x-operation-id-original: t_value
   /tasks/api/v1/gbp/{entityId}/generate-services-categories:
     post:
       description: Generates optimized category assignments for services using AI/LLM processing
-      operationId: t_value
+      operationId: postTasksApiV1GbpByEntityIdGenerateServicesCategories
       parameters: []
       responses:
         '201':
@@ -192,9 +210,11 @@ paths:
       summary: Generate services categories using LLM
       tags:
       - Google Business Profile
+      x-operation-id-source: normalized
+      x-operation-id-original: t_value
   /tasks/api/v1/gbp/upsert-qanda:
     post:
-      operationId: t_value
+      operationId: postTasksApiV1GbpUpsertQanda
       parameters: []
       responses:
         '200':
@@ -206,9 +226,11 @@ paths:
       summary: Upsert Qanda
       tags:
       - Google Business Profile
+      x-operation-id-source: normalized
+      x-operation-id-original: t_value
   /tasks/api/v1/gbp/{entityId}/get-ops-services:
     get:
-      operationId: t_value
+      operationId: getTasksApiV1GbpByEntityIdGetOpsServices
       parameters: []
       responses:
         '200':
@@ -217,9 +239,11 @@ paths:
       - Google Business Profile
       summary: T value
       x-summary-source: derived
+      x-operation-id-source: normalized
+      x-operation-id-original: t_value
   /tasks/api/v1/gbp/{entityId}/create-ops-services-updates:
     post:
-      operationId: t_value
+      operationId: postTasksApiV1GbpByEntityIdCreateOpsServicesUpdates
       parameters: []
       responses:
         '201':
@@ -228,9 +252,11 @@ paths:
       - Google Business Profile
       summary: T value
       x-summary-source: derived
+      x-operation-id-source: normalized
+      x-operation-id-original: t_value
   /tasks/api/v1/gbp/{entityId}/create-ops-categories-updates:
     post:
-      operationId: t_value
+      operationId: postTasksApiV1GbpByEntityIdCreateOpsCategoriesUpdates
       parameters: []
       responses:
         '201':
@@ -239,9 +265,11 @@ paths:
       - Google Business Profile
       summary: T value
       x-summary-source: derived
+      x-operation-id-source: normalized
+      x-operation-id-original: t_value
   /tasks/api/v1/gbp/additional-categories/{industry}:
     get:
-      operationId: t_value
+      operationId: getTasksApiV1GbpAdditionalCategoriesByIndustry
       parameters: []
       responses:
         '200':
@@ -250,9 +278,11 @@ paths:
       - Google Business Profile
       summary: T value
       x-summary-source: derived
+      x-operation-id-source: normalized
+      x-operation-id-original: t_value
   /tasks/api/v1/gbp/zoca/auth:
     get:
-      operationId: t_value
+      operationId: getTasksApiV1GbpZocaAuth
       parameters: []
       responses:
         '200':
@@ -261,9 +291,11 @@ paths:
       - Google Business Profile
       summary: T value
       x-summary-source: derived
+      x-operation-id-source: normalized
+      x-operation-id-original: t_value
   /tasks/api/v1/gbp/location/details:
     get:
-      operationId: t_value
+      operationId: getTasksApiV1GbpLocationDetails
       parameters: []
       responses:
         '200':
@@ -272,9 +304,11 @@ paths:
       - Google Business Profile
       summary: T value
       x-summary-source: derived
+      x-operation-id-source: normalized
+      x-operation-id-original: t_value
   /tasks/api/v1/gbp/location/entity-details:
     get:
-      operationId: t_value
+      operationId: getTasksApiV1GbpLocationEntityDetails
       parameters: []
       responses:
         '200':
@@ -283,9 +317,11 @@ paths:
       - Google Business Profile
       summary: T value
       x-summary-source: derived
+      x-operation-id-source: normalized
+      x-operation-id-original: t_value
   /tasks/api/v1/gbp/website/status:
     post:
-      operationId: t_value
+      operationId: postTasksApiV1GbpWebsiteStatus
       parameters: []
       responses:
         '201':
@@ -294,10 +330,12 @@ paths:
       - Google Business Profile
       summary: T value
       x-summary-source: derived
+      x-operation-id-source: normalized
+      x-operation-id-original: t_value
   /tasks/api/v1/gbp/csv-geocoding/process:
     post:
       description: Queues CSV file from S3 URL for geocoding processing. The worker will download, validate, and process the file.
-      operationId: t_value
+      operationId: postTasksApiV1GbpCsvGeocodingProcess
       parameters: []
       responses:
         '201':
@@ -320,10 +358,12 @@ paths:
       summary: Process CSV file from S3 for geocoding
       tags:
       - Google Business Profile
+      x-operation-id-source: normalized
+      x-operation-id-original: t_value
   /tasks/api/v1/gbp/process-gbp-data-from-s3:
     post:
       description: Accepts an S3 URL to a CSV file containing place_ids, downloads and processes it to fetch GBP L2 business data. Supports lead enrichment for qualified leads.
-      operationId: t_value
+      operationId: postTasksApiV1GbpProcessGbpDataFromS3
       parameters: []
       responses:
         '201':
@@ -344,10 +384,12 @@ paths:
       summary: Process GBP L2 data from S3 CSV file
       tags:
       - Google Business Profile
+      x-operation-id-source: normalized
+      x-operation-id-original: t_value
   /tasks/api/v1/gbp/process-gbp-data:
     post:
       description: Accepts a CSV file containing Google Business place_ids or URLs, processes them in batches to fetch business data from external API, and returns a comprehensive CSV report via Slack notification.
-      operationId: t_value
+      operationId: postTasksApiV1GbpProcessGbpData
       parameters: []
       requestBody:
         required: true
@@ -385,10 +427,12 @@ paths:
       summary: Process GBP URLs and place IDs to fetch business data
       tags:
       - Google Business Profile
+      x-operation-id-source: normalized
+      x-operation-id-original: t_value
   /tasks/api/v1/gbp/locations/by-place-id:
     get:
       description: Fetches all GBP locations associated with a specific Google Places ID. Returns array even for single results. Handles multiple locations sharing the same placeId.
-      operationId: t_value
+      operationId: getTasksApiV1GbpLocationsByPlaceId
       parameters: []
       responses:
         '200':
@@ -406,10 +450,12 @@ paths:
       summary: Get locations by Google Places ID
       tags:
       - Google Business Profile
+      x-operation-id-source: normalized
+      x-operation-id-original: t_value
   /tasks/api/v1/gbp/keyword-impressions/trigger:
     post:
       description: Triggers the monthly keyword impressions data collection job that normally runs on the 5th of each month. Optionally specify a month/year to fetch data for.
-      operationId: t_value
+      operationId: postTasksApiV1GbpKeywordImpressionsTrigger
       parameters: []
       requestBody:
         required: false
@@ -458,10 +504,12 @@ paths:
       summary: Manually trigger keyword impressions cron job
       tags:
       - Google Business Profile
+      x-operation-id-source: normalized
+      x-operation-id-original: t_value
   /tasks/api/v1/gbp/{locationEntityId}/publish-website:
     post:
       description: 'Publishes website links to GBP with UTM tracking parameters. Updates website field, booking link, and service link. Optionally marks trial as started (activateTrial, default: true) and activates content generation (activateContent, default: true).'
-      operationId: t_value
+      operationId: postTasksApiV1GbpByLocationEntityIdPublishWebsite
       parameters:
       - name: locationEntityId
         required: true
@@ -516,10 +564,12 @@ paths:
       summary: Publish website links to Google Business Profile
       tags:
       - Google Business Profile
+      x-operation-id-source: normalized
+      x-operation-id-original: t_value
   /tasks/api/v1/gbp/{entityId}/generate-content-v2:
     post:
       description: Generates GBP post content using the simplified V2 pipeline with generator → corrector workflow. The entityId parameter refers to the location entity ID (locationEntityId) for the business location.
-      operationId: t_value
+      operationId: postTasksApiV1GbpByEntityIdGenerateContentV2
       parameters:
       - name: entityId
         required: true
@@ -558,10 +608,12 @@ paths:
       summary: Generate GBP content using V2 pipeline
       tags:
       - Google Business Profile
+      x-operation-id-source: normalized
+      x-operation-id-original: t_value
   /tasks/api/v1/gbp/swap-entities:
     post:
       description: Enqueues a job to swap location IDs between two GBP entities
-      operationId: t_value
+      operationId: postTasksApiV1GbpSwapEntities
       parameters: []
       responses:
         '201':
@@ -579,6 +631,8 @@ paths:
       summary: Swap GBP entities
       tags:
       - Google Business Profile
+      x-operation-id-source: normalized
+      x-operation-id-original: t_value
 components:
   schemas:
     e:

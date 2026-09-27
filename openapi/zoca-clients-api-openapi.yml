@@ -25,7 +25,7 @@ paths:
       tags:
       - Clients
     get:
-      operationId: t_value
+      operationId: getClients
       parameters: []
       responses:
         '200':
@@ -33,12 +33,14 @@ paths:
       summary: Get multiple clients by IDs
       tags:
       - Clients
+      x-operation-id-source: normalized
+      x-operation-id-original: t_value
     servers:
     - url: https://api.zoca.ai
       description: Production
   /clients/bulk:
     post:
-      operationId: t_value
+      operationId: postClientsBulk
       parameters: []
       responses:
         '201':
@@ -46,12 +48,14 @@ paths:
       summary: Bulk create clients with contact information
       tags:
       - Clients
+      x-operation-id-source: normalized
+      x-operation-id-original: t_value
     servers:
     - url: https://api.zoca.ai
       description: Production
   /clients/bulk-s3:
     post:
-      operationId: t_value
+      operationId: postClientsBulkS3
       parameters: []
       responses:
         '201':
@@ -59,12 +63,14 @@ paths:
       summary: Bulk import clients from S3 URL
       tags:
       - Clients
+      x-operation-id-source: normalized
+      x-operation-id-original: t_value
     servers:
     - url: https://api.zoca.ai
       description: Production
   /clients/entity/{entityId}:
     get:
-      operationId: t_value
+      operationId: getClientsEntityByEntityId
       parameters: []
       responses:
         '200':
@@ -72,12 +78,14 @@ paths:
       summary: Get clients by entity ID with pagination
       tags:
       - Clients
+      x-operation-id-source: normalized
+      x-operation-id-original: t_value
     servers:
     - url: https://api.zoca.ai
       description: Production
   /clients/block:
     put:
-      operationId: t_value
+      operationId: putClientsBlock
       parameters: []
       responses:
         '200':
@@ -85,12 +93,14 @@ paths:
       summary: Block or restore clients
       tags:
       - Clients
+      x-operation-id-source: normalized
+      x-operation-id-original: t_value
     servers:
     - url: https://api.zoca.ai
       description: Production
   /clients/entity/{entityId}/blocked:
     get:
-      operationId: t_value
+      operationId: getClientsEntityByEntityIdBlocked
       parameters: []
       responses:
         '200':
@@ -98,12 +108,14 @@ paths:
       summary: Get blocked clients for an entity with pagination
       tags:
       - Clients
+      x-operation-id-source: normalized
+      x-operation-id-original: t_value
     servers:
     - url: https://api.zoca.ai
       description: Production
   /clients/{clientId}:
     get:
-      operationId: t_value
+      operationId: getClientsByClientId
       parameters: []
       responses:
         '200':
@@ -111,8 +123,10 @@ paths:
       summary: Get a client by ID
       tags:
       - Clients
+      x-operation-id-source: normalized
+      x-operation-id-original: t_value
     patch:
-      operationId: t_value
+      operationId: patchClientsByClientId
       parameters: []
       responses:
         '200':
@@ -120,12 +134,14 @@ paths:
       summary: Update a client by ID
       tags:
       - Clients
+      x-operation-id-source: normalized
+      x-operation-id-original: t_value
     servers:
     - url: https://api.zoca.ai
       description: Production
   /clients/phone:
     get:
-      operationId: t_value
+      operationId: getClientsPhone
       parameters: []
       responses:
         '200':
@@ -133,12 +149,14 @@ paths:
       summary: Get clients by phone number
       tags:
       - Clients
+      x-operation-id-source: normalized
+      x-operation-id-original: t_value
     servers:
     - url: https://api.zoca.ai
       description: Production
   /clients/email:
     get:
-      operationId: t_value
+      operationId: getClientsEmail
       parameters: []
       responses:
         '200':
@@ -146,12 +164,14 @@ paths:
       summary: Get clients by email address
       tags:
       - Clients
+      x-operation-id-source: normalized
+      x-operation-id-original: t_value
     servers:
     - url: https://api.zoca.ai
       description: Production
   /clients/{clientId}/notes:
     get:
-      operationId: t_value
+      operationId: getClientsByClientIdNotes
       parameters: []
       responses:
         '200':
@@ -159,8 +179,10 @@ paths:
       summary: Get notes for a client
       tags:
       - Clients
+      x-operation-id-source: normalized
+      x-operation-id-original: t_value
     post:
-      operationId: t_value
+      operationId: postClientsByClientIdNotes
       parameters: []
       responses:
         '201':
@@ -168,12 +190,14 @@ paths:
       summary: Add a note to a client
       tags:
       - Clients
+      x-operation-id-source: normalized
+      x-operation-id-original: t_value
     servers:
     - url: https://api.zoca.ai
       description: Production
   /clients/{clientId}/notes/{noteId}:
     put:
-      operationId: t_value
+      operationId: putClientsByClientIdNotesByNoteId
       parameters: []
       responses:
         '200':
@@ -181,8 +205,10 @@ paths:
       summary: Update a client note
       tags:
       - Clients
+      x-operation-id-source: normalized
+      x-operation-id-original: t_value
     delete:
-      operationId: t_value
+      operationId: deleteClientsByClientIdNotesByNoteId
       parameters: []
       responses:
         '200':
@@ -190,12 +216,14 @@ paths:
       summary: Delete a client note
       tags:
       - Clients
+      x-operation-id-source: normalized
+      x-operation-id-original: t_value
     servers:
     - url: https://api.zoca.ai
       description: Production
   /clients/{entityId}/clientFile:
     post:
-      operationId: t_value
+      operationId: postClientsByEntityIdClientFile
       parameters: []
       responses:
         '201':
@@ -203,12 +231,14 @@ paths:
       summary: Store a client file for an entity
       tags:
       - Clients
+      x-operation-id-source: normalized
+      x-operation-id-original: t_value
     servers:
     - url: https://api.zoca.ai
       description: Production
   /clients/temp/sendReviewAutomation:
     get:
-      operationId: t_value
+      operationId: getClientsTempSendReviewAutomation
       parameters: []
       responses:
         '200':
@@ -216,12 +246,14 @@ paths:
       summary: Trigger review automation job
       tags:
       - Clients
+      x-operation-id-source: normalized
+      x-operation-id-original: t_value
     servers:
     - url: https://api.zoca.ai
       description: Production
   /clients/comm-types:
     get:
-      operationId: t_value
+      operationId: getClientsCommTypes
       parameters: []
       responses:
         '200':
@@ -229,12 +261,14 @@ paths:
       summary: Get available communication types
       tags:
       - Clients
+      x-operation-id-source: normalized
+      x-operation-id-original: t_value
     servers:
     - url: https://api.zoca.ai
       description: Production
   /clients/comms/{commId}/status:
     patch:
-      operationId: t_value
+      operationId: patchClientsCommsByCommIdStatus
       parameters: []
       responses:
         '200':
@@ -242,12 +276,14 @@ paths:
       summary: Update communication status
       tags:
       - Clients
+      x-operation-id-source: normalized
+      x-operation-id-original: t_value
     servers:
     - url: https://api.zoca.ai
       description: Production
   /clients/{clientId}/contacts:
     post:
-      operationId: t_value
+      operationId: postClientsByClientIdContacts
       parameters: []
       responses:
         '201':
@@ -255,12 +291,14 @@ paths:
       summary: Add a contact to an existing client
       tags:
       - Clients
+      x-operation-id-source: normalized
+      x-operation-id-original: t_value
     servers:
     - url: https://api.zoca.ai
       description: Production
   /clients/{clientId}/contacts/{contactId}:
     delete:
-      operationId: t_value
+      operationId: deleteClientsByClientIdContactsByContactId
       parameters: []
       responses:
         '200':
@@ -268,8 +306,10 @@ paths:
       summary: Remove a contact from a client
       tags:
       - Clients
+      x-operation-id-source: normalized
+      x-operation-id-original: t_value
     put:
-      operationId: t_value
+      operationId: putClientsByClientIdContactsByContactId
       parameters: []
       responses:
         '200':
@@ -277,12 +317,14 @@ paths:
       summary: Replace a contact on a client
       tags:
       - Clients
+      x-operation-id-source: normalized
+      x-operation-id-original: t_value
     servers:
     - url: https://api.zoca.ai
       description: Production
   /tasks/api/v1/clients/sendReviewAutomation:
     get:
-      operationId: t_value
+      operationId: getTasksApiV1ClientsSendReviewAutomation
       parameters: []
       responses:
         '200':
@@ -292,12 +334,14 @@ paths:
       - Clients
       security:
       - access-token: []
+      x-operation-id-source: normalized
+      x-operation-id-original: t_value
     servers:
     - url: https://tasks.zoca.ai
       description: Production
   /tasks/api/v1/clients/manual-upload:
     post:
-      operationId: t_value
+      operationId: postTasksApiV1ClientsManualUpload
       parameters: []
       responses:
         '201':
@@ -307,12 +351,14 @@ paths:
       - Clients
       security:
       - access-token: []
+      x-operation-id-source: normalized
+      x-operation-id-original: t_value
     servers:
     - url: https://tasks.zoca.ai
       description: Production
   /tasks/api/v1/clients/bulk-update-limit-preferences:
     post:
-      operationId: t_value
+      operationId: postTasksApiV1ClientsBulkUpdateLimitPreferences
       parameters: []
       responses:
         '201':
@@ -322,12 +368,14 @@ paths:
       - Clients
       security:
       - access-token: []
+      x-operation-id-source: normalized
+      x-operation-id-original: t_value
     servers:
     - url: https://tasks.zoca.ai
       description: Production
   /tasks/api/v1/clients/sync-active-campaign-export:
     post:
-      operationId: t_value
+      operationId: postTasksApiV1ClientsSyncActiveCampaignExport
       parameters: []
       responses:
         '201':
@@ -337,12 +385,14 @@ paths:
       - Clients
       security:
       - access-token: []
+      x-operation-id-source: normalized
+      x-operation-id-original: t_value
     servers:
     - url: https://tasks.zoca.ai
       description: Production
   /tasks/api/v1/clients/loyalty/import:
     post:
-      operationId: t_value
+      operationId: postTasksApiV1ClientsLoyaltyImport
       parameters: []
       responses:
         '201':
@@ -352,12 +402,14 @@ paths:
       - Clients
       security:
       - access-token: []
+      x-operation-id-source: normalized
+      x-operation-id-original: t_value
     servers:
     - url: https://tasks.zoca.ai
       description: Production
   /tasks/api/v1/clients/reviews/import:
     post:
-      operationId: t_value
+      operationId: postTasksApiV1ClientsReviewsImport
       parameters: []
       responses:
         '201':
@@ -367,12 +419,14 @@ paths:
       - Clients
       security:
       - access-token: []
+      x-operation-id-source: normalized
+      x-operation-id-original: t_value
     servers:
     - url: https://tasks.zoca.ai
       description: Production
   /tasks/api/v1/clients/reviews/validate:
     post:
-      operationId: t_value
+      operationId: postTasksApiV1ClientsReviewsValidate
       parameters: []
       responses:
         '201':
@@ -382,6 +436,8 @@ paths:
       - Clients
       security:
       - access-token: []
+      x-operation-id-source: normalized
+      x-operation-id-original: t_value
     servers:
     - url: https://tasks.zoca.ai
       description: Production

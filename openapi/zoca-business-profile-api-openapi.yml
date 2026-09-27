@@ -23,7 +23,7 @@ paths:
       - Business Profile
   /business-profile/address-auto-complete:
     get:
-      operationId: t_value
+      operationId: getBusinessProfileAddressAutoComplete
       parameters: []
       responses:
         '200':
@@ -31,9 +31,11 @@ paths:
       summary: Get address auto-complete suggestions
       tags:
       - Business Profile
+      x-operation-id-source: normalized
+      x-operation-id-original: t_value
   /business-profile/domain-suggestion:
     get:
-      operationId: t_value
+      operationId: getBusinessProfileDomainSuggestion
       parameters: []
       responses:
         '200':
@@ -41,9 +43,11 @@ paths:
       summary: Get domain suggestions
       tags:
       - Business Profile
+      x-operation-id-source: normalized
+      x-operation-id-original: t_value
   /business-profile/primary-category-suggestion:
     get:
-      operationId: t_value
+      operationId: getBusinessProfilePrimaryCategorySuggestion
       parameters: []
       responses:
         '200':
@@ -51,8 +55,10 @@ paths:
       summary: Get primary category suggestions
       tags:
       - Business Profile
+      x-operation-id-source: normalized
+      x-operation-id-original: t_value
     put:
-      operationId: t_value
+      operationId: putBusinessProfilePrimaryCategorySuggestion
       parameters: []
       responses:
         '200':
@@ -60,9 +66,11 @@ paths:
       summary: Get primary category suggestions (v2)
       tags:
       - Business Profile
+      x-operation-id-source: normalized
+      x-operation-id-original: t_value
   /business-profile/additional-category-suggestion:
     get:
-      operationId: t_value
+      operationId: getBusinessProfileAdditionalCategorySuggestion
       parameters: []
       responses:
         '200':
@@ -70,8 +78,10 @@ paths:
       summary: Get additional category suggestions
       tags:
       - Business Profile
+      x-operation-id-source: normalized
+      x-operation-id-original: t_value
     put:
-      operationId: t_value
+      operationId: putBusinessProfileAdditionalCategorySuggestion
       parameters: []
       responses:
         '200':
@@ -79,10 +89,12 @@ paths:
       summary: Get additional category suggestions (v2)
       tags:
       - Business Profile
+      x-operation-id-source: normalized
+      x-operation-id-original: t_value
   /business-profile/booking-platforms:
     get:
       description: Retrieves a list of all active booking platforms including Vagaro, GlossGenius, StyleSeat, and Booksy.
-      operationId: t_value
+      operationId: getBusinessProfileBookingPlatforms
       parameters: []
       responses:
         '200':
@@ -96,10 +108,12 @@ paths:
       summary: Get all booking platforms
       tags:
       - Business Profile
+      x-operation-id-source: normalized
+      x-operation-id-original: t_value
   /business-profile/social-platforms:
     get:
       description: Retrieves a list of all active social media platforms including Facebook, Instagram, LinkedIn, TikTok, Twitter, YouTube, and Pinterest.
-      operationId: t_value
+      operationId: getBusinessProfileSocialPlatforms
       parameters: []
       responses:
         '200':
@@ -113,10 +127,12 @@ paths:
       summary: Get all social media platforms
       tags:
       - Business Profile
+      x-operation-id-source: normalized
+      x-operation-id-original: t_value
   /business-profile/{entityId}/booking-link:
     put:
       description: Updates the booking link for a specified platform, deactivating any existing active link for that platform.
-      operationId: t_value
+      operationId: putBusinessProfileByEntityIdBookingLink
       parameters:
       - name: entityId
         required: true
@@ -138,9 +154,11 @@ paths:
       summary: Update booking link for a platform
       tags:
       - Business Profile
+      x-operation-id-source: normalized
+      x-operation-id-original: t_value
     get:
       description: Updates the booking link for a specified platform, deactivating any existing active link for that platform.
-      operationId: t_value
+      operationId: getBusinessProfileByEntityIdBookingLink
       parameters:
       - name: entityId
         required: true
@@ -161,10 +179,12 @@ paths:
       summary: Update booking link for a platform
       tags:
       - Business Profile
+      x-operation-id-source: normalized
+      x-operation-id-original: t_value
   /business-profile/{entityId}/links:
     get:
       description: Retrieves all links (both active and inactive) associated with the specified entity.
-      operationId: t_value
+      operationId: getBusinessProfileByEntityIdLinks
       parameters:
       - name: entityId
         required: true
@@ -185,9 +205,11 @@ paths:
       summary: Get all links for an entity
       tags:
       - Business Profile
+      x-operation-id-source: normalized
+      x-operation-id-original: t_value
   /business-profile/ai-description:
     get:
-      operationId: t_value
+      operationId: getBusinessProfileAiDescription
       parameters: []
       responses:
         '200':
@@ -195,9 +217,11 @@ paths:
       summary: Generate AI-based business description
       tags:
       - Business Profile
+      x-operation-id-source: normalized
+      x-operation-id-original: t_value
   /business-profile/update-profile-data:
     put:
-      operationId: t_value
+      operationId: putBusinessProfileUpdateProfileData
       parameters: []
       responses:
         '200':
@@ -205,11 +229,13 @@ paths:
       summary: Update business profile data
       tags:
       - Business Profile
+      x-operation-id-source: normalized
+      x-operation-id-original: t_value
   /business-profile/update-profile-data-ops:
     put:
       deprecated: true
       description: 'Deprecated: will be removed in a future release.'
-      operationId: t_value
+      operationId: putBusinessProfileUpdateProfileDataOps
       parameters: []
       responses:
         '200':
@@ -217,9 +243,11 @@ paths:
       summary: Update business profile data (ops)
       tags:
       - Business Profile
+      x-operation-id-source: normalized
+      x-operation-id-original: t_value
   /business-profile/website-domain/{entityId}:
     get:
-      operationId: t_value
+      operationId: getBusinessProfileWebsiteDomainByEntityId
       parameters: []
       responses:
         '200':
@@ -227,8 +255,10 @@ paths:
       summary: Get website domain data
       tags:
       - Business Profile
+      x-operation-id-source: normalized
+      x-operation-id-original: t_value
     put:
-      operationId: t_value
+      operationId: putBusinessProfileWebsiteDomainByEntityId
       parameters: []
       responses:
         '200':
@@ -236,9 +266,11 @@ paths:
       summary: Update website domain data
       tags:
       - Business Profile
+      x-operation-id-source: normalized
+      x-operation-id-original: t_value
   /business-profile/website-domain-quotation/{entityId}:
     put:
-      operationId: t_value
+      operationId: putBusinessProfileWebsiteDomainQuotationByEntityId
       parameters: []
       responses:
         '200':
@@ -246,6 +278,8 @@ paths:
       summary: Get domain quotation
       tags:
       - Business Profile
+      x-operation-id-source: normalized
+      x-operation-id-original: t_value
 components:
   schemas:
     e:

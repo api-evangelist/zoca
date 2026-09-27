@@ -35,7 +35,7 @@ paths:
   /tasks/api/v1/scrape/slots:
     post:
       description: Retrieves available time slots for the specified services and date from the booking platform
-      operationId: t_value
+      operationId: postTasksApiV1ScrapeSlots
       parameters: []
       responses:
         '200':
@@ -51,10 +51,12 @@ paths:
       summary: Fetch available appointment slots
       tags:
       - Scrape
+      x-operation-id-source: normalized
+      x-operation-id-original: t_value
   /tasks/api/v1/scrape/provider-slots:
     post:
       description: Retrieves available time slots for the specified services and date, grouped by provider with provider names and GUIDs
-      operationId: t_value
+      operationId: postTasksApiV1ScrapeProviderSlots
       parameters: []
       responses:
         '200':
@@ -70,10 +72,12 @@ paths:
       summary: Fetch available appointment slots grouped by provider
       tags:
       - Scrape
+      x-operation-id-source: normalized
+      x-operation-id-original: t_value
   /tasks/api/v1/scrape/book:
     post:
       description: Books an appointment on the specified booking platform with the provided services, date, time, and user/payment information
-      operationId: t_value
+      operationId: postTasksApiV1ScrapeBook
       parameters: []
       responses:
         '200':
@@ -89,10 +93,12 @@ paths:
       summary: Book an appointment
       tags:
       - Scrape
+      x-operation-id-source: normalized
+      x-operation-id-original: t_value
   /tasks/api/v1/scrape/supported-sites:
     get:
       description: Returns a list of all supported booking platform site slugs
-      operationId: t_value
+      operationId: getTasksApiV1ScrapeSupportedSites
       parameters: []
       responses:
         '200':
@@ -106,6 +112,8 @@ paths:
       summary: Get supported booking platforms
       tags:
       - Scrape
+      x-operation-id-source: normalized
+      x-operation-id-original: t_value
 components:
   schemas:
     e:

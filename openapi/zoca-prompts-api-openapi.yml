@@ -97,7 +97,7 @@ paths:
       - Prompts
   /tasks/api/v1/prompts/upsert:
     post:
-      operationId: t_value
+      operationId: postTasksApiV1PromptsUpsert
       parameters: []
       requestBody:
         required: true
@@ -115,9 +115,11 @@ paths:
       summary: Create or update a prompt
       tags:
       - Prompts
+      x-operation-id-source: normalized
+      x-operation-id-original: t_value
   /tasks/api/v1/prompts/prompt:
     get:
-      operationId: t_value
+      operationId: getTasksApiV1PromptsPrompt
       parameters: []
       responses:
         '200':
@@ -129,9 +131,11 @@ paths:
       summary: Get a prompt by function and useCase
       tags:
       - Prompts
+      x-operation-id-source: normalized
+      x-operation-id-original: t_value
   /tasks/api/v1/prompts/prompt/fallback:
     get:
-      operationId: t_value
+      operationId: getTasksApiV1PromptsPromptFallback
       parameters: []
       responses:
         '200':
@@ -143,10 +147,12 @@ paths:
       summary: Get a prompt by function and useCase with fallback
       tags:
       - Prompts
+      x-operation-id-source: normalized
+      x-operation-id-original: t_value
   /tasks/api/v1/prompts/cohort/set:
     post:
       description: Sets a prompt value for all entities in a cohort in their preferences table against the specified attribute
-      operationId: t_value
+      operationId: postTasksApiV1PromptsCohortSet
       parameters: []
       requestBody:
         required: true
@@ -166,10 +172,12 @@ paths:
       summary: Set prompt for a cohort of entities
       tags:
       - Prompts
+      x-operation-id-source: normalized
+      x-operation-id-original: t_value
   /tasks/api/v1/prompts/cohort/update-to-latest:
     post:
       description: Updates a cohort's prompt to the latest version by function and useCase. Stores the prompt reference (PROMPT:) against the cohortId in entity_preferences using the specified attribute key (e.g., chatbot.prompt.initializer). This is used by tier 2 of getPromptWithFallback for cohort-level prompt resolution.
-      operationId: t_value
+      operationId: postTasksApiV1PromptsCohortUpdateToLatest
       parameters: []
       requestBody:
         required: true
@@ -189,10 +197,12 @@ paths:
       summary: Update cohort prompt to latest version
       tags:
       - Prompts
+      x-operation-id-source: normalized
+      x-operation-id-original: t_value
   /tasks/api/v1/prompts/cohort/{cohortId}:
     get:
       description: Retrieves the prompt value that was set for entities in a cohort from their preferences table
-      operationId: t_value
+      operationId: getTasksApiV1PromptsCohortByCohortId
       parameters:
       - name: checkForId
         required: false
@@ -248,9 +258,11 @@ paths:
       summary: Get prompt that was set for a cohort
       tags:
       - Prompts
+      x-operation-id-source: normalized
+      x-operation-id-original: t_value
   /tasks/api/v1/prompts/functions:
     get:
-      operationId: t_value
+      operationId: getTasksApiV1PromptsFunctions
       parameters: []
       responses:
         '200':
@@ -264,9 +276,11 @@ paths:
       summary: List all available business functions
       tags:
       - Prompts
+      x-operation-id-source: normalized
+      x-operation-id-original: t_value
   /tasks/api/v1/prompts/use-cases:
     get:
-      operationId: t_value
+      operationId: getTasksApiV1PromptsUseCases
       parameters:
       - name: unique
         required: false
@@ -286,9 +300,11 @@ paths:
       summary: List all use cases across all functions
       tags:
       - Prompts
+      x-operation-id-source: normalized
+      x-operation-id-original: t_value
   /tasks/api/v1/prompts/functions/{function}/use-cases:
     get:
-      operationId: t_value
+      operationId: getTasksApiV1PromptsFunctionsByFunctionUseCases
       parameters:
       - name: function
         required: true
@@ -317,9 +333,11 @@ paths:
       summary: List use cases for a specific business function
       tags:
       - Prompts
+      x-operation-id-source: normalized
+      x-operation-id-original: t_value
   /tasks/api/v1/prompts/{id}:
     delete:
-      operationId: t_value
+      operationId: deleteTasksApiV1PromptsById
       parameters:
       - name: id
         required: true
@@ -342,6 +360,8 @@ paths:
       summary: Delete a prompt by ID
       tags:
       - Prompts
+      x-operation-id-source: normalized
+      x-operation-id-original: t_value
 components:
   schemas:
     e:

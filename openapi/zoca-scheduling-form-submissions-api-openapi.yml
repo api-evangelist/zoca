@@ -23,7 +23,7 @@ paths:
       - Scheduling - Form Submissions
   /scheduling/forms/submissions/{submissionId}:
     get:
-      operationId: t_value
+      operationId: getSchedulingFormsSubmissionsBySubmissionId
       parameters:
       - name: entityId
         required: true
@@ -43,9 +43,11 @@ paths:
       summary: Get submission detail (SP)
       tags:
       - Scheduling - Form Submissions
+      x-operation-id-source: normalized
+      x-operation-id-original: t_value
   /scheduling/forms/submissions/{submissionId}/responses:
     put:
-      operationId: t_value
+      operationId: putSchedulingFormsSubmissionsBySubmissionIdResponses
       parameters:
       - name: entityId
         required: true
@@ -75,9 +77,11 @@ paths:
       summary: Edit submission responses on behalf of the client (SP)
       tags:
       - Scheduling - Form Submissions
+      x-operation-id-source: normalized
+      x-operation-id-original: t_value
   /scheduling/forms/submissions/{submissionId}/audit-log:
     get:
-      operationId: t_value
+      operationId: getSchedulingFormsSubmissionsBySubmissionIdAuditLog
       parameters:
       - name: entityId
         required: true
@@ -99,9 +103,11 @@ paths:
       summary: Get submission response audit log (SP)
       tags:
       - Scheduling - Form Submissions
+      x-operation-id-source: normalized
+      x-operation-id-original: t_value
   /scheduling/forms/submissions/{submissionId}/send-reminder:
     post:
-      operationId: t_value
+      operationId: postSchedulingFormsSubmissionsBySubmissionIdSendReminder
       parameters:
       - name: entityId
         required: true
@@ -123,6 +129,8 @@ paths:
       summary: Send form completion reminder to client (SP)
       tags:
       - Scheduling - Form Submissions
+      x-operation-id-source: normalized
+      x-operation-id-original: t_value
 components:
   schemas:
     e:

@@ -32,7 +32,7 @@ paths:
   /socket-debug/rooms:
     get:
       description: Returns all active rooms with their member counts and socket IDs
-      operationId: t_value
+      operationId: getSocketDebugRooms
       parameters: []
       responses:
         '200':
@@ -59,10 +59,12 @@ paths:
       summary: Get all Socket.IO rooms
       tags:
       - Socket Debug
+      x-operation-id-source: normalized
+      x-operation-id-original: t_value
   /socket-debug/rooms/{roomId}/members:
     get:
       description: Returns all socket IDs connected to a specific room
-      operationId: t_value
+      operationId: getSocketDebugRoomsByRoomIdMembers
       parameters:
       - name: roomId
         required: true
@@ -91,10 +93,12 @@ paths:
       summary: Get room members
       tags:
       - Socket Debug
+      x-operation-id-source: normalized
+      x-operation-id-original: t_value
   /socket-debug/rooms/{roomId}/broadcast:
     post:
       description: Broadcasts a custom event with data to all clients in a specific room using POST with JSON body
-      operationId: t_value
+      operationId: postSocketDebugRoomsByRoomIdBroadcast
       parameters:
       - name: roomId
         required: true
@@ -141,10 +145,12 @@ paths:
       summary: Broadcast message to room (POST)
       tags:
       - Socket Debug
+      x-operation-id-source: normalized
+      x-operation-id-original: t_value
   /socket-debug/broadcast:
     get:
       description: Quick broadcast endpoint using query parameters instead of JSON body
-      operationId: t_value
+      operationId: getSocketDebugBroadcast
       parameters:
       - name: event
         required: false
@@ -185,10 +191,12 @@ paths:
       summary: Broadcast message to room (GET)
       tags:
       - Socket Debug
+      x-operation-id-source: normalized
+      x-operation-id-original: t_value
   /socket-debug/health:
     get:
       description: Returns health information including active connections and total rooms
-      operationId: t_value
+      operationId: getSocketDebugHealth
       parameters: []
       responses:
         '200':
@@ -209,10 +217,12 @@ paths:
       summary: Get Socket.IO health status
       tags:
       - Socket Debug
+      x-operation-id-source: normalized
+      x-operation-id-original: t_value
   /socket-debug/backdoor/messages:
     get:
       description: Returns all messages received by a specific backdoor connection
-      operationId: t_value
+      operationId: getSocketDebugBackdoorMessages
       parameters:
       - name: connectionKey
         required: true
@@ -243,10 +253,12 @@ paths:
       summary: Get backdoor connection messages
       tags:
       - Socket Debug
+      x-operation-id-source: normalized
+      x-operation-id-original: t_value
   /socket-debug/backdoor/clear:
     post:
       description: Clears all stored messages for a specific backdoor connection
-      operationId: t_value
+      operationId: postSocketDebugBackdoorClear
       parameters:
       - name: connectionKey
         required: true
@@ -272,10 +284,12 @@ paths:
       summary: Clear backdoor connection messages
       tags:
       - Socket Debug
+      x-operation-id-source: normalized
+      x-operation-id-original: t_value
   /socket-debug/backdoor/connections:
     get:
       description: Returns a list of all active backdoor connection keys
-      operationId: t_value
+      operationId: getSocketDebugBackdoorConnections
       parameters: []
       responses:
         '200':
@@ -297,10 +311,12 @@ paths:
       summary: Get all active backdoor connections
       tags:
       - Socket Debug
+      x-operation-id-source: normalized
+      x-operation-id-original: t_value
   /socket-debug/instance-info:
     get:
       description: Returns instance metadata (ECS task ID, hostname, process ID, uptime) for debugging cross-instance Socket.IO communication
-      operationId: t_value
+      operationId: getSocketDebugInstanceInfo
       parameters: []
       responses:
         '200':
@@ -323,6 +339,8 @@ paths:
       summary: Get instance/server information
       tags:
       - Socket Debug
+      x-operation-id-source: normalized
+      x-operation-id-original: t_value
 components:
   schemas:
     e:

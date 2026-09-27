@@ -33,7 +33,7 @@ paths:
   /services/{entityId}:
     get:
       description: Retrieves a paginated list of services for a specific entity with optional filtering.
-      operationId: t_value
+      operationId: getServicesByEntityId
       parameters:
       - name: categoryId
         required: false
@@ -83,10 +83,12 @@ paths:
       summary: Get services by entity ID
       tags:
       - Services
+      x-operation-id-source: normalized
+      x-operation-id-original: t_value
   /services/service/{id}:
     get:
       description: Retrieves detailed information about a specific service including variations and categories
-      operationId: t_value
+      operationId: getServicesServiceById
       parameters:
       - name: id
         required: true
@@ -109,9 +111,11 @@ paths:
       summary: Get service by ID
       tags:
       - Services
+      x-operation-id-source: normalized
+      x-operation-id-original: t_value
     put:
       description: Updates an existing service including its variations
-      operationId: t_value
+      operationId: putServicesServiceById
       parameters:
       - name: id
         required: true
@@ -138,9 +142,11 @@ paths:
       summary: Update service
       tags:
       - Services
+      x-operation-id-source: normalized
+      x-operation-id-original: t_value
     delete:
       description: Permanently deletes a service and all its associated data
-      operationId: t_value
+      operationId: deleteServicesServiceById
       parameters:
       - name: id
         required: true
@@ -157,6 +163,8 @@ paths:
       summary: Delete service
       tags:
       - Services
+      x-operation-id-source: normalized
+      x-operation-id-original: t_value
   /services/{entityId}/service:
     post:
       description: 'Creates a new service for a specific entity with the following features:
@@ -168,7 +176,7 @@ paths:
         - Price and duration configuration
 
         - Image attachment capability'
-      operationId: t_value
+      operationId: postServicesByEntityIdService
       parameters:
       - name: createDefaultVariation
         required: false
@@ -254,10 +262,12 @@ paths:
       summary: Create a new service
       tags:
       - Services
+      x-operation-id-source: normalized
+      x-operation-id-original: t_value
   /services/{entityId}/services/{serviceId}/unarchive:
     put:
       description: Restores a soft-deleted (archived) service and all its associated data including variations and category relationships
-      operationId: t_value
+      operationId: putServicesByEntityIdServicesByServiceIdUnarchive
       parameters:
       - name: serviceId
         required: true
@@ -302,10 +312,12 @@ paths:
       summary: Unarchive a service
       tags:
       - Services
+      x-operation-id-source: normalized
+      x-operation-id-original: t_value
   /services/{entityId}/categories/unarchive:
     put:
       description: Restores all soft-deleted categories and their associated services for the given entity. This includes restoring service variations, service-category relationships, and service-entity relationships.
-      operationId: t_value
+      operationId: putServicesByEntityIdCategoriesUnarchive
       parameters:
       - name: entityId
         required: true
@@ -345,10 +357,12 @@ paths:
       summary: Unarchive all categories and services
       tags:
       - Services
+      x-operation-id-source: normalized
+      x-operation-id-original: t_value
   /services/{entityId}/categories/unarchive/{categoryId}:
     put:
       description: Restores a soft-deleted category and all its associated services, including variations and relationships.
-      operationId: t_value
+      operationId: putServicesByEntityIdCategoriesUnarchiveByCategoryId
       parameters:
       - name: categoryId
         required: true
@@ -410,10 +424,12 @@ paths:
       summary: Unarchive a single category and its services
       tags:
       - Services
+      x-operation-id-source: normalized
+      x-operation-id-original: t_value
   /services/{entityId}/uncategorized:
     get:
       description: Retrieves all services that are not assigned to any category
-      operationId: t_value
+      operationId: getServicesByEntityIdUncategorized
       parameters:
       - name: entityId
         required: true
@@ -436,10 +452,12 @@ paths:
       summary: Get services without category
       tags:
       - Services
+      x-operation-id-source: normalized
+      x-operation-id-original: t_value
   /services/{entityId}/categories/backfill:
     post:
       description: Creates categories_entities records from existing service relationships. This is an idempotent operation that can be safely called multiple times.
-      operationId: t_value
+      operationId: postServicesByEntityIdCategoriesBackfill
       parameters:
       - name: entityId
         required: true
@@ -467,10 +485,12 @@ paths:
       summary: Backfill categories-entities relationships
       tags:
       - Services
+      x-operation-id-source: normalized
+      x-operation-id-original: t_value
   /services/{entityId}/duration-audit:
     get:
       description: Reports every active variation with its resolved duration in minutes, an issue code (MISSING_VALUE / RANGE_NOT_BOOKABLE / UNKNOWN_TYPE), and a suggested repair sourced from the parent service, the variation range minimum, or the name. Read-only — apply fixes via PUT /variations/batch.
-      operationId: t_value
+      operationId: getServicesByEntityIdDurationAudit
       parameters:
       - name: brokenOnly
         required: false
@@ -509,10 +529,12 @@ paths:
       summary: Audit service variation durations for a location
       tags:
       - Services
+      x-operation-id-source: normalized
+      x-operation-id-original: t_value
   /services/{entityId}/variations/backfill:
     post:
       description: Creates default variations for all active services that have no variations. The default variation copies the service name, price, and duration. This is an idempotent operation that can be safely called multiple times.
-      operationId: t_value
+      operationId: postServicesByEntityIdVariationsBackfill
       parameters:
       - name: entityId
         required: true
@@ -563,10 +585,12 @@ paths:
       summary: Backfill default variations for services without variations
       tags:
       - Services
+      x-operation-id-source: normalized
+      x-operation-id-original: t_value
   /services/{entityId}/online-booking/backfill:
     post:
       description: Updates all active services for the entity to enable online booking. This is an idempotent operation that can be safely called multiple times.
-      operationId: t_value
+      operationId: postServicesByEntityIdOnlineBookingBackfill
       parameters:
       - name: entityId
         required: true
@@ -617,10 +641,12 @@ paths:
       summary: Enable online booking for all services
       tags:
       - Services
+      x-operation-id-source: normalized
+      x-operation-id-original: t_value
   /services/{entityId}/category:
     post:
       description: Creates a new service category and associates it with the specified entity via categories_entities table
-      operationId: t_value
+      operationId: postServicesByEntityIdCategory
       parameters:
       - name: entityId
         required: true
@@ -647,11 +673,13 @@ paths:
       summary: Create a new category for an entity
       tags:
       - Services
+      x-operation-id-source: normalized
+      x-operation-id-original: t_value
   /services/category:
     post:
       deprecated: true
       description: 'Creates a new service category. DEPRECATED: Use POST /:entityId/category instead for proper entity association.'
-      operationId: t_value
+      operationId: postServicesCategory
       parameters: []
       requestBody:
         required: true
@@ -671,10 +699,12 @@ paths:
       summary: Create a new category (deprecated)
       tags:
       - Services
+      x-operation-id-source: normalized
+      x-operation-id-original: t_value
   /services/category/{id}:
     get:
       description: Retrieves detailed information about a specific category
-      operationId: t_value
+      operationId: getServicesCategoryById
       parameters:
       - name: id
         required: true
@@ -695,9 +725,11 @@ paths:
       summary: Get a category by ID
       tags:
       - Services
+      x-operation-id-source: normalized
+      x-operation-id-original: t_value
     put:
       description: Updates an existing category information
-      operationId: t_value
+      operationId: putServicesCategoryById
       parameters:
       - name: id
         required: true
@@ -724,9 +756,11 @@ paths:
       summary: Update a category
       tags:
       - Services
+      x-operation-id-source: normalized
+      x-operation-id-original: t_value
     delete:
       description: Permanently deletes a category
-      operationId: t_value
+      operationId: deleteServicesCategoryById
       parameters:
       - name: id
         required: true
@@ -743,10 +777,12 @@ paths:
       summary: Delete a category
       tags:
       - Services
+      x-operation-id-source: normalized
+      x-operation-id-original: t_value
   /services/{entityId}/categories:
     get:
       description: Retrieves all service categories associated with an entity. When source header is "zoca-web", includes categories even if they have no services. Use includeVariations=true to include service variations in the response.
-      operationId: t_value
+      operationId: getServicesByEntityIdCategories
       parameters:
       - name: includeVariations
         required: false
@@ -775,10 +811,12 @@ paths:
       summary: Get all categories for an entity
       tags:
       - Services
+      x-operation-id-source: normalized
+      x-operation-id-original: t_value
   /services/{entityId}/categories/services/archived:
     get:
       description: Retrieves all archived (soft-deleted) services for an entity, grouped by their categories. When source header is "zoca-web", includes all categories even if they have no archived services.
-      operationId: t_value
+      operationId: getServicesByEntityIdCategoriesServicesArchived
       parameters:
       - name: entityId
         required: true
@@ -816,10 +854,12 @@ paths:
       summary: Get archived services grouped by category
       tags:
       - Services
+      x-operation-id-source: normalized
+      x-operation-id-original: t_value
   /services/service/{serviceId}/category/{categoryId}:
     post:
       description: Creates an association between a service and a category
-      operationId: t_value
+      operationId: postServicesServiceByServiceIdCategoryByCategoryId
       parameters:
       - name: categoryId
         required: true
@@ -843,9 +883,11 @@ paths:
       summary: Assign a service to a category
       tags:
       - Services
+      x-operation-id-source: normalized
+      x-operation-id-original: t_value
     delete:
       description: Removes the association between a service and a category
-      operationId: t_value
+      operationId: deleteServicesServiceByServiceIdCategoryByCategoryId
       parameters:
       - name: categoryId
         required: true
@@ -869,10 +911,12 @@ paths:
       summary: Remove a service from a category
       tags:
       - Services
+      x-operation-id-source: normalized
+      x-operation-id-original: t_value
   /services/reorder:
     put:
       description: Updates the order of services
-      operationId: t_value
+      operationId: putServicesReorder
       parameters: []
       requestBody:
         required: true
@@ -894,10 +938,12 @@ paths:
       summary: Reorder services
       tags:
       - Services
+      x-operation-id-source: normalized
+      x-operation-id-original: t_value
   /services/reorder-categories-services:
     put:
       description: Updates the order of categories and their associated services
-      operationId: t_value
+      operationId: putServicesReorderCategoriesServices
       parameters: []
       requestBody:
         required: true
@@ -913,10 +959,12 @@ paths:
       summary: Reorder categories and their services
       tags:
       - Services
+      x-operation-id-source: normalized
+      x-operation-id-original: t_value
   /services/{serviceId}/images:
     get:
       description: Retrieves all images associated with a service
-      operationId: t_value
+      operationId: getServicesByServiceIdImages
       parameters:
       - name: serviceId
         required: true
@@ -939,9 +987,11 @@ paths:
       summary: Get all images for a service
       tags:
       - Services
+      x-operation-id-source: normalized
+      x-operation-id-original: t_value
     post:
       description: Associates a new image with a service
-      operationId: t_value
+      operationId: postServicesByServiceIdImages
       parameters:
       - name: serviceId
         required: true
@@ -968,10 +1018,12 @@ paths:
       summary: Add a new image to a service
       tags:
       - Services
+      x-operation-id-source: normalized
+      x-operation-id-original: t_value
   /services/{serviceId}/images/{imageId}:
     delete:
       description: Removes an image association from a service
-      operationId: t_value
+      operationId: deleteServicesByServiceIdImagesByImageId
       parameters:
       - name: imageId
         required: true
@@ -1002,10 +1054,12 @@ paths:
       summary: Delete an image from a service
       tags:
       - Services
+      x-operation-id-source: normalized
+      x-operation-id-original: t_value
   /services/{serviceId}/images/{imageId}/primary:
     post:
       description: Sets the specified image as the primary image for a service
-      operationId: t_value
+      operationId: postServicesByServiceIdImagesByImageIdPrimary
       parameters:
       - name: imageId
         required: true
@@ -1032,10 +1086,12 @@ paths:
       summary: Set an image as primary for a service
       tags:
       - Services
+      x-operation-id-source: normalized
+      x-operation-id-original: t_value
   /services/variation/{id}:
     get:
       description: Retrieves a single service variation with its parent service and categories
-      operationId: t_value
+      operationId: getServicesVariationById
       parameters:
       - name: id
         required: true
@@ -1058,9 +1114,11 @@ paths:
       summary: Get service variation by ID
       tags:
       - Services
+      x-operation-id-source: normalized
+      x-operation-id-original: t_value
     put:
       description: Updates an existing service variation
-      operationId: t_value
+      operationId: putServicesVariationById
       parameters:
       - name: id
         required: true
@@ -1087,9 +1145,11 @@ paths:
       summary: Update a variation
       tags:
       - Services
+      x-operation-id-source: normalized
+      x-operation-id-original: t_value
     delete:
       description: Deletes an existing service variation
-      operationId: t_value
+      operationId: deleteServicesVariationById
       parameters:
       - name: id
         required: true
@@ -1106,10 +1166,12 @@ paths:
       summary: Delete a variation
       tags:
       - Services
+      x-operation-id-source: normalized
+      x-operation-id-original: t_value
   /services/service/{serviceId}/variations:
     get:
       description: Retrieves all variations associated with a service
-      operationId: t_value
+      operationId: getServicesServiceByServiceIdVariations
       parameters:
       - name: limit
         required: false
@@ -1144,10 +1206,12 @@ paths:
       summary: Get variations for a service
       tags:
       - Services
+      x-operation-id-source: normalized
+      x-operation-id-original: t_value
   /services/service/{serviceId}/variation:
     post:
       description: Creates a new variation for a service
-      operationId: t_value
+      operationId: postServicesServiceByServiceIdVariation
       parameters:
       - name: serviceId
         required: true
@@ -1174,10 +1238,12 @@ paths:
       summary: Create a new variation
       tags:
       - Services
+      x-operation-id-source: normalized
+      x-operation-id-original: t_value
   /services/{entityId}/batch:
     post:
       description: Creates multiple services in a single request with optional category assignment
-      operationId: t_value
+      operationId: postServicesByEntityIdBatch
       parameters:
       - name: entityId
         required: true
@@ -1204,10 +1270,12 @@ paths:
       summary: Create multiple services
       tags:
       - Services
+      x-operation-id-source: normalized
+      x-operation-id-original: t_value
   /services/batch:
     delete:
       description: Deletes multiple services in a single request
-      operationId: t_value
+      operationId: deleteServicesBatch
       parameters: []
       requestBody:
         required: true
@@ -1227,10 +1295,12 @@ paths:
       summary: Delete multiple services
       tags:
       - Services
+      x-operation-id-source: normalized
+      x-operation-id-original: t_value
   /services/categories/batch:
     post:
       description: Creates multiple categories in a single request
-      operationId: t_value
+      operationId: postServicesCategoriesBatch
       parameters: []
       requestBody:
         required: true
@@ -1250,9 +1320,11 @@ paths:
       summary: Create multiple categories
       tags:
       - Services
+      x-operation-id-source: normalized
+      x-operation-id-original: t_value
     delete:
       description: Deletes multiple categories in a single request
-      operationId: t_value
+      operationId: deleteServicesCategoriesBatch
       parameters: []
       requestBody:
         required: true
@@ -1272,10 +1344,12 @@ paths:
       summary: Delete multiple categories
       tags:
       - Services
+      x-operation-id-source: normalized
+      x-operation-id-original: t_value
   /services/default-categories:
     get:
       description: Returns hardcoded default service categories with subcategories and services. Used as templates for businesses without a service menu.
-      operationId: t_value
+      operationId: getServicesDefaultCategories
       parameters:
       - name: includeServices
         required: false
@@ -1291,10 +1365,12 @@ paths:
       summary: Get default service categories
       tags:
       - Services
+      x-operation-id-source: normalized
+      x-operation-id-original: t_value
   /services/{entityId}/default-categories:
     post:
       description: Creates categories, services, and default variations from user-edited default templates. Transforms simplified price/duration values into full DTO format.
-      operationId: t_value
+      operationId: postServicesByEntityIdDefaultCategories
       parameters:
       - name: entityId
         required: true
@@ -1321,10 +1397,12 @@ paths:
       summary: Add default service categories
       tags:
       - Services
+      x-operation-id-source: normalized
+      x-operation-id-original: t_value
   /services/{entityId}/categories-with-services:
     post:
       description: Creates multiple categories along with their associated services
-      operationId: t_value
+      operationId: postServicesByEntityIdCategoriesWithServices
       parameters:
       - name: entityId
         required: true
@@ -1351,10 +1429,12 @@ paths:
       summary: Create categories with services
       tags:
       - Services
+      x-operation-id-source: normalized
+      x-operation-id-original: t_value
   /services/category/{categoryId}/services/batch:
     post:
       description: Assigns multiple services to a specific category
-      operationId: t_value
+      operationId: postServicesCategoryByCategoryIdServicesBatch
       parameters:
       - name: categoryId
         required: true
@@ -1380,9 +1460,11 @@ paths:
       summary: Assign multiple services to category
       tags:
       - Services
+      x-operation-id-source: normalized
+      x-operation-id-original: t_value
     delete:
       description: Removes multiple services from a specific category
-      operationId: t_value
+      operationId: deleteServicesCategoryByCategoryIdServicesBatch
       parameters:
       - name: categoryId
         required: true
@@ -1409,10 +1491,12 @@ paths:
       summary: Remove multiple services from category
       tags:
       - Services
+      x-operation-id-source: normalized
+      x-operation-id-original: t_value
   /services/batch/status:
     post:
       description: Updates the active status of multiple services
-      operationId: t_value
+      operationId: postServicesBatchStatus
       parameters: []
       requestBody:
         required: true
@@ -1440,10 +1524,12 @@ paths:
       summary: Update status of multiple services
       tags:
       - Services
+      x-operation-id-source: normalized
+      x-operation-id-original: t_value
   /services/categories/merge:
     post:
       description: Merges multiple source categories into a target category
-      operationId: t_value
+      operationId: postServicesCategoriesMerge
       parameters: []
       requestBody:
         required: true
@@ -1472,10 +1558,12 @@ paths:
       summary: Merge multiple categories
       tags:
       - Services
+      x-operation-id-source: normalized
+      x-operation-id-original: t_value
   /services/{entityId}/batch/duplicate:
     post:
       description: Creates copies of multiple services optionally assigning them to a target category
-      operationId: t_value
+      operationId: postServicesByEntityIdBatchDuplicate
       parameters:
       - name: entityId
         required: true
@@ -1513,10 +1601,12 @@ paths:
       summary: Duplicate multiple services
       tags:
       - Services
+      x-operation-id-source: normalized
+      x-operation-id-original: t_value
   /services/variations/batch:
     put:
       description: Updates multiple service variations in a single request
-      operationId: t_value
+      operationId: putServicesVariationsBatch
       parameters: []
       requestBody:
         required: true
@@ -1539,9 +1629,11 @@ paths:
       summary: Batch update variations
       tags:
       - Services
+      x-operation-id-source: normalized
+      x-operation-id-original: t_value
     delete:
       description: Deletes multiple service variations in a single request
-      operationId: t_value
+      operationId: deleteServicesVariationsBatch
       parameters: []
       requestBody:
         required: true
@@ -1562,10 +1654,12 @@ paths:
       summary: Batch delete variations
       tags:
       - Services
+      x-operation-id-source: normalized
+      x-operation-id-original: t_value
   /services/{entityId}/ai-description:
     get:
       description: Uses AI to generate a description for a given service name
-      operationId: t_value
+      operationId: getServicesByEntityIdAiDescription
       parameters:
       - name: type
         required: false
@@ -1602,10 +1696,12 @@ paths:
       summary: Generate AI description for a service
       tags:
       - Services
+      x-operation-id-source: normalized
+      x-operation-id-original: t_value
   /services/{entityId}/categories/suggested:
     get:
       description: Retrieves AI-generated suggested categories based on the entity's primary category
-      operationId: t_value
+      operationId: getServicesByEntityIdCategoriesSuggested
       parameters:
       - name: currency
         required: false
@@ -1640,10 +1736,12 @@ paths:
       summary: Get suggested categories
       tags:
       - Services
+      x-operation-id-source: normalized
+      x-operation-id-original: t_value
   /services/{entityId}/{categoryId}/suggested:
     get:
       description: Retrieves a list of suggested services for the specified entity and category
-      operationId: t_value
+      operationId: getServicesByEntityIdByCategoryIdSuggested
       parameters:
       - name: currency
         required: false
@@ -1685,10 +1783,12 @@ paths:
       summary: Get suggested services for an entity and category
       tags:
       - Services
+      x-operation-id-source: normalized
+      x-operation-id-original: t_value
   /services/{entityId}/categories/suggested-services:
     get:
       description: Retrieves AI-generated suggested services for each category in the entity
-      operationId: t_value
+      operationId: getServicesByEntityIdCategoriesSuggestedServices
       parameters:
       - name: currency
         required: false
@@ -1754,10 +1854,12 @@ paths:
       summary: Get suggested services for all categories
       tags:
       - Services
+      x-operation-id-source: normalized
+      x-operation-id-original: t_value
   /services/{entityId}/categories/check-duplicate:
     get:
       description: Checks if a category name already exists for the given entity
-      operationId: t_value
+      operationId: getServicesByEntityIdCategoriesCheckDuplicate
       parameters:
       - name: excludeCategoryId
         required: false
@@ -1795,10 +1897,12 @@ paths:
       summary: Check for duplicate category name
       tags:
       - Services
+      x-operation-id-source: normalized
+      x-operation-id-original: t_value
   /services/{entityId}/export/csv:
     get:
       description: Exports all services for an entity to CSV format
-      operationId: t_value
+      operationId: getServicesByEntityIdExportCsv
       parameters:
       - name: entityId
         required: true
@@ -1822,10 +1926,12 @@ paths:
       summary: Export services to CSV
       tags:
       - Services
+      x-operation-id-source: normalized
+      x-operation-id-original: t_value
   /services/sync-to-production/{linkId}:
     post:
       description: 'Syncs scraped services/variations to production using 3-tier matching: column map, fuzzy name match, then create new.'
-      operationId: t_value
+      operationId: postServicesSyncToProductionByLinkId
       parameters:
       - name: linkId
         required: true
@@ -1842,9 +1948,11 @@ paths:
       summary: Sync scraped services to production tables
       tags:
       - Services
+      x-operation-id-source: normalized
+      x-operation-id-original: t_value
   /services/{serviceId}/staff:
     get:
-      operationId: t_value
+      operationId: getServicesByServiceIdStaff
       parameters: []
       responses:
         '200':
@@ -1854,10 +1962,12 @@ paths:
       summary: Get staff members assigned to a service at a location
       tags:
       - Services
+      x-operation-id-source: normalized
+      x-operation-id-original: t_value
   /services/staff/location/{locationEntityId}/members:
     get:
       description: Returns every active member at the location with the locationMemberId that POST /staff/assign requires. The general staff list returns staff.members.id, which that endpoint does not accept, so a picker cannot be built from it.
-      operationId: t_value
+      operationId: getServicesStaffLocationByLocationEntityIdMembers
       parameters: []
       responses:
         '200':
@@ -1867,9 +1977,11 @@ paths:
       summary: List assignable staff members at a location
       tags:
       - Services
+      x-operation-id-source: normalized
+      x-operation-id-original: t_value
   /services/staff/{locationMemberId}/services:
     get:
-      operationId: t_value
+      operationId: getServicesStaffByLocationMemberIdServices
       parameters: []
       responses:
         '200':
@@ -1885,8 +1997,10 @@ paths:
       summary: Get services assigned to a location member (staff)
       tags:
       - Services
+      x-operation-id-source: normalized
+      x-operation-id-original: t_value
     delete:
-      operationId: t_value
+      operationId: deleteServicesStaffByLocationMemberIdServices
       parameters: []
       responses:
         '200':
@@ -1896,9 +2010,11 @@ paths:
       summary: Unlink all service assignments for a staff member
       tags:
       - Services
+      x-operation-id-source: normalized
+      x-operation-id-original: t_value
   /services/staff/assign:
     post:
-      operationId: t_value
+      operationId: postServicesStaffAssign
       parameters: []
       responses:
         '201':
@@ -1912,9 +2028,11 @@ paths:
       summary: Assign a single service to a staff member
       tags:
       - Services
+      x-operation-id-source: normalized
+      x-operation-id-original: t_value
   /services/staff/assign/bulk:
     post:
-      operationId: t_value
+      operationId: postServicesStaffAssignBulk
       parameters: []
       responses:
         '201':
@@ -1930,9 +2048,11 @@ paths:
       summary: Assign multiple services to a staff member
       tags:
       - Services
+      x-operation-id-source: normalized
+      x-operation-id-original: t_value
   /services/staff/sync/{locationMemberId}:
     put:
-      operationId: t_value
+      operationId: putServicesStaffSyncByLocationMemberId
       parameters: []
       responses:
         '200':
@@ -1942,9 +2062,11 @@ paths:
       summary: Replace all service assignments for a staff member with the given list…
       tags:
       - Services
+      x-operation-id-source: normalized
+      x-operation-id-original: t_value
   /services/staff/assignment/{id}:
     put:
-      operationId: t_value
+      operationId: putServicesStaffAssignmentById
       parameters: []
       responses:
         '200':
@@ -1958,8 +2080,10 @@ paths:
       summary: Update a staff-service assignment (overrides, etc.)
       tags:
       - Services
+      x-operation-id-source: normalized
+      x-operation-id-original: t_value
     delete:
-      operationId: t_value
+      operationId: deleteServicesStaffAssignmentById
       parameters: []
       responses:
         '200':
@@ -1973,33 +2097,10 @@ paths:
       summary: Unlink a single staff-service assignment
       tags:
       - Services
+      x-operation-id-source: normalized
+      x-operation-id-original: t_value
 components:
   schemas:
-    e:
-      type: object
-      properties:
-        id:
-          type: number
-        entityId:
-          type: string
-        attribute:
-          type: string
-        value:
-          type:
-          - object
-          - 'null'
-        metadata:
-          type:
-          - object
-          - 'null'
-        createdAt:
-          type:
-          - object
-          - 'null'
-      required:
-      - id
-      - entityId
-      - attribute
     t:
       type: object
       properties:
@@ -2059,6 +2160,31 @@ components:
       - trialEnd
       - addonPricingId
       - unitPriceCents
+    e:
+      type: object
+      properties:
+        id:
+          type: number
+        entityId:
+          type: string
+        attribute:
+          type: string
+        value:
+          type:
+          - object
+          - 'null'
+        metadata:
+          type:
+          - object
+          - 'null'
+        createdAt:
+          type:
+          - object
+          - 'null'
+      required:
+      - id
+      - entityId
+      - attribute
   securitySchemes:
     access-token:
       scheme: bearer

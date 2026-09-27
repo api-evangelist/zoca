@@ -24,7 +24,7 @@ paths:
       tags:
       - comms
     get:
-      operationId: t_value
+      operationId: getTasksApiV1CommsProviderContacts
       parameters: []
       responses:
         '200':
@@ -32,9 +32,11 @@ paths:
       summary: Get provider contacts with filters
       tags:
       - comms
+      x-operation-id-source: normalized
+      x-operation-id-original: t_value
   /tasks/api/v1/comms/provider-contacts/by-ids:
     post:
-      operationId: t_value
+      operationId: postTasksApiV1CommsProviderContactsByIds
       parameters: []
       responses:
         '201':
@@ -42,9 +44,11 @@ paths:
       summary: Get provider contacts by IDs
       tags:
       - comms
+      x-operation-id-source: normalized
+      x-operation-id-original: t_value
   /tasks/api/v1/comms/sms/send:
     post:
-      operationId: t_value
+      operationId: postTasksApiV1CommsSmsSend
       parameters: []
       responses:
         '201':
@@ -52,9 +56,11 @@ paths:
       summary: Send SMS communication
       tags:
       - comms
+      x-operation-id-source: normalized
+      x-operation-id-original: t_value
   /tasks/api/v1/comms/app-sms/create:
     post:
-      operationId: t_value
+      operationId: postTasksApiV1CommsAppSmsCreate
       parameters: []
       responses:
         '201':
@@ -62,9 +68,11 @@ paths:
       summary: Create app SMS communication
       tags:
       - comms
+      x-operation-id-source: normalized
+      x-operation-id-original: t_value
   /tasks/api/v1/comms/by-entity/{entityId}:
     get:
-      operationId: t_value
+      operationId: getTasksApiV1CommsByEntityByEntityId
       parameters: []
       responses:
         '200':
@@ -72,9 +80,11 @@ paths:
       summary: Get communications by entity ID
       tags:
       - comms
+      x-operation-id-source: normalized
+      x-operation-id-original: t_value
   /tasks/api/v1/comms/by-client/{clientId}:
     get:
-      operationId: t_value
+      operationId: getTasksApiV1CommsByClientByClientId
       parameters: []
       responses:
         '200':
@@ -82,9 +92,11 @@ paths:
       summary: Get communications by client ID
       tags:
       - comms
+      x-operation-id-source: normalized
+      x-operation-id-original: t_value
   /tasks/api/v1/comms/by-contact/{contactId}:
     get:
-      operationId: t_value
+      operationId: getTasksApiV1CommsByContactByContactId
       parameters: []
       responses:
         '200':
@@ -92,9 +104,11 @@ paths:
       summary: Get communications by contact ID
       tags:
       - comms
+      x-operation-id-source: normalized
+      x-operation-id-original: t_value
   /tasks/api/v1/comms/providers:
     post:
-      operationId: t_value
+      operationId: postTasksApiV1CommsProviders
       parameters: []
       responses:
         '201':
@@ -102,8 +116,10 @@ paths:
       summary: Add a new communication provider
       tags:
       - comms
+      x-operation-id-source: normalized
+      x-operation-id-original: t_value
     get:
-      operationId: t_value
+      operationId: getTasksApiV1CommsProviders
       parameters: []
       responses:
         '200':
@@ -111,9 +127,11 @@ paths:
       summary: Get communication providers
       tags:
       - comms
+      x-operation-id-source: normalized
+      x-operation-id-original: t_value
   /tasks/api/v1/comms/email/send:
     post:
-      operationId: t_value
+      operationId: postTasksApiV1CommsEmailSend
       parameters: []
       requestBody:
         required: true
@@ -127,9 +145,11 @@ paths:
       summary: Send an email communication
       tags:
       - comms
+      x-operation-id-source: normalized
+      x-operation-id-original: t_value
   /tasks/api/v1/comms/email/by-entity/{entityId}:
     get:
-      operationId: t_value
+      operationId: getTasksApiV1CommsEmailByEntityByEntityId
       parameters:
       - name: entityId
         required: true
@@ -142,9 +162,11 @@ paths:
       summary: Get email communications by entity ID
       tags:
       - comms
+      x-operation-id-source: normalized
+      x-operation-id-original: t_value
   /tasks/api/v1/comms/email/by-email/{email}:
     get:
-      operationId: t_value
+      operationId: getTasksApiV1CommsEmailByEmailByEmail
       parameters:
       - name: email
         required: true
@@ -157,9 +179,11 @@ paths:
       summary: Get email communications by email address
       tags:
       - comms
+      x-operation-id-source: normalized
+      x-operation-id-original: t_value
   /tasks/api/v1/comms/email/{emailCommId}/status:
     patch:
-      operationId: t_value
+      operationId: patchTasksApiV1CommsEmailByEmailCommIdStatus
       parameters:
       - name: emailCommId
         required: true
@@ -178,6 +202,8 @@ paths:
       summary: Update email communication status
       tags:
       - comms
+      x-operation-id-source: normalized
+      x-operation-id-original: t_value
 components:
   schemas:
     e:

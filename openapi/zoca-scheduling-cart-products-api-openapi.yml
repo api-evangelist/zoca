@@ -25,7 +25,7 @@ paths:
       - Scheduling Cart Products
   /scheduling/carts/{cartId}/products/{lineId}:
     patch:
-      operationId: t_value
+      operationId: patchSchedulingCartsByCartIdProductsByLineId
       parameters: []
       responses:
         '200':
@@ -35,8 +35,10 @@ paths:
       summary: Update qty on a cart product line
       tags:
       - Scheduling Cart Products
+      x-operation-id-source: normalized
+      x-operation-id-original: t_value
     delete:
-      operationId: t_value
+      operationId: deleteSchedulingCartsByCartIdProductsByLineId
       parameters: []
       responses:
         '204':
@@ -46,9 +48,11 @@ paths:
       summary: Remove a product line from a cart
       tags:
       - Scheduling Cart Products
+      x-operation-id-source: normalized
+      x-operation-id-original: t_value
   /scheduling/carts/{cartId}/products:
     get:
-      operationId: t_value
+      operationId: getSchedulingCartsByCartIdProducts
       parameters: []
       responses:
         '200':
@@ -58,6 +62,8 @@ paths:
       summary: List product lines for a cart
       tags:
       - Scheduling Cart Products
+      x-operation-id-source: normalized
+      x-operation-id-original: t_value
 components:
   securitySchemes:
     access-token:

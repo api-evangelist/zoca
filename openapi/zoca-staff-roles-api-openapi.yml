@@ -32,7 +32,7 @@ paths:
       - Staff Roles
     post:
       description: Enforces `uq_roles_name_entity` (`(entityId, name)`) — same name at same business returns 409. `scopes` keys are validated against `USER_PERMISSION_VALUES`.
-      operationId: t_value
+      operationId: postStaffRoles
       parameters: []
       responses:
         '201':
@@ -52,6 +52,8 @@ paths:
       summary: Create a per-business custom role
       tags:
       - Staff Roles
+      x-operation-id-source: normalized
+      x-operation-id-original: t_value
   /staff/roles/{roleId}:
     patch:
       description: Bumps `presetVersion` and fans out to every un-modified `auth.user_roles` row (spec §2.1 Flow 6). Built-in (SYSTEM) roles cannot be patched — 403.
@@ -77,7 +79,7 @@ paths:
       - Staff Roles
     delete:
       description: Hard-DELETE on `auth.roles` cascades to assignment rows. Built-in roles are protected (403). Response includes the count of unassigned users for UI summary.
-      operationId: t_value
+      operationId: deleteStaffRolesByRoleId
       parameters: []
       responses:
         '200':
@@ -95,6 +97,8 @@ paths:
       summary: Delete a custom role (cascades to `auth.user_roles`)
       tags:
       - Staff Roles
+      x-operation-id-source: normalized
+      x-operation-id-original: t_value
   /staff/roles/{roleId}/scopes:
     patch:
       description: Bumps `presetVersion` and fans out to every un-modified `auth.user_roles` row (spec §2.1 Flow 6). Built-in (SYSTEM) roles cannot be patched — 403.
@@ -121,7 +125,7 @@ paths:
   /staff/roles/assignments:
     post:
       description: Captures `appliedPresetVersion` at assign time (snapshot semantics per FC-ST-10). `permissionsModifiedFromRole` starts false and flips when overrides land later.
-      operationId: t_value
+      operationId: postStaffRolesAssignments
       parameters: []
       responses:
         '201':
@@ -141,9 +145,11 @@ paths:
       summary: Assign a role to a user at a business
       tags:
       - Staff Roles
+      x-operation-id-source: normalized
+      x-operation-id-original: t_value
     put:
       description: Revokes existing BUSINESS_ENTITY assignments for the (user, business) pair, then assigns the new role. Used by the Overview role select.
-      operationId: t_value
+      operationId: putStaffRolesAssignments
       parameters: []
       responses:
         '200':
@@ -163,10 +169,12 @@ paths:
       summary: Set (replace) a user's role at a business
       tags:
       - Staff Roles
+      x-operation-id-source: normalized
+      x-operation-id-original: t_value
   /staff/roles/assignments/{userRoleId}:
     delete:
       description: Idempotent. The 5-minute permission cache TTL flushes any stale effective-scope reads; explicit cache invalidation lands in W5.2 observability wiring.
-      operationId: t_value
+      operationId: deleteStaffRolesAssignmentsByUserRoleId
       parameters: []
       responses:
         '204':
@@ -182,6 +190,8 @@ paths:
       summary: Revoke a `auth.user_roles` assignment by id
       tags:
       - Staff Roles
+      x-operation-id-source: normalized
+      x-operation-id-original: t_value
 components:
   securitySchemes:
     access-token:

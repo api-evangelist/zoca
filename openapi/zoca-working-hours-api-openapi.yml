@@ -22,7 +22,7 @@ paths:
       tags:
       - Working Hours
     post:
-      operationId: t_value
+      operationId: postWorkingHours
       parameters: []
       responses:
         '200':
@@ -30,9 +30,11 @@ paths:
       summary: Set working hours for an entity
       tags:
       - Working Hours
+      x-operation-id-source: normalized
+      x-operation-id-original: t_value
   /working-hours/supported-languages:
     get:
-      operationId: t_value
+      operationId: getWorkingHoursSupportedLanguages
       parameters: []
       responses:
         '200':
@@ -56,9 +58,11 @@ paths:
       summary: Get list of supported languages for localization
       tags:
       - Working Hours
+      x-operation-id-source: normalized
+      x-operation-id-original: t_value
   /working-hours/{id}:
     patch:
-      operationId: t_value
+      operationId: patchWorkingHoursById
       parameters: []
       responses:
         '200':
@@ -66,8 +70,10 @@ paths:
       summary: Modify a specific working hour
       tags:
       - Working Hours
+      x-operation-id-source: normalized
+      x-operation-id-original: t_value
     delete:
-      operationId: t_value
+      operationId: deleteWorkingHoursById
       parameters: []
       responses:
         '200':
@@ -75,9 +81,11 @@ paths:
       summary: Remove a specific working hour
       tags:
       - Working Hours
+      x-operation-id-source: normalized
+      x-operation-id-original: t_value
   /working-hours/reorder:
     patch:
-      operationId: t_value
+      operationId: patchWorkingHoursReorder
       parameters: []
       responses:
         '200':
@@ -89,9 +97,11 @@ paths:
       summary: Reorder standard working hours for an entity
       tags:
       - Working Hours
+      x-operation-id-source: normalized
+      x-operation-id-original: t_value
   /working-hours/{id}/attributes:
     patch:
-      operationId: t_value
+      operationId: patchWorkingHoursByIdAttributes
       parameters: []
       responses:
         '200':
@@ -99,9 +109,11 @@ paths:
       summary: Update attributes for a working hour
       tags:
       - Working Hours
+      x-operation-id-source: normalized
+      x-operation-id-original: t_value
   /working-hours/{id}/attributes/{key}:
     delete:
-      operationId: t_value
+      operationId: deleteWorkingHoursByIdAttributesByKey
       parameters: []
       responses:
         '200':
@@ -109,9 +121,11 @@ paths:
       summary: Delete a specific attribute key from a working hour
       tags:
       - Working Hours
+      x-operation-id-source: normalized
+      x-operation-id-original: t_value
   /working-hours/special-hours:
     get:
-      operationId: t_value
+      operationId: getWorkingHoursSpecialHours
       parameters: []
       responses:
         '200':
@@ -119,8 +133,10 @@ paths:
       summary: Get special hours for an entity
       tags:
       - Working Hours
+      x-operation-id-source: normalized
+      x-operation-id-original: t_value
     post:
-      operationId: t_value
+      operationId: postWorkingHoursSpecialHours
       parameters: []
       responses:
         '201':
@@ -128,9 +144,11 @@ paths:
       summary: Add a special hour for an entity
       tags:
       - Working Hours
+      x-operation-id-source: normalized
+      x-operation-id-original: t_value
   /working-hours/special-hours/week:
     get:
-      operationId: t_value
+      operationId: getWorkingHoursSpecialHoursWeek
       parameters: []
       responses:
         '200':
@@ -138,9 +156,11 @@ paths:
       summary: Get special hours for an entity within a date range (staff one-time-override…
       tags:
       - Working Hours
+      x-operation-id-source: normalized
+      x-operation-id-original: t_value
   /working-hours/special-hours/bulk:
     post:
-      operationId: t_value
+      operationId: postWorkingHoursSpecialHoursBulk
       parameters: []
       responses:
         '200':
@@ -148,9 +168,11 @@ paths:
       summary: Sync a week of per-date special-hour overrides for an entity (staff one-time…
       tags:
       - Working Hours
+      x-operation-id-source: normalized
+      x-operation-id-original: t_value
   /working-hours/special-hours/{id}:
     patch:
-      operationId: t_value
+      operationId: patchWorkingHoursSpecialHoursById
       parameters: []
       responses:
         '200':
@@ -158,8 +180,10 @@ paths:
       summary: Modify a specific special hour
       tags:
       - Working Hours
+      x-operation-id-source: normalized
+      x-operation-id-original: t_value
     delete:
-      operationId: t_value
+      operationId: deleteWorkingHoursSpecialHoursById
       parameters: []
       responses:
         '200':
@@ -167,9 +191,11 @@ paths:
       summary: Remove a specific special hour
       tags:
       - Working Hours
+      x-operation-id-source: normalized
+      x-operation-id-original: t_value
   /working-hours/special-hours/{id}/attributes:
     patch:
-      operationId: t_value
+      operationId: patchWorkingHoursSpecialHoursByIdAttributes
       parameters: []
       responses:
         '200':
@@ -177,9 +203,11 @@ paths:
       summary: Update attributes for a special hour
       tags:
       - Working Hours
+      x-operation-id-source: normalized
+      x-operation-id-original: t_value
   /working-hours/special-hours/{id}/attributes/{key}:
     delete:
-      operationId: t_value
+      operationId: deleteWorkingHoursSpecialHoursByIdAttributesByKey
       parameters: []
       responses:
         '200':
@@ -187,6 +215,8 @@ paths:
       summary: Delete a specific attribute key from a special hour
       tags:
       - Working Hours
+      x-operation-id-source: normalized
+      x-operation-id-original: t_value
 components:
   securitySchemes:
     access-token:

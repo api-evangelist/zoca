@@ -53,7 +53,7 @@ paths:
       tags:
       - Add Ons
     post:
-      operationId: t_value
+      operationId: postAddonsByEntityId
       parameters: []
       responses:
         '201':
@@ -67,9 +67,11 @@ paths:
       summary: Create a standalone addon
       tags:
       - Add Ons
+      x-operation-id-source: normalized
+      x-operation-id-original: t_value
   /addons/{entityId}/{addonId}:
     get:
-      operationId: t_value
+      operationId: getAddonsByEntityIdByAddonId
       parameters: []
       responses:
         '200':
@@ -83,8 +85,10 @@ paths:
       summary: Get an addon with linked services + groups
       tags:
       - Add Ons
+      x-operation-id-source: normalized
+      x-operation-id-original: t_value
     patch:
-      operationId: t_value
+      operationId: patchAddonsByEntityIdByAddonId
       parameters: []
       responses:
         '200':
@@ -94,9 +98,11 @@ paths:
       summary: Update an addon
       tags:
       - Add Ons
+      x-operation-id-source: normalized
+      x-operation-id-original: t_value
   /addons/{entityId}/{addonId}/archive:
     patch:
-      operationId: t_value
+      operationId: patchAddonsByEntityIdByAddonIdArchive
       parameters: []
       responses:
         '200':
@@ -106,9 +112,11 @@ paths:
       summary: Soft-archive an addon (isActive=false)
       tags:
       - Add Ons
+      x-operation-id-source: normalized
+      x-operation-id-original: t_value
   /addons/{entityId}/{addonId}/unarchive:
     patch:
-      operationId: t_value
+      operationId: patchAddonsByEntityIdByAddonIdUnarchive
       parameters: []
       responses:
         '200':
@@ -118,9 +126,11 @@ paths:
       summary: Restore an archived addon
       tags:
       - Add Ons
+      x-operation-id-source: normalized
+      x-operation-id-original: t_value
   /addons/{entityId}/{addonId}/services:
     post:
-      operationId: t_value
+      operationId: postAddonsByEntityIdByAddonIdServices
       parameters: []
       responses:
         '201':
@@ -130,9 +140,11 @@ paths:
       summary: Direct-attach addon to services (writes service_addons rows with…
       tags:
       - Add Ons
+      x-operation-id-source: normalized
+      x-operation-id-original: t_value
   /addons/{entityId}/{addonId}/services/{serviceId}:
     delete:
-      operationId: t_value
+      operationId: deleteAddonsByEntityIdByAddonIdServicesByServiceId
       parameters: []
       responses:
         '200':
@@ -142,9 +154,11 @@ paths:
       summary: Direct-detach addon from a service
       tags:
       - Add Ons
+      x-operation-id-source: normalized
+      x-operation-id-original: t_value
   /addons/{entityId}/{addonId}/groups:
     post:
-      operationId: t_value
+      operationId: postAddonsByEntityIdByAddonIdGroups
       parameters: []
       responses:
         '201':
@@ -154,9 +168,11 @@ paths:
       summary: Add addon to one or more groups (via addon_group_items)
       tags:
       - Add Ons
+      x-operation-id-source: normalized
+      x-operation-id-original: t_value
   /addons/{entityId}/{addonId}/groups/{groupId}:
     delete:
-      operationId: t_value
+      operationId: deleteAddonsByEntityIdByAddonIdGroupsByGroupId
       parameters: []
       responses:
         '200':
@@ -166,33 +182,10 @@ paths:
       summary: Remove addon from a group
       tags:
       - Add Ons
+      x-operation-id-source: normalized
+      x-operation-id-original: t_value
 components:
   schemas:
-    e:
-      type: object
-      properties:
-        id:
-          type: number
-        entityId:
-          type: string
-        attribute:
-          type: string
-        value:
-          type:
-          - object
-          - 'null'
-        metadata:
-          type:
-          - object
-          - 'null'
-        createdAt:
-          type:
-          - object
-          - 'null'
-      required:
-      - id
-      - entityId
-      - attribute
     t:
       type: object
       properties:
@@ -252,6 +245,31 @@ components:
       - trialEnd
       - addonPricingId
       - unitPriceCents
+    e:
+      type: object
+      properties:
+        id:
+          type: number
+        entityId:
+          type: string
+        attribute:
+          type: string
+        value:
+          type:
+          - object
+          - 'null'
+        metadata:
+          type:
+          - object
+          - 'null'
+        createdAt:
+          type:
+          - object
+          - 'null'
+      required:
+      - id
+      - entityId
+      - attribute
   securitySchemes:
     access-token:
       scheme: bearer

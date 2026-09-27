@@ -34,7 +34,7 @@ paths:
   /tasks/api/v1/lead-magnet/search-volume:
     post:
       description: Store search volume
-      operationId: t_value
+      operationId: postTasksApiV1LeadMagnetSearchVolume
       parameters: []
       requestBody:
         required: true
@@ -49,10 +49,12 @@ paths:
       summary: Lead Magnet
       tags:
       - Lead Magnet Webhook
+      x-operation-id-source: normalized
+      x-operation-id-original: t_value
   /tasks/api/v1/lead-magnet/kw-services:
     post:
       description: Get keyword services
-      operationId: t_value
+      operationId: postTasksApiV1LeadMagnetKwServices
       parameters: []
       requestBody:
         required: true
@@ -69,10 +71,12 @@ paths:
       summary: Lead Magnet
       tags:
       - Lead Magnet Webhook
+      x-operation-id-source: normalized
+      x-operation-id-original: t_value
   /tasks/api/v1/lead-magnet/update:
     post:
       description: Store search volume
-      operationId: t_value
+      operationId: postTasksApiV1LeadMagnetUpdate
       parameters: []
       requestBody:
         required: true
@@ -89,10 +93,12 @@ paths:
       summary: Lead Magnet
       tags:
       - Lead Magnet Webhook
+      x-operation-id-source: normalized
+      x-operation-id-original: t_value
   /tasks/api/v1/lead-magnet/reviews/serp:
     get:
       description: Store reviews
-      operationId: t_value
+      operationId: getTasksApiV1LeadMagnetReviewsSerp
       parameters:
       - name: placeId
         required: true
@@ -106,10 +112,12 @@ paths:
       summary: Lead Magnet
       tags:
       - Lead Magnet Webhook
+      x-operation-id-source: normalized
+      x-operation-id-original: t_value
   /tasks/api/v1/lead-magnet/posts/serp:
     get:
       description: Get business posts
-      operationId: t_value
+      operationId: getTasksApiV1LeadMagnetPostsSerp
       parameters:
       - name: placeId
         required: true
@@ -123,10 +131,12 @@ paths:
       summary: Lead Magnet
       tags:
       - Lead Magnet Webhook
+      x-operation-id-source: normalized
+      x-operation-id-original: t_value
   /tasks/api/v1/lead-magnet/calculate-zoca-score:
     post:
       description: Get business zoca score
-      operationId: t_value
+      operationId: postTasksApiV1LeadMagnetCalculateZocaScore
       parameters: []
       responses:
         '201':
@@ -134,10 +144,12 @@ paths:
       summary: Lead Magnet
       tags:
       - Lead Magnet Webhook
+      x-operation-id-source: normalized
+      x-operation-id-original: t_value
   /tasks/api/v1/lead-magnet/fetch-and-store-serp-data:
     post:
       description: Fetch and store serp data
-      operationId: t_value
+      operationId: postTasksApiV1LeadMagnetFetchAndStoreSerpData
       parameters: []
       responses:
         '201':
@@ -145,10 +157,12 @@ paths:
       summary: Lead Magnet
       tags:
       - Lead Magnet Webhook
+      x-operation-id-source: normalized
+      x-operation-id-original: t_value
   /tasks/api/v1/lead-magnet/get-insights:
     get:
       description: Get insights
-      operationId: t_value
+      operationId: getTasksApiV1LeadMagnetGetInsights
       parameters: []
       responses:
         '200':
@@ -156,10 +170,12 @@ paths:
       summary: Lead Magnet
       tags:
       - Lead Magnet Webhook
+      x-operation-id-source: normalized
+      x-operation-id-original: t_value
   /tasks/api/v1/lead-magnet/add-rank-data:
     post:
       description: Bulk insert rank data for keyword competition analysis
-      operationId: t_value
+      operationId: postTasksApiV1LeadMagnetAddRankData
       parameters: []
       requestBody:
         required: true
@@ -182,10 +198,12 @@ paths:
       summary: Lead Magnet
       tags:
       - Lead Magnet Webhook
+      x-operation-id-source: normalized
+      x-operation-id-original: t_value
   /tasks/api/v1/lead-magnet/keyword/services:
     post:
       description: Get keyword services
-      operationId: t_value
+      operationId: postTasksApiV1LeadMagnetKeywordServices
       parameters: []
       requestBody:
         required: true
@@ -202,10 +220,12 @@ paths:
       summary: Lead Magnet
       tags:
       - Lead Magnet Webhook
+      x-operation-id-source: normalized
+      x-operation-id-original: t_value
   /tasks/api/v1/lead-magnet/extract-primary-category-rank:
     post:
       description: Triggers rank extraction on the primary category for a placeId. Returns immediately with 202 status while Lambda processes in background.
-      operationId: t_value
+      operationId: postTasksApiV1LeadMagnetExtractPrimaryCategoryRank
       parameters:
       - name: placeId
         required: true
@@ -231,6 +251,8 @@ paths:
       summary: Extract Primary Category Rank
       tags:
       - Lead Magnet Webhook
+      x-operation-id-source: normalized
+      x-operation-id-original: t_value
 components:
   schemas:
     Object:

@@ -42,7 +42,7 @@ paths:
       tags:
       - Packages
     get:
-      operationId: t_value
+      operationId: getPackagesByEntityIdTemplates
       parameters:
       - name: cursor
         required: false
@@ -80,9 +80,11 @@ paths:
       summary: List package templates
       tags:
       - Packages
+      x-operation-id-source: normalized
+      x-operation-id-original: t_value
   /packages/{entityId}/templates/{id}:
     get:
-      operationId: t_value
+      operationId: getPackagesByEntityIdTemplatesById
       parameters:
       - name: id
         required: true
@@ -110,8 +112,10 @@ paths:
       summary: Get a package template by ID
       tags:
       - Packages
+      x-operation-id-source: normalized
+      x-operation-id-original: t_value
     put:
-      operationId: t_value
+      operationId: putPackagesByEntityIdTemplatesById
       parameters:
       - name: id
         required: true
@@ -147,9 +151,11 @@ paths:
       summary: Update a package template
       tags:
       - Packages
+      x-operation-id-source: normalized
+      x-operation-id-original: t_value
   /packages/{entityId}/templates/{id}/archive:
     post:
-      operationId: t_value
+      operationId: postPackagesByEntityIdTemplatesByIdArchive
       parameters:
       - name: id
         required: true
@@ -173,9 +179,11 @@ paths:
       summary: Archive a package template
       tags:
       - Packages
+      x-operation-id-source: normalized
+      x-operation-id-original: t_value
   /packages/{entityId}/templates/{id}/unarchive:
     post:
-      operationId: t_value
+      operationId: postPackagesByEntityIdTemplatesByIdUnarchive
       parameters:
       - name: id
         required: true
@@ -199,9 +207,11 @@ paths:
       summary: Unarchive a package template
       tags:
       - Packages
+      x-operation-id-source: normalized
+      x-operation-id-original: t_value
   /packages/{entityId}/templates/{id}/duplicate:
     post:
-      operationId: t_value
+      operationId: postPackagesByEntityIdTemplatesByIdDuplicate
       parameters:
       - name: id
         required: true
@@ -229,9 +239,11 @@ paths:
       summary: Duplicate a package template
       tags:
       - Packages
+      x-operation-id-source: normalized
+      x-operation-id-original: t_value
   /packages/{entityId}/service-usage:
     get:
-      operationId: t_value
+      operationId: getPackagesByEntityIdServiceUsage
       parameters:
       - name: serviceId
         required: true
@@ -257,9 +269,11 @@ paths:
       summary: List active package templates that reference a service
       tags:
       - Packages
+      x-operation-id-source: normalized
+      x-operation-id-original: t_value
   /packages/{entityId}/purchased:
     get:
-      operationId: t_value
+      operationId: getPackagesByEntityIdPurchased
       parameters:
       - name: cursor
         required: false
@@ -312,9 +326,11 @@ paths:
       summary: List sold packages for an entity
       tags:
       - Packages
+      x-operation-id-source: normalized
+      x-operation-id-original: t_value
   /packages/{entityId}/purchased/{id}:
     get:
-      operationId: t_value
+      operationId: getPackagesByEntityIdPurchasedById
       parameters:
       - name: id
         required: true
@@ -342,9 +358,11 @@ paths:
       summary: Get a purchased package by ID
       tags:
       - Packages
+      x-operation-id-source: normalized
+      x-operation-id-original: t_value
   /packages/{entityId}/clients/{clientId}/balances:
     get:
-      operationId: t_value
+      operationId: getPackagesByEntityIdClientsByClientIdBalances
       parameters:
       - name: clientId
         required: true
@@ -370,9 +388,11 @@ paths:
       summary: Get a client's package credit balances
       tags:
       - Packages
+      x-operation-id-source: normalized
+      x-operation-id-original: t_value
   /packages/{entityId}/clients/{clientId}/purchased:
     get:
-      operationId: t_value
+      operationId: getPackagesByEntityIdClientsByClientIdPurchased
       parameters:
       - name: cursor
         required: false
@@ -426,9 +446,11 @@ paths:
       summary: List a client's purchased packages
       tags:
       - Packages
+      x-operation-id-source: normalized
+      x-operation-id-original: t_value
   /packages/{entityId}/purchased/{id}/refund-quote:
     get:
-      operationId: t_value
+      operationId: getPackagesByEntityIdPurchasedByIdRefundQuote
       parameters:
       - name: id
         required: true
@@ -460,9 +482,11 @@ paths:
       summary: Quote a refund for a purchased package
       tags:
       - Packages
+      x-operation-id-source: normalized
+      x-operation-id-original: t_value
   /packages/{entityId}/purchased/{id}/refund:
     post:
-      operationId: t_value
+      operationId: postPackagesByEntityIdPurchasedByIdRefund
       parameters:
       - name: id
         required: true
@@ -496,9 +520,11 @@ paths:
       summary: Refund a purchased package
       tags:
       - Packages
+      x-operation-id-source: normalized
+      x-operation-id-original: t_value
   /packages/{entityId}/purchased/{id}/extend-expiry:
     post:
-      operationId: t_value
+      operationId: postPackagesByEntityIdPurchasedByIdExtendExpiry
       parameters:
       - name: id
         required: true
@@ -536,9 +562,11 @@ paths:
       summary: Extend or revive a purchased package expiry
       tags:
       - Packages
+      x-operation-id-source: normalized
+      x-operation-id-original: t_value
   /packages/{entityId}/purchased/{purchasedPackageId}/reassign:
     post:
-      operationId: t_value
+      operationId: postPackagesByEntityIdPurchasedByPurchasedPackageIdReassign
       parameters:
       - name: purchasedPackageId
         required: true
@@ -576,6 +604,8 @@ paths:
       summary: Reassign a purchased group's credits to a different eligible service
       tags:
       - Packages
+      x-operation-id-source: normalized
+      x-operation-id-original: t_value
 components:
   schemas:
     e:

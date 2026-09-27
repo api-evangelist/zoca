@@ -30,7 +30,7 @@ paths:
   /scheduling/bookings/slots/block:
     post:
       description: Temporarily holds a provider time slot for a client during checkout. The block expires after a configurable timeout (default 10 minutes). When a booking is created with the blockedSlotId, the status changes from HOLD to BOOKED.
-      operationId: t_value
+      operationId: postSchedulingBookingsSlotsBlock
       parameters: []
       responses:
         '201':
@@ -70,9 +70,11 @@ paths:
       summary: Block a slot temporarily during checkout
       tags:
       - Bookings
+      x-operation-id-source: normalized
+      x-operation-id-original: t_value
   /scheduling/bookings/recurring:
     post:
-      operationId: t_value
+      operationId: postSchedulingBookingsRecurring
       parameters: []
       responses:
         '201':
@@ -84,9 +86,11 @@ paths:
       summary: Create a recurring appointment series
       tags:
       - Bookings
+      x-operation-id-source: normalized
+      x-operation-id-original: t_value
   /scheduling/bookings/recurring/{seriesId}:
     get:
-      operationId: t_value
+      operationId: getSchedulingBookingsRecurringBySeriesId
       parameters: []
       responses:
         '200':
@@ -96,9 +100,11 @@ paths:
       summary: Get a recurring series and its occurrences
       tags:
       - Bookings
+      x-operation-id-source: normalized
+      x-operation-id-original: t_value
   /scheduling/bookings/{id}/recurring:
     put:
-      operationId: t_value
+      operationId: putSchedulingBookingsByIdRecurring
       parameters:
       - name: scope
         required: true
@@ -114,9 +120,11 @@ paths:
       summary: Edit an occurrence, scoped to this event or this and following
       tags:
       - Bookings
+      x-operation-id-source: normalized
+      x-operation-id-original: t_value
   /scheduling/bookings/{id}/recurring/cancel:
     post:
-      operationId: t_value
+      operationId: postSchedulingBookingsByIdRecurringCancel
       parameters:
       - name: scope
         required: true
@@ -132,9 +140,11 @@ paths:
       summary: Cancel an occurrence, scoped to this event or this and following
       tags:
       - Bookings
+      x-operation-id-source: normalized
+      x-operation-id-original: t_value
   /scheduling/bookings:
     post:
-      operationId: t_value
+      operationId: postSchedulingBookings
       parameters: []
       responses:
         '201':
@@ -144,8 +154,10 @@ paths:
       summary: Create a new booking with items
       tags:
       - Bookings
+      x-operation-id-source: normalized
+      x-operation-id-original: t_value
     get:
-      operationId: t_value
+      operationId: getSchedulingBookings
       parameters:
       - name: limit
         required: false
@@ -199,10 +211,12 @@ paths:
       summary: List bookings for an entity with filters
       tags:
       - Bookings
+      x-operation-id-source: normalized
+      x-operation-id-original: t_value
   /scheduling/bookings/calendar:
     get:
       description: Returns appointments (APPOINTMENT) and blocked time (TIME_OFF) for calendar display. Appointments include individual booking items with service details and colors.
-      operationId: t_value
+      operationId: getSchedulingBookingsCalendar
       parameters:
       - name: endDate
         required: true
@@ -242,9 +256,11 @@ paths:
       summary: Get calendar entries for date range
       tags:
       - Bookings
+      x-operation-id-source: normalized
+      x-operation-id-original: t_value
   /scheduling/bookings/counts:
     get:
-      operationId: t_value
+      operationId: getSchedulingBookingsCounts
       parameters:
       - name: entityId
         required: true
@@ -260,9 +276,11 @@ paths:
       summary: Get booking counts grouped by status
       tags:
       - Bookings
+      x-operation-id-source: normalized
+      x-operation-id-original: t_value
   /scheduling/bookings/{id}:
     get:
-      operationId: t_value
+      operationId: getSchedulingBookingsById
       parameters:
       - name: id
         required: true
@@ -278,8 +296,10 @@ paths:
       summary: Get booking by ID with aggregated data
       tags:
       - Bookings
+      x-operation-id-source: normalized
+      x-operation-id-original: t_value
     put:
-      operationId: t_value
+      operationId: putSchedulingBookingsById
       parameters:
       - name: id
         required: true
@@ -295,10 +315,12 @@ paths:
       summary: Update a booking
       tags:
       - Bookings
+      x-operation-id-source: normalized
+      x-operation-id-original: t_value
   /scheduling/bookings/{id}/items:
     put:
       description: Updates booking and multiple items atomically in a single transaction. Sends only ONE notification when times change, preventing duplicate communications.
-      operationId: t_value
+      operationId: putSchedulingBookingsByIdItems
       parameters:
       - name: id
         required: true
@@ -316,8 +338,10 @@ paths:
       summary: Update booking with items
       tags:
       - Bookings
+      x-operation-id-source: normalized
+      x-operation-id-original: t_value
     post:
-      operationId: t_value
+      operationId: postSchedulingBookingsByIdItems
       parameters:
       - name: id
         required: true
@@ -333,10 +357,12 @@ paths:
       summary: Add a service item to an existing booking
       tags:
       - Bookings
+      x-operation-id-source: normalized
+      x-operation-id-original: t_value
   /scheduling/bookings/{bookingId}/items/{bookingItemId}/coverage:
     patch:
       description: Before checkout, toggle package-credit coverage on one service line. skip releases the reserved credit and restores the price; auto/force reserves a credit and zeroes the line. Deposit is re-armed/cleared. Refuses a checked-out line.
-      operationId: t_value
+      operationId: patchSchedulingBookingsByBookingIdItemsByBookingItemIdCoverage
       parameters:
       - name: bookingItemId
         required: true
@@ -358,10 +384,12 @@ paths:
       summary: Apply or remove package coverage on an appointment service line
       tags:
       - Bookings
+      x-operation-id-source: normalized
+      x-operation-id-original: t_value
   /scheduling/bookings/{bookingId}/update-client/{clientId}:
     post:
       description: Updates the client field in a booking if it is currently null. If the client field is already populated, the booking is returned unchanged.
-      operationId: t_value
+      operationId: postSchedulingBookingsByBookingIdUpdateClientByClientId
       parameters: []
       responses:
         '200':
@@ -373,9 +401,11 @@ paths:
       summary: Update client field in booking
       tags:
       - Bookings
+      x-operation-id-source: normalized
+      x-operation-id-original: t_value
   /scheduling/bookings/{id}/cancel:
     post:
-      operationId: t_value
+      operationId: postSchedulingBookingsByIdCancel
       parameters:
       - name: id
         required: true
@@ -391,10 +421,12 @@ paths:
       summary: Cancel a booking with cancellation details
       tags:
       - Bookings
+      x-operation-id-source: normalized
+      x-operation-id-original: t_value
   /scheduling/bookings/{id}/reschedule:
     post:
       description: Reschedules all booking items to start at the new time. Item times are recalculated based on their existing durations, chained sequentially.
-      operationId: t_value
+      operationId: postSchedulingBookingsByIdReschedule
       parameters:
       - name: id
         required: true
@@ -412,10 +444,12 @@ paths:
       summary: Reschedule a booking to a new time
       tags:
       - Bookings
+      x-operation-id-source: normalized
+      x-operation-id-original: t_value
   /scheduling/bookings/{id}/no-show:
     post:
       description: Marks a booking as no-show with optional fee handling. COLLECT_FEE applies the policy fee, NO_FEE waives it.
-      operationId: t_value
+      operationId: postSchedulingBookingsByIdNoShow
       parameters:
       - name: id
         required: true
@@ -431,10 +465,12 @@ paths:
       summary: Mark a booking as no-show
       tags:
       - Bookings
+      x-operation-id-source: normalized
+      x-operation-id-original: t_value
   /scheduling/bookings/{id}/resend:
     post:
       description: Sends appointment details to the client for an existing booking. Optionally specify channels (sms, email). Defaults to both.
-      operationId: t_value
+      operationId: postSchedulingBookingsByIdResend
       parameters:
       - name: id
         required: true
@@ -452,9 +488,11 @@ paths:
       summary: Resend appointment details
       tags:
       - Bookings
+      x-operation-id-source: normalized
+      x-operation-id-original: t_value
   /scheduling/bookings/{id}/complete:
     post:
-      operationId: t_value
+      operationId: postSchedulingBookingsByIdComplete
       parameters:
       - name: id
         required: true
@@ -470,9 +508,11 @@ paths:
       summary: Mark a booking as completed
       tags:
       - Bookings
+      x-operation-id-source: normalized
+      x-operation-id-original: t_value
   /scheduling/bookings/{id}/confirm:
     post:
-      operationId: t_value
+      operationId: postSchedulingBookingsByIdConfirm
       parameters:
       - name: id
         required: true
@@ -490,10 +530,12 @@ paths:
       summary: Confirm a pending booking
       tags:
       - Bookings
+      x-operation-id-source: normalized
+      x-operation-id-original: t_value
   /scheduling/bookings/{id}/approval/{status}:
     post:
       description: Approves or declines a pending booking. APPROVED changes status to BOOKED, DECLINED changes status to DECLINED. Only pending bookings can be processed.
-      operationId: t_value
+      operationId: postSchedulingBookingsByIdApprovalByStatus
       parameters:
       - name: status
         required: true
@@ -520,10 +562,12 @@ paths:
       summary: Approve or decline a pending booking
       tags:
       - Bookings
+      x-operation-id-source: normalized
+      x-operation-id-original: t_value
   /scheduling/bookings/{id}/confirm-attendance:
     post:
       description: 'Marks that the client has confirmed they will attend the appointment. Idempotent: returns the booking as-is if already confirmed.'
-      operationId: t_value
+      operationId: postSchedulingBookingsByIdConfirmAttendance
       parameters:
       - name: id
         required: true
@@ -541,10 +585,12 @@ paths:
       summary: Confirm attendance for a booking
       tags:
       - Bookings
+      x-operation-id-source: normalized
+      x-operation-id-original: t_value
   /scheduling/bookings/{id}/unconfirm-attendance:
     post:
       description: Resets the attendance confirmation flag. Used when a client or SP needs to undo a previous confirmation.
-      operationId: t_value
+      operationId: postSchedulingBookingsByIdUnconfirmAttendance
       parameters:
       - name: id
         required: true
@@ -560,10 +606,12 @@ paths:
       summary: Remove attendance confirmation from a booking
       tags:
       - Bookings
+      x-operation-id-source: normalized
+      x-operation-id-original: t_value
   /scheduling/bookings/{id}/undo-no-show:
     post:
       description: Reverses a no-show status back to BOOKED. If a no-show fee was charged, initiates a refund for the fee.
-      operationId: t_value
+      operationId: postSchedulingBookingsByIdUndoNoShow
       parameters:
       - name: id
         required: true
@@ -581,10 +629,12 @@ paths:
       summary: Undo a no-show booking
       tags:
       - Bookings
+      x-operation-id-source: normalized
+      x-operation-id-original: t_value
   /scheduling/bookings/{id}/deposit/mark-paid:
     post:
       description: Marks a booking deposit as paid. If shouldCollectCashPayment is true, creates a CASH payment for the deposit amount. Updates booking status from DEPOSIT_PENDING to BOOKED and sets isDepositPaid to true.
-      operationId: t_value
+      operationId: postSchedulingBookingsByIdDepositMarkPaid
       parameters:
       - name: id
         required: true
@@ -602,10 +652,12 @@ paths:
       summary: Mark deposit as paid with optional cash payment
       tags:
       - Bookings
+      x-operation-id-source: normalized
+      x-operation-id-original: t_value
   /scheduling/bookings/{id}/deposit/waive:
     post:
       description: Waives the deposit requirement for a booking by setting shouldCollectDeposit to false. If booking is in DEPOSIT_PENDING status, changes it to BOOKED (applies to both booking and booking items).
-      operationId: t_value
+      operationId: postSchedulingBookingsByIdDepositWaive
       parameters:
       - name: id
         required: true
@@ -621,10 +673,12 @@ paths:
       summary: Waive deposit requirement
       tags:
       - Bookings
+      x-operation-id-source: normalized
+      x-operation-id-original: t_value
   /scheduling/bookings/{id}/send-receipt:
     post:
       description: Sends booking receipt URL to client via SMS and/or Email. If contactIds array is empty, sends to all active contacts for the client.
-      operationId: t_value
+      operationId: postSchedulingBookingsByIdSendReceipt
       parameters:
       - name: id
         required: true
@@ -667,9 +721,11 @@ paths:
       summary: Send receipt URL to client contacts
       tags:
       - Bookings
+      x-operation-id-source: normalized
+      x-operation-id-original: t_value
   /scheduling/bookings/{bookingId}/items/{itemId}/addons:
     post:
-      operationId: t_value
+      operationId: postSchedulingBookingsByBookingIdItemsByItemIdAddons
       parameters:
       - name: itemId
         required: true
@@ -693,9 +749,11 @@ paths:
       summary: Add one or more add-ons to an existing booking item
       tags:
       - Bookings
+      x-operation-id-source: normalized
+      x-operation-id-original: t_value
   /scheduling/bookings/{bookingId}/items/{itemId}/addons/{addonLineItemId}:
     delete:
-      operationId: t_value
+      operationId: deleteSchedulingBookingsByBookingIdItemsByItemIdAddonsByAddonLineItemId
       parameters:
       - name: addonLineItemId
         required: true
@@ -721,9 +779,11 @@ paths:
       summary: Cancel an addon line on a booking item
       tags:
       - Bookings
+      x-operation-id-source: normalized
+      x-operation-id-original: t_value
   /scheduling/bookings/{bookingId}/items/{itemId}/remove:
     post:
-      operationId: t_value
+      operationId: postSchedulingBookingsByBookingIdItemsByItemIdRemove
       parameters:
       - name: itemId
         required: true
@@ -745,9 +805,11 @@ paths:
       summary: Remove a service item from a booking
       tags:
       - Bookings
+      x-operation-id-source: normalized
+      x-operation-id-original: t_value
   /scheduling/bookings/items/{itemId}:
     put:
-      operationId: t_value
+      operationId: putSchedulingBookingsItemsByItemId
       parameters:
       - name: itemId
         required: true
@@ -763,10 +825,12 @@ paths:
       summary: Update a booking item
       tags:
       - Bookings
+      x-operation-id-source: normalized
+      x-operation-id-original: t_value
   /scheduling/bookings/{bookingId}/notes:
     post:
       description: Creates a note associated with a specific booking. Can be called with JWT token (createdBy from JWT) or without (createdBy from clientId in body).
-      operationId: t_value
+      operationId: postSchedulingBookingsByBookingIdNotes
       parameters:
       - name: bookingId
         required: true
@@ -788,9 +852,11 @@ paths:
       summary: Create a new note for a booking
       tags:
       - Bookings
+      x-operation-id-source: normalized
+      x-operation-id-original: t_value
     get:
       description: Retrieves all notes associated with a specific booking, excluding deleted notes.
-      operationId: t_value
+      operationId: getSchedulingBookingsByBookingIdNotes
       parameters:
       - name: bookingId
         required: true
@@ -815,9 +881,11 @@ paths:
       summary: Get all notes for a booking
       tags:
       - Bookings
+      x-operation-id-source: normalized
+      x-operation-id-original: t_value
   /scheduling/bookings/notes/{id}:
     get:
-      operationId: t_value
+      operationId: getSchedulingBookingsNotesById
       parameters:
       - name: id
         required: true
@@ -837,9 +905,11 @@ paths:
       summary: Get a specific booking note by ID
       tags:
       - Bookings
+      x-operation-id-source: normalized
+      x-operation-id-original: t_value
     put:
       description: Updates an existing booking note. Only the note text, type, and media URL can be updated.
-      operationId: t_value
+      operationId: putSchedulingBookingsNotesById
       parameters:
       - name: id
         required: true
@@ -859,9 +929,11 @@ paths:
       summary: Update a booking note
       tags:
       - Bookings
+      x-operation-id-source: normalized
+      x-operation-id-original: t_value
     delete:
       description: Soft deletes a booking note. The note is marked as deleted but retained in the database.
-      operationId: t_value
+      operationId: deleteSchedulingBookingsNotesById
       parameters:
       - name: id
         required: true
@@ -877,10 +949,12 @@ paths:
       summary: Delete a booking note
       tags:
       - Bookings
+      x-operation-id-source: normalized
+      x-operation-id-original: t_value
   /scheduling/bookings/client/{clientId}/notes:
     get:
       description: Retrieves all notes for a client combining client notes and appointment notes into a single paginated list. Filter by category to view only client notes, appointment notes, or all.
-      operationId: t_value
+      operationId: getSchedulingBookingsClientByClientIdNotes
       parameters:
       - name: limit
         required: false
@@ -921,10 +995,12 @@ paths:
       summary: Get unified notes for a client
       tags:
       - Bookings
+      x-operation-id-source: normalized
+      x-operation-id-original: t_value
   /scheduling/bookings/client/{clientId}/appointment-notes:
     get:
       description: Returns paginated bookings (ordered by booking date desc) each with their most recent client note and SP note. Paginated by booking count.
-      operationId: t_value
+      operationId: getSchedulingBookingsClientByClientIdAppointmentNotes
       parameters:
       - name: limit
         required: false
@@ -955,10 +1031,12 @@ paths:
       summary: Get appointment notes for a client grouped by booking
       tags:
       - Bookings
+      x-operation-id-source: normalized
+      x-operation-id-original: t_value
   /scheduling/bookings/client/{clientId}/summary:
     get:
       description: 'Returns summary stats for a client: upcoming appointment count, completed count, and total sales from completed appointments.'
-      operationId: t_value
+      operationId: getSchedulingBookingsClientByClientIdSummary
       parameters:
       - name: entityId
         required: true
@@ -985,10 +1063,12 @@ paths:
       summary: Get appointment summary for a client
       tags:
       - Bookings
+      x-operation-id-source: normalized
+      x-operation-id-original: t_value
   /scheduling/bookings/reminders/{reminderId}/execute:
     post:
       description: Triggers the sending of an appointment reminder notification. Called by AWS EventBridge Scheduler or manually for testing.
-      operationId: t_value
+      operationId: postSchedulingBookingsRemindersByReminderIdExecute
       parameters:
       - name: reminderId
         required: true
@@ -1024,10 +1104,12 @@ paths:
       summary: Execute a booking reminder
       tags:
       - Bookings
+      x-operation-id-source: normalized
+      x-operation-id-original: t_value
   /scheduling/bookings/reminders/execute:
     post:
       description: Triggers the sending of an appointment reminder notification. Accepts reminderId in request body. Used as AWS EventBridge Lambda target.
-      operationId: t_value
+      operationId: postSchedulingBookingsRemindersExecute
       parameters: []
       responses:
         '200':
@@ -1059,10 +1141,12 @@ paths:
       summary: Execute a booking reminder (webhook)
       tags:
       - Bookings
+      x-operation-id-source: normalized
+      x-operation-id-original: t_value
   /scheduling/bookings/reminders/{reminderId}:
     get:
       description: Retrieves details of a specific booking reminder.
-      operationId: t_value
+      operationId: getSchedulingBookingsRemindersByReminderId
       parameters:
       - name: reminderId
         required: true
@@ -1116,9 +1200,11 @@ paths:
       summary: Get reminder details
       tags:
       - Bookings
+      x-operation-id-source: normalized
+      x-operation-id-original: t_value
   /scheduling/bookings/{locationEntityId}/backfill-snapshots:
     post:
-      operationId: t_value
+      operationId: postSchedulingBookingsByLocationEntityIdBackfillSnapshots
       parameters:
       - name: locationEntityId
         required: true
@@ -1132,6 +1218,8 @@ paths:
       summary: Backfill service, serviceVariation, and client snapshots on migrated booking…
       tags:
       - Bookings
+      x-operation-id-source: normalized
+      x-operation-id-original: t_value
 components:
   schemas:
     e:

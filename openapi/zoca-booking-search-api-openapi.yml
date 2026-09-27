@@ -33,7 +33,7 @@ paths:
   /tasks/api/v1/booking-search/status/{entityId}:
     get:
       description: Returns discovered booking platforms for the entity
-      operationId: t_value
+      operationId: getTasksApiV1BookingSearchStatusByEntityId
       parameters:
       - name: entityId
         required: true
@@ -51,10 +51,12 @@ paths:
       summary: Get Booking Platform Search Status
       tags:
       - Booking Search
+      x-operation-id-source: normalized
+      x-operation-id-original: t_value
   /tasks/api/v1/booking-search/submit-link:
     post:
       description: Stores the selected or newly created booking link ID in win_onboarding_status
-      operationId: t_value
+      operationId: postTasksApiV1BookingSearchSubmitLink
       parameters: []
       requestBody:
         required: true
@@ -72,10 +74,12 @@ paths:
       summary: Submit Booking Link
       tags:
       - Booking Search
+      x-operation-id-source: normalized
+      x-operation-id-original: t_value
   /tasks/api/v1/booking-search/search:
     post:
       description: Performs a direct search for booking platforms using Firecrawl and saves results to entities.links
-      operationId: t_value
+      operationId: postTasksApiV1BookingSearchSearch
       parameters: []
       requestBody:
         required: true
@@ -93,10 +97,12 @@ paths:
       summary: Direct Booking Platform Search
       tags:
       - Booking Search
+      x-operation-id-source: normalized
+      x-operation-id-original: t_value
   /tasks/api/v1/booking-search/queue-scraper:
     post:
       description: Manually queue a platform scraper job for a given link ID
-      operationId: t_value
+      operationId: postTasksApiV1BookingSearchQueueScraper
       parameters: []
       requestBody:
         required: true
@@ -114,6 +120,8 @@ paths:
       summary: Queue Platform Scraper
       tags:
       - Booking Search
+      x-operation-id-source: normalized
+      x-operation-id-original: t_value
 components:
   schemas:
     e:

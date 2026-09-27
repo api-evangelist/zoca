@@ -35,7 +35,7 @@ paths:
       - Scheduling Onboarding
   /scheduling/onboarding/non-opted-locations:
     get:
-      operationId: t_value
+      operationId: getSchedulingOnboardingNonOptedLocations
       parameters:
       - name: limit
         required: false
@@ -67,9 +67,11 @@ paths:
       summary: Get all non-opted-in locations across all businesses
       tags:
       - Scheduling Onboarding
+      x-operation-id-source: normalized
+      x-operation-id-original: t_value
   /scheduling/onboarding/{locationEntityId}/opt-in-data-summary:
     get:
-      operationId: t_value
+      operationId: getSchedulingOnboardingByLocationEntityIdOptInDataSummary
       parameters: []
       responses:
         '200':
@@ -77,9 +79,11 @@ paths:
       summary: Get opt-in data summary for a location
       tags:
       - Scheduling Onboarding
+      x-operation-id-source: normalized
+      x-operation-id-original: t_value
   /scheduling/onboarding/opted-in-businesses:
     get:
-      operationId: t_value
+      operationId: getSchedulingOnboardingOptedInBusinesses
       parameters:
       - name: limit
         required: false
@@ -111,9 +115,11 @@ paths:
       summary: Get all opted-in businesses with details
       tags:
       - Scheduling Onboarding
+      x-operation-id-source: normalized
+      x-operation-id-original: t_value
   /scheduling/onboarding/{entityId}/{locationEntityId}/status:
     get:
-      operationId: t_value
+      operationId: getSchedulingOnboardingByEntityIdByLocationEntityIdStatus
       parameters: []
       responses:
         '200':
@@ -121,9 +127,11 @@ paths:
       summary: Get onboarding status for an entity and location
       tags:
       - Scheduling Onboarding
+      x-operation-id-source: normalized
+      x-operation-id-original: t_value
   /scheduling/onboarding/{entityId}/{locationEntityId}/basic-details:
     patch:
-      operationId: t_value
+      operationId: patchSchedulingOnboardingByEntityIdByLocationEntityIdBasicDetails
       parameters: []
       responses:
         '200':
@@ -131,9 +139,11 @@ paths:
       summary: Update basic details step (business/personal)
       tags:
       - Scheduling Onboarding
+      x-operation-id-source: normalized
+      x-operation-id-original: t_value
   /scheduling/onboarding/{entityId}/{locationEntityId}/service-details:
     patch:
-      operationId: t_value
+      operationId: patchSchedulingOnboardingByEntityIdByLocationEntityIdServiceDetails
       parameters: []
       responses:
         '200':
@@ -141,9 +151,11 @@ paths:
       summary: Update service details step
       tags:
       - Scheduling Onboarding
+      x-operation-id-source: normalized
+      x-operation-id-original: t_value
   /scheduling/onboarding/{entityId}/{locationEntityId}/booking-details:
     patch:
-      operationId: t_value
+      operationId: patchSchedulingOnboardingByEntityIdByLocationEntityIdBookingDetails
       parameters: []
       responses:
         '200':
@@ -151,9 +163,11 @@ paths:
       summary: Update booking details step (rules/policies/payments)
       tags:
       - Scheduling Onboarding
+      x-operation-id-source: normalized
+      x-operation-id-original: t_value
   /scheduling/onboarding/{entityId}/{locationEntityId}/skip-payments:
     patch:
-      operationId: t_value
+      operationId: patchSchedulingOnboardingByEntityIdByLocationEntityIdSkipPayments
       parameters: []
       responses:
         '200':
@@ -161,9 +175,11 @@ paths:
       summary: Skip payments setup step
       tags:
       - Scheduling Onboarding
+      x-operation-id-source: normalized
+      x-operation-id-original: t_value
   /scheduling/onboarding/{entityId}/{locationEntityId}/history:
     get:
-      operationId: t_value
+      operationId: getSchedulingOnboardingByEntityIdByLocationEntityIdHistory
       parameters: []
       responses:
         '200':
@@ -171,9 +187,11 @@ paths:
       summary: Get onboarding change history
       tags:
       - Scheduling Onboarding
+      x-operation-id-source: normalized
+      x-operation-id-original: t_value
   /scheduling/onboarding/enable:
     post:
-      operationId: t_value
+      operationId: postSchedulingOnboardingEnable
       parameters: []
       responses:
         '201':
@@ -181,6 +199,8 @@ paths:
       summary: Enable scheduling for a location entity
       tags:
       - Scheduling Onboarding
+      x-operation-id-source: normalized
+      x-operation-id-original: t_value
 components:
   securitySchemes:
     access-token:

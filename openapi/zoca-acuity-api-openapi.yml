@@ -23,7 +23,7 @@ paths:
       - Acuity
   /acuity/appointment-types/{serviceName}:
     get:
-      operationId: t_value
+      operationId: getAcuityAppointmentTypesByServiceName
       parameters: []
       responses:
         '200':
@@ -31,9 +31,11 @@ paths:
       summary: Get appointment types (services) for an entity
       tags:
       - Acuity
+      x-operation-id-source: normalized
+      x-operation-id-original: t_value
   /acuity/slots:
     get:
-      operationId: t_value
+      operationId: getAcuitySlots
       parameters: []
       responses:
         '200':
@@ -41,9 +43,11 @@ paths:
       summary: Get available slots (times) for an entity
       tags:
       - Acuity
+      x-operation-id-source: normalized
+      x-operation-id-original: t_value
   /acuity/payment-link:
     post:
-      operationId: t_value
+      operationId: postAcuityPaymentLink
       parameters: []
       responses:
         '201':
@@ -51,9 +55,11 @@ paths:
       summary: Generate a payment link for an appointment type
       tags:
       - Acuity
+      x-operation-id-source: normalized
+      x-operation-id-original: t_value
   /acuity/locations:
     get:
-      operationId: t_value
+      operationId: getAcuityLocations
       parameters: []
       responses:
         '200':
@@ -61,9 +67,11 @@ paths:
       summary: Get unique acuity locations
       tags:
       - Acuity
+      x-operation-id-source: normalized
+      x-operation-id-original: t_value
   /acuity/book-appointment:
     post:
-      operationId: t_value
+      operationId: postAcuityBookAppointment
       parameters: []
       responses:
         '201':
@@ -71,9 +79,11 @@ paths:
       summary: Book an appointment
       tags:
       - Acuity
+      x-operation-id-source: normalized
+      x-operation-id-original: t_value
   /acuity/cancel-appointment:
     put:
-      operationId: t_value
+      operationId: putAcuityCancelAppointment
       parameters: []
       responses:
         '200':
@@ -81,9 +91,11 @@ paths:
       summary: Cancel an appointment
       tags:
       - Acuity
+      x-operation-id-source: normalized
+      x-operation-id-original: t_value
   /acuity/handle-appointment:
     get:
-      operationId: t_value
+      operationId: getAcuityHandleAppointment
       parameters: []
       responses:
         '200':
@@ -91,6 +103,8 @@ paths:
       summary: Book an appointment
       tags:
       - Acuity
+      x-operation-id-source: normalized
+      x-operation-id-original: t_value
 components:
   securitySchemes:
     access-token:

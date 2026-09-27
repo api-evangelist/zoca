@@ -25,7 +25,7 @@ paths:
       - Scheduling - Stripe Terminal
   /scheduling/stripe/terminal/tap-to-pay-config:
     get:
-      operationId: t_value
+      operationId: getSchedulingStripeTerminalTapToPayConfig
       parameters: []
       responses:
         '200':
@@ -35,10 +35,12 @@ paths:
       summary: Get Tap to Pay configuration
       tags:
       - Scheduling - Stripe Terminal
+      x-operation-id-source: normalized
+      x-operation-id-original: t_value
   /scheduling/stripe/terminal/ensure-location:
     post:
       description: Creates a Stripe Terminal Location (tml_...) for the connected account using the stored address for locationEntityId, persists it to entities.locations, and returns it.
-      operationId: t_value
+      operationId: postSchedulingStripeTerminalEnsureLocation
       parameters: []
       responses:
         '200':
@@ -48,9 +50,11 @@ paths:
       summary: Provision Stripe Terminal location for a connected account
       tags:
       - Scheduling - Stripe Terminal
+      x-operation-id-source: normalized
+      x-operation-id-original: t_value
   /scheduling/stripe/terminal/readers/pair:
     post:
-      operationId: t_value
+      operationId: postSchedulingStripeTerminalReadersPair
       parameters: []
       responses:
         '201':
@@ -60,9 +64,11 @@ paths:
       summary: Pair a Stripe Terminal smart reader to a location
       tags:
       - Scheduling - Stripe Terminal
+      x-operation-id-source: normalized
+      x-operation-id-original: t_value
   /scheduling/stripe/terminal/readers:
     get:
-      operationId: t_value
+      operationId: getSchedulingStripeTerminalReaders
       parameters: []
       responses:
         '200':
@@ -72,9 +78,11 @@ paths:
       summary: List paired Stripe Terminal readers for a location
       tags:
       - Scheduling - Stripe Terminal
+      x-operation-id-source: normalized
+      x-operation-id-original: t_value
   /scheduling/stripe/terminal/readers/{id}:
     patch:
-      operationId: t_value
+      operationId: patchSchedulingStripeTerminalReadersById
       parameters: []
       responses:
         '200':
@@ -84,8 +92,10 @@ paths:
       summary: Rename a paired reader
       tags:
       - Scheduling - Stripe Terminal
+      x-operation-id-source: normalized
+      x-operation-id-original: t_value
     delete:
-      operationId: t_value
+      operationId: deleteSchedulingStripeTerminalReadersById
       parameters: []
       responses:
         '204':
@@ -95,9 +105,11 @@ paths:
       summary: Unpair a reader
       tags:
       - Scheduling - Stripe Terminal
+      x-operation-id-source: normalized
+      x-operation-id-original: t_value
   /scheduling/stripe/terminal/readers/simulate:
     post:
-      operationId: t_value
+      operationId: postSchedulingStripeTerminalReadersSimulate
       parameters: []
       responses:
         '201':
@@ -107,9 +119,11 @@ paths:
       summary: (Test mode only) Create a simulated reader for QA
       tags:
       - Scheduling - Stripe Terminal
+      x-operation-id-source: normalized
+      x-operation-id-original: t_value
   /scheduling/stripe/terminal/readers/{id}/present-payment-method:
     post:
-      operationId: t_value
+      operationId: postSchedulingStripeTerminalReadersByIdPresentPaymentMethod
       parameters: []
       responses:
         '204':
@@ -119,6 +133,8 @@ paths:
       summary: (Test mode only) Inject a test card scenario on a simulated reader
       tags:
       - Scheduling - Stripe Terminal
+      x-operation-id-source: normalized
+      x-operation-id-original: t_value
 components:
   securitySchemes:
     access-token:

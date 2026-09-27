@@ -39,7 +39,7 @@ paths:
   /tasks/api/v1/website/creation-user-onboarding:
     post:
       description: Enqueues a website creation job specifically for the user onboarding flow
-      operationId: t_value
+      operationId: postTasksApiV1WebsiteCreationUserOnboarding
       parameters: []
       responses:
         '201':
@@ -59,10 +59,12 @@ paths:
       summary: Create website during user onboarding
       tags:
       - Website Creation
+      x-operation-id-source: normalized
+      x-operation-id-original: t_value
   /tasks/api/v1/website/generation:
     post:
       description: Enqueues a website generation job for content creation
-      operationId: t_value
+      operationId: postTasksApiV1WebsiteGeneration
       parameters: []
       responses:
         '201':
@@ -82,10 +84,12 @@ paths:
       summary: Generate website content
       tags:
       - Website Creation
+      x-operation-id-source: normalized
+      x-operation-id-original: t_value
   /tasks/api/v1/website/multipager:
     post:
       description: Enqueues a website generation job for content creation
-      operationId: t_value
+      operationId: postTasksApiV1WebsiteMultipager
       parameters: []
       responses:
         '201':
@@ -105,10 +109,12 @@ paths:
       summary: Start multipager request for a website
       tags:
       - Website Creation
+      x-operation-id-source: normalized
+      x-operation-id-original: t_value
   /tasks/api/v1/website/regenerate:
     post:
       description: Enqueues a website regeneration job for content creation
-      operationId: t_value
+      operationId: postTasksApiV1WebsiteRegenerate
       parameters: []
       responses:
         '201':
@@ -128,9 +134,11 @@ paths:
       summary: Start multipager request for a website
       tags:
       - Website Creation
+      x-operation-id-source: normalized
+      x-operation-id-original: t_value
   /tasks/api/v1/website/test:
     post:
-      operationId: t_value
+      operationId: postTasksApiV1WebsiteTest
       parameters: []
       responses:
         '201':
@@ -141,9 +149,11 @@ paths:
       - Website Creation
       summary: T value
       x-summary-source: derived
+      x-operation-id-source: normalized
+      x-operation-id-original: t_value
   /tasks/api/v1/website/recreate:
     post:
-      operationId: t_value
+      operationId: postTasksApiV1WebsiteRecreate
       parameters: []
       responses:
         '201':
@@ -154,10 +164,12 @@ paths:
       - Website Creation
       summary: T value
       x-summary-source: derived
+      x-operation-id-source: normalized
+      x-operation-id-original: t_value
   /tasks/api/v1/website/store-scraped-services:
     post:
       description: Stores the raw JSON response from the service scraper for a given entity
-      operationId: t_value
+      operationId: postTasksApiV1WebsiteStoreScrapedServices
       parameters: []
       responses:
         '201':
@@ -184,6 +196,8 @@ paths:
       summary: Store scraped services data
       tags:
       - Website Creation
+      x-operation-id-source: normalized
+      x-operation-id-original: t_value
 components:
   securitySchemes:
     access-token:

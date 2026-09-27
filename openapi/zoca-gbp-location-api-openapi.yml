@@ -23,7 +23,7 @@ paths:
       - gbp-location
   /gbp-location:
     get:
-      operationId: t_value
+      operationId: getGbpLocation
       parameters: []
       responses:
         '201':
@@ -107,9 +107,11 @@ paths:
       summary: Get location data for given entity id
       tags:
       - gbp-location
+      x-operation-id-source: normalized
+      x-operation-id-original: t_value
   /gbp-location/google-updated:
     get:
-      operationId: t_value
+      operationId: getGbpLocationGoogleUpdated
       parameters: []
       responses:
         '200':
@@ -117,9 +119,11 @@ paths:
       summary: Get Google updated locations for entity
       tags:
       - gbp-location
+      x-operation-id-source: normalized
+      x-operation-id-original: t_value
   /gbp-location/list:
     get:
-      operationId: t_value
+      operationId: getGbpLocationList
       parameters: []
       responses:
         '200':
@@ -127,9 +131,11 @@ paths:
       summary: List all locations for entity
       tags:
       - gbp-location
+      x-operation-id-source: normalized
+      x-operation-id-original: t_value
   /gbp-location/create:
     post:
-      operationId: t_value
+      operationId: postGbpLocationCreate
       parameters: []
       requestBody:
         required: true
@@ -165,9 +171,11 @@ paths:
       summary: Onboard a gbp location for entity
       tags:
       - gbp-location
+      x-operation-id-source: normalized
+      x-operation-id-original: t_value
   /gbp-location/{id}:
     put:
-      operationId: t_value
+      operationId: putGbpLocationById
       parameters: []
       responses:
         '200':
@@ -175,9 +183,11 @@ paths:
       summary: Update location by ID
       tags:
       - gbp-location
+      x-operation-id-source: normalized
+      x-operation-id-original: t_value
   /gbp-location/attributes:
     get:
-      operationId: t_value
+      operationId: getGbpLocationAttributes
       parameters: []
       responses:
         '200':
@@ -185,8 +195,10 @@ paths:
       summary: Get attributes for location
       tags:
       - gbp-location
+      x-operation-id-source: normalized
+      x-operation-id-original: t_value
     post:
-      operationId: t_value
+      operationId: postGbpLocationAttributes
       parameters: []
       responses:
         '201':
@@ -194,9 +206,11 @@ paths:
       summary: Create attributes for location
       tags:
       - gbp-location
+      x-operation-id-source: normalized
+      x-operation-id-original: t_value
   /gbp-location/notifications:
     get:
-      operationId: t_value
+      operationId: getGbpLocationNotifications
       parameters: []
       responses:
         '200':
@@ -204,8 +218,10 @@ paths:
       summary: Get notifications for entity
       tags:
       - gbp-location
+      x-operation-id-source: normalized
+      x-operation-id-original: t_value
     post:
-      operationId: t_value
+      operationId: postGbpLocationNotifications
       parameters: []
       responses:
         '201':
@@ -213,9 +229,11 @@ paths:
       summary: Update notifications for entity
       tags:
       - gbp-location
+      x-operation-id-source: normalized
+      x-operation-id-original: t_value
   /gbp-location/placeActionLinks:
     get:
-      operationId: t_value
+      operationId: getGbpLocationPlaceActionLinks
       parameters: []
       responses:
         '200':
@@ -223,8 +241,10 @@ paths:
       summary: Get place action links for location
       tags:
       - gbp-location
+      x-operation-id-source: normalized
+      x-operation-id-original: t_value
     post:
-      operationId: t_value
+      operationId: postGbpLocationPlaceActionLinks
       parameters: []
       responses:
         '201':
@@ -232,9 +252,11 @@ paths:
       summary: Create place action links for location
       tags:
       - gbp-location
+      x-operation-id-source: normalized
+      x-operation-id-original: t_value
   /gbp-location/posts/list:
     get:
-      operationId: t_value
+      operationId: getGbpLocationPostsList
       parameters: []
       responses:
         '200':
@@ -242,9 +264,11 @@ paths:
       summary: List posts for location
       tags:
       - gbp-location
+      x-operation-id-source: normalized
+      x-operation-id-original: t_value
   /gbp-location/posts/metrics:
     get:
-      operationId: t_value
+      operationId: getGbpLocationPostsMetrics
       parameters: []
       responses:
         '200':
@@ -254,9 +278,11 @@ paths:
       summary: Get total GBP posts posted by Zoca in a date range
       tags:
       - gbp-location
+      x-operation-id-source: normalized
+      x-operation-id-original: t_value
   /gbp-location/posts/zoca:
     get:
-      operationId: t_value
+      operationId: getGbpLocationPostsZoca
       parameters: []
       responses:
         '200':
@@ -264,9 +290,11 @@ paths:
       summary: List non-failed GBP posts created by Zoca
       tags:
       - gbp-location
+      x-operation-id-source: normalized
+      x-operation-id-original: t_value
   /gbp-location/posts:
     get:
-      operationId: t_value
+      operationId: getGbpLocationPosts
       parameters: []
       responses:
         '200':
@@ -274,8 +302,10 @@ paths:
       summary: Get a single post by name
       tags:
       - gbp-location
+      x-operation-id-source: normalized
+      x-operation-id-original: t_value
     patch:
-      operationId: t_value
+      operationId: patchGbpLocationPosts
       parameters: []
       responses:
         '200':
@@ -283,8 +313,10 @@ paths:
       summary: Update a post
       tags:
       - gbp-location
+      x-operation-id-source: normalized
+      x-operation-id-original: t_value
     delete:
-      operationId: t_value
+      operationId: deleteGbpLocationPosts
       parameters: []
       responses:
         '200':
@@ -292,8 +324,10 @@ paths:
       summary: Delete a post
       tags:
       - gbp-location
+      x-operation-id-source: normalized
+      x-operation-id-original: t_value
     post:
-      operationId: t_value
+      operationId: postGbpLocationPosts
       parameters: []
       responses:
         '201':
@@ -301,9 +335,11 @@ paths:
       summary: Create a new post
       tags:
       - gbp-location
+      x-operation-id-source: normalized
+      x-operation-id-original: t_value
   /gbp-location/posts/sync:
     post:
-      operationId: t_value
+      operationId: postGbpLocationPostsSync
       parameters: []
       responses:
         '201':
@@ -311,9 +347,11 @@ paths:
       summary: Sync posts from GBP
       tags:
       - gbp-location
+      x-operation-id-source: normalized
+      x-operation-id-original: t_value
   /gbp-location/posts/rewrite:
     get:
-      operationId: t_value
+      operationId: getGbpLocationPostsRewrite
       parameters: []
       responses:
         '200':
@@ -321,9 +359,11 @@ paths:
       summary: Rewrite post text using AI
       tags:
       - gbp-location
+      x-operation-id-source: normalized
+      x-operation-id-original: t_value
   /gbp-location/posts/ai-write:
     get:
-      operationId: t_value
+      operationId: getGbpLocationPostsAiWrite
       parameters: []
       responses:
         '200':
@@ -331,9 +371,11 @@ paths:
       summary: Generate a GBP post content using AI
       tags:
       - gbp-location
+      x-operation-id-source: normalized
+      x-operation-id-original: t_value
   /gbp-location/pubsub-notifications:
     post:
-      operationId: t_value
+      operationId: postGbpLocationPubsubNotifications
       parameters: []
       responses:
         '201':
@@ -341,9 +383,11 @@ paths:
       summary: Handle GBP Pub/Sub notifications
       tags:
       - gbp-location
+      x-operation-id-source: normalized
+      x-operation-id-original: t_value
   /gbp-location/business-profile-details:
     get:
-      operationId: t_value
+      operationId: getGbpLocationBusinessProfileDetails
       parameters: []
       responses:
         '200':
@@ -351,9 +395,11 @@ paths:
       summary: Get business profile insights
       tags:
       - gbp-location
+      x-operation-id-source: normalized
+      x-operation-id-original: t_value
   /gbp-location/monthly-keyword-impressions:
     get:
-      operationId: t_value
+      operationId: getGbpLocationMonthlyKeywordImpressions
       parameters: []
       responses:
         '200':
@@ -361,9 +407,11 @@ paths:
       summary: Get monthly keyword impressions
       tags:
       - gbp-location
+      x-operation-id-source: normalized
+      x-operation-id-original: t_value
   /gbp-location/sync-media:
     post:
-      operationId: t_value
+      operationId: postGbpLocationSyncMedia
       parameters: []
       responses:
         '201':
@@ -371,9 +419,11 @@ paths:
       summary: Sync media from GBP
       tags:
       - gbp-location
+      x-operation-id-source: normalized
+      x-operation-id-original: t_value
   /gbp-location/keyword-impressions-intelligence:
     get:
-      operationId: t_value
+      operationId: getGbpLocationKeywordImpressionsIntelligence
       parameters: []
       responses:
         '200':
@@ -381,9 +431,11 @@ paths:
       summary: Get keyword impressions intelligence
       tags:
       - gbp-location
+      x-operation-id-source: normalized
+      x-operation-id-original: t_value
   /gbp-location/keyword-impression-insights:
     get:
-      operationId: t_value
+      operationId: getGbpLocationKeywordImpressionInsights
       parameters: []
       responses:
         '200':
@@ -391,10 +443,12 @@ paths:
       summary: Get keyword impression insights for a location
       tags:
       - gbp-location
+      x-operation-id-source: normalized
+      x-operation-id-original: t_value
   /gbp-location/keyword-impressions/backfill:
     post:
       description: Backfills themes, relevance scores, and relevance flags for existing keyword impressions
-      operationId: t_value
+      operationId: postGbpLocationKeywordImpressionsBackfill
       parameters: []
       responses:
         '200':
@@ -415,9 +469,11 @@ paths:
       summary: Backfill keyword enrichment data
       tags:
       - gbp-location
+      x-operation-id-source: normalized
+      x-operation-id-original: t_value
   /gbp-location/performance-insights:
     get:
-      operationId: t_value
+      operationId: getGbpLocationPerformanceInsights
       parameters: []
       responses:
         '200':
@@ -425,9 +481,11 @@ paths:
       summary: Get performance insights for location
       tags:
       - gbp-location
+      x-operation-id-source: normalized
+      x-operation-id-original: t_value
   /gbp-location/location-admins:
     get:
-      operationId: t_value
+      operationId: getGbpLocationLocationAdmins
       parameters: []
       responses:
         '200':
@@ -435,8 +493,10 @@ paths:
       summary: Get location administrators for a given location
       tags:
       - gbp-location
+      x-operation-id-source: normalized
+      x-operation-id-original: t_value
     post:
-      operationId: t_value
+      operationId: postGbpLocationLocationAdmins
       parameters: []
       responses:
         '201':
@@ -444,9 +504,11 @@ paths:
       summary: Create a location administrator for a given location
       tags:
       - gbp-location
+      x-operation-id-source: normalized
+      x-operation-id-original: t_value
   /gbp-location/location-admins/sync:
     post:
-      operationId: t_value
+      operationId: postGbpLocationLocationAdminsSync
       parameters: []
       responses:
         '200':
@@ -471,9 +533,11 @@ paths:
       summary: Sync location administrators from GBP API to database
       tags:
       - gbp-location
+      x-operation-id-source: normalized
+      x-operation-id-original: t_value
   /gbp-location/update:
     post:
-      operationId: t_value
+      operationId: postGbpLocationUpdate
       parameters: []
       responses:
         '201':
@@ -481,9 +545,11 @@ paths:
       summary: Update GBP location data
       tags:
       - gbp-location
+      x-operation-id-source: normalized
+      x-operation-id-original: t_value
   /gbp-location/questions-and-answers:
     get:
-      operationId: t_value
+      operationId: getGbpLocationQuestionsAndAnswers
       parameters: []
       responses:
         '200':
@@ -491,9 +557,11 @@ paths:
       summary: List all questions and answers for location
       tags:
       - gbp-location
+      x-operation-id-source: normalized
+      x-operation-id-original: t_value
   /gbp-location/{userEntityId}/{locationEntityId}/question:
     get:
-      operationId: t_value
+      operationId: getGbpLocationByUserEntityIdByLocationEntityIdQuestion
       parameters: []
       responses:
         '200':
@@ -501,8 +569,10 @@ paths:
       summary: Get a specific question
       tags:
       - gbp-location
+      x-operation-id-source: normalized
+      x-operation-id-original: t_value
     delete:
-      operationId: t_value
+      operationId: deleteGbpLocationByUserEntityIdByLocationEntityIdQuestion
       parameters: []
       responses:
         '200':
@@ -510,9 +580,11 @@ paths:
       summary: Delete a question
       tags:
       - gbp-location
+      x-operation-id-source: normalized
+      x-operation-id-original: t_value
   /gbp-location/{userEntityId}/{locationEntityId}:
     post:
-      operationId: t_value
+      operationId: postGbpLocationByUserEntityIdByLocationEntityId
       parameters: []
       responses:
         '201':
@@ -520,8 +592,10 @@ paths:
       summary: Create a new question
       tags:
       - gbp-location
+      x-operation-id-source: normalized
+      x-operation-id-original: t_value
     patch:
-      operationId: t_value
+      operationId: patchGbpLocationByUserEntityIdByLocationEntityId
       parameters: []
       responses:
         '200':
@@ -529,9 +603,11 @@ paths:
       summary: Update an existing question
       tags:
       - gbp-location
+      x-operation-id-source: normalized
+      x-operation-id-original: t_value
   /gbp-location/{userEntityId}/{locationEntityId}/{questionName}/answers:
     get:
-      operationId: t_value
+      operationId: getGbpLocationByUserEntityIdByLocationEntityIdByQuestionNameAnswers
       parameters: []
       responses:
         '200':
@@ -539,9 +615,11 @@ paths:
       summary: Get answers for a question
       tags:
       - gbp-location
+      x-operation-id-source: normalized
+      x-operation-id-original: t_value
   /gbp-location/{userEntityId}/{locationEntityId}/answers:
     put:
-      operationId: t_value
+      operationId: putGbpLocationByUserEntityIdByLocationEntityIdAnswers
       parameters: []
       responses:
         '200':
@@ -549,8 +627,10 @@ paths:
       summary: Update answers for questions
       tags:
       - gbp-location
+      x-operation-id-source: normalized
+      x-operation-id-original: t_value
     delete:
-      operationId: t_value
+      operationId: deleteGbpLocationByUserEntityIdByLocationEntityIdAnswers
       parameters: []
       responses:
         '200':
@@ -558,9 +638,11 @@ paths:
       summary: Delete an answer for a question
       tags:
       - gbp-location
+      x-operation-id-source: normalized
+      x-operation-id-original: t_value
   /gbp-location/{userEntityId}/{locationEntityId}/sync:
     post:
-      operationId: t_value
+      operationId: postGbpLocationByUserEntityIdByLocationEntityIdSync
       parameters: []
       responses:
         '201':
@@ -568,9 +650,11 @@ paths:
       summary: Sync questions and answers from GBP
       tags:
       - gbp-location
+      x-operation-id-source: normalized
+      x-operation-id-original: t_value
   /gbp-location/publish-website:
     post:
-      operationId: t_value
+      operationId: postGbpLocationPublishWebsite
       parameters: []
       responses:
         '201':
@@ -578,9 +662,11 @@ paths:
       summary: Publish website to GBP
       tags:
       - gbp-location
+      x-operation-id-source: normalized
+      x-operation-id-original: t_value
   /gbp-location/sync-location:
     post:
-      operationId: t_value
+      operationId: postGbpLocationSyncLocation
       parameters: []
       responses:
         '201':
@@ -588,9 +674,11 @@ paths:
       summary: Sync location data from GBP
       tags:
       - gbp-location
+      x-operation-id-source: normalized
+      x-operation-id-original: t_value
   /gbp-location/insights-db:
     get:
-      operationId: t_value
+      operationId: getGbpLocationInsightsDb
       parameters: []
       responses:
         '200':
@@ -598,9 +686,11 @@ paths:
       summary: Get GBP location insights from database
       tags:
       - gbp-location
+      x-operation-id-source: normalized
+      x-operation-id-original: t_value
   /gbp-location/interactions-insights:
     get:
-      operationId: t_value
+      operationId: getGbpLocationInteractionsInsights
       parameters: []
       responses:
         '200':
@@ -642,9 +732,11 @@ paths:
       summary: Get GBP interactions insights with year-over-year comparison
       tags:
       - gbp-location
+      x-operation-id-source: normalized
+      x-operation-id-original: t_value
   /gbp-location/profile-clicks-insights:
     get:
-      operationId: t_value
+      operationId: getGbpLocationProfileClicksInsights
       parameters: []
       responses:
         '200':
@@ -694,9 +786,11 @@ paths:
       summary: Get GBP profile clicks insights with year-over-year comparison
       tags:
       - gbp-location
+      x-operation-id-source: normalized
+      x-operation-id-original: t_value
   /gbp-location/website-audit-callback:
     post:
-      operationId: t_value
+      operationId: postGbpLocationWebsiteAuditCallback
       parameters: []
       responses:
         '200':
@@ -714,6 +808,8 @@ paths:
       summary: Callback endpoint for PagespeedInsightsFunction to update website audit data
       tags:
       - gbp-location
+      x-operation-id-source: normalized
+      x-operation-id-original: t_value
 components:
   securitySchemes:
     access-token:

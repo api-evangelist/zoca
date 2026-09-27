@@ -29,7 +29,7 @@ paths:
       - Subscribers
   /enquiry/subscribers/configured-entities:
     get:
-      operationId: t_value
+      operationId: getEnquirySubscribersConfiguredEntities
       parameters:
       - name: limit
         required: false
@@ -67,9 +67,11 @@ paths:
       summary: List entities with subscriber integrations configured
       tags:
       - Subscribers
+      x-operation-id-source: normalized
+      x-operation-id-original: t_value
   /enquiry/subscribers/non-configured-entities:
     get:
-      operationId: t_value
+      operationId: getEnquirySubscribersNonConfiguredEntities
       parameters:
       - name: limit
         required: false
@@ -94,9 +96,11 @@ paths:
       summary: List entities without subscriber integrations
       tags:
       - Subscribers
+      x-operation-id-source: normalized
+      x-operation-id-original: t_value
   /enquiry/subscribers/entity/{entityId}:
     get:
-      operationId: t_value
+      operationId: getEnquirySubscribersEntityByEntityId
       parameters:
       - name: entityId
         required: true
@@ -112,9 +116,11 @@ paths:
       summary: List all subscribers for a specific entity
       tags:
       - Subscribers
+      x-operation-id-source: normalized
+      x-operation-id-original: t_value
   /enquiry/subscribers/{subscriberId}:
     get:
-      operationId: t_value
+      operationId: getEnquirySubscribersBySubscriberId
       parameters:
       - name: subscriberId
         required: true
@@ -132,8 +138,10 @@ paths:
       summary: Get a specific subscriber by its ID
       tags:
       - Subscribers
+      x-operation-id-source: normalized
+      x-operation-id-original: t_value
     put:
-      operationId: t_value
+      operationId: putEnquirySubscribersBySubscriberId
       parameters:
       - name: subscriberId
         required: true
@@ -153,8 +161,10 @@ paths:
       summary: Update an existing subscriber
       tags:
       - Subscribers
+      x-operation-id-source: normalized
+      x-operation-id-original: t_value
     delete:
-      operationId: t_value
+      operationId: deleteEnquirySubscribersBySubscriberId
       parameters:
       - name: subscriberId
         required: true
@@ -172,9 +182,11 @@ paths:
       summary: Deactivate (soft delete) a subscriber
       tags:
       - Subscribers
+      x-operation-id-source: normalized
+      x-operation-id-original: t_value
   /enquiry/subscribers/{subscriberId}/event-logs:
     get:
-      operationId: t_value
+      operationId: getEnquirySubscribersBySubscriberIdEventLogs
       parameters:
       - name: offset
         required: false
@@ -202,6 +214,8 @@ paths:
       summary: Get event logs for a subscriber with pagination
       tags:
       - Subscribers
+      x-operation-id-source: normalized
+      x-operation-id-original: t_value
 components:
   securitySchemes:
     access-token:

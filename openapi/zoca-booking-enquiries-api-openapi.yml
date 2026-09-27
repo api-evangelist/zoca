@@ -22,7 +22,7 @@ paths:
       tags:
       - booking-enquiries
     get:
-      operationId: t_value
+      operationId: getBookingEnquiries
       parameters: []
       responses:
         '200':
@@ -30,9 +30,11 @@ paths:
       summary: List all booking enquiries with pagination and filters
       tags:
       - booking-enquiries
+      x-operation-id-source: normalized
+      x-operation-id-original: t_value
   /booking-enquiries/sources:
     get:
-      operationId: t_value
+      operationId: getBookingEnquiriesSources
       parameters: []
       responses:
         '200':
@@ -40,9 +42,11 @@ paths:
       summary: List distinct enquiry sources for an entity (source filter options)
       tags:
       - booking-enquiries
+      x-operation-id-source: normalized
+      x-operation-id-original: t_value
   /booking-enquiries/enquiry-status:
     get:
-      operationId: t_value
+      operationId: getBookingEnquiriesEnquiryStatus
       parameters: []
       responses:
         '200':
@@ -50,9 +54,11 @@ paths:
       summary: Get enquiry status statistics for an entity
       tags:
       - booking-enquiries
+      x-operation-id-source: normalized
+      x-operation-id-original: t_value
   /booking-enquiries/{entityId}/search:
     get:
-      operationId: t_value
+      operationId: getBookingEnquiriesByEntityIdSearch
       parameters: []
       responses:
         '200':
@@ -60,9 +66,11 @@ paths:
       summary: Search clients by name, number, or query
       tags:
       - booking-enquiries
+      x-operation-id-source: normalized
+      x-operation-id-original: t_value
   /booking-enquiries/enquiry-stats:
     get:
-      operationId: t_value
+      operationId: getBookingEnquiriesEnquiryStats
       parameters: []
       responses:
         '200':
@@ -70,9 +78,11 @@ paths:
       summary: Get detailed enquiry statistics for an entity
       tags:
       - booking-enquiries
+      x-operation-id-source: normalized
+      x-operation-id-original: t_value
   /booking-enquiries/multilocation/{businessEntityId}:
     get:
-      operationId: t_value
+      operationId: getBookingEnquiriesMultilocationByBusinessEntityId
       parameters: []
       responses:
         '200':
@@ -84,9 +94,11 @@ paths:
       summary: List enquiries across all locations of a business with network stats
       tags:
       - booking-enquiries
+      x-operation-id-source: normalized
+      x-operation-id-original: t_value
   /booking-enquiries/{enquiryId}/enquiry:
     get:
-      operationId: t_value
+      operationId: getBookingEnquiriesByEnquiryIdEnquiry
       parameters: []
       responses:
         '200':
@@ -94,9 +106,11 @@ paths:
       summary: Get enquiry details by ID
       tags:
       - booking-enquiries
+      x-operation-id-source: normalized
+      x-operation-id-original: t_value
   /booking-enquiries/{enquiryId}/status:
     put:
-      operationId: t_value
+      operationId: putBookingEnquiriesByEnquiryIdStatus
       parameters: []
       responses:
         '200':
@@ -104,9 +118,11 @@ paths:
       summary: Update enquiry status with reason and services
       tags:
       - booking-enquiries
+      x-operation-id-source: normalized
+      x-operation-id-original: t_value
   /booking-enquiries/{clientId}/notes:
     post:
-      operationId: t_value
+      operationId: postBookingEnquiriesByClientIdNotes
       parameters: []
       responses:
         '201':
@@ -114,8 +130,10 @@ paths:
       summary: Add a note to a client
       tags:
       - booking-enquiries
+      x-operation-id-source: normalized
+      x-operation-id-original: t_value
     get:
-      operationId: t_value
+      operationId: getBookingEnquiriesByClientIdNotes
       parameters: []
       responses:
         '200':
@@ -123,9 +141,11 @@ paths:
       summary: Get all notes for a client
       tags:
       - booking-enquiries
+      x-operation-id-source: normalized
+      x-operation-id-original: t_value
   /booking-enquiries/client/{clientId}:
     get:
-      operationId: t_value
+      operationId: getBookingEnquiriesClientByClientId
       parameters: []
       responses:
         '200':
@@ -133,9 +153,11 @@ paths:
       summary: Get client details with latest enquiry information
       tags:
       - booking-enquiries
+      x-operation-id-source: normalized
+      x-operation-id-original: t_value
   /booking-enquiries/{clientId}/enquiries:
     get:
-      operationId: t_value
+      operationId: getBookingEnquiriesByClientIdEnquiries
       parameters: []
       responses:
         '200':
@@ -143,9 +165,11 @@ paths:
       summary: Get all enquiries for a client with status filter
       tags:
       - booking-enquiries
+      x-operation-id-source: normalized
+      x-operation-id-original: t_value
   /booking-enquiries/notes/{noteId}:
     put:
-      operationId: t_value
+      operationId: putBookingEnquiriesNotesByNoteId
       parameters: []
       responses:
         '200':
@@ -153,8 +177,10 @@ paths:
       summary: Update an existing client note
       tags:
       - booking-enquiries
+      x-operation-id-source: normalized
+      x-operation-id-original: t_value
     delete:
-      operationId: t_value
+      operationId: deleteBookingEnquiriesNotesByNoteId
       parameters: []
       responses:
         '200':
@@ -162,9 +188,11 @@ paths:
       summary: Delete a client note
       tags:
       - booking-enquiries
+      x-operation-id-source: normalized
+      x-operation-id-original: t_value
   /booking-enquiries/{enquiryId}/delete:
     delete:
-      operationId: t_value
+      operationId: deleteBookingEnquiriesByEnquiryIdDelete
       parameters: []
       responses:
         '200':
@@ -172,9 +200,11 @@ paths:
       summary: Delete an enquiry
       tags:
       - booking-enquiries
+      x-operation-id-source: normalized
+      x-operation-id-original: t_value
   /booking-enquiries/{clientId}/communication-logs:
     post:
-      operationId: t_value
+      operationId: postBookingEnquiriesByClientIdCommunicationLogs
       parameters: []
       responses:
         '201':
@@ -182,9 +212,11 @@ paths:
       summary: Add communication log for a client
       tags:
       - booking-enquiries
+      x-operation-id-source: normalized
+      x-operation-id-original: t_value
   /booking-enquiries/client-conversation:
     post:
-      operationId: t_value
+      operationId: postBookingEnquiriesClientConversation
       parameters: []
       responses:
         '201':
@@ -192,9 +224,11 @@ paths:
       summary: Add a conversation message for a client
       tags:
       - booking-enquiries
+      x-operation-id-source: normalized
+      x-operation-id-original: t_value
   /booking-enquiries/{clientId}/app/chat:
     get:
-      operationId: t_value
+      operationId: getBookingEnquiriesByClientIdAppChat
       parameters: []
       responses:
         '200':
@@ -202,9 +236,11 @@ paths:
       summary: Get chat data for mobile app
       tags:
       - booking-enquiries
+      x-operation-id-source: normalized
+      x-operation-id-original: t_value
   /booking-enquiries/{clientId}/summary:
     get:
-      operationId: t_value
+      operationId: getBookingEnquiriesByClientIdSummary
       parameters: []
       responses:
         '200':
@@ -212,9 +248,11 @@ paths:
       summary: Get summary of client interactions
       tags:
       - booking-enquiries
+      x-operation-id-source: normalized
+      x-operation-id-original: t_value
   /booking-enquiries/{entityId}/text-templates:
     post:
-      operationId: t_value
+      operationId: postBookingEnquiriesByEntityIdTextTemplates
       parameters: []
       responses:
         '201':
@@ -222,8 +260,10 @@ paths:
       summary: Create a new text template
       tags:
       - booking-enquiries
+      x-operation-id-source: normalized
+      x-operation-id-original: t_value
     get:
-      operationId: t_value
+      operationId: getBookingEnquiriesByEntityIdTextTemplates
       parameters: []
       responses:
         '200':
@@ -231,9 +271,11 @@ paths:
       summary: List all text templates for an entity
       tags:
       - booking-enquiries
+      x-operation-id-source: normalized
+      x-operation-id-original: t_value
   /booking-enquiries/text-templates/{templateId}:
     put:
-      operationId: t_value
+      operationId: putBookingEnquiriesTextTemplatesByTemplateId
       parameters: []
       responses:
         '200':
@@ -241,9 +283,11 @@ paths:
       summary: Update an existing text template
       tags:
       - booking-enquiries
+      x-operation-id-source: normalized
+      x-operation-id-original: t_value
   /booking-enquiries/{entityId}/text-template-preferences:
     put:
-      operationId: t_value
+      operationId: putBookingEnquiriesByEntityIdTextTemplatePreferences
       parameters: []
       responses:
         '200':
@@ -251,8 +295,10 @@ paths:
       summary: Update text template preferences
       tags:
       - booking-enquiries
+      x-operation-id-source: normalized
+      x-operation-id-original: t_value
     get:
-      operationId: t_value
+      operationId: getBookingEnquiriesByEntityIdTextTemplatePreferences
       parameters: []
       responses:
         '200':
@@ -260,9 +306,11 @@ paths:
       summary: Get text template preferences for an entity
       tags:
       - booking-enquiries
+      x-operation-id-source: normalized
+      x-operation-id-original: t_value
   /booking-enquiries/formatted-text-template:
     put:
-      operationId: t_value
+      operationId: putBookingEnquiriesFormattedTextTemplate
       parameters: []
       responses:
         '200':
@@ -270,9 +318,11 @@ paths:
       summary: Format text template with client data
       tags:
       - booking-enquiries
+      x-operation-id-source: normalized
+      x-operation-id-original: t_value
   /booking-enquiries/{enquiryId}/update-booking-enquiry:
     put:
-      operationId: t_value
+      operationId: putBookingEnquiriesByEnquiryIdUpdateBookingEnquiry
       parameters: []
       responses:
         '200':
@@ -280,9 +330,11 @@ paths:
       summary: Update booking enquiry details
       tags:
       - booking-enquiries
+      x-operation-id-source: normalized
+      x-operation-id-original: t_value
   /booking-enquiries/{entityId}/automated-text-templates:
     get:
-      operationId: t_value
+      operationId: getBookingEnquiriesByEntityIdAutomatedTextTemplates
       parameters: []
       responses:
         '200':
@@ -290,8 +342,10 @@ paths:
       summary: Get default lead communication templates
       tags:
       - booking-enquiries
+      x-operation-id-source: normalized
+      x-operation-id-original: t_value
     post:
-      operationId: t_value
+      operationId: postBookingEnquiriesByEntityIdAutomatedTextTemplates
       parameters: []
       responses:
         '201':
@@ -299,8 +353,10 @@ paths:
       summary: Add default lead communication templates
       tags:
       - booking-enquiries
+      x-operation-id-source: normalized
+      x-operation-id-original: t_value
     put:
-      operationId: t_value
+      operationId: putBookingEnquiriesByEntityIdAutomatedTextTemplates
       parameters: []
       responses:
         '200':
@@ -308,9 +364,11 @@ paths:
       summary: Update lead communication templates
       tags:
       - booking-enquiries
+      x-operation-id-source: normalized
+      x-operation-id-original: t_value
   /booking-enquiries/{locationEntityId}/automated-text-templates/variables:
     get:
-      operationId: t_value
+      operationId: getBookingEnquiriesByLocationEntityIdAutomatedTextTemplatesVariables
       parameters: []
       responses:
         '200':
@@ -318,9 +376,11 @@ paths:
       summary: Get lead communication template variable values
       tags:
       - booking-enquiries
+      x-operation-id-source: normalized
+      x-operation-id-original: t_value
   /booking-enquiries/automated-text-templates/variables:
     get:
-      operationId: t_value
+      operationId: getBookingEnquiriesAutomatedTextTemplatesVariables
       parameters: []
       responses:
         '200':
@@ -328,9 +388,11 @@ paths:
       summary: Get available automated communication variables
       tags:
       - booking-enquiries
+      x-operation-id-source: normalized
+      x-operation-id-original: t_value
   /booking-enquiries/{entityId}/automated-text-templates/preferences:
     get:
-      operationId: t_value
+      operationId: getBookingEnquiriesByEntityIdAutomatedTextTemplatesPreferences
       parameters: []
       responses:
         '200':
@@ -338,8 +400,10 @@ paths:
       summary: Get automated communication template preferences
       tags:
       - booking-enquiries
+      x-operation-id-source: normalized
+      x-operation-id-original: t_value
     put:
-      operationId: t_value
+      operationId: putBookingEnquiriesByEntityIdAutomatedTextTemplatesPreferences
       parameters: []
       responses:
         '200':
@@ -347,9 +411,11 @@ paths:
       summary: Update automated communication template preferences
       tags:
       - booking-enquiries
+      x-operation-id-source: normalized
+      x-operation-id-original: t_value
   /booking-enquiries/{entityId}/text-template-order:
     get:
-      operationId: t_value
+      operationId: getBookingEnquiriesByEntityIdTextTemplateOrder
       parameters: []
       responses:
         '200':
@@ -357,9 +423,11 @@ paths:
       summary: Get text template order for a client
       tags:
       - booking-enquiries
+      x-operation-id-source: normalized
+      x-operation-id-original: t_value
   /booking-enquiries/{enquiryId}/deposit:
     post:
-      operationId: t_value
+      operationId: postBookingEnquiriesByEnquiryIdDeposit
       parameters: []
       responses:
         '201':
@@ -367,9 +435,11 @@ paths:
       summary: Add deposit to an enquiry
       tags:
       - booking-enquiries
+      x-operation-id-source: normalized
+      x-operation-id-original: t_value
   /booking-enquiries/conversation-summary:
     put:
-      operationId: t_value
+      operationId: putBookingEnquiriesConversationSummary
       parameters: []
       responses:
         '200':
@@ -377,9 +447,11 @@ paths:
       summary: Update client conversation summary
       tags:
       - booking-enquiries
+      x-operation-id-source: normalized
+      x-operation-id-original: t_value
   /booking-enquiries/conversation-activity:
     get:
-      operationId: t_value
+      operationId: getBookingEnquiriesConversationActivity
       parameters: []
       responses:
         '200':
@@ -387,9 +459,11 @@ paths:
       summary: Get conversation activity details for a client or enquiry
       tags:
       - booking-enquiries
+      x-operation-id-source: normalized
+      x-operation-id-original: t_value
   /booking-enquiries/client-conversations:
     get:
-      operationId: t_value
+      operationId: getBookingEnquiriesClientConversations
       parameters: []
       responses:
         '200':
@@ -397,9 +471,11 @@ paths:
       summary: Get client conversations including SMS and calls
       tags:
       - booking-enquiries
+      x-operation-id-source: normalized
+      x-operation-id-original: t_value
   /booking-enquiries/{entityId}/l2b-app-active-status:
     put:
-      operationId: t_value
+      operationId: putBookingEnquiriesByEntityIdL2bAppActiveStatus
       parameters: []
       responses:
         '200':
@@ -407,6 +483,8 @@ paths:
       summary: Update L2B app active status for an entity on Zoca App
       tags:
       - booking-enquiries
+      x-operation-id-source: normalized
+      x-operation-id-original: t_value
   /booking-enquiries/leads-tracker-stats:
     get:
       description: 'Retrieves comprehensive leads/enquiries statistics with time-series buckets:
@@ -420,7 +498,7 @@ paths:
         - Provides total aggregates, currency info, and entity onboarding date
 
         - Date range defaults to last 90 days if not specified'
-      operationId: t_value
+      operationId: getBookingEnquiriesLeadsTrackerStats
       parameters: []
       responses:
         '200':
@@ -432,6 +510,8 @@ paths:
       summary: Get leads tracker statistics with weekly and monthly granularity
       tags:
       - booking-enquiries
+      x-operation-id-source: normalized
+      x-operation-id-original: t_value
 components:
   schemas:
     e:

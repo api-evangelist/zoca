@@ -23,7 +23,7 @@ paths:
       - Review Invites
   /review-invites/clients:
     get:
-      operationId: t_value
+      operationId: getReviewInvitesClients
       parameters: []
       responses:
         '200':
@@ -31,9 +31,11 @@ paths:
       summary: Get clients filtered by source with pagination
       tags:
       - Review Invites
+      x-operation-id-source: normalized
+      x-operation-id-original: t_value
   /review-invites/client-phone:
     get:
-      operationId: t_value
+      operationId: getReviewInvitesClientPhone
       parameters: []
       responses:
         '200':
@@ -41,9 +43,11 @@ paths:
       summary: Get client phone numbers for an entity
       tags:
       - Review Invites
+      x-operation-id-source: normalized
+      x-operation-id-original: t_value
   /review-invites/search-clients:
     get:
-      operationId: t_value
+      operationId: getReviewInvitesSearchClients
       parameters: []
       responses:
         '200':
@@ -51,9 +55,11 @@ paths:
       summary: Search clients by term with pagination
       tags:
       - Review Invites
+      x-operation-id-source: normalized
+      x-operation-id-original: t_value
   /review-invites/text-templates:
     get:
-      operationId: t_value
+      operationId: getReviewInvitesTextTemplates
       parameters: []
       responses:
         '200':
@@ -61,9 +67,11 @@ paths:
       summary: Get SMS text templates for review invites
       tags:
       - Review Invites
+      x-operation-id-source: normalized
+      x-operation-id-original: t_value
   /review-invites/text-templates/{templateId}:
     put:
-      operationId: t_value
+      operationId: putReviewInvitesTextTemplatesByTemplateId
       parameters: []
       responses:
         '200':
@@ -71,9 +79,11 @@ paths:
       summary: Update a text template by ID
       tags:
       - Review Invites
+      x-operation-id-source: normalized
+      x-operation-id-original: t_value
   /review-invites/client:
     post:
-      operationId: t_value
+      operationId: postReviewInvitesClient
       parameters: []
       responses:
         '201':
@@ -81,9 +91,11 @@ paths:
       summary: Create a new client for review invites
       tags:
       - Review Invites
+      x-operation-id-source: normalized
+      x-operation-id-original: t_value
   /review-invites/client-conversation:
     get:
-      operationId: t_value
+      operationId: getReviewInvitesClientConversation
       parameters: []
       responses:
         '200':
@@ -91,8 +103,10 @@ paths:
       summary: Get conversation history for a client
       tags:
       - Review Invites
+      x-operation-id-source: normalized
+      x-operation-id-original: t_value
     post:
-      operationId: t_value
+      operationId: postReviewInvitesClientConversation
       parameters: []
       responses:
         '201':
@@ -100,9 +114,11 @@ paths:
       summary: Add a conversation message for a client
       tags:
       - Review Invites
+      x-operation-id-source: normalized
+      x-operation-id-original: t_value
   /review-invites/stats:
     get:
-      operationId: t_value
+      operationId: getReviewInvitesStats
       parameters: []
       responses:
         '200':
@@ -110,9 +126,11 @@ paths:
       summary: Get review invite statistics for an entity
       tags:
       - Review Invites
+      x-operation-id-source: normalized
+      x-operation-id-original: t_value
   /review-invites/invites-status:
     get:
-      operationId: t_value
+      operationId: getReviewInvitesInvitesStatus
       parameters: []
       responses:
         '200':
@@ -120,9 +138,11 @@ paths:
       summary: Get all invite status counts for an entity
       tags:
       - Review Invites
+      x-operation-id-source: normalized
+      x-operation-id-original: t_value
   /review-invites/invites-by-status:
     get:
-      operationId: t_value
+      operationId: getReviewInvitesInvitesByStatus
       parameters: []
       responses:
         '200':
@@ -130,9 +150,11 @@ paths:
       summary: Get invites filtered by status with pagination
       tags:
       - Review Invites
+      x-operation-id-source: normalized
+      x-operation-id-original: t_value
   /review-invites/{inviteId}/invite:
     put:
-      operationId: t_value
+      operationId: putReviewInvitesByInviteIdInvite
       parameters: []
       responses:
         '200':
@@ -140,9 +162,11 @@ paths:
       summary: Update the status of an invite
       tags:
       - Review Invites
+      x-operation-id-source: normalized
+      x-operation-id-original: t_value
   /review-invites/{entityId}/invite:
     post:
-      operationId: t_value
+      operationId: postReviewInvitesByEntityIdInvite
       parameters: []
       responses:
         '201':
@@ -150,8 +174,10 @@ paths:
       summary: Send review invites to clients
       tags:
       - Review Invites
+      x-operation-id-source: normalized
+      x-operation-id-original: t_value
     delete:
-      operationId: t_value
+      operationId: deleteReviewInvitesByEntityIdInvite
       parameters: []
       responses:
         '204':
@@ -159,9 +185,11 @@ paths:
       summary: Delete a review invite
       tags:
       - Review Invites
+      x-operation-id-source: normalized
+      x-operation-id-original: t_value
   /review-invites/{entityId}/invite-reminder:
     post:
-      operationId: t_value
+      operationId: postReviewInvitesByEntityIdInviteReminder
       parameters: []
       responses:
         '201':
@@ -169,9 +197,11 @@ paths:
       summary: Send review invite reminders to clients
       tags:
       - Review Invites
+      x-operation-id-source: normalized
+      x-operation-id-original: t_value
   /review-invites/qr-code:
     get:
-      operationId: t_value
+      operationId: getReviewInvitesQrCode
       parameters: []
       responses:
         '200':
@@ -179,9 +209,11 @@ paths:
       summary: Get QR code for review invites
       tags:
       - Review Invites
+      x-operation-id-source: normalized
+      x-operation-id-original: t_value
   /review-invites/formatted-text-template:
     put:
-      operationId: t_value
+      operationId: putReviewInvitesFormattedTextTemplate
       parameters: []
       responses:
         '200':
@@ -189,9 +221,11 @@ paths:
       summary: Format a text template with client data
       tags:
       - Review Invites
+      x-operation-id-source: normalized
+      x-operation-id-original: t_value
   /review-invites/email-ra-optin:
     post:
-      operationId: t_value
+      operationId: postReviewInvitesEmailRaOptin
       parameters: []
       responses:
         '201':
@@ -199,8 +233,10 @@ paths:
       summary: Store email review automation opt-in status
       tags:
       - Review Invites
+      x-operation-id-source: normalized
+      x-operation-id-original: t_value
     get:
-      operationId: t_value
+      operationId: getReviewInvitesEmailRaOptin
       parameters: []
       responses:
         '200':
@@ -208,9 +244,11 @@ paths:
       summary: Get email review automation opt-in status
       tags:
       - Review Invites
+      x-operation-id-source: normalized
+      x-operation-id-original: t_value
   /review-invites/review-link:
     get:
-      operationId: t_value
+      operationId: getReviewInvitesReviewLink
       parameters: []
       responses:
         '200':
@@ -218,6 +256,8 @@ paths:
       summary: Get the review link for a location
       tags:
       - Review Invites
+      x-operation-id-source: normalized
+      x-operation-id-original: t_value
 components:
   securitySchemes:
     access-token:

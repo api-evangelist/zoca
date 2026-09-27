@@ -33,7 +33,7 @@ paths:
   /tasks/api/v1/win-onboarding/create-chatbot-entity:
     post:
       description: Creates a chatbot entity record if it does not exist
-      operationId: t_value
+      operationId: postTasksApiV1WinOnboardingCreateChatbotEntity
       parameters: []
       requestBody:
         required: true
@@ -47,10 +47,12 @@ paths:
       summary: Create Chatbot Entity
       tags:
       - Win Onboarding
+      x-operation-id-source: normalized
+      x-operation-id-original: t_value
   /tasks/api/v1/win-onboarding/create-virtual-number:
     post:
       description: Creates a virtual phone number for the entity
-      operationId: t_value
+      operationId: postTasksApiV1WinOnboardingCreateVirtualNumber
       parameters: []
       requestBody:
         required: true
@@ -64,10 +66,12 @@ paths:
       summary: Create Virtual Number
       tags:
       - Win Onboarding
+      x-operation-id-source: normalized
+      x-operation-id-original: t_value
   /tasks/api/v1/win-onboarding/retry-virtual-number:
     post:
       description: Retries the virtual phone number purchase for an entity that previously failed
-      operationId: t_value
+      operationId: postTasksApiV1WinOnboardingRetryVirtualNumber
       parameters: []
       requestBody:
         required: true
@@ -93,10 +97,12 @@ paths:
       summary: Retry Virtual Number Purchase
       tags:
       - Win Onboarding
+      x-operation-id-source: normalized
+      x-operation-id-original: t_value
   /tasks/api/v1/win-onboarding/import-retell:
     post:
       description: Imports a phone number to Retell AI
-      operationId: t_value
+      operationId: postTasksApiV1WinOnboardingImportRetell
       parameters: []
       requestBody:
         required: true
@@ -110,10 +116,12 @@ paths:
       summary: Import to Retell
       tags:
       - Win Onboarding
+      x-operation-id-source: normalized
+      x-operation-id-original: t_value
   /tasks/api/v1/win-onboarding/provision-phone-number:
     post:
       description: Queues an entity phone-number provisioning job (Twilio purchase + Retell import + entities.phones persist + l2b.entities upsert + downstream onboarding side effects). Returns a jobId; poll /phone-provisioning/:jobId for completion + result.
-      operationId: t_value
+      operationId: postTasksApiV1WinOnboardingProvisionPhoneNumber
       parameters: []
       requestBody:
         required: true
@@ -127,9 +135,11 @@ paths:
       summary: Provision phone number (async)
       tags:
       - Win Onboarding
+      x-operation-id-source: normalized
+      x-operation-id-original: t_value
   /tasks/api/v1/win-onboarding/phone-provisioning/{jobId}:
     get:
-      operationId: t_value
+      operationId: getTasksApiV1WinOnboardingPhoneProvisioningByJobId
       parameters:
       - name: jobId
         required: true
@@ -142,10 +152,12 @@ paths:
       summary: Phone provisioning job status
       tags:
       - Win Onboarding
+      x-operation-id-source: normalized
+      x-operation-id-original: t_value
   /tasks/api/v1/win-onboarding/build-context:
     post:
       description: Scrapes website and builds business context for the entity
-      operationId: t_value
+      operationId: postTasksApiV1WinOnboardingBuildContext
       parameters: []
       requestBody:
         required: true
@@ -159,10 +171,12 @@ paths:
       summary: Build Context from Website
       tags:
       - Win Onboarding
+      x-operation-id-source: normalized
+      x-operation-id-original: t_value
   /tasks/api/v1/win-onboarding/status/{entityId}:
     get:
       description: Retrieves comprehensive status including business info, virtual number, and context data
-      operationId: t_value
+      operationId: getTasksApiV1WinOnboardingStatusByEntityId
       parameters:
       - name: entityId
         required: true
@@ -181,10 +195,12 @@ paths:
       summary: Get Win Onboarding Status
       tags:
       - Win Onboarding
+      x-operation-id-source: normalized
+      x-operation-id-original: t_value
   /tasks/api/v1/win-onboarding/context/{entityId}:
     get:
       description: Retrieves business context, address, and dynamic variables for an entity
-      operationId: t_value
+      operationId: getTasksApiV1WinOnboardingContextByEntityId
       parameters:
       - name: entityId
         required: true
@@ -201,10 +217,12 @@ paths:
       summary: Get context data for entity
       tags:
       - Win Onboarding
+      x-operation-id-source: normalized
+      x-operation-id-original: t_value
   /tasks/api/v1/win-onboarding/retell/incoming-call:
     post:
       description: Processes incoming call, fetches entity context, and returns dynamic variables to Retell
-      operationId: t_value
+      operationId: postTasksApiV1WinOnboardingRetellIncomingCall
       parameters: []
       requestBody:
         required: true
@@ -222,10 +240,12 @@ paths:
       summary: Handle incoming call webhook from Retell
       tags:
       - Win Onboarding
+      x-operation-id-source: normalized
+      x-operation-id-original: t_value
   /tasks/api/v1/win-onboarding/retell/call-events:
     post:
       description: Processes call_started, call_ended, and call_analyzed events for WIN onboarding calls
-      operationId: t_value
+      operationId: postTasksApiV1WinOnboardingRetellCallEvents
       parameters: []
       requestBody:
         required: true
@@ -243,10 +263,12 @@ paths:
       summary: Handle call events webhook from Retell
       tags:
       - Win Onboarding
+      x-operation-id-source: normalized
+      x-operation-id-original: t_value
   /tasks/api/v1/win-onboarding/client-history/{clientId}:
     get:
       description: Retrieves all call transcripts and history for a specific client
-      operationId: t_value
+      operationId: getTasksApiV1WinOnboardingClientHistoryByClientId
       parameters:
       - name: clientId
         required: true
@@ -265,10 +287,12 @@ paths:
       summary: Get client call history
       tags:
       - Win Onboarding
+      x-operation-id-source: normalized
+      x-operation-id-original: t_value
   /tasks/api/v1/win-onboarding/entity-call-history/{entityId}:
     get:
       description: Retrieves paginated call transcripts for an entity with client information and callbacks
-      operationId: t_value
+      operationId: getTasksApiV1WinOnboardingEntityCallHistoryByEntityId
       parameters:
       - name: callbackStatus
         required: false
@@ -308,10 +332,12 @@ paths:
       summary: Get entity call history
       tags:
       - Win Onboarding
+      x-operation-id-source: normalized
+      x-operation-id-original: t_value
   /tasks/api/v1/win-onboarding/call/{callId}:
     get:
       description: Retrieves a single call transcript by callId with client information and callback
-      operationId: t_value
+      operationId: getTasksApiV1WinOnboardingCallByCallId
       parameters:
       - name: callId
         required: true
@@ -330,10 +356,12 @@ paths:
       summary: Get call history by call ID
       tags:
       - Win Onboarding
+      x-operation-id-source: normalized
+      x-operation-id-original: t_value
   /tasks/api/v1/win-onboarding/call/{callId}/mark-test:
     patch:
       description: Marks a call record as a test call. Test calls are excluded from production call history queries.
-      operationId: t_value
+      operationId: patchTasksApiV1WinOnboardingCallByCallIdMarkTest
       parameters:
       - name: callId
         required: true
@@ -380,10 +408,12 @@ paths:
       summary: Mark call as test
       tags:
       - Win Onboarding
+      x-operation-id-source: normalized
+      x-operation-id-original: t_value
   /tasks/api/v1/win-onboarding/user/{userEntityId}/locations:
     get:
       description: Fetches user information and onboarding status for all locations associated with the user
-      operationId: t_value
+      operationId: getTasksApiV1WinOnboardingUserByUserEntityIdLocations
       parameters:
       - name: userEntityId
         required: true
@@ -400,10 +430,12 @@ paths:
       summary: Get user info and locations onboarding status
       tags:
       - Win Onboarding
+      x-operation-id-source: normalized
+      x-operation-id-original: t_value
   /tasks/api/v1/win-onboarding/voice-agents/{entityId}:
     get:
       description: Returns the 4 voices the merchant should see in the picker, with Retell agentIds resolved by (environment, platform, slot). `entityId` is the LOCATION entity id — the same one used by `/agent-context/:entityId`, `/status/:entityId`, etc. — because platform detection (Zoca scheduling / integrated_platforms / entities.links) is location-scoped, not user-scoped. Voice metadata (title, tone, sample audio, gradient) is shared across all platforms; only agentId varies. Platforms without a dedicated bucket fall through to externalDefault.
-      operationId: t_value
+      operationId: getTasksApiV1WinOnboardingVoiceAgentsByEntityId
       parameters:
       - name: entityId
         required: true
@@ -416,10 +448,12 @@ paths:
       summary: Get available voice agents (platform-aware) for a location
       tags:
       - Win Onboarding
+      x-operation-id-source: normalized
+      x-operation-id-original: t_value
   /tasks/api/v1/win-onboarding/area-codes/{areaCode}/alternates:
     get:
       description: Returns all area codes (including the input) that serve the same geographic region. Useful for phone number matching across overlapping area codes.
-      operationId: t_value
+      operationId: getTasksApiV1WinOnboardingAreaCodesByAreaCodeAlternates
       parameters:
       - name: areaCode
         required: true
@@ -449,10 +483,12 @@ paths:
       summary: Get alternate area codes
       tags:
       - Win Onboarding
+      x-operation-id-source: normalized
+      x-operation-id-original: t_value
   /tasks/api/v1/win-onboarding/agent-context/{entityId}:
     get:
       description: Retrieves the AI agent context from l2b.agent_context table including business info, services, policies, transfer number, and custom instructions
-      operationId: t_value
+      operationId: getTasksApiV1WinOnboardingAgentContextByEntityId
       parameters:
       - name: entityId
         required: true
@@ -471,9 +507,11 @@ paths:
       summary: Get agent context for entity
       tags:
       - Win Onboarding
+      x-operation-id-source: normalized
+      x-operation-id-original: t_value
     put:
       description: Updates or creates the AI agent context in l2b.agent_context table. All fields are optional - only provided fields will be updated. If no context exists, a new one will be created.
-      operationId: t_value
+      operationId: putTasksApiV1WinOnboardingAgentContextByEntityId
       parameters:
       - name: entityId
         required: true
@@ -507,10 +545,12 @@ paths:
       summary: Update agent context for entity
       tags:
       - Win Onboarding
+      x-operation-id-source: normalized
+      x-operation-id-original: t_value
   /tasks/api/v1/win-onboarding/agent-context:
     post:
       description: Creates a new AI agent context in l2b.agent_context table. If context already exists for the entity, it will be updated (upsert behavior).
-      operationId: t_value
+      operationId: postTasksApiV1WinOnboardingAgentContext
       parameters: []
       responses:
         '201':
@@ -537,10 +577,12 @@ paths:
       summary: Create agent context
       tags:
       - Win Onboarding
+      x-operation-id-source: normalized
+      x-operation-id-original: t_value
   /tasks/api/v1/win-onboarding/agent-context/migrate:
     post:
       description: Queues a background job to migrate agent context data from entities.agent_business_context to l2b.agent_context. Can migrate a single entity or batch migrate multiple entities.
-      operationId: t_value
+      operationId: postTasksApiV1WinOnboardingAgentContextMigrate
       parameters: []
       responses:
         '200':
@@ -554,10 +596,12 @@ paths:
       summary: Queue job to migrate agent context from legacy table to l2b
       tags:
       - Win Onboarding
+      x-operation-id-source: normalized
+      x-operation-id-original: t_value
   /tasks/api/v1/win-onboarding/callback/status:
     put:
       description: Updates the status of an existing callback by callId and clientId. Can also update title and metadata.
-      operationId: t_value
+      operationId: putTasksApiV1WinOnboardingCallbackStatus
       parameters: []
       requestBody:
         required: true
@@ -577,10 +621,12 @@ paths:
       summary: Update callback status
       tags:
       - Win Onboarding
+      x-operation-id-source: normalized
+      x-operation-id-original: t_value
   /tasks/api/v1/win-onboarding/callback/statuses:
     get:
       description: Returns all available callback status values
-      operationId: t_value
+      operationId: getTasksApiV1WinOnboardingCallbackStatuses
       parameters: []
       responses:
         '200':
@@ -592,10 +638,12 @@ paths:
       summary: Get available callback statuses
       tags:
       - Win Onboarding
+      x-operation-id-source: normalized
+      x-operation-id-original: t_value
   /tasks/api/v1/win-onboarding/callbacks/{entityId}:
     get:
       description: Retrieves paginated list of all callbacks for an entity with client information
-      operationId: t_value
+      operationId: getTasksApiV1WinOnboardingCallbacksByEntityId
       parameters:
       - name: status
         required: false
@@ -633,10 +681,12 @@ paths:
       summary: Get all callbacks for entity
       tags:
       - Win Onboarding
+      x-operation-id-source: normalized
+      x-operation-id-original: t_value
   /tasks/api/v1/win-onboarding/retell-call-sync:
     post:
       description: Fetches call details from Retell API and syncs transcript/analysis to the transcript_mapping table
-      operationId: t_value
+      operationId: postTasksApiV1WinOnboardingRetellCallSync
       parameters: []
       requestBody:
         required: true
@@ -656,10 +706,12 @@ paths:
       summary: Sync call data from Retell
       tags:
       - Win Onboarding
+      x-operation-id-source: normalized
+      x-operation-id-original: t_value
   /tasks/api/v1/win-onboarding/retell-call-sync/bulk:
     post:
       description: Queues retell-call-sync jobs for multiple call IDs to fetch and sync transcript/analysis data
-      operationId: t_value
+      operationId: postTasksApiV1WinOnboardingRetellCallSyncBulk
       parameters: []
       requestBody:
         required: true
@@ -679,10 +731,12 @@ paths:
       summary: Bulk sync call data from Retell
       tags:
       - Win Onboarding
+      x-operation-id-source: normalized
+      x-operation-id-original: t_value
   /tasks/api/v1/win-onboarding/quick-setup:
     post:
       description: Prepares agent context for WIN from existing entity data without requiring full onboarding. Pulls data from location info and legacy context to create agent context before webhook arrives.
-      operationId: t_value
+      operationId: postTasksApiV1WinOnboardingQuickSetup
       parameters: []
       requestBody:
         required: true
@@ -704,10 +758,12 @@ paths:
       summary: Quick setup - prepare agent context from existing data
       tags:
       - Win Onboarding
+      x-operation-id-source: normalized
+      x-operation-id-original: t_value
   /tasks/api/v1/win-onboarding/feedback:
     post:
       description: Creates a new feedback entry for the WIN feature
-      operationId: t_value
+      operationId: postTasksApiV1WinOnboardingFeedback
       parameters: []
       requestBody:
         required: true
@@ -727,10 +783,12 @@ paths:
       summary: Create WIN feedback
       tags:
       - Win Onboarding
+      x-operation-id-source: normalized
+      x-operation-id-original: t_value
   /tasks/api/v1/win-onboarding/feedback/{entityId}:
     get:
       description: Retrieves all feedback entries for a specific entity
-      operationId: t_value
+      operationId: getTasksApiV1WinOnboardingFeedbackByEntityId
       parameters:
       - name: isResolved
         required: false
@@ -752,10 +810,12 @@ paths:
       summary: Get WIN feedback for entity
       tags:
       - Win Onboarding
+      x-operation-id-source: normalized
+      x-operation-id-original: t_value
   /tasks/api/v1/win-onboarding/feedback/{id}:
     patch:
       description: Updates an existing feedback entry (e.g., mark as resolved)
-      operationId: t_value
+      operationId: patchTasksApiV1WinOnboardingFeedbackById
       parameters:
       - name: id
         required: true
@@ -780,10 +840,12 @@ paths:
       summary: Update WIN feedback
       tags:
       - Win Onboarding
+      x-operation-id-source: normalized
+      x-operation-id-original: t_value
   /tasks/api/v1/win-onboarding/status:
     put:
       description: Updates the onboarding status flags for an entity (accountCreated, chatbotEntityCreated, virtualNumberCreated, retellImported, contextBuilt, status)
-      operationId: t_value
+      operationId: putTasksApiV1WinOnboardingStatus
       parameters: []
       requestBody:
         required: true
@@ -803,10 +865,12 @@ paths:
       summary: Update WIN onboarding status
       tags:
       - Win Onboarding
+      x-operation-id-source: normalized
+      x-operation-id-original: t_value
   /tasks/api/v1/win-onboarding/reach-out-list:
     post:
       description: Creates a new reach-out list entry or updates existing in_progress entry. If an in_progress entry exists for the entity, updates its timestamp. Otherwise, creates a new entry with in_progress status.
-      operationId: t_value
+      operationId: postTasksApiV1WinOnboardingReachOutList
       parameters: []
       requestBody:
         required: true
@@ -826,10 +890,12 @@ paths:
       summary: Create or update reach-out list entry
       tags:
       - Win Onboarding
+      x-operation-id-source: normalized
+      x-operation-id-original: t_value
   /tasks/api/v1/win-onboarding/publish-virtual-number-to-gbp:
     post:
       description: Updates the GBP location primary phone number with the WIN virtual number. Requires the location to have a virtual number configured in agent context and a linked GBP location. The previous primary phone is preserved in the response.
-      operationId: t_value
+      operationId: postTasksApiV1WinOnboardingPublishVirtualNumberToGbp
       parameters: []
       requestBody:
         required: true
@@ -849,10 +915,12 @@ paths:
       summary: Publish virtual number to Google Business Profile
       tags:
       - Win Onboarding
+      x-operation-id-source: normalized
+      x-operation-id-original: t_value
   /tasks/api/v1/win-onboarding/publish-virtual-number-to-all:
     post:
       description: Updates both the GBP location primary phone and the website footer phone with the WIN virtual number. Requires the location to have a virtual number configured in agent context, a linked GBP location, and a website. Returns detailed results for each update.
-      operationId: t_value
+      operationId: postTasksApiV1WinOnboardingPublishVirtualNumberToAll
       parameters: []
       requestBody:
         required: true
@@ -872,10 +940,12 @@ paths:
       summary: Publish virtual number to GBP and Website
       tags:
       - Win Onboarding
+      x-operation-id-source: normalized
+      x-operation-id-original: t_value
   /tasks/api/v1/win-onboarding/preferences/{entityId}:
     get:
       description: Returns deposit, cancellation, card requirement, and booking window preferences.
-      operationId: t_value
+      operationId: getTasksApiV1WinOnboardingPreferencesByEntityId
       parameters:
       - name: entityId
         required: true
@@ -888,9 +958,11 @@ paths:
       summary: Get frontdesk booking preferences
       tags:
       - Win Onboarding
+      x-operation-id-source: normalized
+      x-operation-id-original: t_value
     put:
       description: Saves deposit, cancellation, card requirement, and booking window preferences.
-      operationId: t_value
+      operationId: putTasksApiV1WinOnboardingPreferencesByEntityId
       parameters:
       - name: entityId
         required: true
@@ -903,10 +975,12 @@ paths:
       summary: Update frontdesk booking preferences
       tags:
       - Win Onboarding
+      x-operation-id-source: normalized
+      x-operation-id-original: t_value
   /tasks/api/v1/win-onboarding/preferences/{entityId}/sync:
     post:
       description: Re-pulls preferences from the connected booking platform and updates the EAV store.
-      operationId: t_value
+      operationId: postTasksApiV1WinOnboardingPreferencesByEntityIdSync
       parameters:
       - name: entityId
         required: true
@@ -919,33 +993,10 @@ paths:
       summary: Sync frontdesk preferences from integrated platform
       tags:
       - Win Onboarding
+      x-operation-id-source: normalized
+      x-operation-id-original: t_value
 components:
   schemas:
-    e:
-      type: object
-      properties:
-        scan:
-          $ref: '#/components/schemas/e'
-        businessLat:
-          type:
-          - number
-          - 'null'
-        businessLng:
-          type:
-          - number
-          - 'null'
-        points:
-          type: array
-          items:
-            $ref: '#/components/schemas/e'
-        heroMetrics:
-          $ref: '#/components/schemas/e'
-      required:
-      - scan
-      - businessLat
-      - businessLng
-      - points
-      - heroMetrics
     t:
       type: object
       properties:
@@ -1001,6 +1052,31 @@ components:
       - status
       - createdAt
       - clientId
+    e:
+      type: object
+      properties:
+        scan:
+          $ref: '#/components/schemas/e'
+        businessLat:
+          type:
+          - number
+          - 'null'
+        businessLng:
+          type:
+          - number
+          - 'null'
+        points:
+          type: array
+          items:
+            $ref: '#/components/schemas/e'
+        heroMetrics:
+          $ref: '#/components/schemas/e'
+      required:
+      - scan
+      - businessLat
+      - businessLng
+      - points
+      - heroMetrics
   securitySchemes:
     access-token:
       scheme: bearer

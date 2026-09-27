@@ -35,7 +35,7 @@ paths:
       description: Production
   /chat/message:
     get:
-      operationId: t_value
+      operationId: getChatMessage
       parameters: []
       responses:
         '200':
@@ -51,8 +51,10 @@ paths:
       summary: Get message by ID or messages by conversation
       tags:
       - Chat
+      x-operation-id-source: normalized
+      x-operation-id-original: t_value
     post:
-      operationId: t_value
+      operationId: postChatMessage
       parameters: []
       responses:
         '201':
@@ -66,8 +68,10 @@ paths:
       summary: Create a new message in a conversation
       tags:
       - Chat
+      x-operation-id-source: normalized
+      x-operation-id-original: t_value
     put:
-      operationId: t_value
+      operationId: putChatMessage
       parameters: []
       responses:
         '200':
@@ -83,12 +87,14 @@ paths:
       summary: Update message text or soft delete
       tags:
       - Chat
+      x-operation-id-source: normalized
+      x-operation-id-original: t_value
     servers:
     - url: https://api.zoca.ai
       description: Production
   /chat/reaction:
     post:
-      operationId: t_value
+      operationId: postChatReaction
       parameters: []
       responses:
         '201':
@@ -104,8 +110,10 @@ paths:
       summary: Add reaction to a message
       tags:
       - Chat
+      x-operation-id-source: normalized
+      x-operation-id-original: t_value
     put:
-      operationId: t_value
+      operationId: putChatReaction
       parameters: []
       responses:
         '200':
@@ -123,12 +131,14 @@ paths:
       summary: Update or soft delete a reaction
       tags:
       - Chat
+      x-operation-id-source: normalized
+      x-operation-id-original: t_value
     servers:
     - url: https://api.zoca.ai
       description: Production
   /chat/message-receipt:
     post:
-      operationId: t_value
+      operationId: postChatMessageReceipt
       parameters: []
       responses:
         '200':
@@ -142,12 +152,14 @@ paths:
       summary: Mark messages as read in a conversation
       tags:
       - Chat
+      x-operation-id-source: normalized
+      x-operation-id-original: t_value
     servers:
     - url: https://api.zoca.ai
       description: Production
   /chat/password:
     put:
-      operationId: t_value
+      operationId: putChatPassword
       parameters:
       - name: password
         required: true
@@ -171,12 +183,14 @@ paths:
       summary: Validate member password and get auth tokens
       tags:
       - Chat
+      x-operation-id-source: normalized
+      x-operation-id-original: t_value
     servers:
     - url: https://api.zoca.ai
       description: Production
   /chat/conversation-properties:
     put:
-      operationId: t_value
+      operationId: putChatConversationProperties
       parameters: []
       responses:
         '200':
@@ -192,12 +206,14 @@ paths:
       summary: Update conversation properties (isRead, isPinned)
       tags:
       - Chat
+      x-operation-id-source: normalized
+      x-operation-id-original: t_value
     servers:
     - url: https://api.zoca.ai
       description: Production
   /chat/conversations/{conversationId}/members/{memberId}:
     put:
-      operationId: t_value
+      operationId: putChatConversationsByConversationIdMembersByMemberId
       parameters:
       - name: memberId
         required: true
@@ -225,8 +241,10 @@ paths:
       summary: Add member to conversation
       tags:
       - Chat
+      x-operation-id-source: normalized
+      x-operation-id-original: t_value
     delete:
-      operationId: t_value
+      operationId: deleteChatConversationsByConversationIdMembersByMemberId
       parameters:
       - name: memberId
         required: true
@@ -254,12 +272,14 @@ paths:
       summary: Remove member from conversation
       tags:
       - Chat
+      x-operation-id-source: normalized
+      x-operation-id-original: t_value
     servers:
     - url: https://api.zoca.ai
       description: Production
   /chat/members/bulk-add-conversations:
     post:
-      operationId: t_value
+      operationId: postChatMembersBulkAddConversations
       parameters: []
       responses:
         '200':
@@ -273,12 +293,14 @@ paths:
       summary: Add a member to multiple conversations
       tags:
       - Chat
+      x-operation-id-source: normalized
+      x-operation-id-original: t_value
     servers:
     - url: https://api.zoca.ai
       description: Production
   /chat/navigation-templates:
     get:
-      operationId: t_value
+      operationId: getChatNavigationTemplates
       parameters: []
       responses:
         '200':
@@ -297,12 +319,14 @@ paths:
       summary: Get navigation templates for chat interface
       tags:
       - Chat
+      x-operation-id-source: normalized
+      x-operation-id-original: t_value
     servers:
     - url: https://api.zoca.ai
       description: Production
   /chat/message-template:
     post:
-      operationId: t_value
+      operationId: postChatMessageTemplate
       parameters: []
       responses:
         '200':
@@ -321,12 +345,14 @@ paths:
       summary: Upsert message template
       tags:
       - Chat
+      x-operation-id-source: normalized
+      x-operation-id-original: t_value
     servers:
     - url: https://api.zoca.ai
       description: Production
   /chat/website-onboarding-request-status:
     get:
-      operationId: t_value
+      operationId: getChatWebsiteOnboardingRequestStatus
       parameters: []
       responses:
         '200':
@@ -353,12 +379,14 @@ paths:
       summary: Get website onboarding request status for entity
       tags:
       - Chat
+      x-operation-id-source: normalized
+      x-operation-id-original: t_value
     servers:
     - url: https://api.zoca.ai
       description: Production
   /tasks/api/v1/chat/schedule-message:
     post:
-      operationId: t_value
+      operationId: postTasksApiV1ChatScheduleMessage
       parameters: []
       requestBody:
         required: true
@@ -382,12 +410,14 @@ paths:
       - Chat
       security:
       - access-token: []
+      x-operation-id-source: normalized
+      x-operation-id-original: t_value
     servers:
     - url: https://tasks.zoca.ai
       description: Production
   /tasks/api/v1/chat/scheduled-messages:
     get:
-      operationId: t_value
+      operationId: getTasksApiV1ChatScheduledMessages
       parameters: []
       responses:
         '200':
@@ -405,13 +435,15 @@ paths:
       - Chat
       security:
       - access-token: []
+      x-operation-id-source: normalized
+      x-operation-id-original: t_value
     servers:
     - url: https://tasks.zoca.ai
       description: Production
   /tasks/api/v1/chat/process-scheduled-message:
     post:
       description: This endpoint is called by the worker to process scheduled messages. It will either send the message or abort it based on intervening messages.
-      operationId: t_value
+      operationId: postTasksApiV1ChatProcessScheduledMessage
       parameters: []
       requestBody:
         required: true
@@ -429,13 +461,15 @@ paths:
       - Chat
       security:
       - access-token: []
+      x-operation-id-source: normalized
+      x-operation-id-original: t_value
     servers:
     - url: https://tasks.zoca.ai
       description: Production
   /tasks/api/v1/chat/check-intervening-messages:
     post:
       description: Checks if there are any messages between the scheduled time and creation time
-      operationId: t_value
+      operationId: postTasksApiV1ChatCheckInterveningMessages
       parameters: []
       responses:
         '200':
@@ -454,13 +488,15 @@ paths:
       - Chat
       security:
       - access-token: []
+      x-operation-id-source: normalized
+      x-operation-id-original: t_value
     servers:
     - url: https://tasks.zoca.ai
       description: Production
   /tasks/api/v1/chat/cancel-scheduled-message:
     post:
       description: Cancels a scheduled message that has not been sent yet (status PENDING)
-      operationId: t_value
+      operationId: postTasksApiV1ChatCancelScheduledMessage
       parameters: []
       requestBody:
         required: true
@@ -491,12 +527,14 @@ paths:
       - Chat
       security:
       - access-token: []
+      x-operation-id-source: normalized
+      x-operation-id-original: t_value
     servers:
     - url: https://tasks.zoca.ai
       description: Production
   /tasks/api/v1/chat/message/bulk:
     post:
-      operationId: t_value
+      operationId: postTasksApiV1ChatMessageBulk
       parameters: []
       requestBody:
         required: true
@@ -571,36 +609,13 @@ paths:
       - Chat
       security:
       - access-token: []
+      x-operation-id-source: normalized
+      x-operation-id-original: t_value
     servers:
     - url: https://tasks.zoca.ai
       description: Production
 components:
   schemas:
-    e:
-      type: object
-      properties:
-        id:
-          type: number
-        entityId:
-          type: string
-        attribute:
-          type: string
-        value:
-          type:
-          - object
-          - 'null'
-        metadata:
-          type:
-          - object
-          - 'null'
-        createdAt:
-          type:
-          - object
-          - 'null'
-      required:
-      - id
-      - entityId
-      - attribute
     t:
       type: object
       properties:
@@ -660,6 +675,31 @@ components:
       - trialEnd
       - addonPricingId
       - unitPriceCents
+    e:
+      type: object
+      properties:
+        id:
+          type: number
+        entityId:
+          type: string
+        attribute:
+          type: string
+        value:
+          type:
+          - object
+          - 'null'
+        metadata:
+          type:
+          - object
+          - 'null'
+        createdAt:
+          type:
+          - object
+          - 'null'
+      required:
+      - id
+      - entityId
+      - attribute
     e_2:
       type: object
       properties:

@@ -36,7 +36,7 @@ paths:
       - Staff Invites
     get:
       description: Page-default 50, max 200 per page. Use `nextCursor` to walk further. `?status=` filters to a single state when set (`PENDING | ACCEPTED | CANCELLED | EXPIRED`).
-      operationId: t_value
+      operationId: getStaffInvites
       parameters: []
       responses:
         '200':
@@ -54,10 +54,12 @@ paths:
       summary: List invites at a business (cursor-paginated)
       tags:
       - Staff Invites
+      x-operation-id-source: normalized
+      x-operation-id-original: t_value
   /staff/invites/{token}:
     get:
       description: Read-only view used by the accept-invite page before the invitee has signed in. No JWT required — the token in the path is the bearer credential. Skips the staff-management killswitch so accept flows survive a write-side flip.
-      operationId: t_value
+      operationId: getStaffInvitesByToken
       parameters: []
       responses:
         '200':
@@ -71,9 +73,11 @@ paths:
       summary: Public lookup of an invite by token
       tags:
       - Staff Invites
+      x-operation-id-source: normalized
+      x-operation-id-original: t_value
   /staff/invites/{token}/email-match:
     get:
-      operationId: t_value
+      operationId: getStaffInvitesByTokenEmailMatch
       parameters: []
       responses:
         '200':
@@ -87,10 +91,12 @@ paths:
       summary: Precheck the acceptor's email against the invite (read-only)
       tags:
       - Staff Invites
+      x-operation-id-source: normalized
+      x-operation-id-original: t_value
   /staff/invites/{token}/accept:
     post:
       description: 'Materializes the role assignment, permission overrides, and staff_assignments rows per spec §12.5. Idempotent — re-accepting the same invite as the same user returns the existing record with `kind: "already-accepted"`.'
-      operationId: t_value
+      operationId: postStaffInvitesByTokenAccept
       parameters: []
       responses:
         '200':
@@ -112,10 +118,12 @@ paths:
       summary: Accept an invite — authenticated as the invitee
       tags:
       - Staff Invites
+      x-operation-id-source: normalized
+      x-operation-id-original: t_value
   /staff/invites/{inviteId}:
     patch:
       description: Owner-only. Re-assigns the role (and optionally the locations / permission overrides) a PENDING invite will materialize on accept. Rejects non-PENDING invites with 409 and unknown roles with 404.
-      operationId: t_value
+      operationId: patchStaffInvitesByInviteId
       parameters: []
       responses:
         '200':
@@ -137,8 +145,10 @@ paths:
       summary: Update the role on a pending invite (applied when the invitee accepts)
       tags:
       - Staff Invites
+      x-operation-id-source: normalized
+      x-operation-id-original: t_value
     delete:
-      operationId: t_value
+      operationId: deleteStaffInvitesByInviteId
       parameters: []
       responses:
         '204':
@@ -158,6 +168,8 @@ paths:
       summary: Revoke a pending invite (idempotent flip to CANCELLED)
       tags:
       - Staff Invites
+      x-operation-id-source: normalized
+      x-operation-id-original: t_value
 components:
   securitySchemes:
     access-token:

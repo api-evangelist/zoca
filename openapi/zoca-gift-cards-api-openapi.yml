@@ -25,7 +25,7 @@ paths:
       - Gift Cards
   /gift-cards/issue:
     post:
-      operationId: t_value
+      operationId: postGiftCardsIssue
       parameters: []
       responses:
         '201':
@@ -35,9 +35,11 @@ paths:
       summary: Issue a CASH gift card (admin); card sales go through checkout
       tags:
       - Gift Cards
+      x-operation-id-source: normalized
+      x-operation-id-original: t_value
   /gift-cards/issue/initiate:
     post:
-      operationId: t_value
+      operationId: postGiftCardsIssueInitiate
       parameters: []
       responses:
         '201':
@@ -47,9 +49,11 @@ paths:
       summary: Initiate a pending gift-card issuance (paid via checkout)
       tags:
       - Gift Cards
+      x-operation-id-source: normalized
+      x-operation-id-original: t_value
   /gift-cards/pending-issuances:
     get:
-      operationId: t_value
+      operationId: getGiftCardsPendingIssuances
       parameters: []
       responses:
         '200':
@@ -59,9 +63,11 @@ paths:
       summary: List pending gift-card issuances (awaiting checkout)
       tags:
       - Gift Cards
+      x-operation-id-source: normalized
+      x-operation-id-original: t_value
   /gift-cards/redeemable:
     get:
-      operationId: t_value
+      operationId: getGiftCardsRedeemable
       parameters: []
       responses:
         '200':
@@ -71,9 +77,11 @@ paths:
       summary: List a client's redeemable gift cards (POS pay-with picker)
       tags:
       - Gift Cards
+      x-operation-id-source: normalized
+      x-operation-id-original: t_value
   /gift-cards/validate:
     post:
-      operationId: t_value
+      operationId: postGiftCardsValidate
       parameters: []
       responses:
         '200':
@@ -87,9 +95,11 @@ paths:
       summary: Validate a gift card code (POS preview)
       tags:
       - Gift Cards
+      x-operation-id-source: normalized
+      x-operation-id-original: t_value
   /gift-cards/{id}:
     get:
-      operationId: t_value
+      operationId: getGiftCardsById
       parameters: []
       responses:
         '200':
@@ -99,9 +109,11 @@ paths:
       summary: Get gift card detail
       tags:
       - Gift Cards
+      x-operation-id-source: normalized
+      x-operation-id-original: t_value
   /gift-cards/{id}/transactions:
     get:
-      operationId: t_value
+      operationId: getGiftCardsByIdTransactions
       parameters: []
       responses:
         '200':
@@ -111,9 +123,11 @@ paths:
       summary: List ledger transactions for a gift card
       tags:
       - Gift Cards
+      x-operation-id-source: normalized
+      x-operation-id-original: t_value
   /gift-cards/{id}/adjust-balance:
     post:
-      operationId: t_value
+      operationId: postGiftCardsByIdAdjustBalance
       parameters: []
       responses:
         '200':
@@ -123,9 +137,11 @@ paths:
       summary: Adjust gift card balance (Owner only — audit logged)
       tags:
       - Gift Cards
+      x-operation-id-source: normalized
+      x-operation-id-original: t_value
   /gift-cards/{id}/cancel:
     post:
-      operationId: t_value
+      operationId: postGiftCardsByIdCancel
       parameters: []
       responses:
         '200':
@@ -135,6 +151,8 @@ paths:
       summary: Cancel an unredeemed gift card (Owner only)
       tags:
       - Gift Cards
+      x-operation-id-source: normalized
+      x-operation-id-original: t_value
 components:
   schemas:
     e:

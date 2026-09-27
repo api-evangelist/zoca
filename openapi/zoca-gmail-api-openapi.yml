@@ -25,7 +25,7 @@ paths:
       - Gmail
   /tasks/api/v1/gmail/watch/initialize:
     post:
-      operationId: t_value
+      operationId: postTasksApiV1GmailWatchInitialize
       parameters: []
       responses:
         '201':
@@ -33,9 +33,11 @@ paths:
       summary: Initialize Gmail watch subscription
       tags:
       - Gmail
+      x-operation-id-source: normalized
+      x-operation-id-original: t_value
   /tasks/api/v1/gmail/workspace/watch/initialize:
     post:
-      operationId: t_value
+      operationId: postTasksApiV1GmailWorkspaceWatchInitialize
       parameters: []
       responses:
         '201':
@@ -43,9 +45,11 @@ paths:
       summary: Initialize Gmail workspace watch subscription via domain-wide delegation
       tags:
       - Gmail
+      x-operation-id-source: normalized
+      x-operation-id-original: t_value
   /tasks/api/v1/gmail/workspace/backfill:
     post:
-      operationId: t_value
+      operationId: postTasksApiV1GmailWorkspaceBackfill
       parameters: []
       responses:
         '201':
@@ -53,6 +57,8 @@ paths:
       summary: Backfill all Gmail emails for a workspace entity into gmail.emails
       tags:
       - Gmail
+      x-operation-id-source: normalized
+      x-operation-id-original: t_value
 components:
   securitySchemes:
     access-token:

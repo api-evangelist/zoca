@@ -36,7 +36,7 @@ paths:
   /tasks/api/v1/salesforce/onboarding:
     post:
       description: Processes incoming Salesforce onboarding data and queues it for handling
-      operationId: t_value
+      operationId: postTasksApiV1SalesforceOnboarding
       parameters: []
       requestBody:
         required: true
@@ -53,10 +53,12 @@ paths:
       summary: Process Salesforce onboarding
       tags:
       - Salesforce
+      x-operation-id-source: normalized
+      x-operation-id-original: t_value
   /tasks/api/v1/salesforce/cleanup:
     delete:
       description: Deletes data from both Salesforce and local database. Can cleanup all data or specific entity.
-      operationId: t_value
+      operationId: deleteTasksApiV1SalesforceCleanup
       parameters:
       - name: dryRun
         required: false
@@ -103,10 +105,12 @@ paths:
       summary: Cleanup Salesforce data
       tags:
       - Salesforce
+      x-operation-id-source: normalized
+      x-operation-id-original: t_value
   /tasks/api/v1/salesforce/sync:
     post:
       description: Syncs all businesses with Salesforce. Can sync all or specific entity.
-      operationId: t_value
+      operationId: postTasksApiV1SalesforceSync
       parameters:
       - name: dryRun
         required: false
@@ -146,10 +150,12 @@ paths:
       summary: Sync businesses with Salesforce
       tags:
       - Salesforce
+      x-operation-id-source: normalized
+      x-operation-id-original: t_value
   /tasks/api/v1/salesforce/gbp-metrics/sync:
     post:
       description: Syncs all GBP metrics to Salesforce Performance Data
-      operationId: t_value
+      operationId: postTasksApiV1SalesforceGbpMetricsSync
       parameters: []
       responses:
         '200':
@@ -168,6 +174,8 @@ paths:
       summary: Sync GBP metrics to Salesforce
       tags:
       - Salesforce
+      x-operation-id-source: normalized
+      x-operation-id-original: t_value
 components:
   schemas:
     Object:

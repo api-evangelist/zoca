@@ -31,7 +31,7 @@ paths:
       description: Production
   /links/r/{alias}:
     get:
-      operationId: t_value
+      operationId: getLinksRByAlias
       parameters: []
       responses:
         '200':
@@ -39,12 +39,14 @@ paths:
       summary: Redirect to original URL by alias
       tags:
       - Links
+      x-operation-id-source: normalized
+      x-operation-id-original: t_value
     servers:
     - url: https://api.zoca.ai
       description: Production
   /links/health:
     get:
-      operationId: t_value
+      operationId: getLinksHealth
       parameters: []
       responses:
         '200':
@@ -52,12 +54,14 @@ paths:
       summary: Health check
       tags:
       - Links
+      x-operation-id-source: normalized
+      x-operation-id-original: t_value
     servers:
     - url: https://public.zoca.com
       description: Production
   /links/invalidate/{alias}:
     delete:
-      operationId: t_value
+      operationId: deleteLinksInvalidateByAlias
       parameters: []
       responses:
         '200':
@@ -65,12 +69,14 @@ paths:
       summary: Invalidate link cache by alias
       tags:
       - Links
+      x-operation-id-source: normalized
+      x-operation-id-original: t_value
     servers:
     - url: https://public.zoca.com
       description: Production
   /links/get-app:
     get:
-      operationId: t_value
+      operationId: getLinksGetApp
       parameters: []
       responses:
         '200':
@@ -78,13 +84,15 @@ paths:
       summary: Serve app redirect page
       tags:
       - Links
+      x-operation-id-source: normalized
+      x-operation-id-original: t_value
     servers:
     - url: https://public.zoca.com
       description: Production
   /tasks/api/v1/links/csv/process:
     post:
       description: Validates CSV file has required columns (url and attributes.linkType), creates links, and uploads processed CSV to S3
-      operationId: t_value
+      operationId: postTasksApiV1LinksCsvProcess
       parameters: []
       requestBody:
         required: true
@@ -111,6 +119,8 @@ paths:
       - Links
       security:
       - access-token: []
+      x-operation-id-source: normalized
+      x-operation-id-original: t_value
     servers:
     - url: https://tasks.zoca.ai
       description: Production

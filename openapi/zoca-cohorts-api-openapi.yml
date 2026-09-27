@@ -22,7 +22,7 @@ paths:
       tags:
       - Cohorts
     get:
-      operationId: t_value
+      operationId: getCohorts
       parameters:
       - name: cohortKind
         required: false
@@ -56,9 +56,11 @@ paths:
       summary: Get all cohorts
       tags:
       - Cohorts
+      x-operation-id-source: normalized
+      x-operation-id-original: t_value
   /cohorts/{cohortId}:
     get:
-      operationId: t_value
+      operationId: getCohortsByCohortId
       parameters: []
       responses:
         '200':
@@ -66,8 +68,10 @@ paths:
       summary: Get cohort by ID
       tags:
       - Cohorts
+      x-operation-id-source: normalized
+      x-operation-id-original: t_value
     put:
-      operationId: t_value
+      operationId: putCohortsByCohortId
       parameters: []
       responses:
         '200':
@@ -75,8 +79,10 @@ paths:
       summary: Update a cohort
       tags:
       - Cohorts
+      x-operation-id-source: normalized
+      x-operation-id-original: t_value
     delete:
-      operationId: t_value
+      operationId: deleteCohortsByCohortId
       parameters: []
       responses:
         '200':
@@ -84,9 +90,11 @@ paths:
       summary: Delete a cohort (soft delete)
       tags:
       - Cohorts
+      x-operation-id-source: normalized
+      x-operation-id-original: t_value
   /cohorts/{cohortId}/stats:
     get:
-      operationId: t_value
+      operationId: getCohortsByCohortIdStats
       parameters: []
       responses:
         '200':
@@ -94,9 +102,11 @@ paths:
       summary: Get cohort with statistics
       tags:
       - Cohorts
+      x-operation-id-source: normalized
+      x-operation-id-original: t_value
   /cohorts/entities:
     post:
-      operationId: t_value
+      operationId: postCohortsEntities
       parameters: []
       responses:
         '201':
@@ -104,9 +114,11 @@ paths:
       summary: Add entity to cohort
       tags:
       - Cohorts
+      x-operation-id-source: normalized
+      x-operation-id-original: t_value
   /cohorts/{cohortId}/entities/{entityId}:
     delete:
-      operationId: t_value
+      operationId: deleteCohortsByCohortIdEntitiesByEntityId
       parameters: []
       responses:
         '200':
@@ -114,9 +126,11 @@ paths:
       summary: Remove entity from cohort
       tags:
       - Cohorts
+      x-operation-id-source: normalized
+      x-operation-id-original: t_value
   /cohorts/{cohortId}/entities:
     get:
-      operationId: t_value
+      operationId: getCohortsByCohortIdEntities
       parameters:
       - name: includeLocationName
         required: false
@@ -135,9 +149,11 @@ paths:
       summary: Get entities in a cohort
       tags:
       - Cohorts
+      x-operation-id-source: normalized
+      x-operation-id-original: t_value
   /cohorts/entities/{entityId}/cohorts:
     get:
-      operationId: t_value
+      operationId: getCohortsEntitiesByEntityIdCohorts
       parameters:
       - name: isActive
         required: false
@@ -150,9 +166,11 @@ paths:
       summary: Get cohorts for an entity
       tags:
       - Cohorts
+      x-operation-id-source: normalized
+      x-operation-id-original: t_value
   /cohorts/clients/{clientId}/cohorts:
     get:
-      operationId: t_value
+      operationId: getCohortsClientsByClientIdCohorts
       parameters: []
       responses:
         '200':
@@ -160,9 +178,11 @@ paths:
       summary: List cohorts a client belongs to
       tags:
       - Cohorts
+      x-operation-id-source: normalized
+      x-operation-id-original: t_value
   /cohorts/{cohortId}/clients:
     get:
-      operationId: t_value
+      operationId: getCohortsByCohortIdClients
       parameters: []
       responses:
         '200':
@@ -170,8 +190,10 @@ paths:
       summary: List clients in a cohort
       tags:
       - Cohorts
+      x-operation-id-source: normalized
+      x-operation-id-original: t_value
     post:
-      operationId: t_value
+      operationId: postCohortsByCohortIdClients
       parameters: []
       responses:
         '201':
@@ -179,9 +201,11 @@ paths:
       summary: Add clients to a cohort
       tags:
       - Cohorts
+      x-operation-id-source: normalized
+      x-operation-id-original: t_value
   /cohorts/{cohortId}/clients/{clientId}:
     delete:
-      operationId: t_value
+      operationId: deleteCohortsByCohortIdClientsByClientId
       parameters: []
       responses:
         '200':
@@ -189,9 +213,11 @@ paths:
       summary: Remove a client from a cohort (soft delete)
       tags:
       - Cohorts
+      x-operation-id-source: normalized
+      x-operation-id-original: t_value
   /cohorts/entities/bulk-add:
     post:
-      operationId: t_value
+      operationId: postCohortsEntitiesBulkAdd
       parameters: []
       responses:
         '201':
@@ -199,9 +225,11 @@ paths:
       summary: Bulk add entities to cohort
       tags:
       - Cohorts
+      x-operation-id-source: normalized
+      x-operation-id-original: t_value
   /cohorts/entities/bulk-remove:
     post:
-      operationId: t_value
+      operationId: postCohortsEntitiesBulkRemove
       parameters: []
       responses:
         '200':
@@ -209,6 +237,8 @@ paths:
       summary: Bulk remove entities from cohort
       tags:
       - Cohorts
+      x-operation-id-source: normalized
+      x-operation-id-original: t_value
 components:
   securitySchemes:
     access-token:

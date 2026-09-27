@@ -23,7 +23,7 @@ paths:
       - Comms Inbox
   /comms-inbox/multilocation/{businessEntityId}/location/{entityId}/client/{clientId}:
     get:
-      operationId: t_value
+      operationId: getCommsInboxMultilocationByBusinessEntityIdLocationByEntityIdClientByClientId
       parameters: []
       responses:
         '200':
@@ -31,9 +31,11 @@ paths:
       summary: Get a managed location conversation timeline
       tags:
       - Comms Inbox
+      x-operation-id-source: normalized
+      x-operation-id-original: t_value
   /comms-inbox/multilocation/{businessEntityId}/location/{entityId}/client/{clientId}/close:
     post:
-      operationId: t_value
+      operationId: postCommsInboxMultilocationByBusinessEntityIdLocationByEntityIdClientByClientIdClose
       parameters: []
       responses:
         '201':
@@ -41,9 +43,11 @@ paths:
       summary: Close a conversation at a managed business location
       tags:
       - Comms Inbox
+      x-operation-id-source: normalized
+      x-operation-id-original: t_value
   /comms-inbox/ops/entities:
     get:
-      operationId: t_value
+      operationId: getCommsInboxOpsEntities
       parameters:
       - name: search
         required: false
@@ -66,9 +70,11 @@ paths:
       summary: Search active FrontDesk locations for operations
       tags:
       - Comms Inbox
+      x-operation-id-source: normalized
+      x-operation-id-original: t_value
   /comms-inbox/ops:
     get:
-      operationId: t_value
+      operationId: getCommsInboxOps
       parameters:
       - name: entityId
         required: false
@@ -91,9 +97,11 @@ paths:
       summary: List conversations across active FrontDesk entities
       tags:
       - Comms Inbox
+      x-operation-id-source: normalized
+      x-operation-id-original: t_value
   /comms-inbox/entity/{entityId}:
     get:
-      operationId: t_value
+      operationId: getCommsInboxEntityByEntityId
       parameters:
       - name: timeFilter
         required: false
@@ -147,9 +155,11 @@ paths:
       summary: List inbox conversations for an entity
       tags:
       - Comms Inbox
+      x-operation-id-source: normalized
+      x-operation-id-original: t_value
   /comms-inbox/entity/{entityId}/client/{clientId}:
     get:
-      operationId: t_value
+      operationId: getCommsInboxEntityByEntityIdClientByClientId
       parameters: []
       responses:
         '200':
@@ -157,9 +167,11 @@ paths:
       summary: Get the SMS + call timeline for one client
       tags:
       - Comms Inbox
+      x-operation-id-source: normalized
+      x-operation-id-original: t_value
   /comms-inbox/entity/{entityId}/unread-count:
     get:
-      operationId: t_value
+      operationId: getCommsInboxEntityByEntityIdUnreadCount
       parameters: []
       responses:
         '200':
@@ -167,9 +179,11 @@ paths:
       summary: Get the durable unread Inbox SMS count for an entity
       tags:
       - Comms Inbox
+      x-operation-id-source: normalized
+      x-operation-id-original: t_value
   /comms-inbox/entity/{entityId}/client/{clientId}/read:
     post:
-      operationId: t_value
+      operationId: postCommsInboxEntityByEntityIdClientByClientIdRead
       parameters: []
       responses:
         '201':
@@ -177,9 +191,11 @@ paths:
       summary: Mark an Inbox conversation read through a rendered inbound message
       tags:
       - Comms Inbox
+      x-operation-id-source: normalized
+      x-operation-id-original: t_value
   /comms-inbox/entity/{entityId}/client/{clientId}/close:
     post:
-      operationId: t_value
+      operationId: postCommsInboxEntityByEntityIdClientByClientIdClose
       parameters: []
       responses:
         '201':
@@ -187,6 +203,8 @@ paths:
       summary: Manually close a conversation with a staff-set disposition
       tags:
       - Comms Inbox
+      x-operation-id-source: normalized
+      x-operation-id-original: t_value
 components:
   securitySchemes:
     access-token:

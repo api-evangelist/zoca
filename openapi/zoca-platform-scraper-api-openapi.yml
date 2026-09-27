@@ -27,7 +27,7 @@ paths:
       - Platform Scraper
   /tasks/api/v1/platform-scraper/scrape-theme:
     post:
-      operationId: t_value
+      operationId: postTasksApiV1PlatformScraperScrapeTheme
       parameters: []
       responses:
         '200':
@@ -37,10 +37,12 @@ paths:
       summary: Scrape website theme colors, fonts, and diagnostics
       tags:
       - Platform Scraper
+      x-operation-id-source: normalized
+      x-operation-id-original: t_value
   /tasks/api/v1/platform-scraper/fuzzy-match:
     post:
       description: Takes provider and service names, fetches actual data from GlossGenius, applies fuzzy matching, and returns exact same structure with corrected names.
-      operationId: t_value
+      operationId: postTasksApiV1PlatformScraperFuzzyMatch
       parameters: []
       responses:
         '200':
@@ -65,10 +67,12 @@ paths:
       summary: Fuzzy match provider and service names for GlossGenius
       tags:
       - Platform Scraper
+      x-operation-id-source: normalized
+      x-operation-id-original: t_value
   /tasks/api/v1/platform-scraper/test-suite:
     post:
       description: Fetches services from database and invokes Lambda function asynchronously (fire-and-forget)
-      operationId: t_value
+      operationId: postTasksApiV1PlatformScraperTestSuite
       parameters: []
       responses:
         '200':
@@ -89,10 +93,12 @@ paths:
       summary: Run scraper test suite via Lambda (async)
       tags:
       - Platform Scraper
+      x-operation-id-source: normalized
+      x-operation-id-original: t_value
   /tasks/api/v1/platform-scraper/callback:
     post:
       description: Endpoint for Lambda to callback with test suite results. Updates the database with results.
-      operationId: t_value
+      operationId: postTasksApiV1PlatformScraperCallback
       parameters: []
       responses:
         '200':
@@ -111,10 +117,12 @@ paths:
       summary: Receive callback from scraper test suite Lambda
       tags:
       - Platform Scraper
+      x-operation-id-source: normalized
+      x-operation-id-original: t_value
   /tasks/api/v1/platform-scraper/services-comparison:
     post:
       description: Compares services from a Zoca site against a booking platform to identify missing, incorrect, or mismatched services. Returns detailed comparison with confidence scores.
-      operationId: t_value
+      operationId: postTasksApiV1PlatformScraperServicesComparison
       parameters: []
       responses:
         '200':
@@ -199,6 +207,8 @@ paths:
       summary: Compare Zoca services against booking platform services
       tags:
       - Platform Scraper
+      x-operation-id-source: normalized
+      x-operation-id-original: t_value
 components:
   securitySchemes:
     access-token:

@@ -49,7 +49,7 @@ paths:
   /hubspot/offboarding-meeting-url/{entityId}:
     get:
       description: Builds a pre-filled HubSpot offboarding meeting URL for the given location entity. Pre-fills contact details when available.
-      operationId: t_value
+      operationId: getHubspotOffboardingMeetingUrlByEntityId
       parameters:
       - name: agentEntityId
         required: false
@@ -83,13 +83,15 @@ paths:
       summary: Get Offboarding Meeting URL for Location
       tags:
       - Hubspot
+      x-operation-id-source: normalized
+      x-operation-id-original: t_value
     servers:
     - url: https://api.zoca.ai
       description: Production
   /hubspot/upcoming-meetings/{entityId}:
     get:
       description: Fetches upcoming HubSpot meetings for the given location entity via its associated contact and deal. Returns meeting details including reschedule and cancel URLs extracted from the meeting body.
-      operationId: t_value
+      operationId: getHubspotUpcomingMeetingsByEntityId
       parameters:
       - name: limit
         required: false
@@ -141,13 +143,15 @@ paths:
       summary: Get Upcoming Meetings for Location
       tags:
       - Hubspot
+      x-operation-id-source: normalized
+      x-operation-id-original: t_value
     servers:
     - url: https://api.zoca.ai
       description: Production
   /tasks/api/v1/hubspot/process-onboarding:
     post:
       description: Triggers the HubSpot onboarding pipeline to create/update Contact, Company, Location, and Deal in HubSpot CRM
-      operationId: t_value
+      operationId: postTasksApiV1HubspotProcessOnboarding
       parameters: []
       requestBody:
         required: true
@@ -164,13 +168,15 @@ paths:
       - Hubspot
       security:
       - access-token: []
+      x-operation-id-source: normalized
+      x-operation-id-original: t_value
     servers:
     - url: https://tasks.zoca.ai
       description: Production
   /tasks/api/v1/hubspot/sync-hubspot-data:
     post:
       description: Syncs data to HubSpot
-      operationId: t_value
+      operationId: postTasksApiV1HubspotSyncHubspotData
       parameters: []
       requestBody:
         required: true
@@ -191,12 +197,14 @@ paths:
       - Hubspot
       security:
       - access-token: []
+      x-operation-id-source: normalized
+      x-operation-id-original: t_value
     servers:
     - url: https://tasks.zoca.ai
       description: Production
   /tasks/api/v1/hubspot/webhook:
     post:
-      operationId: t_value
+      operationId: postTasksApiV1HubspotWebhook
       parameters: []
       responses:
         '200':
@@ -207,12 +215,14 @@ paths:
       - access-token: []
       summary: T value
       x-summary-source: derived
+      x-operation-id-source: normalized
+      x-operation-id-original: t_value
     servers:
     - url: https://tasks.zoca.ai
       description: Production
   /tasks/api/v1/hubspot/webhook/{jobId}/status:
     get:
-      operationId: t_value
+      operationId: getTasksApiV1HubspotWebhookByJobIdStatus
       parameters: []
       responses:
         '200':
@@ -223,13 +233,15 @@ paths:
       - access-token: []
       summary: T value
       x-summary-source: derived
+      x-operation-id-source: normalized
+      x-operation-id-original: t_value
     servers:
     - url: https://tasks.zoca.ai
       description: Production
   /tasks/api/v1/hubspot/webhook/ticket-chat:
     post:
       description: Receives and processes ticket chat messages from HubSpot conversations
-      operationId: t_value
+      operationId: postTasksApiV1HubspotWebhookTicketChat
       parameters: []
       responses:
         '200':
@@ -239,13 +251,15 @@ paths:
       - Hubspot
       security:
       - access-token: []
+      x-operation-id-source: normalized
+      x-operation-id-original: t_value
     servers:
     - url: https://tasks.zoca.ai
       description: Production
   /tasks/api/v1/hubspot/ticket/created:
     post:
       description: Receives request creation events and creates HubSpot tickets asynchronously
-      operationId: t_value
+      operationId: postTasksApiV1HubspotTicketCreated
       parameters: []
       responses:
         '200':
@@ -255,13 +269,15 @@ paths:
       - Hubspot
       security:
       - access-token: []
+      x-operation-id-source: normalized
+      x-operation-id-original: t_value
     servers:
     - url: https://tasks.zoca.ai
       description: Production
   /tasks/api/v1/hubspot/ticket/send-message:
     post:
       description: Receives message from chat service and forwards it to HubSpot ticket chat
-      operationId: t_value
+      operationId: postTasksApiV1HubspotTicketSendMessage
       parameters: []
       requestBody:
         required: true
@@ -278,13 +294,15 @@ paths:
       - Hubspot
       security:
       - access-token: []
+      x-operation-id-source: normalized
+      x-operation-id-original: t_value
     servers:
     - url: https://tasks.zoca.ai
       description: Production
   /tasks/api/v1/hubspot/webhook/ticket-update:
     post:
       description: Receives and processes ticket updates from HubSpot (status changes, property updates, etc.)
-      operationId: t_value
+      operationId: postTasksApiV1HubspotWebhookTicketUpdate
       parameters: []
       responses:
         '200':
@@ -294,13 +312,15 @@ paths:
       - Hubspot
       security:
       - access-token: []
+      x-operation-id-source: normalized
+      x-operation-id-original: t_value
     servers:
     - url: https://tasks.zoca.ai
       description: Production
   /tasks/api/v1/hubspot/request/completed:
     post:
       description: Receives request completion notification, fetches the associated HubSpot ticket, and updates its pipeline stage to "Done"
-      operationId: t_value
+      operationId: postTasksApiV1HubspotRequestCompleted
       parameters: []
       responses:
         '200':
@@ -310,13 +330,15 @@ paths:
       - Hubspot
       security:
       - access-token: []
+      x-operation-id-source: normalized
+      x-operation-id-original: t_value
     servers:
     - url: https://tasks.zoca.ai
       description: Production
   /tasks/api/v1/hubspot/sync-demo-call-stages:
     post:
       description: Queues a job to sync Demo Call custom object fields (is_onboarded, trial_started, is_paid) based on associated deal stages
-      operationId: t_value
+      operationId: postTasksApiV1HubspotSyncDemoCallStages
       parameters: []
       requestBody:
         required: false
@@ -337,13 +359,15 @@ paths:
       - Hubspot
       security:
       - access-token: []
+      x-operation-id-source: normalized
+      x-operation-id-original: t_value
     servers:
     - url: https://tasks.zoca.ai
       description: Production
   /tasks/api/v1/hubspot/sync-location-to-demo-call:
     post:
       description: Queues a job to sync entity_id, trial_started, is_paid from Location to associated Demo Calls
-      operationId: t_value
+      operationId: postTasksApiV1HubspotSyncLocationToDemoCall
       parameters: []
       responses:
         '200':
@@ -353,13 +377,15 @@ paths:
       - Hubspot
       security:
       - access-token: []
+      x-operation-id-source: normalized
+      x-operation-id-original: t_value
     servers:
     - url: https://tasks.zoca.ai
       description: Production
   /tasks/api/v1/hubspot/sync-checkin-meeting-urls:
     post:
       description: Queues a job to sync check-in meeting URLs from employee Calendly links to HubSpot Location custom objects based on deal associations
-      operationId: t_value
+      operationId: postTasksApiV1HubspotSyncCheckinMeetingUrls
       parameters: []
       responses:
         '200':
@@ -369,13 +395,15 @@ paths:
       - Hubspot
       security:
       - access-token: []
+      x-operation-id-source: normalized
+      x-operation-id-original: t_value
     servers:
     - url: https://tasks.zoca.ai
       description: Production
   /tasks/api/v1/hubspot/events/send:
     post:
       description: 'Sends a behavioral event to HubSpot for tracking user interactions. Must provide at least one identifier: email, objectId, or utk.'
-      operationId: t_value
+      operationId: postTasksApiV1HubspotEventsSend
       parameters: []
       requestBody:
         required: true
@@ -412,13 +440,15 @@ paths:
       - Hubspot
       security:
       - access-token: []
+      x-operation-id-source: normalized
+      x-operation-id-original: t_value
     servers:
     - url: https://tasks.zoca.ai
       description: Production
   /tasks/api/v1/hubspot/update-deal-trial-started:
     post:
       description: Endpoint to update HubSpot deal stage to TRIAL_STARTED only if pipeline is Sales and current stage is ONBOARDED
-      operationId: t_value
+      operationId: postTasksApiV1HubspotUpdateDealTrialStarted
       parameters: []
       responses:
         '200':
@@ -428,13 +458,15 @@ paths:
       - Hubspot
       security:
       - access-token: []
+      x-operation-id-source: normalized
+      x-operation-id-original: t_value
     servers:
     - url: https://tasks.zoca.ai
       description: Production
   /tasks/api/v1/hubspot/sales/lead-upsert:
     post:
       description: Queues a job to upsert a contact and company in HubSpot CRM and associate them. Deduplicates by lead_entity_id, phone, or email.
-      operationId: t_value
+      operationId: postTasksApiV1HubspotSalesLeadUpsert
       parameters: []
       requestBody:
         required: true
@@ -450,13 +482,15 @@ paths:
       - Hubspot
       security:
       - access-token: []
+      x-operation-id-source: normalized
+      x-operation-id-original: t_value
     servers:
     - url: https://tasks.zoca.ai
       description: Production
   /tasks/api/v1/hubspot/sales/bulk/lead-upsert:
     post:
       description: Queues a job to download a CSV file from S3, split into batches of 100, and upsert contacts and companies in HubSpot CRM using batch APIs.
-      operationId: t_value
+      operationId: postTasksApiV1HubspotSalesBulkLeadUpsert
       parameters: []
       requestBody:
         required: true
@@ -472,13 +506,15 @@ paths:
       - Hubspot
       security:
       - access-token: []
+      x-operation-id-source: normalized
+      x-operation-id-original: t_value
     servers:
     - url: https://tasks.zoca.ai
       description: Production
   /tasks/api/v1/hubspot/get-contacts:
     post:
       description: Searches contacts via HubSpot CRM Search API with support for all 13 filter operators, cursor-based pagination, sorting, and property selection
-      operationId: t_value
+      operationId: postTasksApiV1HubspotGetContacts
       parameters: []
       requestBody:
         required: true
@@ -496,13 +532,15 @@ paths:
       - Hubspot
       security:
       - access-token: []
+      x-operation-id-source: normalized
+      x-operation-id-original: t_value
     servers:
     - url: https://tasks.zoca.ai
       description: Production
   /tasks/api/v1/hubspot/trigger-potential-resurrection:
     post:
       description: Triggers the potential resurrection pipeline to identify and process opportunities to resurrect inactive or churned entities
-      operationId: t_value
+      operationId: postTasksApiV1HubspotTriggerPotentialResurrection
       parameters: []
       responses:
         '200':
@@ -514,13 +552,15 @@ paths:
       - Hubspot
       security:
       - access-token: []
+      x-operation-id-source: normalized
+      x-operation-id-original: t_value
     servers:
     - url: https://tasks.zoca.ai
       description: Production
   /tasks/api/v1/hubspot/properties:
     get:
       description: Returns every property defined for the Contact and Company object types in the current HubSpot environment.
-      operationId: t_value
+      operationId: getTasksApiV1HubspotProperties
       parameters: []
       responses:
         '200':
@@ -532,14 +572,13 @@ paths:
       - Hubspot
       security:
       - access-token: []
+      x-operation-id-source: normalized
+      x-operation-id-original: t_value
     servers:
     - url: https://tasks.zoca.ai
       description: Production
 components:
   schemas:
-    Object:
-      type: object
-      properties: {}
     e:
       type: object
       properties:
@@ -565,6 +604,9 @@ components:
       - businessLng
       - points
       - heroMetrics
+    Object:
+      type: object
+      properties: {}
   securitySchemes:
     access-token:
       scheme: bearer

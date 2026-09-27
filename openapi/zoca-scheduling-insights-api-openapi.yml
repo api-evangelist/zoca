@@ -66,7 +66,7 @@ paths:
   /scheduling/insights-and-reports/checkout-consistency:
     get:
       description: Returns checkout consistency metrics tracking booking completion rates. Shows total booked appointments, checked out appointments, pending appointments, and consistency percentage.
-      operationId: t_value
+      operationId: getSchedulingInsightsAndReportsCheckoutConsistency
       parameters:
       - name: businessEntityId
         required: false
@@ -115,10 +115,12 @@ paths:
       summary: Get checkout consistency data
       tags:
       - Scheduling Insights
+      x-operation-id-source: normalized
+      x-operation-id-original: t_value
   /scheduling/insights-and-reports/services-insights:
     get:
       description: Returns services insights showing the frequency of each service in appointments. Includes a breakdown by service type with chart-ready colors and labels.
-      operationId: t_value
+      operationId: getSchedulingInsightsAndReportsServicesInsights
       parameters:
       - name: businessEntityId
         required: false
@@ -167,10 +169,12 @@ paths:
       summary: Get services insights data
       tags:
       - Scheduling Insights
+      x-operation-id-source: normalized
+      x-operation-id-original: t_value
   /scheduling/insights-and-reports/sales-insights:
     get:
       description: Returns sales insights showing the breakdown by services and tips. Includes total sales, booked sales, and a chart-ready breakdown.
-      operationId: t_value
+      operationId: getSchedulingInsightsAndReportsSalesInsights
       parameters:
       - name: businessEntityId
         required: false
@@ -219,10 +223,12 @@ paths:
       summary: Get sales insights data
       tags:
       - Scheduling Insights
+      x-operation-id-source: normalized
+      x-operation-id-original: t_value
   /scheduling/insights-and-reports/appointments-tracker-stats:
     get:
       description: Returns appointments and sales data aggregated by weekly or monthly periods. Includes onboarding markers for each period and totals.
-      operationId: t_value
+      operationId: getSchedulingInsightsAndReportsAppointmentsTrackerStats
       parameters:
       - name: businessEntityId
         required: false
@@ -271,6 +277,8 @@ paths:
       summary: Get appointments tracker stats
       tags:
       - Scheduling Insights
+      x-operation-id-source: normalized
+      x-operation-id-original: t_value
 components:
   schemas:
     e:

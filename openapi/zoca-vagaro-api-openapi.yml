@@ -23,7 +23,7 @@ paths:
       - Vagaro
   /vagaro/{entityId}/disconnect:
     delete:
-      operationId: t_value
+      operationId: deleteVagaroByEntityIdDisconnect
       parameters: []
       responses:
         '200':
@@ -31,9 +31,11 @@ paths:
       summary: Disconnect Vagaro account
       tags:
       - Vagaro
+      x-operation-id-source: normalized
+      x-operation-id-original: t_value
   /vagaro/{entityId}/status:
     get:
-      operationId: t_value
+      operationId: getVagaroByEntityIdStatus
       parameters: []
       responses:
         '200':
@@ -41,9 +43,11 @@ paths:
       summary: Check Vagaro connection status
       tags:
       - Vagaro
+      x-operation-id-source: normalized
+      x-operation-id-original: t_value
   /vagaro/{entityId}/services:
     get:
-      operationId: t_value
+      operationId: getVagaroByEntityIdServices
       parameters: []
       responses:
         '200':
@@ -51,9 +55,11 @@ paths:
       summary: Get services from Vagaro Public API
       tags:
       - Vagaro
+      x-operation-id-source: normalized
+      x-operation-id-original: t_value
   /vagaro/{entityId}/employees:
     get:
-      operationId: t_value
+      operationId: getVagaroByEntityIdEmployees
       parameters: []
       responses:
         '200':
@@ -61,9 +67,11 @@ paths:
       summary: Get employees from Vagaro Public API
       tags:
       - Vagaro
+      x-operation-id-source: normalized
+      x-operation-id-original: t_value
   /vagaro/{entityId}/locations:
     get:
-      operationId: t_value
+      operationId: getVagaroByEntityIdLocations
       parameters: []
       responses:
         '200':
@@ -71,9 +79,11 @@ paths:
       summary: Get locations from Vagaro Public API
       tags:
       - Vagaro
+      x-operation-id-source: normalized
+      x-operation-id-original: t_value
   /vagaro/{entityId}/availability:
     post:
-      operationId: t_value
+      operationId: postVagaroByEntityIdAvailability
       parameters: []
       responses:
         '201':
@@ -81,9 +91,11 @@ paths:
       summary: Search available appointment slots
       tags:
       - Vagaro
+      x-operation-id-source: normalized
+      x-operation-id-original: t_value
   /vagaro/{entityId}/appointments:
     post:
-      operationId: t_value
+      operationId: postVagaroByEntityIdAppointments
       parameters: []
       responses:
         '201':
@@ -91,9 +103,11 @@ paths:
       summary: Get appointments from Vagaro Public API
       tags:
       - Vagaro
+      x-operation-id-source: normalized
+      x-operation-id-original: t_value
   /vagaro/{entityId}/customers:
     post:
-      operationId: t_value
+      operationId: postVagaroByEntityIdCustomers
       parameters: []
       responses:
         '201':
@@ -101,9 +115,11 @@ paths:
       summary: Get customer details from Vagaro Public API
       tags:
       - Vagaro
+      x-operation-id-source: normalized
+      x-operation-id-original: t_value
   /vagaro/{entityId}/appointments/legacy:
     post:
-      operationId: t_value
+      operationId: postVagaroByEntityIdAppointmentsLegacy
       parameters: []
       responses:
         '201':
@@ -111,6 +127,8 @@ paths:
       summary: Get appointments from Vagaro (legacy cookie-based)
       tags:
       - Vagaro
+      x-operation-id-source: normalized
+      x-operation-id-original: t_value
 components:
   securitySchemes:
     access-token:

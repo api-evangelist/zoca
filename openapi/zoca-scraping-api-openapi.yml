@@ -34,7 +34,7 @@ paths:
   /tasks/api/v1/scrape/depth:
     post:
       description: Creates a new deep scraping job that follows links to a specified depth
-      operationId: t_value
+      operationId: postTasksApiV1ScrapeDepth
       parameters: []
       requestBody:
         required: true
@@ -49,10 +49,12 @@ paths:
       summary: Enqueue depth scrape job
       tags:
       - Scraping
+      x-operation-id-source: normalized
+      x-operation-id-original: t_value
   /tasks/api/v1/scrape/scheduled:
     post:
       description: Creates a new scraping job scheduled for a specific date/time
-      operationId: t_value
+      operationId: postTasksApiV1ScrapeScheduled
       parameters: []
       responses:
         '201':
@@ -60,10 +62,12 @@ paths:
       summary: Schedule a scrape job
       tags:
       - Scraping
+      x-operation-id-source: normalized
+      x-operation-id-original: t_value
   /tasks/api/v1/scrape/depth/scheduled:
     post:
       description: Creates a new depth scraping job scheduled for a specific date/time
-      operationId: t_value
+      operationId: postTasksApiV1ScrapeDepthScheduled
       parameters: []
       responses:
         '201':
@@ -71,10 +75,12 @@ paths:
       summary: Schedule a depth scrape job
       tags:
       - Scraping
+      x-operation-id-source: normalized
+      x-operation-id-original: t_value
   /tasks/api/v1/scrape/repeatable:
     post:
       description: Creates a new scraping job that runs on a schedule
-      operationId: t_value
+      operationId: postTasksApiV1ScrapeRepeatable
       parameters: []
       responses:
         '201':
@@ -82,10 +88,12 @@ paths:
       summary: Create a repeatable scrape job
       tags:
       - Scraping
+      x-operation-id-source: normalized
+      x-operation-id-original: t_value
   /tasks/api/v1/scrape/depth/repeatable:
     post:
       description: Creates a new depth scraping job that runs on a schedule
-      operationId: t_value
+      operationId: postTasksApiV1ScrapeDepthRepeatable
       parameters: []
       responses:
         '201':
@@ -93,6 +101,8 @@ paths:
       summary: Create a repeatable depth scrape job
       tags:
       - Scraping
+      x-operation-id-source: normalized
+      x-operation-id-original: t_value
 components:
   schemas:
     e:

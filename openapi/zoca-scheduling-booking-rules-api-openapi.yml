@@ -26,7 +26,7 @@ paths:
       tags:
       - Scheduling - Booking Rules
     get:
-      operationId: t_value
+      operationId: getSchedulingBookingRules
       parameters: []
       responses:
         '200':
@@ -40,9 +40,11 @@ paths:
       summary: List all booking rules
       tags:
       - Scheduling - Booking Rules
+      x-operation-id-source: normalized
+      x-operation-id-original: t_value
   /scheduling/booking-rules/{id}:
     get:
-      operationId: t_value
+      operationId: getSchedulingBookingRulesById
       parameters:
       - name: id
         required: true
@@ -61,8 +63,10 @@ paths:
       summary: Get a booking rule by ID
       tags:
       - Scheduling - Booking Rules
+      x-operation-id-source: normalized
+      x-operation-id-original: t_value
     put:
-      operationId: t_value
+      operationId: putSchedulingBookingRulesById
       parameters:
       - name: id
         required: true
@@ -81,8 +85,10 @@ paths:
       summary: Update a booking rule
       tags:
       - Scheduling - Booking Rules
+      x-operation-id-source: normalized
+      x-operation-id-original: t_value
     delete:
-      operationId: t_value
+      operationId: deleteSchedulingBookingRulesById
       parameters:
       - name: id
         required: true
@@ -97,9 +103,11 @@ paths:
       summary: Delete a booking rule (soft delete)
       tags:
       - Scheduling - Booking Rules
+      x-operation-id-source: normalized
+      x-operation-id-original: t_value
   /scheduling/booking-rules/{id}/payment-exemptions:
     get:
-      operationId: t_value
+      operationId: getSchedulingBookingRulesByIdPaymentExemptions
       parameters:
       - name: id
         required: true
@@ -120,9 +128,11 @@ paths:
       summary: Get F2 payment exemptions for a booking rule (segments + specific clients)
       tags:
       - Scheduling - Booking Rules
+      x-operation-id-source: normalized
+      x-operation-id-original: t_value
   /scheduling/booking-rules/entity/{entityId}:
     get:
-      operationId: t_value
+      operationId: getSchedulingBookingRulesEntityByEntityId
       parameters:
       - name: entityType
         required: true
@@ -152,9 +162,11 @@ paths:
       summary: Get booking rules for an entity
       tags:
       - Scheduling - Booking Rules
+      x-operation-id-source: normalized
+      x-operation-id-original: t_value
   /scheduling/booking-rules/{id}/tax:
     patch:
-      operationId: t_value
+      operationId: patchSchedulingBookingRulesByIdTax
       parameters:
       - name: id
         required: true
@@ -173,9 +185,11 @@ paths:
       summary: Toggle tax enabled status (master switch)
       tags:
       - Scheduling - Booking Rules
+      x-operation-id-source: normalized
+      x-operation-id-original: t_value
   /scheduling/booking-rules/tap-to-pay:
     patch:
-      operationId: t_value
+      operationId: patchSchedulingBookingRulesTapToPay
       parameters: []
       responses:
         '200':
@@ -189,9 +203,11 @@ paths:
       summary: Toggle Tap to Pay for a location entity
       tags:
       - Scheduling - Booking Rules
+      x-operation-id-source: normalized
+      x-operation-id-original: t_value
   /scheduling/booking-rules/{id}/map:
     post:
-      operationId: t_value
+      operationId: postSchedulingBookingRulesByIdMap
       parameters:
       - name: id
         required: true
@@ -204,9 +220,11 @@ paths:
       summary: Map a booking rule to an entity
       tags:
       - Scheduling - Booking Rules
+      x-operation-id-source: normalized
+      x-operation-id-original: t_value
   /scheduling/booking-rules/{id}/map/{entityId}:
     delete:
-      operationId: t_value
+      operationId: deleteSchedulingBookingRulesByIdMapByEntityId
       parameters:
       - name: entityType
         required: true
@@ -235,9 +253,11 @@ paths:
       summary: Remove a booking rule mapping from an entity
       tags:
       - Scheduling - Booking Rules
+      x-operation-id-source: normalized
+      x-operation-id-original: t_value
   /scheduling/booking-rules/{id}/mappings:
     get:
-      operationId: t_value
+      operationId: getSchedulingBookingRulesByIdMappings
       parameters:
       - name: id
         required: true
@@ -250,6 +270,8 @@ paths:
       summary: Get all mappings for a booking rule
       tags:
       - Scheduling - Booking Rules
+      x-operation-id-source: normalized
+      x-operation-id-original: t_value
 components:
   schemas:
     e:

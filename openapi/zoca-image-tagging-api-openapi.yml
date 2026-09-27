@@ -33,7 +33,7 @@ paths:
   /tasks/api/v1/image-tagging/batch:
     post:
       description: Creates a new job to analyze multiple images
-      operationId: t_value
+      operationId: postTasksApiV1ImageTaggingBatch
       parameters: []
       requestBody:
         required: true
@@ -47,10 +47,12 @@ paths:
       summary: Enqueue batch image tagging job
       tags:
       - Image Tagging
+      x-operation-id-source: normalized
+      x-operation-id-original: t_value
   /tasks/api/v1/image-tagging/media:
     post:
       description: Creates a new job to tag a media item by its ID
-      operationId: t_value
+      operationId: postTasksApiV1ImageTaggingMedia
       parameters: []
       requestBody:
         required: true
@@ -64,10 +66,12 @@ paths:
       summary: Enqueue media tagging job by ID
       tags:
       - Image Tagging
+      x-operation-id-source: normalized
+      x-operation-id-original: t_value
   /tasks/api/v1/image-tagging/media/backfill:
     post:
       description: Creates a fan-out job that selects active PHOTO media which still needs tagging, then enqueues one tagging job per media item. Scope by entityId (via media.media_entities), by a createdFrom/createdTo window, or both — at least one is required. Media that is already tagged is skipped unless includeAlreadyEnriched is true. Pass dryRun to see what would be enqueued without enqueuing.
-      operationId: t_value
+      operationId: postTasksApiV1ImageTaggingMediaBackfill
       parameters: []
       requestBody:
         required: true
@@ -83,10 +87,12 @@ paths:
       summary: Enqueue a media tagging backfill for an entity and/or a created_at window
       tags:
       - Image Tagging
+      x-operation-id-source: normalized
+      x-operation-id-original: t_value
   /tasks/api/v1/image-tagging/media/backfill-service-tags:
     post:
       description: Creates a fan-out job that resolves the entity's active service catalogue, then enqueues one service-tagging job per media item. This writes relevantServices / relevantCategories, which the plain media backfill cannot produce — that path has no access to the entity's catalogue. Media that already has service relevance is skipped unless includeAlreadyEnriched is true. The catalogue is capped at maxServices (default 200) because the whole list is injected into a single prompt per image. Pass dryRun to see what would be enqueued without enqueuing.
-      operationId: t_value
+      operationId: postTasksApiV1ImageTaggingMediaBackfillServiceTags
       parameters: []
       requestBody:
         required: true
@@ -102,10 +108,12 @@ paths:
       summary: Enqueue service/category relevance tagging for an entity's media
       tags:
       - Image Tagging
+      x-operation-id-source: normalized
+      x-operation-id-original: t_value
   /tasks/api/v1/image-tagging/media/{mediaId}/authenticity:
     post:
       description: Sets authenticity directly, bypassing the classifier. The classifier sees only pixels, so it returns `unknown_provenance` whenever nothing visible ties an image to the business — true of plenty of genuine first-party work, which the GBP posting filter then excludes. Use this to confirm such media as `real` and return it to the posting pool, or to demote a misread image to `stock`. Applies immediately; no re-tagging job is queued, and service/category enrichment is preserved.
-      operationId: t_value
+      operationId: postTasksApiV1ImageTaggingMediaByMediaIdAuthenticity
       parameters: []
       requestBody:
         required: true
@@ -121,10 +129,12 @@ paths:
       summary: Override a media item's authenticity verdict
       tags:
       - Image Tagging
+      x-operation-id-source: normalized
+      x-operation-id-original: t_value
   /tasks/api/v1/image-tagging/media/batch:
     post:
       description: Creates multiple jobs to tag media items by their IDs
-      operationId: t_value
+      operationId: postTasksApiV1ImageTaggingMediaBatch
       parameters: []
       requestBody:
         required: true
@@ -138,6 +148,8 @@ paths:
       summary: Enqueue multiple media tagging jobs by IDs
       tags:
       - Image Tagging
+      x-operation-id-source: normalized
+      x-operation-id-original: t_value
 components:
   schemas:
     e:

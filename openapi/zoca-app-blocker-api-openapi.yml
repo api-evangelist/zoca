@@ -30,7 +30,7 @@ paths:
       tags:
       - app-blocker
     get:
-      operationId: t_value
+      operationId: getAppBlockerTemplates
       parameters:
       - name: limit
         required: false
@@ -56,9 +56,11 @@ paths:
       summary: Get paginated list of templates
       tags:
       - app-blocker
+      x-operation-id-source: normalized
+      x-operation-id-original: t_value
   /app-blocker/templates/{id}:
     get:
-      operationId: t_value
+      operationId: getAppBlockerTemplatesById
       parameters:
       - name: id
         required: true
@@ -80,8 +82,10 @@ paths:
       summary: Get a template by ID
       tags:
       - app-blocker
+      x-operation-id-source: normalized
+      x-operation-id-original: t_value
     put:
-      operationId: t_value
+      operationId: putAppBlockerTemplatesById
       parameters:
       - name: id
         required: true
@@ -103,8 +107,10 @@ paths:
       summary: Update a template
       tags:
       - app-blocker
+      x-operation-id-source: normalized
+      x-operation-id-original: t_value
     delete:
-      operationId: t_value
+      operationId: deleteAppBlockerTemplatesById
       parameters:
       - name: id
         required: true
@@ -120,6 +126,8 @@ paths:
       summary: Delete a template (soft delete)
       tags:
       - app-blocker
+      x-operation-id-source: normalized
+      x-operation-id-original: t_value
 components:
   schemas:
     e:

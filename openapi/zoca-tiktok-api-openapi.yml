@@ -34,7 +34,7 @@ paths:
       - tiktok
   /tiktok/videos:
     get:
-      operationId: t_value
+      operationId: getTiktokVideos
       parameters: []
       responses:
         '200':
@@ -55,9 +55,11 @@ paths:
       summary: Get user's TikTok videos
       tags:
       - tiktok
+      x-operation-id-source: normalized
+      x-operation-id-original: t_value
   /tiktok/creator-info:
     get:
-      operationId: t_value
+      operationId: getTiktokCreatorInfo
       parameters: []
       responses:
         '200':
@@ -76,9 +78,11 @@ paths:
       summary: Get TikTok creator information for publishing
       tags:
       - tiktok
+      x-operation-id-source: normalized
+      x-operation-id-original: t_value
   /tiktok/upload-draft:
     post:
-      operationId: t_value
+      operationId: postTiktokUploadDraft
       parameters: []
       responses:
         '200':
@@ -92,9 +96,11 @@ paths:
       summary: Upload video as draft to TikTok inbox (supports FILE_UPLOAD and PULL_FROM_URL)
       tags:
       - tiktok
+      x-operation-id-source: normalized
+      x-operation-id-original: t_value
   /tiktok/publish-video:
     post:
-      operationId: t_value
+      operationId: postTiktokPublishVideo
       parameters: []
       responses:
         '200':
@@ -108,9 +114,11 @@ paths:
       summary: Publish video directly to TikTok profile (supports FILE_UPLOAD and…
       tags:
       - tiktok
+      x-operation-id-source: normalized
+      x-operation-id-original: t_value
   /tiktok/publish-status:
     get:
-      operationId: t_value
+      operationId: getTiktokPublishStatus
       parameters: []
       responses:
         '200':
@@ -125,9 +133,11 @@ paths:
       summary: Get video publishing status
       tags:
       - tiktok
+      x-operation-id-source: normalized
+      x-operation-id-original: t_value
   /tiktok/revoke-token:
     post:
-      operationId: t_value
+      operationId: postTiktokRevokeToken
       parameters: []
       responses:
         '200':
@@ -140,6 +150,8 @@ paths:
       summary: Revoke TikTok access token
       tags:
       - tiktok
+      x-operation-id-source: normalized
+      x-operation-id-original: t_value
 components:
   securitySchemes:
     access-token:

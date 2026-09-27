@@ -23,7 +23,7 @@ paths:
       - GBP Reviews
   /gbp-reviews/{entityId}:
     get:
-      operationId: t_value
+      operationId: getGbpReviewsByEntityId
       parameters: []
       responses:
         '200':
@@ -31,9 +31,11 @@ paths:
       summary: Get all GBP reviews for an entity
       tags:
       - GBP Reviews
+      x-operation-id-source: normalized
+      x-operation-id-original: t_value
   /gbp-reviews/{entityId}/review:
     post:
-      operationId: t_value
+      operationId: postGbpReviewsByEntityIdReview
       parameters: []
       responses:
         '201':
@@ -41,9 +43,11 @@ paths:
       summary: Insert a GBP review by name
       tags:
       - GBP Reviews
+      x-operation-id-source: normalized
+      x-operation-id-original: t_value
   /gbp-reviews/reply/{entityId}:
     post:
-      operationId: t_value
+      operationId: postGbpReviewsReplyByEntityId
       parameters: []
       responses:
         '201':
@@ -51,9 +55,11 @@ paths:
       summary: Reply to a GBP review
       tags:
       - GBP Reviews
+      x-operation-id-source: normalized
+      x-operation-id-original: t_value
   /gbp-reviews/{entityId}/sync:
     post:
-      operationId: t_value
+      operationId: postGbpReviewsByEntityIdSync
       parameters: []
       responses:
         '201':
@@ -61,6 +67,8 @@ paths:
       summary: Synchronize GBP reviews from Google
       tags:
       - GBP Reviews
+      x-operation-id-source: normalized
+      x-operation-id-original: t_value
 components:
   securitySchemes:
     access-token:

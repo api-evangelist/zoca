@@ -109,7 +109,7 @@ paths:
       - Jobs
     post:
       description: Adds a job to the specified Bull queue
-      operationId: t_value
+      operationId: postTasksApiV1Jobs
       parameters: []
       responses:
         '201':
@@ -128,10 +128,12 @@ paths:
       summary: Enqueue a job
       tags:
       - Jobs
+      x-operation-id-source: normalized
+      x-operation-id-original: t_value
   /tasks/api/v1/jobs/{id}:
     get:
       description: Retrieves the status of a specific job
-      operationId: t_value
+      operationId: getTasksApiV1JobsById
       parameters:
       - name: id
         required: true
@@ -172,9 +174,11 @@ paths:
       summary: Get job status
       tags:
       - Jobs
+      x-operation-id-source: normalized
+      x-operation-id-original: t_value
     delete:
       description: Deletes a specific job
-      operationId: t_value
+      operationId: deleteTasksApiV1JobsById
       parameters:
       - name: id
         required: true
@@ -196,10 +200,12 @@ paths:
       summary: Remove job
       tags:
       - Jobs
+      x-operation-id-source: normalized
+      x-operation-id-original: t_value
   /tasks/api/v1/jobs/redis/connections:
     get:
       description: Retrieves all active Redis connections with their identities and details
-      operationId: t_value
+      operationId: getTasksApiV1JobsRedisConnections
       parameters: []
       responses:
         '200':
@@ -213,10 +219,12 @@ paths:
       summary: List all Redis connections
       tags:
       - Jobs
+      x-operation-id-source: normalized
+      x-operation-id-original: t_value
   /tasks/api/v1/jobs/redis/connections/summary:
     get:
       description: Retrieves a summary of Redis connections grouped by service name
-      operationId: t_value
+      operationId: getTasksApiV1JobsRedisConnectionsSummary
       parameters: []
       responses:
         '200':
@@ -228,6 +236,8 @@ paths:
       summary: Get Redis connections summary
       tags:
       - Jobs
+      x-operation-id-source: normalized
+      x-operation-id-original: t_value
 components:
   schemas:
     e:

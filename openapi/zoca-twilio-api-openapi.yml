@@ -26,7 +26,7 @@ paths:
       x-summary-source: derived
   /tasks/api/v1/twilio/status-callback:
     post:
-      operationId: t_value
+      operationId: postTasksApiV1TwilioStatusCallback
       parameters: []
       responses:
         '201':
@@ -35,9 +35,11 @@ paths:
       - Twilio
       summary: T value
       x-summary-source: derived
+      x-operation-id-source: normalized
+      x-operation-id-original: t_value
   /tasks/api/v1/twilio/incoming-sms:
     post:
-      operationId: t_value
+      operationId: postTasksApiV1TwilioIncomingSms
       parameters: []
       responses:
         '201':
@@ -46,9 +48,11 @@ paths:
       - Twilio
       summary: T value
       x-summary-source: derived
+      x-operation-id-source: normalized
+      x-operation-id-original: t_value
   /tasks/api/v1/twilio/phone/search:
     get:
-      operationId: t_value
+      operationId: getTasksApiV1TwilioPhoneSearch
       parameters: []
       responses:
         '200':
@@ -57,9 +61,11 @@ paths:
       - Twilio
       summary: T value
       x-summary-source: derived
+      x-operation-id-source: normalized
+      x-operation-id-original: t_value
   /tasks/api/v1/twilio/phone/purchase:
     post:
-      operationId: t_value
+      operationId: postTasksApiV1TwilioPhonePurchase
       parameters: []
       responses:
         '201':
@@ -68,9 +74,11 @@ paths:
       - Twilio
       summary: T value
       x-summary-source: derived
+      x-operation-id-source: normalized
+      x-operation-id-original: t_value
   /tasks/api/v1/twilio/phone/search/{entityId}:
     get:
-      operationId: t_value
+      operationId: getTasksApiV1TwilioPhoneSearchByEntityId
       parameters: []
       responses:
         '200':
@@ -79,9 +87,11 @@ paths:
       - Twilio
       summary: T value
       x-summary-source: derived
+      x-operation-id-source: normalized
+      x-operation-id-original: t_value
   /tasks/api/v1/twilio/connect-call:
     post:
-      operationId: t_value
+      operationId: postTasksApiV1TwilioConnectCall
       parameters: []
       responses:
         '201':
@@ -90,10 +100,12 @@ paths:
       - Twilio
       summary: T value
       x-summary-source: derived
+      x-operation-id-source: normalized
+      x-operation-id-original: t_value
   /tasks/api/v1/twilio/voice-bridge:
     get:
       description: Generates TwiML response for Twilio voice bridge with recording enabled
-      operationId: t_value
+      operationId: getTasksApiV1TwilioVoiceBridge
       parameters:
       - name: CallSid
         required: false
@@ -126,9 +138,11 @@ paths:
       summary: Generate TwiML for voice bridge (GET)
       tags:
       - Twilio
+      x-operation-id-source: normalized
+      x-operation-id-original: t_value
     post:
       description: Generates TwiML response for Twilio voice bridge with recording enabled
-      operationId: t_value
+      operationId: postTasksApiV1TwilioVoiceBridge
       parameters:
       - name: twilioNumber
         required: false
@@ -163,9 +177,11 @@ paths:
       summary: Generate TwiML for voice bridge (POST)
       tags:
       - Twilio
+      x-operation-id-source: normalized
+      x-operation-id-original: t_value
   /tasks/api/v1/twilio/outgoing-call:
     post:
-      operationId: t_value
+      operationId: postTasksApiV1TwilioOutgoingCall
       parameters: []
       responses:
         '201':
@@ -174,9 +190,11 @@ paths:
       - Twilio
       summary: T value
       x-summary-source: derived
+      x-operation-id-source: normalized
+      x-operation-id-original: t_value
   /tasks/api/v1/twilio/outgoing-call-dash:
     post:
-      operationId: t_value
+      operationId: postTasksApiV1TwilioOutgoingCallDash
       parameters: []
       responses:
         '201':
@@ -185,9 +203,11 @@ paths:
       - Twilio
       summary: T value
       x-summary-source: derived
+      x-operation-id-source: normalized
+      x-operation-id-original: t_value
   /tasks/api/v1/twilio/initiate-call:
     post:
-      operationId: t_value
+      operationId: postTasksApiV1TwilioInitiateCall
       parameters: []
       responses:
         '201':
@@ -196,10 +216,12 @@ paths:
       - Twilio
       summary: T value
       x-summary-source: derived
+      x-operation-id-source: normalized
+      x-operation-id-original: t_value
   /tasks/api/v1/twilio/recording-callback:
     post:
       description: Processes callbacks from Twilio when call recordings are completed and transcribed by Deepgram
-      operationId: t_value
+      operationId: postTasksApiV1TwilioRecordingCallback
       parameters: []
       requestBody:
         required: true
@@ -220,10 +242,12 @@ paths:
       summary: Handle Twilio recording status callbacks with Deepgram transcription
       tags:
       - Twilio
+      x-operation-id-source: normalized
+      x-operation-id-original: t_value
   /tasks/api/v1/twilio/phone/purchased:
     get:
       description: Returns a paginated list of phone numbers purchased on the Twilio account. Supports searching by phone number or friendly name. Total count is included for un-filtered requests (sourced from DB).
-      operationId: t_value
+      operationId: getTasksApiV1TwilioPhonePurchased
       parameters:
       - name: search
         required: false
@@ -272,10 +296,12 @@ paths:
       summary: List purchased phone numbers (paginated)
       tags:
       - Twilio
+      x-operation-id-source: normalized
+      x-operation-id-original: t_value
   /tasks/api/v1/twilio/messaging-services:
     get:
       description: Returns a paginated list of messaging services configured on the Twilio account.
-      operationId: t_value
+      operationId: getTasksApiV1TwilioMessagingServices
       parameters:
       - name: pageSize
         required: false
@@ -321,9 +347,11 @@ paths:
       summary: List Twilio messaging services (paginated)
       tags:
       - Twilio
+      x-operation-id-source: normalized
+      x-operation-id-original: t_value
   /tasks/api/v1/twilio/messaging-services/{sid}:
     get:
-      operationId: t_value
+      operationId: getTasksApiV1TwilioMessagingServicesBySid
       parameters: []
       responses:
         '200':
@@ -332,10 +360,12 @@ paths:
       - Twilio
       summary: T value
       x-summary-source: derived
+      x-operation-id-source: normalized
+      x-operation-id-original: t_value
   /tasks/api/v1/twilio/phone/{sid}:
     delete:
       description: Releases a phone number from the Twilio account and removes it from the database. This action is irreversible.
-      operationId: t_value
+      operationId: deleteTasksApiV1TwilioPhoneBySid
       parameters: []
       responses:
         '200':
@@ -352,9 +382,11 @@ paths:
       summary: Release a purchased phone number
       tags:
       - Twilio
+      x-operation-id-source: normalized
+      x-operation-id-original: t_value
     get:
       description: Retrieves detailed information about a Twilio phone number using its SID
-      operationId: t_value
+      operationId: getTasksApiV1TwilioPhoneBySid
       parameters: []
       responses:
         '200':
@@ -376,9 +408,11 @@ paths:
       summary: Fetch Twilio phone number details
       tags:
       - Twilio
+      x-operation-id-source: normalized
+      x-operation-id-original: t_value
     put:
       description: Updates settings for a Twilio phone number such as SMS URL, method and trunk SID
-      operationId: t_value
+      operationId: putTasksApiV1TwilioPhoneBySid
       parameters: []
       requestBody:
         required: true
@@ -394,6 +428,8 @@ paths:
       summary: Update Twilio phone number configuration
       tags:
       - Twilio
+      x-operation-id-source: normalized
+      x-operation-id-original: t_value
 components:
   schemas:
     e:

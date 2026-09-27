@@ -28,7 +28,7 @@ paths:
       tags:
       - Scheduling - Communication Templates
     post:
-      operationId: t_value
+      operationId: postSchedulingCommsTemplatesGlobal
       parameters: []
       responses:
         '201':
@@ -40,9 +40,11 @@ paths:
       summary: Create a new global communication template
       tags:
       - Scheduling - Communication Templates
+      x-operation-id-source: normalized
+      x-operation-id-original: t_value
   /scheduling/comms-templates/global/{id}:
     get:
-      operationId: t_value
+      operationId: getSchedulingCommsTemplatesGlobalById
       parameters:
       - name: id
         required: true
@@ -61,8 +63,10 @@ paths:
       summary: Get a global template by ID
       tags:
       - Scheduling - Communication Templates
+      x-operation-id-source: normalized
+      x-operation-id-original: t_value
     put:
-      operationId: t_value
+      operationId: putSchedulingCommsTemplatesGlobalById
       parameters:
       - name: id
         required: true
@@ -81,8 +85,10 @@ paths:
       summary: Update a global template
       tags:
       - Scheduling - Communication Templates
+      x-operation-id-source: normalized
+      x-operation-id-original: t_value
     delete:
-      operationId: t_value
+      operationId: deleteSchedulingCommsTemplatesGlobalById
       parameters:
       - name: id
         required: true
@@ -97,9 +103,11 @@ paths:
       summary: Delete a global template
       tags:
       - Scheduling - Communication Templates
+      x-operation-id-source: normalized
+      x-operation-id-original: t_value
   /scheduling/comms-templates/global/seed:
     post:
-      operationId: t_value
+      operationId: postSchedulingCommsTemplatesGlobalSeed
       parameters: []
       responses:
         '201':
@@ -113,9 +121,11 @@ paths:
       summary: Seed global templates with default values
       tags:
       - Scheduling - Communication Templates
+      x-operation-id-source: normalized
+      x-operation-id-original: t_value
   /scheduling/comms-templates/entity/{entityId}:
     get:
-      operationId: t_value
+      operationId: getSchedulingCommsTemplatesEntityByEntityId
       parameters:
       - name: entityId
         required: true
@@ -134,8 +144,10 @@ paths:
       summary: List all templates for an entity
       tags:
       - Scheduling - Communication Templates
+      x-operation-id-source: normalized
+      x-operation-id-original: t_value
     post:
-      operationId: t_value
+      operationId: postSchedulingCommsTemplatesEntityByEntityId
       parameters:
       - name: entityId
         required: true
@@ -152,9 +164,11 @@ paths:
       summary: Create a new entity communication template
       tags:
       - Scheduling - Communication Templates
+      x-operation-id-source: normalized
+      x-operation-id-original: t_value
   /scheduling/comms-templates/entity/{entityId}/{id}:
     get:
-      operationId: t_value
+      operationId: getSchedulingCommsTemplatesEntityByEntityIdById
       parameters:
       - name: id
         required: true
@@ -178,8 +192,10 @@ paths:
       summary: Get an entity template by ID
       tags:
       - Scheduling - Communication Templates
+      x-operation-id-source: normalized
+      x-operation-id-original: t_value
     put:
-      operationId: t_value
+      operationId: putSchedulingCommsTemplatesEntityByEntityIdById
       parameters:
       - name: id
         required: true
@@ -203,8 +219,10 @@ paths:
       summary: Update an entity template
       tags:
       - Scheduling - Communication Templates
+      x-operation-id-source: normalized
+      x-operation-id-original: t_value
     delete:
-      operationId: t_value
+      operationId: deleteSchedulingCommsTemplatesEntityByEntityIdById
       parameters:
       - name: id
         required: true
@@ -224,9 +242,11 @@ paths:
       summary: Delete an entity template
       tags:
       - Scheduling - Communication Templates
+      x-operation-id-source: normalized
+      x-operation-id-original: t_value
   /scheduling/comms-templates/entity/{entityId}/seed:
     post:
-      operationId: t_value
+      operationId: postSchedulingCommsTemplatesEntityByEntityIdSeed
       parameters:
       - name: entityId
         required: true
@@ -245,9 +265,11 @@ paths:
       summary: Seed entity templates from global templates
       tags:
       - Scheduling - Communication Templates
+      x-operation-id-source: normalized
+      x-operation-id-original: t_value
   /scheduling/comms-templates/variables/verify:
     get:
-      operationId: t_value
+      operationId: getSchedulingCommsTemplatesVariablesVerify
       parameters:
       - name: clientId
         required: true
@@ -265,6 +287,8 @@ paths:
       summary: Verify template variables for a location and client
       tags:
       - Scheduling - Communication Templates
+      x-operation-id-source: normalized
+      x-operation-id-original: t_value
 components:
   schemas:
     e:

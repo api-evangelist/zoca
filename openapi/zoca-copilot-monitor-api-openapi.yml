@@ -23,7 +23,7 @@ paths:
       - Copilot Monitor
   /api/copilot/metrics:
     get:
-      operationId: t_value
+      operationId: getApiCopilotMetrics
       parameters: []
       responses:
         '200':
@@ -31,9 +31,11 @@ paths:
       summary: Get current system metrics
       tags:
       - Copilot Monitor
+      x-operation-id-source: normalized
+      x-operation-id-original: t_value
   /api/copilot/tools:
     get:
-      operationId: t_value
+      operationId: getApiCopilotTools
       parameters: []
       responses:
         '200':
@@ -41,9 +43,11 @@ paths:
       summary: Get list of tools and their metrics
       tags:
       - Copilot Monitor
+      x-operation-id-source: normalized
+      x-operation-id-original: t_value
   /api/copilot/logs:
     get:
-      operationId: t_value
+      operationId: getApiCopilotLogs
       parameters:
       - name: limit
         required: false
@@ -57,9 +61,11 @@ paths:
       summary: Get recent flow events
       tags:
       - Copilot Monitor
+      x-operation-id-source: normalized
+      x-operation-id-original: t_value
   /api/copilot/agent/{agentId}:
     get:
-      operationId: t_value
+      operationId: getApiCopilotAgentByAgentId
       parameters: []
       responses:
         '200':
@@ -67,9 +73,11 @@ paths:
       summary: Get specific agent metrics
       tags:
       - Copilot Monitor
+      x-operation-id-source: normalized
+      x-operation-id-original: t_value
   /api/copilot/tool/{toolId}:
     get:
-      operationId: t_value
+      operationId: getApiCopilotToolByToolId
       parameters: []
       responses:
         '200':
@@ -77,9 +85,11 @@ paths:
       summary: Get specific tool metrics
       tags:
       - Copilot Monitor
+      x-operation-id-source: normalized
+      x-operation-id-original: t_value
   /api/copilot/health:
     get:
-      operationId: t_value
+      operationId: getApiCopilotHealth
       parameters: []
       responses:
         '200':
@@ -87,9 +97,11 @@ paths:
       summary: Check monitoring service health
       tags:
       - Copilot Monitor
+      x-operation-id-source: normalized
+      x-operation-id-original: t_value
   /api/copilot/chat:
     post:
-      operationId: t_value
+      operationId: postApiCopilotChat
       parameters: []
       requestBody:
         required: true
@@ -115,9 +127,11 @@ paths:
       summary: Send a message to the Discovery Orchestrator
       tags:
       - Copilot Monitor
+      x-operation-id-source: normalized
+      x-operation-id-original: t_value
   /api/copilot/conversations:
     get:
-      operationId: t_value
+      operationId: getApiCopilotConversations
       parameters:
       - name: limit
         required: false
@@ -131,6 +145,8 @@ paths:
       summary: Get list of recent conversations
       tags:
       - Copilot Monitor
+      x-operation-id-source: normalized
+      x-operation-id-original: t_value
 components:
   securitySchemes:
     access-token:

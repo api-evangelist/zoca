@@ -22,7 +22,7 @@ paths:
       tags:
       - Campaigns
     post:
-      operationId: t_value
+      operationId: postCampaignsRequests
       parameters: []
       responses:
         '201':
@@ -30,8 +30,10 @@ paths:
       summary: Create a new campaign request
       tags:
       - Campaigns
+      x-operation-id-source: normalized
+      x-operation-id-original: t_value
     patch:
-      operationId: t_value
+      operationId: patchCampaignsRequests
       parameters: []
       responses:
         '200':
@@ -39,9 +41,11 @@ paths:
       summary: Update a campaign request
       tags:
       - Campaigns
+      x-operation-id-source: normalized
+      x-operation-id-original: t_value
   /campaigns/requests/count:
     get:
-      operationId: t_value
+      operationId: getCampaignsRequestsCount
       parameters: []
       responses:
         '200':
@@ -49,9 +53,11 @@ paths:
       summary: Get campaign request counts by status
       tags:
       - Campaigns
+      x-operation-id-source: normalized
+      x-operation-id-original: t_value
   /campaigns/requests/{id}:
     get:
-      operationId: t_value
+      operationId: getCampaignsRequestsById
       parameters: []
       responses:
         '200':
@@ -59,8 +65,10 @@ paths:
       summary: Get a campaign request by ID
       tags:
       - Campaigns
+      x-operation-id-source: normalized
+      x-operation-id-original: t_value
     delete:
-      operationId: t_value
+      operationId: deleteCampaignsRequestsById
       parameters: []
       responses:
         '200':
@@ -68,9 +76,11 @@ paths:
       summary: Delete a campaign request
       tags:
       - Campaigns
+      x-operation-id-source: normalized
+      x-operation-id-original: t_value
   /campaigns/requests/status:
     put:
-      operationId: t_value
+      operationId: putCampaignsRequestsStatus
       parameters: []
       responses:
         '200':
@@ -78,9 +88,11 @@ paths:
       summary: Update campaign request status
       tags:
       - Campaigns
+      x-operation-id-source: normalized
+      x-operation-id-original: t_value
   /campaigns/requests/copies:
     put:
-      operationId: t_value
+      operationId: putCampaignsRequestsCopies
       parameters: []
       responses:
         '200':
@@ -88,9 +100,11 @@ paths:
       summary: Update campaign request copies
       tags:
       - Campaigns
+      x-operation-id-source: normalized
+      x-operation-id-original: t_value
   /campaigns/requests/stats:
     put:
-      operationId: t_value
+      operationId: putCampaignsRequestsStats
       parameters: []
       responses:
         '200':
@@ -98,9 +112,11 @@ paths:
       summary: Update campaign request stats
       tags:
       - Campaigns
+      x-operation-id-source: normalized
+      x-operation-id-original: t_value
   /campaigns/requests/latest:
     get:
-      operationId: t_value
+      operationId: getCampaignsRequestsLatest
       parameters: []
       responses:
         '200':
@@ -108,9 +124,11 @@ paths:
       summary: Get latest campaign request for an entity
       tags:
       - Campaigns
+      x-operation-id-source: normalized
+      x-operation-id-original: t_value
   /campaigns/suggestions:
     post:
-      operationId: t_value
+      operationId: postCampaignsSuggestions
       parameters: []
       responses:
         '201':
@@ -118,8 +136,10 @@ paths:
       summary: Create a campaign suggestion
       tags:
       - Campaigns
+      x-operation-id-source: normalized
+      x-operation-id-original: t_value
     get:
-      operationId: t_value
+      operationId: getCampaignsSuggestions
       parameters: []
       responses:
         '200':
@@ -127,9 +147,11 @@ paths:
       summary: List all campaign suggestions
       tags:
       - Campaigns
+      x-operation-id-source: normalized
+      x-operation-id-original: t_value
   /campaigns/suggestions/bulk:
     post:
-      operationId: t_value
+      operationId: postCampaignsSuggestionsBulk
       parameters: []
       responses:
         '201':
@@ -137,9 +159,11 @@ paths:
       summary: Bulk create campaign suggestions
       tags:
       - Campaigns
+      x-operation-id-source: normalized
+      x-operation-id-original: t_value
   /campaigns/suggestions/{id}:
     delete:
-      operationId: t_value
+      operationId: deleteCampaignsSuggestionsById
       parameters: []
       responses:
         '200':
@@ -147,9 +171,11 @@ paths:
       summary: Delete a campaign suggestion
       tags:
       - Campaigns
+      x-operation-id-source: normalized
+      x-operation-id-original: t_value
   /campaigns/flyers:
     post:
-      operationId: t_value
+      operationId: postCampaignsFlyers
       parameters: []
       responses:
         '201':
@@ -157,8 +183,10 @@ paths:
       summary: Create a campaign flyer
       tags:
       - Campaigns
+      x-operation-id-source: normalized
+      x-operation-id-original: t_value
     get:
-      operationId: t_value
+      operationId: getCampaignsFlyers
       parameters: []
       responses:
         '200':
@@ -166,9 +194,11 @@ paths:
       summary: List all campaign flyers
       tags:
       - Campaigns
+      x-operation-id-source: normalized
+      x-operation-id-original: t_value
   /campaigns/flyers/bulk:
     post:
-      operationId: t_value
+      operationId: postCampaignsFlyersBulk
       parameters: []
       responses:
         '201':
@@ -176,6 +206,8 @@ paths:
       summary: Bulk create campaign flyers
       tags:
       - Campaigns
+      x-operation-id-source: normalized
+      x-operation-id-original: t_value
 components:
   securitySchemes:
     access-token:

@@ -41,7 +41,7 @@ paths:
       - Features
   /features/insights-tabs:
     get:
-      operationId: t_value
+      operationId: getFeaturesInsightsTabs
       parameters:
       - name: businessEntityId
         required: true
@@ -67,6 +67,8 @@ paths:
       summary: Get Insights tabs with URLs based on active products
       tags:
       - Features
+      x-operation-id-source: normalized
+      x-operation-id-original: t_value
 components:
   securitySchemes:
     access-token:

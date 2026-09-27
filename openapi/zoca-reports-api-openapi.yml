@@ -34,7 +34,7 @@ paths:
       - Reports
   /reports/location/{locationEntityId}/frontdesk-overview:
     get:
-      operationId: t_value
+      operationId: getReportsLocationByLocationEntityIdFrontdeskOverview
       parameters:
       - name: locationEntityId
         required: true
@@ -53,9 +53,11 @@ paths:
       summary: Front Desk overview for a single location
       tags:
       - Reports
+      x-operation-id-source: normalized
+      x-operation-id-original: t_value
   /reports/location/{locationEntityId}/call-analytics:
     get:
-      operationId: t_value
+      operationId: getReportsLocationByLocationEntityIdCallAnalytics
       parameters:
       - name: locationEntityId
         required: true
@@ -74,9 +76,11 @@ paths:
       summary: Call analytics for a single location
       tags:
       - Reports
+      x-operation-id-source: normalized
+      x-operation-id-original: t_value
   /reports/location/{locationEntityId}/website-funnel:
     get:
-      operationId: t_value
+      operationId: getReportsLocationByLocationEntityIdWebsiteFunnel
       parameters:
       - name: locationEntityId
         required: true
@@ -95,9 +99,11 @@ paths:
       summary: Website funnel for a single location
       tags:
       - Reports
+      x-operation-id-source: normalized
+      x-operation-id-original: t_value
   /reports/multilocation/{businessEntityId}/website-funnel:
     get:
-      operationId: t_value
+      operationId: getReportsMultilocationByBusinessEntityIdWebsiteFunnel
       parameters:
       - name: businessEntityId
         required: true
@@ -116,9 +122,11 @@ paths:
       summary: Website funnel — visitors, Book Now clicks, leads and bookings
       tags:
       - Reports
+      x-operation-id-source: normalized
+      x-operation-id-original: t_value
   /reports/multilocation/{businessEntityId}/call-analytics:
     get:
-      operationId: t_value
+      operationId: getReportsMultilocationByBusinessEntityIdCallAnalytics
       parameters:
       - name: businessEntityId
         required: true
@@ -137,9 +145,11 @@ paths:
       summary: Call analytics — volume, dispositions, heatmap and spam savings
       tags:
       - Reports
+      x-operation-id-source: normalized
+      x-operation-id-original: t_value
   /reports/multilocation/{businessEntityId}/outcomes:
     get:
-      operationId: t_value
+      operationId: getReportsMultilocationByBusinessEntityIdOutcomes
       parameters:
       - name: businessEntityId
         required: true
@@ -158,9 +168,11 @@ paths:
       summary: Outcomes rollup — leads, calls, bookings and revenue over time
       tags:
       - Reports
+      x-operation-id-source: normalized
+      x-operation-id-original: t_value
   /reports/multilocation/{businessEntityId}/overview:
     get:
-      operationId: t_value
+      operationId: getReportsMultilocationByBusinessEntityIdOverview
       parameters:
       - name: businessEntityId
         required: true
@@ -179,10 +191,12 @@ paths:
       summary: Reports rollup — network overview
       tags:
       - Reports
+      x-operation-id-source: normalized
+      x-operation-id-original: t_value
   /reports:
     get:
       description: Returns all registered report templates grouped by category.
-      operationId: t_value
+      operationId: getReports
       parameters: []
       responses:
         '200':
@@ -196,10 +210,12 @@ paths:
       summary: List report templates
       tags:
       - Reports
+      x-operation-id-source: normalized
+      x-operation-id-original: t_value
   /reports/{key}:
     get:
       description: Runs the named report template for one location and date range. Cursor-paginated.
-      operationId: t_value
+      operationId: getReportsByKey
       parameters:
       - name: key
         required: true
@@ -222,10 +238,12 @@ paths:
       summary: Run a report
       tags:
       - Reports
+      x-operation-id-source: normalized
+      x-operation-id-original: t_value
   /reports/{key}/export.csv:
     get:
       description: Runs the report to completion and downloads it as a CSV attachment.
-      operationId: t_value
+      operationId: getReportsByKeyExportCsv
       parameters:
       - name: key
         required: true
@@ -240,6 +258,8 @@ paths:
       summary: Export a report as CSV
       tags:
       - Reports
+      x-operation-id-source: normalized
+      x-operation-id-original: t_value
 components:
   schemas:
     e:

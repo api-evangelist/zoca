@@ -23,7 +23,7 @@ paths:
       - Homepage
   /homepage:
     get:
-      operationId: t_value
+      operationId: getHomepage
       parameters: []
       responses:
         '200':
@@ -31,9 +31,11 @@ paths:
       summary: Get homepage data
       tags:
       - Homepage
+      x-operation-id-source: normalized
+      x-operation-id-original: t_value
   /homepage/homepage-components:
     get:
-      operationId: t_value
+      operationId: getHomepageHomepageComponents
       parameters: []
       responses:
         '200':
@@ -41,9 +43,11 @@ paths:
       summary: Get homepage components
       tags:
       - Homepage
+      x-operation-id-source: normalized
+      x-operation-id-original: t_value
   /homepage/user-data:
     get:
-      operationId: t_value
+      operationId: getHomepageUserData
       parameters: []
       responses:
         '200':
@@ -51,9 +55,11 @@ paths:
       summary: Get user data
       tags:
       - Homepage
+      x-operation-id-source: normalized
+      x-operation-id-original: t_value
   /homepage/leads-data:
     get:
-      operationId: t_value
+      operationId: getHomepageLeadsData
       parameters: []
       responses:
         '200':
@@ -61,9 +67,11 @@ paths:
       summary: Get leads data
       tags:
       - Homepage
+      x-operation-id-source: normalized
+      x-operation-id-original: t_value
   /homepage/activation-steps-data:
     get:
-      operationId: t_value
+      operationId: getHomepageActivationStepsData
       parameters: []
       responses:
         '200':
@@ -71,9 +79,11 @@ paths:
       summary: Get activation steps data
       tags:
       - Homepage
+      x-operation-id-source: normalized
+      x-operation-id-original: t_value
   /homepage/performance-data:
     get:
-      operationId: t_value
+      operationId: getHomepagePerformanceData
       parameters: []
       responses:
         '200':
@@ -81,9 +91,11 @@ paths:
       summary: Get performance data
       tags:
       - Homepage
+      x-operation-id-source: normalized
+      x-operation-id-original: t_value
   /homepage/oauth-status:
     get:
-      operationId: t_value
+      operationId: getHomepageOauthStatus
       parameters: []
       responses:
         '200':
@@ -91,9 +103,11 @@ paths:
       summary: Get OAuth status
       tags:
       - Homepage
+      x-operation-id-source: normalized
+      x-operation-id-original: t_value
   /homepage/footer:
     get:
-      operationId: t_value
+      operationId: getHomepageFooter
       parameters: []
       responses:
         '200':
@@ -101,9 +115,11 @@ paths:
       summary: Get footer data
       tags:
       - Homepage
+      x-operation-id-source: normalized
+      x-operation-id-original: t_value
   /homepage/check-website-status:
     get:
-      operationId: t_value
+      operationId: getHomepageCheckWebsiteStatus
       parameters: []
       responses:
         '200':
@@ -111,9 +127,11 @@ paths:
       summary: Check website status
       tags:
       - Homepage
+      x-operation-id-source: normalized
+      x-operation-id-original: t_value
   /homepage/fetch-page-views:
     get:
-      operationId: t_value
+      operationId: getHomepageFetchPageViews
       parameters: []
       responses:
         '200':
@@ -121,9 +139,11 @@ paths:
       summary: Fetch page views
       tags:
       - Homepage
+      x-operation-id-source: normalized
+      x-operation-id-original: t_value
   /homepage/extend-trial:
     put:
-      operationId: t_value
+      operationId: putHomepageExtendTrial
       parameters: []
       responses:
         '200':
@@ -131,10 +151,12 @@ paths:
       summary: Extend trial period
       tags:
       - Homepage
+      x-operation-id-source: normalized
+      x-operation-id-original: t_value
   /homepage/monthly-report:
     get:
       description: When listAll=true returns all active reports; otherwise returns the single report (by reportType or default PERFORMANCE_REPORT).
-      operationId: t_value
+      operationId: getHomepageMonthlyReport
       parameters: []
       responses:
         '200':
@@ -148,8 +170,10 @@ paths:
       summary: Get monthly report(s) for an entity
       tags:
       - Homepage
+      x-operation-id-source: normalized
+      x-operation-id-original: t_value
     post:
-      operationId: t_value
+      operationId: postHomepageMonthlyReport
       parameters: []
       responses:
         '201':
@@ -161,8 +185,10 @@ paths:
       summary: Create a new monthly report
       tags:
       - Homepage
+      x-operation-id-source: normalized
+      x-operation-id-original: t_value
     put:
-      operationId: t_value
+      operationId: putHomepageMonthlyReport
       parameters: []
       responses:
         '200':
@@ -170,9 +196,11 @@ paths:
       summary: Update monthly report status
       tags:
       - Homepage
+      x-operation-id-source: normalized
+      x-operation-id-original: t_value
   /homepage/referrals/link/{businessEntityId}:
     get:
-      operationId: t_value
+      operationId: getHomepageReferralsLinkByBusinessEntityId
       parameters: []
       responses:
         '200':
@@ -180,9 +208,11 @@ paths:
       summary: Get referral link for business
       tags:
       - Homepage
+      x-operation-id-source: normalized
+      x-operation-id-original: t_value
   /homepage/referrals:
     post:
-      operationId: t_value
+      operationId: postHomepageReferrals
       parameters: []
       responses:
         '201':
@@ -190,9 +220,11 @@ paths:
       summary: Create a referral
       tags:
       - Homepage
+      x-operation-id-source: normalized
+      x-operation-id-original: t_value
   /homepage/review-tracker:
     get:
-      operationId: t_value
+      operationId: getHomepageReviewTracker
       parameters: []
       responses:
         '200':
@@ -200,9 +232,11 @@ paths:
       summary: Get review tracker metrics
       tags:
       - Homepage
+      x-operation-id-source: normalized
+      x-operation-id-original: t_value
   /homepage/opening-date:
     put:
-      operationId: t_value
+      operationId: putHomepageOpeningDate
       parameters: []
       responses:
         '200':
@@ -212,9 +246,11 @@ paths:
       summary: Update opening date for a GBP location
       tags:
       - Homepage
+      x-operation-id-source: normalized
+      x-operation-id-original: t_value
   /homepage/carousel-cards:
     get:
-      operationId: t_value
+      operationId: getHomepageCarouselCards
       parameters: []
       responses:
         '200':
@@ -222,9 +258,11 @@ paths:
       summary: Get carousel cards for Win Agent onboarding
       tags:
       - Homepage
+      x-operation-id-source: normalized
+      x-operation-id-original: t_value
   /homepage/website-card-state:
     get:
-      operationId: t_value
+      operationId: getHomepageWebsiteCardState
       parameters: []
       responses:
         '200':
@@ -240,9 +278,11 @@ paths:
       summary: Get website card state for entity
       tags:
       - Homepage
+      x-operation-id-source: normalized
+      x-operation-id-original: t_value
   /homepage/discovery-metrics:
     get:
-      operationId: t_value
+      operationId: getHomepageDiscoveryMetrics
       parameters: []
       responses:
         '200':
@@ -250,6 +290,8 @@ paths:
       summary: Get cumulative discovery metrics since onboarding
       tags:
       - Homepage
+      x-operation-id-source: normalized
+      x-operation-id-original: t_value
 components:
   schemas:
     e:

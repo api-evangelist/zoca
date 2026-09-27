@@ -25,7 +25,7 @@ paths:
       tags:
       - Media
     get:
-      operationId: t_value
+      operationId: getMediaPrimaryCategoryStock
       parameters: []
       responses:
         '200':
@@ -33,12 +33,14 @@ paths:
       summary: Get all primary category stock
       tags:
       - Media
+      x-operation-id-source: normalized
+      x-operation-id-original: t_value
     servers:
     - url: https://api.zoca.ai
       description: Production
   /media/primary-category-stock/categories:
     get:
-      operationId: t_value
+      operationId: getMediaPrimaryCategoryStockCategories
       parameters: []
       responses:
         '200':
@@ -46,12 +48,14 @@ paths:
       summary: Get all primary categories with counts
       tags:
       - Media
+      x-operation-id-source: normalized
+      x-operation-id-original: t_value
     servers:
     - url: https://api.zoca.ai
       description: Production
   /media/primary-category-stock/{id}:
     get:
-      operationId: t_value
+      operationId: getMediaPrimaryCategoryStockById
       parameters: []
       responses:
         '200':
@@ -59,8 +63,10 @@ paths:
       summary: Get a primary category stock by id
       tags:
       - Media
+      x-operation-id-source: normalized
+      x-operation-id-original: t_value
     patch:
-      operationId: t_value
+      operationId: patchMediaPrimaryCategoryStockById
       parameters: []
       responses:
         '200':
@@ -68,8 +74,10 @@ paths:
       summary: Update a primary category stock
       tags:
       - Media
+      x-operation-id-source: normalized
+      x-operation-id-original: t_value
     delete:
-      operationId: t_value
+      operationId: deleteMediaPrimaryCategoryStockById
       parameters: []
       responses:
         '200':
@@ -77,12 +85,14 @@ paths:
       summary: Delete a primary category stock
       tags:
       - Media
+      x-operation-id-source: normalized
+      x-operation-id-original: t_value
     servers:
     - url: https://api.zoca.ai
       description: Production
   /media/process-status:
     get:
-      operationId: t_value
+      operationId: getMediaProcessStatus
       parameters:
       - name: batchId
         required: true
@@ -95,12 +105,14 @@ paths:
       summary: Get media processing status for a batch
       tags:
       - Media
+      x-operation-id-source: normalized
+      x-operation-id-original: t_value
     servers:
     - url: https://api.zoca.ai
       description: Production
   /media:
     post:
-      operationId: t_value
+      operationId: postMedia
       parameters: []
       responses:
         '201':
@@ -108,8 +120,10 @@ paths:
       summary: Create a new media
       tags:
       - Media
+      x-operation-id-source: normalized
+      x-operation-id-original: t_value
     get:
-      operationId: t_value
+      operationId: getMedia
       parameters: []
       responses:
         '200':
@@ -117,8 +131,10 @@ paths:
       summary: Get all media
       tags:
       - Media
+      x-operation-id-source: normalized
+      x-operation-id-original: t_value
     delete:
-      operationId: t_value
+      operationId: deleteMedia
       parameters: []
       responses:
         '200':
@@ -126,12 +142,14 @@ paths:
       summary: Delete a media
       tags:
       - Media
+      x-operation-id-source: normalized
+      x-operation-id-original: t_value
     servers:
     - url: https://api.zoca.ai
       description: Production
   /media/{id}:
     get:
-      operationId: t_value
+      operationId: getMediaById
       parameters: []
       responses:
         '200':
@@ -139,8 +157,10 @@ paths:
       summary: Get a media by id
       tags:
       - Media
+      x-operation-id-source: normalized
+      x-operation-id-original: t_value
     patch:
-      operationId: t_value
+      operationId: patchMediaById
       parameters: []
       responses:
         '200':
@@ -148,12 +168,14 @@ paths:
       summary: Update a media
       tags:
       - Media
+      x-operation-id-source: normalized
+      x-operation-id-original: t_value
     servers:
     - url: https://api.zoca.ai
       description: Production
   /media/scheduled-media:
     get:
-      operationId: t_value
+      operationId: getMediaScheduledMedia
       parameters: []
       responses:
         '200':
@@ -161,12 +183,14 @@ paths:
       summary: Get scheduled media for a location
       tags:
       - Media
+      x-operation-id-source: normalized
+      x-operation-id-original: t_value
     servers:
     - url: https://api.zoca.ai
       description: Production
   /media/gbp-scheduled-media/metrics:
     get:
-      operationId: t_value
+      operationId: getMediaGbpScheduledMediaMetrics
       parameters: []
       responses:
         '200':
@@ -174,12 +198,14 @@ paths:
       summary: Get GBP scheduled media metrics for an entity
       tags:
       - Media
+      x-operation-id-source: normalized
+      x-operation-id-original: t_value
     servers:
     - url: https://api.zoca.ai
       description: Production
   /media/gbp-scheduled-media:
     get:
-      operationId: t_value
+      operationId: getMediaGbpScheduledMedia
       parameters: []
       responses:
         '200':
@@ -187,12 +213,14 @@ paths:
       summary: Get GBP scheduled media by status (offset pagination)
       tags:
       - Media
+      x-operation-id-source: normalized
+      x-operation-id-original: t_value
     servers:
     - url: https://api.zoca.ai
       description: Production
   /media/logo-and-cover-image:
     get:
-      operationId: t_value
+      operationId: getMediaLogoAndCoverImage
       parameters: []
       responses:
         '200':
@@ -200,12 +228,14 @@ paths:
       summary: Get logo and cover image for a location
       tags:
       - Media
+      x-operation-id-source: normalized
+      x-operation-id-original: t_value
     servers:
     - url: https://api.zoca.ai
       description: Production
   /media/log-failed-media-time:
     post:
-      operationId: t_value
+      operationId: postMediaLogFailedMediaTime
       parameters: []
       responses:
         '201':
@@ -213,13 +243,15 @@ paths:
       summary: Log failed media upload time
       tags:
       - Media
+      x-operation-id-source: normalized
+      x-operation-id-original: t_value
     servers:
     - url: https://api.zoca.ai
       description: Production
   /tasks/api/v1/media/input:
     post:
       description: Enqueues a job to handle media input with destination processing
-      operationId: t_value
+      operationId: postTasksApiV1MediaInput
       parameters: []
       requestBody:
         required: true
@@ -246,13 +278,15 @@ paths:
       - Media
       security:
       - access-token: []
+      x-operation-id-source: normalized
+      x-operation-id-original: t_value
     servers:
     - url: https://tasks.zoca.ai
       description: Production
   /tasks/api/v1/media/lambda/callback:
     post:
       description: Process callback from Lambda media processing service
-      operationId: t_value
+      operationId: postTasksApiV1MediaLambdaCallback
       parameters: []
       responses:
         '200':
@@ -268,13 +302,15 @@ paths:
       - Media
       security:
       - access-token: []
+      x-operation-id-source: normalized
+      x-operation-id-original: t_value
     servers:
     - url: https://tasks.zoca.ai
       description: Production
   /tasks/api/v1/media/check-duplicates:
     post:
       description: Enqueues a job to check for duplicate media for a given entity
-      operationId: t_value
+      operationId: postTasksApiV1MediaCheckDuplicates
       parameters: []
       responses:
         '201':
@@ -294,13 +330,15 @@ paths:
       - Media
       security:
       - access-token: []
+      x-operation-id-source: normalized
+      x-operation-id-original: t_value
     servers:
     - url: https://tasks.zoca.ai
       description: Production
   /tasks/api/v1/media/process-destinations:
     post:
       description: Enqueues a job to process media for specified destinations
-      operationId: t_value
+      operationId: postTasksApiV1MediaProcessDestinations
       parameters: []
       responses:
         '201':
@@ -320,13 +358,15 @@ paths:
       - Media
       security:
       - access-token: []
+      x-operation-id-source: normalized
+      x-operation-id-original: t_value
     servers:
     - url: https://tasks.zoca.ai
       description: Production
   /tasks/api/v1/media/convert-url:
     post:
       description: Converts a single S3 URL to its corresponding ImageKit URL using the mapping table
-      operationId: t_value
+      operationId: postTasksApiV1MediaConvertUrl
       parameters: []
       requestBody:
         required: true
@@ -350,13 +390,15 @@ paths:
       - Media
       security:
       - access-token: []
+      x-operation-id-source: normalized
+      x-operation-id-original: t_value
     servers:
     - url: https://tasks.zoca.ai
       description: Production
   /tasks/api/v1/media/convert-urls:
     post:
       description: Converts multiple S3 URLs to their corresponding ImageKit URLs using the mapping table
-      operationId: t_value
+      operationId: postTasksApiV1MediaConvertUrls
       parameters: []
       requestBody:
         required: true
@@ -380,13 +422,15 @@ paths:
       - Media
       security:
       - access-token: []
+      x-operation-id-source: normalized
+      x-operation-id-original: t_value
     servers:
     - url: https://tasks.zoca.ai
       description: Production
   /tasks/api/v1/media/add-s3-imagekit-mapping:
     post:
       description: Creates a new mapping between an S3 bucket URL and its corresponding ImageKit URL. This mapping is used for URL conversion throughout the system.
-      operationId: t_value
+      operationId: postTasksApiV1MediaAddS3ImagekitMapping
       parameters: []
       requestBody:
         required: true
@@ -412,13 +456,15 @@ paths:
       - Media
       security:
       - access-token: []
+      x-operation-id-source: normalized
+      x-operation-id-original: t_value
     servers:
     - url: https://tasks.zoca.ai
       description: Production
   /tasks/api/v1/media/s3-imagekit-mappings:
     get:
       description: Retrieves all mappings between S3 bucket URLs and their corresponding ImageKit URLs from the database.
-      operationId: t_value
+      operationId: getTasksApiV1MediaS3ImagekitMappings
       parameters: []
       responses:
         '200':
@@ -434,6 +480,8 @@ paths:
       - Media
       security:
       - access-token: []
+      x-operation-id-source: normalized
+      x-operation-id-original: t_value
     servers:
     - url: https://tasks.zoca.ai
       description: Production

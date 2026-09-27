@@ -22,7 +22,7 @@ paths:
       tags:
       - UI Components
     post:
-      operationId: t_value
+      operationId: postUiComponents
       parameters: []
       responses:
         '201':
@@ -30,9 +30,11 @@ paths:
       summary: Create a new UI component
       tags:
       - UI Components
+      x-operation-id-source: normalized
+      x-operation-id-original: t_value
   /ui-components/{id}:
     patch:
-      operationId: t_value
+      operationId: patchUiComponentsById
       parameters: []
       responses:
         '200':
@@ -40,9 +42,11 @@ paths:
       summary: Update a UI component by ID
       tags:
       - UI Components
+      x-operation-id-source: normalized
+      x-operation-id-original: t_value
   /ui-components/test-lambda:
     post:
-      operationId: t_value
+      operationId: postUiComponentsTestLambda
       parameters: []
       responses:
         '201':
@@ -50,6 +54,8 @@ paths:
       summary: Test the Babel compiler Lambda
       tags:
       - UI Components
+      x-operation-id-source: normalized
+      x-operation-id-original: t_value
 components:
   securitySchemes:
     access-token:

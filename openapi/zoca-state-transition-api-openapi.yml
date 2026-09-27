@@ -32,7 +32,7 @@ paths:
       - state-transition
     get:
       description: Resolves the configured transition (entity rule metadata, falling back to code defaults) and returns the from-state → to-state, buffer value, and unit.
-      operationId: t_value
+      operationId: getStateTransitionByEntityIdTransition
       parameters:
       - name: entityId
         required: true
@@ -49,6 +49,8 @@ paths:
       summary: Get the resolved no-response state transition for an entity + source state
       tags:
       - state-transition
+      x-operation-id-source: normalized
+      x-operation-id-original: t_value
 components:
   securitySchemes:
     access-token:

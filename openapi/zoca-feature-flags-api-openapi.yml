@@ -25,7 +25,7 @@ paths:
       - Feature Flags
   /feature-flags/global:
     get:
-      operationId: t_value
+      operationId: getFeatureFlagsGlobal
       parameters: []
       responses:
         '200':
@@ -35,9 +35,11 @@ paths:
       summary: Global ZocaWeb product feature flags resolved for the current environment…
       tags:
       - Feature Flags
+      x-operation-id-source: normalized
+      x-operation-id-original: t_value
   /feature-flags/bulk-toggle:
     post:
-      operationId: t_value
+      operationId: postFeatureFlagsBulkToggle
       parameters: []
       responses:
         '201':
@@ -47,6 +49,8 @@ paths:
       summary: Toggle a single chatbot feature flag across many entities
       tags:
       - Feature Flags
+      x-operation-id-source: normalized
+      x-operation-id-original: t_value
 components:
   securitySchemes:
     access-token:

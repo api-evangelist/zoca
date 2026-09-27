@@ -23,7 +23,7 @@ paths:
       - FrontDesk Activity
   /frontdesk/activity/entity/{entityId}:
     get:
-      operationId: t_value
+      operationId: getFrontdeskActivityEntityByEntityId
       parameters:
       - name: search
         required: false
@@ -55,6 +55,8 @@ paths:
       summary: Get the FrontDesk activity feed for an entity
       tags:
       - FrontDesk Activity
+      x-operation-id-source: normalized
+      x-operation-id-original: t_value
 components:
   securitySchemes:
     access-token:

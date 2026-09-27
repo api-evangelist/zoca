@@ -23,7 +23,7 @@ paths:
       - Misc
   /misc/signed-url:
     get:
-      operationId: t_value
+      operationId: getMiscSignedUrl
       parameters:
       - name: expiresInSeconds
         required: false
@@ -62,9 +62,11 @@ paths:
       summary: Generate S3 signed URL for file upload
       tags:
       - Misc
+      x-operation-id-source: normalized
+      x-operation-id-original: t_value
   /misc/secret:
     get:
-      operationId: t_value
+      operationId: getMiscSecret
       parameters: []
       responses:
         '200':
@@ -72,9 +74,11 @@ paths:
       summary: Get secret from AWS Secrets Manager
       tags:
       - Misc
+      x-operation-id-source: normalized
+      x-operation-id-original: t_value
   /misc/upload-to-s3:
     post:
-      operationId: t_value
+      operationId: postMiscUploadToS3
       parameters: []
       responses:
         '201':
@@ -82,9 +86,11 @@ paths:
       summary: Upload file to S3 from URL
       tags:
       - Misc
+      x-operation-id-source: normalized
+      x-operation-id-original: t_value
   /misc/redis-timer:
     get:
-      operationId: t_value
+      operationId: getMiscRedisTimer
       parameters: []
       responses:
         '200':
@@ -92,9 +98,11 @@ paths:
       summary: Start Redis timer for entity
       tags:
       - Misc
+      x-operation-id-source: normalized
+      x-operation-id-original: t_value
   /misc/offboard-location:
     post:
-      operationId: t_value
+      operationId: postMiscOffboardLocation
       parameters: []
       responses:
         '201':
@@ -102,9 +110,11 @@ paths:
       summary: Offboard a location
       tags:
       - Misc
+      x-operation-id-source: normalized
+      x-operation-id-original: t_value
   /misc/zoca-test:
     get:
-      operationId: t_value
+      operationId: getMiscZocaTest
       parameters: []
       responses:
         '200':
@@ -112,6 +122,8 @@ paths:
       summary: Zoca test endpoint
       tags:
       - Misc
+      x-operation-id-source: normalized
+      x-operation-id-original: t_value
 components:
   securitySchemes:
     access-token:

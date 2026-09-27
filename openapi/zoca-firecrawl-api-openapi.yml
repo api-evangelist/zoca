@@ -35,7 +35,7 @@ paths:
   /tasks/api/v1/firecrawl/scrape/batch:
     post:
       description: Scrape multiple URLs in parallel
-      operationId: t_value
+      operationId: postTasksApiV1FirecrawlScrapeBatch
       parameters: []
       requestBody:
         required: true
@@ -53,10 +53,12 @@ paths:
       summary: Batch scrape multiple URLs
       tags:
       - Firecrawl
+      x-operation-id-source: normalized
+      x-operation-id-original: t_value
   /tasks/api/v1/firecrawl/crawl:
     post:
       description: Start crawling a website and its subpages
-      operationId: t_value
+      operationId: postTasksApiV1FirecrawlCrawl
       parameters: []
       requestBody:
         required: true
@@ -70,10 +72,12 @@ paths:
       summary: Crawl a website
       tags:
       - Firecrawl
+      x-operation-id-source: normalized
+      x-operation-id-original: t_value
   /tasks/api/v1/firecrawl/crawl/{jobId}:
     get:
       description: Check the status of a crawl job
-      operationId: t_value
+      operationId: getTasksApiV1FirecrawlCrawlByJobId
       parameters:
       - name: jobId
         required: true
@@ -89,10 +93,12 @@ paths:
       summary: Get crawl job status
       tags:
       - Firecrawl
+      x-operation-id-source: normalized
+      x-operation-id-original: t_value
   /tasks/api/v1/firecrawl/crawl/{jobId}/cancel:
     post:
       description: Stop an ongoing crawl job
-      operationId: t_value
+      operationId: postTasksApiV1FirecrawlCrawlByJobIdCancel
       parameters:
       - name: jobId
         required: true
@@ -110,10 +116,12 @@ paths:
       summary: Cancel a crawl job
       tags:
       - Firecrawl
+      x-operation-id-source: normalized
+      x-operation-id-original: t_value
   /tasks/api/v1/firecrawl/map:
     post:
       description: Get all URLs from a website (sitemap)
-      operationId: t_value
+      operationId: postTasksApiV1FirecrawlMap
       parameters: []
       requestBody:
         required: true
@@ -131,10 +139,12 @@ paths:
       summary: Map a website
       tags:
       - Firecrawl
+      x-operation-id-source: normalized
+      x-operation-id-original: t_value
   /tasks/api/v1/firecrawl/extract:
     post:
       description: Extract structured data from a URL using a schema
-      operationId: t_value
+      operationId: postTasksApiV1FirecrawlExtract
       parameters: []
       requestBody:
         required: true
@@ -153,10 +163,12 @@ paths:
       summary: Extract structured data
       tags:
       - Firecrawl
+      x-operation-id-source: normalized
+      x-operation-id-original: t_value
   /tasks/api/v1/firecrawl/health:
     get:
       description: Check if Firecrawl service is operational
-      operationId: t_value
+      operationId: getTasksApiV1FirecrawlHealth
       parameters: []
       responses:
         '200':
@@ -168,10 +180,12 @@ paths:
       summary: Health check
       tags:
       - Firecrawl
+      x-operation-id-source: normalized
+      x-operation-id-original: t_value
   /tasks/api/v1/firecrawl/stats:
     get:
       description: Get usage statistics for Firecrawl service
-      operationId: t_value
+      operationId: getTasksApiV1FirecrawlStats
       parameters: []
       responses:
         '200':
@@ -183,10 +197,12 @@ paths:
       summary: Get service statistics
       tags:
       - Firecrawl
+      x-operation-id-source: normalized
+      x-operation-id-original: t_value
   /tasks/api/v1/firecrawl/search:
     post:
       description: Search for content across the web using Firecrawl
-      operationId: t_value
+      operationId: postTasksApiV1FirecrawlSearch
       parameters: []
       requestBody:
         required: true
@@ -204,6 +220,8 @@ paths:
       summary: Search the web
       tags:
       - Firecrawl
+      x-operation-id-source: normalized
+      x-operation-id-original: t_value
 components:
   schemas:
     e:

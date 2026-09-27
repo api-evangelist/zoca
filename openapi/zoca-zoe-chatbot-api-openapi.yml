@@ -31,7 +31,7 @@ paths:
       - Zoe Chatbot
   /tasks/api/v1/chatbot/zoe/services/{serviceId}:
     get:
-      operationId: t_value
+      operationId: getTasksApiV1ChatbotZoeServicesByServiceId
       parameters:
       - name: locationEntityId
         required: true
@@ -53,9 +53,11 @@ paths:
       summary: Get enhanced details for a specific service
       tags:
       - Zoe Chatbot
+      x-operation-id-source: normalized
+      x-operation-id-original: t_value
   /tasks/api/v1/chatbot/zoe/services-detailed:
     get:
-      operationId: t_value
+      operationId: getTasksApiV1ChatbotZoeServicesDetailed
       parameters:
       - name: locationEntityId
         required: true
@@ -69,9 +71,11 @@ paths:
       summary: Get enhanced details for all services
       tags:
       - Zoe Chatbot
+      x-operation-id-source: normalized
+      x-operation-id-original: t_value
   /tasks/api/v1/chatbot/zoe/hours/basic:
     get:
-      operationId: t_value
+      operationId: getTasksApiV1ChatbotZoeHoursBasic
       parameters:
       - name: locationEntityId
         required: true
@@ -85,9 +89,11 @@ paths:
       summary: Get basic working hours information
       tags:
       - Zoe Chatbot
+      x-operation-id-source: normalized
+      x-operation-id-original: t_value
   /tasks/api/v1/chatbot/zoe/hours/detailed:
     get:
-      operationId: t_value
+      operationId: getTasksApiV1ChatbotZoeHoursDetailed
       parameters:
       - name: locationEntityId
         required: true
@@ -101,9 +107,11 @@ paths:
       summary: Get detailed working hours information
       tags:
       - Zoe Chatbot
+      x-operation-id-source: normalized
+      x-operation-id-original: t_value
   /tasks/api/v1/chatbot/zoe/hours/answer:
     post:
-      operationId: t_value
+      operationId: postTasksApiV1ChatbotZoeHoursAnswer
       parameters: []
       requestBody:
         required: true
@@ -130,9 +138,11 @@ paths:
       summary: Answer a question about working hours
       tags:
       - Zoe Chatbot
+      x-operation-id-source: normalized
+      x-operation-id-original: t_value
   /tasks/api/v1/chatbot/zoe/faqs/list:
     get:
-      operationId: t_value
+      operationId: getTasksApiV1ChatbotZoeFaqsList
       parameters:
       - name: locationEntityId
         required: true
@@ -146,9 +156,11 @@ paths:
       summary: Get categorized FAQ list
       tags:
       - Zoe Chatbot
+      x-operation-id-source: normalized
+      x-operation-id-original: t_value
   /tasks/api/v1/chatbot/zoe/faqs/{id}:
     get:
-      operationId: t_value
+      operationId: getTasksApiV1ChatbotZoeFaqsById
       parameters:
       - name: locationEntityId
         required: true
@@ -171,9 +183,11 @@ paths:
       summary: Get FAQ answer by ID
       tags:
       - Zoe Chatbot
+      x-operation-id-source: normalized
+      x-operation-id-original: t_value
   /tasks/api/v1/chatbot/zoe/faqs/search:
     post:
-      operationId: t_value
+      operationId: postTasksApiV1ChatbotZoeFaqsSearch
       parameters: []
       requestBody:
         required: true
@@ -200,9 +214,11 @@ paths:
       summary: Search FAQs by user query
       tags:
       - Zoe Chatbot
+      x-operation-id-source: normalized
+      x-operation-id-original: t_value
   /tasks/api/v1/chatbot/zoe/faqs/check-query:
     get:
-      operationId: t_value
+      operationId: getTasksApiV1ChatbotZoeFaqsCheckQuery
       parameters:
       - name: query
         required: true
@@ -222,9 +238,11 @@ paths:
       summary: Check if a query might be an FAQ
       tags:
       - Zoe Chatbot
+      x-operation-id-source: normalized
+      x-operation-id-original: t_value
   /tasks/api/v1/chatbot/zoe/faqs/answer:
     post:
-      operationId: t_value
+      operationId: postTasksApiV1ChatbotZoeFaqsAnswer
       parameters: []
       requestBody:
         required: true
@@ -251,10 +269,12 @@ paths:
       summary: Get FAQ answer for a user query
       tags:
       - Zoe Chatbot
+      x-operation-id-source: normalized
+      x-operation-id-original: t_value
   /tasks/api/v1/chatbot/zoe/start-conversation:
     post:
       description: Initiates a new conversation with the Zoe booking assistant. Creates a new client if needed and sends an initial greeting.
-      operationId: t_value
+      operationId: postTasksApiV1ChatbotZoeStartConversation
       parameters: []
       requestBody:
         required: true
@@ -278,10 +298,12 @@ paths:
       summary: Start a new conversation with Zoe bot
       tags:
       - Zoe Chatbot
+      x-operation-id-source: normalized
+      x-operation-id-original: t_value
   /tasks/api/v1/chatbot/zoe/continue-conversation:
     post:
       description: Sends a message to the Zoe bot and receives a response with optional function calls.
-      operationId: t_value
+      operationId: postTasksApiV1ChatbotZoeContinueConversation
       parameters: []
       requestBody:
         required: true
@@ -307,10 +329,12 @@ paths:
       summary: Continue a conversation with Zoe bot
       tags:
       - Zoe Chatbot
+      x-operation-id-source: normalized
+      x-operation-id-original: t_value
   /tasks/api/v1/chatbot/zoe/conversation-history:
     get:
       description: Retrieves the message history for a specific client conversation with Zoe bot with pagination support.
-      operationId: t_value
+      operationId: getTasksApiV1ChatbotZoeConversationHistory
       parameters:
       - description: Client ID to get conversation history for
         name: clientId
@@ -351,10 +375,12 @@ paths:
       summary: Get conversation history for a client with pagination
       tags:
       - Zoe Chatbot
+      x-operation-id-source: normalized
+      x-operation-id-original: t_value
   /tasks/api/v1/chatbot/zoe/entity-conversations:
     get:
       description: Retrieves all Zoe conversations associated with a specific entity ID with pagination support.
-      operationId: t_value
+      operationId: getTasksApiV1ChatbotZoeEntityConversations
       parameters:
       - description: The entity ID to get conversations for
         name: entityId
@@ -392,6 +418,8 @@ paths:
       summary: Get all Zoe conversations for an entity
       tags:
       - Zoe Chatbot
+      x-operation-id-source: normalized
+      x-operation-id-original: t_value
 components:
   schemas:
     e:

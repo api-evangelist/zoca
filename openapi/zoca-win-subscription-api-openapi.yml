@@ -31,7 +31,7 @@ paths:
   /tasks/api/v1/win/subscription/status/by-hosted-page/{hostedPageId}:
     get:
       description: Returns subscription status by looking up the hosted page ID. Checks local DB first, then Chargebee if needed.
-      operationId: t_value
+      operationId: getTasksApiV1WinSubscriptionStatusByHostedPageByHostedPageId
       parameters:
       - name: hostedPageId
         required: true
@@ -44,10 +44,12 @@ paths:
       summary: Get subscription status by hosted page ID
       tags:
       - Win Subscription
+      x-operation-id-source: normalized
+      x-operation-id-original: t_value
   /tasks/api/v1/win/subscription/status/{entityId}:
     get:
       description: Returns subscription status and usage for an entity
-      operationId: t_value
+      operationId: getTasksApiV1WinSubscriptionStatusByEntityId
       parameters:
       - name: entityId
         required: true
@@ -64,10 +66,12 @@ paths:
       summary: Get subscription status
       tags:
       - Win Subscription
+      x-operation-id-source: normalized
+      x-operation-id-original: t_value
   /tasks/api/v1/win/subscription/checkout:
     post:
       description: Generates a Chargebee hosted checkout page for the Win Agent subscription
-      operationId: t_value
+      operationId: postTasksApiV1WinSubscriptionCheckout
       parameters: []
       requestBody:
         required: true
@@ -85,10 +89,12 @@ paths:
       summary: Create checkout session
       tags:
       - Win Subscription
+      x-operation-id-source: normalized
+      x-operation-id-original: t_value
   /tasks/api/v1/win/subscription/confirm:
     post:
       description: Confirms subscription after successful checkout and initializes usage tracking
-      operationId: t_value
+      operationId: postTasksApiV1WinSubscriptionConfirm
       parameters: []
       requestBody:
         required: true
@@ -106,10 +112,12 @@ paths:
       summary: Confirm subscription
       tags:
       - Win Subscription
+      x-operation-id-source: normalized
+      x-operation-id-original: t_value
   /tasks/api/v1/win/subscription/usage/{entityId}:
     get:
       description: Returns current usage metrics for an entity
-      operationId: t_value
+      operationId: getTasksApiV1WinSubscriptionUsageByEntityId
       parameters:
       - name: entityId
         required: true
@@ -126,10 +134,12 @@ paths:
       summary: Get usage metrics
       tags:
       - Win Subscription
+      x-operation-id-source: normalized
+      x-operation-id-original: t_value
   /tasks/api/v1/win/subscription/can-make-call/{entityId}:
     get:
       description: Returns whether the entity has an active subscription and is within usage limits
-      operationId: t_value
+      operationId: getTasksApiV1WinSubscriptionCanMakeCallByEntityId
       parameters:
       - name: entityId
         required: true
@@ -142,10 +152,12 @@ paths:
       summary: Check if entity can make calls
       tags:
       - Win Subscription
+      x-operation-id-source: normalized
+      x-operation-id-original: t_value
   /tasks/api/v1/win/subscription/check-checkout/{hostedPageId}:
     post:
       description: Checks if a specific checkout session completed and syncs the subscription if so.
-      operationId: t_value
+      operationId: postTasksApiV1WinSubscriptionCheckCheckoutByHostedPageId
       parameters:
       - name: hostedPageId
         required: true
@@ -158,10 +170,12 @@ paths:
       summary: Check checkout status
       tags:
       - Win Subscription
+      x-operation-id-source: normalized
+      x-operation-id-original: t_value
   /tasks/api/v1/win/subscription/sync/{entityId}:
     post:
       description: Manually fetches and syncs subscription data from Chargebee. Use for local dev or webhook failures.
-      operationId: t_value
+      operationId: postTasksApiV1WinSubscriptionSyncByEntityId
       parameters:
       - name: entityId
         required: true
@@ -174,10 +188,12 @@ paths:
       summary: Sync subscription from Chargebee
       tags:
       - Win Subscription
+      x-operation-id-source: normalized
+      x-operation-id-original: t_value
   /tasks/api/v1/win/subscription/cancel/{entityId}:
     post:
       description: Cancels the subscription at the end of the current billing period. The subscription will remain active until then.
-      operationId: t_value
+      operationId: postTasksApiV1WinSubscriptionCancelByEntityId
       parameters:
       - name: entityId
         required: true
@@ -194,10 +210,12 @@ paths:
       summary: Cancel subscription
       tags:
       - Win Subscription
+      x-operation-id-source: normalized
+      x-operation-id-original: t_value
   /tasks/api/v1/win/subscription/activate-trial:
     post:
       description: Creates a FrontDesk subscription in Chargebee with a 7-day free trial. After trial ends, billing begins automatically.
-      operationId: t_value
+      operationId: postTasksApiV1WinSubscriptionActivateTrial
       parameters:
       - name: bypass
         required: false
@@ -220,10 +238,12 @@ paths:
       summary: Activate FrontDesk trial subscription
       tags:
       - Win Subscription
+      x-operation-id-source: normalized
+      x-operation-id-original: t_value
   /tasks/api/v1/win/subscription/user/{userEntityId}:
     get:
       description: Returns subscription status for all locations the user has access to
-      operationId: t_value
+      operationId: getTasksApiV1WinSubscriptionUserByUserEntityId
       parameters:
       - name: userEntityId
         required: true
@@ -240,10 +260,12 @@ paths:
       summary: Get subscriptions for user
       tags:
       - Win Subscription
+      x-operation-id-source: normalized
+      x-operation-id-original: t_value
   /tasks/api/v1/win/subscription/manual/{entityId}:
     put:
       description: Updates subscription status, end date, or limits for a manual subscription
-      operationId: t_value
+      operationId: putTasksApiV1WinSubscriptionManualByEntityId
       parameters:
       - name: entityId
         required: true
@@ -266,6 +288,8 @@ paths:
       summary: Update manual subscription
       tags:
       - Win Subscription
+      x-operation-id-source: normalized
+      x-operation-id-original: t_value
 components:
   schemas:
     e:

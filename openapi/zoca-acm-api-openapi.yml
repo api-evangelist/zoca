@@ -39,7 +39,7 @@ paths:
   /dns/acm/certificate/{certificateArn}:
     get:
       description: Retrieve detailed information about a specific certificate
-      operationId: t_value
+      operationId: getDnsAcmCertificateByCertificateArn
       parameters:
       - name: certificateArn
         required: true
@@ -61,10 +61,12 @@ paths:
       summary: Get certificate details
       tags:
       - ACM
+      x-operation-id-source: normalized
+      x-operation-id-original: t_value
   /dns/acm/certificate/find/{domainName}:
     get:
       description: Find the most recent certificate for a specific domain
-      operationId: t_value
+      operationId: getDnsAcmCertificateFindByDomainName
       parameters:
       - name: domainName
         required: true
@@ -87,10 +89,12 @@ paths:
       summary: Find latest certificate for domain
       tags:
       - ACM
+      x-operation-id-source: normalized
+      x-operation-id-original: t_value
   /dns/acm/validation-status/{certificateArn}:
     get:
       description: Check if the certificate validation is complete
-      operationId: t_value
+      operationId: getDnsAcmValidationStatusByCertificateArn
       parameters:
       - name: certificateArn
         required: true
@@ -111,10 +115,12 @@ paths:
       summary: Get certificate validation status
       tags:
       - ACM
+      x-operation-id-source: normalized
+      x-operation-id-original: t_value
   /dns/acm/wait-for-validation/{certificateArn}:
     post:
       description: Wait for the certificate to be validated (polls until validated or timeout)
-      operationId: t_value
+      operationId: postDnsAcmWaitForValidationByCertificateArn
       parameters:
       - name: maxWaitTime
         required: false
@@ -141,10 +147,12 @@ paths:
       summary: Wait for certificate validation
       tags:
       - ACM
+      x-operation-id-source: normalized
+      x-operation-id-original: t_value
   /dns/acm/certificates:
     get:
       description: Retrieve AWS Certificate Manager certificates with pagination and search functionality. Supports searching by domain name (in domain name or SANs) and filtering by status.
-      operationId: t_value
+      operationId: getDnsAcmCertificates
       parameters:
       - name: limit
         required: false
@@ -192,10 +200,12 @@ paths:
       summary: List ACM certificates with pagination and search
       tags:
       - ACM
+      x-operation-id-source: normalized
+      x-operation-id-original: t_value
   /dns/acm/certificate/search-by-san/{domainName}:
     get:
       description: Search for a certificate where the domain appears in the Subject Alternative Names (SAN/SNI) list. This includes exact matches and wildcard certificate coverage.
-      operationId: t_value
+      operationId: getDnsAcmCertificateSearchBySanByDomainName
       parameters:
       - name: domainName
         required: true
@@ -218,10 +228,12 @@ paths:
       summary: Find certificate by domain in SAN list
       tags:
       - ACM
+      x-operation-id-source: normalized
+      x-operation-id-original: t_value
   /dns/acm/certificates/search-by-san/{domainName}:
     get:
       description: Search for all certificates where the domain appears in the Subject Alternative Names (SAN/SNI) list. Returns all matching certificates including wildcard coverage.
-      operationId: t_value
+      operationId: getDnsAcmCertificatesSearchBySanByDomainName
       parameters:
       - name: domainName
         required: true
@@ -243,6 +255,8 @@ paths:
       summary: Find all certificates with domain in SAN list
       tags:
       - ACM
+      x-operation-id-source: normalized
+      x-operation-id-original: t_value
 components:
   schemas:
     e:

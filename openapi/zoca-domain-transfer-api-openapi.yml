@@ -41,7 +41,7 @@ paths:
   /domain-transfer/aggregate-domains:
     post:
       description: Aggregate multiple subdomains and variations for SSL certificate creation
-      operationId: t_value
+      operationId: postDomainTransferAggregateDomains
       parameters: []
       requestBody:
         required: true
@@ -63,10 +63,12 @@ paths:
       summary: Aggregate multiple domains for certificate
       tags:
       - Domain Transfer
+      x-operation-id-source: normalized
+      x-operation-id-original: t_value
   /domain-transfer/status/{certificateArn}:
     get:
       description: Check the current status of a domain transfer by certificate ARN
-      operationId: t_value
+      operationId: getDomainTransferStatusByCertificateArn
       parameters:
       - name: certificateArn
         required: true
@@ -88,10 +90,12 @@ paths:
       summary: Get domain transfer status
       tags:
       - Domain Transfer
+      x-operation-id-source: normalized
+      x-operation-id-original: t_value
   /domain-transfer/zoca-certificate/add-domain:
     post:
       description: Automatically fetches the latest zoca.com certificate, filters out inactive domains from custom_domains table, and creates a new certificate with all active domains plus the new domain(s)
-      operationId: t_value
+      operationId: postDomainTransferZocaCertificateAddDomain
       parameters: []
       requestBody:
         required: true
@@ -115,10 +119,12 @@ paths:
       summary: Add domain to zoca.com certificate
       tags:
       - Domain Transfer
+      x-operation-id-source: normalized
+      x-operation-id-original: t_value
   /domain-transfer/kvs/add-entries:
     post:
       description: 'Creates CloudFront KeyValueStore entries to map a custom domain to an internal subdomain. Creates two entries: one for the domain (e.g., example.com) and one for www subdomain (e.g., www.example.com), both pointing to the specified internal subdomain. These mappings are used by CloudFront functions to route requests from custom domains to their corresponding internal Zoca subdomains.'
-      operationId: t_value
+      operationId: postDomainTransferKvsAddEntries
       parameters: []
       requestBody:
         required: true
@@ -142,6 +148,8 @@ paths:
       summary: Add CloudFront KVS entries for domain mapping
       tags:
       - Domain Transfer
+      x-operation-id-source: normalized
+      x-operation-id-original: t_value
 components:
   schemas:
     e:

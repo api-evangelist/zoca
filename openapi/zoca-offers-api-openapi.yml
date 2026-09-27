@@ -22,7 +22,7 @@ paths:
       tags:
       - Offers
     get:
-      operationId: t_value
+      operationId: getOffers
       parameters:
       - name: app-version
         in: header
@@ -42,9 +42,11 @@ paths:
       summary: List all offers
       tags:
       - Offers
+      x-operation-id-source: normalized
+      x-operation-id-original: t_value
   /offers/draft:
     post:
-      operationId: t_value
+      operationId: postOffersDraft
       parameters: []
       responses:
         '201':
@@ -52,9 +54,11 @@ paths:
       summary: Create a draft offer with optional fields
       tags:
       - Offers
+      x-operation-id-source: normalized
+      x-operation-id-original: t_value
   /offers/{id}/draft:
     put:
-      operationId: t_value
+      operationId: putOffersByIdDraft
       parameters: []
       responses:
         '200':
@@ -62,9 +66,11 @@ paths:
       summary: Update a draft offer with field-by-field updates
       tags:
       - Offers
+      x-operation-id-source: normalized
+      x-operation-id-original: t_value
   /offers/{id}:
     get:
-      operationId: t_value
+      operationId: getOffersById
       parameters:
       - name: source
         in: header
@@ -78,8 +84,10 @@ paths:
       summary: Get offer details
       tags:
       - Offers
+      x-operation-id-source: normalized
+      x-operation-id-original: t_value
     put:
-      operationId: t_value
+      operationId: putOffersById
       parameters: []
       responses:
         '200':
@@ -87,8 +95,10 @@ paths:
       summary: Update an offer
       tags:
       - Offers
+      x-operation-id-source: normalized
+      x-operation-id-original: t_value
     delete:
-      operationId: t_value
+      operationId: deleteOffersById
       parameters: []
       responses:
         '200':
@@ -96,10 +106,12 @@ paths:
       summary: Soft delete an offer
       tags:
       - Offers
+      x-operation-id-source: normalized
+      x-operation-id-original: t_value
   /offers/v2/list:
     get:
       description: Optimized endpoint that only fetches from offers table, media, and CTAs. Uses efficient SQL aggregation for better performance. Supports pagination, filtering by active/draft status, search by title, and custom sorting.
-      operationId: t_value
+      operationId: getOffersV2List
       parameters: []
       responses:
         '200':
@@ -113,9 +125,11 @@ paths:
       summary: List offers with optimized data fetching (v2)
       tags:
       - Offers
+      x-operation-id-source: normalized
+      x-operation-id-original: t_value
   /offers/channels/{entityId}:
     get:
-      operationId: t_value
+      operationId: getOffersChannelsByEntityId
       parameters: []
       responses:
         '200':
@@ -129,10 +143,12 @@ paths:
       summary: List available channels for offer creation with publishOn dates
       tags:
       - Offers
+      x-operation-id-source: normalized
+      x-operation-id-original: t_value
   /offers/description/generate:
     post:
       description: Uses LLM to generate an offer description based on business category, services, and additional variables
-      operationId: t_value
+      operationId: postOffersDescriptionGenerate
       parameters: []
       responses:
         '200':
@@ -148,10 +164,12 @@ paths:
       summary: Generate AI-powered description for an offer
       tags:
       - Offers
+      x-operation-id-source: normalized
+      x-operation-id-original: t_value
   /offers/description/validate:
     post:
       description: Uses LLM to validate an offer description based on business category, services, and additional variables
-      operationId: t_value
+      operationId: postOffersDescriptionValidate
       parameters: []
       responses:
         '200':
@@ -163,10 +181,12 @@ paths:
       summary: Validate AI-powered description for an offer
       tags:
       - Offers
+      x-operation-id-source: normalized
+      x-operation-id-original: t_value
   /offers/title/generate:
     post:
       description: Uses LLM to generate an offer title based on business category, services, description, discount, and duration. The generated title is automatically stored in the offer.
-      operationId: t_value
+      operationId: postOffersTitleGenerate
       parameters: []
       responses:
         '200':
@@ -178,9 +198,11 @@ paths:
       summary: Generate and store AI-powered title for an offer
       tags:
       - Offers
+      x-operation-id-source: normalized
+      x-operation-id-original: t_value
   /offers/entities/{entityId}:
     get:
-      operationId: t_value
+      operationId: getOffersEntitiesByEntityId
       parameters: []
       responses:
         '200':
@@ -188,9 +210,11 @@ paths:
       summary: List all offers on an entity
       tags:
       - Offers
+      x-operation-id-source: normalized
+      x-operation-id-original: t_value
   /offers/entities/{entityId}/status:
     get:
-      operationId: t_value
+      operationId: getOffersEntitiesByEntityIdStatus
       parameters:
       - name: app-version
         in: header
@@ -210,10 +234,12 @@ paths:
       summary: List all offers on an entity with status
       tags:
       - Offers
+      x-operation-id-source: normalized
+      x-operation-id-original: t_value
   /offers/entities/{entityId}/status/count:
     get:
       description: Returns the count of offers for each status (DRAFT, FUTURE, LIVE, PAUSED, EXPIRED). Always returns all statuses even if count is 0. When requests come from zoca-app or mobile app (app-version header), offers with offerType = NOT_AN_OFFER are excluded.
-      operationId: t_value
+      operationId: getOffersEntitiesByEntityIdStatusCount
       parameters:
       - name: app-version
         in: header
@@ -263,10 +289,12 @@ paths:
       summary: Get count of offers grouped by status for an entity
       tags:
       - Offers
+      x-operation-id-source: normalized
+      x-operation-id-original: t_value
   /offers/entities/{entityId}/search:
     get:
       description: Performs case-insensitive partial matching on offer titles. Returns offers with all associations (services, media, CTAs, addons, channels) and calculated status (DRAFT, FUTURE, LIVE, PAUSED, EXPIRED). Uses page-based pagination for better UX.
-      operationId: t_value
+      operationId: getOffersEntitiesByEntityIdSearch
       parameters: []
       responses:
         '200':
@@ -294,10 +322,12 @@ paths:
       summary: Search offers by title with status calculation
       tags:
       - Offers
+      x-operation-id-source: normalized
+      x-operation-id-original: t_value
   /offers/{offerId}/suggestions:
     get:
       description: Retrieves all suggestions for a specific offer from the requests table along with their request status and creation timestamp. The createdAt field is converted to a DateTime object with separate date and time components. Suggestions are ordered by creation date descending (newest first).
-      operationId: t_value
+      operationId: getOffersByOfferIdSuggestions
       parameters: []
       responses:
         '200':
@@ -376,9 +406,11 @@ paths:
       summary: Get suggestions for an offer
       tags:
       - Offers
+      x-operation-id-source: normalized
+      x-operation-id-original: t_value
   /offers/{id}/duplicate:
     post:
-      operationId: t_value
+      operationId: postOffersByIdDuplicate
       parameters: []
       responses:
         '201':
@@ -390,10 +422,12 @@ paths:
       summary: Duplicate an offer as a new draft
       tags:
       - Offers
+      x-operation-id-source: normalized
+      x-operation-id-original: t_value
   /offers/{id}/toggle-active:
     put:
       description: Toggles the active status of an offer. If currently active, sets to inactive. If inactive, sets to active.
-      operationId: t_value
+      operationId: putOffersByIdToggleActive
       parameters: []
       responses:
         '200':
@@ -417,9 +451,11 @@ paths:
       summary: Toggle offer active/inactive status
       tags:
       - Offers
+      x-operation-id-source: normalized
+      x-operation-id-original: t_value
   /offers/{id}/entity:
     post:
-      operationId: t_value
+      operationId: postOffersByIdEntity
       parameters: []
       responses:
         '201':
@@ -427,8 +463,10 @@ paths:
       summary: Associate an offer with an entity
       tags:
       - Offers
+      x-operation-id-source: normalized
+      x-operation-id-original: t_value
     delete:
-      operationId: t_value
+      operationId: deleteOffersByIdEntity
       parameters: []
       responses:
         '200':
@@ -436,9 +474,11 @@ paths:
       summary: Remove entity association
       tags:
       - Offers
+      x-operation-id-source: normalized
+      x-operation-id-original: t_value
   /offers/{id}/services:
     post:
-      operationId: t_value
+      operationId: postOffersByIdServices
       parameters: []
       responses:
         '201':
@@ -446,8 +486,10 @@ paths:
       summary: Add services to an offer
       tags:
       - Offers
+      x-operation-id-source: normalized
+      x-operation-id-original: t_value
     get:
-      operationId: t_value
+      operationId: getOffersByIdServices
       parameters: []
       responses:
         '200':
@@ -455,9 +497,11 @@ paths:
       summary: List services for an offer
       tags:
       - Offers
+      x-operation-id-source: normalized
+      x-operation-id-original: t_value
   /offers/{id}/services/{serviceId}:
     delete:
-      operationId: t_value
+      operationId: deleteOffersByIdServicesByServiceId
       parameters: []
       responses:
         '200':
@@ -465,9 +509,11 @@ paths:
       summary: Remove a service from an offer
       tags:
       - Offers
+      x-operation-id-source: normalized
+      x-operation-id-original: t_value
   /offers/{id}/media:
     post:
-      operationId: t_value
+      operationId: postOffersByIdMedia
       parameters: []
       responses:
         '201':
@@ -475,8 +521,10 @@ paths:
       summary: Add media to an offer
       tags:
       - Offers
+      x-operation-id-source: normalized
+      x-operation-id-original: t_value
     get:
-      operationId: t_value
+      operationId: getOffersByIdMedia
       parameters: []
       responses:
         '200':
@@ -484,9 +532,11 @@ paths:
       summary: List media for an offer
       tags:
       - Offers
+      x-operation-id-source: normalized
+      x-operation-id-original: t_value
   /offers/{id}/media/{mediaId}:
     delete:
-      operationId: t_value
+      operationId: deleteOffersByIdMediaByMediaId
       parameters: []
       responses:
         '200':
@@ -494,9 +544,11 @@ paths:
       summary: Remove media from an offer
       tags:
       - Offers
+      x-operation-id-source: normalized
+      x-operation-id-original: t_value
   /offers/{id}/media/{mediaId}/replace:
     post:
-      operationId: t_value
+      operationId: postOffersByIdMediaByMediaIdReplace
       parameters: []
       responses:
         '200':
@@ -504,9 +556,11 @@ paths:
       summary: Replace media for an offer
       tags:
       - Offers
+      x-operation-id-source: normalized
+      x-operation-id-original: t_value
   /offers/{id}/addons:
     post:
-      operationId: t_value
+      operationId: postOffersByIdAddons
       parameters: []
       responses:
         '201':
@@ -514,8 +568,10 @@ paths:
       summary: Add an addon to an offer
       tags:
       - Offers
+      x-operation-id-source: normalized
+      x-operation-id-original: t_value
     get:
-      operationId: t_value
+      operationId: getOffersByIdAddons
       parameters: []
       responses:
         '200':
@@ -523,9 +579,11 @@ paths:
       summary: List addons for an offer
       tags:
       - Offers
+      x-operation-id-source: normalized
+      x-operation-id-original: t_value
   /offers/{id}/addons/{addonId}:
     put:
-      operationId: t_value
+      operationId: putOffersByIdAddonsByAddonId
       parameters: []
       responses:
         '200':
@@ -533,8 +591,10 @@ paths:
       summary: Update an addon
       tags:
       - Offers
+      x-operation-id-source: normalized
+      x-operation-id-original: t_value
     delete:
-      operationId: t_value
+      operationId: deleteOffersByIdAddonsByAddonId
       parameters: []
       responses:
         '200':
@@ -542,9 +602,11 @@ paths:
       summary: Delete an addon
       tags:
       - Offers
+      x-operation-id-source: normalized
+      x-operation-id-original: t_value
   /offers/{id}/ctas:
     post:
-      operationId: t_value
+      operationId: postOffersByIdCtas
       parameters: []
       responses:
         '201':
@@ -552,8 +614,10 @@ paths:
       summary: Add CTAs to an offer
       tags:
       - Offers
+      x-operation-id-source: normalized
+      x-operation-id-original: t_value
     get:
-      operationId: t_value
+      operationId: getOffersByIdCtas
       parameters: []
       responses:
         '200':
@@ -561,9 +625,11 @@ paths:
       summary: List CTAs for an offer
       tags:
       - Offers
+      x-operation-id-source: normalized
+      x-operation-id-original: t_value
   /offers/{id}/ctas/{ctaId}:
     delete:
-      operationId: t_value
+      operationId: deleteOffersByIdCtasByCtaId
       parameters: []
       responses:
         '200':
@@ -571,9 +637,11 @@ paths:
       summary: Remove a CTA from an offer
       tags:
       - Offers
+      x-operation-id-source: normalized
+      x-operation-id-original: t_value
   /offers/{id}/pause:
     put:
-      operationId: t_value
+      operationId: putOffersByIdPause
       parameters: []
       responses:
         '200':
@@ -581,9 +649,11 @@ paths:
       summary: Pause an active offer
       tags:
       - Offers
+      x-operation-id-source: normalized
+      x-operation-id-original: t_value
   /offers/{id}/resume:
     put:
-      operationId: t_value
+      operationId: putOffersByIdResume
       parameters: []
       responses:
         '200':
@@ -591,9 +661,11 @@ paths:
       summary: Resume a paused offer
       tags:
       - Offers
+      x-operation-id-source: normalized
+      x-operation-id-original: t_value
   /offers/entity/{entityId}/active:
     get:
-      operationId: t_value
+      operationId: getOffersEntityByEntityIdActive
       parameters:
       - name: appointmentTime
         required: false
@@ -613,9 +685,11 @@ paths:
       summary: Get active discount offers for entity
       tags:
       - Offers
+      x-operation-id-source: normalized
+      x-operation-id-original: t_value
   /offers/entity/{entityId}/loyalty:
     get:
-      operationId: t_value
+      operationId: getOffersEntityByEntityIdLoyalty
       parameters: []
       responses:
         '200':
@@ -623,9 +697,11 @@ paths:
       summary: Get active loyalty-channel offers for entity
       tags:
       - Offers
+      x-operation-id-source: normalized
+      x-operation-id-original: t_value
   /offers/{id}/usage-stats:
     get:
-      operationId: t_value
+      operationId: getOffersByIdUsageStats
       parameters: []
       responses:
         '200':
@@ -633,9 +709,11 @@ paths:
       summary: Get usage statistics for an offer
       tags:
       - Offers
+      x-operation-id-source: normalized
+      x-operation-id-original: t_value
   /offers/entity/{entityId}/usage-report:
     get:
-      operationId: t_value
+      operationId: getOffersEntityByEntityIdUsageReport
       parameters: []
       responses:
         '200':
@@ -643,6 +721,8 @@ paths:
       summary: Get offer usage report for entity
       tags:
       - Offers
+      x-operation-id-source: normalized
+      x-operation-id-original: t_value
 components:
   schemas:
     e:

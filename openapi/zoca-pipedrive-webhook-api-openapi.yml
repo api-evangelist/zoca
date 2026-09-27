@@ -33,7 +33,7 @@ paths:
   /pipedrive/person/upsert:
     post:
       description: Processes incoming request to create a pipedrive person
-      operationId: t_value
+      operationId: postPipedrivePersonUpsert
       parameters: []
       requestBody:
         required: true
@@ -48,13 +48,15 @@ paths:
       summary: Create Pipedirve Person
       tags:
       - Pipedrive Webhook
+      x-operation-id-source: normalized
+      x-operation-id-original: t_value
     servers:
     - url: https://api.zoca.ai
       description: Production
   /pipedrive/organization/upsert:
     post:
       description: Processes incoming request to create a pipedrive organization
-      operationId: t_value
+      operationId: postPipedriveOrganizationUpsert
       parameters: []
       requestBody:
         required: true
@@ -69,13 +71,15 @@ paths:
       summary: Create Pipedirve Organization
       tags:
       - Pipedrive Webhook
+      x-operation-id-source: normalized
+      x-operation-id-original: t_value
     servers:
     - url: https://api.zoca.ai
       description: Production
   /pipedrive/lead/status:
     get:
       description: Processes incoming request to get the lead status
-      operationId: t_value
+      operationId: getPipedriveLeadStatus
       parameters: []
       responses:
         '200':
@@ -83,13 +87,15 @@ paths:
       summary: Get Lead Status
       tags:
       - Pipedrive Webhook
+      x-operation-id-source: normalized
+      x-operation-id-original: t_value
     servers:
     - url: https://api.zoca.ai
       description: Production
   /pipedrive/lead/callback:
     get:
       description: Processes incoming request to request a callback
-      operationId: t_value
+      operationId: getPipedriveLeadCallback
       parameters: []
       responses:
         '200':
@@ -97,13 +103,15 @@ paths:
       summary: Requested a callback
       tags:
       - Pipedrive Webhook
+      x-operation-id-source: normalized
+      x-operation-id-original: t_value
     servers:
     - url: https://api.zoca.ai
       description: Production
   /pipedrive/lead/demo-attended:
     post:
       description: Processes incoming request to update the lead demo attended
-      operationId: t_value
+      operationId: postPipedriveLeadDemoAttended
       parameters: []
       responses:
         '201':
@@ -111,13 +119,15 @@ paths:
       summary: Update Lead Demo Attended
       tags:
       - Pipedrive Webhook
+      x-operation-id-source: normalized
+      x-operation-id-original: t_value
     servers:
     - url: https://api.zoca.ai
       description: Production
   /pipedrive/account-manager/tracking/{entityId}:
     get:
       description: Retrieves account manager tracking data including deal information, AM details, and trackable Calendly URLs. Optionally includes UTM campaign parameters for meeting tracking.
-      operationId: t_value
+      operationId: getPipedriveAccountManagerTrackingByEntityId
       parameters:
       - name: meetingType
         required: false
@@ -166,13 +176,15 @@ paths:
       summary: Get Account Manager Tracking Data
       tags:
       - Pipedrive Webhook
+      x-operation-id-source: normalized
+      x-operation-id-original: t_value
     servers:
     - url: https://api.zoca.ai
       description: Production
   /pipedrive/activity/create:
     post:
       description: Processes incoming request to create a pipedrive activity
-      operationId: t_value
+      operationId: postPipedriveActivityCreate
       parameters: []
       requestBody:
         required: true
@@ -187,13 +199,15 @@ paths:
       summary: Create Pipedirve Activity
       tags:
       - Pipedrive Webhook
+      x-operation-id-source: normalized
+      x-operation-id-original: t_value
     servers:
     - url: https://public.zoca.com
       description: Production
   /pipedrive/lead/contact-form:
     post:
       description: Processes incoming request to process the contact form
-      operationId: t_value
+      operationId: postPipedriveLeadContactForm
       parameters: []
       responses:
         '201':
@@ -201,13 +215,15 @@ paths:
       summary: Process Contact Form
       tags:
       - Pipedrive Webhook
+      x-operation-id-source: normalized
+      x-operation-id-original: t_value
     servers:
     - url: https://public.zoca.com
       description: Production
   /tasks/api/v1/pipedrive/person-webhook:
     post:
       description: Processes incoming Pipedrive webhook data and queues it for handling
-      operationId: t_value
+      operationId: postTasksApiV1PipedrivePersonWebhook
       parameters: []
       requestBody:
         required: true
@@ -224,13 +240,15 @@ paths:
       summary: Process Pipedrive webhook
       tags:
       - Pipedrive Webhook
+      x-operation-id-source: normalized
+      x-operation-id-original: t_value
     servers:
     - url: https://tasks.zoca.ai
       description: Production
   /tasks/api/v1/pipedrive/webhook:
     post:
       description: Processes incoming Pipedrive webhook data and queues it for handling
-      operationId: t_value
+      operationId: postTasksApiV1PipedriveWebhook
       parameters: []
       requestBody:
         required: true
@@ -247,13 +265,15 @@ paths:
       summary: Process Pipedrive webhook
       tags:
       - Pipedrive Webhook
+      x-operation-id-source: normalized
+      x-operation-id-original: t_value
     servers:
     - url: https://tasks.zoca.ai
       description: Production
   /tasks/api/v1/pipedrive/deal/update:
     post:
       description: Processes incoming request to update a pipedrive deal
-      operationId: t_value
+      operationId: postTasksApiV1PipedriveDealUpdate
       parameters: []
       requestBody:
         required: true
@@ -270,13 +290,15 @@ paths:
       summary: Update Pipedirve Deal
       tags:
       - Pipedrive Webhook
+      x-operation-id-source: normalized
+      x-operation-id-original: t_value
     servers:
     - url: https://tasks.zoca.ai
       description: Production
   /tasks/api/v1/pipedrive/deal/sync:
     post:
       description: Processes incoming request to update a pipedrive deal
-      operationId: t_value
+      operationId: postTasksApiV1PipedriveDealSync
       parameters: []
       requestBody:
         required: true
@@ -293,13 +315,15 @@ paths:
       summary: Update Pipedirve Deal
       tags:
       - Pipedrive Webhook
+      x-operation-id-source: normalized
+      x-operation-id-original: t_value
     servers:
     - url: https://tasks.zoca.ai
       description: Production
   /tasks/api/v1/pipedrive/lead/status/update:
     post:
       description: Processes incoming request to update a pipedrive lead status
-      operationId: t_value
+      operationId: postTasksApiV1PipedriveLeadStatusUpdate
       parameters: []
       requestBody:
         required: true
@@ -316,13 +340,15 @@ paths:
       summary: Update Pipedirve Lead Status
       tags:
       - Pipedrive Webhook
+      x-operation-id-source: normalized
+      x-operation-id-original: t_value
     servers:
     - url: https://tasks.zoca.ai
       description: Production
   /tasks/api/v1/pipedrive/person/upsert:
     post:
       description: Processes incoming request to create a pipedrive person
-      operationId: t_value
+      operationId: postTasksApiV1PipedrivePersonUpsert
       parameters: []
       requestBody:
         required: true
@@ -339,13 +365,15 @@ paths:
       summary: Create Pipedirve Person
       tags:
       - Pipedrive Webhook
+      x-operation-id-source: normalized
+      x-operation-id-original: t_value
     servers:
     - url: https://tasks.zoca.ai
       description: Production
   /tasks/api/v1/pipedrive/organization/create:
     post:
       description: Processes incoming request to create a pipedrive organization
-      operationId: t_value
+      operationId: postTasksApiV1PipedriveOrganizationCreate
       parameters: []
       requestBody:
         required: true
@@ -362,13 +390,15 @@ paths:
       summary: Create Pipedirve Organization
       tags:
       - Pipedrive Webhook
+      x-operation-id-source: normalized
+      x-operation-id-original: t_value
     servers:
     - url: https://tasks.zoca.ai
       description: Production
   /tasks/api/v1/pipedrive/process/demo-booking:
     post:
       description: Processes incoming request to create a demo booking
-      operationId: t_value
+      operationId: postTasksApiV1PipedriveProcessDemoBooking
       parameters: []
       requestBody:
         required: true
@@ -385,13 +415,15 @@ paths:
       summary: Process Demo Booking
       tags:
       - Pipedrive Webhook
+      x-operation-id-source: normalized
+      x-operation-id-original: t_value
     servers:
     - url: https://tasks.zoca.ai
       description: Production
   /tasks/api/v1/pipedrive/persons/upsert/bulk:
     post:
       description: Processes incoming request to upsert pipedrive persons from a CSV file stored in S3. The worker will download, validate, and process the file.
-      operationId: t_value
+      operationId: postTasksApiV1PipedrivePersonsUpsertBulk
       parameters: []
       requestBody:
         required: true
@@ -421,13 +453,15 @@ paths:
       summary: Upsert Pipedrive Persons from S3
       tags:
       - Pipedrive Webhook
+      x-operation-id-source: normalized
+      x-operation-id-original: t_value
     servers:
     - url: https://tasks.zoca.ai
       description: Production
   /tasks/api/v1/pipedrive/process/moengage/event:
     post:
       description: Processes incoming request to process a moengage event
-      operationId: t_value
+      operationId: postTasksApiV1PipedriveProcessMoengageEvent
       parameters: []
       requestBody:
         required: true
@@ -444,14 +478,13 @@ paths:
       summary: Process Moengage Event
       tags:
       - Pipedrive Webhook
+      x-operation-id-source: normalized
+      x-operation-id-original: t_value
     servers:
     - url: https://tasks.zoca.ai
       description: Production
 components:
   schemas:
-    Object:
-      type: object
-      properties: {}
     e:
       type: object
       properties:
@@ -477,6 +510,9 @@ components:
       - id
       - entityId
       - attribute
+    Object:
+      type: object
+      properties: {}
     e_2:
       type: object
       properties:

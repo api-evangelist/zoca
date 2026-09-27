@@ -39,7 +39,7 @@ paths:
   /dns/route53/cname/batch:
     post:
       description: Create multiple CNAME records at once for certificate validation
-      operationId: t_value
+      operationId: postDnsRoute53CnameBatch
       parameters: []
       requestBody:
         required: true
@@ -63,10 +63,12 @@ paths:
       summary: Create multiple CNAME records
       tags:
       - Route53
+      x-operation-id-source: normalized
+      x-operation-id-original: t_value
   /dns/route53/hosted-zone/find/{domainName}:
     get:
       description: Find the Route53 hosted zone ID for a specific domain
-      operationId: t_value
+      operationId: getDnsRoute53HostedZoneFindByDomainName
       parameters:
       - name: domainName
         required: true
@@ -93,10 +95,12 @@ paths:
       summary: Find hosted zone for domain
       tags:
       - Route53
+      x-operation-id-source: normalized
+      x-operation-id-original: t_value
   /dns/route53/validate-cnames:
     post:
       description: Check if CNAME records are properly configured for certificate validation
-      operationId: t_value
+      operationId: postDnsRoute53ValidateCnames
       parameters: []
       requestBody:
         required: true
@@ -123,10 +127,12 @@ paths:
       summary: Validate CNAME records
       tags:
       - Route53
+      x-operation-id-source: normalized
+      x-operation-id-original: t_value
   /dns/route53/hosted-zone:
     post:
       description: Create a new Route53 hosted zone for a domain and get name servers
-      operationId: t_value
+      operationId: postDnsRoute53HostedZone
       parameters: []
       requestBody:
         required: true
@@ -150,10 +156,12 @@ paths:
       summary: Create Route53 hosted zone
       tags:
       - Route53
+      x-operation-id-source: normalized
+      x-operation-id-original: t_value
   /dns/route53/hosted-zone/{domainOrZoneId}:
     get:
       description: Retrieve complete hosted zone information including all DNS records. Can search by domain name or hosted zone ID
-      operationId: t_value
+      operationId: getDnsRoute53HostedZoneByDomainOrZoneId
       parameters:
       - name: domainOrZoneId
         required: true
@@ -175,10 +183,12 @@ paths:
       summary: Get hosted zone details with all DNS records
       tags:
       - Route53
+      x-operation-id-source: normalized
+      x-operation-id-original: t_value
   /dns/route53/hosted-zones:
     get:
       description: Retrieve Route53 hosted zones with optional search filter and pagination. Supports searching by domain name (partial match).
-      operationId: t_value
+      operationId: getDnsRoute53HostedZones
       parameters:
       - name: limit
         required: false
@@ -212,10 +222,12 @@ paths:
       summary: List hosted zones with pagination and search
       tags:
       - Route53
+      x-operation-id-source: normalized
+      x-operation-id-original: t_value
   /dns/route53/hosted-zone/{hostedZoneId}:
     delete:
       description: 'Delete a Route53 hosted zone. Note: The hosted zone must have only NS and SOA records before deletion. All other records must be deleted first.'
-      operationId: t_value
+      operationId: deleteDnsRoute53HostedZoneByHostedZoneId
       parameters:
       - name: hostedZoneId
         required: true
@@ -235,10 +247,12 @@ paths:
       summary: Delete hosted zone
       tags:
       - Route53
+      x-operation-id-source: normalized
+      x-operation-id-original: t_value
   /dns/route53/dns-record:
     post:
       description: Create a single DNS record (A, AAAA, CNAME, MX, TXT, etc.) in a hosted zone
-      operationId: t_value
+      operationId: postDnsRoute53DnsRecord
       parameters: []
       requestBody:
         required: true
@@ -260,9 +274,11 @@ paths:
       summary: Create DNS record in Route53
       tags:
       - Route53
+      x-operation-id-source: normalized
+      x-operation-id-original: t_value
     put:
       description: Update an existing DNS record value in a hosted zone
-      operationId: t_value
+      operationId: putDnsRoute53DnsRecord
       parameters: []
       requestBody:
         required: true
@@ -309,9 +325,11 @@ paths:
       summary: Update DNS record
       tags:
       - Route53
+      x-operation-id-source: normalized
+      x-operation-id-original: t_value
     delete:
       description: Delete a specific DNS record from a hosted zone
-      operationId: t_value
+      operationId: deleteDnsRoute53DnsRecord
       parameters:
       - name: ttl
         required: false
@@ -353,10 +371,12 @@ paths:
       summary: Delete DNS record
       tags:
       - Route53
+      x-operation-id-source: normalized
+      x-operation-id-original: t_value
   /dns/route53/dns-record/batch:
     post:
       description: Create multiple DNS records at once in a hosted zone
-      operationId: t_value
+      operationId: postDnsRoute53DnsRecordBatch
       parameters: []
       requestBody:
         required: true
@@ -380,10 +400,12 @@ paths:
       summary: Create multiple DNS records
       tags:
       - Route53
+      x-operation-id-source: normalized
+      x-operation-id-original: t_value
   /dns/route53/alias-record:
     post:
       description: Create an alias record (A record) pointing to CloudFront, S3, ELB, or other AWS services. Alias records are Route53-specific and provide better performance and cost benefits compared to CNAME records.
-      operationId: t_value
+      operationId: postDnsRoute53AliasRecord
       parameters: []
       requestBody:
         required: true
@@ -407,10 +429,12 @@ paths:
       summary: Create alias record in Route53
       tags:
       - Route53
+      x-operation-id-source: normalized
+      x-operation-id-original: t_value
   /dns/route53/records/log:
     post:
       description: Create a new Route53 record entry to log DNS changes. This endpoint should be called whenever a DNS record is created, updated, or deleted in Route53. Acts as an audit trail for all DNS modifications.
-      operationId: t_value
+      operationId: postDnsRoute53RecordsLog
       parameters: []
       requestBody:
         required: true
@@ -434,9 +458,11 @@ paths:
       summary: Create Route53 record entry
       tags:
       - Route53
+      x-operation-id-source: normalized
+      x-operation-id-original: t_value
     get:
       description: Retrieve Route53 record entries with optional filters, pagination, and search. Supports searching by domain name (partial match in domain name or record name). Results are ordered by creation date (newest first).
-      operationId: t_value
+      operationId: getDnsRoute53RecordsLog
       parameters:
       - name: limit
         required: false
@@ -496,10 +522,12 @@ paths:
       summary: Get Route53 record entries with pagination and search
       tags:
       - Route53
+      x-operation-id-source: normalized
+      x-operation-id-original: t_value
   /dns/route53/records/log/{id}:
     get:
       description: Retrieve a specific Route53 record entry by its ID
-      operationId: t_value
+      operationId: getDnsRoute53RecordsLogById
       parameters:
       - name: id
         required: true
@@ -523,9 +551,11 @@ paths:
       summary: Get Route53 record entry by ID
       tags:
       - Route53
+      x-operation-id-source: normalized
+      x-operation-id-original: t_value
     put:
       description: Update a Route53 record entry. This can be used to update change status from PENDING to INSYNC, or to mark records as inactive.
-      operationId: t_value
+      operationId: putDnsRoute53RecordsLogById
       parameters:
       - name: id
         required: true
@@ -557,9 +587,11 @@ paths:
       summary: Update Route53 record entry
       tags:
       - Route53
+      x-operation-id-source: normalized
+      x-operation-id-original: t_value
     delete:
       description: Delete a Route53 record entry from the audit trail. This does NOT delete the actual DNS record from Route53, only the log entry.
-      operationId: t_value
+      operationId: deleteDnsRoute53RecordsLogById
       parameters:
       - name: id
         required: true
@@ -583,10 +615,12 @@ paths:
       summary: Delete Route53 record entry
       tags:
       - Route53
+      x-operation-id-source: normalized
+      x-operation-id-original: t_value
   /dns/route53/records/history/{hostedZoneId}/{recordName}:
     get:
       description: Retrieve all change history entries for a specific DNS record. Results are ordered by creation date (newest first).
-      operationId: t_value
+      operationId: getDnsRoute53RecordsHistoryByHostedZoneIdByRecordName
       parameters:
       - name: recordName
         required: true
@@ -616,10 +650,12 @@ paths:
       summary: Get change history for a specific DNS record
       tags:
       - Route53
+      x-operation-id-source: normalized
+      x-operation-id-original: t_value
   /dns/route53/records/hosted-zone/{hostedZoneId}:
     get:
       description: Retrieve all Route53 record entries for a specific hosted zone. Results are ordered by creation date (newest first).
-      operationId: t_value
+      operationId: getDnsRoute53RecordsHostedZoneByHostedZoneId
       parameters:
       - name: hostedZoneId
         required: true
@@ -643,6 +679,8 @@ paths:
       summary: Get all audit log records for a hosted zone
       tags:
       - Route53
+      x-operation-id-source: normalized
+      x-operation-id-original: t_value
 components:
   schemas:
     e:

@@ -25,7 +25,7 @@ paths:
       tags:
       - Square
     post:
-      operationId: t_value
+      operationId: postSquareMerchantsByEntityId
       parameters: []
       responses:
         '201':
@@ -33,12 +33,14 @@ paths:
       summary: Sync merchant data by entity ID
       tags:
       - Square
+      x-operation-id-source: normalized
+      x-operation-id-original: t_value
     servers:
     - url: https://api.zoca.ai
       description: Production
   /square/locations/{entityId}:
     get:
-      operationId: t_value
+      operationId: getSquareLocationsByEntityId
       parameters: []
       responses:
         '200':
@@ -46,8 +48,10 @@ paths:
       summary: Get Square locations by entity ID
       tags:
       - Square
+      x-operation-id-source: normalized
+      x-operation-id-original: t_value
     post:
-      operationId: t_value
+      operationId: postSquareLocationsByEntityId
       parameters: []
       responses:
         '201':
@@ -55,12 +59,14 @@ paths:
       summary: Sync Square locations by entity ID
       tags:
       - Square
+      x-operation-id-source: normalized
+      x-operation-id-original: t_value
     servers:
     - url: https://api.zoca.ai
       description: Production
   /square/team-members/{entityId}:
     get:
-      operationId: t_value
+      operationId: getSquareTeamMembersByEntityId
       parameters: []
       responses:
         '200':
@@ -72,12 +78,14 @@ paths:
       summary: Get Square team members by entity ID
       tags:
       - Square
+      x-operation-id-source: normalized
+      x-operation-id-original: t_value
     servers:
     - url: https://api.zoca.ai
       description: Production
   /square/bookings/search-availability:
     post:
-      operationId: t_value
+      operationId: postSquareBookingsSearchAvailability
       parameters: []
       responses:
         '200':
@@ -93,12 +101,14 @@ paths:
       summary: Search for booking availability
       tags:
       - Square
+      x-operation-id-source: normalized
+      x-operation-id-original: t_value
     servers:
     - url: https://api.zoca.ai
       description: Production
   /square/bookings/cancel:
     post:
-      operationId: t_value
+      operationId: postSquareBookingsCancel
       parameters: []
       responses:
         '200':
@@ -114,12 +124,14 @@ paths:
       summary: Cancel a Square booking
       tags:
       - Square
+      x-operation-id-source: normalized
+      x-operation-id-original: t_value
     servers:
     - url: https://api.zoca.ai
       description: Production
   /square/test/create-booking:
     post:
-      operationId: t_value
+      operationId: postSquareTestCreateBooking
       parameters: []
       responses:
         '200':
@@ -129,12 +141,14 @@ paths:
       summary: Test Square booking with chatbot-compatible payload
       tags:
       - Square
+      x-operation-id-source: normalized
+      x-operation-id-original: t_value
     servers:
     - url: https://api.zoca.ai
       description: Production
   /square/test/search-slots:
     post:
-      operationId: t_value
+      operationId: postSquareTestSearchSlots
       parameters: []
       responses:
         '200':
@@ -142,12 +156,14 @@ paths:
       summary: Test Square slot search with chatbot-compatible payload
       tags:
       - Square
+      x-operation-id-source: normalized
+      x-operation-id-original: t_value
     servers:
     - url: https://api.zoca.ai
       description: Production
   /tasks/api/v1/square/sync/{entityId}:
     post:
-      operationId: t_value
+      operationId: postTasksApiV1SquareSyncByEntityId
       parameters: []
       responses:
         '201':
@@ -158,12 +174,14 @@ paths:
       - access-token: []
       summary: T value
       x-summary-source: derived
+      x-operation-id-source: normalized
+      x-operation-id-original: t_value
     servers:
     - url: https://tasks.zoca.ai
       description: Production
   /tasks/api/v1/square/syncSquareCustomers:
     get:
-      operationId: t_value
+      operationId: getTasksApiV1SquareSyncSquareCustomers
       parameters: []
       responses:
         '200':
@@ -174,12 +192,14 @@ paths:
       - access-token: []
       summary: T value
       x-summary-source: derived
+      x-operation-id-source: normalized
+      x-operation-id-original: t_value
     servers:
     - url: https://tasks.zoca.ai
       description: Production
   /tasks/api/v1/square/sync-bookings:
     post:
-      operationId: t_value
+      operationId: postTasksApiV1SquareSyncBookings
       parameters: []
       responses:
         '201':
@@ -190,12 +210,14 @@ paths:
       - access-token: []
       summary: T value
       x-summary-source: derived
+      x-operation-id-source: normalized
+      x-operation-id-original: t_value
     servers:
     - url: https://tasks.zoca.ai
       description: Production
   /tasks/api/v1/square/sync-payments:
     post:
-      operationId: t_value
+      operationId: postTasksApiV1SquareSyncPayments
       parameters: []
       responses:
         '201':
@@ -206,13 +228,15 @@ paths:
       - access-token: []
       summary: T value
       x-summary-source: derived
+      x-operation-id-source: normalized
+      x-operation-id-original: t_value
     servers:
     - url: https://tasks.zoca.ai
       description: Production
   /tasks/api/v1/square/services/{entityId}:
     get:
       description: Fetches all Square catalog services with their variation IDs, prices, and durations for the given entity
-      operationId: t_value
+      operationId: getTasksApiV1SquareServicesByEntityId
       parameters:
       - name: entityId
         required: true
@@ -289,12 +313,14 @@ paths:
       - Square
       security:
       - access-token: []
+      x-operation-id-source: normalized
+      x-operation-id-original: t_value
     servers:
     - url: https://tasks.zoca.ai
       description: Production
   /tasks/api/v1/square/webhook:
     post:
-      operationId: t_value
+      operationId: postTasksApiV1SquareWebhook
       parameters: []
       responses:
         '201':
@@ -308,13 +334,15 @@ paths:
       - Square
       security:
       - access-token: []
+      x-operation-id-source: normalized
+      x-operation-id-original: t_value
     servers:
     - url: https://tasks.zoca.ai
       description: Production
   /tasks/api/v1/square/customer/{customerId}:
     get:
       description: Fetches customer details from Square by customer ID for a specific entity
-      operationId: t_value
+      operationId: getTasksApiV1SquareCustomerByCustomerId
       parameters:
       - name: customerId
         required: true
@@ -334,13 +362,15 @@ paths:
       - Square
       security:
       - access-token: []
+      x-operation-id-source: normalized
+      x-operation-id-original: t_value
     servers:
     - url: https://tasks.zoca.ai
       description: Production
   /tasks/api/v1/square/customer/{customerId}/cards:
     get:
       description: Retrieves all payment cards associated with a Square customer
-      operationId: t_value
+      operationId: getTasksApiV1SquareCustomerByCustomerIdCards
       parameters:
       - name: customerId
         required: true
@@ -388,13 +418,15 @@ paths:
       - Square
       security:
       - access-token: []
+      x-operation-id-source: normalized
+      x-operation-id-original: t_value
     servers:
     - url: https://tasks.zoca.ai
       description: Production
   /tasks/api/v1/square/create/customer/{customerId}/cards:
     post:
       description: Adds a new payment card to a Square customer profile
-      operationId: t_value
+      operationId: postTasksApiV1SquareCreateCustomerByCustomerIdCards
       parameters:
       - name: customerId
         required: true
@@ -477,6 +509,8 @@ paths:
       - Square
       security:
       - access-token: []
+      x-operation-id-source: normalized
+      x-operation-id-original: t_value
     servers:
     - url: https://tasks.zoca.ai
       description: Production

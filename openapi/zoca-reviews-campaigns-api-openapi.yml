@@ -25,7 +25,7 @@ paths:
       - reviews-campaigns
   /tasks/api/v1/reviews-campaigns/cohorts/{cohortId}/clients:
     get:
-      operationId: t_value
+      operationId: getTasksApiV1ReviewsCampaignsCohortsByCohortIdClients
       parameters: []
       responses:
         '200':
@@ -33,8 +33,10 @@ paths:
       summary: Paginated list of active clients in a reviews cohort
       tags:
       - reviews-campaigns
+      x-operation-id-source: normalized
+      x-operation-id-original: t_value
     post:
-      operationId: t_value
+      operationId: postTasksApiV1ReviewsCampaignsCohortsByCohortIdClients
       parameters: []
       responses:
         '201':
@@ -42,9 +44,11 @@ paths:
       summary: Add clients to a reviews cohort
       tags:
       - reviews-campaigns
+      x-operation-id-source: normalized
+      x-operation-id-original: t_value
   /tasks/api/v1/reviews-campaigns/clients/search:
     get:
-      operationId: t_value
+      operationId: getTasksApiV1ReviewsCampaignsClientsSearch
       parameters: []
       responses:
         '200':
@@ -52,9 +56,11 @@ paths:
       summary: Search an entity’s clients by name / phone / email (paginated)
       tags:
       - reviews-campaigns
+      x-operation-id-source: normalized
+      x-operation-id-original: t_value
   /tasks/api/v1/reviews-campaigns/cohorts/{cohortId}/clients/{clientId}:
     delete:
-      operationId: t_value
+      operationId: deleteTasksApiV1ReviewsCampaignsCohortsByCohortIdClientsByClientId
       parameters: []
       responses:
         '200':
@@ -62,9 +68,11 @@ paths:
       summary: Soft-remove a client from a reviews cohort
       tags:
       - reviews-campaigns
+      x-operation-id-source: normalized
+      x-operation-id-original: t_value
   /tasks/api/v1/reviews-campaigns/stats:
     get:
-      operationId: t_value
+      operationId: getTasksApiV1ReviewsCampaignsStats
       parameters: []
       responses:
         '200':
@@ -72,9 +80,11 @@ paths:
       summary: Entity rollup of review campaign stats
       tags:
       - reviews-campaigns
+      x-operation-id-source: normalized
+      x-operation-id-original: t_value
   /tasks/api/v1/reviews-campaigns/imports/{jobId}:
     get:
-      operationId: t_value
+      operationId: getTasksApiV1ReviewsCampaignsImportsByJobId
       parameters: []
       responses:
         '200':
@@ -82,9 +92,11 @@ paths:
       summary: Get the persisted import report for a reviews import job
       tags:
       - reviews-campaigns
+      x-operation-id-source: normalized
+      x-operation-id-original: t_value
   /tasks/api/v1/reviews-campaigns/{campaignId}:
     get:
-      operationId: t_value
+      operationId: getTasksApiV1ReviewsCampaignsByCampaignId
       parameters: []
       responses:
         '200':
@@ -92,9 +104,11 @@ paths:
       summary: Get a review campaign batch (status, counts)
       tags:
       - reviews-campaigns
+      x-operation-id-source: normalized
+      x-operation-id-original: t_value
   /tasks/api/v1/reviews-campaigns/{campaignId}/clients:
     get:
-      operationId: t_value
+      operationId: getTasksApiV1ReviewsCampaignsByCampaignIdClients
       parameters: []
       responses:
         '200':
@@ -102,9 +116,11 @@ paths:
       summary: List campaign clients (reached / skipped / pending)
       tags:
       - reviews-campaigns
+      x-operation-id-source: normalized
+      x-operation-id-original: t_value
   /tasks/api/v1/reviews-campaigns:
     get:
-      operationId: t_value
+      operationId: getTasksApiV1ReviewsCampaigns
       parameters: []
       responses:
         '200':
@@ -112,9 +128,11 @@ paths:
       summary: Paginated list of an entity’s review campaigns
       tags:
       - reviews-campaigns
+      x-operation-id-source: normalized
+      x-operation-id-original: t_value
   /tasks/api/v1/reviews-campaigns/{campaignId}/cancel:
     post:
-      operationId: t_value
+      operationId: postTasksApiV1ReviewsCampaignsByCampaignIdCancel
       parameters: []
       responses:
         '200':
@@ -122,6 +140,8 @@ paths:
       summary: Cancel (skip) a review campaign batch
       tags:
       - reviews-campaigns
+      x-operation-id-source: normalized
+      x-operation-id-original: t_value
 components:
   securitySchemes:
     access-token:

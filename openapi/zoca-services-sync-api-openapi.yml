@@ -22,7 +22,7 @@ paths:
       tags:
       - Services Sync
     get:
-      operationId: t_value
+      operationId: getServicesSyncRequest
       parameters: []
       responses:
         '200':
@@ -30,8 +30,10 @@ paths:
       summary: Get current sync request for a location
       tags:
       - Services Sync
+      x-operation-id-source: normalized
+      x-operation-id-original: t_value
     delete:
-      operationId: t_value
+      operationId: deleteServicesSyncRequest
       parameters: []
       responses:
         '200':
@@ -39,9 +41,11 @@ paths:
       summary: Delete a sync request
       tags:
       - Services Sync
+      x-operation-id-source: normalized
+      x-operation-id-original: t_value
   /services-sync/resync/request:
     post:
-      operationId: t_value
+      operationId: postServicesSyncResyncRequest
       parameters: []
       responses:
         '201':
@@ -49,6 +53,8 @@ paths:
       summary: Create a resync request
       tags:
       - Services Sync
+      x-operation-id-source: normalized
+      x-operation-id-original: t_value
 components:
   securitySchemes:
     access-token:

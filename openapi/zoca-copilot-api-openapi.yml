@@ -29,7 +29,7 @@ paths:
       - Copilot
   /copilot/discover:
     post:
-      operationId: t_value
+      operationId: postCopilotDiscover
       parameters: []
       responses:
         '200':
@@ -43,9 +43,11 @@ paths:
       summary: Discover insights using the copilot
       tags:
       - Copilot
+      x-operation-id-source: normalized
+      x-operation-id-original: t_value
   /copilot/conversations:
     get:
-      operationId: t_value
+      operationId: getCopilotConversations
       parameters: []
       responses:
         '200':
@@ -59,9 +61,11 @@ paths:
       summary: Get user conversations with optional pagination
       tags:
       - Copilot
+      x-operation-id-source: normalized
+      x-operation-id-original: t_value
   /copilot/conversations/{conversationId}:
     get:
-      operationId: t_value
+      operationId: getCopilotConversationsByConversationId
       parameters: []
       responses:
         '200':
@@ -75,9 +79,11 @@ paths:
       summary: Get conversation history with optional pagination
       tags:
       - Copilot
+      x-operation-id-source: normalized
+      x-operation-id-original: t_value
   /copilot/chat/stream:
     options:
-      operationId: t_value
+      operationId: optionsCopilotChatStream
       parameters: []
       responses:
         '204':
@@ -88,8 +94,10 @@ paths:
       - Copilot
       summary: T value
       x-summary-source: derived
+      x-operation-id-source: normalized
+      x-operation-id-original: t_value
     get:
-      operationId: t_value
+      operationId: getCopilotChatStream
       parameters: []
       responses:
         '200':
@@ -99,9 +107,11 @@ paths:
       summary: Stream chat responses from the copilot
       tags:
       - Copilot
+      x-operation-id-source: normalized
+      x-operation-id-original: t_value
   /copilot/stream:
     get:
-      operationId: t_value
+      operationId: getCopilotStream
       parameters: []
       responses:
         '200':
@@ -111,9 +121,11 @@ paths:
       summary: Stream responses from the copilot
       tags:
       - Copilot
+      x-operation-id-source: normalized
+      x-operation-id-original: t_value
   /copilot/enquiry-stats-with-roi:
     post:
-      operationId: t_value
+      operationId: postCopilotEnquiryStatsWithRoi
       parameters: []
       responses:
         '200':
@@ -128,10 +140,12 @@ paths:
       - Copilot
       summary: T value
       x-summary-source: derived
+      x-operation-id-source: normalized
+      x-operation-id-original: t_value
   /copilot/discovery-insights:
     post:
       description: Analyzes location data from the last 12 months including reviews, media, bookings, and metrics to generate insights
-      operationId: t_value
+      operationId: postCopilotDiscoveryInsights
       parameters: []
       requestBody:
         required: true
@@ -158,6 +172,8 @@ paths:
       summary: Get discovery insights for a specific location
       tags:
       - Copilot
+      x-operation-id-source: normalized
+      x-operation-id-original: t_value
 components:
   schemas:
     e:

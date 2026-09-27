@@ -35,7 +35,7 @@ paths:
   /tasks/api/v1/scraped-services/sync-to-production/{linkId}:
     post:
       description: Uses 3-tier matching (column map → fuzzy name → create new) to sync scraped services and variations into production services tables.
-      operationId: t_value
+      operationId: postTasksApiV1ScrapedServicesSyncToProductionByLinkId
       parameters:
       - name: linkId
         required: true
@@ -52,10 +52,12 @@ paths:
       summary: Sync scraped services to production tables
       tags:
       - Scraped Services
+      x-operation-id-source: normalized
+      x-operation-id-original: t_value
   /tasks/api/v1/scraped-services/reconcile/{linkId}/preview:
     get:
       description: Simulates the 3-tier matching for unmapped scraped services and variations, showing what would be matched or created.
-      operationId: t_value
+      operationId: getTasksApiV1ScrapedServicesReconcileByLinkIdPreview
       parameters:
       - name: linkId
         required: true
@@ -72,10 +74,12 @@ paths:
       summary: Preview reconciliation without making changes
       tags:
       - Scraped Services
+      x-operation-id-source: normalized
+      x-operation-id-original: t_value
   /tasks/api/v1/scraped-services/reconcile/{linkId}/ai-suggest:
     get:
       description: Uses an LLM to suggest mappings between unmapped scraped services/variations and production candidates based on semantic name matching.
-      operationId: t_value
+      operationId: getTasksApiV1ScrapedServicesReconcileByLinkIdAiSuggest
       parameters:
       - name: linkId
         required: true
@@ -92,10 +96,12 @@ paths:
       summary: Get AI-suggested reconciliation mappings
       tags:
       - Scraped Services
+      x-operation-id-source: normalized
+      x-operation-id-original: t_value
   /tasks/api/v1/scraped-services/reconcile/{linkId}/manual:
     post:
       description: Applies user-reviewed mappings between scraped services/variations and production items. Supports matching to existing items or creating new ones.
-      operationId: t_value
+      operationId: postTasksApiV1ScrapedServicesReconcileByLinkIdManual
       parameters:
       - name: linkId
         required: true
@@ -143,10 +149,12 @@ paths:
       summary: Apply manual reconciliation mappings
       tags:
       - Scraped Services
+      x-operation-id-source: normalized
+      x-operation-id-original: t_value
   /tasks/api/v1/scraped-services/reconcile/{linkId}/candidates:
     get:
       description: Returns the list of production services and variations available for manual mapping in the reconciliation UI.
-      operationId: t_value
+      operationId: getTasksApiV1ScrapedServicesReconcileByLinkIdCandidates
       parameters:
       - name: linkId
         required: true
@@ -163,10 +171,12 @@ paths:
       summary: Get production candidates for manual reconciliation
       tags:
       - Scraped Services
+      x-operation-id-source: normalized
+      x-operation-id-original: t_value
   /tasks/api/v1/scraped-services/reconcile/{linkId}:
     post:
       description: Finds scraped services and variations without production mappings and attempts to match or create them using the 3-tier strategy.
-      operationId: t_value
+      operationId: postTasksApiV1ScrapedServicesReconcileByLinkId
       parameters:
       - name: linkId
         required: true
@@ -183,10 +193,12 @@ paths:
       summary: Reconcile unmapped scraped services with production
       tags:
       - Scraped Services
+      x-operation-id-source: normalized
+      x-operation-id-original: t_value
   /tasks/api/v1/scraped-services/scrape-url:
     post:
       description: Provide a URL from supported platforms (Fresha, Booksy, GlossGenius, Square, Vagaro, Acuity) to scrape services in real-time
-      operationId: t_value
+      operationId: postTasksApiV1ScrapedServicesScrapeUrl
       parameters: []
       requestBody:
         required: true
@@ -316,10 +328,12 @@ paths:
       summary: Scrape services directly from a URL without saving to database
       tags:
       - Scraped Services
+      x-operation-id-source: normalized
+      x-operation-id-original: t_value
   /tasks/api/v1/scraped-services/diff/{entityId}:
     get:
       description: Read-only comparison showing what would change if syncToProduction were run. Finds the first booking link for the entity and shows new, changed, deleted, and unchanged services/variations with field-level detail.
-      operationId: t_value
+      operationId: getTasksApiV1ScrapedServicesDiffByEntityId
       parameters:
       - name: entityId
         required: true
@@ -336,9 +350,11 @@ paths:
       summary: Preview production sync diff
       tags:
       - Scraped Services
+      x-operation-id-source: normalized
+      x-operation-id-original: t_value
   /tasks/api/v1/scraped-services/{linkId}:
     get:
-      operationId: t_value
+      operationId: getTasksApiV1ScrapedServicesByLinkId
       parameters:
       - name: linkId
         required: true
@@ -353,6 +369,8 @@ paths:
       summary: Get all scraped services for a link
       tags:
       - Scraped Services
+      x-operation-id-source: normalized
+      x-operation-id-original: t_value
 components:
   securitySchemes:
     access-token:

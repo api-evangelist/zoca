@@ -25,7 +25,7 @@ paths:
       tags:
       - Social Media
     post:
-      operationId: t_value
+      operationId: postSocialMediaPosts
       parameters: []
       responses:
         '201':
@@ -33,12 +33,14 @@ paths:
       summary: Create social media posts
       tags:
       - Social Media
+      x-operation-id-source: normalized
+      x-operation-id-original: t_value
     servers:
     - url: https://api.zoca.ai
       description: Production
   /social-media/instagram-posts:
     post:
-      operationId: t_value
+      operationId: postSocialMediaInstagramPosts
       parameters: []
       responses:
         '201':
@@ -46,12 +48,14 @@ paths:
       summary: Create Instagram posts
       tags:
       - Social Media
+      x-operation-id-source: normalized
+      x-operation-id-original: t_value
     servers:
     - url: https://api.zoca.ai
       description: Production
   /social-media/social-media-calendar:
     post:
-      operationId: t_value
+      operationId: postSocialMediaSocialMediaCalendar
       parameters: []
       requestBody:
         required: true
@@ -93,8 +97,10 @@ paths:
       summary: Create a social media calendar
       tags:
       - Social Media
+      x-operation-id-source: normalized
+      x-operation-id-original: t_value
     get:
-      operationId: t_value
+      operationId: getSocialMediaSocialMediaCalendar
       parameters:
       - name: viewerId
         required: false
@@ -117,12 +123,14 @@ paths:
       summary: Get social media calendars by editor ID
       tags:
       - Social Media
+      x-operation-id-source: normalized
+      x-operation-id-original: t_value
     servers:
     - url: https://api.zoca.ai
       description: Production
   /social-media/calendar-posts:
     get:
-      operationId: t_value
+      operationId: getSocialMediaCalendarPosts
       parameters:
       - name: calendarId
         required: true
@@ -135,12 +143,14 @@ paths:
       summary: Get posts by calendar ID
       tags:
       - Social Media
+      x-operation-id-source: normalized
+      x-operation-id-original: t_value
     servers:
     - url: https://api.zoca.ai
       description: Production
   /social-media/attach-media:
     post:
-      operationId: t_value
+      operationId: postSocialMediaAttachMedia
       parameters: []
       requestBody:
         required: true
@@ -166,12 +176,14 @@ paths:
       summary: Attach media to posts
       tags:
       - Social Media
+      x-operation-id-source: normalized
+      x-operation-id-original: t_value
     servers:
     - url: https://api.zoca.ai
       description: Production
   /social-media/update-caption:
     post:
-      operationId: t_value
+      operationId: postSocialMediaUpdateCaption
       parameters: []
       responses:
         '201':
@@ -179,12 +191,14 @@ paths:
       summary: Update post caption
       tags:
       - Social Media
+      x-operation-id-source: normalized
+      x-operation-id-original: t_value
     servers:
     - url: https://api.zoca.ai
       description: Production
   /social-media/update-scheduled-at:
     post:
-      operationId: t_value
+      operationId: postSocialMediaUpdateScheduledAt
       parameters: []
       responses:
         '201':
@@ -192,12 +206,14 @@ paths:
       summary: Update scheduled post time
       tags:
       - Social Media
+      x-operation-id-source: normalized
+      x-operation-id-original: t_value
     servers:
     - url: https://api.zoca.ai
       description: Production
   /social-media/update-scheduled-post-status:
     post:
-      operationId: t_value
+      operationId: postSocialMediaUpdateScheduledPostStatus
       parameters: []
       responses:
         '201':
@@ -205,12 +221,14 @@ paths:
       summary: Update scheduled post status
       tags:
       - Social Media
+      x-operation-id-source: normalized
+      x-operation-id-original: t_value
     servers:
     - url: https://api.zoca.ai
       description: Production
   /social-media/update-scheduled-status:
     post:
-      operationId: t_value
+      operationId: postSocialMediaUpdateScheduledStatus
       parameters: []
       responses:
         '201':
@@ -218,12 +236,14 @@ paths:
       summary: Update schedule status
       tags:
       - Social Media
+      x-operation-id-source: normalized
+      x-operation-id-original: t_value
     servers:
     - url: https://api.zoca.ai
       description: Production
   /social-media/scheduled-post:
     delete:
-      operationId: t_value
+      operationId: deleteSocialMediaScheduledPost
       parameters: []
       responses:
         '200':
@@ -231,12 +251,14 @@ paths:
       summary: Delete a scheduled post
       tags:
       - Social Media
+      x-operation-id-source: normalized
+      x-operation-id-original: t_value
     servers:
     - url: https://api.zoca.ai
       description: Production
   /social-media/set-schedule-for-posts:
     post:
-      operationId: t_value
+      operationId: postSocialMediaSetScheduleForPosts
       parameters: []
       responses:
         '201':
@@ -244,12 +266,14 @@ paths:
       summary: Set schedule for posts
       tags:
       - Social Media
+      x-operation-id-source: normalized
+      x-operation-id-original: t_value
     servers:
     - url: https://api.zoca.ai
       description: Production
   /social-media/detach-medias-from-post:
     delete:
-      operationId: t_value
+      operationId: deleteSocialMediaDetachMediasFromPost
       parameters: []
       responses:
         '200':
@@ -257,12 +281,14 @@ paths:
       summary: Detach media from a post
       tags:
       - Social Media
+      x-operation-id-source: normalized
+      x-operation-id-original: t_value
     servers:
     - url: https://api.zoca.ai
       description: Production
   /social-media/scheduled-post-by-id:
     get:
-      operationId: t_value
+      operationId: getSocialMediaScheduledPostById
       parameters: []
       responses:
         '200':
@@ -270,12 +296,14 @@ paths:
       summary: Get scheduled post by ID
       tags:
       - Social Media
+      x-operation-id-source: normalized
+      x-operation-id-original: t_value
     servers:
     - url: https://api.zoca.ai
       description: Production
   /social-media/get-feed-posts:
     post:
-      operationId: t_value
+      operationId: postSocialMediaGetFeedPosts
       parameters: []
       responses:
         '201':
@@ -283,12 +311,14 @@ paths:
       summary: Get feed posts with pagination
       tags:
       - Social Media
+      x-operation-id-source: normalized
+      x-operation-id-original: t_value
     servers:
     - url: https://api.zoca.ai
       description: Production
   /social-media/posts-pending-admin-approval:
     get:
-      operationId: t_value
+      operationId: getSocialMediaPostsPendingAdminApproval
       parameters: []
       responses:
         '200':
@@ -296,12 +326,14 @@ paths:
       summary: Get posts pending admin approval
       tags:
       - Social Media
+      x-operation-id-source: normalized
+      x-operation-id-original: t_value
     servers:
     - url: https://api.zoca.ai
       description: Production
   /social-media/get-instagram-post:
     get:
-      operationId: t_value
+      operationId: getSocialMediaGetInstagramPost
       parameters: []
       responses:
         '200':
@@ -309,12 +341,14 @@ paths:
       summary: Get Instagram post by ID
       tags:
       - Social Media
+      x-operation-id-source: normalized
+      x-operation-id-original: t_value
     servers:
     - url: https://api.zoca.ai
       description: Production
   /social-media/add-feedback:
     post:
-      operationId: t_value
+      operationId: postSocialMediaAddFeedback
       parameters: []
       responses:
         '201':
@@ -322,12 +356,14 @@ paths:
       summary: Add feedback to a post
       tags:
       - Social Media
+      x-operation-id-source: normalized
+      x-operation-id-original: t_value
     servers:
     - url: https://api.zoca.ai
       description: Production
   /social-media/editor-list:
     get:
-      operationId: t_value
+      operationId: getSocialMediaEditorList
       parameters: []
       responses:
         '200':
@@ -335,12 +371,14 @@ paths:
       summary: Get list of editors
       tags:
       - Social Media
+      x-operation-id-source: normalized
+      x-operation-id-original: t_value
     servers:
     - url: https://api.zoca.ai
       description: Production
   /social-media/set-instagram-post-type:
     put:
-      operationId: t_value
+      operationId: putSocialMediaSetInstagramPostType
       parameters: []
       responses:
         '200':
@@ -348,12 +386,14 @@ paths:
       summary: Set Instagram post type
       tags:
       - Social Media
+      x-operation-id-source: normalized
+      x-operation-id-original: t_value
     servers:
     - url: https://api.zoca.ai
       description: Production
   /social-media/add-feedback-to-post:
     post:
-      operationId: t_value
+      operationId: postSocialMediaAddFeedbackToPost
       parameters: []
       responses:
         '201':
@@ -361,12 +401,14 @@ paths:
       summary: Add feedback to a post
       tags:
       - Social Media
+      x-operation-id-source: normalized
+      x-operation-id-original: t_value
     servers:
     - url: https://api.zoca.ai
       description: Production
   /social-media/get-feedback-for-post:
     get:
-      operationId: t_value
+      operationId: getSocialMediaGetFeedbackForPost
       parameters: []
       responses:
         '200':
@@ -374,12 +416,14 @@ paths:
       summary: Get feedback for a post
       tags:
       - Social Media
+      x-operation-id-source: normalized
+      x-operation-id-original: t_value
     servers:
     - url: https://api.zoca.ai
       description: Production
   /social-media/remove-feedback-from-post:
     put:
-      operationId: t_value
+      operationId: putSocialMediaRemoveFeedbackFromPost
       parameters: []
       responses:
         '200':
@@ -387,12 +431,14 @@ paths:
       summary: Remove feedback from a post
       tags:
       - Social Media
+      x-operation-id-source: normalized
+      x-operation-id-original: t_value
     servers:
     - url: https://api.zoca.ai
       description: Production
   /social-media/set-feedback-status:
     post:
-      operationId: t_value
+      operationId: postSocialMediaSetFeedbackStatus
       parameters: []
       responses:
         '201':
@@ -400,12 +446,14 @@ paths:
       summary: Set feedback status
       tags:
       - Social Media
+      x-operation-id-source: normalized
+      x-operation-id-original: t_value
     servers:
     - url: https://api.zoca.ai
       description: Production
   /social-media/get-user-insta-details:
     get:
-      operationId: t_value
+      operationId: getSocialMediaGetUserInstaDetails
       parameters: []
       responses:
         '200':
@@ -413,12 +461,14 @@ paths:
       summary: Get user Instagram details
       tags:
       - Social Media
+      x-operation-id-source: normalized
+      x-operation-id-original: t_value
     servers:
     - url: https://api.zoca.ai
       description: Production
   /social-media/set-user-insta-details:
     put:
-      operationId: t_value
+      operationId: putSocialMediaSetUserInstaDetails
       parameters: []
       responses:
         '200':
@@ -426,12 +476,14 @@ paths:
       summary: Set user Instagram details
       tags:
       - Social Media
+      x-operation-id-source: normalized
+      x-operation-id-original: t_value
     servers:
     - url: https://api.zoca.ai
       description: Production
   /social-media/get-user-overdue-count:
     get:
-      operationId: t_value
+      operationId: getSocialMediaGetUserOverdueCount
       parameters: []
       responses:
         '200':
@@ -439,12 +491,14 @@ paths:
       summary: Get user overdue post count
       tags:
       - Social Media
+      x-operation-id-source: normalized
+      x-operation-id-original: t_value
     servers:
     - url: https://api.zoca.ai
       description: Production
   /social-media/approve-all-posts-by-uid:
     put:
-      operationId: t_value
+      operationId: putSocialMediaApproveAllPostsByUid
       parameters: []
       responses:
         '200':
@@ -452,12 +506,14 @@ paths:
       summary: Approve all posts by user ID
       tags:
       - Social Media
+      x-operation-id-source: normalized
+      x-operation-id-original: t_value
     servers:
     - url: https://api.zoca.ai
       description: Production
   /social-media/set-user-post-status:
     put:
-      operationId: t_value
+      operationId: putSocialMediaSetUserPostStatus
       parameters: []
       responses:
         '200':
@@ -465,12 +521,14 @@ paths:
       summary: Set user post status
       tags:
       - Social Media
+      x-operation-id-source: normalized
+      x-operation-id-original: t_value
     servers:
     - url: https://api.zoca.ai
       description: Production
   /social-media/approve-user-overdue-post-status:
     put:
-      operationId: t_value
+      operationId: putSocialMediaApproveUserOverduePostStatus
       parameters: []
       responses:
         '200':
@@ -478,12 +536,14 @@ paths:
       summary: Approve user overdue post status
       tags:
       - Social Media
+      x-operation-id-source: normalized
+      x-operation-id-original: t_value
     servers:
     - url: https://api.zoca.ai
       description: Production
   /social-media/get-all-posting-dates-for-month:
     get:
-      operationId: t_value
+      operationId: getSocialMediaGetAllPostingDatesForMonth
       parameters: []
       responses:
         '200':
@@ -491,12 +551,14 @@ paths:
       summary: Get all posting dates for a month
       tags:
       - Social Media
+      x-operation-id-source: normalized
+      x-operation-id-original: t_value
     servers:
     - url: https://api.zoca.ai
       description: Production
   /social-media/posts-by-ops-status:
     get:
-      operationId: t_value
+      operationId: getSocialMediaPostsByOpsStatus
       parameters: []
       responses:
         '200':
@@ -504,12 +566,14 @@ paths:
       summary: Get all posts by ops status
       tags:
       - Social Media
+      x-operation-id-source: normalized
+      x-operation-id-original: t_value
     servers:
     - url: https://api.zoca.ai
       description: Production
   /social-media/pending-feedback:
     get:
-      operationId: t_value
+      operationId: getSocialMediaPendingFeedback
       parameters: []
       responses:
         '200':
@@ -517,12 +581,14 @@ paths:
       summary: Get all pending feedback
       tags:
       - Social Media
+      x-operation-id-source: normalized
+      x-operation-id-original: t_value
     servers:
     - url: https://api.zoca.ai
       description: Production
   /social-media/edit-status:
     post:
-      operationId: t_value
+      operationId: postSocialMediaEditStatus
       parameters: []
       responses:
         '201':
@@ -530,12 +596,14 @@ paths:
       summary: Set edit status
       tags:
       - Social Media
+      x-operation-id-source: normalized
+      x-operation-id-original: t_value
     servers:
     - url: https://api.zoca.ai
       description: Production
   /social-media/raw-instagram-post:
     post:
-      operationId: t_value
+      operationId: postSocialMediaRawInstagramPost
       parameters: []
       responses:
         '201':
@@ -543,12 +611,14 @@ paths:
       summary: Get raw Instagram post data
       tags:
       - Social Media
+      x-operation-id-source: normalized
+      x-operation-id-original: t_value
     servers:
     - url: https://api.zoca.ai
       description: Production
   /social-media/generate-presigned-url:
     post:
-      operationId: t_value
+      operationId: postSocialMediaGeneratePresignedUrl
       parameters: []
       responses:
         '201':
@@ -556,12 +626,14 @@ paths:
       summary: Generate presigned URL for file upload
       tags:
       - Social Media
+      x-operation-id-source: normalized
+      x-operation-id-original: t_value
     servers:
     - url: https://api.zoca.ai
       description: Production
   /social-media/update-media-order:
     post:
-      operationId: t_value
+      operationId: postSocialMediaUpdateMediaOrder
       parameters: []
       responses:
         '201':
@@ -569,12 +641,14 @@ paths:
       summary: Update media order
       tags:
       - Social Media
+      x-operation-id-source: normalized
+      x-operation-id-original: t_value
     servers:
     - url: https://api.zoca.ai
       description: Production
   /social-media/calendar:
     delete:
-      operationId: t_value
+      operationId: deleteSocialMediaCalendar
       parameters: []
       responses:
         '200':
@@ -582,8 +656,10 @@ paths:
       summary: Remove calendar by ID
       tags:
       - Social Media
+      x-operation-id-source: normalized
+      x-operation-id-original: t_value
     put:
-      operationId: t_value
+      operationId: putSocialMediaCalendar
       parameters: []
       responses:
         '200':
@@ -591,12 +667,14 @@ paths:
       summary: Update calendar
       tags:
       - Social Media
+      x-operation-id-source: normalized
+      x-operation-id-original: t_value
     servers:
     - url: https://api.zoca.ai
       description: Production
   /social-media/get-calendar-by-filter:
     post:
-      operationId: t_value
+      operationId: postSocialMediaGetCalendarByFilter
       parameters: []
       responses:
         '201':
@@ -604,12 +682,14 @@ paths:
       summary: Get calendar by filter
       tags:
       - Social Media
+      x-operation-id-source: normalized
+      x-operation-id-original: t_value
     servers:
     - url: https://api.zoca.ai
       description: Production
   /social-media/sm-user-list:
     get:
-      operationId: t_value
+      operationId: getSocialMediaSmUserList
       parameters: []
       responses:
         '200':
@@ -617,12 +697,14 @@ paths:
       summary: Get social media user list
       tags:
       - Social Media
+      x-operation-id-source: normalized
+      x-operation-id-original: t_value
     servers:
     - url: https://api.zoca.ai
       description: Production
   /social-media/set-time-sensitive:
     post:
-      operationId: t_value
+      operationId: postSocialMediaSetTimeSensitive
       parameters: []
       responses:
         '201':
@@ -630,12 +712,14 @@ paths:
       summary: Set post time sensitivity
       tags:
       - Social Media
+      x-operation-id-source: normalized
+      x-operation-id-original: t_value
     servers:
     - url: https://api.zoca.ai
       description: Production
   /social-media/set-post-attributes:
     post:
-      operationId: t_value
+      operationId: postSocialMediaSetPostAttributes
       parameters: []
       responses:
         '201':
@@ -643,12 +727,14 @@ paths:
       summary: Set post attributes
       tags:
       - Social Media
+      x-operation-id-source: normalized
+      x-operation-id-original: t_value
     servers:
     - url: https://api.zoca.ai
       description: Production
   /social-media/post-design-types:
     get:
-      operationId: t_value
+      operationId: getSocialMediaPostDesignTypes
       parameters: []
       responses:
         '200':
@@ -656,12 +742,14 @@ paths:
       summary: Get all post design types
       tags:
       - Social Media
+      x-operation-id-source: normalized
+      x-operation-id-original: t_value
     servers:
     - url: https://api.zoca.ai
       description: Production
   /social-media/post-subtypes:
     get:
-      operationId: t_value
+      operationId: getSocialMediaPostSubtypes
       parameters: []
       responses:
         '200':
@@ -669,12 +757,14 @@ paths:
       summary: Get post subtypes by type ID
       tags:
       - Social Media
+      x-operation-id-source: normalized
+      x-operation-id-original: t_value
     servers:
     - url: https://api.zoca.ai
       description: Production
   /social-media/get-preference-request:
     get:
-      operationId: t_value
+      operationId: getSocialMediaGetPreferenceRequest
       parameters: []
       responses:
         '200':
@@ -682,12 +772,14 @@ paths:
       summary: Get preference update request status
       tags:
       - Social Media
+      x-operation-id-source: normalized
+      x-operation-id-original: t_value
     servers:
     - url: https://api.zoca.ai
       description: Production
   /social-media/put-preference-request:
     put:
-      operationId: t_value
+      operationId: putSocialMediaPutPreferenceRequest
       parameters: []
       responses:
         '200':
@@ -695,12 +787,14 @@ paths:
       summary: Update preference request status
       tags:
       - Social Media
+      x-operation-id-source: normalized
+      x-operation-id-original: t_value
     servers:
     - url: https://api.zoca.ai
       description: Production
   /social-media/card-view-click:
     post:
-      operationId: t_value
+      operationId: postSocialMediaCardViewClick
       parameters: []
       responses:
         '201':
@@ -708,12 +802,14 @@ paths:
       summary: Track card view click
       tags:
       - Social Media
+      x-operation-id-source: normalized
+      x-operation-id-original: t_value
     servers:
     - url: https://api.zoca.ai
       description: Production
   /social-media/designer-list:
     get:
-      operationId: t_value
+      operationId: getSocialMediaDesignerList
       parameters: []
       responses:
         '200':
@@ -721,12 +817,14 @@ paths:
       summary: Get list of designers
       tags:
       - Social Media
+      x-operation-id-source: normalized
+      x-operation-id-original: t_value
     servers:
     - url: https://api.zoca.ai
       description: Production
   /social-media/post-qc-metrics:
     get:
-      operationId: t_value
+      operationId: getSocialMediaPostQcMetrics
       parameters: []
       responses:
         '200':
@@ -734,12 +832,14 @@ paths:
       summary: Get post QC metrics
       tags:
       - Social Media
+      x-operation-id-source: normalized
+      x-operation-id-original: t_value
     servers:
     - url: https://api.zoca.ai
       description: Production
   /social-media/user-preferences:
     get:
-      operationId: t_value
+      operationId: getSocialMediaUserPreferences
       parameters: []
       responses:
         '200':
@@ -747,8 +847,10 @@ paths:
       summary: Get user preferences
       tags:
       - Social Media
+      x-operation-id-source: normalized
+      x-operation-id-original: t_value
     post:
-      operationId: t_value
+      operationId: postSocialMediaUserPreferences
       parameters: []
       responses:
         '201':
@@ -756,12 +858,14 @@ paths:
       summary: Set user preferences
       tags:
       - Social Media
+      x-operation-id-source: normalized
+      x-operation-id-original: t_value
     servers:
     - url: https://api.zoca.ai
       description: Production
   /social-media/register-help-request:
     post:
-      operationId: t_value
+      operationId: postSocialMediaRegisterHelpRequest
       parameters: []
       responses:
         '201':
@@ -769,12 +873,14 @@ paths:
       summary: Register social media help request
       tags:
       - Social Media
+      x-operation-id-source: normalized
+      x-operation-id-original: t_value
     servers:
     - url: https://api.zoca.ai
       description: Production
   /social-media/help-request-status:
     put:
-      operationId: t_value
+      operationId: putSocialMediaHelpRequestStatus
       parameters: []
       responses:
         '200':
@@ -782,12 +888,14 @@ paths:
       summary: Update help request status
       tags:
       - Social Media
+      x-operation-id-source: normalized
+      x-operation-id-original: t_value
     servers:
     - url: https://api.zoca.ai
       description: Production
   /social-media/instagram-post-reject-reason:
     post:
-      operationId: t_value
+      operationId: postSocialMediaInstagramPostRejectReason
       parameters: []
       responses:
         '201':
@@ -795,12 +903,14 @@ paths:
       summary: Set Instagram post rejection reason
       tags:
       - Social Media
+      x-operation-id-source: normalized
+      x-operation-id-original: t_value
     servers:
     - url: https://api.zoca.ai
       description: Production
   /social-media/onboard-user:
     post:
-      operationId: t_value
+      operationId: postSocialMediaOnboardUser
       parameters: []
       responses:
         '201':
@@ -808,12 +918,14 @@ paths:
       summary: Onboard social media user
       tags:
       - Social Media
+      x-operation-id-source: normalized
+      x-operation-id-original: t_value
     servers:
     - url: https://api.zoca.ai
       description: Production
   /social-media/post-by-id:
     delete:
-      operationId: t_value
+      operationId: deleteSocialMediaPostById
       parameters: []
       responses:
         '200':
@@ -821,12 +933,14 @@ paths:
       summary: Delete post by ID
       tags:
       - Social Media
+      x-operation-id-source: normalized
+      x-operation-id-original: t_value
     servers:
     - url: https://api.zoca.ai
       description: Production
   /social-media/feedback-by-uid:
     get:
-      operationId: t_value
+      operationId: getSocialMediaFeedbackByUid
       parameters: []
       responses:
         '200':
@@ -834,12 +948,14 @@ paths:
       summary: Get feedback by user ID
       tags:
       - Social Media
+      x-operation-id-source: normalized
+      x-operation-id-original: t_value
     servers:
     - url: https://api.zoca.ai
       description: Production
   /social-media/feedback-for-calendar:
     get:
-      operationId: t_value
+      operationId: getSocialMediaFeedbackForCalendar
       parameters: []
       responses:
         '200':
@@ -847,12 +963,14 @@ paths:
       summary: Get feedback for calendar
       tags:
       - Social Media
+      x-operation-id-source: normalized
+      x-operation-id-original: t_value
     servers:
     - url: https://api.zoca.ai
       description: Production
   /social-media/update-viewer-access:
     post:
-      operationId: t_value
+      operationId: postSocialMediaUpdateViewerAccess
       parameters: []
       responses:
         '201':
@@ -860,12 +978,14 @@ paths:
       summary: Update viewer access
       tags:
       - Social Media
+      x-operation-id-source: normalized
+      x-operation-id-original: t_value
     servers:
     - url: https://api.zoca.ai
       description: Production
   /social-media/business-attributes-props:
     post:
-      operationId: t_value
+      operationId: postSocialMediaBusinessAttributesProps
       parameters: []
       responses:
         '201':
@@ -873,12 +993,14 @@ paths:
       summary: Add business attributes properties
       tags:
       - Social Media
+      x-operation-id-source: normalized
+      x-operation-id-original: t_value
     servers:
     - url: https://api.zoca.ai
       description: Production
   /social-media/service-category:
     post:
-      operationId: t_value
+      operationId: postSocialMediaServiceCategory
       parameters: []
       responses:
         '201':
@@ -886,12 +1008,14 @@ paths:
       summary: Add service category
       tags:
       - Social Media
+      x-operation-id-source: normalized
+      x-operation-id-original: t_value
     servers:
     - url: https://api.zoca.ai
       description: Production
   /social-media/service-categories:
     get:
-      operationId: t_value
+      operationId: getSocialMediaServiceCategories
       parameters: []
       responses:
         '200':
@@ -899,12 +1023,14 @@ paths:
       summary: Get service categories
       tags:
       - Social Media
+      x-operation-id-source: normalized
+      x-operation-id-original: t_value
     servers:
     - url: https://api.zoca.ai
       description: Production
   /social-media/sm-access-list:
     get:
-      operationId: t_value
+      operationId: getSocialMediaSmAccessList
       parameters: []
       responses:
         '200':
@@ -912,12 +1038,14 @@ paths:
       summary: Get social media access list
       tags:
       - Social Media
+      x-operation-id-source: normalized
+      x-operation-id-original: t_value
     servers:
     - url: https://api.zoca.ai
       description: Production
   /social-media/predefined-social-media-attributes:
     get:
-      operationId: t_value
+      operationId: getSocialMediaPredefinedSocialMediaAttributes
       parameters: []
       responses:
         '200':
@@ -925,12 +1053,14 @@ paths:
       summary: Get predefined social media attributes
       tags:
       - Social Media
+      x-operation-id-source: normalized
+      x-operation-id-original: t_value
     servers:
     - url: https://api.zoca.ai
       description: Production
   /social-media/authenticate-user:
     post:
-      operationId: t_value
+      operationId: postSocialMediaAuthenticateUser
       parameters: []
       responses:
         '201':
@@ -938,12 +1068,14 @@ paths:
       summary: Authenticate social media user
       tags:
       - Social Media
+      x-operation-id-source: normalized
+      x-operation-id-original: t_value
     servers:
     - url: https://api.zoca.ai
       description: Production
   /social-media/add-instagram-post-rejection-reason:
     post:
-      operationId: t_value
+      operationId: postSocialMediaAddInstagramPostRejectionReason
       parameters: []
       responses:
         '201':
@@ -951,13 +1083,15 @@ paths:
       summary: Add Instagram post rejection reason
       tags:
       - Social Media
+      x-operation-id-source: normalized
+      x-operation-id-original: t_value
     servers:
     - url: https://api.zoca.ai
       description: Production
   /tasks/api/v1/social-media/proposal:
     post:
       description: Creates a new social media campaign proposal and queues it for processing
-      operationId: t_value
+      operationId: postTasksApiV1SocialMediaProposal
       parameters: []
       requestBody:
         required: true
@@ -976,13 +1110,15 @@ paths:
       - Social Media
       security:
       - access-token: []
+      x-operation-id-source: normalized
+      x-operation-id-original: t_value
     servers:
     - url: https://tasks.zoca.ai
       description: Production
   /tasks/api/v1/social-media/moengage/event:
     post:
       description: Sends a custom Moengage event for social media proposals
-      operationId: t_value
+      operationId: postTasksApiV1SocialMediaMoengageEvent
       parameters: []
       requestBody:
         required: true
@@ -1001,6 +1137,8 @@ paths:
       - Social Media
       security:
       - access-token: []
+      x-operation-id-source: normalized
+      x-operation-id-original: t_value
     servers:
     - url: https://tasks.zoca.ai
       description: Production

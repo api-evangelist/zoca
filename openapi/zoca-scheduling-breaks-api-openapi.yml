@@ -23,7 +23,7 @@ paths:
       - Scheduling Breaks
   /scheduling/breaks/recurring:
     post:
-      operationId: t_value
+      operationId: postSchedulingBreaksRecurring
       parameters: []
       responses:
         '201':
@@ -31,9 +31,11 @@ paths:
       summary: Create a recurring time-off series
       tags:
       - Scheduling Breaks
+      x-operation-id-source: normalized
+      x-operation-id-original: t_value
   /scheduling/breaks/recurring/{seriesId}:
     get:
-      operationId: t_value
+      operationId: getSchedulingBreaksRecurringBySeriesId
       parameters: []
       responses:
         '200':
@@ -41,9 +43,11 @@ paths:
       summary: Get a recurring time-off series
       tags:
       - Scheduling Breaks
+      x-operation-id-source: normalized
+      x-operation-id-original: t_value
   /scheduling/breaks/{id}/recurring:
     patch:
-      operationId: t_value
+      operationId: patchSchedulingBreaksByIdRecurring
       parameters:
       - name: scope
         required: true
@@ -59,8 +63,10 @@ paths:
       summary: Edit a time-off occurrence with scope
       tags:
       - Scheduling Breaks
+      x-operation-id-source: normalized
+      x-operation-id-original: t_value
     delete:
-      operationId: t_value
+      operationId: deleteSchedulingBreaksByIdRecurring
       parameters:
       - name: scope
         required: true
@@ -76,9 +82,11 @@ paths:
       summary: Delete a time-off occurrence with scope
       tags:
       - Scheduling Breaks
+      x-operation-id-source: normalized
+      x-operation-id-original: t_value
   /scheduling/breaks/{userEntityId}:
     get:
-      operationId: t_value
+      operationId: getSchedulingBreaksByUserEntityId
       parameters: []
       responses:
         '200':
@@ -86,9 +94,11 @@ paths:
       summary: Get breaks for user entity (service provider)
       tags:
       - Scheduling Breaks
+      x-operation-id-source: normalized
+      x-operation-id-original: t_value
   /scheduling/breaks/{id}:
     patch:
-      operationId: t_value
+      operationId: patchSchedulingBreaksById
       parameters: []
       responses:
         '200':
@@ -96,8 +106,10 @@ paths:
       summary: Update a scheduling break
       tags:
       - Scheduling Breaks
+      x-operation-id-source: normalized
+      x-operation-id-original: t_value
     delete:
-      operationId: t_value
+      operationId: deleteSchedulingBreaksById
       parameters: []
       responses:
         '200':
@@ -105,9 +117,11 @@ paths:
       summary: Delete a scheduling break
       tags:
       - Scheduling Breaks
+      x-operation-id-source: normalized
+      x-operation-id-original: t_value
   /scheduling/breaks/break/{id}:
     get:
-      operationId: t_value
+      operationId: getSchedulingBreaksBreakById
       parameters:
       - name: locationEntityId
         required: false
@@ -121,9 +135,11 @@ paths:
       summary: Get a break by ID
       tags:
       - Scheduling Breaks
+      x-operation-id-source: normalized
+      x-operation-id-original: t_value
   /scheduling/breaks/{userEntityId}/available-slots/{locationEntityId}:
     get:
-      operationId: t_value
+      operationId: getSchedulingBreaksByUserEntityIdAvailableSlotsByLocationEntityId
       parameters:
       - name: slotId
         required: false
@@ -155,9 +171,11 @@ paths:
       summary: Get available time slots for a service provider on a date
       tags:
       - Scheduling Breaks
+      x-operation-id-source: normalized
+      x-operation-id-original: t_value
   /scheduling/breaks/{userEntityId}/available-days/{locationEntityId}:
     get:
-      operationId: t_value
+      operationId: getSchedulingBreaksByUserEntityIdAvailableDaysByLocationEntityId
       parameters:
       - name: clientId
         required: false
@@ -195,6 +213,8 @@ paths:
       summary: Get available days with slots for a service provider over a date range
       tags:
       - Scheduling Breaks
+      x-operation-id-source: normalized
+      x-operation-id-original: t_value
 components:
   securitySchemes:
     access-token:

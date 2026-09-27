@@ -41,7 +41,7 @@ paths:
   /tasks/api/v1/agents/link-fetcher/queue:
     post:
       description: Adds a link-fetcher job to the queue for background processing by the link-scraper worker. Returns immediately with a job ID for tracking.
-      operationId: t_value
+      operationId: postTasksApiV1AgentsLinkFetcherQueue
       parameters: []
       requestBody:
         required: true
@@ -65,10 +65,12 @@ paths:
       summary: Queue a link-fetcher job for background processing
       tags:
       - Agents
+      x-operation-id-source: normalized
+      x-operation-id-original: t_value
   /tasks/api/v1/agents/context-builder:
     post:
       description: Uses the ContextBuilder AI agent to extract comprehensive business information including services, hours, policies, and more from websites, Google Business Profile, and booking platforms. Results are saved to database.
-      operationId: t_value
+      operationId: postTasksApiV1AgentsContextBuilder
       parameters: []
       requestBody:
         required: true
@@ -90,10 +92,12 @@ paths:
       summary: Build business context using AI agent
       tags:
       - Agents
+      x-operation-id-source: normalized
+      x-operation-id-original: t_value
   /tasks/api/v1/agents/context-builder/queue:
     post:
       description: Adds a context-builder job to the queue for background processing by the link-scraper worker. Returns immediately with a job ID for tracking.
-      operationId: t_value
+      operationId: postTasksApiV1AgentsContextBuilderQueue
       parameters: []
       requestBody:
         required: true
@@ -117,10 +121,12 @@ paths:
       summary: Queue a context-builder job for background processing
       tags:
       - Agents
+      x-operation-id-source: normalized
+      x-operation-id-original: t_value
   /tasks/api/v1/agents/contexts:
     get:
       description: Retrieves previously scraped business contexts from entities.agent_business_context table. Supports filtering by link URL, entity ID, and pagination.
-      operationId: t_value
+      operationId: getTasksApiV1AgentsContexts
       parameters:
       - name: limit
         required: false
@@ -173,6 +179,8 @@ paths:
       summary: Retrieve saved business contexts
       tags:
       - Agents
+      x-operation-id-source: normalized
+      x-operation-id-original: t_value
 components:
   schemas:
     e:

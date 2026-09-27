@@ -23,7 +23,7 @@ paths:
       - Compensation
   /compensation/settings/{locationEntityId}:
     get:
-      operationId: t_value
+      operationId: getCompensationSettingsByLocationEntityId
       parameters: []
       responses:
         '200':
@@ -31,8 +31,10 @@ paths:
       summary: Get commission calculation settings for a location
       tags:
       - Compensation
+      x-operation-id-source: normalized
+      x-operation-id-original: t_value
     put:
-      operationId: t_value
+      operationId: putCompensationSettingsByLocationEntityId
       parameters: []
       responses:
         '200':
@@ -40,9 +42,11 @@ paths:
       summary: Update commission calculation settings
       tags:
       - Compensation
+      x-operation-id-source: normalized
+      x-operation-id-original: t_value
   /compensation/rules/{memberLocationId}:
     get:
-      operationId: t_value
+      operationId: getCompensationRulesByMemberLocationId
       parameters: []
       responses:
         '200':
@@ -50,8 +54,10 @@ paths:
       summary: Get commission rule history for a staff member
       tags:
       - Compensation
+      x-operation-id-source: normalized
+      x-operation-id-original: t_value
     post:
-      operationId: t_value
+      operationId: postCompensationRulesByMemberLocationId
       parameters: []
       responses:
         '201':
@@ -59,9 +65,11 @@ paths:
       summary: Create a new effective-dated commission rule
       tags:
       - Compensation
+      x-operation-id-source: normalized
+      x-operation-id-original: t_value
   /compensation/overrides/{memberLocationId}:
     get:
-      operationId: t_value
+      operationId: getCompensationOverridesByMemberLocationId
       parameters: []
       responses:
         '200':
@@ -69,8 +77,10 @@ paths:
       summary: Get commission rate overrides
       tags:
       - Compensation
+      x-operation-id-source: normalized
+      x-operation-id-original: t_value
     post:
-      operationId: t_value
+      operationId: postCompensationOverridesByMemberLocationId
       parameters: []
       responses:
         '201':
@@ -78,9 +88,11 @@ paths:
       summary: Add or replace a commission rate override
       tags:
       - Compensation
+      x-operation-id-source: normalized
+      x-operation-id-original: t_value
   /compensation/overrides/{overrideId}:
     delete:
-      operationId: t_value
+      operationId: deleteCompensationOverridesByOverrideId
       parameters: []
       responses:
         '200':
@@ -88,9 +100,11 @@ paths:
       summary: End a commission rate override
       tags:
       - Compensation
+      x-operation-id-source: normalized
+      x-operation-id-original: t_value
   /compensation/pay-config/{memberLocationId}:
     put:
-      operationId: t_value
+      operationId: putCompensationPayConfigByMemberLocationId
       parameters: []
       responses:
         '200':
@@ -98,9 +112,11 @@ paths:
       summary: Update hourly / fixed pay / greater-of settings
       tags:
       - Compensation
+      x-operation-id-source: normalized
+      x-operation-id-original: t_value
   /compensation/adjustments/{memberLocationId}:
     get:
-      operationId: t_value
+      operationId: getCompensationAdjustmentsByMemberLocationId
       parameters: []
       responses:
         '200':
@@ -108,9 +124,11 @@ paths:
       summary: List manual pay adjustments
       tags:
       - Compensation
+      x-operation-id-source: normalized
+      x-operation-id-original: t_value
   /compensation/adjustments:
     post:
-      operationId: t_value
+      operationId: postCompensationAdjustments
       parameters: []
       responses:
         '201':
@@ -118,9 +136,11 @@ paths:
       summary: Record a manual pay adjustment
       tags:
       - Compensation
+      x-operation-id-source: normalized
+      x-operation-id-original: t_value
   /compensation/adjustments/{adjustmentId}:
     delete:
-      operationId: t_value
+      operationId: deleteCompensationAdjustmentsByAdjustmentId
       parameters: []
       responses:
         '200':
@@ -128,6 +148,8 @@ paths:
       summary: Remove a manual pay adjustment
       tags:
       - Compensation
+      x-operation-id-source: normalized
+      x-operation-id-original: t_value
 components:
   securitySchemes:
     access-token:

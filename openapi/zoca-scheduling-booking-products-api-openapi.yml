@@ -24,7 +24,7 @@ paths:
       tags:
       - Scheduling Booking Products
     post:
-      operationId: t_value
+      operationId: postSchedulingBookingsByBookingIdProducts
       parameters: []
       responses:
         '201':
@@ -38,9 +38,11 @@ paths:
       summary: Add a PRODUCT line to an existing booking (mirrors service-add)
       tags:
       - Scheduling Booking Products
+      x-operation-id-source: normalized
+      x-operation-id-original: t_value
   /scheduling/bookings/{bookingId}/products/{lineId}:
     put:
-      operationId: t_value
+      operationId: putSchedulingBookingsByBookingIdProductsByLineId
       parameters: []
       responses:
         '200':
@@ -56,8 +58,10 @@ paths:
       summary: Update a PRODUCT line on an unsettled booking
       tags:
       - Scheduling Booking Products
+      x-operation-id-source: normalized
+      x-operation-id-original: t_value
     delete:
-      operationId: t_value
+      operationId: deleteSchedulingBookingsByBookingIdProductsByLineId
       parameters: []
       responses:
         '204':
@@ -71,6 +75,8 @@ paths:
       summary: Remove a PRODUCT line from an unsettled booking
       tags:
       - Scheduling Booking Products
+      x-operation-id-source: normalized
+      x-operation-id-original: t_value
 components:
   securitySchemes:
     access-token:

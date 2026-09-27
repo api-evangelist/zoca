@@ -29,7 +29,7 @@ paths:
       description: Production
   /chatbot/calls/{callId}/regenerate-summary:
     get:
-      operationId: t_value
+      operationId: getChatbotCallsByCallIdRegenerateSummary
       parameters:
       - name: callId
         required: true
@@ -58,12 +58,14 @@ paths:
       summary: Regenerate call summary by call ID
       tags:
       - Chatbot
+      x-operation-id-source: normalized
+      x-operation-id-original: t_value
     servers:
     - url: https://api.zoca.ai
       description: Production
   /chatbot/sp-context/{entityId}:
     get:
-      operationId: t_value
+      operationId: getChatbotSpContextByEntityId
       parameters:
       - name: entityId
         required: true
@@ -81,12 +83,14 @@ paths:
       summary: Get service provider context for an entity
       tags:
       - Chatbot
+      x-operation-id-source: normalized
+      x-operation-id-original: t_value
     servers:
     - url: https://api.zoca.ai
       description: Production
   /chatbot/retell/phone/import:
     post:
-      operationId: t_value
+      operationId: postChatbotRetellPhoneImport
       parameters: []
       requestBody:
         required: true
@@ -102,12 +106,14 @@ paths:
       summary: Import a phone number to Retell
       tags:
       - Chatbot
+      x-operation-id-source: normalized
+      x-operation-id-original: t_value
     servers:
     - url: https://api.zoca.ai
       description: Production
   /chatbot/retell/phone/{phoneNumber}:
     put:
-      operationId: t_value
+      operationId: putChatbotRetellPhoneByPhoneNumber
       parameters:
       - name: phoneNumber
         required: true
@@ -131,12 +137,14 @@ paths:
       summary: Update a phone number configuration
       tags:
       - Chatbot
+      x-operation-id-source: normalized
+      x-operation-id-original: t_value
     servers:
     - url: https://api.zoca.ai
       description: Production
   /chatbot/phone/purchase:
     post:
-      operationId: t_value
+      operationId: postChatbotPhonePurchase
       parameters: []
       responses:
         '201':
@@ -144,12 +152,14 @@ paths:
       summary: Purchase a new phone number
       tags:
       - Chatbot
+      x-operation-id-source: normalized
+      x-operation-id-original: t_value
     servers:
     - url: https://api.zoca.ai
       description: Production
   /chatbot/phone/verify-virtual-number:
     post:
-      operationId: t_value
+      operationId: postChatbotPhoneVerifyVirtualNumber
       parameters: []
       requestBody:
         required: true
@@ -169,12 +179,14 @@ paths:
       summary: Verify that a virtual number is properly configured
       tags:
       - Chatbot
+      x-operation-id-source: normalized
+      x-operation-id-original: t_value
     servers:
     - url: https://api.zoca.ai
       description: Production
   /chatbot/test/followup-status/{clientId}:
     get:
-      operationId: t_value
+      operationId: getChatbotTestFollowupStatusByClientId
       parameters:
       - name: clientId
         required: true
@@ -201,12 +213,14 @@ paths:
       summary: Test endpoint to check followup status for a client
       tags:
       - Chatbot
+      x-operation-id-source: normalized
+      x-operation-id-original: t_value
     servers:
     - url: https://api.zoca.ai
       description: Production
   /chatbot/conversation/state/{clientId}:
     post:
-      operationId: t_value
+      operationId: postChatbotConversationStateByClientId
       parameters:
       - name: clientId
         required: true
@@ -220,12 +234,14 @@ paths:
       summary: Get conversation state by client ID
       tags:
       - Chatbot
+      x-operation-id-source: normalized
+      x-operation-id-original: t_value
     servers:
     - url: https://api.zoca.ai
       description: Production
   /chatbot/card/on-file:
     post:
-      operationId: t_value
+      operationId: postChatbotCardOnFile
       parameters: []
       responses:
         '201':
@@ -233,12 +249,14 @@ paths:
       summary: Create card on file
       tags:
       - Chatbot
+      x-operation-id-source: normalized
+      x-operation-id-original: t_value
     servers:
     - url: https://api.zoca.ai
       description: Production
   /chatbot/card/on-file/link:
     post:
-      operationId: t_value
+      operationId: postChatbotCardOnFileLink
       parameters: []
       responses:
         '201':
@@ -246,12 +264,14 @@ paths:
       summary: Get card on file link
       tags:
       - Chatbot
+      x-operation-id-source: normalized
+      x-operation-id-original: t_value
     servers:
     - url: https://api.zoca.ai
       description: Production
   /chatbot/feedback:
     post:
-      operationId: t_value
+      operationId: postChatbotFeedback
       parameters: []
       responses:
         '201':
@@ -261,8 +281,10 @@ paths:
       summary: Create a new feedback record
       tags:
       - Chatbot
+      x-operation-id-source: normalized
+      x-operation-id-original: t_value
     get:
-      operationId: t_value
+      operationId: getChatbotFeedback
       parameters:
       - name: limit
         required: false
@@ -290,12 +312,14 @@ paths:
       summary: Get all feedback records for an entity with pagination
       tags:
       - Chatbot
+      x-operation-id-source: normalized
+      x-operation-id-original: t_value
     servers:
     - url: https://api.zoca.ai
       description: Production
   /chatbot/feedback/{id}:
     put:
-      operationId: t_value
+      operationId: putChatbotFeedbackById
       parameters:
       - name: id
         required: true
@@ -313,8 +337,10 @@ paths:
       summary: Update an existing feedback record
       tags:
       - Chatbot
+      x-operation-id-source: normalized
+      x-operation-id-original: t_value
     delete:
-      operationId: t_value
+      operationId: deleteChatbotFeedbackById
       parameters:
       - name: id
         required: true
@@ -330,8 +356,10 @@ paths:
       summary: Soft delete a feedback record
       tags:
       - Chatbot
+      x-operation-id-source: normalized
+      x-operation-id-original: t_value
     get:
-      operationId: t_value
+      operationId: getChatbotFeedbackById
       parameters:
       - name: id
         required: true
@@ -347,12 +375,14 @@ paths:
       summary: Get a feedback record by ID
       tags:
       - Chatbot
+      x-operation-id-source: normalized
+      x-operation-id-original: t_value
     servers:
     - url: https://api.zoca.ai
       description: Production
   /chatbot/human-handovers/{clientId}:
     get:
-      operationId: t_value
+      operationId: getChatbotHumanHandoversByClientId
       parameters:
       - name: clientId
         required: true
@@ -398,13 +428,15 @@ paths:
       summary: Get all human handover records for a client
       tags:
       - Chatbot
+      x-operation-id-source: normalized
+      x-operation-id-original: t_value
     servers:
     - url: https://api.zoca.ai
       description: Production
   /tasks/api/v1/chatbot/callhippo-sms-webhook:
     post:
       description: Processes incoming CallHippo SMS webhook data and batches it for processing
-      operationId: t_value
+      operationId: postTasksApiV1ChatbotCallhippoSmsWebhook
       parameters: []
       requestBody:
         required: true
@@ -424,12 +456,14 @@ paths:
       summary: Handle incoming SMS messages from CallHippo
       tags:
       - Chatbot
+      x-operation-id-source: normalized
+      x-operation-id-original: t_value
     servers:
     - url: https://tasks.zoca.ai
       description: Production
   /tasks/api/v1/chatbot/continue-conversation:
     post:
-      operationId: t_value
+      operationId: postTasksApiV1ChatbotContinueConversation
       parameters: []
       requestBody:
         required: true
@@ -451,13 +485,15 @@ paths:
       - Chatbot
       security:
       - access-token: []
+      x-operation-id-source: normalized
+      x-operation-id-original: t_value
     servers:
     - url: https://tasks.zoca.ai
       description: Production
   /tasks/api/v1/chatbot/soft-delete-messages:
     post:
       description: Marks specified messages as deleted without removing them from the database. Uses the same access validation as continue-conversation endpoint.
-      operationId: t_value
+      operationId: postTasksApiV1ChatbotSoftDeleteMessages
       parameters: []
       requestBody:
         required: true
@@ -483,13 +519,15 @@ paths:
       - Chatbot
       security:
       - access-token: []
+      x-operation-id-source: normalized
+      x-operation-id-original: t_value
     servers:
     - url: https://tasks.zoca.ai
       description: Production
   /tasks/api/v1/chatbot/start-conversation:
     post:
       description: Initiates a new conversation without waiting for a booking enquiry. Creates a new client if needed and sends initial messages. Requires phone number and country code as separate fields.
-      operationId: t_value
+      operationId: postTasksApiV1ChatbotStartConversation
       parameters: []
       requestBody:
         required: true
@@ -513,13 +551,15 @@ paths:
       - Chatbot
       security:
       - access-token: []
+      x-operation-id-source: normalized
+      x-operation-id-original: t_value
     servers:
     - url: https://tasks.zoca.ai
       description: Production
   /tasks/api/v1/chatbot/start-conversation-production:
     post:
       description: Initiates a new conversation without waiting for a booking enquiry. Creates a new client if needed and sends initial messages. This endpoint has no access restrictions and can be used in production for any entity. Requires phone number and country code as separate fields.
-      operationId: t_value
+      operationId: postTasksApiV1ChatbotStartConversationProduction
       parameters: []
       requestBody:
         required: true
@@ -543,12 +583,14 @@ paths:
       - Chatbot
       security:
       - access-token: []
+      x-operation-id-source: normalized
+      x-operation-id-original: t_value
     servers:
     - url: https://tasks.zoca.ai
       description: Production
   /tasks/api/v1/chatbot/process-followups:
     post:
-      operationId: t_value
+      operationId: postTasksApiV1ChatbotProcessFollowups
       parameters: []
       requestBody:
         required: true
@@ -570,12 +612,14 @@ paths:
       - Chatbot
       security:
       - access-token: []
+      x-operation-id-source: normalized
+      x-operation-id-original: t_value
     servers:
     - url: https://tasks.zoca.ai
       description: Production
   /tasks/api/v1/chatbot/deactivate-handover/{clientId}:
     post:
-      operationId: t_value
+      operationId: postTasksApiV1ChatbotDeactivateHandoverByClientId
       parameters:
       - name: reason
         required: false
@@ -603,12 +647,14 @@ paths:
       - Chatbot
       security:
       - access-token: []
+      x-operation-id-source: normalized
+      x-operation-id-original: t_value
     servers:
     - url: https://tasks.zoca.ai
       description: Production
   /tasks/api/v1/chatbot/activate-handover/{clientId}:
     post:
-      operationId: t_value
+      operationId: postTasksApiV1ChatbotActivateHandoverByClientId
       parameters:
       - name: clientId
         required: true
@@ -625,12 +671,14 @@ paths:
       - Chatbot
       security:
       - access-token: []
+      x-operation-id-source: normalized
+      x-operation-id-original: t_value
     servers:
     - url: https://tasks.zoca.ai
       description: Production
   /tasks/api/v1/chatbot/followups/due:
     get:
-      operationId: t_value
+      operationId: getTasksApiV1ChatbotFollowupsDue
       parameters: []
       responses:
         '200':
@@ -658,12 +706,14 @@ paths:
       - Chatbot
       security:
       - access-token: []
+      x-operation-id-source: normalized
+      x-operation-id-original: t_value
     servers:
     - url: https://tasks.zoca.ai
       description: Production
   /tasks/api/v1/chatbot/followups/{clientId}:
     get:
-      operationId: t_value
+      operationId: getTasksApiV1ChatbotFollowupsByClientId
       parameters:
       - name: clientId
         required: true
@@ -697,13 +747,15 @@ paths:
       - Chatbot
       security:
       - access-token: []
+      x-operation-id-source: normalized
+      x-operation-id-original: t_value
     servers:
     - url: https://tasks.zoca.ai
       description: Production
   /tasks/api/v1/chatbot/{clientId}/next-followup:
     post:
       description: Determines the next follow-up action to schedule for a client based on their current conversation state and existing follow-up rules.
-      operationId: t_value
+      operationId: postTasksApiV1ChatbotByClientIdNextFollowup
       parameters:
       - name: clientId
         required: true
@@ -735,12 +787,14 @@ paths:
       - Chatbot
       security:
       - access-token: []
+      x-operation-id-source: normalized
+      x-operation-id-original: t_value
     servers:
     - url: https://tasks.zoca.ai
       description: Production
   /tasks/api/v1/chatbot/event-webhook:
     post:
-      operationId: t_value
+      operationId: postTasksApiV1ChatbotEventWebhook
       parameters: []
       responses:
         '200':
@@ -758,12 +812,14 @@ paths:
       - Chatbot
       security:
       - access-token: []
+      x-operation-id-source: normalized
+      x-operation-id-original: t_value
     servers:
     - url: https://tasks.zoca.ai
       description: Production
   /tasks/api/v1/chatbot/sp-context/{locationEntityId}:
     get:
-      operationId: t_value
+      operationId: getTasksApiV1ChatbotSpContextByLocationEntityId
       parameters:
       - name: locationEntityId
         required: true
@@ -781,12 +837,14 @@ paths:
       - Chatbot
       security:
       - access-token: []
+      x-operation-id-source: normalized
+      x-operation-id-original: t_value
     servers:
     - url: https://tasks.zoca.ai
       description: Production
   /tasks/api/v1/chatbot/booking-requests/update:
     post:
-      operationId: t_value
+      operationId: postTasksApiV1ChatbotBookingRequestsUpdate
       parameters: []
       requestBody:
         required: true
@@ -811,12 +869,14 @@ paths:
       - Chatbot
       security:
       - access-token: []
+      x-operation-id-source: normalized
+      x-operation-id-original: t_value
     servers:
     - url: https://tasks.zoca.ai
       description: Production
   /tasks/api/v1/chatbot/booking-requests/pending:
     get:
-      operationId: t_value
+      operationId: getTasksApiV1ChatbotBookingRequestsPending
       parameters: []
       responses:
         '200':
@@ -834,12 +894,14 @@ paths:
       - Chatbot
       security:
       - access-token: []
+      x-operation-id-source: normalized
+      x-operation-id-original: t_value
     servers:
     - url: https://tasks.zoca.ai
       description: Production
   /tasks/api/v1/chatbot/booking-requests/test-booking-info:
     post:
-      operationId: t_value
+      operationId: postTasksApiV1ChatbotBookingRequestsTestBookingInfo
       parameters: []
       requestBody:
         required: true
@@ -900,12 +962,14 @@ paths:
       - Chatbot
       security:
       - access-token: []
+      x-operation-id-source: normalized
+      x-operation-id-original: t_value
     servers:
     - url: https://tasks.zoca.ai
       description: Production
   /tasks/api/v1/chatbot/booking-info:
     post:
-      operationId: t_value
+      operationId: postTasksApiV1ChatbotBookingInfo
       parameters: []
       requestBody:
         required: true
@@ -955,12 +1019,14 @@ paths:
       - Chatbot
       security:
       - access-token: []
+      x-operation-id-source: normalized
+      x-operation-id-original: t_value
     servers:
     - url: https://tasks.zoca.ai
       description: Production
   /tasks/api/v1/chatbot/entity-record-l2b/{entityId}:
     get:
-      operationId: t_value
+      operationId: getTasksApiV1ChatbotEntityRecordL2bByEntityId
       parameters:
       - name: entityId
         required: true
@@ -1009,13 +1075,15 @@ paths:
       - Chatbot
       security:
       - access-token: []
+      x-operation-id-source: normalized
+      x-operation-id-original: t_value
     servers:
     - url: https://tasks.zoca.ai
       description: Production
   /tasks/api/v1/chatbot/enabled-functions/{entityId}:
     get:
       description: Returns enabled functions based on entity preferences, cohort settings, or default configuration
-      operationId: t_value
+      operationId: getTasksApiV1ChatbotEnabledFunctionsByEntityId
       parameters:
       - name: entityId
         required: true
@@ -1068,12 +1136,14 @@ paths:
       - Chatbot
       security:
       - access-token: []
+      x-operation-id-source: normalized
+      x-operation-id-original: t_value
     servers:
     - url: https://tasks.zoca.ai
       description: Production
   /tasks/api/v1/chatbot/entity-record-l2b:
     post:
-      operationId: t_value
+      operationId: postTasksApiV1ChatbotEntityRecordL2b
       parameters: []
       requestBody:
         required: true
@@ -1104,12 +1174,14 @@ paths:
       - Chatbot
       security:
       - access-token: []
+      x-operation-id-source: normalized
+      x-operation-id-original: t_value
     servers:
     - url: https://tasks.zoca.ai
       description: Production
   /tasks/api/v1/chatbot/entity-record-l2b/update/{entityId}:
     post:
-      operationId: t_value
+      operationId: postTasksApiV1ChatbotEntityRecordL2bUpdateByEntityId
       parameters:
       - name: entityId
         required: true
@@ -1148,12 +1220,14 @@ paths:
       - Chatbot
       security:
       - access-token: []
+      x-operation-id-source: normalized
+      x-operation-id-original: t_value
     servers:
     - url: https://tasks.zoca.ai
       description: Production
   /tasks/api/v1/chatbot/business-info/{entityId}:
     post:
-      operationId: t_value
+      operationId: postTasksApiV1ChatbotBusinessInfoByEntityId
       parameters:
       - name: entityId
         required: true
@@ -1206,8 +1280,10 @@ paths:
       - Chatbot
       security:
       - access-token: []
+      x-operation-id-source: normalized
+      x-operation-id-original: t_value
     get:
-      operationId: t_value
+      operationId: getTasksApiV1ChatbotBusinessInfoByEntityId
       parameters:
       - name: entityId
         required: true
@@ -1273,13 +1349,15 @@ paths:
       - Chatbot
       security:
       - access-token: []
+      x-operation-id-source: normalized
+      x-operation-id-original: t_value
     servers:
     - url: https://tasks.zoca.ai
       description: Production
   /tasks/api/v1/chatbot/l2b/non-configured-entities:
     get:
       description: Fetches entities that are either not present in l2b.entities table or have status set to false. Only includes active, non-test entities with location names.
-      operationId: t_value
+      operationId: getTasksApiV1ChatbotL2bNonConfiguredEntities
       parameters:
       - name: search
         required: false
@@ -1357,12 +1435,14 @@ paths:
       - Chatbot
       security:
       - access-token: []
+      x-operation-id-source: normalized
+      x-operation-id-original: t_value
     servers:
     - url: https://tasks.zoca.ai
       description: Production
   /tasks/api/v1/chatbot/l2b/all-phone-numbers:
     get:
-      operationId: t_value
+      operationId: getTasksApiV1ChatbotL2bAllPhoneNumbers
       parameters:
       - name: type
         required: false
@@ -1379,12 +1459,14 @@ paths:
       - Chatbot
       security:
       - access-token: []
+      x-operation-id-source: normalized
+      x-operation-id-original: t_value
     servers:
     - url: https://tasks.zoca.ai
       description: Production
   /tasks/api/v1/chatbot/l2b/entity-phone-numbers/{entityId}:
     get:
-      operationId: t_value
+      operationId: getTasksApiV1ChatbotL2bEntityPhoneNumbersByEntityId
       parameters:
       - name: type
         required: false
@@ -1406,12 +1488,14 @@ paths:
       - Chatbot
       security:
       - access-token: []
+      x-operation-id-source: normalized
+      x-operation-id-original: t_value
     servers:
     - url: https://tasks.zoca.ai
       description: Production
   /tasks/api/v1/chatbot/conversation-partners:
     get:
-      operationId: t_value
+      operationId: getTasksApiV1ChatbotConversationPartners
       parameters:
       - name: version
         required: false
@@ -1528,12 +1612,14 @@ paths:
       - Chatbot
       security:
       - access-token: []
+      x-operation-id-source: normalized
+      x-operation-id-original: t_value
     servers:
     - url: https://tasks.zoca.ai
       description: Production
   /tasks/api/v1/chatbot/mark-read:
     post:
-      operationId: t_value
+      operationId: postTasksApiV1ChatbotMarkRead
       parameters: []
       requestBody:
         required: true
@@ -1572,12 +1658,14 @@ paths:
       - Chatbot
       security:
       - access-token: []
+      x-operation-id-source: normalized
+      x-operation-id-original: t_value
     servers:
     - url: https://tasks.zoca.ai
       description: Production
   /tasks/api/v1/chatbot/conversation-history:
     get:
-      operationId: t_value
+      operationId: getTasksApiV1ChatbotConversationHistory
       parameters:
       - name: conversationPairs
         required: false
@@ -1597,12 +1685,14 @@ paths:
       - Chatbot
       security:
       - access-token: []
+      x-operation-id-source: normalized
+      x-operation-id-original: t_value
     servers:
     - url: https://tasks.zoca.ai
       description: Production
   /tasks/api/v1/chatbot/l2b/leads/{entityId}:
     get:
-      operationId: t_value
+      operationId: getTasksApiV1ChatbotL2bLeadsByEntityId
       parameters:
       - name: page
         required: false
@@ -1683,12 +1773,14 @@ paths:
       - Chatbot
       security:
       - access-token: []
+      x-operation-id-source: normalized
+      x-operation-id-original: t_value
     servers:
     - url: https://tasks.zoca.ai
       description: Production
   /tasks/api/v1/chatbot/l2b/conversations/{phoneNumber}/{countryCode}/{entityId}:
     get:
-      operationId: t_value
+      operationId: getTasksApiV1ChatbotL2bConversationsByPhoneNumberByCountryCodeByEntityId
       parameters:
       - name: page
         required: false
@@ -1729,6 +1821,8 @@ paths:
       - Chatbot
       security:
       - access-token: []
+      x-operation-id-source: normalized
+      x-operation-id-original: t_value
     servers:
     - url: https://tasks.zoca.ai
       description: Production
@@ -1773,7 +1867,7 @@ paths:
       description: Production
   /tasks/api/v1/chatbot/calls/initiate:
     post:
-      operationId: t_value
+      operationId: postTasksApiV1ChatbotCallsInitiate
       parameters: []
       requestBody:
         required: true
@@ -1797,12 +1891,14 @@ paths:
       - Chatbot
       security:
       - access-token: []
+      x-operation-id-source: normalized
+      x-operation-id-original: t_value
     servers:
     - url: https://tasks.zoca.ai
       description: Production
   /tasks/api/v1/chatbot/calls/client/{clientId}:
     get:
-      operationId: t_value
+      operationId: getTasksApiV1ChatbotCallsClientByClientId
       parameters:
       - name: clientId
         required: true
@@ -1848,12 +1944,14 @@ paths:
       - Chatbot
       security:
       - access-token: []
+      x-operation-id-source: normalized
+      x-operation-id-original: t_value
     servers:
     - url: https://tasks.zoca.ai
       description: Production
   /tasks/api/v1/chatbot/webhooks/incoming-call:
     post:
-      operationId: t_value
+      operationId: postTasksApiV1ChatbotWebhooksIncomingCall
       parameters: []
       requestBody:
         required: true
@@ -1871,12 +1969,14 @@ paths:
       - Chatbot
       security:
       - access-token: []
+      x-operation-id-source: normalized
+      x-operation-id-original: t_value
     servers:
     - url: https://tasks.zoca.ai
       description: Production
   /tasks/api/v1/chatbot/calls/context:
     get:
-      operationId: t_value
+      operationId: getTasksApiV1ChatbotCallsContext
       parameters:
       - name: call_id
         required: false
@@ -1908,12 +2008,14 @@ paths:
       - Chatbot
       security:
       - access-token: []
+      x-operation-id-source: normalized
+      x-operation-id-original: t_value
     servers:
     - url: https://tasks.zoca.ai
       description: Production
   /tasks/api/v1/chatbot/calls/{callId}:
     get:
-      operationId: t_value
+      operationId: getTasksApiV1ChatbotCallsByCallId
       parameters:
       - name: callId
         required: true
@@ -1930,13 +2032,15 @@ paths:
       - Chatbot
       security:
       - access-token: []
+      x-operation-id-source: normalized
+      x-operation-id-original: t_value
     servers:
     - url: https://tasks.zoca.ai
       description: Production
   /tasks/api/v1/chatbot/webhooks/call-events:
     post:
       description: Processes all Retell webhook events including call_inbound, call_started, call_ended, and call_analyzed for both incoming and outbound calls
-      operationId: t_value
+      operationId: postTasksApiV1ChatbotWebhooksCallEvents
       parameters: []
       requestBody:
         required: true
@@ -1955,13 +2059,15 @@ paths:
       summary: Handle all call events webhook from Retell (unified endpoint)
       tags:
       - Chatbot
+      x-operation-id-source: normalized
+      x-operation-id-original: t_value
     servers:
     - url: https://tasks.zoca.ai
       description: Production
   /tasks/api/v1/chatbot/test/make-call:
     post:
       description: Standalone test endpoint to make an outbound call using Retell AI. No client/entity dependencies required.
-      operationId: t_value
+      operationId: postTasksApiV1ChatbotTestMakeCall
       parameters: []
       requestBody:
         required: true
@@ -2008,13 +2114,15 @@ paths:
       - Chatbot
       security:
       - access-token: []
+      x-operation-id-source: normalized
+      x-operation-id-original: t_value
     servers:
     - url: https://tasks.zoca.ai
       description: Production
   /tasks/api/v1/chatbot/test/incoming-call:
     post:
       description: Standalone test endpoint to prepare dynamic variables for incoming calls. No client/entity dependencies required.
-      operationId: t_value
+      operationId: postTasksApiV1ChatbotTestIncomingCall
       parameters: []
       requestBody:
         required: true
@@ -2061,12 +2169,14 @@ paths:
       - Chatbot
       security:
       - access-token: []
+      x-operation-id-source: normalized
+      x-operation-id-original: t_value
     servers:
     - url: https://tasks.zoca.ai
       description: Production
   /tasks/api/v1/chatbot/human-handover/{clientId}:
     get:
-      operationId: t_value
+      operationId: getTasksApiV1ChatbotHumanHandoverByClientId
       parameters:
       - name: clientId
         required: true
@@ -2088,12 +2198,14 @@ paths:
       - Chatbot
       security:
       - access-token: []
+      x-operation-id-source: normalized
+      x-operation-id-original: t_value
     servers:
     - url: https://tasks.zoca.ai
       description: Production
   /tasks/api/v1/chatbot/call-bridge-number:
     get:
-      operationId: t_value
+      operationId: getTasksApiV1ChatbotCallBridgeNumber
       parameters: []
       responses:
         '200':
@@ -2109,12 +2221,14 @@ paths:
       - Chatbot
       security:
       - access-token: []
+      x-operation-id-source: normalized
+      x-operation-id-original: t_value
     servers:
     - url: https://tasks.zoca.ai
       description: Production
   /tasks/api/v1/chatbot/message-history/{clientId}:
     get:
-      operationId: t_value
+      operationId: getTasksApiV1ChatbotMessageHistoryByClientId
       parameters:
       - name: limit
         required: false
@@ -2150,12 +2264,14 @@ paths:
       - Chatbot
       security:
       - access-token: []
+      x-operation-id-source: normalized
+      x-operation-id-original: t_value
     servers:
     - url: https://tasks.zoca.ai
       description: Production
   /tasks/api/v1/chatbot/l2b/active-businesses:
     get:
-      operationId: t_value
+      operationId: getTasksApiV1ChatbotL2bActiveBusinesses
       parameters:
       - name: limit
         required: false
@@ -2185,12 +2301,14 @@ paths:
       - Chatbot
       security:
       - access-token: []
+      x-operation-id-source: normalized
+      x-operation-id-original: t_value
     servers:
     - url: https://tasks.zoca.ai
       description: Production
   /tasks/api/v1/chatbot/entities/{entityId}/preferences:
     get:
-      operationId: t_value
+      operationId: getTasksApiV1ChatbotEntitiesByEntityIdPreferences
       parameters:
       - name: entityId
         required: true
@@ -2223,12 +2341,14 @@ paths:
       - Chatbot
       security:
       - access-token: []
+      x-operation-id-source: normalized
+      x-operation-id-original: t_value
     servers:
     - url: https://tasks.zoca.ai
       description: Production
   /tasks/api/v1/chatbot/l2b/business/{entityId}/clients:
     get:
-      operationId: t_value
+      operationId: getTasksApiV1ChatbotL2bBusinessByEntityIdClients
       parameters:
       - name: limit
         required: false
@@ -2264,12 +2384,14 @@ paths:
       - Chatbot
       security:
       - access-token: []
+      x-operation-id-source: normalized
+      x-operation-id-original: t_value
     servers:
     - url: https://tasks.zoca.ai
       description: Production
   /tasks/api/v1/chatbot/business/{entityId}/webhook-data:
     get:
-      operationId: t_value
+      operationId: getTasksApiV1ChatbotBusinessByEntityIdWebhookData
       parameters:
       - name: entityId
         required: true
@@ -2345,12 +2467,14 @@ paths:
       - Chatbot
       security:
       - access-token: []
+      x-operation-id-source: normalized
+      x-operation-id-original: t_value
     servers:
     - url: https://tasks.zoca.ai
       description: Production
   /tasks/api/v1/chatbot/l2b/conversations/{clientId}:
     get:
-      operationId: t_value
+      operationId: getTasksApiV1ChatbotL2bConversationsByClientId
       parameters:
       - name: limit
         required: false
@@ -2386,13 +2510,15 @@ paths:
       - Chatbot
       security:
       - access-token: []
+      x-operation-id-source: normalized
+      x-operation-id-original: t_value
     servers:
     - url: https://tasks.zoca.ai
       description: Production
   /tasks/api/v1/chatbot/webhook-data:
     post:
       description: Store or update dynamic variables for a specific phone number. These variables will be used when the phone number calls the test number.
-      operationId: t_value
+      operationId: postTasksApiV1ChatbotWebhookData
       parameters: []
       requestBody:
         required: true
@@ -2416,13 +2542,15 @@ paths:
       - Chatbot
       security:
       - access-token: []
+      x-operation-id-source: normalized
+      x-operation-id-original: t_value
     servers:
     - url: https://tasks.zoca.ai
       description: Production
   /tasks/api/v1/chatbot/test/entity/{entityId}/phones:
     get:
       description: Retrieves phone numbers for an entity to test webhook phone number mappings
-      operationId: t_value
+      operationId: getTasksApiV1ChatbotTestEntityByEntityIdPhones
       parameters:
       - name: type
         required: false
@@ -2468,9 +2596,11 @@ paths:
       - Chatbot
       security:
       - access-token: []
+      x-operation-id-source: normalized
+      x-operation-id-original: t_value
     post:
       description: Adds a phone number to an entity for testing webhook phone number mappings
-      operationId: t_value
+      operationId: postTasksApiV1ChatbotTestEntityByEntityIdPhones
       parameters:
       - name: entityId
         required: true
@@ -2549,12 +2679,14 @@ paths:
       - Chatbot
       security:
       - access-token: []
+      x-operation-id-source: normalized
+      x-operation-id-original: t_value
     servers:
     - url: https://tasks.zoca.ai
       description: Production
   /tasks/api/v1/chatbot/bookings:
     post:
-      operationId: t_value
+      operationId: postTasksApiV1ChatbotBookings
       parameters: []
       requestBody:
         required: true
@@ -2572,13 +2704,15 @@ paths:
       - Chatbot
       security:
       - access-token: []
+      x-operation-id-source: normalized
+      x-operation-id-original: t_value
     servers:
     - url: https://tasks.zoca.ai
       description: Production
   /tasks/api/v1/chatbot/prompt-variables:
     get:
       description: Returns prompt variables for an entity. Optionally includes the full prompt with injected variables and contact details if clientId is provided.
-      operationId: t_value
+      operationId: getTasksApiV1ChatbotPromptVariables
       parameters:
       - name: clientId
         required: false
@@ -2624,13 +2758,15 @@ paths:
       - Chatbot
       security:
       - access-token: []
+      x-operation-id-source: normalized
+      x-operation-id-original: t_value
     servers:
     - url: https://tasks.zoca.ai
       description: Production
   /tasks/api/v1/chatbot/original-variables:
     get:
       description: Returns the original prompt variables for an entity without any test data modifications. This endpoint only works for non-test entities and will reject test entities.
-      operationId: t_value
+      operationId: getTasksApiV1ChatbotOriginalVariables
       parameters:
       - name: entityId
         required: true
@@ -2667,13 +2803,15 @@ paths:
       - Chatbot
       security:
       - access-token: []
+      x-operation-id-source: normalized
+      x-operation-id-original: t_value
     servers:
     - url: https://tasks.zoca.ai
       description: Production
   /tasks/api/v1/chatbot/internal/prompt-with-fallback:
     get:
       description: 'Retrieves a prompt using a 4-tier fallback system: entity preferences -> cohort preferences -> prompts service -> hardcoded default'
-      operationId: t_value
+      operationId: getTasksApiV1ChatbotInternalPromptWithFallback
       parameters:
       - name: promptUseCase
         required: false
@@ -2728,13 +2866,15 @@ paths:
       - Chatbot
       security:
       - access-token: []
+      x-operation-id-source: normalized
+      x-operation-id-original: t_value
     servers:
     - url: https://tasks.zoca.ai
       description: Production
   /tasks/api/v1/chatbot/rules/entity/{entityId}:
     get:
       description: Get all state rules configured for a specific entity with optional filters
-      operationId: t_value
+      operationId: getTasksApiV1ChatbotRulesEntityByEntityId
       parameters:
       - name: isActive
         required: false
@@ -2790,13 +2930,15 @@ paths:
       - Chatbot
       security:
       - access-token: []
+      x-operation-id-source: normalized
+      x-operation-id-original: t_value
     servers:
     - url: https://tasks.zoca.ai
       description: Production
   /tasks/api/v1/chatbot/rules:
     post:
       description: Create and persist a new state rule configuration
-      operationId: t_value
+      operationId: postTasksApiV1ChatbotRules
       parameters: []
       requestBody:
         required: true
@@ -2818,13 +2960,15 @@ paths:
       - Chatbot
       security:
       - access-token: []
+      x-operation-id-source: normalized
+      x-operation-id-original: t_value
     servers:
     - url: https://tasks.zoca.ai
       description: Production
   /tasks/api/v1/chatbot/rules/{ruleId}:
     get:
       description: Retrieve a specific rule configuration by its ID
-      operationId: t_value
+      operationId: getTasksApiV1ChatbotRulesByRuleId
       parameters:
       - name: ruleId
         required: true
@@ -2847,9 +2991,11 @@ paths:
       - Chatbot
       security:
       - access-token: []
+      x-operation-id-source: normalized
+      x-operation-id-original: t_value
     put:
       description: Update an existing rule configuration
-      operationId: t_value
+      operationId: putTasksApiV1ChatbotRulesByRuleId
       parameters:
       - name: ruleId
         required: true
@@ -2880,9 +3026,11 @@ paths:
       - Chatbot
       security:
       - access-token: []
+      x-operation-id-source: normalized
+      x-operation-id-original: t_value
     delete:
       description: Remove a rule configuration from the system
-      operationId: t_value
+      operationId: deleteTasksApiV1ChatbotRulesByRuleId
       parameters:
       - name: ruleId
         required: true
@@ -2901,12 +3049,14 @@ paths:
       - Chatbot
       security:
       - access-token: []
+      x-operation-id-source: normalized
+      x-operation-id-original: t_value
     servers:
     - url: https://tasks.zoca.ai
       description: Production
   /tasks/api/v1/chatbot/test/category-grouping/{locationEntityId}:
     get:
-      operationId: t_value
+      operationId: getTasksApiV1ChatbotTestCategoryGroupingByLocationEntityId
       parameters:
       - name: locationEntityId
         required: true
@@ -2922,12 +3072,14 @@ paths:
       - Chatbot
       security:
       - access-token: []
+      x-operation-id-source: normalized
+      x-operation-id-original: t_value
     servers:
     - url: https://tasks.zoca.ai
       description: Production
   /tasks/api/v1/chatbot/test/validate-ccof:
     post:
-      operationId: t_value
+      operationId: postTasksApiV1ChatbotTestValidateCcof
       parameters: []
       responses:
         '201':
@@ -2938,12 +3090,14 @@ paths:
       - access-token: []
       summary: T value
       x-summary-source: derived
+      x-operation-id-source: normalized
+      x-operation-id-original: t_value
     servers:
     - url: https://tasks.zoca.ai
       description: Production
   /tasks/api/v1/chatbot/temp/square/bookings:
     post:
-      operationId: t_value
+      operationId: postTasksApiV1ChatbotTempSquareBookings
       parameters: []
       responses:
         '201':
@@ -2954,12 +3108,14 @@ paths:
       - access-token: []
       summary: T value
       x-summary-source: derived
+      x-operation-id-source: normalized
+      x-operation-id-original: t_value
     servers:
     - url: https://tasks.zoca.ai
       description: Production
   /tasks/api/v1/chatbot/square/bookings/no-card-validation:
     post:
-      operationId: t_value
+      operationId: postTasksApiV1ChatbotSquareBookingsNoCardValidation
       parameters: []
       responses:
         '201':
@@ -2970,12 +3126,14 @@ paths:
       - access-token: []
       summary: T value
       x-summary-source: derived
+      x-operation-id-source: normalized
+      x-operation-id-original: t_value
     servers:
     - url: https://tasks.zoca.ai
       description: Production
   /tasks/api/v1/chatbot/square/bookings/accepted:
     post:
-      operationId: t_value
+      operationId: postTasksApiV1ChatbotSquareBookingsAccepted
       parameters: []
       responses:
         '201':
@@ -2986,12 +3144,14 @@ paths:
       - access-token: []
       summary: T value
       x-summary-source: derived
+      x-operation-id-source: normalized
+      x-operation-id-original: t_value
     servers:
     - url: https://tasks.zoca.ai
       description: Production
   /tasks/api/v1/chatbot/test/schedule-response-followup:
     post:
-      operationId: t_value
+      operationId: postTasksApiV1ChatbotTestScheduleResponseFollowup
       parameters: []
       responses:
         '201':
@@ -3002,13 +3162,15 @@ paths:
       - access-token: []
       summary: T value
       x-summary-source: derived
+      x-operation-id-source: normalized
+      x-operation-id-original: t_value
     servers:
     - url: https://tasks.zoca.ai
       description: Production
   /tasks/api/v1/chatbot/functions:
     get:
       description: Returns the complete list of chatbot functions that can be configured for entities. This shows all functions available in the system regardless of entity configuration.
-      operationId: t_value
+      operationId: getTasksApiV1ChatbotFunctions
       parameters: []
       responses:
         '200':
@@ -3024,13 +3186,15 @@ paths:
       - Chatbot
       security:
       - access-token: []
+      x-operation-id-source: normalized
+      x-operation-id-original: t_value
     servers:
     - url: https://tasks.zoca.ai
       description: Production
   /tasks/api/v1/chatbot/functions/entity/{entityId}:
     get:
       description: 'Returns the list of chatbot functions enabled for a specific entity. Implements hierarchy: entity preference → cohort preference → default (all functions). The isDefault flag indicates whether the entity is using custom configuration (false) or default all-functions configuration (true).'
-      operationId: t_value
+      operationId: getTasksApiV1ChatbotFunctionsEntityByEntityId
       parameters:
       - name: entityId
         required: true
@@ -3055,12 +3219,14 @@ paths:
       - Chatbot
       security:
       - access-token: []
+      x-operation-id-source: normalized
+      x-operation-id-original: t_value
     servers:
     - url: https://tasks.zoca.ai
       description: Production
   /tasks/api/v1/chatbot/message-templates:
     post:
-      operationId: t_value
+      operationId: postTasksApiV1ChatbotMessageTemplates
       parameters: []
       responses:
         '201':
@@ -3078,8 +3244,10 @@ paths:
       - Chatbot
       security:
       - access-token: []
+      x-operation-id-source: normalized
+      x-operation-id-original: t_value
     get:
-      operationId: t_value
+      operationId: getTasksApiV1ChatbotMessageTemplates
       parameters:
       - name: includeInactive
         required: false
@@ -3101,12 +3269,14 @@ paths:
       - Chatbot
       security:
       - access-token: []
+      x-operation-id-source: normalized
+      x-operation-id-original: t_value
     servers:
     - url: https://tasks.zoca.ai
       description: Production
   /tasks/api/v1/chatbot/message-templates/{id}:
     get:
-      operationId: t_value
+      operationId: getTasksApiV1ChatbotMessageTemplatesById
       parameters:
       - name: id
         required: true
@@ -3129,8 +3299,10 @@ paths:
       - Chatbot
       security:
       - access-token: []
+      x-operation-id-source: normalized
+      x-operation-id-original: t_value
     put:
-      operationId: t_value
+      operationId: putTasksApiV1ChatbotMessageTemplatesById
       parameters:
       - name: id
         required: true
@@ -3155,8 +3327,10 @@ paths:
       - Chatbot
       security:
       - access-token: []
+      x-operation-id-source: normalized
+      x-operation-id-original: t_value
     delete:
-      operationId: t_value
+      operationId: deleteTasksApiV1ChatbotMessageTemplatesById
       parameters:
       - name: soft
         required: false
@@ -3181,13 +3355,15 @@ paths:
       - Chatbot
       security:
       - access-token: []
+      x-operation-id-source: normalized
+      x-operation-id-original: t_value
     servers:
     - url: https://tasks.zoca.ai
       description: Production
   /tasks/api/v1/chatbot/entity/{entityId}/metadata:
     put:
       description: Updates the metadata field for an entity in l2b.entities table. Merges new metadata with existing metadata.
-      operationId: t_value
+      operationId: putTasksApiV1ChatbotEntityByEntityIdMetadata
       parameters:
       - name: entityId
         required: true
@@ -3250,13 +3426,15 @@ paths:
       - Chatbot
       security:
       - access-token: []
+      x-operation-id-source: normalized
+      x-operation-id-original: t_value
     servers:
     - url: https://tasks.zoca.ai
       description: Production
   /tasks/api/v1/chatbot/metadata/bulk-update:
     post:
       description: Updates metadata fields including booking details, platform info, and credentials for multiple entities
-      operationId: t_value
+      operationId: postTasksApiV1ChatbotMetadataBulkUpdate
       parameters: []
       responses:
         '200':
@@ -3277,6 +3455,8 @@ paths:
       - Chatbot
       security:
       - access-token: []
+      x-operation-id-source: normalized
+      x-operation-id-original: t_value
     servers:
     - url: https://tasks.zoca.ai
       description: Production
@@ -3307,9 +3487,6 @@ components:
       - id
       - entityId
       - attribute
-    Object:
-      type: object
-      properties: {}
     e_2:
       type: object
       properties:
@@ -3335,6 +3512,9 @@ components:
       - businessLng
       - points
       - heroMetrics
+    Object:
+      type: object
+      properties: {}
   securitySchemes:
     access-token:
       scheme: bearer

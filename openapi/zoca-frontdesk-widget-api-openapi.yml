@@ -25,7 +25,7 @@ paths:
       - frontdesk-widget
   /tasks/api/v1/frontdesk/widget/{entityId}/home-suggestions:
     get:
-      operationId: t_value
+      operationId: getTasksApiV1FrontdeskWidgetByEntityIdHomeSuggestions
       parameters: []
       responses:
         '200':
@@ -33,9 +33,11 @@ paths:
       summary: Quick-book suggestion cards for the widget home
       tags:
       - frontdesk-widget
+      x-operation-id-source: normalized
+      x-operation-id-original: t_value
   /tasks/api/v1/frontdesk/widget/{entityId}/service-slots:
     get:
-      operationId: t_value
+      operationId: getTasksApiV1FrontdeskWidgetByEntityIdServiceSlots
       parameters: []
       responses:
         '200':
@@ -43,9 +45,11 @@ paths:
       summary: On-demand slot options for one home-card service
       tags:
       - frontdesk-widget
+      x-operation-id-source: normalized
+      x-operation-id-original: t_value
   /tasks/api/v1/frontdesk/widget/{entityId}/card/setup-intent:
     post:
-      operationId: t_value
+      operationId: postTasksApiV1FrontdeskWidgetByEntityIdCardSetupIntent
       parameters: []
       responses:
         '201':
@@ -53,9 +57,11 @@ paths:
       summary: Create a Stripe SetupIntent to vault a card in the widget
       tags:
       - frontdesk-widget
+      x-operation-id-source: normalized
+      x-operation-id-original: t_value
   /tasks/api/v1/frontdesk/widget/{entityId}/client/identity:
     post:
-      operationId: t_value
+      operationId: postTasksApiV1FrontdeskWidgetByEntityIdClientIdentity
       parameters: []
       responses:
         '201':
@@ -63,9 +69,11 @@ paths:
       summary: Attach name + phone to a web client before a card-on-file booking
       tags:
       - frontdesk-widget
+      x-operation-id-source: normalized
+      x-operation-id-original: t_value
   /tasks/api/v1/frontdesk/widget/{entityId}/card-on-file:
     get:
-      operationId: t_value
+      operationId: getTasksApiV1FrontdeskWidgetByEntityIdCardOnFile
       parameters: []
       responses:
         '200':
@@ -73,9 +81,11 @@ paths:
       summary: Whether the widget's client already has a saved card
       tags:
       - frontdesk-widget
+      x-operation-id-source: normalized
+      x-operation-id-original: t_value
   /tasks/api/v1/frontdesk/widget/{entityId}/quick-book:
     post:
-      operationId: t_value
+      operationId: postTasksApiV1FrontdeskWidgetByEntityIdQuickBook
       parameters: []
       responses:
         '201':
@@ -83,9 +93,11 @@ paths:
       summary: One-click deterministic booking for a quick-book slot
       tags:
       - frontdesk-widget
+      x-operation-id-source: normalized
+      x-operation-id-original: t_value
   /tasks/api/v1/frontdesk/widget/{entityId}/learn:
     post:
-      operationId: t_value
+      operationId: postTasksApiV1FrontdeskWidgetByEntityIdLearn
       parameters: []
       responses:
         '201':
@@ -93,9 +105,11 @@ paths:
       summary: Ingest a business website into the agent knowledge base (internal)
       tags:
       - frontdesk-widget
+      x-operation-id-source: normalized
+      x-operation-id-original: t_value
   /tasks/api/v1/frontdesk/widget/{entityId}/config:
     get:
-      operationId: t_value
+      operationId: getTasksApiV1FrontdeskWidgetByEntityIdConfig
       parameters: []
       responses:
         '200':
@@ -103,9 +117,11 @@ paths:
       summary: 'Booking-widget config: first page of services + categories + prefs'
       tags:
       - frontdesk-widget
+      x-operation-id-source: normalized
+      x-operation-id-original: t_value
   /tasks/api/v1/frontdesk/widget/{entityId}/services:
     get:
-      operationId: t_value
+      operationId: getTasksApiV1FrontdeskWidgetByEntityIdServices
       parameters: []
       responses:
         '200':
@@ -113,9 +129,11 @@ paths:
       summary: 'Booking-widget: paginated/searchable services'
       tags:
       - frontdesk-widget
+      x-operation-id-source: normalized
+      x-operation-id-original: t_value
   /tasks/api/v1/frontdesk/widget/{entityId}/staff:
     get:
-      operationId: t_value
+      operationId: getTasksApiV1FrontdeskWidgetByEntityIdStaff
       parameters: []
       responses:
         '200':
@@ -123,9 +141,11 @@ paths:
       summary: Booking-widget staff/providers for an entity
       tags:
       - frontdesk-widget
+      x-operation-id-source: normalized
+      x-operation-id-original: t_value
   /tasks/api/v1/frontdesk/widget/{entityId}/addons:
     get:
-      operationId: t_value
+      operationId: getTasksApiV1FrontdeskWidgetByEntityIdAddons
       parameters: []
       responses:
         '200':
@@ -133,9 +153,11 @@ paths:
       summary: Booking-widget add-ons (suggestable extras + staff surcharges)
       tags:
       - frontdesk-widget
+      x-operation-id-source: normalized
+      x-operation-id-original: t_value
   /tasks/api/v1/frontdesk/widget/{entityId}/slots:
     get:
-      operationId: t_value
+      operationId: getTasksApiV1FrontdeskWidgetByEntityIdSlots
       parameters: []
       responses:
         '200':
@@ -143,9 +165,11 @@ paths:
       summary: Booking-widget available slots for a service + date
       tags:
       - frontdesk-widget
+      x-operation-id-source: normalized
+      x-operation-id-original: t_value
   /tasks/api/v1/frontdesk/widget/{entityId}/availability:
     get:
-      operationId: t_value
+      operationId: getTasksApiV1FrontdeskWidgetByEntityIdAvailability
       parameters: []
       responses:
         '200':
@@ -153,9 +177,11 @@ paths:
       summary: 'Booking-widget: dates with openings (grouped by date) for a service'
       tags:
       - frontdesk-widget
+      x-operation-id-source: normalized
+      x-operation-id-original: t_value
   /tasks/api/v1/frontdesk/widget/{entityId}/client:
     post:
-      operationId: t_value
+      operationId: postTasksApiV1FrontdeskWidgetByEntityIdClient
       parameters: []
       responses:
         '201':
@@ -163,9 +189,11 @@ paths:
       summary: 'Booking-widget: find-or-create the platform client'
       tags:
       - frontdesk-widget
+      x-operation-id-source: normalized
+      x-operation-id-original: t_value
   /tasks/api/v1/frontdesk/widget/{entityId}/identify:
     post:
-      operationId: t_value
+      operationId: postTasksApiV1FrontdeskWidgetByEntityIdIdentify
       parameters: []
       responses:
         '201':
@@ -173,9 +201,11 @@ paths:
       summary: 'Booking-widget: resolve the customer pricing tier'
       tags:
       - frontdesk-widget
+      x-operation-id-source: normalized
+      x-operation-id-original: t_value
   /tasks/api/v1/frontdesk/widget/{entityId}/price:
     post:
-      operationId: t_value
+      operationId: postTasksApiV1FrontdeskWidgetByEntityIdPrice
       parameters: []
       responses:
         '201':
@@ -183,9 +213,11 @@ paths:
       summary: 'Booking-widget: display-only price quote (never charges)'
       tags:
       - frontdesk-widget
+      x-operation-id-source: normalized
+      x-operation-id-original: t_value
   /tasks/api/v1/frontdesk/widget/{entityId}/verify-promo:
     post:
-      operationId: t_value
+      operationId: postTasksApiV1FrontdeskWidgetByEntityIdVerifyPromo
       parameters: []
       responses:
         '201':
@@ -193,9 +225,11 @@ paths:
       summary: 'Booking-widget: verify a promo code (no charge, no redemption)'
       tags:
       - frontdesk-widget
+      x-operation-id-source: normalized
+      x-operation-id-original: t_value
   /tasks/api/v1/frontdesk/widget/{entityId}/lead:
     post:
-      operationId: t_value
+      operationId: postTasksApiV1FrontdeskWidgetByEntityIdLead
       parameters: []
       responses:
         '201':
@@ -203,9 +237,11 @@ paths:
       summary: 'Booking-widget: create a booking inquiry (engages lead follow-up)'
       tags:
       - frontdesk-widget
+      x-operation-id-source: normalized
+      x-operation-id-original: t_value
   /tasks/api/v1/frontdesk/widget/{entityId}/funnel:
     post:
-      operationId: t_value
+      operationId: postTasksApiV1FrontdeskWidgetByEntityIdFunnel
       parameters: []
       responses:
         '201':
@@ -213,9 +249,11 @@ paths:
       summary: 'Booking-widget: report a funnel step (service/slot selected)'
       tags:
       - frontdesk-widget
+      x-operation-id-source: normalized
+      x-operation-id-original: t_value
   /tasks/api/v1/frontdesk/widget/{entityId}/card-status:
     post:
-      operationId: t_value
+      operationId: postTasksApiV1FrontdeskWidgetByEntityIdCardStatus
       parameters: []
       responses:
         '201':
@@ -223,9 +261,11 @@ paths:
       summary: 'Booking-widget: card-on-file requirement + on-file status'
       tags:
       - frontdesk-widget
+      x-operation-id-source: normalized
+      x-operation-id-original: t_value
   /tasks/api/v1/frontdesk/widget/{entityId}/collect-card:
     post:
-      operationId: t_value
+      operationId: postTasksApiV1FrontdeskWidgetByEntityIdCollectCard
       parameters: []
       responses:
         '201':
@@ -233,9 +273,11 @@ paths:
       summary: 'Booking-widget: mint a secure card-collection link'
       tags:
       - frontdesk-widget
+      x-operation-id-source: normalized
+      x-operation-id-original: t_value
   /tasks/api/v1/frontdesk/widget/{entityId}/book:
     post:
-      operationId: t_value
+      operationId: postTasksApiV1FrontdeskWidgetByEntityIdBook
       parameters: []
       responses:
         '201':
@@ -243,9 +285,11 @@ paths:
       summary: 'Booking-widget: create an appointment'
       tags:
       - frontdesk-widget
+      x-operation-id-source: normalized
+      x-operation-id-original: t_value
   /tasks/api/v1/frontdesk/widget/{entityId}/hold:
     post:
-      operationId: t_value
+      operationId: postTasksApiV1FrontdeskWidgetByEntityIdHold
       parameters: []
       responses:
         '201':
@@ -253,9 +297,11 @@ paths:
       summary: 'Booking-widget: hold a slot (reserve timer)'
       tags:
       - frontdesk-widget
+      x-operation-id-source: normalized
+      x-operation-id-original: t_value
   /tasks/api/v1/frontdesk/widget/{entityId}/cart/items:
     post:
-      operationId: t_value
+      operationId: postTasksApiV1FrontdeskWidgetByEntityIdCartItems
       parameters: []
       responses:
         '201':
@@ -263,9 +309,11 @@ paths:
       summary: 'Booking-widget: add a service (its own slot + staff) to the cart'
       tags:
       - frontdesk-widget
+      x-operation-id-source: normalized
+      x-operation-id-original: t_value
   /tasks/api/v1/frontdesk/widget/{entityId}/cart/items/{itemId}:
     patch:
-      operationId: t_value
+      operationId: patchTasksApiV1FrontdeskWidgetByEntityIdCartItemsByItemId
       parameters: []
       responses:
         '200':
@@ -273,8 +321,10 @@ paths:
       summary: 'Booking-widget: re-slot / re-staff a cart item'
       tags:
       - frontdesk-widget
+      x-operation-id-source: normalized
+      x-operation-id-original: t_value
     delete:
-      operationId: t_value
+      operationId: deleteTasksApiV1FrontdeskWidgetByEntityIdCartItemsByItemId
       parameters: []
       responses:
         '200':
@@ -282,9 +332,11 @@ paths:
       summary: 'Booking-widget: remove a cart item'
       tags:
       - frontdesk-widget
+      x-operation-id-source: normalized
+      x-operation-id-original: t_value
   /tasks/api/v1/frontdesk/widget/{entityId}/cart:
     get:
-      operationId: t_value
+      operationId: getTasksApiV1FrontdeskWidgetByEntityIdCart
       parameters: []
       responses:
         '200':
@@ -292,9 +344,11 @@ paths:
       summary: 'Booking-widget: read the cached cart'
       tags:
       - frontdesk-widget
+      x-operation-id-source: normalized
+      x-operation-id-original: t_value
   /tasks/api/v1/frontdesk/widget/{entityId}/cart/checkout:
     post:
-      operationId: t_value
+      operationId: postTasksApiV1FrontdeskWidgetByEntityIdCartCheckout
       parameters: []
       responses:
         '201':
@@ -302,6 +356,8 @@ paths:
       summary: 'Booking-widget: book the whole cart as one multi-service appointment'
       tags:
       - frontdesk-widget
+      x-operation-id-source: normalized
+      x-operation-id-original: t_value
 components:
   securitySchemes:
     access-token:

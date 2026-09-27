@@ -91,7 +91,7 @@ paths:
   /scheduling/checkout/processing-fee-quote:
     post:
       description: Returns the pass-through processing fee and gross customer charge for the selected payment method.
-      operationId: t_value
+      operationId: postSchedulingCheckoutProcessingFeeQuote
       parameters: []
       requestBody:
         required: true
@@ -105,10 +105,12 @@ paths:
       summary: Quote checkout processing fee
       tags:
       - Checkout
+      x-operation-id-source: normalized
+      x-operation-id-original: t_value
   /scheduling/checkout/sale/{saleId}/tip:
     patch:
       description: Persists the tip on the sale (override, not accumulate) before collecting payment so the checkout total and processing-fee quote stay correct. Omitting additionalTip (or sending a zero value) clears the tip.
-      operationId: t_value
+      operationId: patchSchedulingCheckoutSaleBySaleIdTip
       parameters:
       - name: saleId
         required: true
@@ -130,10 +132,12 @@ paths:
       summary: Update the tip on a sale
       tags:
       - Checkout
+      x-operation-id-source: normalized
+      x-operation-id-original: t_value
   /scheduling/checkout/cancel-payment/{paymentId}:
     post:
       description: Marks a payment as CANCELLED. Only PENDING or PROCESSING payments can be cancelled. If Stripe processes the payment after cancellation, an automatic refund is triggered.
-      operationId: t_value
+      operationId: postSchedulingCheckoutCancelPaymentByPaymentId
       parameters:
       - name: paymentId
         required: true
@@ -172,10 +176,12 @@ paths:
       summary: Cancel a payment
       tags:
       - Checkout
+      x-operation-id-source: normalized
+      x-operation-id-original: t_value
   /scheduling/checkout/split-payment:
     post:
       description: Handles multiple payments in sequence for a single checkout. Cash portion is processed first, then card portion. Automatically determines FINAL vs PARTIAL payment type.
-      operationId: t_value
+      operationId: postSchedulingCheckoutSplitPayment
       parameters: []
       responses:
         '200':
@@ -207,10 +213,12 @@ paths:
       summary: Process a split payment (cash + card)
       tags:
       - Checkout
+      x-operation-id-source: normalized
+      x-operation-id-original: t_value
   /scheduling/checkout/sale/{saleId}:
     get:
       description: Retrieves complete sale information including amounts, payment history, and summary. Use this to populate the checkout UI.
-      operationId: t_value
+      operationId: getSchedulingCheckoutSaleBySaleId
       parameters:
       - name: saleId
         required: true
@@ -272,10 +280,12 @@ paths:
       summary: Get sale details for checkout
       tags:
       - Checkout
+      x-operation-id-source: normalized
+      x-operation-id-original: t_value
   /scheduling/checkout/booking/{bookingId}:
     get:
       description: Retrieves sale details using booking ID. Each booking has exactly one sale, so this provides a convenient lookup.
-      operationId: t_value
+      operationId: getSchedulingCheckoutBookingByBookingId
       parameters:
       - name: bookingId
         required: true
@@ -307,10 +317,12 @@ paths:
       summary: Get sale by booking ID for checkout
       tags:
       - Checkout
+      x-operation-id-source: normalized
+      x-operation-id-original: t_value
   /scheduling/checkout/send-payment-link:
     post:
       description: Generates a Stripe Checkout Session URL and sends it to the client via SMS or EMAIL. If price is null, it will be calculated from the sale. Tip is optional.
-      operationId: t_value
+      operationId: postSchedulingCheckoutSendPaymentLink
       parameters: []
       requestBody:
         required: true
@@ -352,10 +364,12 @@ paths:
       summary: Send a payment link via SMS or EMAIL
       tags:
       - Checkout
+      x-operation-id-source: normalized
+      x-operation-id-original: t_value
   /scheduling/checkout/generate-payment-link:
     post:
       description: Creates a Stripe Checkout Session URL without sending it. Returns the URL that can be shared with the client through any channel.
-      operationId: t_value
+      operationId: postSchedulingCheckoutGeneratePaymentLink
       parameters: []
       requestBody:
         required: true
@@ -388,10 +402,12 @@ paths:
       summary: Generate a payment link without sending
       tags:
       - Checkout
+      x-operation-id-source: normalized
+      x-operation-id-original: t_value
   /scheduling/checkout/generate-payment-qr:
     post:
       description: Creates a Stripe Checkout Session and generates a scannable QR code image. Returns both the QR code URL and the payment link URL. Clients can scan the QR code to open the payment page.
-      operationId: t_value
+      operationId: postSchedulingCheckoutGeneratePaymentQr
       parameters: []
       requestBody:
         required: true
@@ -427,10 +443,12 @@ paths:
       summary: Generate a QR code for payment link
       tags:
       - Checkout
+      x-operation-id-source: normalized
+      x-operation-id-original: t_value
   /scheduling/checkout/offers/override/entity/{entityId}:
     post:
       description: Returns discount amount and warnings. Staff confirms after reviewing warnings. Requires clientId (customer), serviceId, and servicePrice in the request body.
-      operationId: t_value
+      operationId: postSchedulingCheckoutOffersOverrideEntityByEntityId
       parameters: []
       responses:
         '200':
@@ -438,10 +456,12 @@ paths:
       summary: 'Staff override: apply an offer regardless of restrictions'
       tags:
       - Checkout
+      x-operation-id-source: normalized
+      x-operation-id-original: t_value
   /scheduling/checkout/offers/override/batch/entity/{entityId}:
     post:
       description: Allows staff to stack non-stackable offers on services. Returns per-offer discounts and warnings about stacking violations.
-      operationId: t_value
+      operationId: postSchedulingCheckoutOffersOverrideBatchEntityByEntityId
       parameters: []
       responses:
         '200':
@@ -449,9 +469,11 @@ paths:
       summary: 'Staff batch override: stack multiple offers with warnings'
       tags:
       - Checkout
+      x-operation-id-source: normalized
+      x-operation-id-original: t_value
   /scheduling/checkout/reader/cancel:
     post:
-      operationId: t_value
+      operationId: postSchedulingCheckoutReaderCancel
       parameters: []
       responses:
         '204':
@@ -459,9 +481,11 @@ paths:
       summary: Cancel an in-flight reader prompt
       tags:
       - Checkout
+      x-operation-id-source: normalized
+      x-operation-id-original: t_value
   /scheduling/checkout/reader/retry:
     post:
-      operationId: t_value
+      operationId: postSchedulingCheckoutReaderRetry
       parameters: []
       responses:
         '200':
@@ -469,6 +493,8 @@ paths:
       summary: Retry a failed reader payment using a (possibly different) reader
       tags:
       - Checkout
+      x-operation-id-source: normalized
+      x-operation-id-original: t_value
 components:
   schemas:
     e:

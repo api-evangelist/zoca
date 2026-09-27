@@ -31,7 +31,7 @@ paths:
       - Brain Agent
   /tasks/api/v1/brain-agent/topic-question:
     post:
-      operationId: t_value
+      operationId: postTasksApiV1BrainAgentTopicQuestion
       parameters: []
       requestBody:
         required: true
@@ -45,9 +45,11 @@ paths:
       summary: Generate a fresh personalised opening question for a selected topic
       tags:
       - Brain Agent
+      x-operation-id-source: normalized
+      x-operation-id-original: t_value
   /tasks/api/v1/brain-agent/conversations:
     get:
-      operationId: t_value
+      operationId: getTasksApiV1BrainAgentConversations
       parameters:
       - name: mine
         required: false
@@ -70,9 +72,11 @@ paths:
       summary: List the entity's Brain conversations
       tags:
       - Brain Agent
+      x-operation-id-source: normalized
+      x-operation-id-original: t_value
   /tasks/api/v1/brain-agent/conversations/{conversationId}/messages:
     get:
-      operationId: t_value
+      operationId: getTasksApiV1BrainAgentConversationsByConversationIdMessages
       parameters:
       - name: limit
         required: false
@@ -95,9 +99,11 @@ paths:
       summary: Get a Brain conversation transcript
       tags:
       - Brain Agent
+      x-operation-id-source: normalized
+      x-operation-id-original: t_value
   /tasks/api/v1/brain-agent/conversations/{conversationId}/memories:
     get:
-      operationId: t_value
+      operationId: getTasksApiV1BrainAgentConversationsByConversationIdMemories
       parameters:
       - name: entityId
         required: true
@@ -115,9 +121,11 @@ paths:
       summary: Memories extracted from a Brain conversation (chip data)
       tags:
       - Brain Agent
+      x-operation-id-source: normalized
+      x-operation-id-original: t_value
   /tasks/api/v1/brain-agent/conversations/{conversationId}:
     patch:
-      operationId: t_value
+      operationId: patchTasksApiV1BrainAgentConversationsByConversationId
       parameters:
       - name: entityId
         required: true
@@ -141,8 +149,10 @@ paths:
       summary: Rename a Brain conversation
       tags:
       - Brain Agent
+      x-operation-id-source: normalized
+      x-operation-id-original: t_value
     delete:
-      operationId: t_value
+      operationId: deleteTasksApiV1BrainAgentConversationsByConversationId
       parameters:
       - name: entityId
         required: true
@@ -160,6 +170,8 @@ paths:
       summary: Delete (soft-deactivate) a Brain conversation
       tags:
       - Brain Agent
+      x-operation-id-source: normalized
+      x-operation-id-original: t_value
 components:
   schemas:
     e:

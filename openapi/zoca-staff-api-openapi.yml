@@ -35,7 +35,7 @@ paths:
       tags:
       - Staff
     get:
-      operationId: t_value
+      operationId: getStaff
       parameters: []
       responses:
         '200':
@@ -45,9 +45,11 @@ paths:
       summary: List staff members (by businessEntityId for rich view, else entityId)
       tags:
       - Staff
+      x-operation-id-source: normalized
+      x-operation-id-original: t_value
   /staff/bulk:
     post:
-      operationId: t_value
+      operationId: postStaffBulk
       parameters: []
       responses:
         '201':
@@ -57,9 +59,11 @@ paths:
       summary: Create multiple staff members in bulk
       tags:
       - Staff
+      x-operation-id-source: normalized
+      x-operation-id-original: t_value
   /staff/reorder:
     put:
-      operationId: t_value
+      operationId: putStaffReorder
       parameters: []
       responses:
         '200':
@@ -69,9 +73,11 @@ paths:
       summary: Reorder staff members
       tags:
       - Staff
+      x-operation-id-source: normalized
+      x-operation-id-original: t_value
   /staff/media:
     post:
-      operationId: t_value
+      operationId: postStaffMedia
       parameters: []
       responses:
         '201':
@@ -81,9 +87,11 @@ paths:
       summary: Attach media to a staff member
       tags:
       - Staff
+      x-operation-id-source: normalized
+      x-operation-id-original: t_value
   /staff/me:
     get:
-      operationId: t_value
+      operationId: getStaffMe
       parameters: []
       responses:
         '200':
@@ -97,8 +105,10 @@ paths:
       summary: Fetch the calling staff member's own profile
       tags:
       - Staff
+      x-operation-id-source: normalized
+      x-operation-id-original: t_value
     patch:
-      operationId: t_value
+      operationId: patchStaffMe
       parameters: []
       responses:
         '200':
@@ -112,9 +122,11 @@ paths:
       summary: Patch the calling staff member's own profile
       tags:
       - Staff
+      x-operation-id-source: normalized
+      x-operation-id-original: t_value
   /staff/directory:
     get:
-      operationId: t_value
+      operationId: getStaffDirectory
       parameters: []
       responses:
         '200':
@@ -130,9 +142,11 @@ paths:
       summary: List staff members at a business (cursor-paginated, rich view)
       tags:
       - Staff
+      x-operation-id-source: normalized
+      x-operation-id-original: t_value
   /staff/{memberId}:
     get:
-      operationId: t_value
+      operationId: getStaffByMemberId
       parameters: []
       responses:
         '200':
@@ -150,9 +164,11 @@ paths:
       summary: Fetch a single staff member by memberId (rich view)
       tags:
       - Staff
+      x-operation-id-source: normalized
+      x-operation-id-original: t_value
   /staff/{memberId}/archive:
     post:
-      operationId: t_value
+      operationId: postStaffByMemberIdArchive
       parameters: []
       responses:
         '204':
@@ -170,9 +186,11 @@ paths:
       summary: Archive a staff member at a business (soft-delete)
       tags:
       - Staff
+      x-operation-id-source: normalized
+      x-operation-id-original: t_value
   /staff/{memberId}/unarchive:
     post:
-      operationId: t_value
+      operationId: postStaffByMemberIdUnarchive
       parameters: []
       responses:
         '204':
@@ -190,9 +208,11 @@ paths:
       summary: Unarchive a staff member at a business
       tags:
       - Staff
+      x-operation-id-source: normalized
+      x-operation-id-original: t_value
   /staff/{id}:
     patch:
-      operationId: t_value
+      operationId: patchStaffById
       parameters: []
       responses:
         '200':
@@ -202,8 +222,10 @@ paths:
       summary: Update a staff member by ID
       tags:
       - Staff
+      x-operation-id-source: normalized
+      x-operation-id-original: t_value
     delete:
-      operationId: t_value
+      operationId: deleteStaffById
       parameters: []
       responses:
         '200':
@@ -213,9 +235,11 @@ paths:
       summary: Delete a staff member by ID (soft-delete)
       tags:
       - Staff
+      x-operation-id-source: normalized
+      x-operation-id-original: t_value
   /staff/{id}/email:
     patch:
-      operationId: t_value
+      operationId: patchStaffByIdEmail
       parameters: []
       responses:
         '200':
@@ -225,9 +249,11 @@ paths:
       summary: Set a staff member’s email (first-time only, enables invites)
       tags:
       - Staff
+      x-operation-id-source: normalized
+      x-operation-id-original: t_value
   /staff/{staffMemberId}/media/{mediaId}:
     delete:
-      operationId: t_value
+      operationId: deleteStaffByStaffMemberIdMediaByMediaId
       parameters: []
       responses:
         '200':
@@ -237,6 +263,8 @@ paths:
       summary: Delete media from a staff member
       tags:
       - Staff
+      x-operation-id-source: normalized
+      x-operation-id-original: t_value
 components:
   securitySchemes:
     access-token:

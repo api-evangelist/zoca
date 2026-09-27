@@ -23,7 +23,7 @@ paths:
       - Slack
   /slack/send:
     post:
-      operationId: t_value
+      operationId: postSlackSend
       parameters: []
       responses:
         '201':
@@ -31,9 +31,11 @@ paths:
       summary: Send a Slack message (alternative endpoint)
       tags:
       - Slack
+      x-operation-id-source: normalized
+      x-operation-id-original: t_value
   /slack/schedule-send:
     post:
-      operationId: t_value
+      operationId: postSlackScheduleSend
       parameters: []
       responses:
         '201':
@@ -41,6 +43,8 @@ paths:
       summary: Schedule a Slack message
       tags:
       - Slack
+      x-operation-id-source: normalized
+      x-operation-id-original: t_value
 components:
   securitySchemes:
     access-token:

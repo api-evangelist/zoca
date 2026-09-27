@@ -35,7 +35,7 @@ paths:
       - Command Center
   /tasks/api/v1/command-center/chat/stream:
     post:
-      operationId: t_value
+      operationId: postTasksApiV1CommandCenterChatStream
       parameters: []
       requestBody:
         required: true
@@ -49,9 +49,11 @@ paths:
       summary: Chat with streaming via SSE
       tags:
       - Command Center
+      x-operation-id-source: normalized
+      x-operation-id-original: t_value
   /tasks/api/v1/command-center/message:
     post:
-      operationId: t_value
+      operationId: postTasksApiV1CommandCenterMessage
       parameters: []
       requestBody:
         required: true
@@ -69,9 +71,11 @@ paths:
       summary: Single message (no conversation history)
       tags:
       - Command Center
+      x-operation-id-source: normalized
+      x-operation-id-original: t_value
   /tasks/api/v1/command-center/status:
     get:
-      operationId: t_value
+      operationId: getTasksApiV1CommandCenterStatus
       parameters:
       - name: entityId
         required: true
@@ -84,9 +88,11 @@ paths:
       summary: Check agent setup status for an entity
       tags:
       - Command Center
+      x-operation-id-source: normalized
+      x-operation-id-original: t_value
   /tasks/api/v1/command-center/setup:
     post:
-      operationId: t_value
+      operationId: postTasksApiV1CommandCenterSetup
       parameters: []
       requestBody:
         required: true
@@ -103,9 +109,11 @@ paths:
       summary: Set up the Scheduling Agent for an entity
       tags:
       - Command Center
+      x-operation-id-source: normalized
+      x-operation-id-original: t_value
   /tasks/api/v1/command-center/conversations/{conversationId}:
     get:
-      operationId: t_value
+      operationId: getTasksApiV1CommandCenterConversationsByConversationId
       parameters:
       - name: entityId
         required: true
@@ -124,8 +132,10 @@ paths:
       summary: Get conversation info
       tags:
       - Command Center
+      x-operation-id-source: normalized
+      x-operation-id-original: t_value
     delete:
-      operationId: t_value
+      operationId: deleteTasksApiV1CommandCenterConversationsByConversationId
       parameters:
       - name: entityId
         required: true
@@ -144,9 +154,11 @@ paths:
       summary: End a conversation
       tags:
       - Command Center
+      x-operation-id-source: normalized
+      x-operation-id-original: t_value
   /tasks/api/v1/command-center/conversations:
     get:
-      operationId: t_value
+      operationId: getTasksApiV1CommandCenterConversations
       parameters:
       - name: mine
         required: false
@@ -170,9 +182,11 @@ paths:
       summary: List conversations for an entity
       tags:
       - Command Center
+      x-operation-id-source: normalized
+      x-operation-id-original: t_value
   /tasks/api/v1/command-center/conversations/{conversationId}/messages:
     get:
-      operationId: t_value
+      operationId: getTasksApiV1CommandCenterConversationsByConversationIdMessages
       parameters:
       - name: limit
         required: false
@@ -195,6 +209,8 @@ paths:
       summary: Get conversation messages
       tags:
       - Command Center
+      x-operation-id-source: normalized
+      x-operation-id-original: t_value
 components:
   schemas:
     e:

@@ -32,7 +32,7 @@ paths:
       description: Production
   /business-profile/primary-category-suggestion:
     get:
-      operationId: t_value
+      operationId: getBusinessProfilePrimaryCategorySuggestion
       parameters: []
       responses:
         '200':
@@ -40,12 +40,14 @@ paths:
       summary: Get primary category suggestions
       tags:
       - App
+      x-operation-id-source: normalized
+      x-operation-id-original: t_value
     servers:
     - url: https://api.zoca.ai
       description: Production
   /business-profile/additional-category-suggestion:
     get:
-      operationId: t_value
+      operationId: getBusinessProfileAdditionalCategorySuggestion
       parameters: []
       responses:
         '200':
@@ -53,8 +55,10 @@ paths:
       summary: Get additional category suggestions
       tags:
       - App
+      x-operation-id-source: normalized
+      x-operation-id-original: t_value
     put:
-      operationId: t_value
+      operationId: putBusinessProfileAdditionalCategorySuggestion
       parameters: []
       responses:
         '200':
@@ -62,13 +66,15 @@ paths:
       summary: Get additional category suggestions (v2)
       tags:
       - App
+      x-operation-id-source: normalized
+      x-operation-id-original: t_value
     servers:
     - url: https://api.zoca.ai
       description: Production
   /business-profile/booking-platforms:
     get:
       description: Retrieves a list of all active booking platforms including Vagaro, GlossGenius, StyleSeat, and Booksy.
-      operationId: t_value
+      operationId: getBusinessProfileBookingPlatforms
       parameters: []
       responses:
         '200':
@@ -82,13 +88,15 @@ paths:
       summary: Get all booking platforms
       tags:
       - App
+      x-operation-id-source: normalized
+      x-operation-id-original: t_value
     servers:
     - url: https://api.zoca.ai
       description: Production
   /business-profile/social-platforms:
     get:
       description: Retrieves a list of all active social media platforms including Facebook, Instagram, LinkedIn, TikTok, Twitter, YouTube, and Pinterest.
-      operationId: t_value
+      operationId: getBusinessProfileSocialPlatforms
       parameters: []
       responses:
         '200':
@@ -102,13 +110,15 @@ paths:
       summary: Get all social media platforms
       tags:
       - App
+      x-operation-id-source: normalized
+      x-operation-id-original: t_value
     servers:
     - url: https://api.zoca.ai
       description: Production
   /business-profile/{entityId}/booking-link:
     put:
       description: Updates the booking link for a specified platform, deactivating any existing active link for that platform.
-      operationId: t_value
+      operationId: putBusinessProfileByEntityIdBookingLink
       parameters:
       - name: entityId
         required: true
@@ -130,9 +140,11 @@ paths:
       summary: Update booking link for a platform
       tags:
       - App
+      x-operation-id-source: normalized
+      x-operation-id-original: t_value
     get:
       description: Updates the booking link for a specified platform, deactivating any existing active link for that platform.
-      operationId: t_value
+      operationId: getBusinessProfileByEntityIdBookingLink
       parameters:
       - name: entityId
         required: true
@@ -153,12 +165,14 @@ paths:
       summary: Update booking link for a platform
       tags:
       - App
+      x-operation-id-source: normalized
+      x-operation-id-original: t_value
     servers:
     - url: https://api.zoca.ai
       description: Production
   /business-profile/update-profile-data:
     put:
-      operationId: t_value
+      operationId: putBusinessProfileUpdateProfileData
       parameters: []
       responses:
         '200':
@@ -166,12 +180,14 @@ paths:
       summary: Update business profile data
       tags:
       - App
+      x-operation-id-source: normalized
+      x-operation-id-original: t_value
     servers:
     - url: https://api.zoca.ai
       description: Production
   /business-profile/website-domain/{entityId}:
     put:
-      operationId: t_value
+      operationId: putBusinessProfileWebsiteDomainByEntityId
       parameters: []
       responses:
         '200':
@@ -179,12 +195,14 @@ paths:
       summary: Update website domain data
       tags:
       - App
+      x-operation-id-source: normalized
+      x-operation-id-original: t_value
     servers:
     - url: https://api.zoca.ai
       description: Production
   /business-profile/website-domain-quotation/{entityId}:
     put:
-      operationId: t_value
+      operationId: putBusinessProfileWebsiteDomainQuotationByEntityId
       parameters: []
       responses:
         '200':
@@ -192,12 +210,14 @@ paths:
       summary: Get domain quotation
       tags:
       - App
+      x-operation-id-source: normalized
+      x-operation-id-original: t_value
     servers:
     - url: https://api.zoca.ai
       description: Production
   /webview:
     get:
-      operationId: t_value
+      operationId: getWebview
       parameters: []
       responses:
         '200':
@@ -205,12 +225,14 @@ paths:
       summary: Get webviews by query parameters
       tags:
       - App
+      x-operation-id-source: normalized
+      x-operation-id-original: t_value
     servers:
     - url: https://api.zoca.ai
       description: Production
   /app-blocker/updates/{id}:
     get:
-      operationId: t_value
+      operationId: getAppBlockerUpdatesById
       parameters: []
       responses:
         '200':
@@ -226,8 +248,10 @@ paths:
       summary: Get update by ID
       tags:
       - App
+      x-operation-id-source: normalized
+      x-operation-id-original: t_value
     delete:
-      operationId: t_value
+      operationId: deleteAppBlockerUpdatesById
       parameters: []
       responses:
         '204':
@@ -239,12 +263,14 @@ paths:
       summary: Delete an app blocker update
       tags:
       - App
+      x-operation-id-source: normalized
+      x-operation-id-original: t_value
     servers:
     - url: https://api.zoca.ai
       description: Production
   /auth/check:
     get:
-      operationId: t_value
+      operationId: getAuthCheck
       parameters: []
       responses:
         '200':
@@ -257,12 +283,14 @@ paths:
       summary: Check authentication status
       tags:
       - App
+      x-operation-id-source: normalized
+      x-operation-id-original: t_value
     servers:
     - url: https://api.zoca.ai
       description: Production
   /auth/google-auth-url:
     get:
-      operationId: t_value
+      operationId: getAuthGoogleAuthUrl
       parameters:
       - name: redirectUrl
         required: false
@@ -285,13 +313,15 @@ paths:
       summary: Google Authentication URL
       tags:
       - App
+      x-operation-id-source: normalized
+      x-operation-id-original: t_value
     servers:
     - url: https://api.zoca.ai
       description: Production
   /auth/square/authorize:
     get:
       description: Generates the Square OAuth authorization URL for entity integration. Use isWinAgent=true to request Win Agent specific permissions.
-      operationId: t_value
+      operationId: getAuthSquareAuthorize
       parameters: []
       responses:
         '200':
@@ -313,12 +343,14 @@ paths:
       summary: Square OAuth Authorization URL
       tags:
       - App
+      x-operation-id-source: normalized
+      x-operation-id-original: t_value
     servers:
     - url: https://api.zoca.ai
       description: Production
   /auth/instagram/authorize:
     get:
-      operationId: t_value
+      operationId: getAuthInstagramAuthorize
       parameters: []
       responses:
         '200':
@@ -331,12 +363,14 @@ paths:
       summary: Instagram OAuth Authorization URL
       tags:
       - App
+      x-operation-id-source: normalized
+      x-operation-id-original: t_value
     servers:
     - url: https://api.zoca.ai
       description: Production
   /auth/tiktok/authorize:
     get:
-      operationId: t_value
+      operationId: getAuthTiktokAuthorize
       parameters: []
       responses:
         '200':
@@ -349,13 +383,15 @@ paths:
       summary: TikTok OAuth Authorization URL
       tags:
       - App
+      x-operation-id-source: normalized
+      x-operation-id-original: t_value
     servers:
     - url: https://api.zoca.ai
       description: Production
   /auth/magic-link/verify:
     post:
       description: Validates the magic link token and returns JWT access token and refresh token. Tokens are single-use - the magic link cannot be used again after verification.
-      operationId: t_value
+      operationId: postAuthMagicLinkVerify
       parameters: []
       responses:
         '200':
@@ -376,12 +412,14 @@ paths:
       summary: Verify a magic link token and get auth tokens
       tags:
       - App
+      x-operation-id-source: normalized
+      x-operation-id-original: t_value
     servers:
     - url: https://api.zoca.ai
       description: Production
   /campaigns/requests:
     get:
-      operationId: t_value
+      operationId: getCampaignsRequests
       parameters: []
       responses:
         '200':
@@ -389,8 +427,10 @@ paths:
       summary: List campaign requests for an entity
       tags:
       - App
+      x-operation-id-source: normalized
+      x-operation-id-original: t_value
     post:
-      operationId: t_value
+      operationId: postCampaignsRequests
       parameters: []
       responses:
         '201':
@@ -398,8 +438,10 @@ paths:
       summary: Create a new campaign request
       tags:
       - App
+      x-operation-id-source: normalized
+      x-operation-id-original: t_value
     patch:
-      operationId: t_value
+      operationId: patchCampaignsRequests
       parameters: []
       responses:
         '200':
@@ -407,12 +449,14 @@ paths:
       summary: Update a campaign request
       tags:
       - App
+      x-operation-id-source: normalized
+      x-operation-id-original: t_value
     servers:
     - url: https://api.zoca.ai
       description: Production
   /campaigns/requests/count:
     get:
-      operationId: t_value
+      operationId: getCampaignsRequestsCount
       parameters: []
       responses:
         '200':
@@ -420,12 +464,14 @@ paths:
       summary: Get campaign request counts by status
       tags:
       - App
+      x-operation-id-source: normalized
+      x-operation-id-original: t_value
     servers:
     - url: https://api.zoca.ai
       description: Production
   /campaigns/requests/{id}:
     get:
-      operationId: t_value
+      operationId: getCampaignsRequestsById
       parameters: []
       responses:
         '200':
@@ -433,8 +479,10 @@ paths:
       summary: Get a campaign request by ID
       tags:
       - App
+      x-operation-id-source: normalized
+      x-operation-id-original: t_value
     delete:
-      operationId: t_value
+      operationId: deleteCampaignsRequestsById
       parameters: []
       responses:
         '200':
@@ -442,12 +490,14 @@ paths:
       summary: Delete a campaign request
       tags:
       - App
+      x-operation-id-source: normalized
+      x-operation-id-original: t_value
     servers:
     - url: https://api.zoca.ai
       description: Production
   /campaigns/suggestions:
     get:
-      operationId: t_value
+      operationId: getCampaignsSuggestions
       parameters: []
       responses:
         '200':
@@ -455,12 +505,14 @@ paths:
       summary: List all campaign suggestions
       tags:
       - App
+      x-operation-id-source: normalized
+      x-operation-id-original: t_value
     servers:
     - url: https://api.zoca.ai
       description: Production
   /campaigns/flyers:
     get:
-      operationId: t_value
+      operationId: getCampaignsFlyers
       parameters: []
       responses:
         '200':
@@ -468,12 +520,14 @@ paths:
       summary: List all campaign flyers
       tags:
       - App
+      x-operation-id-source: normalized
+      x-operation-id-original: t_value
     servers:
     - url: https://api.zoca.ai
       description: Production
   /chatbot/calls/{callId}:
     get:
-      operationId: t_value
+      operationId: getChatbotCallsByCallId
       parameters: []
       responses:
         '200':
@@ -481,12 +535,14 @@ paths:
       summary: Get call details by call ID
       tags:
       - App
+      x-operation-id-source: normalized
+      x-operation-id-original: t_value
     servers:
     - url: https://api.zoca.ai
       description: Production
   /chatbot/calls/{callId}/regenerate-summary:
     get:
-      operationId: t_value
+      operationId: getChatbotCallsByCallIdRegenerateSummary
       parameters:
       - name: callId
         required: true
@@ -515,12 +571,14 @@ paths:
       summary: Regenerate call summary by call ID
       tags:
       - App
+      x-operation-id-source: normalized
+      x-operation-id-original: t_value
     servers:
     - url: https://api.zoca.ai
       description: Production
   /chatbot/retell/phone/{phoneNumber}:
     put:
-      operationId: t_value
+      operationId: putChatbotRetellPhoneByPhoneNumber
       parameters:
       - name: phoneNumber
         required: true
@@ -544,12 +602,14 @@ paths:
       summary: Update a phone number configuration
       tags:
       - App
+      x-operation-id-source: normalized
+      x-operation-id-original: t_value
     servers:
     - url: https://api.zoca.ai
       description: Production
   /chatbot/phone/purchase:
     post:
-      operationId: t_value
+      operationId: postChatbotPhonePurchase
       parameters: []
       responses:
         '201':
@@ -557,12 +617,14 @@ paths:
       summary: Purchase a new phone number
       tags:
       - App
+      x-operation-id-source: normalized
+      x-operation-id-original: t_value
     servers:
     - url: https://api.zoca.ai
       description: Production
   /chatbot/feedback:
     post:
-      operationId: t_value
+      operationId: postChatbotFeedback
       parameters: []
       responses:
         '201':
@@ -572,8 +634,10 @@ paths:
       summary: Create a new feedback record
       tags:
       - App
+      x-operation-id-source: normalized
+      x-operation-id-original: t_value
     get:
-      operationId: t_value
+      operationId: getChatbotFeedback
       parameters:
       - name: limit
         required: false
@@ -601,12 +665,14 @@ paths:
       summary: Get all feedback records for an entity with pagination
       tags:
       - App
+      x-operation-id-source: normalized
+      x-operation-id-original: t_value
     servers:
     - url: https://api.zoca.ai
       description: Production
   /chatbot/feedback/{id}:
     put:
-      operationId: t_value
+      operationId: putChatbotFeedbackById
       parameters:
       - name: id
         required: true
@@ -624,12 +690,14 @@ paths:
       summary: Update an existing feedback record
       tags:
       - App
+      x-operation-id-source: normalized
+      x-operation-id-original: t_value
     servers:
     - url: https://api.zoca.ai
       description: Production
   /chat/conversations:
     get:
-      operationId: t_value
+      operationId: getChatConversations
       parameters: []
       responses:
         '200':
@@ -643,12 +711,14 @@ paths:
       summary: Get conversations list or single conversation details
       tags:
       - App
+      x-operation-id-source: normalized
+      x-operation-id-original: t_value
     servers:
     - url: https://api.zoca.ai
       description: Production
   /chat/message:
     post:
-      operationId: t_value
+      operationId: postChatMessage
       parameters: []
       responses:
         '201':
@@ -662,8 +732,10 @@ paths:
       summary: Create a new message in a conversation
       tags:
       - App
+      x-operation-id-source: normalized
+      x-operation-id-original: t_value
     put:
-      operationId: t_value
+      operationId: putChatMessage
       parameters: []
       responses:
         '200':
@@ -679,12 +751,14 @@ paths:
       summary: Update message text or soft delete
       tags:
       - App
+      x-operation-id-source: normalized
+      x-operation-id-original: t_value
     servers:
     - url: https://api.zoca.ai
       description: Production
   /chat/reaction:
     post:
-      operationId: t_value
+      operationId: postChatReaction
       parameters: []
       responses:
         '201':
@@ -700,8 +774,10 @@ paths:
       summary: Add reaction to a message
       tags:
       - App
+      x-operation-id-source: normalized
+      x-operation-id-original: t_value
     put:
-      operationId: t_value
+      operationId: putChatReaction
       parameters: []
       responses:
         '200':
@@ -719,12 +795,14 @@ paths:
       summary: Update or soft delete a reaction
       tags:
       - App
+      x-operation-id-source: normalized
+      x-operation-id-original: t_value
     servers:
     - url: https://api.zoca.ai
       description: Production
   /chat/message-receipt:
     post:
-      operationId: t_value
+      operationId: postChatMessageReceipt
       parameters: []
       responses:
         '200':
@@ -738,12 +816,14 @@ paths:
       summary: Mark messages as read in a conversation
       tags:
       - App
+      x-operation-id-source: normalized
+      x-operation-id-original: t_value
     servers:
     - url: https://api.zoca.ai
       description: Production
   /clients:
     post:
-      operationId: t_value
+      operationId: postClients
       parameters: []
       responses:
         '201':
@@ -751,12 +831,14 @@ paths:
       summary: Create a new client with contact information
       tags:
       - App
+      x-operation-id-source: normalized
+      x-operation-id-original: t_value
     servers:
     - url: https://api.zoca.ai
       description: Production
   /clients/bulk:
     post:
-      operationId: t_value
+      operationId: postClientsBulk
       parameters: []
       responses:
         '201':
@@ -764,12 +846,14 @@ paths:
       summary: Bulk create clients with contact information
       tags:
       - App
+      x-operation-id-source: normalized
+      x-operation-id-original: t_value
     servers:
     - url: https://api.zoca.ai
       description: Production
   /clients/bulk-s3:
     post:
-      operationId: t_value
+      operationId: postClientsBulkS3
       parameters: []
       responses:
         '201':
@@ -777,12 +861,14 @@ paths:
       summary: Bulk import clients from S3 URL
       tags:
       - App
+      x-operation-id-source: normalized
+      x-operation-id-original: t_value
     servers:
     - url: https://api.zoca.ai
       description: Production
   /clients/entity/{entityId}:
     get:
-      operationId: t_value
+      operationId: getClientsEntityByEntityId
       parameters: []
       responses:
         '200':
@@ -790,12 +876,14 @@ paths:
       summary: Get clients by entity ID with pagination
       tags:
       - App
+      x-operation-id-source: normalized
+      x-operation-id-original: t_value
     servers:
     - url: https://api.zoca.ai
       description: Production
   /clients/block:
     put:
-      operationId: t_value
+      operationId: putClientsBlock
       parameters: []
       responses:
         '200':
@@ -803,12 +891,14 @@ paths:
       summary: Block or restore clients
       tags:
       - App
+      x-operation-id-source: normalized
+      x-operation-id-original: t_value
     servers:
     - url: https://api.zoca.ai
       description: Production
   /clients/entity/{entityId}/blocked:
     get:
-      operationId: t_value
+      operationId: getClientsEntityByEntityIdBlocked
       parameters: []
       responses:
         '200':
@@ -816,12 +906,14 @@ paths:
       summary: Get blocked clients for an entity with pagination
       tags:
       - App
+      x-operation-id-source: normalized
+      x-operation-id-original: t_value
     servers:
     - url: https://api.zoca.ai
       description: Production
   /clients/{clientId}:
     get:
-      operationId: t_value
+      operationId: getClientsByClientId
       parameters: []
       responses:
         '200':
@@ -829,12 +921,14 @@ paths:
       summary: Get a client by ID
       tags:
       - App
+      x-operation-id-source: normalized
+      x-operation-id-original: t_value
     servers:
     - url: https://api.zoca.ai
       description: Production
   /clients/{entityId}/clientFile:
     post:
-      operationId: t_value
+      operationId: postClientsByEntityIdClientFile
       parameters: []
       responses:
         '201':
@@ -842,12 +936,14 @@ paths:
       summary: Store a client file for an entity
       tags:
       - App
+      x-operation-id-source: normalized
+      x-operation-id-original: t_value
     servers:
     - url: https://api.zoca.ai
       description: Production
   /clients/comm-types:
     get:
-      operationId: t_value
+      operationId: getClientsCommTypes
       parameters: []
       responses:
         '200':
@@ -855,12 +951,14 @@ paths:
       summary: Get available communication types
       tags:
       - App
+      x-operation-id-source: normalized
+      x-operation-id-original: t_value
     servers:
     - url: https://api.zoca.ai
       description: Production
   /clients/comms/{commId}/status:
     patch:
-      operationId: t_value
+      operationId: patchClientsCommsByCommIdStatus
       parameters: []
       responses:
         '200':
@@ -868,12 +966,14 @@ paths:
       summary: Update communication status
       tags:
       - App
+      x-operation-id-source: normalized
+      x-operation-id-original: t_value
     servers:
     - url: https://api.zoca.ai
       description: Production
   /booking-enquiries:
     get:
-      operationId: t_value
+      operationId: getBookingEnquiries
       parameters: []
       responses:
         '200':
@@ -881,12 +981,14 @@ paths:
       summary: List all booking enquiries with pagination and filters
       tags:
       - App
+      x-operation-id-source: normalized
+      x-operation-id-original: t_value
     servers:
     - url: https://api.zoca.ai
       description: Production
   /booking-enquiries/sources:
     get:
-      operationId: t_value
+      operationId: getBookingEnquiriesSources
       parameters: []
       responses:
         '200':
@@ -894,12 +996,14 @@ paths:
       summary: List distinct enquiry sources for an entity (source filter options)
       tags:
       - App
+      x-operation-id-source: normalized
+      x-operation-id-original: t_value
     servers:
     - url: https://api.zoca.ai
       description: Production
   /booking-enquiries/enquiry-status:
     get:
-      operationId: t_value
+      operationId: getBookingEnquiriesEnquiryStatus
       parameters: []
       responses:
         '200':
@@ -907,12 +1011,14 @@ paths:
       summary: Get enquiry status statistics for an entity
       tags:
       - App
+      x-operation-id-source: normalized
+      x-operation-id-original: t_value
     servers:
     - url: https://api.zoca.ai
       description: Production
   /booking-enquiries/{entityId}/search:
     get:
-      operationId: t_value
+      operationId: getBookingEnquiriesByEntityIdSearch
       parameters: []
       responses:
         '200':
@@ -920,12 +1026,14 @@ paths:
       summary: Search clients by name, number, or query
       tags:
       - App
+      x-operation-id-source: normalized
+      x-operation-id-original: t_value
     servers:
     - url: https://api.zoca.ai
       description: Production
   /booking-enquiries/enquiry-stats:
     get:
-      operationId: t_value
+      operationId: getBookingEnquiriesEnquiryStats
       parameters: []
       responses:
         '200':
@@ -933,12 +1041,14 @@ paths:
       summary: Get detailed enquiry statistics for an entity
       tags:
       - App
+      x-operation-id-source: normalized
+      x-operation-id-original: t_value
     servers:
     - url: https://api.zoca.ai
       description: Production
   /booking-enquiries/multilocation/{businessEntityId}:
     get:
-      operationId: t_value
+      operationId: getBookingEnquiriesMultilocationByBusinessEntityId
       parameters: []
       responses:
         '200':
@@ -950,12 +1060,14 @@ paths:
       summary: List enquiries across all locations of a business with network stats
       tags:
       - App
+      x-operation-id-source: normalized
+      x-operation-id-original: t_value
     servers:
     - url: https://api.zoca.ai
       description: Production
   /booking-enquiries/{enquiryId}/enquiry:
     get:
-      operationId: t_value
+      operationId: getBookingEnquiriesByEnquiryIdEnquiry
       parameters: []
       responses:
         '200':
@@ -963,12 +1075,14 @@ paths:
       summary: Get enquiry details by ID
       tags:
       - App
+      x-operation-id-source: normalized
+      x-operation-id-original: t_value
     servers:
     - url: https://api.zoca.ai
       description: Production
   /booking-enquiries/{enquiryId}/status:
     put:
-      operationId: t_value
+      operationId: putBookingEnquiriesByEnquiryIdStatus
       parameters: []
       responses:
         '200':
@@ -976,12 +1090,14 @@ paths:
       summary: Update enquiry status with reason and services
       tags:
       - App
+      x-operation-id-source: normalized
+      x-operation-id-original: t_value
     servers:
     - url: https://api.zoca.ai
       description: Production
   /booking-enquiries/{clientId}/notes:
     post:
-      operationId: t_value
+      operationId: postBookingEnquiriesByClientIdNotes
       parameters: []
       responses:
         '201':
@@ -989,8 +1105,10 @@ paths:
       summary: Add a note to a client
       tags:
       - App
+      x-operation-id-source: normalized
+      x-operation-id-original: t_value
     get:
-      operationId: t_value
+      operationId: getBookingEnquiriesByClientIdNotes
       parameters: []
       responses:
         '200':
@@ -998,12 +1116,14 @@ paths:
       summary: Get all notes for a client
       tags:
       - App
+      x-operation-id-source: normalized
+      x-operation-id-original: t_value
     servers:
     - url: https://api.zoca.ai
       description: Production
   /booking-enquiries/{clientId}/enquiries:
     get:
-      operationId: t_value
+      operationId: getBookingEnquiriesByClientIdEnquiries
       parameters: []
       responses:
         '200':
@@ -1011,12 +1131,14 @@ paths:
       summary: Get all enquiries for a client with status filter
       tags:
       - App
+      x-operation-id-source: normalized
+      x-operation-id-original: t_value
     servers:
     - url: https://api.zoca.ai
       description: Production
   /booking-enquiries/notes/{noteId}:
     put:
-      operationId: t_value
+      operationId: putBookingEnquiriesNotesByNoteId
       parameters: []
       responses:
         '200':
@@ -1024,8 +1146,10 @@ paths:
       summary: Update an existing client note
       tags:
       - App
+      x-operation-id-source: normalized
+      x-operation-id-original: t_value
     delete:
-      operationId: t_value
+      operationId: deleteBookingEnquiriesNotesByNoteId
       parameters: []
       responses:
         '200':
@@ -1033,12 +1157,14 @@ paths:
       summary: Delete a client note
       tags:
       - App
+      x-operation-id-source: normalized
+      x-operation-id-original: t_value
     servers:
     - url: https://api.zoca.ai
       description: Production
   /booking-enquiries/{clientId}/communication-logs:
     post:
-      operationId: t_value
+      operationId: postBookingEnquiriesByClientIdCommunicationLogs
       parameters: []
       responses:
         '201':
@@ -1046,12 +1172,14 @@ paths:
       summary: Add communication log for a client
       tags:
       - App
+      x-operation-id-source: normalized
+      x-operation-id-original: t_value
     servers:
     - url: https://api.zoca.ai
       description: Production
   /booking-enquiries/client-conversation:
     post:
-      operationId: t_value
+      operationId: postBookingEnquiriesClientConversation
       parameters: []
       responses:
         '201':
@@ -1059,12 +1187,14 @@ paths:
       summary: Add a conversation message for a client
       tags:
       - App
+      x-operation-id-source: normalized
+      x-operation-id-original: t_value
     servers:
     - url: https://api.zoca.ai
       description: Production
   /booking-enquiries/{clientId}/app/chat:
     get:
-      operationId: t_value
+      operationId: getBookingEnquiriesByClientIdAppChat
       parameters: []
       responses:
         '200':
@@ -1072,12 +1202,14 @@ paths:
       summary: Get chat data for mobile app
       tags:
       - App
+      x-operation-id-source: normalized
+      x-operation-id-original: t_value
     servers:
     - url: https://api.zoca.ai
       description: Production
   /booking-enquiries/{clientId}/summary:
     get:
-      operationId: t_value
+      operationId: getBookingEnquiriesByClientIdSummary
       parameters: []
       responses:
         '200':
@@ -1085,12 +1217,14 @@ paths:
       summary: Get summary of client interactions
       tags:
       - App
+      x-operation-id-source: normalized
+      x-operation-id-original: t_value
     servers:
     - url: https://api.zoca.ai
       description: Production
   /booking-enquiries/{entityId}/text-templates:
     get:
-      operationId: t_value
+      operationId: getBookingEnquiriesByEntityIdTextTemplates
       parameters: []
       responses:
         '200':
@@ -1098,12 +1232,14 @@ paths:
       summary: List all text templates for an entity
       tags:
       - App
+      x-operation-id-source: normalized
+      x-operation-id-original: t_value
     servers:
     - url: https://api.zoca.ai
       description: Production
   /booking-enquiries/text-templates/{templateId}:
     put:
-      operationId: t_value
+      operationId: putBookingEnquiriesTextTemplatesByTemplateId
       parameters: []
       responses:
         '200':
@@ -1111,12 +1247,14 @@ paths:
       summary: Update an existing text template
       tags:
       - App
+      x-operation-id-source: normalized
+      x-operation-id-original: t_value
     servers:
     - url: https://api.zoca.ai
       description: Production
   /booking-enquiries/{entityId}/text-template-preferences:
     put:
-      operationId: t_value
+      operationId: putBookingEnquiriesByEntityIdTextTemplatePreferences
       parameters: []
       responses:
         '200':
@@ -1124,8 +1262,10 @@ paths:
       summary: Update text template preferences
       tags:
       - App
+      x-operation-id-source: normalized
+      x-operation-id-original: t_value
     get:
-      operationId: t_value
+      operationId: getBookingEnquiriesByEntityIdTextTemplatePreferences
       parameters: []
       responses:
         '200':
@@ -1133,12 +1273,14 @@ paths:
       summary: Get text template preferences for an entity
       tags:
       - App
+      x-operation-id-source: normalized
+      x-operation-id-original: t_value
     servers:
     - url: https://api.zoca.ai
       description: Production
   /booking-enquiries/formatted-text-template:
     put:
-      operationId: t_value
+      operationId: putBookingEnquiriesFormattedTextTemplate
       parameters: []
       responses:
         '200':
@@ -1146,12 +1288,14 @@ paths:
       summary: Format text template with client data
       tags:
       - App
+      x-operation-id-source: normalized
+      x-operation-id-original: t_value
     servers:
     - url: https://api.zoca.ai
       description: Production
   /booking-enquiries/{entityId}/automated-text-templates:
     get:
-      operationId: t_value
+      operationId: getBookingEnquiriesByEntityIdAutomatedTextTemplates
       parameters: []
       responses:
         '200':
@@ -1159,8 +1303,10 @@ paths:
       summary: Get default lead communication templates
       tags:
       - App
+      x-operation-id-source: normalized
+      x-operation-id-original: t_value
     put:
-      operationId: t_value
+      operationId: putBookingEnquiriesByEntityIdAutomatedTextTemplates
       parameters: []
       responses:
         '200':
@@ -1168,12 +1314,14 @@ paths:
       summary: Update lead communication templates
       tags:
       - App
+      x-operation-id-source: normalized
+      x-operation-id-original: t_value
     servers:
     - url: https://api.zoca.ai
       description: Production
   /booking-enquiries/{locationEntityId}/automated-text-templates/variables:
     get:
-      operationId: t_value
+      operationId: getBookingEnquiriesByLocationEntityIdAutomatedTextTemplatesVariables
       parameters: []
       responses:
         '200':
@@ -1181,12 +1329,14 @@ paths:
       summary: Get lead communication template variable values
       tags:
       - App
+      x-operation-id-source: normalized
+      x-operation-id-original: t_value
     servers:
     - url: https://api.zoca.ai
       description: Production
   /booking-enquiries/automated-text-templates/variables:
     get:
-      operationId: t_value
+      operationId: getBookingEnquiriesAutomatedTextTemplatesVariables
       parameters: []
       responses:
         '200':
@@ -1194,12 +1344,14 @@ paths:
       summary: Get available automated communication variables
       tags:
       - App
+      x-operation-id-source: normalized
+      x-operation-id-original: t_value
     servers:
     - url: https://api.zoca.ai
       description: Production
   /booking-enquiries/{entityId}/automated-text-templates/preferences:
     get:
-      operationId: t_value
+      operationId: getBookingEnquiriesByEntityIdAutomatedTextTemplatesPreferences
       parameters: []
       responses:
         '200':
@@ -1207,8 +1359,10 @@ paths:
       summary: Get automated communication template preferences
       tags:
       - App
+      x-operation-id-source: normalized
+      x-operation-id-original: t_value
     put:
-      operationId: t_value
+      operationId: putBookingEnquiriesByEntityIdAutomatedTextTemplatesPreferences
       parameters: []
       responses:
         '200':
@@ -1216,12 +1370,14 @@ paths:
       summary: Update automated communication template preferences
       tags:
       - App
+      x-operation-id-source: normalized
+      x-operation-id-original: t_value
     servers:
     - url: https://api.zoca.ai
       description: Production
   /booking-enquiries/{entityId}/text-template-order:
     get:
-      operationId: t_value
+      operationId: getBookingEnquiriesByEntityIdTextTemplateOrder
       parameters: []
       responses:
         '200':
@@ -1229,12 +1385,14 @@ paths:
       summary: Get text template order for a client
       tags:
       - App
+      x-operation-id-source: normalized
+      x-operation-id-original: t_value
     servers:
     - url: https://api.zoca.ai
       description: Production
   /booking-enquiries/conversation-activity:
     get:
-      operationId: t_value
+      operationId: getBookingEnquiriesConversationActivity
       parameters: []
       responses:
         '200':
@@ -1242,12 +1400,14 @@ paths:
       summary: Get conversation activity details for a client or enquiry
       tags:
       - App
+      x-operation-id-source: normalized
+      x-operation-id-original: t_value
     servers:
     - url: https://api.zoca.ai
       description: Production
   /booking-enquiries/client-conversations:
     get:
-      operationId: t_value
+      operationId: getBookingEnquiriesClientConversations
       parameters: []
       responses:
         '200':
@@ -1255,12 +1415,14 @@ paths:
       summary: Get client conversations including SMS and calls
       tags:
       - App
+      x-operation-id-source: normalized
+      x-operation-id-original: t_value
     servers:
     - url: https://api.zoca.ai
       description: Production
   /entities/locations:
     get:
-      operationId: t_value
+      operationId: getEntitiesLocations
       parameters: []
       responses:
         '200':
@@ -1268,12 +1430,14 @@ paths:
       summary: Get all locations for a user
       tags:
       - App
+      x-operation-id-source: normalized
+      x-operation-id-original: t_value
     servers:
     - url: https://api.zoca.ai
       description: Production
   /entities/onboarding-state:
     post:
-      operationId: t_value
+      operationId: postEntitiesOnboardingState
       parameters: []
       responses:
         '201':
@@ -1281,13 +1445,15 @@ paths:
       summary: Update onboarding state for an entity
       tags:
       - App
+      x-operation-id-source: normalized
+      x-operation-id-original: t_value
     servers:
     - url: https://api.zoca.ai
       description: Production
   /entities/location/{entityId}:
     put:
       description: Updates any columns in the entities.locations table. All fields are optional. Attributes are merged with existing values (preserves old keys, updates matching keys).
-      operationId: t_value
+      operationId: putEntitiesLocationByEntityId
       parameters:
       - name: entityId
         required: true
@@ -1339,13 +1505,15 @@ paths:
       summary: Update location data
       tags:
       - App
+      x-operation-id-source: normalized
+      x-operation-id-original: t_value
     servers:
     - url: https://api.zoca.ai
       description: Production
   /entities/location/{entityId}/details:
     get:
       description: Retrieves core location information including name, address, category, timezone, lead masking status, and business hours for a specific location entity.
-      operationId: t_value
+      operationId: getEntitiesLocationByEntityIdDetails
       parameters:
       - name: entityId
         required: true
@@ -1399,13 +1567,15 @@ paths:
       summary: Get essential location details
       tags:
       - App
+      x-operation-id-source: normalized
+      x-operation-id-original: t_value
     servers:
     - url: https://api.zoca.ai
       description: Production
   /entities/location/{entityId}/rwg-status:
     get:
       description: Retrieves whether the 'Book online' button on the Google Business Profile is enabled for a location (entities.locations.rwg_enabled).
-      operationId: t_value
+      operationId: getEntitiesLocationByEntityIdRwgStatus
       parameters:
       - name: entityId
         required: true
@@ -1423,13 +1593,15 @@ paths:
       summary: Get Reserve with Google status
       tags:
       - App
+      x-operation-id-source: normalized
+      x-operation-id-original: t_value
     servers:
     - url: https://api.zoca.ai
       description: Production
   /entities/{entityId}/more-tab-cards:
     get:
       description: Returns boolean flags indicating which cards should be displayed in the More tab. Currently includes Instagram leads card visibility based on recent activity.
-      operationId: t_value
+      operationId: getEntitiesByEntityIdMoreTabCards
       parameters:
       - name: entityId
         required: true
@@ -1456,12 +1628,14 @@ paths:
       summary: Get visibility markers for More tab cards
       tags:
       - App
+      x-operation-id-source: normalized
+      x-operation-id-original: t_value
     servers:
     - url: https://api.zoca.ai
       description: Production
   /entities/products/{entityId}:
     get:
-      operationId: t_value
+      operationId: getEntitiesProductsByEntityId
       parameters:
       - name: includeInactive
         required: false
@@ -1475,9 +1649,11 @@ paths:
       summary: Get products for an entity
       tags:
       - App
+      x-operation-id-source: normalized
+      x-operation-id-original: t_value
     put:
       description: Associates a product with an entity or updates an existing product entity relationship
-      operationId: t_value
+      operationId: putEntitiesProductsByEntityId
       parameters: []
       responses:
         '200':
@@ -1505,12 +1681,14 @@ paths:
       summary: Create or update a product entity relationship
       tags:
       - App
+      x-operation-id-source: normalized
+      x-operation-id-original: t_value
     servers:
     - url: https://api.zoca.ai
       description: Production
   /entities/{entityId}/preferences:
     post:
-      operationId: t_value
+      operationId: postEntitiesByEntityIdPreferences
       parameters: []
       responses:
         '201':
@@ -1518,12 +1696,14 @@ paths:
       summary: Create or update an entity preference
       tags:
       - App
+      x-operation-id-source: normalized
+      x-operation-id-original: t_value
     servers:
     - url: https://api.zoca.ai
       description: Production
   /entities/location/{entityId}/booking-link:
     get:
-      operationId: t_value
+      operationId: getEntitiesLocationByEntityIdBookingLink
       parameters: []
       responses:
         '200':
@@ -1531,8 +1711,10 @@ paths:
       summary: Get booking link for a location
       tags:
       - App
+      x-operation-id-source: normalized
+      x-operation-id-original: t_value
     put:
-      operationId: t_value
+      operationId: putEntitiesLocationByEntityIdBookingLink
       parameters: []
       responses:
         '200':
@@ -1540,13 +1722,15 @@ paths:
       summary: Update booking link for a location
       tags:
       - App
+      x-operation-id-source: normalized
+      x-operation-id-original: t_value
     servers:
     - url: https://api.zoca.ai
       description: Production
   /entities/offboarding-reason-templates:
     get:
       description: Retrieves a list of active offboarding reason templates. Either agentId OR isDeleteAccount must be provided, but not both.
-      operationId: t_value
+      operationId: getEntitiesOffboardingReasonTemplates
       parameters:
       - name: isDeleteAccount
         required: false
@@ -1582,13 +1766,15 @@ paths:
       summary: Get active offboarding reason templates
       tags:
       - App
+      x-operation-id-source: normalized
+      x-operation-id-original: t_value
     servers:
     - url: https://api.zoca.ai
       description: Production
   /entities/offboarding/active-subscriptions/v2/{entityId}:
     get:
       description: Retrieves active agent subscriptions, billing information, and delete account status for offboarding workflows. Includes HubSpot meeting data by default.
-      operationId: t_value
+      operationId: getEntitiesOffboardingActiveSubscriptionsV2ByEntityId
       parameters: []
       responses:
         '200':
@@ -1627,13 +1813,15 @@ paths:
       summary: Get active subscriptions and offboarding information for an entity (with…
       tags:
       - App
+      x-operation-id-source: normalized
+      x-operation-id-original: t_value
     servers:
     - url: https://api.zoca.ai
       description: Production
   /entities/{entityId}/trigger-payment-link-comms:
     post:
       description: Triggers payment link communications for an entity by fetching the Chargebee payment link and sending it to all associated users via MoEngage. The entity must have an active or future subscription.
-      operationId: t_value
+      operationId: postEntitiesByEntityIdTriggerPaymentLinkComms
       parameters:
       - name: entityId
         required: true
@@ -1681,13 +1869,15 @@ paths:
       summary: Trigger payment link communications for an entity
       tags:
       - App
+      x-operation-id-source: normalized
+      x-operation-id-original: t_value
     servers:
     - url: https://api.zoca.ai
       description: Production
   /entities/{entityId}/review-insights:
     post:
       description: Retrieves review insights including lead predictions and review targets for a location entity. Accepts predictedLeads value in request body to calculate lead distributions. Review targets are fetched from the non-ICP pipeline.
-      operationId: t_value
+      operationId: postEntitiesByEntityIdReviewInsights
       parameters:
       - name: entityId
         required: true
@@ -1728,13 +1918,15 @@ paths:
       summary: Get review insights for an entity
       tags:
       - App
+      x-operation-id-source: normalized
+      x-operation-id-original: t_value
     servers:
     - url: https://api.zoca.ai
       description: Production
   /entities/{entityId}/hubspot/meetings:
     get:
       description: Retrieves upcoming HubSpot meetings for a location entity via its associated contact and deal. Returns meeting details including reschedule and cancel URLs extracted from the meeting body.
-      operationId: t_value
+      operationId: getEntitiesByEntityIdHubspotMeetings
       parameters:
       - name: limit
         required: false
@@ -1776,12 +1968,14 @@ paths:
       summary: Get upcoming HubSpot meetings for an entity
       tags:
       - App
+      x-operation-id-source: normalized
+      x-operation-id-original: t_value
     servers:
     - url: https://api.zoca.ai
       description: Production
   /events:
     post:
-      operationId: t_value
+      operationId: postEvents
       parameters: []
       responses:
         '201':
@@ -1789,12 +1983,14 @@ paths:
       summary: Handle incoming event from Lambda
       tags:
       - App
+      x-operation-id-source: normalized
+      x-operation-id-original: t_value
     servers:
     - url: https://api.zoca.ai
       description: Production
   /features:
     get:
-      operationId: t_value
+      operationId: getFeatures
       parameters:
       - name: businessEntityId
         required: true
@@ -1820,12 +2016,14 @@ paths:
       summary: Get all available features for an entity based on active products
       tags:
       - App
+      x-operation-id-source: normalized
+      x-operation-id-original: t_value
     servers:
     - url: https://api.zoca.ai
       description: Production
   /features/insights-tabs:
     get:
-      operationId: t_value
+      operationId: getFeaturesInsightsTabs
       parameters:
       - name: businessEntityId
         required: true
@@ -1851,12 +2049,14 @@ paths:
       summary: Get Insights tabs with URLs based on active products
       tags:
       - App
+      x-operation-id-source: normalized
+      x-operation-id-original: t_value
     servers:
     - url: https://api.zoca.ai
       description: Production
   /gbp-location/list:
     get:
-      operationId: t_value
+      operationId: getGbpLocationList
       parameters: []
       responses:
         '200':
@@ -1864,12 +2064,14 @@ paths:
       summary: List all locations for entity
       tags:
       - App
+      x-operation-id-source: normalized
+      x-operation-id-original: t_value
     servers:
     - url: https://api.zoca.ai
       description: Production
   /gbp-location/create:
     post:
-      operationId: t_value
+      operationId: postGbpLocationCreate
       parameters: []
       requestBody:
         required: true
@@ -1905,12 +2107,14 @@ paths:
       summary: Onboard a gbp location for entity
       tags:
       - App
+      x-operation-id-source: normalized
+      x-operation-id-original: t_value
     servers:
     - url: https://api.zoca.ai
       description: Production
   /gbp-location/posts/list:
     get:
-      operationId: t_value
+      operationId: getGbpLocationPostsList
       parameters: []
       responses:
         '200':
@@ -1918,12 +2122,14 @@ paths:
       summary: List posts for location
       tags:
       - App
+      x-operation-id-source: normalized
+      x-operation-id-original: t_value
     servers:
     - url: https://api.zoca.ai
       description: Production
   /gbp-location/posts:
     get:
-      operationId: t_value
+      operationId: getGbpLocationPosts
       parameters: []
       responses:
         '200':
@@ -1931,8 +2137,10 @@ paths:
       summary: Get a single post by name
       tags:
       - App
+      x-operation-id-source: normalized
+      x-operation-id-original: t_value
     patch:
-      operationId: t_value
+      operationId: patchGbpLocationPosts
       parameters: []
       responses:
         '200':
@@ -1940,8 +2148,10 @@ paths:
       summary: Update a post
       tags:
       - App
+      x-operation-id-source: normalized
+      x-operation-id-original: t_value
     delete:
-      operationId: t_value
+      operationId: deleteGbpLocationPosts
       parameters: []
       responses:
         '200':
@@ -1949,12 +2159,14 @@ paths:
       summary: Delete a post
       tags:
       - App
+      x-operation-id-source: normalized
+      x-operation-id-original: t_value
     servers:
     - url: https://api.zoca.ai
       description: Production
   /gbp-location/keyword-impression-insights:
     get:
-      operationId: t_value
+      operationId: getGbpLocationKeywordImpressionInsights
       parameters: []
       responses:
         '200':
@@ -1962,12 +2174,14 @@ paths:
       summary: Get keyword impression insights for a location
       tags:
       - App
+      x-operation-id-source: normalized
+      x-operation-id-original: t_value
     servers:
     - url: https://api.zoca.ai
       description: Production
   /gbp-location/performance-insights:
     get:
-      operationId: t_value
+      operationId: getGbpLocationPerformanceInsights
       parameters: []
       responses:
         '200':
@@ -1975,12 +2189,14 @@ paths:
       summary: Get performance insights for location
       tags:
       - App
+      x-operation-id-source: normalized
+      x-operation-id-original: t_value
     servers:
     - url: https://api.zoca.ai
       description: Production
   /google-maps/place-auto-complete:
     get:
-      operationId: t_value
+      operationId: getGoogleMapsPlaceAutoComplete
       parameters: []
       responses:
         '200':
@@ -1988,12 +2204,14 @@ paths:
       summary: Get place autocomplete suggestions
       tags:
       - App
+      x-operation-id-source: normalized
+      x-operation-id-original: t_value
     servers:
     - url: https://api.zoca.ai
       description: Production
   /google-maps/place-id-details:
     get:
-      operationId: t_value
+      operationId: getGoogleMapsPlaceIdDetails
       parameters: []
       responses:
         '200':
@@ -2001,12 +2219,14 @@ paths:
       summary: Get place details by place ID
       tags:
       - App
+      x-operation-id-source: normalized
+      x-operation-id-original: t_value
     servers:
     - url: https://api.zoca.ai
       description: Production
   /homepage/activation-steps:
     get:
-      operationId: t_value
+      operationId: getHomepageActivationSteps
       parameters: []
       responses:
         '200':
@@ -2014,12 +2234,14 @@ paths:
       summary: Get activation steps status
       tags:
       - App
+      x-operation-id-source: normalized
+      x-operation-id-original: t_value
     servers:
     - url: https://api.zoca.ai
       description: Production
   /homepage:
     get:
-      operationId: t_value
+      operationId: getHomepage
       parameters: []
       responses:
         '200':
@@ -2027,12 +2249,14 @@ paths:
       summary: Get homepage data
       tags:
       - App
+      x-operation-id-source: normalized
+      x-operation-id-original: t_value
     servers:
     - url: https://api.zoca.ai
       description: Production
   /homepage/homepage-components:
     get:
-      operationId: t_value
+      operationId: getHomepageHomepageComponents
       parameters: []
       responses:
         '200':
@@ -2040,12 +2264,14 @@ paths:
       summary: Get homepage components
       tags:
       - App
+      x-operation-id-source: normalized
+      x-operation-id-original: t_value
     servers:
     - url: https://api.zoca.ai
       description: Production
   /homepage/activation-steps-data:
     get:
-      operationId: t_value
+      operationId: getHomepageActivationStepsData
       parameters: []
       responses:
         '200':
@@ -2053,12 +2279,14 @@ paths:
       summary: Get activation steps data
       tags:
       - App
+      x-operation-id-source: normalized
+      x-operation-id-original: t_value
     servers:
     - url: https://api.zoca.ai
       description: Production
   /homepage/check-website-status:
     get:
-      operationId: t_value
+      operationId: getHomepageCheckWebsiteStatus
       parameters: []
       responses:
         '200':
@@ -2066,13 +2294,15 @@ paths:
       summary: Check website status
       tags:
       - App
+      x-operation-id-source: normalized
+      x-operation-id-original: t_value
     servers:
     - url: https://api.zoca.ai
       description: Production
   /homepage/monthly-report:
     get:
       description: When listAll=true returns all active reports; otherwise returns the single report (by reportType or default PERFORMANCE_REPORT).
-      operationId: t_value
+      operationId: getHomepageMonthlyReport
       parameters: []
       responses:
         '200':
@@ -2086,8 +2316,10 @@ paths:
       summary: Get monthly report(s) for an entity
       tags:
       - App
+      x-operation-id-source: normalized
+      x-operation-id-original: t_value
     put:
-      operationId: t_value
+      operationId: putHomepageMonthlyReport
       parameters: []
       responses:
         '200':
@@ -2095,12 +2327,14 @@ paths:
       summary: Update monthly report status
       tags:
       - App
+      x-operation-id-source: normalized
+      x-operation-id-original: t_value
     servers:
     - url: https://api.zoca.ai
       description: Production
   /homepage/referrals/link/{businessEntityId}:
     get:
-      operationId: t_value
+      operationId: getHomepageReferralsLinkByBusinessEntityId
       parameters: []
       responses:
         '200':
@@ -2108,12 +2342,14 @@ paths:
       summary: Get referral link for business
       tags:
       - App
+      x-operation-id-source: normalized
+      x-operation-id-original: t_value
     servers:
     - url: https://api.zoca.ai
       description: Production
   /homepage/referrals:
     post:
-      operationId: t_value
+      operationId: postHomepageReferrals
       parameters: []
       responses:
         '201':
@@ -2121,12 +2357,14 @@ paths:
       summary: Create a referral
       tags:
       - App
+      x-operation-id-source: normalized
+      x-operation-id-original: t_value
     servers:
     - url: https://api.zoca.ai
       description: Production
   /homepage/carousel-cards:
     get:
-      operationId: t_value
+      operationId: getHomepageCarouselCards
       parameters: []
       responses:
         '200':
@@ -2134,12 +2372,14 @@ paths:
       summary: Get carousel cards for Win Agent onboarding
       tags:
       - App
+      x-operation-id-source: normalized
+      x-operation-id-original: t_value
     servers:
     - url: https://api.zoca.ai
       description: Production
   /homepage/discovery-metrics:
     get:
-      operationId: t_value
+      operationId: getHomepageDiscoveryMetrics
       parameters: []
       responses:
         '200':
@@ -2147,12 +2387,14 @@ paths:
       summary: Get cumulative discovery metrics since onboarding
       tags:
       - App
+      x-operation-id-source: normalized
+      x-operation-id-original: t_value
     servers:
     - url: https://api.zoca.ai
       description: Production
   /media:
     post:
-      operationId: t_value
+      operationId: postMedia
       parameters: []
       responses:
         '201':
@@ -2160,8 +2402,10 @@ paths:
       summary: Create a new media
       tags:
       - App
+      x-operation-id-source: normalized
+      x-operation-id-original: t_value
     get:
-      operationId: t_value
+      operationId: getMedia
       parameters: []
       responses:
         '200':
@@ -2169,8 +2413,10 @@ paths:
       summary: Get all media
       tags:
       - App
+      x-operation-id-source: normalized
+      x-operation-id-original: t_value
     delete:
-      operationId: t_value
+      operationId: deleteMedia
       parameters: []
       responses:
         '200':
@@ -2178,12 +2424,14 @@ paths:
       summary: Delete a media
       tags:
       - App
+      x-operation-id-source: normalized
+      x-operation-id-original: t_value
     servers:
     - url: https://api.zoca.ai
       description: Production
   /media/scheduled-media:
     get:
-      operationId: t_value
+      operationId: getMediaScheduledMedia
       parameters: []
       responses:
         '200':
@@ -2191,12 +2439,14 @@ paths:
       summary: Get scheduled media for a location
       tags:
       - App
+      x-operation-id-source: normalized
+      x-operation-id-original: t_value
     servers:
     - url: https://api.zoca.ai
       description: Production
   /media/logo-and-cover-image:
     get:
-      operationId: t_value
+      operationId: getMediaLogoAndCoverImage
       parameters: []
       responses:
         '200':
@@ -2204,12 +2454,14 @@ paths:
       summary: Get logo and cover image for a location
       tags:
       - App
+      x-operation-id-source: normalized
+      x-operation-id-original: t_value
     servers:
     - url: https://api.zoca.ai
       description: Production
   /media/log-failed-media-time:
     post:
-      operationId: t_value
+      operationId: postMediaLogFailedMediaTime
       parameters: []
       responses:
         '201':
@@ -2217,12 +2469,14 @@ paths:
       summary: Log failed media upload time
       tags:
       - App
+      x-operation-id-source: normalized
+      x-operation-id-original: t_value
     servers:
     - url: https://api.zoca.ai
       description: Production
   /meta/business-discovery:
     get:
-      operationId: t_value
+      operationId: getMetaBusinessDiscovery
       parameters: []
       responses:
         '200':
@@ -2230,12 +2484,14 @@ paths:
       summary: Get Instagram business discovery data
       tags:
       - App
+      x-operation-id-source: normalized
+      x-operation-id-original: t_value
     servers:
     - url: https://api.zoca.ai
       description: Production
   /meta/media:
     get:
-      operationId: t_value
+      operationId: getMetaMedia
       parameters: []
       responses:
         '200':
@@ -2243,12 +2499,14 @@ paths:
       summary: Get all media for a specific Instagram business account
       tags:
       - App
+      x-operation-id-source: normalized
+      x-operation-id-original: t_value
     servers:
     - url: https://api.zoca.ai
       description: Production
   /meta/connect-instagram:
     post:
-      operationId: t_value
+      operationId: postMetaConnectInstagram
       parameters: []
       responses:
         '201':
@@ -2256,12 +2514,14 @@ paths:
       summary: Connect an Instagram business account to a location entity
       tags:
       - App
+      x-operation-id-source: normalized
+      x-operation-id-original: t_value
     servers:
     - url: https://api.zoca.ai
       description: Production
   /meta/upload-media:
     post:
-      operationId: t_value
+      operationId: postMetaUploadMedia
       parameters: []
       responses:
         '201':
@@ -2269,12 +2529,14 @@ paths:
       summary: Upload selected media to specified destinations
       tags:
       - App
+      x-operation-id-source: normalized
+      x-operation-id-original: t_value
     servers:
     - url: https://api.zoca.ai
       description: Production
   /meta/account-status:
     get:
-      operationId: t_value
+      operationId: getMetaAccountStatus
       parameters: []
       responses:
         '200':
@@ -2282,12 +2544,14 @@ paths:
       summary: Check if an Instagram business account is already connected to a location entity
       tags:
       - App
+      x-operation-id-source: normalized
+      x-operation-id-original: t_value
     servers:
     - url: https://api.zoca.ai
       description: Production
   /meta/disconnect-instagram:
     post:
-      operationId: t_value
+      operationId: postMetaDisconnectInstagram
       parameters: []
       responses:
         '201':
@@ -2295,12 +2559,14 @@ paths:
       summary: Disconnect an Instagram business account from a location entity
       tags:
       - App
+      x-operation-id-source: normalized
+      x-operation-id-original: t_value
     servers:
     - url: https://api.zoca.ai
       description: Production
   /tiktok/videos:
     get:
-      operationId: t_value
+      operationId: getTiktokVideos
       parameters: []
       responses:
         '200':
@@ -2321,12 +2587,14 @@ paths:
       summary: Get user's TikTok videos
       tags:
       - App
+      x-operation-id-source: normalized
+      x-operation-id-original: t_value
     servers:
     - url: https://api.zoca.ai
       description: Production
   /tiktok/creator-info:
     get:
-      operationId: t_value
+      operationId: getTiktokCreatorInfo
       parameters: []
       responses:
         '200':
@@ -2345,12 +2613,14 @@ paths:
       summary: Get TikTok creator information for publishing
       tags:
       - App
+      x-operation-id-source: normalized
+      x-operation-id-original: t_value
     servers:
     - url: https://api.zoca.ai
       description: Production
   /offers/draft:
     post:
-      operationId: t_value
+      operationId: postOffersDraft
       parameters: []
       responses:
         '201':
@@ -2358,12 +2628,14 @@ paths:
       summary: Create a draft offer with optional fields
       tags:
       - App
+      x-operation-id-source: normalized
+      x-operation-id-original: t_value
     servers:
     - url: https://api.zoca.ai
       description: Production
   /offers/{id}/draft:
     put:
-      operationId: t_value
+      operationId: putOffersByIdDraft
       parameters: []
       responses:
         '200':
@@ -2371,12 +2643,14 @@ paths:
       summary: Update a draft offer with field-by-field updates
       tags:
       - App
+      x-operation-id-source: normalized
+      x-operation-id-original: t_value
     servers:
     - url: https://api.zoca.ai
       description: Production
   /offers/{id}:
     get:
-      operationId: t_value
+      operationId: getOffersById
       parameters:
       - name: source
         in: header
@@ -2390,8 +2664,10 @@ paths:
       summary: Get offer details
       tags:
       - App
+      x-operation-id-source: normalized
+      x-operation-id-original: t_value
     delete:
-      operationId: t_value
+      operationId: deleteOffersById
       parameters: []
       responses:
         '200':
@@ -2399,12 +2675,14 @@ paths:
       summary: Soft delete an offer
       tags:
       - App
+      x-operation-id-source: normalized
+      x-operation-id-original: t_value
     servers:
     - url: https://api.zoca.ai
       description: Production
   /offers/channels/{entityId}:
     get:
-      operationId: t_value
+      operationId: getOffersChannelsByEntityId
       parameters: []
       responses:
         '200':
@@ -2418,13 +2696,15 @@ paths:
       summary: List available channels for offer creation with publishOn dates
       tags:
       - App
+      x-operation-id-source: normalized
+      x-operation-id-original: t_value
     servers:
     - url: https://api.zoca.ai
       description: Production
   /offers/description/generate:
     post:
       description: Uses LLM to generate an offer description based on business category, services, and additional variables
-      operationId: t_value
+      operationId: postOffersDescriptionGenerate
       parameters: []
       responses:
         '200':
@@ -2440,13 +2720,15 @@ paths:
       summary: Generate AI-powered description for an offer
       tags:
       - App
+      x-operation-id-source: normalized
+      x-operation-id-original: t_value
     servers:
     - url: https://api.zoca.ai
       description: Production
   /offers/description/validate:
     post:
       description: Uses LLM to validate an offer description based on business category, services, and additional variables
-      operationId: t_value
+      operationId: postOffersDescriptionValidate
       parameters: []
       responses:
         '200':
@@ -2458,12 +2740,14 @@ paths:
       summary: Validate AI-powered description for an offer
       tags:
       - App
+      x-operation-id-source: normalized
+      x-operation-id-original: t_value
     servers:
     - url: https://api.zoca.ai
       description: Production
   /offers/entities/{entityId}/status:
     get:
-      operationId: t_value
+      operationId: getOffersEntitiesByEntityIdStatus
       parameters:
       - name: app-version
         in: header
@@ -2483,13 +2767,15 @@ paths:
       summary: List all offers on an entity with status
       tags:
       - App
+      x-operation-id-source: normalized
+      x-operation-id-original: t_value
     servers:
     - url: https://api.zoca.ai
       description: Production
   /offers/entities/{entityId}/status/count:
     get:
       description: Returns the count of offers for each status (DRAFT, FUTURE, LIVE, PAUSED, EXPIRED). Always returns all statuses even if count is 0. When requests come from zoca-app or mobile app (app-version header), offers with offerType = NOT_AN_OFFER are excluded.
-      operationId: t_value
+      operationId: getOffersEntitiesByEntityIdStatusCount
       parameters:
       - name: app-version
         in: header
@@ -2539,13 +2825,15 @@ paths:
       summary: Get count of offers grouped by status for an entity
       tags:
       - App
+      x-operation-id-source: normalized
+      x-operation-id-original: t_value
     servers:
     - url: https://api.zoca.ai
       description: Production
   /offers/entities/{entityId}/search:
     get:
       description: Performs case-insensitive partial matching on offer titles. Returns offers with all associations (services, media, CTAs, addons, channels) and calculated status (DRAFT, FUTURE, LIVE, PAUSED, EXPIRED). Uses page-based pagination for better UX.
-      operationId: t_value
+      operationId: getOffersEntitiesByEntityIdSearch
       parameters: []
       responses:
         '200':
@@ -2573,13 +2861,15 @@ paths:
       summary: Search offers by title with status calculation
       tags:
       - App
+      x-operation-id-source: normalized
+      x-operation-id-original: t_value
     servers:
     - url: https://api.zoca.ai
       description: Production
   /offers/{offerId}/suggestions:
     get:
       description: Retrieves all suggestions for a specific offer from the requests table along with their request status and creation timestamp. The createdAt field is converted to a DateTime object with separate date and time components. Suggestions are ordered by creation date descending (newest first).
-      operationId: t_value
+      operationId: getOffersByOfferIdSuggestions
       parameters: []
       responses:
         '200':
@@ -2658,12 +2948,14 @@ paths:
       summary: Get suggestions for an offer
       tags:
       - App
+      x-operation-id-source: normalized
+      x-operation-id-original: t_value
     servers:
     - url: https://api.zoca.ai
       description: Production
   /onboarding/app-visitor:
     get:
-      operationId: t_value
+      operationId: getOnboardingAppVisitor
       parameters: []
       responses:
         '200':
@@ -2671,12 +2963,14 @@ paths:
       summary: Register app visitor
       tags:
       - App
+      x-operation-id-source: normalized
+      x-operation-id-original: t_value
     servers:
     - url: https://api.zoca.ai
       description: Production
   /onboarding/update-user:
     post:
-      operationId: t_value
+      operationId: postOnboardingUpdateUser
       parameters: []
       requestBody:
         required: true
@@ -2743,12 +3037,14 @@ paths:
       summary: Update User Profile
       tags:
       - App
+      x-operation-id-source: normalized
+      x-operation-id-original: t_value
     servers:
     - url: https://api.zoca.ai
       description: Production
   /onboarding/onboarding-state:
     get:
-      operationId: t_value
+      operationId: getOnboardingOnboardingState
       parameters: []
       responses:
         '200':
@@ -2756,12 +3052,14 @@ paths:
       summary: Get onboarding state for entity
       tags:
       - App
+      x-operation-id-source: normalized
+      x-operation-id-original: t_value
     servers:
     - url: https://api.zoca.ai
       description: Production
   /onboarding/user-profile:
     get:
-      operationId: t_value
+      operationId: getOnboardingUserProfile
       parameters: []
       responses:
         '200':
@@ -2769,12 +3067,14 @@ paths:
       summary: Get user profile information
       tags:
       - App
+      x-operation-id-source: normalized
+      x-operation-id-original: t_value
     servers:
     - url: https://api.zoca.ai
       description: Production
   /onboarding/quick-recap:
     get:
-      operationId: t_value
+      operationId: getOnboardingQuickRecap
       parameters: []
       responses:
         '200':
@@ -2791,12 +3091,14 @@ paths:
       summary: Get onboarding quick recap pointers
       tags:
       - App
+      x-operation-id-source: normalized
+      x-operation-id-original: t_value
     servers:
     - url: https://api.zoca.ai
       description: Production
   /onboarding/business-categories:
     get:
-      operationId: t_value
+      operationId: getOnboardingBusinessCategories
       parameters: []
       responses:
         '200':
@@ -2819,12 +3121,14 @@ paths:
       summary: Get list of business categories
       tags:
       - App
+      x-operation-id-source: normalized
+      x-operation-id-original: t_value
     servers:
     - url: https://api.zoca.ai
       description: Production
   /onboarding/customer-sources:
     get:
-      operationId: t_value
+      operationId: getOnboardingCustomerSources
       parameters: []
       responses:
         '200':
@@ -2841,12 +3145,14 @@ paths:
       summary: Get list of customer sources
       tags:
       - App
+      x-operation-id-source: normalized
+      x-operation-id-original: t_value
     servers:
     - url: https://api.zoca.ai
       description: Production
   /onboarding/search-booking-link:
     get:
-      operationId: t_value
+      operationId: getOnboardingSearchBookingLink
       parameters: []
       responses:
         '200':
@@ -2854,12 +3160,14 @@ paths:
       summary: Search for booking platform link
       tags:
       - App
+      x-operation-id-source: normalized
+      x-operation-id-original: t_value
     servers:
     - url: https://api.zoca.ai
       description: Production
   /onboarding/check-platform-selection/{locationEntityId}:
     get:
-      operationId: t_value
+      operationId: getOnboardingCheckPlatformSelectionByLocationEntityId
       parameters: []
       responses:
         '200':
@@ -2879,13 +3187,15 @@ paths:
       summary: Check if specific platforms were selected during onboarding within 10 hours
       tags:
       - App
+      x-operation-id-source: normalized
+      x-operation-id-original: t_value
     servers:
     - url: https://api.zoca.ai
       description: Production
   /onboarding/trigger-comms:
     post:
       description: Triggers onboarding communication events based on user actions during onboarding flow. For REVIEW_SCREEN_VIEW type, calculates and includes review insights data.
-      operationId: t_value
+      operationId: postOnboardingTriggerComms
       parameters: []
       responses:
         '200':
@@ -2901,13 +3211,15 @@ paths:
       summary: Trigger onboarding communications for MoEngage notifications
       tags:
       - App
+      x-operation-id-source: normalized
+      x-operation-id-original: t_value
     servers:
     - url: https://api.zoca.ai
       description: Production
   /pipedrive/person/upsert:
     post:
       description: Processes incoming request to create a pipedrive person
-      operationId: t_value
+      operationId: postPipedrivePersonUpsert
       parameters: []
       requestBody:
         required: true
@@ -2922,13 +3234,15 @@ paths:
       summary: Create Pipedirve Person
       tags:
       - App
+      x-operation-id-source: normalized
+      x-operation-id-original: t_value
     servers:
     - url: https://api.zoca.ai
       description: Production
   /pipedrive/organization/upsert:
     post:
       description: Processes incoming request to create a pipedrive organization
-      operationId: t_value
+      operationId: postPipedriveOrganizationUpsert
       parameters: []
       requestBody:
         required: true
@@ -2943,13 +3257,15 @@ paths:
       summary: Create Pipedirve Organization
       tags:
       - App
+      x-operation-id-source: normalized
+      x-operation-id-original: t_value
     servers:
     - url: https://api.zoca.ai
       description: Production
   /pipedrive/lead/status:
     get:
       description: Processes incoming request to get the lead status
-      operationId: t_value
+      operationId: getPipedriveLeadStatus
       parameters: []
       responses:
         '200':
@@ -2957,13 +3273,15 @@ paths:
       summary: Get Lead Status
       tags:
       - App
+      x-operation-id-source: normalized
+      x-operation-id-original: t_value
     servers:
     - url: https://api.zoca.ai
       description: Production
   /pipedrive/lead/callback:
     get:
       description: Processes incoming request to request a callback
-      operationId: t_value
+      operationId: getPipedriveLeadCallback
       parameters: []
       responses:
         '200':
@@ -2971,12 +3289,14 @@ paths:
       summary: Requested a callback
       tags:
       - App
+      x-operation-id-source: normalized
+      x-operation-id-original: t_value
     servers:
     - url: https://api.zoca.ai
       description: Production
   /requests-api/fromTemplate:
     post:
-      operationId: t_value
+      operationId: postRequestsApiFromTemplate
       parameters: []
       responses:
         '201':
@@ -2984,12 +3304,14 @@ paths:
       summary: Create a request from a template
       tags:
       - App
+      x-operation-id-source: normalized
+      x-operation-id-original: t_value
     servers:
     - url: https://api.zoca.ai
       description: Production
   /requests-api/{id}:
     delete:
-      operationId: t_value
+      operationId: deleteRequestsApiById
       parameters: []
       responses:
         '200':
@@ -2997,8 +3319,10 @@ paths:
       summary: Delete a request by ID
       tags:
       - App
+      x-operation-id-source: normalized
+      x-operation-id-original: t_value
     put:
-      operationId: t_value
+      operationId: putRequestsApiById
       parameters: []
       responses:
         '200':
@@ -3006,12 +3330,14 @@ paths:
       summary: Update a request by ID
       tags:
       - App
+      x-operation-id-source: normalized
+      x-operation-id-original: t_value
     servers:
     - url: https://api.zoca.ai
       description: Production
   /requests-api/{entityId}/list:
     get:
-      operationId: t_value
+      operationId: getRequestsApiByEntityIdList
       parameters: []
       responses:
         '200':
@@ -3019,12 +3345,14 @@ paths:
       summary: List requests for an entity with optional pagination
       tags:
       - App
+      x-operation-id-source: normalized
+      x-operation-id-original: t_value
     servers:
     - url: https://api.zoca.ai
       description: Production
   /requests-api/filters:
     post:
-      operationId: t_value
+      operationId: postRequestsApiFilters
       parameters: []
       responses:
         '201':
@@ -3032,12 +3360,14 @@ paths:
       summary: Filter requests excluding specified types
       tags:
       - App
+      x-operation-id-source: normalized
+      x-operation-id-original: t_value
     servers:
     - url: https://api.zoca.ai
       description: Production
   /requests-api/{id}/additionalData:
     patch:
-      operationId: t_value
+      operationId: patchRequestsApiByIdAdditionalData
       parameters: []
       responses:
         '200':
@@ -3045,12 +3375,14 @@ paths:
       summary: Patch additional data for a request
       tags:
       - App
+      x-operation-id-source: normalized
+      x-operation-id-original: t_value
     servers:
     - url: https://api.zoca.ai
       description: Production
   /requests-api/categories/{entityId}:
     get:
-      operationId: t_value
+      operationId: getRequestsApiCategoriesByEntityId
       parameters: []
       responses:
         '200':
@@ -3058,12 +3390,14 @@ paths:
       summary: Get ticket categories for an entity
       tags:
       - App
+      x-operation-id-source: normalized
+      x-operation-id-original: t_value
     servers:
     - url: https://api.zoca.ai
       description: Production
   /services-sync/request:
     get:
-      operationId: t_value
+      operationId: getServicesSyncRequest
       parameters: []
       responses:
         '200':
@@ -3071,12 +3405,14 @@ paths:
       summary: Get current sync request for a location
       tags:
       - App
+      x-operation-id-source: normalized
+      x-operation-id-original: t_value
     servers:
     - url: https://api.zoca.ai
       description: Production
   /services-sync/resync/request:
     post:
-      operationId: t_value
+      operationId: postServicesSyncResyncRequest
       parameters: []
       responses:
         '201':
@@ -3084,12 +3420,14 @@ paths:
       summary: Create a resync request
       tags:
       - App
+      x-operation-id-source: normalized
+      x-operation-id-original: t_value
     servers:
     - url: https://api.zoca.ai
       description: Production
   /review-invites/client-sources:
     get:
-      operationId: t_value
+      operationId: getReviewInvitesClientSources
       parameters: []
       responses:
         '200':
@@ -3097,12 +3435,14 @@ paths:
       summary: Get available client sources for an entity
       tags:
       - App
+      x-operation-id-source: normalized
+      x-operation-id-original: t_value
     servers:
     - url: https://api.zoca.ai
       description: Production
   /review-invites/clients:
     get:
-      operationId: t_value
+      operationId: getReviewInvitesClients
       parameters: []
       responses:
         '200':
@@ -3110,12 +3450,14 @@ paths:
       summary: Get clients filtered by source with pagination
       tags:
       - App
+      x-operation-id-source: normalized
+      x-operation-id-original: t_value
     servers:
     - url: https://api.zoca.ai
       description: Production
   /review-invites/client-phone:
     get:
-      operationId: t_value
+      operationId: getReviewInvitesClientPhone
       parameters: []
       responses:
         '200':
@@ -3123,12 +3465,14 @@ paths:
       summary: Get client phone numbers for an entity
       tags:
       - App
+      x-operation-id-source: normalized
+      x-operation-id-original: t_value
     servers:
     - url: https://api.zoca.ai
       description: Production
   /review-invites/search-clients:
     get:
-      operationId: t_value
+      operationId: getReviewInvitesSearchClients
       parameters: []
       responses:
         '200':
@@ -3136,12 +3480,14 @@ paths:
       summary: Search clients by term with pagination
       tags:
       - App
+      x-operation-id-source: normalized
+      x-operation-id-original: t_value
     servers:
     - url: https://api.zoca.ai
       description: Production
   /review-invites/text-templates:
     get:
-      operationId: t_value
+      operationId: getReviewInvitesTextTemplates
       parameters: []
       responses:
         '200':
@@ -3149,12 +3495,14 @@ paths:
       summary: Get SMS text templates for review invites
       tags:
       - App
+      x-operation-id-source: normalized
+      x-operation-id-original: t_value
     servers:
     - url: https://api.zoca.ai
       description: Production
   /review-invites/text-templates/{templateId}:
     put:
-      operationId: t_value
+      operationId: putReviewInvitesTextTemplatesByTemplateId
       parameters: []
       responses:
         '200':
@@ -3162,12 +3510,14 @@ paths:
       summary: Update a text template by ID
       tags:
       - App
+      x-operation-id-source: normalized
+      x-operation-id-original: t_value
     servers:
     - url: https://api.zoca.ai
       description: Production
   /review-invites/invites-status:
     get:
-      operationId: t_value
+      operationId: getReviewInvitesInvitesStatus
       parameters: []
       responses:
         '200':
@@ -3175,12 +3525,14 @@ paths:
       summary: Get all invite status counts for an entity
       tags:
       - App
+      x-operation-id-source: normalized
+      x-operation-id-original: t_value
     servers:
     - url: https://api.zoca.ai
       description: Production
   /review-invites/invites-by-status:
     get:
-      operationId: t_value
+      operationId: getReviewInvitesInvitesByStatus
       parameters: []
       responses:
         '200':
@@ -3188,12 +3540,14 @@ paths:
       summary: Get invites filtered by status with pagination
       tags:
       - App
+      x-operation-id-source: normalized
+      x-operation-id-original: t_value
     servers:
     - url: https://api.zoca.ai
       description: Production
   /review-invites/{entityId}/invite:
     post:
-      operationId: t_value
+      operationId: postReviewInvitesByEntityIdInvite
       parameters: []
       responses:
         '201':
@@ -3201,8 +3555,10 @@ paths:
       summary: Send review invites to clients
       tags:
       - App
+      x-operation-id-source: normalized
+      x-operation-id-original: t_value
     delete:
-      operationId: t_value
+      operationId: deleteReviewInvitesByEntityIdInvite
       parameters: []
       responses:
         '204':
@@ -3210,12 +3566,14 @@ paths:
       summary: Delete a review invite
       tags:
       - App
+      x-operation-id-source: normalized
+      x-operation-id-original: t_value
     servers:
     - url: https://api.zoca.ai
       description: Production
   /review-invites/{entityId}/invite-reminder:
     post:
-      operationId: t_value
+      operationId: postReviewInvitesByEntityIdInviteReminder
       parameters: []
       responses:
         '201':
@@ -3223,12 +3581,14 @@ paths:
       summary: Send review invite reminders to clients
       tags:
       - App
+      x-operation-id-source: normalized
+      x-operation-id-original: t_value
     servers:
     - url: https://api.zoca.ai
       description: Production
   /review-invites/qr-code:
     get:
-      operationId: t_value
+      operationId: getReviewInvitesQrCode
       parameters: []
       responses:
         '200':
@@ -3236,12 +3596,14 @@ paths:
       summary: Get QR code for review invites
       tags:
       - App
+      x-operation-id-source: normalized
+      x-operation-id-original: t_value
     servers:
     - url: https://api.zoca.ai
       description: Production
   /review-invites/formatted-text-template:
     put:
-      operationId: t_value
+      operationId: putReviewInvitesFormattedTextTemplate
       parameters: []
       responses:
         '200':
@@ -3249,12 +3611,14 @@ paths:
       summary: Format a text template with client data
       tags:
       - App
+      x-operation-id-source: normalized
+      x-operation-id-original: t_value
     servers:
     - url: https://api.zoca.ai
       description: Production
   /review-invites/email-ra-optin:
     post:
-      operationId: t_value
+      operationId: postReviewInvitesEmailRaOptin
       parameters: []
       responses:
         '201':
@@ -3262,8 +3626,10 @@ paths:
       summary: Store email review automation opt-in status
       tags:
       - App
+      x-operation-id-source: normalized
+      x-operation-id-original: t_value
     get:
-      operationId: t_value
+      operationId: getReviewInvitesEmailRaOptin
       parameters: []
       responses:
         '200':
@@ -3271,12 +3637,14 @@ paths:
       summary: Get email review automation opt-in status
       tags:
       - App
+      x-operation-id-source: normalized
+      x-operation-id-original: t_value
     servers:
     - url: https://api.zoca.ai
       description: Production
   /review-invites/review-link:
     get:
-      operationId: t_value
+      operationId: getReviewInvitesReviewLink
       parameters: []
       responses:
         '200':
@@ -3284,13 +3652,15 @@ paths:
       summary: Get the review link for a location
       tags:
       - App
+      x-operation-id-source: normalized
+      x-operation-id-original: t_value
     servers:
     - url: https://api.zoca.ai
       description: Production
   /reviews/{entityId}/reviews:
     get:
       description: Retrieves paginated list of reviews for a specific entity with optional sorting and search functionality
-      operationId: t_value
+      operationId: getReviewsByEntityIdReviews
       parameters: []
       responses:
         '200':
@@ -3298,13 +3668,15 @@ paths:
       summary: Get paginated reviews for an entity
       tags:
       - App
+      x-operation-id-source: normalized
+      x-operation-id-original: t_value
     servers:
     - url: https://api.zoca.ai
       description: Production
   /reviews/review-id:
     get:
       description: Retrieves a specific review by its ID along with reply status
-      operationId: t_value
+      operationId: getReviewsReviewId
       parameters: []
       responses:
         '200':
@@ -3312,13 +3684,15 @@ paths:
       summary: Get review by ID
       tags:
       - App
+      x-operation-id-source: normalized
+      x-operation-id-original: t_value
     servers:
     - url: https://api.zoca.ai
       description: Production
   /reviews/{reviewId}/reply:
     post:
       description: Creates a reply to a specific review, can be AI-generated or manual
-      operationId: t_value
+      operationId: postReviewsByReviewIdReply
       parameters: []
       responses:
         '201':
@@ -3326,9 +3700,11 @@ paths:
       summary: Create a reply to a review
       tags:
       - App
+      x-operation-id-source: normalized
+      x-operation-id-original: t_value
     put:
       description: Updates an existing reply to a review with new content or AI-generated status
-      operationId: t_value
+      operationId: putReviewsByReviewIdReply
       parameters: []
       responses:
         '200':
@@ -3336,9 +3712,11 @@ paths:
       summary: Update a review reply
       tags:
       - App
+      x-operation-id-source: normalized
+      x-operation-id-original: t_value
     delete:
       description: Deletes an existing reply to a review
-      operationId: t_value
+      operationId: deleteReviewsByReviewIdReply
       parameters: []
       responses:
         '204':
@@ -3346,13 +3724,15 @@ paths:
       summary: Delete a review reply
       tags:
       - App
+      x-operation-id-source: normalized
+      x-operation-id-original: t_value
     servers:
     - url: https://api.zoca.ai
       description: Production
   /reviews/stats:
     get:
       description: Retrieves statistical data about reviews for a specific entity
-      operationId: t_value
+      operationId: getReviewsStats
       parameters: []
       responses:
         '200':
@@ -3360,13 +3740,15 @@ paths:
       summary: Get review statistics
       tags:
       - App
+      x-operation-id-source: normalized
+      x-operation-id-original: t_value
     servers:
     - url: https://api.zoca.ai
       description: Production
   /reviews/{entityId}/preferences:
     post:
       description: Updates review preferences for a specific entity including reply settings and templates
-      operationId: t_value
+      operationId: postReviewsByEntityIdPreferences
       parameters: []
       responses:
         '201':
@@ -3374,9 +3756,11 @@ paths:
       summary: Set review preferences
       tags:
       - App
+      x-operation-id-source: normalized
+      x-operation-id-original: t_value
     get:
       description: Retrieves review preferences for a specific entity including reply settings and templates
-      operationId: t_value
+      operationId: getReviewsByEntityIdPreferences
       parameters: []
       responses:
         '200':
@@ -3384,13 +3768,15 @@ paths:
       summary: Get review preferences
       tags:
       - App
+      x-operation-id-source: normalized
+      x-operation-id-original: t_value
     servers:
     - url: https://api.zoca.ai
       description: Production
   /reviews/{entityId}/app/gbp-component:
     get:
       description: Retrieves component data for Google Business Profile reviews display in the app
-      operationId: t_value
+      operationId: getReviewsByEntityIdAppGbpComponent
       parameters: []
       responses:
         '200':
@@ -3398,13 +3784,15 @@ paths:
       summary: Get Google Business Profile component data
       tags:
       - App
+      x-operation-id-source: normalized
+      x-operation-id-original: t_value
     servers:
     - url: https://api.zoca.ai
       description: Production
   /reviews/{entityId}/app/card:
     get:
       description: Retrieves review-related cards data for display in the app dashboard based on review metrics
-      operationId: t_value
+      operationId: getReviewsByEntityIdAppCard
       parameters: []
       responses:
         '200':
@@ -3412,12 +3800,14 @@ paths:
       summary: Get review cards for app dashboard
       tags:
       - App
+      x-operation-id-source: normalized
+      x-operation-id-original: t_value
     servers:
     - url: https://api.zoca.ai
       description: Production
   /scheduling/bookings/{id}:
     get:
-      operationId: t_value
+      operationId: getSchedulingBookingsById
       parameters:
       - name: id
         required: true
@@ -3433,12 +3823,14 @@ paths:
       summary: Get booking by ID with aggregated data
       tags:
       - App
+      x-operation-id-source: normalized
+      x-operation-id-original: t_value
     servers:
     - url: https://api.zoca.ai
       description: Production
   /scheduling/onboarding/{entityId}/{locationEntityId}/status:
     get:
-      operationId: t_value
+      operationId: getSchedulingOnboardingByEntityIdByLocationEntityIdStatus
       parameters: []
       responses:
         '200':
@@ -3446,12 +3838,14 @@ paths:
       summary: Get onboarding status for an entity and location
       tags:
       - App
+      x-operation-id-source: normalized
+      x-operation-id-original: t_value
     servers:
     - url: https://api.zoca.ai
       description: Production
   /scheduling/stripe/terminal/connection-token:
     post:
-      operationId: t_value
+      operationId: postSchedulingStripeTerminalConnectionToken
       parameters: []
       responses:
         '200':
@@ -3461,12 +3855,14 @@ paths:
       summary: Create Stripe Terminal connection token
       tags:
       - App
+      x-operation-id-source: normalized
+      x-operation-id-original: t_value
     servers:
     - url: https://api.zoca.ai
       description: Production
   /scheduling/stripe/terminal/tap-to-pay-config:
     get:
-      operationId: t_value
+      operationId: getSchedulingStripeTerminalTapToPayConfig
       parameters: []
       responses:
         '200':
@@ -3476,13 +3872,15 @@ paths:
       summary: Get Tap to Pay configuration
       tags:
       - App
+      x-operation-id-source: normalized
+      x-operation-id-original: t_value
     servers:
     - url: https://api.zoca.ai
       description: Production
   /scheduling/stripe/terminal/ensure-location:
     post:
       description: Creates a Stripe Terminal Location (tml_...) for the connected account using the stored address for locationEntityId, persists it to entities.locations, and returns it.
-      operationId: t_value
+      operationId: postSchedulingStripeTerminalEnsureLocation
       parameters: []
       responses:
         '200':
@@ -3492,12 +3890,14 @@ paths:
       summary: Provision Stripe Terminal location for a connected account
       tags:
       - App
+      x-operation-id-source: normalized
+      x-operation-id-original: t_value
     servers:
     - url: https://api.zoca.ai
       description: Production
   /scheduling/checkout-tip-config:
     get:
-      operationId: t_value
+      operationId: getSchedulingCheckoutTipConfig
       parameters: []
       responses:
         '200':
@@ -3507,13 +3907,15 @@ paths:
       summary: List checkout tip presets for a location
       tags:
       - App
+      x-operation-id-source: normalized
+      x-operation-id-original: t_value
     servers:
     - url: https://api.zoca.ai
       description: Production
   /scheduling/checkout/pay:
     post:
       description: Unified payment endpoint supporting CASH, CARD, CARD_ON_FILE, and TAP_TO_PAY. Cash payments are immediately COMPLETED. Card payments return PROCESSING status and are confirmed via webhook.
-      operationId: t_value
+      operationId: postSchedulingCheckoutPay
       parameters: []
       requestBody:
         required: true
@@ -3587,13 +3989,15 @@ paths:
       summary: Process a payment for a sale
       tags:
       - App
+      x-operation-id-source: normalized
+      x-operation-id-original: t_value
     servers:
     - url: https://api.zoca.ai
       description: Production
   /scheduling/checkout/processing-fee-quote:
     post:
       description: Returns the pass-through processing fee and gross customer charge for the selected payment method.
-      operationId: t_value
+      operationId: postSchedulingCheckoutProcessingFeeQuote
       parameters: []
       requestBody:
         required: true
@@ -3607,13 +4011,15 @@ paths:
       summary: Quote checkout processing fee
       tags:
       - App
+      x-operation-id-source: normalized
+      x-operation-id-original: t_value
     servers:
     - url: https://api.zoca.ai
       description: Production
   /scheduling/checkout/sale/{saleId}/tip:
     patch:
       description: Persists the tip on the sale (override, not accumulate) before collecting payment so the checkout total and processing-fee quote stay correct. Omitting additionalTip (or sending a zero value) clears the tip.
-      operationId: t_value
+      operationId: patchSchedulingCheckoutSaleBySaleIdTip
       parameters:
       - name: saleId
         required: true
@@ -3635,13 +4041,15 @@ paths:
       summary: Update the tip on a sale
       tags:
       - App
+      x-operation-id-source: normalized
+      x-operation-id-original: t_value
     servers:
     - url: https://api.zoca.ai
       description: Production
   /scheduling/checkout/cancel-payment/{paymentId}:
     post:
       description: Marks a payment as CANCELLED. Only PENDING or PROCESSING payments can be cancelled. If Stripe processes the payment after cancellation, an automatic refund is triggered.
-      operationId: t_value
+      operationId: postSchedulingCheckoutCancelPaymentByPaymentId
       parameters:
       - name: paymentId
         required: true
@@ -3680,13 +4088,15 @@ paths:
       summary: Cancel a payment
       tags:
       - App
+      x-operation-id-source: normalized
+      x-operation-id-original: t_value
     servers:
     - url: https://api.zoca.ai
       description: Production
   /services/service/{id}:
     get:
       description: Retrieves detailed information about a specific service including variations and categories
-      operationId: t_value
+      operationId: getServicesServiceById
       parameters:
       - name: id
         required: true
@@ -3709,9 +4119,11 @@ paths:
       summary: Get service by ID
       tags:
       - App
+      x-operation-id-source: normalized
+      x-operation-id-original: t_value
     put:
       description: Updates an existing service including its variations
-      operationId: t_value
+      operationId: putServicesServiceById
       parameters:
       - name: id
         required: true
@@ -3738,9 +4150,11 @@ paths:
       summary: Update service
       tags:
       - App
+      x-operation-id-source: normalized
+      x-operation-id-original: t_value
     delete:
       description: Permanently deletes a service and all its associated data
-      operationId: t_value
+      operationId: deleteServicesServiceById
       parameters:
       - name: id
         required: true
@@ -3757,6 +4171,8 @@ paths:
       summary: Delete service
       tags:
       - App
+      x-operation-id-source: normalized
+      x-operation-id-original: t_value
     servers:
     - url: https://api.zoca.ai
       description: Production
@@ -3771,7 +4187,7 @@ paths:
         - Price and duration configuration
 
         - Image attachment capability'
-      operationId: t_value
+      operationId: postServicesByEntityIdService
       parameters:
       - name: createDefaultVariation
         required: false
@@ -3857,6 +4273,8 @@ paths:
       summary: Create a new service
       tags:
       - App
+      x-operation-id-source: normalized
+      x-operation-id-original: t_value
     servers:
     - url: https://api.zoca.ai
       description: Production
@@ -3864,7 +4282,7 @@ paths:
     post:
       deprecated: true
       description: 'Creates a new service category. DEPRECATED: Use POST /:entityId/category instead for proper entity association.'
-      operationId: t_value
+      operationId: postServicesCategory
       parameters: []
       requestBody:
         required: true
@@ -3884,13 +4302,15 @@ paths:
       summary: Create a new category (deprecated)
       tags:
       - App
+      x-operation-id-source: normalized
+      x-operation-id-original: t_value
     servers:
     - url: https://api.zoca.ai
       description: Production
   /services/category/{id}:
     get:
       description: Retrieves detailed information about a specific category
-      operationId: t_value
+      operationId: getServicesCategoryById
       parameters:
       - name: id
         required: true
@@ -3911,9 +4331,11 @@ paths:
       summary: Get a category by ID
       tags:
       - App
+      x-operation-id-source: normalized
+      x-operation-id-original: t_value
     put:
       description: Updates an existing category information
-      operationId: t_value
+      operationId: putServicesCategoryById
       parameters:
       - name: id
         required: true
@@ -3940,9 +4362,11 @@ paths:
       summary: Update a category
       tags:
       - App
+      x-operation-id-source: normalized
+      x-operation-id-original: t_value
     delete:
       description: Permanently deletes a category
-      operationId: t_value
+      operationId: deleteServicesCategoryById
       parameters:
       - name: id
         required: true
@@ -3959,13 +4383,15 @@ paths:
       summary: Delete a category
       tags:
       - App
+      x-operation-id-source: normalized
+      x-operation-id-original: t_value
     servers:
     - url: https://api.zoca.ai
       description: Production
   /services/{entityId}/categories:
     get:
       description: Retrieves all service categories associated with an entity. When source header is "zoca-web", includes categories even if they have no services. Use includeVariations=true to include service variations in the response.
-      operationId: t_value
+      operationId: getServicesByEntityIdCategories
       parameters:
       - name: includeVariations
         required: false
@@ -3994,13 +4420,15 @@ paths:
       summary: Get all categories for an entity
       tags:
       - App
+      x-operation-id-source: normalized
+      x-operation-id-original: t_value
     servers:
     - url: https://api.zoca.ai
       description: Production
   /services/service/{serviceId}/category/{categoryId}:
     post:
       description: Creates an association between a service and a category
-      operationId: t_value
+      operationId: postServicesServiceByServiceIdCategoryByCategoryId
       parameters:
       - name: categoryId
         required: true
@@ -4024,9 +4452,11 @@ paths:
       summary: Assign a service to a category
       tags:
       - App
+      x-operation-id-source: normalized
+      x-operation-id-original: t_value
     delete:
       description: Removes the association between a service and a category
-      operationId: t_value
+      operationId: deleteServicesServiceByServiceIdCategoryByCategoryId
       parameters:
       - name: categoryId
         required: true
@@ -4050,13 +4480,15 @@ paths:
       summary: Remove a service from a category
       tags:
       - App
+      x-operation-id-source: normalized
+      x-operation-id-original: t_value
     servers:
     - url: https://api.zoca.ai
       description: Production
   /services/reorder-categories-services:
     put:
       description: Updates the order of categories and their associated services
-      operationId: t_value
+      operationId: putServicesReorderCategoriesServices
       parameters: []
       requestBody:
         required: true
@@ -4072,13 +4504,15 @@ paths:
       summary: Reorder categories and their services
       tags:
       - App
+      x-operation-id-source: normalized
+      x-operation-id-original: t_value
     servers:
     - url: https://api.zoca.ai
       description: Production
   /services/{serviceId}/images:
     get:
       description: Retrieves all images associated with a service
-      operationId: t_value
+      operationId: getServicesByServiceIdImages
       parameters:
       - name: serviceId
         required: true
@@ -4101,9 +4535,11 @@ paths:
       summary: Get all images for a service
       tags:
       - App
+      x-operation-id-source: normalized
+      x-operation-id-original: t_value
     post:
       description: Associates a new image with a service
-      operationId: t_value
+      operationId: postServicesByServiceIdImages
       parameters:
       - name: serviceId
         required: true
@@ -4130,13 +4566,15 @@ paths:
       summary: Add a new image to a service
       tags:
       - App
+      x-operation-id-source: normalized
+      x-operation-id-original: t_value
     servers:
     - url: https://api.zoca.ai
       description: Production
   /services/{serviceId}/images/{imageId}:
     delete:
       description: Removes an image association from a service
-      operationId: t_value
+      operationId: deleteServicesByServiceIdImagesByImageId
       parameters:
       - name: imageId
         required: true
@@ -4167,13 +4605,15 @@ paths:
       summary: Delete an image from a service
       tags:
       - App
+      x-operation-id-source: normalized
+      x-operation-id-original: t_value
     servers:
     - url: https://api.zoca.ai
       description: Production
   /services/variation/{id}:
     put:
       description: Updates an existing service variation
-      operationId: t_value
+      operationId: putServicesVariationById
       parameters:
       - name: id
         required: true
@@ -4200,9 +4640,11 @@ paths:
       summary: Update a variation
       tags:
       - App
+      x-operation-id-source: normalized
+      x-operation-id-original: t_value
     delete:
       description: Deletes an existing service variation
-      operationId: t_value
+      operationId: deleteServicesVariationById
       parameters:
       - name: id
         required: true
@@ -4219,13 +4661,15 @@ paths:
       summary: Delete a variation
       tags:
       - App
+      x-operation-id-source: normalized
+      x-operation-id-original: t_value
     servers:
     - url: https://api.zoca.ai
       description: Production
   /services/service/{serviceId}/variations:
     get:
       description: Retrieves all variations associated with a service
-      operationId: t_value
+      operationId: getServicesServiceByServiceIdVariations
       parameters:
       - name: limit
         required: false
@@ -4260,13 +4704,15 @@ paths:
       summary: Get variations for a service
       tags:
       - App
+      x-operation-id-source: normalized
+      x-operation-id-original: t_value
     servers:
     - url: https://api.zoca.ai
       description: Production
   /services/service/{serviceId}/variation:
     post:
       description: Creates a new variation for a service
-      operationId: t_value
+      operationId: postServicesServiceByServiceIdVariation
       parameters:
       - name: serviceId
         required: true
@@ -4293,13 +4739,15 @@ paths:
       summary: Create a new variation
       tags:
       - App
+      x-operation-id-source: normalized
+      x-operation-id-original: t_value
     servers:
     - url: https://api.zoca.ai
       description: Production
   /services/{entityId}/categories-with-services:
     post:
       description: Creates multiple categories along with their associated services
-      operationId: t_value
+      operationId: postServicesByEntityIdCategoriesWithServices
       parameters:
       - name: entityId
         required: true
@@ -4326,13 +4774,15 @@ paths:
       summary: Create categories with services
       tags:
       - App
+      x-operation-id-source: normalized
+      x-operation-id-original: t_value
     servers:
     - url: https://api.zoca.ai
       description: Production
   /services/variations/batch:
     put:
       description: Updates multiple service variations in a single request
-      operationId: t_value
+      operationId: putServicesVariationsBatch
       parameters: []
       requestBody:
         required: true
@@ -4355,13 +4805,15 @@ paths:
       summary: Batch update variations
       tags:
       - App
+      x-operation-id-source: normalized
+      x-operation-id-original: t_value
     servers:
     - url: https://api.zoca.ai
       description: Production
   /services/{entityId}/categories/suggested:
     get:
       description: Retrieves AI-generated suggested categories based on the entity's primary category
-      operationId: t_value
+      operationId: getServicesByEntityIdCategoriesSuggested
       parameters:
       - name: currency
         required: false
@@ -4396,13 +4848,15 @@ paths:
       summary: Get suggested categories
       tags:
       - App
+      x-operation-id-source: normalized
+      x-operation-id-original: t_value
     servers:
     - url: https://api.zoca.ai
       description: Production
   /services/{entityId}/{categoryId}/suggested:
     get:
       description: Retrieves a list of suggested services for the specified entity and category
-      operationId: t_value
+      operationId: getServicesByEntityIdByCategoryIdSuggested
       parameters:
       - name: currency
         required: false
@@ -4444,13 +4898,15 @@ paths:
       summary: Get suggested services for an entity and category
       tags:
       - App
+      x-operation-id-source: normalized
+      x-operation-id-original: t_value
     servers:
     - url: https://api.zoca.ai
       description: Production
   /services/{entityId}/categories/suggested-services:
     get:
       description: Retrieves AI-generated suggested services for each category in the entity
-      operationId: t_value
+      operationId: getServicesByEntityIdCategoriesSuggestedServices
       parameters:
       - name: currency
         required: false
@@ -4516,13 +4972,15 @@ paths:
       summary: Get suggested services for all categories
       tags:
       - App
+      x-operation-id-source: normalized
+      x-operation-id-original: t_value
     servers:
     - url: https://api.zoca.ai
       description: Production
   /services/{entityId}/categories/check-duplicate:
     get:
       description: Checks if a category name already exists for the given entity
-      operationId: t_value
+      operationId: getServicesByEntityIdCategoriesCheckDuplicate
       parameters:
       - name: excludeCategoryId
         required: false
@@ -4560,12 +5018,14 @@ paths:
       summary: Check for duplicate category name
       tags:
       - App
+      x-operation-id-source: normalized
+      x-operation-id-original: t_value
     servers:
     - url: https://api.zoca.ai
       description: Production
   /social-media/update-caption:
     post:
-      operationId: t_value
+      operationId: postSocialMediaUpdateCaption
       parameters: []
       responses:
         '201':
@@ -4573,12 +5033,14 @@ paths:
       summary: Update post caption
       tags:
       - App
+      x-operation-id-source: normalized
+      x-operation-id-original: t_value
     servers:
     - url: https://api.zoca.ai
       description: Production
   /social-media/get-feed-posts:
     post:
-      operationId: t_value
+      operationId: postSocialMediaGetFeedPosts
       parameters: []
       responses:
         '201':
@@ -4586,12 +5048,14 @@ paths:
       summary: Get feed posts with pagination
       tags:
       - App
+      x-operation-id-source: normalized
+      x-operation-id-original: t_value
     servers:
     - url: https://api.zoca.ai
       description: Production
   /social-media/get-instagram-post:
     get:
-      operationId: t_value
+      operationId: getSocialMediaGetInstagramPost
       parameters: []
       responses:
         '200':
@@ -4599,12 +5063,14 @@ paths:
       summary: Get Instagram post by ID
       tags:
       - App
+      x-operation-id-source: normalized
+      x-operation-id-original: t_value
     servers:
     - url: https://api.zoca.ai
       description: Production
   /social-media/add-feedback-to-post:
     post:
-      operationId: t_value
+      operationId: postSocialMediaAddFeedbackToPost
       parameters: []
       responses:
         '201':
@@ -4612,12 +5078,14 @@ paths:
       summary: Add feedback to a post
       tags:
       - App
+      x-operation-id-source: normalized
+      x-operation-id-original: t_value
     servers:
     - url: https://api.zoca.ai
       description: Production
   /social-media/get-feedback-for-post:
     get:
-      operationId: t_value
+      operationId: getSocialMediaGetFeedbackForPost
       parameters: []
       responses:
         '200':
@@ -4625,12 +5093,14 @@ paths:
       summary: Get feedback for a post
       tags:
       - App
+      x-operation-id-source: normalized
+      x-operation-id-original: t_value
     servers:
     - url: https://api.zoca.ai
       description: Production
   /social-media/remove-feedback-from-post:
     put:
-      operationId: t_value
+      operationId: putSocialMediaRemoveFeedbackFromPost
       parameters: []
       responses:
         '200':
@@ -4638,12 +5108,14 @@ paths:
       summary: Remove feedback from a post
       tags:
       - App
+      x-operation-id-source: normalized
+      x-operation-id-original: t_value
     servers:
     - url: https://api.zoca.ai
       description: Production
   /social-media/get-user-insta-details:
     get:
-      operationId: t_value
+      operationId: getSocialMediaGetUserInstaDetails
       parameters: []
       responses:
         '200':
@@ -4651,12 +5123,14 @@ paths:
       summary: Get user Instagram details
       tags:
       - App
+      x-operation-id-source: normalized
+      x-operation-id-original: t_value
     servers:
     - url: https://api.zoca.ai
       description: Production
   /social-media/set-user-insta-details:
     put:
-      operationId: t_value
+      operationId: putSocialMediaSetUserInstaDetails
       parameters: []
       responses:
         '200':
@@ -4664,12 +5138,14 @@ paths:
       summary: Set user Instagram details
       tags:
       - App
+      x-operation-id-source: normalized
+      x-operation-id-original: t_value
     servers:
     - url: https://api.zoca.ai
       description: Production
   /social-media/get-user-overdue-count:
     get:
-      operationId: t_value
+      operationId: getSocialMediaGetUserOverdueCount
       parameters: []
       responses:
         '200':
@@ -4677,12 +5153,14 @@ paths:
       summary: Get user overdue post count
       tags:
       - App
+      x-operation-id-source: normalized
+      x-operation-id-original: t_value
     servers:
     - url: https://api.zoca.ai
       description: Production
   /social-media/approve-all-posts-by-uid:
     put:
-      operationId: t_value
+      operationId: putSocialMediaApproveAllPostsByUid
       parameters: []
       responses:
         '200':
@@ -4690,12 +5168,14 @@ paths:
       summary: Approve all posts by user ID
       tags:
       - App
+      x-operation-id-source: normalized
+      x-operation-id-original: t_value
     servers:
     - url: https://api.zoca.ai
       description: Production
   /social-media/set-user-post-status:
     put:
-      operationId: t_value
+      operationId: putSocialMediaSetUserPostStatus
       parameters: []
       responses:
         '200':
@@ -4703,12 +5183,14 @@ paths:
       summary: Set user post status
       tags:
       - App
+      x-operation-id-source: normalized
+      x-operation-id-original: t_value
     servers:
     - url: https://api.zoca.ai
       description: Production
   /social-media/approve-user-overdue-post-status:
     put:
-      operationId: t_value
+      operationId: putSocialMediaApproveUserOverduePostStatus
       parameters: []
       responses:
         '200':
@@ -4716,12 +5198,14 @@ paths:
       summary: Approve user overdue post status
       tags:
       - App
+      x-operation-id-source: normalized
+      x-operation-id-original: t_value
     servers:
     - url: https://api.zoca.ai
       description: Production
   /social-media/get-all-posting-dates-for-month:
     get:
-      operationId: t_value
+      operationId: getSocialMediaGetAllPostingDatesForMonth
       parameters: []
       responses:
         '200':
@@ -4729,12 +5213,14 @@ paths:
       summary: Get all posting dates for a month
       tags:
       - App
+      x-operation-id-source: normalized
+      x-operation-id-original: t_value
     servers:
     - url: https://api.zoca.ai
       description: Production
   /social-media/get-preference-request:
     get:
-      operationId: t_value
+      operationId: getSocialMediaGetPreferenceRequest
       parameters: []
       responses:
         '200':
@@ -4742,12 +5228,14 @@ paths:
       summary: Get preference update request status
       tags:
       - App
+      x-operation-id-source: normalized
+      x-operation-id-original: t_value
     servers:
     - url: https://api.zoca.ai
       description: Production
   /social-media/put-preference-request:
     put:
-      operationId: t_value
+      operationId: putSocialMediaPutPreferenceRequest
       parameters: []
       responses:
         '200':
@@ -4755,12 +5243,14 @@ paths:
       summary: Update preference request status
       tags:
       - App
+      x-operation-id-source: normalized
+      x-operation-id-original: t_value
     servers:
     - url: https://api.zoca.ai
       description: Production
   /social-media/add-instagram-post-rejection-reason:
     post:
-      operationId: t_value
+      operationId: postSocialMediaAddInstagramPostRejectionReason
       parameters: []
       responses:
         '201':
@@ -4768,12 +5258,14 @@ paths:
       summary: Add Instagram post rejection reason
       tags:
       - App
+      x-operation-id-source: normalized
+      x-operation-id-original: t_value
     servers:
     - url: https://api.zoca.ai
       description: Production
   /square/locations/{entityId}:
     get:
-      operationId: t_value
+      operationId: getSquareLocationsByEntityId
       parameters: []
       responses:
         '200':
@@ -4781,12 +5273,14 @@ paths:
       summary: Get Square locations by entity ID
       tags:
       - App
+      x-operation-id-source: normalized
+      x-operation-id-original: t_value
     servers:
     - url: https://api.zoca.ai
       description: Production
   /ui-components:
     get:
-      operationId: t_value
+      operationId: getUiComponents
       parameters: []
       responses:
         '200':
@@ -4794,12 +5288,14 @@ paths:
       summary: Get UI component by ID or get all components
       tags:
       - App
+      x-operation-id-source: normalized
+      x-operation-id-original: t_value
     servers:
     - url: https://api.zoca.ai
       description: Production
   /updates/{id}:
     patch:
-      operationId: t_value
+      operationId: patchUpdatesById
       parameters: []
       responses:
         '200':
@@ -4807,12 +5303,14 @@ paths:
       summary: Patch an update record
       tags:
       - App
+      x-operation-id-source: normalized
+      x-operation-id-original: t_value
     servers:
     - url: https://api.zoca.ai
       description: Production
   /updates/entity/{entityId}:
     get:
-      operationId: t_value
+      operationId: getUpdatesEntityByEntityId
       parameters:
       - name: isApproved
         required: false
@@ -4858,8 +5356,10 @@ paths:
       summary: Get all updates for a specific entity
       tags:
       - App
+      x-operation-id-source: normalized
+      x-operation-id-original: t_value
     patch:
-      operationId: t_value
+      operationId: patchUpdatesEntityByEntityId
       parameters:
       - name: entityId
         required: true
@@ -4872,12 +5372,14 @@ paths:
       summary: Mark all updates as read for a specific entity
       tags:
       - App
+      x-operation-id-source: normalized
+      x-operation-id-original: t_value
     servers:
     - url: https://api.zoca.ai
       description: Production
   /updates/count/{entityId}:
     get:
-      operationId: t_value
+      operationId: getUpdatesCountByEntityId
       parameters:
       - name: updateType
         required: false
@@ -4899,12 +5401,14 @@ paths:
       summary: Get the count of updates for a specific entity
       tags:
       - App
+      x-operation-id-source: normalized
+      x-operation-id-original: t_value
     servers:
     - url: https://api.zoca.ai
       description: Production
   /website/add-booking-link:
     post:
-      operationId: t_value
+      operationId: postWebsiteAddBookingLink
       parameters: []
       responses:
         '201':
@@ -4912,13 +5416,15 @@ paths:
       summary: Add booking link and trigger website creation
       tags:
       - App
+      x-operation-id-source: normalized
+      x-operation-id-original: t_value
     servers:
     - url: https://api.zoca.ai
       description: Production
   /website/onboarding-creation-status:
     get:
       description: 'Returns status for the two onboarding flows tracked in website.processes: WEBSITE_CREATION_ONBOARDING (Orca user.onboarded path) and WEBSITE_CREATION_ONBOARDING_WITH_BOOKING_LINK (add-booking-link path). Either websiteId or locationEntityId must be provided.'
-      operationId: t_value
+      operationId: getWebsiteOnboardingCreationStatus
       parameters:
       - name: locationEntityId
         required: false
@@ -4938,12 +5444,14 @@ paths:
       summary: Get onboarding website-creation status
       tags:
       - App
+      x-operation-id-source: normalized
+      x-operation-id-original: t_value
     servers:
     - url: https://api.zoca.ai
       description: Production
   /website/generate-website:
     get:
-      operationId: t_value
+      operationId: getWebsiteGenerateWebsite
       parameters: []
       responses:
         '200':
@@ -4951,12 +5459,14 @@ paths:
       summary: Generate website for a location
       tags:
       - App
+      x-operation-id-source: normalized
+      x-operation-id-original: t_value
     servers:
     - url: https://api.zoca.ai
       description: Production
   /website/platforms:
     get:
-      operationId: t_value
+      operationId: getWebsitePlatforms
       parameters: []
       responses:
         '200':
@@ -4964,12 +5474,14 @@ paths:
       summary: Get available booking platforms
       tags:
       - App
+      x-operation-id-source: normalized
+      x-operation-id-original: t_value
     servers:
     - url: https://api.zoca.ai
       description: Production
   /website/templates:
     get:
-      operationId: t_value
+      operationId: getWebsiteTemplates
       parameters: []
       responses:
         '200':
@@ -4977,12 +5489,14 @@ paths:
       summary: Get templates, optionally filtered by website ID
       tags:
       - App
+      x-operation-id-source: normalized
+      x-operation-id-original: t_value
     servers:
     - url: https://api.zoca.ai
       description: Production
   /website/section-media:
     get:
-      operationId: t_value
+      operationId: getWebsiteSectionMedia
       parameters: []
       responses:
         '200':
@@ -4990,12 +5504,14 @@ paths:
       summary: Get section media data
       tags:
       - App
+      x-operation-id-source: normalized
+      x-operation-id-original: t_value
     servers:
     - url: https://api.zoca.ai
       description: Production
   /website/replace-media-in-section:
     post:
-      operationId: t_value
+      operationId: postWebsiteReplaceMediaInSection
       parameters: []
       responses:
         '201':
@@ -5003,12 +5519,14 @@ paths:
       summary: Replace media in section
       tags:
       - App
+      x-operation-id-source: normalized
+      x-operation-id-original: t_value
     servers:
     - url: https://api.zoca.ai
       description: Production
   /website/save-theme-template:
     post:
-      operationId: t_value
+      operationId: postWebsiteSaveThemeTemplate
       parameters: []
       responses:
         '201':
@@ -5016,12 +5534,14 @@ paths:
       summary: Save selected theme and template
       tags:
       - App
+      x-operation-id-source: normalized
+      x-operation-id-original: t_value
     servers:
     - url: https://api.zoca.ai
       description: Production
   /website/{websiteId}/themes/generate-palette:
     post:
-      operationId: t_value
+      operationId: postWebsiteByWebsiteIdThemesGeneratePalette
       parameters: []
       responses:
         '201':
@@ -5029,12 +5549,14 @@ paths:
       summary: Generate AI color palettes from a prompt
       tags:
       - App
+      x-operation-id-source: normalized
+      x-operation-id-original: t_value
     servers:
     - url: https://api.zoca.ai
       description: Production
   /website/{websiteId}/ai-colors:
     get:
-      operationId: t_value
+      operationId: getWebsiteByWebsiteIdAiColors
       parameters: []
       responses:
         '200':
@@ -5042,12 +5564,14 @@ paths:
       summary: List a website's AI-generated color palettes
       tags:
       - App
+      x-operation-id-source: normalized
+      x-operation-id-original: t_value
     servers:
     - url: https://api.zoca.ai
       description: Production
   /website/{websiteId}/ai-colors/{id}:
     delete:
-      operationId: t_value
+      operationId: deleteWebsiteByWebsiteIdAiColorsById
       parameters: []
       responses:
         '200':
@@ -5055,12 +5579,14 @@ paths:
       summary: Delete an AI-generated color palette
       tags:
       - App
+      x-operation-id-source: normalized
+      x-operation-id-original: t_value
     servers:
     - url: https://api.zoca.ai
       description: Production
   /website/{websiteId}/ai-colors/{id}/persist:
     post:
-      operationId: t_value
+      operationId: postWebsiteByWebsiteIdAiColorsByIdPersist
       parameters: []
       responses:
         '201':
@@ -5068,12 +5594,14 @@ paths:
       summary: Persist a stored AI palette as a theme (returns themeId)
       tags:
       - App
+      x-operation-id-source: normalized
+      x-operation-id-original: t_value
     servers:
     - url: https://api.zoca.ai
       description: Production
   /website/{websiteId}/ai-colors/{id}/apply:
     post:
-      operationId: t_value
+      operationId: postWebsiteByWebsiteIdAiColorsByIdApply
       parameters: []
       responses:
         '201':
@@ -5081,12 +5609,14 @@ paths:
       summary: Apply a stored AI palette to the website and publish
       tags:
       - App
+      x-operation-id-source: normalized
+      x-operation-id-original: t_value
     servers:
     - url: https://api.zoca.ai
       description: Production
   /website/{websiteId}/theme-template:
     get:
-      operationId: t_value
+      operationId: getWebsiteByWebsiteIdThemeTemplate
       parameters: []
       responses:
         '200':
@@ -5094,12 +5624,14 @@ paths:
       summary: Get theme and template for website
       tags:
       - App
+      x-operation-id-source: normalized
+      x-operation-id-original: t_value
     servers:
     - url: https://api.zoca.ai
       description: Production
   /website/reorder-media-in-section:
     post:
-      operationId: t_value
+      operationId: postWebsiteReorderMediaInSection
       parameters: []
       responses:
         '201':
@@ -5107,12 +5639,14 @@ paths:
       summary: Reorder media in section
       tags:
       - App
+      x-operation-id-source: normalized
+      x-operation-id-original: t_value
     servers:
     - url: https://api.zoca.ai
       description: Production
   /website/get-website-status:
     get:
-      operationId: t_value
+      operationId: getWebsiteGetWebsiteStatus
       parameters: []
       responses:
         '200':
@@ -5120,12 +5654,14 @@ paths:
       summary: Get website status and preferences
       tags:
       - App
+      x-operation-id-source: normalized
+      x-operation-id-original: t_value
     servers:
     - url: https://api.zoca.ai
       description: Production
   /website/subdomain:
     get:
-      operationId: t_value
+      operationId: getWebsiteSubdomain
       parameters: []
       responses:
         '200':
@@ -5133,8 +5669,10 @@ paths:
       summary: Get website subdomain
       tags:
       - App
+      x-operation-id-source: normalized
+      x-operation-id-original: t_value
     put:
-      operationId: t_value
+      operationId: putWebsiteSubdomain
       parameters: []
       responses:
         '200':
@@ -5142,12 +5680,14 @@ paths:
       summary: Update website subdomain (preserves current domain)
       tags:
       - App
+      x-operation-id-source: normalized
+      x-operation-id-original: t_value
     servers:
     - url: https://api.zoca.ai
       description: Production
   /website/subdomain-validate:
     get:
-      operationId: t_value
+      operationId: getWebsiteSubdomainValidate
       parameters: []
       responses:
         '200':
@@ -5155,12 +5695,14 @@ paths:
       summary: Validate subdomain availability
       tags:
       - App
+      x-operation-id-source: normalized
+      x-operation-id-original: t_value
     servers:
     - url: https://api.zoca.ai
       description: Production
   /website/add-user-preferences:
     post:
-      operationId: t_value
+      operationId: postWebsiteAddUserPreferences
       parameters: []
       responses:
         '201':
@@ -5168,12 +5710,14 @@ paths:
       summary: Add user preferences
       tags:
       - App
+      x-operation-id-source: normalized
+      x-operation-id-original: t_value
     servers:
     - url: https://api.zoca.ai
       description: Production
   /discovery/aeo-reports/{auditRunId}/custom-prompts:
     post:
-      operationId: t_value
+      operationId: postDiscoveryAeoReportsByAuditRunIdCustomPrompts
       parameters: []
       responses:
         '202':
@@ -5181,12 +5725,14 @@ paths:
       summary: Add a user custom prompt to an existing AEO report
       tags:
       - App
+      x-operation-id-source: normalized
+      x-operation-id-original: t_value
     servers:
     - url: https://api.zoca.ai
       description: Production
   /discovery/{locationEntityId}/impact-nudges:
     get:
-      operationId: t_value
+      operationId: getDiscoveryByLocationEntityIdImpactNudges
       parameters: []
       responses:
         '200':
@@ -5194,13 +5740,15 @@ paths:
       summary: Get impact nudges for a location entity
       tags:
       - App
+      x-operation-id-source: normalized
+      x-operation-id-original: t_value
     servers:
     - url: https://api.zoca.ai
       description: Production
   /discovery/{locationEntityId}/gbp/metrics:
     get:
       description: Retrieves comprehensive GBP metrics including profile views, search appearances, direction requests, and phone calls with time series data and period-over-period comparisons.
-      operationId: t_value
+      operationId: getDiscoveryByLocationEntityIdGbpMetrics
       parameters:
       - name: locationEntityId
         required: true
@@ -5278,13 +5826,15 @@ paths:
       summary: Get GBP analytics metrics for a location
       tags:
       - App
+      x-operation-id-source: normalized
+      x-operation-id-original: t_value
     servers:
     - url: https://api.zoca.ai
       description: Production
   /discovery/{locationEntityId}/gbp/optimization-score:
     get:
       description: Retrieves the GBP optimization score (zocaScore) indicating how well the Google Business Profile is optimized (0-100). The score is calculated dynamically using insights data.
-      operationId: t_value
+      operationId: getDiscoveryByLocationEntityIdGbpOptimizationScore
       parameters:
       - name: locationEntityId
         required: true
@@ -5312,13 +5862,15 @@ paths:
       summary: Get GBP Optimization Score for a location
       tags:
       - App
+      x-operation-id-source: normalized
+      x-operation-id-original: t_value
     servers:
     - url: https://api.zoca.ai
       description: Production
   /discovery/{locationEntityId}/website/metrics:
     get:
       description: Retrieves comprehensive website metrics including visitors, page views, average time on site, and leads with period-over-period comparisons.
-      operationId: t_value
+      operationId: getDiscoveryByLocationEntityIdWebsiteMetrics
       parameters:
       - name: locationEntityId
         required: true
@@ -5410,13 +5962,15 @@ paths:
       summary: Get website metrics for a location
       tags:
       - App
+      x-operation-id-source: normalized
+      x-operation-id-original: t_value
     servers:
     - url: https://api.zoca.ai
       description: Production
   /discovery/{locationEntityId}/keyword/performance/metrics:
     get:
       description: Returns KPI counts for the zocaweb keyword performance cards.
-      operationId: t_value
+      operationId: getDiscoveryByLocationEntityIdKeywordPerformanceMetrics
       parameters: []
       responses:
         '200':
@@ -5424,13 +5978,15 @@ paths:
       summary: Get zocaweb keyword performance KPI metrics
       tags:
       - App
+      x-operation-id-source: normalized
+      x-operation-id-original: t_value
     servers:
     - url: https://api.zoca.ai
       description: Production
   /discovery/{locationEntityId}/keyword/performance/keywords:
     get:
       description: Returns backend-paginated keyword rows for a selected KPI bucket.
-      operationId: t_value
+      operationId: getDiscoveryByLocationEntityIdKeywordPerformanceKeywords
       parameters: []
       responses:
         '200':
@@ -5438,13 +5994,15 @@ paths:
       summary: Get zocaweb paginated keyword performance rows
       tags:
       - App
+      x-operation-id-source: normalized
+      x-operation-id-original: t_value
     servers:
     - url: https://api.zoca.ai
       description: Production
   /discovery/{locationEntityId}/keyword/performance:
     get:
       description: Retrieves comprehensive keyword ranking performance metrics
-      operationId: t_value
+      operationId: getDiscoveryByLocationEntityIdKeywordPerformance
       parameters:
       - name: limit
         required: false
@@ -5494,13 +6052,15 @@ paths:
       summary: Get keyword performance for a location
       tags:
       - App
+      x-operation-id-source: normalized
+      x-operation-id-original: t_value
     servers:
     - url: https://api.zoca.ai
       description: Production
   /discovery/{locationEntityId}/website/optimization-score:
     get:
       description: Retrieves the Website optimization score indicating how well the Website is optimized (0-100).
-      operationId: t_value
+      operationId: getDiscoveryByLocationEntityIdWebsiteOptimizationScore
       parameters:
       - name: locationEntityId
         required: true
@@ -5531,13 +6091,15 @@ paths:
       summary: Get Website Optimization Score for a location
       tags:
       - App
+      x-operation-id-source: normalized
+      x-operation-id-original: t_value
     servers:
     - url: https://api.zoca.ai
       description: Production
   /discovery/{locationEntityId}/review/metrics:
     get:
       description: Retrieves comprehensive review performance metrics including reviews received, automated invites, app invites, and QR scans with period-over-period comparisons.
-      operationId: t_value
+      operationId: getDiscoveryByLocationEntityIdReviewMetrics
       parameters:
       - name: locationEntityId
         required: true
@@ -5597,13 +6159,15 @@ paths:
       summary: Get review metrics for a location
       tags:
       - App
+      x-operation-id-source: normalized
+      x-operation-id-original: t_value
     servers:
     - url: https://api.zoca.ai
       description: Production
   /discovery/{locationEntityId}/agent-journey/metrics:
     get:
       description: Retrieves comprehensive agent journey metrics including hours saved, tasks done, task categories, and key achievements with period-over-period comparisons.
-      operationId: t_value
+      operationId: getDiscoveryByLocationEntityIdAgentJourneyMetrics
       parameters:
       - name: locationEntityId
         required: true
@@ -5647,12 +6211,14 @@ paths:
       summary: Get agent journey metrics for a location
       tags:
       - App
+      x-operation-id-source: normalized
+      x-operation-id-original: t_value
     servers:
     - url: https://api.zoca.ai
       description: Production
   /integrations/website/{entityId}/list:
     get:
-      operationId: t_value
+      operationId: getIntegrationsWebsiteByEntityIdList
       parameters: []
       responses:
         '200':
@@ -5662,12 +6228,14 @@ paths:
       summary: List all platforms with link status for an entity
       tags:
       - App
+      x-operation-id-source: normalized
+      x-operation-id-original: t_value
     servers:
     - url: https://api.zoca.ai
       description: Production
   /integrations/{entityId}/{id}:
     get:
-      operationId: t_value
+      operationId: getIntegrationsByEntityIdById
       parameters: []
       responses:
         '200':
@@ -5677,12 +6245,14 @@ paths:
       summary: Get platform detail by id
       tags:
       - App
+      x-operation-id-source: normalized
+      x-operation-id-original: t_value
     servers:
     - url: https://api.zoca.ai
       description: Production
   /integrations/website/{entityId}/status:
     patch:
-      operationId: t_value
+      operationId: patchIntegrationsWebsiteByEntityIdStatus
       parameters: []
       responses:
         '200':
@@ -5692,13 +6262,15 @@ paths:
       summary: Link or unlink a platform for an entity
       tags:
       - App
+      x-operation-id-source: normalized
+      x-operation-id-original: t_value
     servers:
     - url: https://api.zoca.ai
       description: Production
   /hubspot/am-meeting-url/{entityId}:
     get:
       description: Builds a trackable HubSpot meeting URL for the account manager assigned to the given location entity. Pre-fills contact details when available.
-      operationId: t_value
+      operationId: getHubspotAmMeetingUrlByEntityId
       parameters:
       - name: entityId
         required: true
@@ -5724,13 +6296,15 @@ paths:
       summary: Get AM Meeting URL for Location
       tags:
       - App
+      x-operation-id-source: normalized
+      x-operation-id-original: t_value
     servers:
     - url: https://api.zoca.ai
       description: Production
   /hubspot/offboarding-meeting-url/{entityId}:
     get:
       description: Builds a pre-filled HubSpot offboarding meeting URL for the given location entity. Pre-fills contact details when available.
-      operationId: t_value
+      operationId: getHubspotOffboardingMeetingUrlByEntityId
       parameters:
       - name: agentEntityId
         required: false
@@ -5764,6 +6338,8 @@ paths:
       summary: Get Offboarding Meeting URL for Location
       tags:
       - App
+      x-operation-id-source: normalized
+      x-operation-id-original: t_value
     servers:
     - url: https://api.zoca.ai
       description: Production
@@ -5782,7 +6358,7 @@ paths:
       description: Production
   /r/{alias}:
     get:
-      operationId: e_value
+      operationId: getRByAlias
       parameters: []
       responses:
         '200':
@@ -5790,12 +6366,14 @@ paths:
       summary: Redirect link by alias
       tags:
       - App
+      x-operation-id-source: normalized
+      x-operation-id-original: e_value
     servers:
     - url: https://public.zoca.com
       description: Production
   /get-app:
     get:
-      operationId: e_value
+      operationId: getGetApp
       parameters: []
       responses:
         '200':
@@ -5803,12 +6381,14 @@ paths:
       summary: Serve app redirect page
       tags:
       - App
+      x-operation-id-source: normalized
+      x-operation-id-original: e_value
     servers:
     - url: https://public.zoca.com
       description: Production
   /applink:
     get:
-      operationId: e_value
+      operationId: getApplink
       parameters: []
       responses:
         '200':
@@ -5816,12 +6396,14 @@ paths:
       summary: Handle app deep link redirect
       tags:
       - App
+      x-operation-id-source: normalized
+      x-operation-id-original: e_value
     servers:
     - url: https://public.zoca.com
       description: Production
   /tasks/api/v1/chatbot/l2b/entity-phone-numbers/{entityId}:
     get:
-      operationId: t_value
+      operationId: getTasksApiV1ChatbotL2bEntityPhoneNumbersByEntityId
       parameters:
       - name: type
         required: false
@@ -5843,12 +6425,14 @@ paths:
       - App
       security:
       - access-token: []
+      x-operation-id-source: normalized
+      x-operation-id-original: t_value
     servers:
     - url: https://tasks.zoca.ai
       description: Production
   /tasks/api/v1/twilio/phone/search:
     get:
-      operationId: t_value
+      operationId: getTasksApiV1TwilioPhoneSearch
       parameters: []
       responses:
         '200':
@@ -5859,13 +6443,15 @@ paths:
       - access-token: []
       summary: T value
       x-summary-source: derived
+      x-operation-id-source: normalized
+      x-operation-id-original: t_value
     servers:
     - url: https://tasks.zoca.ai
       description: Production
   /tasks/api/v1/win-onboarding/status/{entityId}:
     get:
       description: Retrieves comprehensive status including business info, virtual number, and context data
-      operationId: t_value
+      operationId: getTasksApiV1WinOnboardingStatusByEntityId
       parameters:
       - name: entityId
         required: true
@@ -5886,13 +6472,15 @@ paths:
       - App
       security:
       - access-token: []
+      x-operation-id-source: normalized
+      x-operation-id-original: t_value
     servers:
     - url: https://tasks.zoca.ai
       description: Production
   /tasks/api/v1/win-onboarding/client-history/{clientId}:
     get:
       description: Retrieves all call transcripts and history for a specific client
-      operationId: t_value
+      operationId: getTasksApiV1WinOnboardingClientHistoryByClientId
       parameters:
       - name: clientId
         required: true
@@ -5913,13 +6501,15 @@ paths:
       - App
       security:
       - access-token: []
+      x-operation-id-source: normalized
+      x-operation-id-original: t_value
     servers:
     - url: https://tasks.zoca.ai
       description: Production
   /tasks/api/v1/win-onboarding/call/{callId}:
     get:
       description: Retrieves a single call transcript by callId with client information and callback
-      operationId: t_value
+      operationId: getTasksApiV1WinOnboardingCallByCallId
       parameters:
       - name: callId
         required: true
@@ -5940,13 +6530,15 @@ paths:
       - App
       security:
       - access-token: []
+      x-operation-id-source: normalized
+      x-operation-id-original: t_value
     servers:
     - url: https://tasks.zoca.ai
       description: Production
   /tasks/api/v1/win-onboarding/user/{userEntityId}/locations:
     get:
       description: Fetches user information and onboarding status for all locations associated with the user
-      operationId: t_value
+      operationId: getTasksApiV1WinOnboardingUserByUserEntityIdLocations
       parameters:
       - name: userEntityId
         required: true
@@ -5965,13 +6557,15 @@ paths:
       - App
       security:
       - access-token: []
+      x-operation-id-source: normalized
+      x-operation-id-original: t_value
     servers:
     - url: https://tasks.zoca.ai
       description: Production
   /tasks/api/v1/win-onboarding/voice-agents/{entityId}:
     get:
       description: Returns the 4 voices the merchant should see in the picker, with Retell agentIds resolved by (environment, platform, slot). `entityId` is the LOCATION entity id — the same one used by `/agent-context/:entityId`, `/status/:entityId`, etc. — because platform detection (Zoca scheduling / integrated_platforms / entities.links) is location-scoped, not user-scoped. Voice metadata (title, tone, sample audio, gradient) is shared across all platforms; only agentId varies. Platforms without a dedicated bucket fall through to externalDefault.
-      operationId: t_value
+      operationId: getTasksApiV1WinOnboardingVoiceAgentsByEntityId
       parameters:
       - name: entityId
         required: true
@@ -5986,13 +6580,15 @@ paths:
       - App
       security:
       - access-token: []
+      x-operation-id-source: normalized
+      x-operation-id-original: t_value
     servers:
     - url: https://tasks.zoca.ai
       description: Production
   /tasks/api/v1/win-onboarding/area-codes/{areaCode}/alternates:
     get:
       description: Returns all area codes (including the input) that serve the same geographic region. Useful for phone number matching across overlapping area codes.
-      operationId: t_value
+      operationId: getTasksApiV1WinOnboardingAreaCodesByAreaCodeAlternates
       parameters:
       - name: areaCode
         required: true
@@ -6024,13 +6620,15 @@ paths:
       - App
       security:
       - access-token: []
+      x-operation-id-source: normalized
+      x-operation-id-original: t_value
     servers:
     - url: https://tasks.zoca.ai
       description: Production
   /tasks/api/v1/win-onboarding/agent-context/{entityId}:
     get:
       description: Retrieves the AI agent context from l2b.agent_context table including business info, services, policies, transfer number, and custom instructions
-      operationId: t_value
+      operationId: getTasksApiV1WinOnboardingAgentContextByEntityId
       parameters:
       - name: entityId
         required: true
@@ -6051,9 +6649,11 @@ paths:
       - App
       security:
       - access-token: []
+      x-operation-id-source: normalized
+      x-operation-id-original: t_value
     put:
       description: Updates or creates the AI agent context in l2b.agent_context table. All fields are optional - only provided fields will be updated. If no context exists, a new one will be created.
-      operationId: t_value
+      operationId: putTasksApiV1WinOnboardingAgentContextByEntityId
       parameters:
       - name: entityId
         required: true
@@ -6089,13 +6689,15 @@ paths:
       - App
       security:
       - access-token: []
+      x-operation-id-source: normalized
+      x-operation-id-original: t_value
     servers:
     - url: https://tasks.zoca.ai
       description: Production
   /tasks/api/v1/win-onboarding/callback/status:
     put:
       description: Updates the status of an existing callback by callId and clientId. Can also update title and metadata.
-      operationId: t_value
+      operationId: putTasksApiV1WinOnboardingCallbackStatus
       parameters: []
       requestBody:
         required: true
@@ -6117,13 +6719,15 @@ paths:
       - App
       security:
       - access-token: []
+      x-operation-id-source: normalized
+      x-operation-id-original: t_value
     servers:
     - url: https://tasks.zoca.ai
       description: Production
   /tasks/api/v1/win-onboarding/quick-setup:
     post:
       description: Prepares agent context for WIN from existing entity data without requiring full onboarding. Pulls data from location info and legacy context to create agent context before webhook arrives.
-      operationId: t_value
+      operationId: postTasksApiV1WinOnboardingQuickSetup
       parameters: []
       requestBody:
         required: true
@@ -6147,13 +6751,15 @@ paths:
       - App
       security:
       - access-token: []
+      x-operation-id-source: normalized
+      x-operation-id-original: t_value
     servers:
     - url: https://tasks.zoca.ai
       description: Production
   /tasks/api/v1/win-onboarding/feedback:
     post:
       description: Creates a new feedback entry for the WIN feature
-      operationId: t_value
+      operationId: postTasksApiV1WinOnboardingFeedback
       parameters: []
       requestBody:
         required: true
@@ -6175,13 +6781,15 @@ paths:
       - App
       security:
       - access-token: []
+      x-operation-id-source: normalized
+      x-operation-id-original: t_value
     servers:
     - url: https://tasks.zoca.ai
       description: Production
   /tasks/api/v1/win-onboarding/feedback/{id}:
     patch:
       description: Updates an existing feedback entry (e.g., mark as resolved)
-      operationId: t_value
+      operationId: patchTasksApiV1WinOnboardingFeedbackById
       parameters:
       - name: id
         required: true
@@ -6208,13 +6816,15 @@ paths:
       - App
       security:
       - access-token: []
+      x-operation-id-source: normalized
+      x-operation-id-original: t_value
     servers:
     - url: https://tasks.zoca.ai
       description: Production
   /tasks/api/v1/win-onboarding/status:
     put:
       description: Updates the onboarding status flags for an entity (accountCreated, chatbotEntityCreated, virtualNumberCreated, retellImported, contextBuilt, status)
-      operationId: t_value
+      operationId: putTasksApiV1WinOnboardingStatus
       parameters: []
       requestBody:
         required: true
@@ -6236,13 +6846,15 @@ paths:
       - App
       security:
       - access-token: []
+      x-operation-id-source: normalized
+      x-operation-id-original: t_value
     servers:
     - url: https://tasks.zoca.ai
       description: Production
   /tasks/api/v1/win-onboarding/reach-out-list:
     post:
       description: Creates a new reach-out list entry or updates existing in_progress entry. If an in_progress entry exists for the entity, updates its timestamp. Otherwise, creates a new entry with in_progress status.
-      operationId: t_value
+      operationId: postTasksApiV1WinOnboardingReachOutList
       parameters: []
       requestBody:
         required: true
@@ -6264,13 +6876,15 @@ paths:
       - App
       security:
       - access-token: []
+      x-operation-id-source: normalized
+      x-operation-id-original: t_value
     servers:
     - url: https://tasks.zoca.ai
       description: Production
   /tasks/api/v1/win/subscription/config:
     get:
       description: Returns Chargebee site and plan configuration for frontend
-      operationId: t_value
+      operationId: getTasksApiV1WinSubscriptionConfig
       parameters: []
       responses:
         '200':
@@ -6284,13 +6898,15 @@ paths:
       - App
       security:
       - access-token: []
+      x-operation-id-source: normalized
+      x-operation-id-original: t_value
     servers:
     - url: https://tasks.zoca.ai
       description: Production
   /tasks/api/v1/win/subscription/status/{entityId}:
     get:
       description: Returns subscription status and usage for an entity
-      operationId: t_value
+      operationId: getTasksApiV1WinSubscriptionStatusByEntityId
       parameters:
       - name: entityId
         required: true
@@ -6309,13 +6925,15 @@ paths:
       - App
       security:
       - access-token: []
+      x-operation-id-source: normalized
+      x-operation-id-original: t_value
     servers:
     - url: https://tasks.zoca.ai
       description: Production
   /tasks/api/v1/win/subscription/activate-trial:
     post:
       description: Creates a FrontDesk subscription in Chargebee with a 7-day free trial. After trial ends, billing begins automatically.
-      operationId: t_value
+      operationId: postTasksApiV1WinSubscriptionActivateTrial
       parameters:
       - name: bypass
         required: false
@@ -6340,39 +6958,13 @@ paths:
       - App
       security:
       - access-token: []
+      x-operation-id-source: normalized
+      x-operation-id-original: t_value
     servers:
     - url: https://tasks.zoca.ai
       description: Production
 components:
   schemas:
-    Object:
-      type: object
-      properties: {}
-    e:
-      type: object
-      properties:
-        id:
-          type: number
-        entityId:
-          type: string
-        attribute:
-          type: string
-        value:
-          type:
-          - object
-          - 'null'
-        metadata:
-          type:
-          - object
-          - 'null'
-        createdAt:
-          type:
-          - object
-          - 'null'
-      required:
-      - id
-      - entityId
-      - attribute
     t:
       type: object
       properties:
@@ -6432,31 +7024,34 @@ components:
       - trialEnd
       - addonPricingId
       - unitPriceCents
-    e_2:
+    e:
       type: object
       properties:
-        scan:
-          $ref: '#/components/schemas/e_2'
-        businessLat:
+        id:
+          type: number
+        entityId:
+          type: string
+        attribute:
+          type: string
+        value:
           type:
-          - number
+          - object
           - 'null'
-        businessLng:
+        metadata:
           type:
-          - number
+          - object
           - 'null'
-        points:
-          type: array
-          items:
-            $ref: '#/components/schemas/e_2'
-        heroMetrics:
-          $ref: '#/components/schemas/e_2'
+        createdAt:
+          type:
+          - object
+          - 'null'
       required:
-      - scan
-      - businessLat
-      - businessLng
-      - points
-      - heroMetrics
+      - id
+      - entityId
+      - attribute
+    Object:
+      type: object
+      properties: {}
     t_2:
       type: object
       properties:
@@ -6512,6 +7107,31 @@ components:
       - status
       - createdAt
       - clientId
+    e_2:
+      type: object
+      properties:
+        scan:
+          $ref: '#/components/schemas/e_2'
+        businessLat:
+          type:
+          - number
+          - 'null'
+        businessLng:
+          type:
+          - number
+          - 'null'
+        points:
+          type: array
+          items:
+            $ref: '#/components/schemas/e_2'
+        heroMetrics:
+          $ref: '#/components/schemas/e_2'
+      required:
+      - scan
+      - businessLat
+      - businessLng
+      - points
+      - heroMetrics
   securitySchemes:
     access-token:
       scheme: bearer

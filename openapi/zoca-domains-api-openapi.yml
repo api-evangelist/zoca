@@ -33,7 +33,7 @@ paths:
   /domains/pricing:
     get:
       description: Returns price + currency per TLD. When `tlds` is omitted, the FE picker default set is used.
-      operationId: t_value
+      operationId: getDomainsPricing
       parameters: []
       responses:
         '200':
@@ -49,10 +49,12 @@ paths:
       summary: Yearly registration prices for a TLD set
       tags:
       - Domains
+      x-operation-id-source: normalized
+      x-operation-id-original: t_value
   /domains/register:
     post:
       description: Submits the registration to AWS, then writes a `custom_domains` row tagged `domainOwnedBy=zoca` with `isActive=false` and the AWS operation ID stored on the row. Poll GET /domains/register/:operationId until `SUCCESSFUL` to flip the row active.
-      operationId: t_value
+      operationId: postDomainsRegister
       parameters: []
       responses:
         '200':
@@ -66,10 +68,12 @@ paths:
       summary: Register a domain through AWS Route53Domains
       tags:
       - Domains
+      x-operation-id-source: normalized
+      x-operation-id-original: t_value
   /domains/distribution-status/{distributionId}:
     get:
       description: Wraps CloudFront GetDistribution. Returns `Deployed` once the distribution has fully propagated to all edge POPs (typically 5–15 min after CreateDistribution). FE uses this to keep showing a "publishing" state instead of claiming the site is live before traffic actually serves.
-      operationId: t_value
+      operationId: getDomainsDistributionStatusByDistributionId
       parameters: []
       responses:
         '200':
@@ -79,10 +83,12 @@ paths:
       summary: Get CloudFront distribution deployment status
       tags:
       - Domains
+      x-operation-id-source: normalized
+      x-operation-id-original: t_value
   /domains/register/{operationId}:
     get:
       description: Wraps Route53Domains GetOperationDetail. When status flips to SUCCESSFUL the row is auto-promoted (isActive=true, registerOperationId cleared) and the publish pipeline (ACM cert + per-customer CloudFront distribution + Route53 ALIAS records) is kicked off so the website serves on the purchased domain. The same pipeline also runs from the maintenance-worker cron, so customers who close their browser still get published.
-      operationId: t_value
+      operationId: getDomainsRegisterByOperationId
       parameters: []
       responses:
         '200':
@@ -96,6 +102,8 @@ paths:
       summary: Poll the status of an in-flight domain registration
       tags:
       - Domains
+      x-operation-id-source: normalized
+      x-operation-id-original: t_value
 components:
   schemas:
     e:

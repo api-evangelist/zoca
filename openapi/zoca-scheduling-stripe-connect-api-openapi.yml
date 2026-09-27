@@ -25,7 +25,7 @@ paths:
       - Scheduling - Stripe Connect
   /scheduling/stripe/customers/from-client:
     post:
-      operationId: t_value
+      operationId: postSchedulingStripeCustomersFromClient
       parameters: []
       responses:
         '201':
@@ -35,9 +35,11 @@ paths:
       summary: Create Stripe Customer from existing client
       tags:
       - Scheduling - Stripe Connect
+      x-operation-id-source: normalized
+      x-operation-id-original: t_value
   /scheduling/stripe/setup-intents:
     post:
-      operationId: t_value
+      operationId: postSchedulingStripeSetupIntents
       parameters: []
       responses:
         '201':
@@ -47,9 +49,11 @@ paths:
       summary: Create SetupIntent for card collection
       tags:
       - Scheduling - Stripe Connect
+      x-operation-id-source: normalized
+      x-operation-id-original: t_value
   /scheduling/stripe/payment-methods:
     get:
-      operationId: t_value
+      operationId: getSchedulingStripePaymentMethods
       parameters: []
       responses:
         '200':
@@ -59,9 +63,11 @@ paths:
       summary: List payment methods for customer
       tags:
       - Scheduling - Stripe Connect
+      x-operation-id-source: normalized
+      x-operation-id-original: t_value
   /scheduling/stripe/payment-methods/{paymentMethodId}:
     delete:
-      operationId: t_value
+      operationId: deleteSchedulingStripePaymentMethodsByPaymentMethodId
       parameters: []
       responses:
         '200':
@@ -71,10 +77,12 @@ paths:
       summary: Remove payment method
       tags:
       - Scheduling - Stripe Connect
+      x-operation-id-source: normalized
+      x-operation-id-original: t_value
   /scheduling/stripe/clients/{clientId}/payment-methods/{paymentMethodId}:
     delete:
       description: Detaches a payment method from a client. Automatically resolves entity and Stripe customer from clientId.
-      operationId: t_value
+      operationId: deleteSchedulingStripeClientsByClientIdPaymentMethodsByPaymentMethodId
       parameters: []
       responses:
         '200':
@@ -84,9 +92,11 @@ paths:
       summary: Detach payment method from client
       tags:
       - Scheduling - Stripe Connect
+      x-operation-id-source: normalized
+      x-operation-id-original: t_value
   /scheduling/stripe/verify/{locationEntityId}:
     get:
-      operationId: t_value
+      operationId: getSchedulingStripeVerifyByLocationEntityId
       parameters: []
       responses:
         '200':
@@ -96,9 +106,11 @@ paths:
       summary: Verify Stripe Connect configuration for a business
       tags:
       - Scheduling - Stripe Connect
+      x-operation-id-source: normalized
+      x-operation-id-original: t_value
   /scheduling/stripe/account:
     post:
-      operationId: t_value
+      operationId: postSchedulingStripeAccount
       parameters: []
       responses:
         '201':
@@ -108,10 +120,12 @@ paths:
       summary: Set or update Stripe Connected Account ID for a business
       tags:
       - Scheduling - Stripe Connect
+      x-operation-id-source: normalized
+      x-operation-id-original: t_value
   /scheduling/stripe/account-session:
     post:
       description: Creates account session for embedded components (ConnectPayments, etc.)
-      operationId: t_value
+      operationId: postSchedulingStripeAccountSession
       parameters: []
       responses:
         '200':
@@ -121,10 +135,12 @@ paths:
       summary: Create Stripe Connect account session
       tags:
       - Scheduling - Stripe Connect
+      x-operation-id-source: normalized
+      x-operation-id-original: t_value
   /scheduling/stripe/terminal/hardware-account-session:
     post:
       description: Creates a preview-scoped account session for the ConnectTerminalHardwareShop and ConnectTerminalHardwareOrders embedded components.
-      operationId: t_value
+      operationId: postSchedulingStripeTerminalHardwareAccountSession
       parameters: []
       responses:
         '200':
@@ -134,10 +150,12 @@ paths:
       summary: Create Stripe Terminal hardware account session
       tags:
       - Scheduling - Stripe Connect
+      x-operation-id-source: normalized
+      x-operation-id-original: t_value
   /scheduling/stripe/payment-intent:
     post:
       description: 'Creates PaymentIntent with capture_method: manual for deposit authorization'
-      operationId: t_value
+      operationId: postSchedulingStripePaymentIntent
       parameters: []
       responses:
         '200':
@@ -147,10 +165,12 @@ paths:
       summary: Create PaymentIntent for deposit
       tags:
       - Scheduling - Stripe Connect
+      x-operation-id-source: normalized
+      x-operation-id-original: t_value
   /scheduling/stripe/connect-account:
     post:
       description: Creates a new Stripe Connect Express account for a business, or returns existing if already configured
-      operationId: t_value
+      operationId: postSchedulingStripeConnectAccount
       parameters: []
       responses:
         '200':
@@ -160,10 +180,12 @@ paths:
       summary: Create Stripe Connect Express account
       tags:
       - Scheduling - Stripe Connect
+      x-operation-id-source: normalized
+      x-operation-id-original: t_value
   /scheduling/stripe/onboarding-link:
     post:
       description: Returns a Stripe-hosted URL for merchant onboarding. Creates account if needed.
-      operationId: t_value
+      operationId: postSchedulingStripeOnboardingLink
       parameters: []
       responses:
         '200':
@@ -173,10 +195,12 @@ paths:
       summary: Get Stripe Connect onboarding link
       tags:
       - Scheduling - Stripe Connect
+      x-operation-id-source: normalized
+      x-operation-id-original: t_value
   /scheduling/stripe/onboarding-status/{entityId}:
     get:
       description: Returns the current onboarding status of the business Stripe Connect account
-      operationId: t_value
+      operationId: getSchedulingStripeOnboardingStatusByEntityId
       parameters: []
       responses:
         '200':
@@ -186,6 +210,8 @@ paths:
       summary: Check Stripe Connect onboarding status
       tags:
       - Scheduling - Stripe Connect
+      x-operation-id-source: normalized
+      x-operation-id-original: t_value
 components:
   securitySchemes:
     access-token:

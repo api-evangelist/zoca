@@ -28,7 +28,7 @@ paths:
       tags:
       - Inventory Products
     get:
-      operationId: t_value
+      operationId: getInventoryProductsEntityByEntityId
       parameters: []
       responses:
         '200':
@@ -36,9 +36,11 @@ paths:
       summary: List products (paginated, filterable)
       tags:
       - Inventory Products
+      x-operation-id-source: normalized
+      x-operation-id-original: t_value
   /inventory/products/entity/{entityId}/by-barcode/{barcode}:
     get:
-      operationId: t_value
+      operationId: getInventoryProductsEntityByEntityIdByBarcodeByBarcode
       parameters: []
       responses:
         '200':
@@ -46,9 +48,11 @@ paths:
       summary: Look up product by barcode (includes archived per spec L553)
       tags:
       - Inventory Products
+      x-operation-id-source: normalized
+      x-operation-id-original: t_value
   /inventory/products/entity/{entityId}/{id}:
     get:
-      operationId: t_value
+      operationId: getInventoryProductsEntityByEntityIdById
       parameters: []
       responses:
         '404':
@@ -56,8 +60,10 @@ paths:
       summary: Get product by id
       tags:
       - Inventory Products
+      x-operation-id-source: normalized
+      x-operation-id-original: t_value
     patch:
-      operationId: t_value
+      operationId: patchInventoryProductsEntityByEntityIdById
       parameters: []
       responses:
         '200':
@@ -75,8 +81,10 @@ paths:
       summary: 'Update a product (SP role required; optimistic-lock via If-Match: W/"")'
       tags:
       - Inventory Products
+      x-operation-id-source: normalized
+      x-operation-id-original: t_value
     delete:
-      operationId: t_value
+      operationId: deleteInventoryProductsEntityByEntityIdById
       parameters: []
       responses:
         '200':
@@ -86,9 +94,11 @@ paths:
       summary: Hard-delete a product (SP role required), falling back to soft-archive on FK…
       tags:
       - Inventory Products
+      x-operation-id-source: normalized
+      x-operation-id-original: t_value
   /inventory/products/entity/{entityId}/{id}/archive:
     post:
-      operationId: t_value
+      operationId: postInventoryProductsEntityByEntityIdByIdArchive
       parameters: []
       responses:
         '204':
@@ -98,9 +108,11 @@ paths:
       summary: Soft-archive a product (SP role required)
       tags:
       - Inventory Products
+      x-operation-id-source: normalized
+      x-operation-id-original: t_value
   /inventory/products/entity/{entityId}/{id}/unarchive:
     post:
-      operationId: t_value
+      operationId: postInventoryProductsEntityByEntityIdByIdUnarchive
       parameters: []
       responses:
         '204':
@@ -112,9 +124,11 @@ paths:
       summary: Restore a soft-archived product (SP role required; SE-5 collision pre-check)
       tags:
       - Inventory Products
+      x-operation-id-source: normalized
+      x-operation-id-original: t_value
   /inventory/products/entity/{entityId}/bulk:
     post:
-      operationId: t_value
+      operationId: postInventoryProductsEntityByEntityIdBulk
       parameters: []
       responses:
         '201':
@@ -122,9 +136,11 @@ paths:
       summary: Bulk-create products (max 50 per request, SP role)
       tags:
       - Inventory Products
+      x-operation-id-source: normalized
+      x-operation-id-original: t_value
   /inventory/products/entity/{entityId}/quick-create:
     post:
-      operationId: t_value
+      operationId: postInventoryProductsEntityByEntityIdQuickCreate
       parameters: []
       responses:
         '201':
@@ -132,6 +148,8 @@ paths:
       summary: Quick-create-from-scan (slim DTO, FRONT_DESK + PROVIDER allowed per AMEND-8)
       tags:
       - Inventory Products
+      x-operation-id-source: normalized
+      x-operation-id-original: t_value
 components:
   securitySchemes:
     access-token:

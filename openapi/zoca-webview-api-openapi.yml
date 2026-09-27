@@ -22,7 +22,7 @@ paths:
       tags:
       - Webview
     post:
-      operationId: t_value
+      operationId: postWebview
       parameters: []
       responses:
         '201':
@@ -30,8 +30,10 @@ paths:
       summary: Create a new webview
       tags:
       - Webview
+      x-operation-id-source: normalized
+      x-operation-id-original: t_value
     put:
-      operationId: t_value
+      operationId: putWebview
       parameters: []
       responses:
         '200':
@@ -39,9 +41,11 @@ paths:
       summary: Update an existing webview
       tags:
       - Webview
+      x-operation-id-source: normalized
+      x-operation-id-original: t_value
   /webview/{id}:
     get:
-      operationId: t_value
+      operationId: getWebviewById
       parameters: []
       responses:
         '200':
@@ -49,6 +53,8 @@ paths:
       summary: Get webview by ID
       tags:
       - Webview
+      x-operation-id-source: normalized
+      x-operation-id-original: t_value
 components:
   securitySchemes:
     access-token:

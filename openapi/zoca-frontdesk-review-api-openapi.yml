@@ -54,7 +54,7 @@ paths:
       description: Production
   /frontdesk/review/tracking/stats:
     get:
-      operationId: t_value
+      operationId: getFrontdeskReviewTrackingStats
       parameters:
       - name: entityId
         required: true
@@ -67,12 +67,14 @@ paths:
       summary: Current-month Review Campaign tile stats for an entity
       tags:
       - Frontdesk Review
+      x-operation-id-source: normalized
+      x-operation-id-original: t_value
     servers:
     - url: https://api.zoca.ai
       description: Production
   /tasks/api/v1/frontdesk/review/booking-event:
     post:
-      operationId: t_value
+      operationId: postTasksApiV1FrontdeskReviewBookingEvent
       parameters: []
       requestBody:
         required: true
@@ -110,6 +112,8 @@ paths:
       - Frontdesk Review
       security:
       - access-token: []
+      x-operation-id-source: normalized
+      x-operation-id-original: t_value
     servers:
     - url: https://tasks.zoca.ai
       description: Production

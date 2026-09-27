@@ -58,7 +58,7 @@ paths:
   /dns/cloudfront/distributions/{distributionId}:
     get:
       description: Retrieves detailed information about a specific CloudFront distribution including configuration, aliases (alternate domain names), ACM certificate, origins, and status.
-      operationId: t_value
+      operationId: getDnsCloudfrontDistributionsByDistributionId
       parameters:
       - name: distributionId
         required: true
@@ -80,10 +80,12 @@ paths:
       summary: Get CloudFront distribution details
       tags:
       - CloudFront
+      x-operation-id-source: normalized
+      x-operation-id-original: t_value
   /dns/cloudfront/distributions/certificate:
     put:
       description: Associates an ACM certificate with a CloudFront distribution to enable HTTPS for custom domains. The certificate must be in the US East (N. Virginia) Region (us-east-1) and must be validated.
-      operationId: t_value
+      operationId: putDnsCloudfrontDistributionsCertificate
       parameters: []
       requestBody:
         required: true
@@ -105,10 +107,12 @@ paths:
       summary: Add or update ACM certificate for CloudFront distribution
       tags:
       - CloudFront
+      x-operation-id-source: normalized
+      x-operation-id-original: t_value
   /dns/cloudfront/distributions/alternate-domains:
     post:
       description: Adds custom domain names as alternate domain names (CNAMEs) to an existing CloudFront distribution. The domains must be covered by the ACM certificate attached to the distribution. You must also create DNS records (CNAME or ALIAS) pointing to the CloudFront domain.
-      operationId: t_value
+      operationId: postDnsCloudfrontDistributionsAlternateDomains
       parameters: []
       requestBody:
         required: true
@@ -130,10 +134,12 @@ paths:
       summary: Add alternate domain names (CNAMEs) to CloudFront distribution
       tags:
       - CloudFront
+      x-operation-id-source: normalized
+      x-operation-id-original: t_value
   /dns/cloudfront/domain-mapping:
     post:
       description: 'Maps a custom domain to an internal subdomain in CloudFront Key-Value Store. This allows CloudFront edge functions to route requests from custom domains to internal subdomains. Key: Custom domain (e.g., customdomain.com), Value: Internal subdomain (e.g., internal123.zocatest.live)'
-      operationId: t_value
+      operationId: postDnsCloudfrontDomainMapping
       parameters: []
       requestBody:
         required: true
@@ -155,10 +161,12 @@ paths:
       summary: Add domain mapping to CloudFront KVS
       tags:
       - CloudFront
+      x-operation-id-source: normalized
+      x-operation-id-original: t_value
   /dns/cloudfront/domain-mapping/batch:
     post:
       description: Adds or updates multiple custom domain to internal subdomain mappings in CloudFront Key-Value Store. This is useful for bulk operations when setting up multiple custom domains.
-      operationId: t_value
+      operationId: postDnsCloudfrontDomainMappingBatch
       parameters: []
       requestBody:
         required: true
@@ -182,10 +190,12 @@ paths:
       summary: Add multiple domain mappings to CloudFront KVS
       tags:
       - CloudFront
+      x-operation-id-source: normalized
+      x-operation-id-original: t_value
   /dns/cloudfront/domain-mapping/{customDomain}:
     get:
       description: Retrieves the internal subdomain mapped to a custom domain from CloudFront Key-Value Store.
-      operationId: t_value
+      operationId: getDnsCloudfrontDomainMappingByCustomDomain
       parameters:
       - name: customDomain
         required: true
@@ -203,6 +213,8 @@ paths:
       summary: Get internal subdomain for a custom domain
       tags:
       - CloudFront
+      x-operation-id-source: normalized
+      x-operation-id-original: t_value
 components:
   schemas:
     e:

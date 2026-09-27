@@ -41,7 +41,7 @@ paths:
   /content/multilocation/{businessEntityId}/pieces:
     get:
       description: Flattens the content queue across every location, filters in-memory by type/channel/status/region/search, sorts by publish date, and paginates.
-      operationId: t_value
+      operationId: getContentMultilocationByBusinessEntityIdPieces
       parameters:
       - name: businessEntityId
         required: true
@@ -59,12 +59,14 @@ paths:
       summary: Get paginated content pieces for a multi-location business
       tags:
       - Content
+      x-operation-id-source: normalized
+      x-operation-id-original: t_value
     servers:
     - url: https://api.zoca.ai
       description: Production
   /tasks/api/v1/content/post/{entityId}/{platformId}:
     post:
-      operationId: t_value
+      operationId: postTasksApiV1ContentPostByEntityIdByPlatformId
       parameters:
       - name: postType
         required: true
@@ -104,12 +106,14 @@ paths:
       - Content
       security:
       - access-token: []
+      x-operation-id-source: normalized
+      x-operation-id-original: t_value
     servers:
     - url: https://tasks.zoca.ai
       description: Production
   /tasks/api/v1/content/generate/{entityId}/{platformId}:
     post:
-      operationId: t_value
+      operationId: postTasksApiV1ContentGenerateByEntityIdByPlatformId
       parameters:
       - name: postType
         required: true
@@ -147,12 +151,14 @@ paths:
       - Content
       security:
       - access-token: []
+      x-operation-id-source: normalized
+      x-operation-id-original: t_value
     servers:
     - url: https://tasks.zoca.ai
       description: Production
   /tasks/api/v1/content/generate-and-create/{entityId}/{platformId}:
     post:
-      operationId: t_value
+      operationId: postTasksApiV1ContentGenerateAndCreateByEntityIdByPlatformId
       parameters:
       - name: postType
         required: true
@@ -190,12 +196,14 @@ paths:
       - Content
       security:
       - access-token: []
+      x-operation-id-source: normalized
+      x-operation-id-original: t_value
     servers:
     - url: https://tasks.zoca.ai
       description: Production
   /tasks/api/v1/content/user-config/{entityId}:
     post:
-      operationId: t_value
+      operationId: postTasksApiV1ContentUserConfigByEntityId
       parameters:
       - name: entityId
         required: true
@@ -211,8 +219,10 @@ paths:
       - Content
       security:
       - access-token: []
+      x-operation-id-source: normalized
+      x-operation-id-original: t_value
     get:
-      operationId: t_value
+      operationId: getTasksApiV1ContentUserConfigByEntityId
       parameters:
       - name: entityId
         required: true
@@ -232,8 +242,10 @@ paths:
       - Content
       security:
       - access-token: []
+      x-operation-id-source: normalized
+      x-operation-id-original: t_value
     put:
-      operationId: t_value
+      operationId: putTasksApiV1ContentUserConfigByEntityId
       parameters:
       - name: entityId
         required: true
@@ -249,8 +261,10 @@ paths:
       - Content
       security:
       - access-token: []
+      x-operation-id-source: normalized
+      x-operation-id-original: t_value
     delete:
-      operationId: t_value
+      operationId: deleteTasksApiV1ContentUserConfigByEntityId
       parameters:
       - name: entityId
         required: true
@@ -266,12 +280,14 @@ paths:
       - Content
       security:
       - access-token: []
+      x-operation-id-source: normalized
+      x-operation-id-original: t_value
     servers:
     - url: https://tasks.zoca.ai
       description: Production
   /tasks/api/v1/content/user-config/active:
     get:
-      operationId: t_value
+      operationId: getTasksApiV1ContentUserConfigActive
       parameters: []
       responses:
         '200':
@@ -287,12 +303,14 @@ paths:
       - Content
       security:
       - access-token: []
+      x-operation-id-source: normalized
+      x-operation-id-original: t_value
     servers:
     - url: https://tasks.zoca.ai
       description: Production
   /tasks/api/v1/content/active-entities:
     get:
-      operationId: t_value
+      operationId: getTasksApiV1ContentActiveEntities
       parameters: []
       responses:
         '200':
@@ -302,12 +320,14 @@ paths:
       - Content
       security:
       - access-token: []
+      x-operation-id-source: normalized
+      x-operation-id-original: t_value
     servers:
     - url: https://tasks.zoca.ai
       description: Production
   /tasks/api/v1/content/inactive-entities:
     get:
-      operationId: t_value
+      operationId: getTasksApiV1ContentInactiveEntities
       parameters: []
       responses:
         '200':
@@ -317,12 +337,14 @@ paths:
       - Content
       security:
       - access-token: []
+      x-operation-id-source: normalized
+      x-operation-id-original: t_value
     servers:
     - url: https://tasks.zoca.ai
       description: Production
   /tasks/api/v1/content/platform-config:
     post:
-      operationId: t_value
+      operationId: postTasksApiV1ContentPlatformConfig
       parameters: []
       responses:
         '201':
@@ -332,8 +354,10 @@ paths:
       - Content
       security:
       - access-token: []
+      x-operation-id-source: normalized
+      x-operation-id-original: t_value
     get:
-      operationId: t_value
+      operationId: getTasksApiV1ContentPlatformConfig
       parameters:
       - name: type
         required: false
@@ -361,12 +385,14 @@ paths:
       - Content
       security:
       - access-token: []
+      x-operation-id-source: normalized
+      x-operation-id-original: t_value
     servers:
     - url: https://tasks.zoca.ai
       description: Production
   /tasks/api/v1/content/platform-config/{platformId}:
     get:
-      operationId: t_value
+      operationId: getTasksApiV1ContentPlatformConfigByPlatformId
       parameters:
       - name: platformId
         required: true
@@ -386,8 +412,10 @@ paths:
       - Content
       security:
       - access-token: []
+      x-operation-id-source: normalized
+      x-operation-id-original: t_value
     put:
-      operationId: t_value
+      operationId: putTasksApiV1ContentPlatformConfigByPlatformId
       parameters:
       - name: platformId
         required: true
@@ -403,8 +431,10 @@ paths:
       - Content
       security:
       - access-token: []
+      x-operation-id-source: normalized
+      x-operation-id-original: t_value
     delete:
-      operationId: t_value
+      operationId: deleteTasksApiV1ContentPlatformConfigByPlatformId
       parameters:
       - name: platformId
         required: true
@@ -420,12 +450,14 @@ paths:
       - Content
       security:
       - access-token: []
+      x-operation-id-source: normalized
+      x-operation-id-original: t_value
     servers:
     - url: https://tasks.zoca.ai
       description: Production
   /tasks/api/v1/content/posting-platforms:
     get:
-      operationId: t_value
+      operationId: getTasksApiV1ContentPostingPlatforms
       parameters: []
       responses:
         '200':
@@ -441,12 +473,14 @@ paths:
       - Content
       security:
       - access-token: []
+      x-operation-id-source: normalized
+      x-operation-id-original: t_value
     servers:
     - url: https://tasks.zoca.ai
       description: Production
   /tasks/api/v1/content/platform-config/{platformId}/status:
     put:
-      operationId: t_value
+      operationId: putTasksApiV1ContentPlatformConfigByPlatformIdStatus
       parameters:
       - name: platformId
         required: true
@@ -462,12 +496,14 @@ paths:
       - Content
       security:
       - access-token: []
+      x-operation-id-source: normalized
+      x-operation-id-original: t_value
     servers:
     - url: https://tasks.zoca.ai
       description: Production
   /tasks/api/v1/content/platform-config/{platformId}/credentials:
     put:
-      operationId: t_value
+      operationId: putTasksApiV1ContentPlatformConfigByPlatformIdCredentials
       parameters:
       - name: platformId
         required: true
@@ -483,12 +519,14 @@ paths:
       - Content
       security:
       - access-token: []
+      x-operation-id-source: normalized
+      x-operation-id-original: t_value
     servers:
     - url: https://tasks.zoca.ai
       description: Production
   /tasks/api/v1/content/platform-config/health/{healthStatus}:
     get:
-      operationId: t_value
+      operationId: getTasksApiV1ContentPlatformConfigHealthByHealthStatus
       parameters:
       - name: healthStatus
         required: true
@@ -514,12 +552,14 @@ paths:
       - Content
       security:
       - access-token: []
+      x-operation-id-source: normalized
+      x-operation-id-original: t_value
     servers:
     - url: https://tasks.zoca.ai
       description: Production
   /tasks/api/v1/content/schedule/post/{postId}:
     post:
-      operationId: t_value
+      operationId: postTasksApiV1ContentSchedulePostByPostId
       parameters:
       - name: postId
         required: true
@@ -539,12 +579,14 @@ paths:
       - Content
       security:
       - access-token: []
+      x-operation-id-source: normalized
+      x-operation-id-original: t_value
     servers:
     - url: https://tasks.zoca.ai
       description: Production
   /tasks/api/v1/content/schedule/post/{scheduleId}:
     delete:
-      operationId: t_value
+      operationId: deleteTasksApiV1ContentSchedulePostByScheduleId
       parameters:
       - name: scheduleId
         required: true
@@ -560,8 +602,10 @@ paths:
       - Content
       security:
       - access-token: []
+      x-operation-id-source: normalized
+      x-operation-id-original: t_value
     get:
-      operationId: t_value
+      operationId: getTasksApiV1ContentSchedulePostByScheduleId
       parameters:
       - name: scheduleId
         required: true
@@ -581,12 +625,14 @@ paths:
       - Content
       security:
       - access-token: []
+      x-operation-id-source: normalized
+      x-operation-id-original: t_value
     servers:
     - url: https://tasks.zoca.ai
       description: Production
   /tasks/api/v1/content/schedule/upcoming:
     get:
-      operationId: t_value
+      operationId: getTasksApiV1ContentScheduleUpcoming
       parameters: []
       responses:
         '200':
@@ -602,12 +648,14 @@ paths:
       - Content
       security:
       - access-token: []
+      x-operation-id-source: normalized
+      x-operation-id-original: t_value
     servers:
     - url: https://tasks.zoca.ai
       description: Production
   /tasks/api/v1/content/schedule/previous:
     get:
-      operationId: t_value
+      operationId: getTasksApiV1ContentSchedulePrevious
       parameters: []
       responses:
         '200':
@@ -623,12 +671,14 @@ paths:
       - Content
       security:
       - access-token: []
+      x-operation-id-source: normalized
+      x-operation-id-original: t_value
     servers:
     - url: https://tasks.zoca.ai
       description: Production
   /tasks/api/v1/content/approve/post/{postId}:
     post:
-      operationId: t_value
+      operationId: postTasksApiV1ContentApprovePostByPostId
       parameters:
       - name: approvalType
         required: true
@@ -659,12 +709,14 @@ paths:
       - Content
       security:
       - access-token: []
+      x-operation-id-source: normalized
+      x-operation-id-original: t_value
     servers:
     - url: https://tasks.zoca.ai
       description: Production
   /tasks/api/v1/content/reject/post/{postId}:
     post:
-      operationId: t_value
+      operationId: postTasksApiV1ContentRejectPostByPostId
       parameters:
       - name: reason
         required: true
@@ -701,12 +753,14 @@ paths:
       - Content
       security:
       - access-token: []
+      x-operation-id-source: normalized
+      x-operation-id-original: t_value
     servers:
     - url: https://tasks.zoca.ai
       description: Production
   /tasks/api/v1/content/approval-history/post/{postId}:
     get:
-      operationId: t_value
+      operationId: getTasksApiV1ContentApprovalHistoryPostByPostId
       parameters:
       - name: postId
         required: true
@@ -728,12 +782,14 @@ paths:
       - Content
       security:
       - access-token: []
+      x-operation-id-source: normalized
+      x-operation-id-original: t_value
     servers:
     - url: https://tasks.zoca.ai
       description: Production
   /tasks/api/v1/content/request-admin-approval/post/{postId}:
     post:
-      operationId: t_value
+      operationId: postTasksApiV1ContentRequestAdminApprovalPostByPostId
       parameters:
       - name: postId
         required: true
@@ -749,12 +805,14 @@ paths:
       - Content
       security:
       - access-token: []
+      x-operation-id-source: normalized
+      x-operation-id-original: t_value
     servers:
     - url: https://tasks.zoca.ai
       description: Production
   /tasks/api/v1/content/posts/{entityId}:
     get:
-      operationId: t_value
+      operationId: getTasksApiV1ContentPostsByEntityId
       parameters:
       - name: to
         required: false
@@ -822,12 +880,14 @@ paths:
       - Content
       security:
       - access-token: []
+      x-operation-id-source: normalized
+      x-operation-id-original: t_value
     servers:
     - url: https://tasks.zoca.ai
       description: Production
   /tasks/api/v1/content/schedule/posts:
     get:
-      operationId: t_value
+      operationId: getTasksApiV1ContentSchedulePosts
       parameters:
       - name: to
         required: false
@@ -877,12 +937,14 @@ paths:
       - Content
       security:
       - access-token: []
+      x-operation-id-source: normalized
+      x-operation-id-original: t_value
     servers:
     - url: https://tasks.zoca.ai
       description: Production
   /tasks/api/v1/content/items/by-blog/{blogId}:
     get:
-      operationId: t_value
+      operationId: getTasksApiV1ContentItemsByBlogByBlogId
       parameters:
       - name: blogId
         required: true
@@ -900,12 +962,14 @@ paths:
       - Content
       security:
       - access-token: []
+      x-operation-id-source: normalized
+      x-operation-id-original: t_value
     servers:
     - url: https://tasks.zoca.ai
       description: Production
   /tasks/api/v1/content/post/{postId}:
     get:
-      operationId: t_value
+      operationId: getTasksApiV1ContentPostByPostId
       parameters:
       - name: postId
         required: true
@@ -927,8 +991,10 @@ paths:
       - Content
       security:
       - access-token: []
+      x-operation-id-source: normalized
+      x-operation-id-original: t_value
     put:
-      operationId: t_value
+      operationId: putTasksApiV1ContentPostByPostId
       parameters:
       - name: postId
         required: true
@@ -944,12 +1010,14 @@ paths:
       - Content
       security:
       - access-token: []
+      x-operation-id-source: normalized
+      x-operation-id-original: t_value
     servers:
     - url: https://tasks.zoca.ai
       description: Production
   /tasks/api/v1/content/schedule/availability/{entityId}/{date}:
     get:
-      operationId: t_value
+      operationId: getTasksApiV1ContentScheduleAvailabilityByEntityIdByDate
       parameters:
       - name: platformId
         required: false
@@ -983,12 +1051,14 @@ paths:
       - Content
       security:
       - access-token: []
+      x-operation-id-source: normalized
+      x-operation-id-original: t_value
     servers:
     - url: https://tasks.zoca.ai
       description: Production
   /tasks/api/v1/content/execute/scheduled-post/{scheduleId}:
     post:
-      operationId: t_value
+      operationId: postTasksApiV1ContentExecuteScheduledPostByScheduleId
       parameters:
       - name: scheduleId
         required: true
@@ -1008,12 +1078,14 @@ paths:
       - Content
       security:
       - access-token: []
+      x-operation-id-source: normalized
+      x-operation-id-original: t_value
     servers:
     - url: https://tasks.zoca.ai
       description: Production
   /tasks/api/v1/content/execute/batch:
     post:
-      operationId: t_value
+      operationId: postTasksApiV1ContentExecuteBatch
       parameters: []
       responses:
         '200':
@@ -1029,12 +1101,14 @@ paths:
       - Content
       security:
       - access-token: []
+      x-operation-id-source: normalized
+      x-operation-id-original: t_value
     servers:
     - url: https://tasks.zoca.ai
       description: Production
   /tasks/api/v1/content/execute/timeslot:
     post:
-      operationId: t_value
+      operationId: postTasksApiV1ContentExecuteTimeslot
       parameters: []
       responses:
         '200':
@@ -1050,12 +1124,14 @@ paths:
       - Content
       security:
       - access-token: []
+      x-operation-id-source: normalized
+      x-operation-id-original: t_value
     servers:
     - url: https://tasks.zoca.ai
       description: Production
   /tasks/api/v1/content/execution-results:
     get:
-      operationId: t_value
+      operationId: getTasksApiV1ContentExecutionResults
       parameters:
       - name: to
         required: false
@@ -1117,12 +1193,14 @@ paths:
       - Content
       security:
       - access-token: []
+      x-operation-id-source: normalized
+      x-operation-id-original: t_value
     servers:
     - url: https://tasks.zoca.ai
       description: Production
   /tasks/api/v1/content/execution-results/{executionId}:
     get:
-      operationId: t_value
+      operationId: getTasksApiV1ContentExecutionResultsByExecutionId
       parameters:
       - name: executionId
         required: true
@@ -1144,12 +1222,14 @@ paths:
       - Content
       security:
       - access-token: []
+      x-operation-id-source: normalized
+      x-operation-id-original: t_value
     servers:
     - url: https://tasks.zoca.ai
       description: Production
   /tasks/api/v1/content/bulk-schedule/create-and-schedule/{entityId}:
     post:
-      operationId: t_value
+      operationId: postTasksApiV1ContentBulkScheduleCreateAndScheduleByEntityId
       parameters:
       - name: entityId
         required: true
@@ -1169,12 +1249,14 @@ paths:
       - Content
       security:
       - access-token: []
+      x-operation-id-source: normalized
+      x-operation-id-original: t_value
     servers:
     - url: https://tasks.zoca.ai
       description: Production
   /tasks/api/v1/content/bulk-schedule/all-active:
     post:
-      operationId: t_value
+      operationId: postTasksApiV1ContentBulkScheduleAllActive
       parameters: []
       responses:
         '200':
@@ -1195,13 +1277,15 @@ paths:
       - Content
       security:
       - access-token: []
+      x-operation-id-source: normalized
+      x-operation-id-original: t_value
     servers:
     - url: https://tasks.zoca.ai
       description: Production
   /tasks/api/v1/content/bulk-schedule/active-without-scheduled:
     get:
       description: Retrieves a list of entity IDs that are marked as active but do not currently have a scheduled post for the current date.
-      operationId: t_value
+      operationId: getTasksApiV1ContentBulkScheduleActiveWithoutScheduled
       parameters: []
       responses:
         '200':
@@ -1217,12 +1301,14 @@ paths:
       - Content
       security:
       - access-token: []
+      x-operation-id-source: normalized
+      x-operation-id-original: t_value
     servers:
     - url: https://tasks.zoca.ai
       description: Production
   /tasks/api/v1/content/bulk-execute/date/gbp:
     post:
-      operationId: t_value
+      operationId: postTasksApiV1ContentBulkExecuteDateGbp
       parameters:
       - name: date
         required: true
@@ -1239,13 +1325,15 @@ paths:
       - Content
       security:
       - access-token: []
+      x-operation-id-source: normalized
+      x-operation-id-original: t_value
     servers:
     - url: https://tasks.zoca.ai
       description: Production
   /tasks/api/v1/content/schedule-missing-posts:
     post:
       description: Enqueues a job to create and schedule posts for active entities that have no posts scheduled for today
-      operationId: t_value
+      operationId: postTasksApiV1ContentScheduleMissingPosts
       parameters: []
       responses:
         '201':
@@ -1263,13 +1351,15 @@ paths:
       - Content
       security:
       - access-token: []
+      x-operation-id-source: normalized
+      x-operation-id-original: t_value
     servers:
     - url: https://tasks.zoca.ai
       description: Production
   /tasks/api/v1/content/process-time-slot:
     post:
       description: Enqueues a job to process all posts scheduled for the current time slot
-      operationId: t_value
+      operationId: postTasksApiV1ContentProcessTimeSlot
       parameters: []
       responses:
         '201':
@@ -1287,12 +1377,14 @@ paths:
       - Content
       security:
       - access-token: []
+      x-operation-id-source: normalized
+      x-operation-id-original: t_value
     servers:
     - url: https://tasks.zoca.ai
       description: Production
   /tasks/api/v1/content/user-config/{entityId}/keywords:
     put:
-      operationId: t_value
+      operationId: putTasksApiV1ContentUserConfigByEntityIdKeywords
       parameters:
       - name: entityId
         required: true
@@ -1329,12 +1421,14 @@ paths:
       - Content
       security:
       - access-token: []
+      x-operation-id-source: normalized
+      x-operation-id-original: t_value
     servers:
     - url: https://tasks.zoca.ai
       description: Production
   /tasks/api/v1/content/user-config/{entityId}/specialization:
     put:
-      operationId: t_value
+      operationId: putTasksApiV1ContentUserConfigByEntityIdSpecialization
       parameters:
       - name: entityId
         required: true
@@ -1369,12 +1463,14 @@ paths:
       - Content
       security:
       - access-token: []
+      x-operation-id-source: normalized
+      x-operation-id-original: t_value
     servers:
     - url: https://tasks.zoca.ai
       description: Production
   /tasks/api/v1/content/gbp-entity-keywords/{entityId}/{entityType}:
     get:
-      operationId: t_value
+      operationId: getTasksApiV1ContentGbpEntityKeywordsByEntityIdByEntityType
       parameters:
       - name: entityType
         required: true
@@ -1398,12 +1494,14 @@ paths:
       - Content
       security:
       - access-token: []
+      x-operation-id-source: normalized
+      x-operation-id-original: t_value
     servers:
     - url: https://tasks.zoca.ai
       description: Production
   /tasks/api/v1/content/gbp-entity-keywords:
     post:
-      operationId: t_value
+      operationId: postTasksApiV1ContentGbpEntityKeywords
       parameters: []
       requestBody:
         required: true
@@ -1424,6 +1522,8 @@ paths:
       - Content
       security:
       - access-token: []
+      x-operation-id-source: normalized
+      x-operation-id-original: t_value
     servers:
     - url: https://tasks.zoca.ai
       description: Production

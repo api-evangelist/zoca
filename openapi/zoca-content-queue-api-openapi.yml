@@ -26,7 +26,7 @@ paths:
       summary: T value
       x-summary-source: derived
     post:
-      operationId: t_value
+      operationId: postContentQueueByEntityIdItems
       parameters: []
       responses:
         '201':
@@ -35,12 +35,14 @@ paths:
       - Content Queue
       summary: T value
       x-summary-source: derived
+      x-operation-id-source: normalized
+      x-operation-id-original: t_value
     servers:
     - url: https://api.zoca.ai
       description: Production
   /content-queue/{entityId}/items/{itemId}:
     get:
-      operationId: t_value
+      operationId: getContentQueueByEntityIdItemsByItemId
       parameters: []
       responses:
         '200':
@@ -49,8 +51,10 @@ paths:
       - Content Queue
       summary: T value
       x-summary-source: derived
+      x-operation-id-source: normalized
+      x-operation-id-original: t_value
     patch:
-      operationId: t_value
+      operationId: patchContentQueueByEntityIdItemsByItemId
       parameters: []
       responses:
         '200':
@@ -59,8 +63,10 @@ paths:
       - Content Queue
       summary: T value
       x-summary-source: derived
+      x-operation-id-source: normalized
+      x-operation-id-original: t_value
     delete:
-      operationId: t_value
+      operationId: deleteContentQueueByEntityIdItemsByItemId
       parameters: []
       responses:
         '200':
@@ -69,12 +75,14 @@ paths:
       - Content Queue
       summary: T value
       x-summary-source: derived
+      x-operation-id-source: normalized
+      x-operation-id-original: t_value
     servers:
     - url: https://api.zoca.ai
       description: Production
   /content-queue/{entityId}/items/{itemId}/post:
     patch:
-      operationId: t_value
+      operationId: patchContentQueueByEntityIdItemsByItemIdPost
       parameters: []
       responses:
         '200':
@@ -83,12 +91,14 @@ paths:
       - Content Queue
       summary: T value
       x-summary-source: derived
+      x-operation-id-source: normalized
+      x-operation-id-original: t_value
     servers:
     - url: https://api.zoca.ai
       description: Production
   /content-queue/{entityId}/items/{itemId}/reschedule:
     post:
-      operationId: t_value
+      operationId: postContentQueueByEntityIdItemsByItemIdReschedule
       parameters: []
       responses:
         '200':
@@ -97,12 +107,14 @@ paths:
       - Content Queue
       summary: T value
       x-summary-source: derived
+      x-operation-id-source: normalized
+      x-operation-id-original: t_value
     servers:
     - url: https://api.zoca.ai
       description: Production
   /content-queue/{entityId}/items/{itemId}/link-content:
     post:
-      operationId: t_value
+      operationId: postContentQueueByEntityIdItemsByItemIdLinkContent
       parameters: []
       responses:
         '200':
@@ -111,12 +123,14 @@ paths:
       - Content Queue
       summary: T value
       x-summary-source: derived
+      x-operation-id-source: normalized
+      x-operation-id-original: t_value
     servers:
     - url: https://api.zoca.ai
       description: Production
   /content-queue/{entityId}/items/{itemId}/generate:
     post:
-      operationId: t_value
+      operationId: postContentQueueByEntityIdItemsByItemIdGenerate
       parameters: []
       responses:
         '202':
@@ -125,12 +139,14 @@ paths:
       - Content Queue
       summary: T value
       x-summary-source: derived
+      x-operation-id-source: normalized
+      x-operation-id-original: t_value
     servers:
     - url: https://api.zoca.ai
       description: Production
   /content-queue/{entityId}/items/{itemId}/force-publish:
     post:
-      operationId: t_value
+      operationId: postContentQueueByEntityIdItemsByItemIdForcePublish
       parameters: []
       responses:
         '200':
@@ -139,12 +155,14 @@ paths:
       - Content Queue
       summary: T value
       x-summary-source: derived
+      x-operation-id-source: normalized
+      x-operation-id-original: t_value
     servers:
     - url: https://api.zoca.ai
       description: Production
   /content-queue/{entityId}/items/bulk-reschedule:
     post:
-      operationId: t_value
+      operationId: postContentQueueByEntityIdItemsBulkReschedule
       parameters: []
       responses:
         '200':
@@ -153,12 +171,14 @@ paths:
       - Content Queue
       summary: T value
       x-summary-source: derived
+      x-operation-id-source: normalized
+      x-operation-id-original: t_value
     servers:
     - url: https://api.zoca.ai
       description: Production
   /content-queue/{entityId}/items/bulk-delete:
     post:
-      operationId: t_value
+      operationId: postContentQueueByEntityIdItemsBulkDelete
       parameters: []
       responses:
         '200':
@@ -167,12 +187,14 @@ paths:
       - Content Queue
       summary: T value
       x-summary-source: derived
+      x-operation-id-source: normalized
+      x-operation-id-original: t_value
     servers:
     - url: https://api.zoca.ai
       description: Production
   /content-queue/{entityId}/items/bulk-force-publish:
     post:
-      operationId: t_value
+      operationId: postContentQueueByEntityIdItemsBulkForcePublish
       parameters: []
       responses:
         '200':
@@ -181,12 +203,14 @@ paths:
       - Content Queue
       summary: T value
       x-summary-source: derived
+      x-operation-id-source: normalized
+      x-operation-id-original: t_value
     servers:
     - url: https://api.zoca.ai
       description: Production
   /content-queue/{entityId}/items/force-all-category-pages:
     post:
-      operationId: t_value
+      operationId: postContentQueueByEntityIdItemsForceAllCategoryPages
       parameters: []
       responses:
         '200':
@@ -195,12 +219,14 @@ paths:
       - Content Queue
       summary: T value
       x-summary-source: derived
+      x-operation-id-source: normalized
+      x-operation-id-original: t_value
     servers:
     - url: https://api.zoca.ai
       description: Production
   /content-queue/{entityId}/generate-all:
     post:
-      operationId: t_value
+      operationId: postContentQueueByEntityIdGenerateAll
       parameters: []
       responses:
         '202':
@@ -209,12 +235,14 @@ paths:
       - Content Queue
       summary: T value
       x-summary-source: derived
+      x-operation-id-source: normalized
+      x-operation-id-original: t_value
     servers:
     - url: https://api.zoca.ai
       description: Production
   /content-queue/{entityId}/stats:
     get:
-      operationId: t_value
+      operationId: getContentQueueByEntityIdStats
       parameters: []
       responses:
         '200':
@@ -223,12 +251,14 @@ paths:
       - Content Queue
       summary: T value
       x-summary-source: derived
+      x-operation-id-source: normalized
+      x-operation-id-original: t_value
     servers:
     - url: https://api.zoca.ai
       description: Production
   /content-queue/{entityId}/calendar:
     get:
-      operationId: t_value
+      operationId: getContentQueueByEntityIdCalendar
       parameters: []
       responses:
         '200':
@@ -237,12 +267,14 @@ paths:
       - Content Queue
       summary: T value
       x-summary-source: derived
+      x-operation-id-source: normalized
+      x-operation-id-original: t_value
     servers:
     - url: https://api.zoca.ai
       description: Production
   /content-queue/{entityId}/plan:
     get:
-      operationId: t_value
+      operationId: getContentQueueByEntityIdPlan
       parameters: []
       responses:
         '200':
@@ -251,8 +283,10 @@ paths:
       - Content Queue
       summary: T value
       x-summary-source: derived
+      x-operation-id-source: normalized
+      x-operation-id-original: t_value
     delete:
-      operationId: t_value
+      operationId: deleteContentQueueByEntityIdPlan
       parameters: []
       responses:
         '200':
@@ -261,12 +295,14 @@ paths:
       - Content Queue
       summary: T value
       x-summary-source: derived
+      x-operation-id-source: normalized
+      x-operation-id-original: t_value
     servers:
     - url: https://api.zoca.ai
       description: Production
   /content-queue/{entityId}/plan/summary:
     get:
-      operationId: t_value
+      operationId: getContentQueueByEntityIdPlanSummary
       parameters: []
       responses:
         '200':
@@ -275,12 +311,14 @@ paths:
       - Content Queue
       summary: T value
       x-summary-source: derived
+      x-operation-id-source: normalized
+      x-operation-id-original: t_value
     servers:
     - url: https://api.zoca.ai
       description: Production
   /content-queue/{entityId}/plan/services:
     get:
-      operationId: t_value
+      operationId: getContentQueueByEntityIdPlanServices
       parameters: []
       responses:
         '200':
@@ -289,12 +327,14 @@ paths:
       - Content Queue
       summary: T value
       x-summary-source: derived
+      x-operation-id-source: normalized
+      x-operation-id-original: t_value
     servers:
     - url: https://api.zoca.ai
       description: Production
   /content-queue/{entityId}/plan/generate:
     post:
-      operationId: t_value
+      operationId: postContentQueueByEntityIdPlanGenerate
       parameters: []
       responses:
         '200':
@@ -303,12 +343,14 @@ paths:
       - Content Queue
       summary: T value
       x-summary-source: derived
+      x-operation-id-source: normalized
+      x-operation-id-original: t_value
     servers:
     - url: https://api.zoca.ai
       description: Production
   /content-queue/{entityId}/status:
     get:
-      operationId: t_value
+      operationId: getContentQueueByEntityIdStatus
       parameters: []
       responses:
         '200':
@@ -317,12 +359,14 @@ paths:
       - Content Queue
       summary: T value
       x-summary-source: derived
+      x-operation-id-source: normalized
+      x-operation-id-original: t_value
     servers:
     - url: https://api.zoca.ai
       description: Production
   /content-queue/{entityId}/activate:
     post:
-      operationId: t_value
+      operationId: postContentQueueByEntityIdActivate
       parameters: []
       responses:
         '200':
@@ -331,12 +375,14 @@ paths:
       - Content Queue
       summary: T value
       x-summary-source: derived
+      x-operation-id-source: normalized
+      x-operation-id-original: t_value
     servers:
     - url: https://api.zoca.ai
       description: Production
   /content-queue/{entityId}/deactivate:
     post:
-      operationId: t_value
+      operationId: postContentQueueByEntityIdDeactivate
       parameters: []
       responses:
         '200':
@@ -345,12 +391,14 @@ paths:
       - Content Queue
       summary: T value
       x-summary-source: derived
+      x-operation-id-source: normalized
+      x-operation-id-original: t_value
     servers:
     - url: https://api.zoca.ai
       description: Production
   /content-queue/{entityId}/rollback-to-v2:
     post:
-      operationId: t_value
+      operationId: postContentQueueByEntityIdRollbackToV2
       parameters: []
       responses:
         '200':
@@ -359,12 +407,14 @@ paths:
       - Content Queue
       summary: T value
       x-summary-source: derived
+      x-operation-id-source: normalized
+      x-operation-id-original: t_value
     servers:
     - url: https://api.zoca.ai
       description: Production
   /content-queue/{entityId}/schedule-preferences:
     get:
-      operationId: t_value
+      operationId: getContentQueueByEntityIdSchedulePreferences
       parameters: []
       responses:
         '200':
@@ -373,8 +423,10 @@ paths:
       - Content Queue
       summary: T value
       x-summary-source: derived
+      x-operation-id-source: normalized
+      x-operation-id-original: t_value
     put:
-      operationId: t_value
+      operationId: putContentQueueByEntityIdSchedulePreferences
       parameters: []
       responses:
         '200':
@@ -383,12 +435,14 @@ paths:
       - Content Queue
       summary: T value
       x-summary-source: derived
+      x-operation-id-source: normalized
+      x-operation-id-original: t_value
     servers:
     - url: https://api.zoca.ai
       description: Production
   /tasks/api/v1/content-queue/{entityId}/items:
     get:
-      operationId: t_value
+      operationId: getTasksApiV1ContentQueueByEntityIdItems
       parameters: []
       responses:
         '200':
@@ -399,8 +453,10 @@ paths:
       - access-token: []
       summary: T value
       x-summary-source: derived
+      x-operation-id-source: normalized
+      x-operation-id-original: t_value
     post:
-      operationId: t_value
+      operationId: postTasksApiV1ContentQueueByEntityIdItems
       parameters: []
       responses:
         '201':
@@ -411,12 +467,14 @@ paths:
       - access-token: []
       summary: T value
       x-summary-source: derived
+      x-operation-id-source: normalized
+      x-operation-id-original: t_value
     servers:
     - url: https://tasks.zoca.ai
       description: Production
   /tasks/api/v1/content-queue/{entityId}/items/{itemId}:
     get:
-      operationId: t_value
+      operationId: getTasksApiV1ContentQueueByEntityIdItemsByItemId
       parameters: []
       responses:
         '200':
@@ -427,8 +485,10 @@ paths:
       - access-token: []
       summary: T value
       x-summary-source: derived
+      x-operation-id-source: normalized
+      x-operation-id-original: t_value
     patch:
-      operationId: t_value
+      operationId: patchTasksApiV1ContentQueueByEntityIdItemsByItemId
       parameters: []
       responses:
         '200':
@@ -439,8 +499,10 @@ paths:
       - access-token: []
       summary: T value
       x-summary-source: derived
+      x-operation-id-source: normalized
+      x-operation-id-original: t_value
     delete:
-      operationId: t_value
+      operationId: deleteTasksApiV1ContentQueueByEntityIdItemsByItemId
       parameters: []
       responses:
         '200':
@@ -451,12 +513,14 @@ paths:
       - access-token: []
       summary: T value
       x-summary-source: derived
+      x-operation-id-source: normalized
+      x-operation-id-original: t_value
     servers:
     - url: https://tasks.zoca.ai
       description: Production
   /tasks/api/v1/content-queue/{entityId}/items/{itemId}/post:
     patch:
-      operationId: t_value
+      operationId: patchTasksApiV1ContentQueueByEntityIdItemsByItemIdPost
       parameters: []
       responses:
         '200':
@@ -467,12 +531,14 @@ paths:
       - access-token: []
       summary: T value
       x-summary-source: derived
+      x-operation-id-source: normalized
+      x-operation-id-original: t_value
     servers:
     - url: https://tasks.zoca.ai
       description: Production
   /tasks/api/v1/content-queue/{entityId}/items/{itemId}/reschedule:
     post:
-      operationId: t_value
+      operationId: postTasksApiV1ContentQueueByEntityIdItemsByItemIdReschedule
       parameters: []
       responses:
         '200':
@@ -483,12 +549,14 @@ paths:
       - access-token: []
       summary: T value
       x-summary-source: derived
+      x-operation-id-source: normalized
+      x-operation-id-original: t_value
     servers:
     - url: https://tasks.zoca.ai
       description: Production
   /tasks/api/v1/content-queue/{entityId}/items/{itemId}/link-content:
     post:
-      operationId: t_value
+      operationId: postTasksApiV1ContentQueueByEntityIdItemsByItemIdLinkContent
       parameters: []
       responses:
         '200':
@@ -499,12 +567,14 @@ paths:
       - access-token: []
       summary: T value
       x-summary-source: derived
+      x-operation-id-source: normalized
+      x-operation-id-original: t_value
     servers:
     - url: https://tasks.zoca.ai
       description: Production
   /tasks/api/v1/content-queue/{entityId}/items/{itemId}/generate:
     post:
-      operationId: t_value
+      operationId: postTasksApiV1ContentQueueByEntityIdItemsByItemIdGenerate
       parameters: []
       responses:
         '202':
@@ -515,12 +585,14 @@ paths:
       - access-token: []
       summary: T value
       x-summary-source: derived
+      x-operation-id-source: normalized
+      x-operation-id-original: t_value
     servers:
     - url: https://tasks.zoca.ai
       description: Production
   /tasks/api/v1/content-queue/{entityId}/items/{itemId}/force-publish:
     post:
-      operationId: t_value
+      operationId: postTasksApiV1ContentQueueByEntityIdItemsByItemIdForcePublish
       parameters: []
       responses:
         '200':
@@ -531,12 +603,14 @@ paths:
       - access-token: []
       summary: T value
       x-summary-source: derived
+      x-operation-id-source: normalized
+      x-operation-id-original: t_value
     servers:
     - url: https://tasks.zoca.ai
       description: Production
   /tasks/api/v1/content-queue/{entityId}/items/bulk-reschedule:
     post:
-      operationId: t_value
+      operationId: postTasksApiV1ContentQueueByEntityIdItemsBulkReschedule
       parameters: []
       responses:
         '200':
@@ -547,12 +621,14 @@ paths:
       - access-token: []
       summary: T value
       x-summary-source: derived
+      x-operation-id-source: normalized
+      x-operation-id-original: t_value
     servers:
     - url: https://tasks.zoca.ai
       description: Production
   /tasks/api/v1/content-queue/{entityId}/items/bulk-delete:
     post:
-      operationId: t_value
+      operationId: postTasksApiV1ContentQueueByEntityIdItemsBulkDelete
       parameters: []
       responses:
         '200':
@@ -563,12 +639,14 @@ paths:
       - access-token: []
       summary: T value
       x-summary-source: derived
+      x-operation-id-source: normalized
+      x-operation-id-original: t_value
     servers:
     - url: https://tasks.zoca.ai
       description: Production
   /tasks/api/v1/content-queue/{entityId}/items/bulk-force-publish:
     post:
-      operationId: t_value
+      operationId: postTasksApiV1ContentQueueByEntityIdItemsBulkForcePublish
       parameters: []
       responses:
         '200':
@@ -579,12 +657,14 @@ paths:
       - access-token: []
       summary: T value
       x-summary-source: derived
+      x-operation-id-source: normalized
+      x-operation-id-original: t_value
     servers:
     - url: https://tasks.zoca.ai
       description: Production
   /tasks/api/v1/content-queue/{entityId}/items/force-all-category-pages:
     post:
-      operationId: t_value
+      operationId: postTasksApiV1ContentQueueByEntityIdItemsForceAllCategoryPages
       parameters: []
       responses:
         '200':
@@ -595,12 +675,14 @@ paths:
       - access-token: []
       summary: T value
       x-summary-source: derived
+      x-operation-id-source: normalized
+      x-operation-id-original: t_value
     servers:
     - url: https://tasks.zoca.ai
       description: Production
   /tasks/api/v1/content-queue/{entityId}/generate-all:
     post:
-      operationId: t_value
+      operationId: postTasksApiV1ContentQueueByEntityIdGenerateAll
       parameters: []
       responses:
         '202':
@@ -611,12 +693,14 @@ paths:
       - access-token: []
       summary: T value
       x-summary-source: derived
+      x-operation-id-source: normalized
+      x-operation-id-original: t_value
     servers:
     - url: https://tasks.zoca.ai
       description: Production
   /tasks/api/v1/content-queue/{entityId}/stats:
     get:
-      operationId: t_value
+      operationId: getTasksApiV1ContentQueueByEntityIdStats
       parameters: []
       responses:
         '200':
@@ -627,12 +711,14 @@ paths:
       - access-token: []
       summary: T value
       x-summary-source: derived
+      x-operation-id-source: normalized
+      x-operation-id-original: t_value
     servers:
     - url: https://tasks.zoca.ai
       description: Production
   /tasks/api/v1/content-queue/{entityId}/calendar:
     get:
-      operationId: t_value
+      operationId: getTasksApiV1ContentQueueByEntityIdCalendar
       parameters: []
       responses:
         '200':
@@ -643,12 +729,14 @@ paths:
       - access-token: []
       summary: T value
       x-summary-source: derived
+      x-operation-id-source: normalized
+      x-operation-id-original: t_value
     servers:
     - url: https://tasks.zoca.ai
       description: Production
   /tasks/api/v1/content-queue/{entityId}/plan:
     get:
-      operationId: t_value
+      operationId: getTasksApiV1ContentQueueByEntityIdPlan
       parameters: []
       responses:
         '200':
@@ -659,8 +747,10 @@ paths:
       - access-token: []
       summary: T value
       x-summary-source: derived
+      x-operation-id-source: normalized
+      x-operation-id-original: t_value
     delete:
-      operationId: t_value
+      operationId: deleteTasksApiV1ContentQueueByEntityIdPlan
       parameters: []
       responses:
         '200':
@@ -671,12 +761,14 @@ paths:
       - access-token: []
       summary: T value
       x-summary-source: derived
+      x-operation-id-source: normalized
+      x-operation-id-original: t_value
     servers:
     - url: https://tasks.zoca.ai
       description: Production
   /tasks/api/v1/content-queue/{entityId}/plan/summary:
     get:
-      operationId: t_value
+      operationId: getTasksApiV1ContentQueueByEntityIdPlanSummary
       parameters: []
       responses:
         '200':
@@ -687,12 +779,14 @@ paths:
       - access-token: []
       summary: T value
       x-summary-source: derived
+      x-operation-id-source: normalized
+      x-operation-id-original: t_value
     servers:
     - url: https://tasks.zoca.ai
       description: Production
   /tasks/api/v1/content-queue/{entityId}/plan/services:
     get:
-      operationId: t_value
+      operationId: getTasksApiV1ContentQueueByEntityIdPlanServices
       parameters: []
       responses:
         '200':
@@ -703,12 +797,14 @@ paths:
       - access-token: []
       summary: T value
       x-summary-source: derived
+      x-operation-id-source: normalized
+      x-operation-id-original: t_value
     servers:
     - url: https://tasks.zoca.ai
       description: Production
   /tasks/api/v1/content-queue/{entityId}/plan/generate:
     post:
-      operationId: t_value
+      operationId: postTasksApiV1ContentQueueByEntityIdPlanGenerate
       parameters: []
       responses:
         '200':
@@ -719,12 +815,14 @@ paths:
       - access-token: []
       summary: T value
       x-summary-source: derived
+      x-operation-id-source: normalized
+      x-operation-id-original: t_value
     servers:
     - url: https://tasks.zoca.ai
       description: Production
   /tasks/api/v1/content-queue/{entityId}/status:
     get:
-      operationId: t_value
+      operationId: getTasksApiV1ContentQueueByEntityIdStatus
       parameters: []
       responses:
         '200':
@@ -735,12 +833,14 @@ paths:
       - access-token: []
       summary: T value
       x-summary-source: derived
+      x-operation-id-source: normalized
+      x-operation-id-original: t_value
     servers:
     - url: https://tasks.zoca.ai
       description: Production
   /tasks/api/v1/content-queue/{entityId}/activate:
     post:
-      operationId: t_value
+      operationId: postTasksApiV1ContentQueueByEntityIdActivate
       parameters: []
       responses:
         '200':
@@ -751,12 +851,14 @@ paths:
       - access-token: []
       summary: T value
       x-summary-source: derived
+      x-operation-id-source: normalized
+      x-operation-id-original: t_value
     servers:
     - url: https://tasks.zoca.ai
       description: Production
   /tasks/api/v1/content-queue/{entityId}/deactivate:
     post:
-      operationId: t_value
+      operationId: postTasksApiV1ContentQueueByEntityIdDeactivate
       parameters: []
       responses:
         '200':
@@ -767,12 +869,14 @@ paths:
       - access-token: []
       summary: T value
       x-summary-source: derived
+      x-operation-id-source: normalized
+      x-operation-id-original: t_value
     servers:
     - url: https://tasks.zoca.ai
       description: Production
   /tasks/api/v1/content-queue/{entityId}/rollback-to-v2:
     post:
-      operationId: t_value
+      operationId: postTasksApiV1ContentQueueByEntityIdRollbackToV2
       parameters: []
       responses:
         '200':
@@ -783,12 +887,14 @@ paths:
       - access-token: []
       summary: T value
       x-summary-source: derived
+      x-operation-id-source: normalized
+      x-operation-id-original: t_value
     servers:
     - url: https://tasks.zoca.ai
       description: Production
   /tasks/api/v1/content-queue/{entityId}/schedule-preferences:
     get:
-      operationId: t_value
+      operationId: getTasksApiV1ContentQueueByEntityIdSchedulePreferences
       parameters: []
       responses:
         '200':
@@ -799,8 +905,10 @@ paths:
       - access-token: []
       summary: T value
       x-summary-source: derived
+      x-operation-id-source: normalized
+      x-operation-id-original: t_value
     put:
-      operationId: t_value
+      operationId: putTasksApiV1ContentQueueByEntityIdSchedulePreferences
       parameters: []
       responses:
         '200':
@@ -811,6 +919,8 @@ paths:
       - access-token: []
       summary: T value
       x-summary-source: derived
+      x-operation-id-source: normalized
+      x-operation-id-original: t_value
     servers:
     - url: https://tasks.zoca.ai
       description: Production

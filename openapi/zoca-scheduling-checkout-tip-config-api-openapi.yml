@@ -24,7 +24,7 @@ paths:
       tags:
       - Scheduling - Checkout Tip Config
     post:
-      operationId: t_value
+      operationId: postSchedulingCheckoutTipConfig
       parameters: []
       responses:
         '201':
@@ -34,9 +34,11 @@ paths:
       summary: Create a checkout tip preset for a location
       tags:
       - Scheduling - Checkout Tip Config
+      x-operation-id-source: normalized
+      x-operation-id-original: t_value
   /scheduling/checkout-tip-config/{id}:
     patch:
-      operationId: t_value
+      operationId: patchSchedulingCheckoutTipConfigById
       parameters: []
       responses:
         '200':
@@ -46,8 +48,10 @@ paths:
       summary: Update a checkout tip preset
       tags:
       - Scheduling - Checkout Tip Config
+      x-operation-id-source: normalized
+      x-operation-id-original: t_value
     delete:
-      operationId: t_value
+      operationId: deleteSchedulingCheckoutTipConfigById
       parameters: []
       responses:
         '204':
@@ -57,6 +61,8 @@ paths:
       summary: Delete a checkout tip preset
       tags:
       - Scheduling - Checkout Tip Config
+      x-operation-id-source: normalized
+      x-operation-id-original: t_value
 components:
   securitySchemes:
     access-token:

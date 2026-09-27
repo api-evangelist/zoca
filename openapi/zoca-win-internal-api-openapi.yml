@@ -55,7 +55,7 @@ paths:
   /tasks/api/v1/win-internal/entities/{entityId}/state:
     get:
       description: 'Retrieves comprehensive state for a WIN-enabled entity including: onboarding status, agent context configuration, recent calls (last 10), callback counts, and location information.'
-      operationId: t_value
+      operationId: getTasksApiV1WinInternalEntitiesByEntityIdState
       parameters:
       - name: entityId
         required: true
@@ -75,10 +75,12 @@ paths:
       summary: Get complete entity state
       tags:
       - Win Internal
+      x-operation-id-source: normalized
+      x-operation-id-original: t_value
   /tasks/api/v1/win-internal/simulate/incoming-call:
     post:
       description: Simulates a Retell incoming call webhook for testing purposes. Returns the dynamic variables that would be sent to the Retell agent. Uses the entity's virtual number as the to_number if not specified.
-      operationId: t_value
+      operationId: postTasksApiV1WinInternalSimulateIncomingCall
       parameters: []
       requestBody:
         required: true
@@ -98,10 +100,12 @@ paths:
       summary: Simulate incoming call webhook
       tags:
       - Win Internal
+      x-operation-id-source: normalized
+      x-operation-id-original: t_value
   /tasks/api/v1/win-internal/simulate/call-event:
     post:
       description: Simulates a Retell call event webhook (call_started, call_ended, call_analyzed) for testing. Processes the event through the actual webhook handler and returns the result.
-      operationId: t_value
+      operationId: postTasksApiV1WinInternalSimulateCallEvent
       parameters: []
       requestBody:
         required: true
@@ -121,10 +125,12 @@ paths:
       summary: Simulate call event webhook
       tags:
       - Win Internal
+      x-operation-id-source: normalized
+      x-operation-id-original: t_value
   /tasks/api/v1/win-internal/win-status/{entityId}:
     get:
       description: Returns whether WIN (ZocaFrontDesk) is enabled for the entity, and whether the enablement comes from entity preference or cohort.
-      operationId: t_value
+      operationId: getTasksApiV1WinInternalWinStatusByEntityId
       parameters:
       - name: entityId
         required: true
@@ -142,10 +148,12 @@ paths:
       summary: Get WIN status for an entity
       tags:
       - Win Internal
+      x-operation-id-source: normalized
+      x-operation-id-original: t_value
   /tasks/api/v1/win-internal/win-status/entity:
     post:
       description: Sets the isFrontdeskAvailable preference for the entity. This controls whether the WIN feature is available in the app for this entity.
-      operationId: t_value
+      operationId: postTasksApiV1WinInternalWinStatusEntity
       parameters: []
       requestBody:
         required: true
@@ -163,10 +171,12 @@ paths:
       summary: Enable or disable WIN for an entity
       tags:
       - Win Internal
+      x-operation-id-source: normalized
+      x-operation-id-original: t_value
   /tasks/api/v1/win-internal/win-status/cohort:
     post:
       description: Sets the isFrontdeskAvailable preference for the cohort. All entities in the cohort will inherit this setting unless they have their own entity-level preference.
-      operationId: t_value
+      operationId: postTasksApiV1WinInternalWinStatusCohort
       parameters: []
       requestBody:
         required: true
@@ -184,6 +194,8 @@ paths:
       summary: Enable or disable WIN for a cohort
       tags:
       - Win Internal
+      x-operation-id-source: normalized
+      x-operation-id-original: t_value
 components:
   schemas:
     e:

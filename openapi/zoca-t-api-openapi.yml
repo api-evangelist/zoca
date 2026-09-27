@@ -30,7 +30,7 @@ paths:
       description: Production
   /brain/memories/{sourceId}/retry:
     post:
-      operationId: t_value
+      operationId: postBrainMemoriesBySourceIdRetry
       parameters: []
       responses:
         '200':
@@ -39,12 +39,14 @@ paths:
       - t
       summary: T value
       x-summary-source: derived
+      x-operation-id-source: normalized
+      x-operation-id-original: t_value
     servers:
     - url: https://api.zoca.ai
       description: Production
   /brain/memories/{id}:
     get:
-      operationId: t_value
+      operationId: getBrainMemoriesById
       parameters: []
       responses:
         '200':
@@ -53,8 +55,10 @@ paths:
       - t
       summary: T value
       x-summary-source: derived
+      x-operation-id-source: normalized
+      x-operation-id-original: t_value
     patch:
-      operationId: t_value
+      operationId: patchBrainMemoriesById
       parameters: []
       responses:
         '200':
@@ -63,8 +67,10 @@ paths:
       - t
       summary: T value
       x-summary-source: derived
+      x-operation-id-source: normalized
+      x-operation-id-original: t_value
     delete:
-      operationId: t_value
+      operationId: deleteBrainMemoriesById
       parameters: []
       responses:
         '200':
@@ -73,12 +79,14 @@ paths:
       - t
       summary: T value
       x-summary-source: derived
+      x-operation-id-source: normalized
+      x-operation-id-original: t_value
     servers:
     - url: https://api.zoca.ai
       description: Production
   /brain/memories/{id}/question:
     get:
-      operationId: t_value
+      operationId: getBrainMemoriesByIdQuestion
       parameters: []
       responses:
         '200':
@@ -87,12 +95,14 @@ paths:
       - t
       summary: T value
       x-summary-source: derived
+      x-operation-id-source: normalized
+      x-operation-id-original: t_value
     servers:
     - url: https://api.zoca.ai
       description: Production
   /brain/memories/{id}/history:
     get:
-      operationId: t_value
+      operationId: getBrainMemoriesByIdHistory
       parameters: []
       responses:
         '200':
@@ -101,12 +111,14 @@ paths:
       - t
       summary: T value
       x-summary-source: derived
+      x-operation-id-source: normalized
+      x-operation-id-original: t_value
     servers:
     - url: https://api.zoca.ai
       description: Production
   /brain/memories/reembed:
     post:
-      operationId: t_value
+      operationId: postBrainMemoriesReembed
       parameters: []
       responses:
         '200':
@@ -115,12 +127,14 @@ paths:
       - t
       summary: T value
       x-summary-source: derived
+      x-operation-id-source: normalized
+      x-operation-id-original: t_value
     servers:
     - url: https://api.zoca.ai
       description: Production
   /brain/documents/upload-url:
     post:
-      operationId: t_value
+      operationId: postBrainDocumentsUploadUrl
       parameters: []
       responses:
         '201':
@@ -129,12 +143,14 @@ paths:
       - t
       summary: T value
       x-summary-source: derived
+      x-operation-id-source: normalized
+      x-operation-id-original: t_value
     servers:
     - url: https://api.zoca.ai
       description: Production
   /brain/documents:
     post:
-      operationId: t_value
+      operationId: postBrainDocuments
       parameters: []
       responses:
         '201':
@@ -143,12 +159,14 @@ paths:
       - t
       summary: T value
       x-summary-source: derived
+      x-operation-id-source: normalized
+      x-operation-id-original: t_value
     servers:
     - url: https://api.zoca.ai
       description: Production
   /brain/documents/{docId}:
     get:
-      operationId: t_value
+      operationId: getBrainDocumentsByDocId
       parameters: []
       responses:
         '200':
@@ -157,12 +175,14 @@ paths:
       - t
       summary: T value
       x-summary-source: derived
+      x-operation-id-source: normalized
+      x-operation-id-original: t_value
     servers:
     - url: https://api.zoca.ai
       description: Production
   /brain/snapshot:
     get:
-      operationId: t_value
+      operationId: getBrainSnapshot
       parameters: []
       responses:
         '200':
@@ -171,12 +191,14 @@ paths:
       - t
       summary: T value
       x-summary-source: derived
+      x-operation-id-source: normalized
+      x-operation-id-original: t_value
     servers:
     - url: https://api.zoca.ai
       description: Production
   /brain/topics:
     get:
-      operationId: t_value
+      operationId: getBrainTopics
       parameters: []
       responses:
         '200':
@@ -185,12 +207,14 @@ paths:
       - t
       summary: T value
       x-summary-source: derived
+      x-operation-id-source: normalized
+      x-operation-id-original: t_value
     servers:
     - url: https://api.zoca.ai
       description: Production
   /brain/topics/subtopic-overrides:
     post:
-      operationId: t_value
+      operationId: postBrainTopicsSubtopicOverrides
       parameters: []
       responses:
         '200':
@@ -199,12 +223,14 @@ paths:
       - t
       summary: T value
       x-summary-source: derived
+      x-operation-id-source: normalized
+      x-operation-id-original: t_value
     servers:
     - url: https://api.zoca.ai
       description: Production
   /brain/services/completeness/overview:
     get:
-      operationId: t_value
+      operationId: getBrainServicesCompletenessOverview
       parameters: []
       responses:
         '200':
@@ -213,12 +239,14 @@ paths:
       - t
       summary: T value
       x-summary-source: derived
+      x-operation-id-source: normalized
+      x-operation-id-original: t_value
     servers:
     - url: https://api.zoca.ai
       description: Production
   /brain/services/completeness/by-service:
     get:
-      operationId: t_value
+      operationId: getBrainServicesCompletenessByService
       parameters: []
       responses:
         '200':
@@ -227,12 +255,14 @@ paths:
       - t
       summary: T value
       x-summary-source: derived
+      x-operation-id-source: normalized
+      x-operation-id-original: t_value
     servers:
     - url: https://api.zoca.ai
       description: Production
   /brain/services/rubric:
     get:
-      operationId: t_value
+      operationId: getBrainServicesRubric
       parameters: []
       responses:
         '200':
@@ -241,8 +271,10 @@ paths:
       - t
       summary: T value
       x-summary-source: derived
+      x-operation-id-source: normalized
+      x-operation-id-original: t_value
     patch:
-      operationId: t_value
+      operationId: patchBrainServicesRubric
       parameters: []
       responses:
         '200':
@@ -251,12 +283,14 @@ paths:
       - t
       summary: T value
       x-summary-source: derived
+      x-operation-id-source: normalized
+      x-operation-id-original: t_value
     servers:
     - url: https://api.zoca.ai
       description: Production
   /brain/overview:
     get:
-      operationId: t_value
+      operationId: getBrainOverview
       parameters: []
       responses:
         '200':
@@ -265,12 +299,14 @@ paths:
       - t
       summary: T value
       x-summary-source: derived
+      x-operation-id-source: normalized
+      x-operation-id-original: t_value
     servers:
     - url: https://api.zoca.ai
       description: Production
   /brain/onboarding-state:
     get:
-      operationId: t_value
+      operationId: getBrainOnboardingState
       parameters: []
       responses:
         '200':
@@ -279,8 +315,10 @@ paths:
       - t
       summary: T value
       x-summary-source: derived
+      x-operation-id-source: normalized
+      x-operation-id-original: t_value
     patch:
-      operationId: t_value
+      operationId: patchBrainOnboardingState
       parameters: []
       responses:
         '200':
@@ -289,12 +327,14 @@ paths:
       - t
       summary: T value
       x-summary-source: derived
+      x-operation-id-source: normalized
+      x-operation-id-original: t_value
     servers:
     - url: https://api.zoca.ai
       description: Production
   /brain/onboarding/training-questions:
     get:
-      operationId: t_value
+      operationId: getBrainOnboardingTrainingQuestions
       parameters: []
       responses:
         '200':
@@ -303,12 +343,14 @@ paths:
       - t
       summary: T value
       x-summary-source: derived
+      x-operation-id-source: normalized
+      x-operation-id-original: t_value
     servers:
     - url: https://api.zoca.ai
       description: Production
   /brain/onboarding/training-answers:
     post:
-      operationId: t_value
+      operationId: postBrainOnboardingTrainingAnswers
       parameters: []
       responses:
         '201':
@@ -317,12 +359,14 @@ paths:
       - t
       summary: T value
       x-summary-source: derived
+      x-operation-id-source: normalized
+      x-operation-id-original: t_value
     servers:
     - url: https://api.zoca.ai
       description: Production
   /brain/onboarding/training-answers/sync:
     post:
-      operationId: t_value
+      operationId: postBrainOnboardingTrainingAnswersSync
       parameters: []
       responses:
         '201':
@@ -331,12 +375,14 @@ paths:
       - t
       summary: T value
       x-summary-source: derived
+      x-operation-id-source: normalized
+      x-operation-id-original: t_value
     servers:
     - url: https://api.zoca.ai
       description: Production
   /brain/attribution/by-ref:
     get:
-      operationId: t_value
+      operationId: getBrainAttributionByRef
       parameters: []
       responses:
         '200':
@@ -345,8 +391,10 @@ paths:
       - t
       summary: T value
       x-summary-source: derived
+      x-operation-id-source: normalized
+      x-operation-id-original: t_value
     post:
-      operationId: t_value
+      operationId: postBrainAttributionByRef
       parameters: []
       responses:
         '201':
@@ -355,12 +403,14 @@ paths:
       - t
       summary: T value
       x-summary-source: derived
+      x-operation-id-source: normalized
+      x-operation-id-original: t_value
     servers:
     - url: https://api.zoca.ai
       description: Production
   /brain/attribution/clients-with-memory:
     get:
-      operationId: t_value
+      operationId: getBrainAttributionClientsWithMemory
       parameters: []
       responses:
         '200':
@@ -369,12 +419,14 @@ paths:
       - t
       summary: T value
       x-summary-source: derived
+      x-operation-id-source: normalized
+      x-operation-id-original: t_value
     servers:
     - url: https://api.zoca.ai
       description: Production
   /brain/seed:
     post:
-      operationId: t_value
+      operationId: postBrainSeed
       parameters: []
       responses:
         '202':
@@ -383,12 +435,14 @@ paths:
       - t
       summary: T value
       x-summary-source: derived
+      x-operation-id-source: normalized
+      x-operation-id-original: t_value
     servers:
     - url: https://api.zoca.ai
       description: Production
   /brain/seed/status:
     get:
-      operationId: t_value
+      operationId: getBrainSeedStatus
       parameters: []
       responses:
         '200':
@@ -397,12 +451,14 @@ paths:
       - t
       summary: T value
       x-summary-source: derived
+      x-operation-id-source: normalized
+      x-operation-id-original: t_value
     servers:
     - url: https://api.zoca.ai
       description: Production
   /brain/seed/preview:
     get:
-      operationId: t_value
+      operationId: getBrainSeedPreview
       parameters: []
       responses:
         '200':
@@ -411,12 +467,14 @@ paths:
       - t
       summary: T value
       x-summary-source: derived
+      x-operation-id-source: normalized
+      x-operation-id-original: t_value
     servers:
     - url: https://api.zoca.ai
       description: Production
   /brain/conflicts:
     get:
-      operationId: t_value
+      operationId: getBrainConflicts
       parameters: []
       responses:
         '200':
@@ -425,12 +483,14 @@ paths:
       - t
       summary: T value
       x-summary-source: derived
+      x-operation-id-source: normalized
+      x-operation-id-original: t_value
     servers:
     - url: https://api.zoca.ai
       description: Production
   /brain/conflicts/{id}/resolve:
     post:
-      operationId: t_value
+      operationId: postBrainConflictsByIdResolve
       parameters: []
       responses:
         '201':
@@ -439,12 +499,14 @@ paths:
       - t
       summary: T value
       x-summary-source: derived
+      x-operation-id-source: normalized
+      x-operation-id-original: t_value
     servers:
     - url: https://api.zoca.ai
       description: Production
   /brain/sessions/topic-candidates:
     get:
-      operationId: t_value
+      operationId: getBrainSessionsTopicCandidates
       parameters: []
       responses:
         '200':
@@ -453,12 +515,14 @@ paths:
       - t
       summary: T value
       x-summary-source: derived
+      x-operation-id-source: normalized
+      x-operation-id-original: t_value
     servers:
     - url: https://api.zoca.ai
       description: Production
   /brain/sessions:
     post:
-      operationId: t_value
+      operationId: postBrainSessions
       parameters: []
       responses:
         '201':
@@ -467,12 +531,14 @@ paths:
       - t
       summary: T value
       x-summary-source: derived
+      x-operation-id-source: normalized
+      x-operation-id-original: t_value
     servers:
     - url: https://api.zoca.ai
       description: Production
   /brain/sessions/{id}:
     get:
-      operationId: t_value
+      operationId: getBrainSessionsById
       parameters: []
       responses:
         '200':
@@ -481,12 +547,14 @@ paths:
       - t
       summary: T value
       x-summary-source: derived
+      x-operation-id-source: normalized
+      x-operation-id-original: t_value
     servers:
     - url: https://api.zoca.ai
       description: Production
   /brain/sessions/{id}/turns:
     post:
-      operationId: t_value
+      operationId: postBrainSessionsByIdTurns
       parameters: []
       responses:
         '201':
@@ -495,12 +563,14 @@ paths:
       - t
       summary: T value
       x-summary-source: derived
+      x-operation-id-source: normalized
+      x-operation-id-original: t_value
     servers:
     - url: https://api.zoca.ai
       description: Production
   /brain/sessions/{id}/end:
     post:
-      operationId: t_value
+      operationId: postBrainSessionsByIdEnd
       parameters: []
       responses:
         '201':
@@ -509,12 +579,14 @@ paths:
       - t
       summary: T value
       x-summary-source: derived
+      x-operation-id-source: normalized
+      x-operation-id-original: t_value
     servers:
     - url: https://api.zoca.ai
       description: Production
   /brain/sessions/{id}/memories:
     get:
-      operationId: t_value
+      operationId: getBrainSessionsByIdMemories
       parameters: []
       responses:
         '200':
@@ -523,12 +595,14 @@ paths:
       - t
       summary: T value
       x-summary-source: derived
+      x-operation-id-source: normalized
+      x-operation-id-original: t_value
     servers:
     - url: https://api.zoca.ai
       description: Production
   /brain/sessions/{id}/memory-chips:
     get:
-      operationId: t_value
+      operationId: getBrainSessionsByIdMemoryChips
       parameters: []
       responses:
         '200':
@@ -537,12 +611,14 @@ paths:
       - t
       summary: T value
       x-summary-source: derived
+      x-operation-id-source: normalized
+      x-operation-id-original: t_value
     servers:
     - url: https://api.zoca.ai
       description: Production
   /brain/context/search:
     post:
-      operationId: t_value
+      operationId: postBrainContextSearch
       parameters: []
       responses:
         '201':
@@ -551,12 +627,14 @@ paths:
       - t
       summary: T value
       x-summary-source: derived
+      x-operation-id-source: normalized
+      x-operation-id-original: t_value
     servers:
     - url: https://api.zoca.ai
       description: Production
   /brain/questions:
     get:
-      operationId: t_value
+      operationId: getBrainQuestions
       parameters: []
       responses:
         '200':
@@ -565,8 +643,10 @@ paths:
       - t
       summary: T value
       x-summary-source: derived
+      x-operation-id-source: normalized
+      x-operation-id-original: t_value
     post:
-      operationId: t_value
+      operationId: postBrainQuestions
       parameters: []
       responses:
         '201':
@@ -575,12 +655,14 @@ paths:
       - t
       summary: T value
       x-summary-source: derived
+      x-operation-id-source: normalized
+      x-operation-id-original: t_value
     servers:
     - url: https://api.zoca.ai
       description: Production
   /brain/questions/next-pending:
     get:
-      operationId: t_value
+      operationId: getBrainQuestionsNextPending
       parameters: []
       responses:
         '200':
@@ -589,12 +671,14 @@ paths:
       - t
       summary: T value
       x-summary-source: derived
+      x-operation-id-source: normalized
+      x-operation-id-original: t_value
     servers:
     - url: https://api.zoca.ai
       description: Production
   /brain/questions/ai-compose-suggestions:
     get:
-      operationId: t_value
+      operationId: getBrainQuestionsAiComposeSuggestions
       parameters: []
       responses:
         '200':
@@ -603,12 +687,14 @@ paths:
       - t
       summary: T value
       x-summary-source: derived
+      x-operation-id-source: normalized
+      x-operation-id-original: t_value
     servers:
     - url: https://api.zoca.ai
       description: Production
   /brain/questions/ai-generate:
     post:
-      operationId: t_value
+      operationId: postBrainQuestionsAiGenerate
       parameters: []
       responses:
         '200':
@@ -617,12 +703,14 @@ paths:
       - t
       summary: T value
       x-summary-source: derived
+      x-operation-id-source: normalized
+      x-operation-id-original: t_value
     servers:
     - url: https://api.zoca.ai
       description: Production
   /brain/questions/{id}:
     patch:
-      operationId: t_value
+      operationId: patchBrainQuestionsById
       parameters: []
       responses:
         '200':
@@ -631,12 +719,14 @@ paths:
       - t
       summary: T value
       x-summary-source: derived
+      x-operation-id-source: normalized
+      x-operation-id-original: t_value
     servers:
     - url: https://api.zoca.ai
       description: Production
   /brain/questions/{id}/memory:
     get:
-      operationId: t_value
+      operationId: getBrainQuestionsByIdMemory
       parameters: []
       responses:
         '200':
@@ -645,12 +735,14 @@ paths:
       - t
       summary: T value
       x-summary-source: derived
+      x-operation-id-source: normalized
+      x-operation-id-original: t_value
     servers:
     - url: https://api.zoca.ai
       description: Production
   /brain/questions/{id}/answer:
     post:
-      operationId: t_value
+      operationId: postBrainQuestionsByIdAnswer
       parameters: []
       responses:
         '202':
@@ -659,12 +751,14 @@ paths:
       - t
       summary: T value
       x-summary-source: derived
+      x-operation-id-source: normalized
+      x-operation-id-original: t_value
     servers:
     - url: https://api.zoca.ai
       description: Production
   /brain/questions/{id}/archive:
     post:
-      operationId: t_value
+      operationId: postBrainQuestionsByIdArchive
       parameters: []
       responses:
         '200':
@@ -673,12 +767,14 @@ paths:
       - t
       summary: T value
       x-summary-source: derived
+      x-operation-id-source: normalized
+      x-operation-id-original: t_value
     servers:
     - url: https://api.zoca.ai
       description: Production
   /brain/questions/{id}/pause:
     post:
-      operationId: t_value
+      operationId: postBrainQuestionsByIdPause
       parameters: []
       responses:
         '200':
@@ -687,12 +783,14 @@ paths:
       - t
       summary: T value
       x-summary-source: derived
+      x-operation-id-source: normalized
+      x-operation-id-original: t_value
     servers:
     - url: https://api.zoca.ai
       description: Production
   /brain/questions/{id}/restore:
     post:
-      operationId: t_value
+      operationId: postBrainQuestionsByIdRestore
       parameters: []
       responses:
         '200':
@@ -701,12 +799,14 @@ paths:
       - t
       summary: T value
       x-summary-source: derived
+      x-operation-id-source: normalized
+      x-operation-id-original: t_value
     servers:
     - url: https://api.zoca.ai
       description: Production
   /brain/candidates:
     get:
-      operationId: t_value
+      operationId: getBrainCandidates
       parameters: []
       responses:
         '200':
@@ -715,12 +815,14 @@ paths:
       - t
       summary: T value
       x-summary-source: derived
+      x-operation-id-source: normalized
+      x-operation-id-original: t_value
     servers:
     - url: https://api.zoca.ai
       description: Production
   /brain/candidates/{id}/confirm:
     post:
-      operationId: t_value
+      operationId: postBrainCandidatesByIdConfirm
       parameters: []
       responses:
         '200':
@@ -729,12 +831,14 @@ paths:
       - t
       summary: T value
       x-summary-source: derived
+      x-operation-id-source: normalized
+      x-operation-id-original: t_value
     servers:
     - url: https://api.zoca.ai
       description: Production
   /brain/candidates/{id}/refine:
     post:
-      operationId: t_value
+      operationId: postBrainCandidatesByIdRefine
       parameters: []
       responses:
         '200':
@@ -743,12 +847,14 @@ paths:
       - t
       summary: T value
       x-summary-source: derived
+      x-operation-id-source: normalized
+      x-operation-id-original: t_value
     servers:
     - url: https://api.zoca.ai
       description: Production
   /brain/candidates/{id}:
     patch:
-      operationId: t_value
+      operationId: patchBrainCandidatesById
       parameters: []
       responses:
         '200':
@@ -757,12 +863,14 @@ paths:
       - t
       summary: T value
       x-summary-source: derived
+      x-operation-id-source: normalized
+      x-operation-id-original: t_value
     servers:
     - url: https://api.zoca.ai
       description: Production
   /brain/candidates/{id}/reject:
     post:
-      operationId: t_value
+      operationId: postBrainCandidatesByIdReject
       parameters: []
       responses:
         '200':
@@ -771,12 +879,14 @@ paths:
       - t
       summary: T value
       x-summary-source: derived
+      x-operation-id-source: normalized
+      x-operation-id-original: t_value
     servers:
     - url: https://api.zoca.ai
       description: Production
   /brain/candidates/{id}/resolve-canonical-conflict:
     post:
-      operationId: t_value
+      operationId: postBrainCandidatesByIdResolveCanonicalConflict
       parameters: []
       responses:
         '200':
@@ -785,12 +895,14 @@ paths:
       - t
       summary: T value
       x-summary-source: derived
+      x-operation-id-source: normalized
+      x-operation-id-original: t_value
     servers:
     - url: https://api.zoca.ai
       description: Production
   /brain/candidates/{id}/resolve-semantic-conflict:
     post:
-      operationId: t_value
+      operationId: postBrainCandidatesByIdResolveSemanticConflict
       parameters: []
       responses:
         '200':
@@ -799,12 +911,14 @@ paths:
       - t
       summary: T value
       x-summary-source: derived
+      x-operation-id-source: normalized
+      x-operation-id-original: t_value
     servers:
     - url: https://api.zoca.ai
       description: Production
   /brain/candidates/{id}/resolve-archive-collision:
     post:
-      operationId: t_value
+      operationId: postBrainCandidatesByIdResolveArchiveCollision
       parameters: []
       responses:
         '200':
@@ -813,12 +927,14 @@ paths:
       - t
       summary: T value
       x-summary-source: derived
+      x-operation-id-source: normalized
+      x-operation-id-original: t_value
     servers:
     - url: https://api.zoca.ai
       description: Production
   /brain/candidates/inline-save:
     post:
-      operationId: t_value
+      operationId: postBrainCandidatesInlineSave
       parameters: []
       responses:
         '201':
@@ -827,12 +943,14 @@ paths:
       - t
       summary: T value
       x-summary-source: derived
+      x-operation-id-source: normalized
+      x-operation-id-original: t_value
     servers:
     - url: https://api.zoca.ai
       description: Production
   /brain/preview/answer:
     post:
-      operationId: t_value
+      operationId: postBrainPreviewAnswer
       parameters: []
       responses:
         '200':
@@ -841,12 +959,14 @@ paths:
       - t
       summary: T value
       x-summary-source: derived
+      x-operation-id-source: normalized
+      x-operation-id-original: t_value
     servers:
     - url: https://api.zoca.ai
       description: Production
   /brain/memories/{memoryId}/revisions:
     get:
-      operationId: t_value
+      operationId: getBrainMemoriesByMemoryIdRevisions
       parameters: []
       responses:
         '200':
@@ -855,12 +975,14 @@ paths:
       - t
       summary: T value
       x-summary-source: derived
+      x-operation-id-source: normalized
+      x-operation-id-original: t_value
     servers:
     - url: https://api.zoca.ai
       description: Production
   /brain/memories/{memoryId}/revisions/{revisionId}/restore:
     post:
-      operationId: t_value
+      operationId: postBrainMemoriesByMemoryIdRevisionsByRevisionIdRestore
       parameters: []
       responses:
         '200':
@@ -869,12 +991,14 @@ paths:
       - t
       summary: T value
       x-summary-source: derived
+      x-operation-id-source: normalized
+      x-operation-id-original: t_value
     servers:
     - url: https://api.zoca.ai
       description: Production
   /brain/agent-callback/propose-memory:
     post:
-      operationId: t_value
+      operationId: postBrainAgentCallbackProposeMemory
       parameters: []
       responses:
         '201':
@@ -883,12 +1007,14 @@ paths:
       - t
       summary: T value
       x-summary-source: derived
+      x-operation-id-source: normalized
+      x-operation-id-original: t_value
     servers:
     - url: https://api.zoca.ai
       description: Production
   /tasks/api/v1/employees/sdr/attendance:
     get:
-      operationId: t_value
+      operationId: getTasksApiV1EmployeesSdrAttendance
       parameters: []
       responses:
         '200':
@@ -899,12 +1025,14 @@ paths:
       - access-token: []
       summary: T value
       x-summary-source: derived
+      x-operation-id-source: normalized
+      x-operation-id-original: t_value
     servers:
     - url: https://tasks.zoca.ai
       description: Production
   /tasks/api/v1/employees/sdr/attendance/bulk:
     put:
-      operationId: t_value
+      operationId: putTasksApiV1EmployeesSdrAttendanceBulk
       parameters: []
       responses:
         '200':
@@ -915,12 +1043,14 @@ paths:
       - access-token: []
       summary: T value
       x-summary-source: derived
+      x-operation-id-source: normalized
+      x-operation-id-original: t_value
     servers:
     - url: https://tasks.zoca.ai
       description: Production
   /tasks/api/v1/employees/sdr/{entityId}/attendance:
     put:
-      operationId: t_value
+      operationId: putTasksApiV1EmployeesSdrByEntityIdAttendance
       parameters: []
       responses:
         '200':
@@ -931,12 +1061,14 @@ paths:
       - access-token: []
       summary: T value
       x-summary-source: derived
+      x-operation-id-source: normalized
+      x-operation-id-original: t_value
     servers:
     - url: https://tasks.zoca.ai
       description: Production
   /tasks/api/v1/employees/sdr/roster:
     get:
-      operationId: t_value
+      operationId: getTasksApiV1EmployeesSdrRoster
       parameters: []
       responses:
         '200':
@@ -947,12 +1079,14 @@ paths:
       - access-token: []
       summary: T value
       x-summary-source: derived
+      x-operation-id-source: normalized
+      x-operation-id-original: t_value
     servers:
     - url: https://tasks.zoca.ai
       description: Production
   /tasks/api/v1/employees/sdr/{entityId}/segments:
     put:
-      operationId: t_value
+      operationId: putTasksApiV1EmployeesSdrByEntityIdSegments
       parameters: []
       responses:
         '200':
@@ -963,12 +1097,14 @@ paths:
       - access-token: []
       summary: T value
       x-summary-source: derived
+      x-operation-id-source: normalized
+      x-operation-id-original: t_value
     servers:
     - url: https://tasks.zoca.ai
       description: Production
   /tasks/api/v1/employees/sdr/{entityId}/capacity:
     put:
-      operationId: t_value
+      operationId: putTasksApiV1EmployeesSdrByEntityIdCapacity
       parameters: []
       responses:
         '200':
@@ -979,12 +1115,14 @@ paths:
       - access-token: []
       summary: T value
       x-summary-source: derived
+      x-operation-id-source: normalized
+      x-operation-id-original: t_value
     servers:
     - url: https://tasks.zoca.ai
       description: Production
   /tasks/api/v1/employees/sdr/segments:
     get:
-      operationId: t_value
+      operationId: getTasksApiV1EmployeesSdrSegments
       parameters: []
       responses:
         '200':
@@ -995,8 +1133,10 @@ paths:
       - access-token: []
       summary: T value
       x-summary-source: derived
+      x-operation-id-source: normalized
+      x-operation-id-original: t_value
     post:
-      operationId: t_value
+      operationId: postTasksApiV1EmployeesSdrSegments
       parameters: []
       responses:
         '201':
@@ -1007,12 +1147,14 @@ paths:
       - access-token: []
       summary: T value
       x-summary-source: derived
+      x-operation-id-source: normalized
+      x-operation-id-original: t_value
     servers:
     - url: https://tasks.zoca.ai
       description: Production
   /tasks/api/v1/learning-center/pillars:
     get:
-      operationId: t_value
+      operationId: getTasksApiV1LearningCenterPillars
       parameters: []
       responses:
         '200':
@@ -1023,12 +1165,14 @@ paths:
       - access-token: []
       summary: T value
       x-summary-source: derived
+      x-operation-id-source: normalized
+      x-operation-id-original: t_value
     servers:
     - url: https://tasks.zoca.ai
       description: Production
   /tasks/api/v1/learning-center/pillars/{id}:
     get:
-      operationId: t_value
+      operationId: getTasksApiV1LearningCenterPillarsById
       parameters: []
       responses:
         '200':
@@ -1039,12 +1183,14 @@ paths:
       - access-token: []
       summary: T value
       x-summary-source: derived
+      x-operation-id-source: normalized
+      x-operation-id-original: t_value
     servers:
     - url: https://tasks.zoca.ai
       description: Production
   /tasks/api/v1/learning-center/modules:
     get:
-      operationId: t_value
+      operationId: getTasksApiV1LearningCenterModules
       parameters: []
       responses:
         '200':
@@ -1055,12 +1201,14 @@ paths:
       - access-token: []
       summary: T value
       x-summary-source: derived
+      x-operation-id-source: normalized
+      x-operation-id-original: t_value
     servers:
     - url: https://tasks.zoca.ai
       description: Production
   /tasks/api/v1/learning-center/modules/{id}:
     get:
-      operationId: t_value
+      operationId: getTasksApiV1LearningCenterModulesById
       parameters: []
       responses:
         '200':
@@ -1071,12 +1219,14 @@ paths:
       - access-token: []
       summary: T value
       x-summary-source: derived
+      x-operation-id-source: normalized
+      x-operation-id-original: t_value
     servers:
     - url: https://tasks.zoca.ai
       description: Production
   /tasks/api/v1/learning-center/modules/{moduleId}/lessons:
     get:
-      operationId: t_value
+      operationId: getTasksApiV1LearningCenterModulesByModuleIdLessons
       parameters: []
       responses:
         '200':
@@ -1087,12 +1237,14 @@ paths:
       - access-token: []
       summary: T value
       x-summary-source: derived
+      x-operation-id-source: normalized
+      x-operation-id-original: t_value
     servers:
     - url: https://tasks.zoca.ai
       description: Production
   /tasks/api/v1/learning-center/lessons/{id}:
     get:
-      operationId: t_value
+      operationId: getTasksApiV1LearningCenterLessonsById
       parameters: []
       responses:
         '200':
@@ -1103,12 +1255,14 @@ paths:
       - access-token: []
       summary: T value
       x-summary-source: derived
+      x-operation-id-source: normalized
+      x-operation-id-original: t_value
     servers:
     - url: https://tasks.zoca.ai
       description: Production
   /tasks/api/v1/learning-center/admin/pillars:
     post:
-      operationId: t_value
+      operationId: postTasksApiV1LearningCenterAdminPillars
       parameters: []
       responses:
         '201':
@@ -1119,12 +1273,14 @@ paths:
       - access-token: []
       summary: T value
       x-summary-source: derived
+      x-operation-id-source: normalized
+      x-operation-id-original: t_value
     servers:
     - url: https://tasks.zoca.ai
       description: Production
   /tasks/api/v1/learning-center/admin/pillars/{id}:
     put:
-      operationId: t_value
+      operationId: putTasksApiV1LearningCenterAdminPillarsById
       parameters: []
       responses:
         '200':
@@ -1135,8 +1291,10 @@ paths:
       - access-token: []
       summary: T value
       x-summary-source: derived
+      x-operation-id-source: normalized
+      x-operation-id-original: t_value
     delete:
-      operationId: t_value
+      operationId: deleteTasksApiV1LearningCenterAdminPillarsById
       parameters: []
       responses:
         '200':
@@ -1147,12 +1305,14 @@ paths:
       - access-token: []
       summary: T value
       x-summary-source: derived
+      x-operation-id-source: normalized
+      x-operation-id-original: t_value
     servers:
     - url: https://tasks.zoca.ai
       description: Production
   /tasks/api/v1/learning-center/admin/modules:
     post:
-      operationId: t_value
+      operationId: postTasksApiV1LearningCenterAdminModules
       parameters: []
       responses:
         '201':
@@ -1163,12 +1323,14 @@ paths:
       - access-token: []
       summary: T value
       x-summary-source: derived
+      x-operation-id-source: normalized
+      x-operation-id-original: t_value
     servers:
     - url: https://tasks.zoca.ai
       description: Production
   /tasks/api/v1/learning-center/admin/modules/{id}:
     put:
-      operationId: t_value
+      operationId: putTasksApiV1LearningCenterAdminModulesById
       parameters: []
       responses:
         '200':
@@ -1179,8 +1341,10 @@ paths:
       - access-token: []
       summary: T value
       x-summary-source: derived
+      x-operation-id-source: normalized
+      x-operation-id-original: t_value
     delete:
-      operationId: t_value
+      operationId: deleteTasksApiV1LearningCenterAdminModulesById
       parameters: []
       responses:
         '200':
@@ -1191,12 +1355,14 @@ paths:
       - access-token: []
       summary: T value
       x-summary-source: derived
+      x-operation-id-source: normalized
+      x-operation-id-original: t_value
     servers:
     - url: https://tasks.zoca.ai
       description: Production
   /tasks/api/v1/learning-center/admin/lessons:
     post:
-      operationId: t_value
+      operationId: postTasksApiV1LearningCenterAdminLessons
       parameters: []
       responses:
         '201':
@@ -1207,12 +1373,14 @@ paths:
       - access-token: []
       summary: T value
       x-summary-source: derived
+      x-operation-id-source: normalized
+      x-operation-id-original: t_value
     servers:
     - url: https://tasks.zoca.ai
       description: Production
   /tasks/api/v1/learning-center/admin/lessons/{id}:
     put:
-      operationId: t_value
+      operationId: putTasksApiV1LearningCenterAdminLessonsById
       parameters: []
       responses:
         '200':
@@ -1223,8 +1391,10 @@ paths:
       - access-token: []
       summary: T value
       x-summary-source: derived
+      x-operation-id-source: normalized
+      x-operation-id-original: t_value
     delete:
-      operationId: t_value
+      operationId: deleteTasksApiV1LearningCenterAdminLessonsById
       parameters: []
       responses:
         '200':
@@ -1235,12 +1405,14 @@ paths:
       - access-token: []
       summary: T value
       x-summary-source: derived
+      x-operation-id-source: normalized
+      x-operation-id-original: t_value
     servers:
     - url: https://tasks.zoca.ai
       description: Production
   /tasks/api/v1/learning-center/assessments:
     get:
-      operationId: t_value
+      operationId: getTasksApiV1LearningCenterAssessments
       parameters: []
       responses:
         '200':
@@ -1251,12 +1423,14 @@ paths:
       - access-token: []
       summary: T value
       x-summary-source: derived
+      x-operation-id-source: normalized
+      x-operation-id-original: t_value
     servers:
     - url: https://tasks.zoca.ai
       description: Production
   /tasks/api/v1/learning-center/assessments/{id}:
     get:
-      operationId: t_value
+      operationId: getTasksApiV1LearningCenterAssessmentsById
       parameters: []
       responses:
         '200':
@@ -1267,12 +1441,14 @@ paths:
       - access-token: []
       summary: T value
       x-summary-source: derived
+      x-operation-id-source: normalized
+      x-operation-id-original: t_value
     servers:
     - url: https://tasks.zoca.ai
       description: Production
   /tasks/api/v1/learning-center/assessments/{id}/with-status:
     get:
-      operationId: t_value
+      operationId: getTasksApiV1LearningCenterAssessmentsByIdWithStatus
       parameters: []
       responses:
         '200':
@@ -1283,12 +1459,14 @@ paths:
       - access-token: []
       summary: T value
       x-summary-source: derived
+      x-operation-id-source: normalized
+      x-operation-id-original: t_value
     servers:
     - url: https://tasks.zoca.ai
       description: Production
   /tasks/api/v1/learning-center/assessments/{id}/questions:
     get:
-      operationId: t_value
+      operationId: getTasksApiV1LearningCenterAssessmentsByIdQuestions
       parameters: []
       responses:
         '200':
@@ -1299,12 +1477,14 @@ paths:
       - access-token: []
       summary: T value
       x-summary-source: derived
+      x-operation-id-source: normalized
+      x-operation-id-original: t_value
     servers:
     - url: https://tasks.zoca.ai
       description: Production
   /tasks/api/v1/learning-center/admin/assessments:
     post:
-      operationId: t_value
+      operationId: postTasksApiV1LearningCenterAdminAssessments
       parameters: []
       responses:
         '201':
@@ -1315,12 +1495,14 @@ paths:
       - access-token: []
       summary: T value
       x-summary-source: derived
+      x-operation-id-source: normalized
+      x-operation-id-original: t_value
     servers:
     - url: https://tasks.zoca.ai
       description: Production
   /tasks/api/v1/learning-center/admin/assessments/{id}:
     put:
-      operationId: t_value
+      operationId: putTasksApiV1LearningCenterAdminAssessmentsById
       parameters: []
       responses:
         '200':
@@ -1331,8 +1513,10 @@ paths:
       - access-token: []
       summary: T value
       x-summary-source: derived
+      x-operation-id-source: normalized
+      x-operation-id-original: t_value
     delete:
-      operationId: t_value
+      operationId: deleteTasksApiV1LearningCenterAdminAssessmentsById
       parameters: []
       responses:
         '200':
@@ -1343,12 +1527,14 @@ paths:
       - access-token: []
       summary: T value
       x-summary-source: derived
+      x-operation-id-source: normalized
+      x-operation-id-original: t_value
     servers:
     - url: https://tasks.zoca.ai
       description: Production
   /tasks/api/v1/learning-center/admin/assessments/{id}/questions/mcq:
     post:
-      operationId: t_value
+      operationId: postTasksApiV1LearningCenterAdminAssessmentsByIdQuestionsMcq
       parameters: []
       responses:
         '201':
@@ -1359,12 +1545,14 @@ paths:
       - access-token: []
       summary: T value
       x-summary-source: derived
+      x-operation-id-source: normalized
+      x-operation-id-original: t_value
     servers:
     - url: https://tasks.zoca.ai
       description: Production
   /tasks/api/v1/learning-center/admin/assessments/{id}/questions/subjective:
     post:
-      operationId: t_value
+      operationId: postTasksApiV1LearningCenterAdminAssessmentsByIdQuestionsSubjective
       parameters: []
       responses:
         '201':
@@ -1375,12 +1563,14 @@ paths:
       - access-token: []
       summary: T value
       x-summary-source: derived
+      x-operation-id-source: normalized
+      x-operation-id-original: t_value
     servers:
     - url: https://tasks.zoca.ai
       description: Production
   /tasks/api/v1/learning-center/admin/assessments/questions/mcq/{questionId}:
     put:
-      operationId: t_value
+      operationId: putTasksApiV1LearningCenterAdminAssessmentsQuestionsMcqByQuestionId
       parameters: []
       responses:
         '200':
@@ -1391,12 +1581,14 @@ paths:
       - access-token: []
       summary: T value
       x-summary-source: derived
+      x-operation-id-source: normalized
+      x-operation-id-original: t_value
     servers:
     - url: https://tasks.zoca.ai
       description: Production
   /tasks/api/v1/learning-center/admin/assessments/questions/subjective/{questionId}:
     put:
-      operationId: t_value
+      operationId: putTasksApiV1LearningCenterAdminAssessmentsQuestionsSubjectiveByQuestionId
       parameters: []
       responses:
         '200':
@@ -1407,12 +1599,14 @@ paths:
       - access-token: []
       summary: T value
       x-summary-source: derived
+      x-operation-id-source: normalized
+      x-operation-id-original: t_value
     servers:
     - url: https://tasks.zoca.ai
       description: Production
   /tasks/api/v1/learning-center/admin/assessments/questions/{questionId}:
     delete:
-      operationId: t_value
+      operationId: deleteTasksApiV1LearningCenterAdminAssessmentsQuestionsByQuestionId
       parameters: []
       responses:
         '200':
@@ -1423,12 +1617,14 @@ paths:
       - access-token: []
       summary: T value
       x-summary-source: derived
+      x-operation-id-source: normalized
+      x-operation-id-original: t_value
     servers:
     - url: https://tasks.zoca.ai
       description: Production
   /tasks/api/v1/learning-center/admin/assignments:
     post:
-      operationId: t_value
+      operationId: postTasksApiV1LearningCenterAdminAssignments
       parameters: []
       responses:
         '201':
@@ -1439,8 +1635,10 @@ paths:
       - access-token: []
       summary: T value
       x-summary-source: derived
+      x-operation-id-source: normalized
+      x-operation-id-original: t_value
     delete:
-      operationId: t_value
+      operationId: deleteTasksApiV1LearningCenterAdminAssignments
       parameters: []
       responses:
         '200':
@@ -1451,8 +1649,10 @@ paths:
       - access-token: []
       summary: T value
       x-summary-source: derived
+      x-operation-id-source: normalized
+      x-operation-id-original: t_value
     get:
-      operationId: t_value
+      operationId: getTasksApiV1LearningCenterAdminAssignments
       parameters: []
       responses:
         '200':
@@ -1463,12 +1663,14 @@ paths:
       - access-token: []
       summary: T value
       x-summary-source: derived
+      x-operation-id-source: normalized
+      x-operation-id-original: t_value
     servers:
     - url: https://tasks.zoca.ai
       description: Production
   /tasks/api/v1/learning-center/admin/assignments/bulk:
     post:
-      operationId: t_value
+      operationId: postTasksApiV1LearningCenterAdminAssignmentsBulk
       parameters: []
       responses:
         '201':
@@ -1479,8 +1681,10 @@ paths:
       - access-token: []
       summary: T value
       x-summary-source: derived
+      x-operation-id-source: normalized
+      x-operation-id-original: t_value
     delete:
-      operationId: t_value
+      operationId: deleteTasksApiV1LearningCenterAdminAssignmentsBulk
       parameters: []
       responses:
         '200':
@@ -1491,12 +1695,14 @@ paths:
       - access-token: []
       summary: T value
       x-summary-source: derived
+      x-operation-id-source: normalized
+      x-operation-id-original: t_value
     servers:
     - url: https://tasks.zoca.ai
       description: Production
   /tasks/api/v1/learning-center/admin/answers/needs-review:
     get:
-      operationId: t_value
+      operationId: getTasksApiV1LearningCenterAdminAnswersNeedsReview
       parameters: []
       responses:
         '200':
@@ -1507,12 +1713,14 @@ paths:
       - access-token: []
       summary: T value
       x-summary-source: derived
+      x-operation-id-source: normalized
+      x-operation-id-original: t_value
     servers:
     - url: https://tasks.zoca.ai
       description: Production
   /tasks/api/v1/learning-center/admin/answers/{id}/override:
     post:
-      operationId: t_value
+      operationId: postTasksApiV1LearningCenterAdminAnswersByIdOverride
       parameters: []
       responses:
         '201':
@@ -1523,12 +1731,14 @@ paths:
       - access-token: []
       summary: T value
       x-summary-source: derived
+      x-operation-id-source: normalized
+      x-operation-id-original: t_value
     servers:
     - url: https://tasks.zoca.ai
       description: Production
   /tasks/api/v1/learning-center/admin/answers/{id}/calibrate:
     post:
-      operationId: t_value
+      operationId: postTasksApiV1LearningCenterAdminAnswersByIdCalibrate
       parameters: []
       responses:
         '201':
@@ -1539,12 +1749,14 @@ paths:
       - access-token: []
       summary: T value
       x-summary-source: derived
+      x-operation-id-source: normalized
+      x-operation-id-original: t_value
     servers:
     - url: https://tasks.zoca.ai
       description: Production
   /tasks/api/v1/learning-center/admin/attempts/unlock:
     post:
-      operationId: t_value
+      operationId: postTasksApiV1LearningCenterAdminAttemptsUnlock
       parameters: []
       responses:
         '201':
@@ -1555,12 +1767,14 @@ paths:
       - access-token: []
       summary: T value
       x-summary-source: derived
+      x-operation-id-source: normalized
+      x-operation-id-original: t_value
     servers:
     - url: https://tasks.zoca.ai
       description: Production
   /tasks/api/v1/learning-center/me:
     get:
-      operationId: t_value
+      operationId: getTasksApiV1LearningCenterMe
       parameters: []
       responses:
         '200':
@@ -1571,12 +1785,14 @@ paths:
       - access-token: []
       summary: T value
       x-summary-source: derived
+      x-operation-id-source: normalized
+      x-operation-id-original: t_value
     servers:
     - url: https://tasks.zoca.ai
       description: Production
   /tasks/api/v1/learning-center/me/dashboard:
     get:
-      operationId: t_value
+      operationId: getTasksApiV1LearningCenterMeDashboard
       parameters: []
       responses:
         '200':
@@ -1587,12 +1803,14 @@ paths:
       - access-token: []
       summary: T value
       x-summary-source: derived
+      x-operation-id-source: normalized
+      x-operation-id-original: t_value
     servers:
     - url: https://tasks.zoca.ai
       description: Production
   /tasks/api/v1/learning-center/users/{userId}/lessons/{id}:
     get:
-      operationId: t_value
+      operationId: getTasksApiV1LearningCenterUsersByUserIdLessonsById
       parameters: []
       responses:
         '200':
@@ -1603,12 +1821,14 @@ paths:
       - access-token: []
       summary: T value
       x-summary-source: derived
+      x-operation-id-source: normalized
+      x-operation-id-original: t_value
     servers:
     - url: https://tasks.zoca.ai
       description: Production
   /tasks/api/v1/learning-center/users/{userId}/modules/{moduleId}/lessons:
     get:
-      operationId: t_value
+      operationId: getTasksApiV1LearningCenterUsersByUserIdModulesByModuleIdLessons
       parameters: []
       responses:
         '200':
@@ -1619,12 +1839,14 @@ paths:
       - access-token: []
       summary: T value
       x-summary-source: derived
+      x-operation-id-source: normalized
+      x-operation-id-original: t_value
     servers:
     - url: https://tasks.zoca.ai
       description: Production
   /tasks/api/v1/learning-center/lessons/{id}/start:
     post:
-      operationId: t_value
+      operationId: postTasksApiV1LearningCenterLessonsByIdStart
       parameters: []
       responses:
         '201':
@@ -1635,12 +1857,14 @@ paths:
       - access-token: []
       summary: T value
       x-summary-source: derived
+      x-operation-id-source: normalized
+      x-operation-id-original: t_value
     servers:
     - url: https://tasks.zoca.ai
       description: Production
   /tasks/api/v1/learning-center/lessons/{id}/complete:
     post:
-      operationId: t_value
+      operationId: postTasksApiV1LearningCenterLessonsByIdComplete
       parameters: []
       responses:
         '201':
@@ -1651,6 +1875,8 @@ paths:
       - access-token: []
       summary: T value
       x-summary-source: derived
+      x-operation-id-source: normalized
+      x-operation-id-original: t_value
     servers:
     - url: https://tasks.zoca.ai
       description: Production

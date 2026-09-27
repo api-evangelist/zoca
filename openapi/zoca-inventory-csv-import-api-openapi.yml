@@ -25,7 +25,7 @@ paths:
       - Inventory CSV Import
   /inventory/csv-import/entity/{entityId}/{jobId}:
     get:
-      operationId: t_value
+      operationId: getInventoryCsvImportEntityByEntityIdByJobId
       parameters: []
       responses:
         '200':
@@ -35,6 +35,8 @@ paths:
       summary: Get CSV import job status
       tags:
       - Inventory CSV Import
+      x-operation-id-source: normalized
+      x-operation-id-original: t_value
 components:
   securitySchemes:
     access-token:

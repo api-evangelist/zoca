@@ -62,7 +62,7 @@ paths:
       - Image Generation
   /tasks/api/v1/image-generation/edit:
     post:
-      operationId: t_value
+      operationId: postTasksApiV1ImageGenerationEdit
       parameters: []
       requestBody:
         required: true
@@ -110,9 +110,11 @@ paths:
       summary: Edit an existing image using a text prompt
       tags:
       - Image Generation
+      x-operation-id-source: normalized
+      x-operation-id-original: t_value
   /tasks/api/v1/image-generation/supported-models:
     post:
-      operationId: t_value
+      operationId: postTasksApiV1ImageGenerationSupportedModels
       parameters: []
       requestBody:
         required: true
@@ -165,9 +167,11 @@ paths:
       summary: Get supported models for a specific AI provider
       tags:
       - Image Generation
+      x-operation-id-source: normalized
+      x-operation-id-original: t_value
   /tasks/api/v1/image-generation/generate-and-save:
     post:
-      operationId: t_value
+      operationId: postTasksApiV1ImageGenerationGenerateAndSave
       parameters: []
       requestBody:
         required: true
@@ -207,9 +211,11 @@ paths:
       summary: Generate an image and save it to the media library
       tags:
       - Image Generation
+      x-operation-id-source: normalized
+      x-operation-id-original: t_value
   /tasks/api/v1/image-generation/generate-variation:
     post:
-      operationId: t_value
+      operationId: postTasksApiV1ImageGenerationGenerateVariation
       parameters: []
       requestBody:
         required: true
@@ -251,9 +257,11 @@ paths:
       summary: Generate a variation of an existing image
       tags:
       - Image Generation
+      x-operation-id-source: normalized
+      x-operation-id-original: t_value
   /tasks/api/v1/image-generation/upscale-from-directory:
     get:
-      operationId: t_value
+      operationId: getTasksApiV1ImageGenerationUpscaleFromDirectory
       parameters: []
       responses:
         '200':
@@ -295,33 +303,10 @@ paths:
       summary: Upscale all images from a directory
       tags:
       - Image Generation
+      x-operation-id-source: normalized
+      x-operation-id-original: t_value
 components:
   schemas:
-    e:
-      type: object
-      properties:
-        scan:
-          $ref: '#/components/schemas/e'
-        businessLat:
-          type:
-          - number
-          - 'null'
-        businessLng:
-          type:
-          - number
-          - 'null'
-        points:
-          type: array
-          items:
-            $ref: '#/components/schemas/e'
-        heroMetrics:
-          $ref: '#/components/schemas/e'
-      required:
-      - scan
-      - businessLat
-      - businessLng
-      - points
-      - heroMetrics
     t:
       type: object
       properties:
@@ -377,6 +362,31 @@ components:
       - status
       - createdAt
       - clientId
+    e:
+      type: object
+      properties:
+        scan:
+          $ref: '#/components/schemas/e'
+        businessLat:
+          type:
+          - number
+          - 'null'
+        businessLng:
+          type:
+          - number
+          - 'null'
+        points:
+          type: array
+          items:
+            $ref: '#/components/schemas/e'
+        heroMetrics:
+          $ref: '#/components/schemas/e'
+      required:
+      - scan
+      - businessLat
+      - businessLng
+      - points
+      - heroMetrics
   securitySchemes:
     access-token:
       scheme: bearer

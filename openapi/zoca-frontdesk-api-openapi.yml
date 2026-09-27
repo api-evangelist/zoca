@@ -38,7 +38,7 @@ paths:
       description: Production
   /frontdesk/multilocation/{businessEntityId}/locations:
     get:
-      operationId: t_value
+      operationId: getFrontdeskMultilocationByBusinessEntityIdLocations
       parameters:
       - name: businessEntityId
         required: true
@@ -55,12 +55,14 @@ paths:
       summary: Front Desk Control Tower — ranked locations table
       tags:
       - Frontdesk
+      x-operation-id-source: normalized
+      x-operation-id-original: t_value
     servers:
     - url: https://api.zoca.ai
       description: Production
   /frontdesk/multilocation/{businessEntityId}/activity:
     get:
-      operationId: t_value
+      operationId: getFrontdeskMultilocationByBusinessEntityIdActivity
       parameters:
       - name: businessEntityId
         required: true
@@ -77,13 +79,15 @@ paths:
       summary: Front Desk Control Tower — network activity feed
       tags:
       - Frontdesk
+      x-operation-id-source: normalized
+      x-operation-id-original: t_value
     servers:
     - url: https://api.zoca.ai
       description: Production
   /frontdesk/handover/{clientId}/toggle:
     post:
       description: 'Flips human handover in chatbot.human_handovers: enables it when off, disables it when on. Response reflects the resulting state.'
-      operationId: t_value
+      operationId: postFrontdeskHandoverByClientIdToggle
       parameters:
       - name: clientId
         required: true
@@ -96,13 +100,15 @@ paths:
       summary: Toggle human handover for a client
       tags:
       - Frontdesk
+      x-operation-id-source: normalized
+      x-operation-id-original: t_value
     servers:
     - url: https://api.zoca.ai
       description: Production
   /frontdesk/handover/{clientId}/deactivate:
     post:
       description: 'Soft-first: deletes the Redis temp-handover key when present, else deactivates the chatbot.human_handovers row. When `disposition` is supplied, the SP-chosen ConversationState is pinned; otherwise the full conversation is analyzed immediately. Any resulting follow-up remains delayed until the grace period ends.'
-      operationId: t_value
+      operationId: postFrontdeskHandoverByClientIdDeactivate
       parameters:
       - name: clientId
         required: true
@@ -115,13 +121,15 @@ paths:
       summary: Deactivate human handover for a client
       tags:
       - Frontdesk
+      x-operation-id-source: normalized
+      x-operation-id-original: t_value
     servers:
     - url: https://api.zoca.ai
       description: Production
   /frontdesk/handover/{clientId}/status:
     get:
       description: Returns { soft, hard, active, softExpiresAt } — soft is the Redis temp handover (softExpiresAt is its ISO expiry, null when inactive), hard is the chatbot.human_handovers row, active is soft OR hard.
-      operationId: t_value
+      operationId: getFrontdeskHandoverByClientIdStatus
       parameters:
       - name: entityId
         required: true
@@ -139,13 +147,15 @@ paths:
       summary: Check whether a client is in human handover (soft or hard)
       tags:
       - Frontdesk
+      x-operation-id-source: normalized
+      x-operation-id-original: t_value
     servers:
     - url: https://api.zoca.ai
       description: Production
   /frontdesk/status/{entityId}:
     get:
       description: Retrieves comprehensive status including business info, virtual number, context data, and subscription status
-      operationId: t_value
+      operationId: getFrontdeskStatusByEntityId
       parameters:
       - name: entityId
         required: true
@@ -160,12 +170,14 @@ paths:
       summary: Get Frontdesk onboarding status
       tags:
       - Frontdesk
+      x-operation-id-source: normalized
+      x-operation-id-original: t_value
     servers:
     - url: https://api.zoca.ai
       description: Production
   /frontdesk/overview/{locationEntityId}:
     get:
-      operationId: t_value
+      operationId: getFrontdeskOverviewByLocationEntityId
       parameters:
       - name: locationEntityId
         required: true
@@ -178,12 +190,14 @@ paths:
       summary: Front Desk dashboard — Overview cards (v1)
       tags:
       - Frontdesk
+      x-operation-id-source: normalized
+      x-operation-id-original: t_value
     servers:
     - url: https://api.zoca.ai
       description: Production
   /frontdesk/analytics/{locationEntityId}:
     get:
-      operationId: t_value
+      operationId: getFrontdeskAnalyticsByLocationEntityId
       parameters:
       - name: locationEntityId
         required: true
@@ -196,12 +210,14 @@ paths:
       summary: Front Desk dashboard — Analytics tab (7 widgets)
       tags:
       - Frontdesk
+      x-operation-id-source: normalized
+      x-operation-id-original: t_value
     servers:
     - url: https://api.zoca.ai
       description: Production
   /frontdesk/analytics-v2/{locationEntityId}:
     get:
-      operationId: t_value
+      operationId: getFrontdeskAnalyticsV2ByLocationEntityId
       parameters:
       - name: locationEntityId
         required: true
@@ -214,13 +230,15 @@ paths:
       summary: Front Desk dashboard — Analytics tab v2 (real data from call_callbacks)
       tags:
       - Frontdesk
+      x-operation-id-source: normalized
+      x-operation-id-original: t_value
     servers:
     - url: https://api.zoca.ai
       description: Production
   /frontdesk/bookings/{entityId}:
     get:
       description: Returns paginated booking attempts written by the frontdesk AI agent, ordered by createdAt desc. Supports status filter + limit/offset pagination.
-      operationId: t_value
+      operationId: getFrontdeskBookingsByEntityId
       parameters:
       - name: entityId
         required: true
@@ -237,12 +255,14 @@ paths:
       summary: List frontdesk bookings for an entity
       tags:
       - Frontdesk
+      x-operation-id-source: normalized
+      x-operation-id-original: t_value
     servers:
     - url: https://api.zoca.ai
       description: Production
   /tasks/api/v1/frontdesk/chat:
     post:
-      operationId: t_value
+      operationId: postTasksApiV1FrontdeskChat
       parameters: []
       requestBody:
         required: true
@@ -262,12 +282,14 @@ paths:
       - Frontdesk
       security:
       - access-token: []
+      x-operation-id-source: normalized
+      x-operation-id-original: t_value
     servers:
     - url: https://tasks.zoca.ai
       description: Production
   /tasks/api/v1/frontdesk/chat/stream:
     post:
-      operationId: t_value
+      operationId: postTasksApiV1FrontdeskChatStream
       parameters: []
       requestBody:
         required: true
@@ -283,12 +305,14 @@ paths:
       - Frontdesk
       security:
       - access-token: []
+      x-operation-id-source: normalized
+      x-operation-id-original: t_value
     servers:
     - url: https://tasks.zoca.ai
       description: Production
   /tasks/api/v1/frontdesk/message:
     post:
-      operationId: t_value
+      operationId: postTasksApiV1FrontdeskMessage
       parameters: []
       requestBody:
         required: true
@@ -308,13 +332,15 @@ paths:
       - Frontdesk
       security:
       - access-token: []
+      x-operation-id-source: normalized
+      x-operation-id-original: t_value
     servers:
     - url: https://tasks.zoca.ai
       description: Production
   /tasks/api/v1/frontdesk/manual-message:
     post:
       description: Dispatches a human-authored message to the customer, sets a temporary human handover, and records it as a HUMAN_AGENT turn. No LLM runs.
-      operationId: t_value
+      operationId: postTasksApiV1FrontdeskManualMessage
       parameters: []
       requestBody:
         required: true
@@ -330,12 +356,14 @@ paths:
       - Frontdesk
       security:
       - access-token: []
+      x-operation-id-source: normalized
+      x-operation-id-original: t_value
     servers:
     - url: https://tasks.zoca.ai
       description: Production
   /tasks/api/v1/frontdesk/conversations/{conversationId}:
     get:
-      operationId: t_value
+      operationId: getTasksApiV1FrontdeskConversationsByConversationId
       parameters:
       - name: entityId
         required: true
@@ -356,8 +384,10 @@ paths:
       - Frontdesk
       security:
       - access-token: []
+      x-operation-id-source: normalized
+      x-operation-id-original: t_value
     delete:
-      operationId: t_value
+      operationId: deleteTasksApiV1FrontdeskConversationsByConversationId
       parameters:
       - name: entityId
         required: true
@@ -378,12 +408,14 @@ paths:
       - Frontdesk
       security:
       - access-token: []
+      x-operation-id-source: normalized
+      x-operation-id-original: t_value
     servers:
     - url: https://tasks.zoca.ai
       description: Production
   /tasks/api/v1/frontdesk/conversations:
     get:
-      operationId: t_value
+      operationId: getTasksApiV1FrontdeskConversations
       parameters:
       - name: limit
         required: false
@@ -403,12 +435,14 @@ paths:
       - Frontdesk
       security:
       - access-token: []
+      x-operation-id-source: normalized
+      x-operation-id-original: t_value
     servers:
     - url: https://tasks.zoca.ai
       description: Production
   /tasks/api/v1/frontdesk/conversations/{conversationId}/messages:
     get:
-      operationId: t_value
+      operationId: getTasksApiV1FrontdeskConversationsByConversationIdMessages
       parameters:
       - name: limit
         required: false
@@ -433,12 +467,14 @@ paths:
       - Frontdesk
       security:
       - access-token: []
+      x-operation-id-source: normalized
+      x-operation-id-original: t_value
     servers:
     - url: https://tasks.zoca.ai
       description: Production
   /tasks/api/v1/frontdesk/conversations/by-client/{clientId}/messages:
     get:
-      operationId: t_value
+      operationId: getTasksApiV1FrontdeskConversationsByClientByClientIdMessages
       parameters:
       - name: limit
         required: false
@@ -463,6 +499,8 @@ paths:
       - Frontdesk
       security:
       - access-token: []
+      x-operation-id-source: normalized
+      x-operation-id-original: t_value
     servers:
     - url: https://tasks.zoca.ai
       description: Production
@@ -513,7 +551,7 @@ paths:
       description: Production
   /tasks/api/v1/frontdesk/card-links/{bookingRef}/slot:
     get:
-      operationId: t_value
+      operationId: getTasksApiV1FrontdeskCardLinksByBookingRefSlot
       parameters:
       - name: bookingRef
         required: true
@@ -528,13 +566,15 @@ paths:
       - Frontdesk
       security:
       - access-token: []
+      x-operation-id-source: normalized
+      x-operation-id-original: t_value
     servers:
     - url: https://tasks.zoca.ai
       description: Production
   /tasks/api/v1/frontdesk/webhooks/sms:
     post:
       description: Resolves entityId from the business phone (`to`) and clientId from the sender phone (`from`), runs the frontdesk agent against the message, returns the agent response in the body. Provider-side dispatch is the caller’s responsibility.
-      operationId: t_value
+      operationId: postTasksApiV1FrontdeskWebhooksSms
       parameters: []
       requestBody:
         required: true
@@ -556,13 +596,15 @@ paths:
       - Frontdesk
       security:
       - access-token: []
+      x-operation-id-source: normalized
+      x-operation-id-original: t_value
     servers:
     - url: https://tasks.zoca.ai
       description: Production
   /tasks/api/v1/frontdesk/webhooks/twilio/sms:
     post:
       description: Twilio-specific adapter. Resolves entity + client from From/To, runs the frontdesk agent, dispatches the reply via TwilioService.sendSmsE164 so each outbound is a real /Messages.json call (visible in the Twilio dashboard / local emulator inbox). Returns empty TwiML so Twilio doesn't double-reply.
-      operationId: t_value
+      operationId: postTasksApiV1FrontdeskWebhooksTwilioSms
       parameters: []
       requestBody:
         required: true
@@ -578,13 +620,15 @@ paths:
       - Frontdesk
       security:
       - access-token: []
+      x-operation-id-source: normalized
+      x-operation-id-original: t_value
     servers:
     - url: https://tasks.zoca.ai
       description: Production
   /tasks/api/v1/frontdesk/webhooks/retell/incoming-call:
     post:
       description: Resolves entity + customer from from_number/to_number, returns the Retell call_inbound envelope with dynamic_variables and metadata.
-      operationId: t_value
+      operationId: postTasksApiV1FrontdeskWebhooksRetellIncomingCall
       parameters: []
       requestBody:
         required: true
@@ -601,13 +645,15 @@ paths:
       - Frontdesk
       security:
       - access-token: []
+      x-operation-id-source: normalized
+      x-operation-id-original: t_value
     servers:
     - url: https://tasks.zoca.ai
       description: Production
   /tasks/api/v1/frontdesk/webhooks/retell/call-events:
     post:
       description: Dispatches all Retell call lifecycle events (call_inbound, call_started, call_ended, call_analyzed) to the lifted handlers.
-      operationId: t_value
+      operationId: postTasksApiV1FrontdeskWebhooksRetellCallEvents
       parameters: []
       requestBody:
         required: true
@@ -624,6 +670,8 @@ paths:
       - Frontdesk
       security:
       - access-token: []
+      x-operation-id-source: normalized
+      x-operation-id-original: t_value
     servers:
     - url: https://tasks.zoca.ai
       description: Production
@@ -679,9 +727,6 @@ components:
       - businessLng
       - points
       - heroMetrics
-    Object:
-      type: object
-      properties: {}
     e_3:
       type: object
       properties:
@@ -707,6 +752,9 @@ components:
       - businessLng
       - points
       - heroMetrics
+    Object:
+      type: object
+      properties: {}
   securitySchemes:
     access-token:
       scheme: bearer

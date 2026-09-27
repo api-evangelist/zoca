@@ -28,7 +28,7 @@ paths:
       tags:
       - Gift Card Settings
     put:
-      operationId: t_value
+      operationId: putGiftCardSettings
       parameters: []
       responses:
         '200':
@@ -42,6 +42,8 @@ paths:
       summary: Update gift card settings (Owner only)
       tags:
       - Gift Card Settings
+      x-operation-id-source: normalized
+      x-operation-id-original: t_value
 components:
   schemas:
     e:

@@ -23,7 +23,7 @@ paths:
       - Approvals
   /approvals/{updateId}/reject:
     post:
-      operationId: t_value
+      operationId: postApprovalsByUpdateIdReject
       parameters: []
       responses:
         '201':
@@ -31,6 +31,8 @@ paths:
       summary: Reject a pending action
       tags:
       - Approvals
+      x-operation-id-source: normalized
+      x-operation-id-original: t_value
 components:
   securitySchemes:
     access-token:

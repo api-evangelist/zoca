@@ -23,7 +23,7 @@ paths:
       - Coupons
   /scheduling/coupons/validate:
     post:
-      operationId: t_value
+      operationId: postSchedulingCouponsValidate
       parameters: []
       responses:
         '200':
@@ -31,9 +31,11 @@ paths:
       summary: Validate a coupon code and calculate discount
       tags:
       - Coupons
+      x-operation-id-source: normalized
+      x-operation-id-original: t_value
   /scheduling/coupons/available:
     post:
-      operationId: t_value
+      operationId: postSchedulingCouponsAvailable
       parameters: []
       responses:
         '200':
@@ -41,9 +43,11 @@ paths:
       summary: Get available coupons for a client/cart and validate each
       tags:
       - Coupons
+      x-operation-id-source: normalized
+      x-operation-id-original: t_value
   /scheduling/coupons/entity/{entityId}:
     get:
-      operationId: t_value
+      operationId: getSchedulingCouponsEntityByEntityId
       parameters: []
       responses:
         '200':
@@ -51,9 +55,11 @@ paths:
       summary: List coupons for an entity
       tags:
       - Coupons
+      x-operation-id-source: normalized
+      x-operation-id-original: t_value
   /scheduling/coupons/{id}:
     get:
-      operationId: t_value
+      operationId: getSchedulingCouponsById
       parameters: []
       responses:
         '200':
@@ -61,8 +67,10 @@ paths:
       summary: Get a single coupon by ID
       tags:
       - Coupons
+      x-operation-id-source: normalized
+      x-operation-id-original: t_value
     put:
-      operationId: t_value
+      operationId: putSchedulingCouponsById
       parameters: []
       responses:
         '200':
@@ -70,8 +78,10 @@ paths:
       summary: Update a coupon
       tags:
       - Coupons
+      x-operation-id-source: normalized
+      x-operation-id-original: t_value
     delete:
-      operationId: t_value
+      operationId: deleteSchedulingCouponsById
       parameters: []
       responses:
         '204':
@@ -79,9 +89,11 @@ paths:
       summary: Soft delete a coupon
       tags:
       - Coupons
+      x-operation-id-source: normalized
+      x-operation-id-original: t_value
   /scheduling/coupons/{id}/pause:
     post:
-      operationId: t_value
+      operationId: postSchedulingCouponsByIdPause
       parameters: []
       responses:
         '200':
@@ -89,9 +101,11 @@ paths:
       summary: Pause a live coupon
       tags:
       - Coupons
+      x-operation-id-source: normalized
+      x-operation-id-original: t_value
   /scheduling/coupons/{id}/resume:
     put:
-      operationId: t_value
+      operationId: putSchedulingCouponsByIdResume
       parameters: []
       responses:
         '200':
@@ -99,9 +113,11 @@ paths:
       summary: Resume a paused coupon
       tags:
       - Coupons
+      x-operation-id-source: normalized
+      x-operation-id-original: t_value
   /scheduling/coupons/{id}/activate:
     put:
-      operationId: t_value
+      operationId: putSchedulingCouponsByIdActivate
       parameters: []
       responses:
         '200':
@@ -109,9 +125,11 @@ paths:
       summary: Publish a draft coupon (status derived from its schedule)
       tags:
       - Coupons
+      x-operation-id-source: normalized
+      x-operation-id-original: t_value
   /scheduling/coupons/auto-configs/entity/{entityId}:
     get:
-      operationId: t_value
+      operationId: getSchedulingCouponsAutoConfigsEntityByEntityId
       parameters: []
       responses:
         '200':
@@ -119,9 +137,11 @@ paths:
       summary: Get all auto-coupon configs for an entity
       tags:
       - Coupons
+      x-operation-id-source: normalized
+      x-operation-id-original: t_value
   /scheduling/coupons/auto-configs/entity/{entityId}/{triggerType}:
     put:
-      operationId: t_value
+      operationId: putSchedulingCouponsAutoConfigsEntityByEntityIdByTriggerType
       parameters: []
       responses:
         '200':
@@ -129,9 +149,11 @@ paths:
       summary: Upsert an auto-coupon config (create or update)
       tags:
       - Coupons
+      x-operation-id-source: normalized
+      x-operation-id-original: t_value
   /scheduling/coupons/auto-configs/entity/{entityId}/run:
     post:
-      operationId: t_value
+      operationId: postSchedulingCouponsAutoConfigsEntityByEntityIdRun
       parameters: []
       responses:
         '200':
@@ -139,6 +161,8 @@ paths:
       summary: Manually run auto-coupon trigger(s) for an entity
       tags:
       - Coupons
+      x-operation-id-source: normalized
+      x-operation-id-original: t_value
 components:
   securitySchemes:
     access-token:

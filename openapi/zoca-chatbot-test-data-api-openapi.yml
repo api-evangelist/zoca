@@ -49,7 +49,7 @@ paths:
   /tasks/api/v1/chatbot/test-data/{entityId}:
     post:
       description: Creates or updates cloned business variables for a test entity. The entity must have is_test=true.
-      operationId: t_value
+      operationId: postTasksApiV1ChatbotTestDataByEntityId
       parameters:
       - name: entityId
         required: true
@@ -80,9 +80,11 @@ paths:
       summary: Create or update test entity variables
       tags:
       - Chatbot Test Data
+      x-operation-id-source: normalized
+      x-operation-id-original: t_value
     get:
       description: Retrieves the cloned business variables for a test entity.
-      operationId: t_value
+      operationId: getTasksApiV1ChatbotTestDataByEntityId
       parameters:
       - name: entityId
         required: true
@@ -105,9 +107,11 @@ paths:
       summary: Get test entity variables
       tags:
       - Chatbot Test Data
+      x-operation-id-source: normalized
+      x-operation-id-original: t_value
     delete:
       description: Removes the cloned business variables for a test entity.
-      operationId: t_value
+      operationId: deleteTasksApiV1ChatbotTestDataByEntityId
       parameters:
       - name: entityId
         required: true
@@ -126,10 +130,12 @@ paths:
       summary: Delete test entity variables
       tags:
       - Chatbot Test Data
+      x-operation-id-source: normalized
+      x-operation-id-original: t_value
   /tasks/api/v1/chatbot/test-data/{entityId}/revert:
     post:
       description: Restores test entity variables to their initial data captured at creation time. Only works for test entities (is_test=true).
-      operationId: t_value
+      operationId: postTasksApiV1ChatbotTestDataByEntityIdRevert
       parameters:
       - name: entityId
         required: true
@@ -154,10 +160,12 @@ paths:
       summary: Revert test entity variables to initial state
       tags:
       - Chatbot Test Data
+      x-operation-id-source: normalized
+      x-operation-id-original: t_value
   /tasks/api/v1/chatbot/test-data/{entityId}/is-test:
     get:
       description: Checks if the specified entity has is_test=true flag.
-      operationId: t_value
+      operationId: getTasksApiV1ChatbotTestDataByEntityIdIsTest
       parameters:
       - name: entityId
         required: true
@@ -178,10 +186,12 @@ paths:
       summary: Check if entity is a test entity
       tags:
       - Chatbot Test Data
+      x-operation-id-source: normalized
+      x-operation-id-original: t_value
   /tasks/api/v1/chatbot/test-data/{entityId}/initialize:
     post:
       description: Fetches all relevant initialization details that initializeNewContact needs and stores them in test_entity_variables table. This includes business details, services, working hours, etc. Only works for non-test entities as test entities already have their data managed differently.
-      operationId: t_value
+      operationId: postTasksApiV1ChatbotTestDataByEntityIdInitialize
       parameters:
       - name: entityId
         required: true
@@ -215,6 +225,8 @@ paths:
       summary: Initialize non-test entity data for testing
       tags:
       - Chatbot Test Data
+      x-operation-id-source: normalized
+      x-operation-id-original: t_value
 components:
   schemas:
     e:

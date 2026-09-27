@@ -23,7 +23,7 @@ paths:
       - Google Maps
   /google-maps/place-id-details:
     get:
-      operationId: t_value
+      operationId: getGoogleMapsPlaceIdDetails
       parameters: []
       responses:
         '200':
@@ -31,9 +31,11 @@ paths:
       summary: Get place details by place ID
       tags:
       - Google Maps
+      x-operation-id-source: normalized
+      x-operation-id-original: t_value
   /google-maps/timezone-from-place-id:
     get:
-      operationId: t_value
+      operationId: getGoogleMapsTimezoneFromPlaceId
       parameters: []
       responses:
         '200':
@@ -41,9 +43,11 @@ paths:
       summary: Get timezone and coordinates from place ID
       tags:
       - Google Maps
+      x-operation-id-source: normalized
+      x-operation-id-original: t_value
   /google-maps/timezone-from-coordinates:
     get:
-      operationId: t_value
+      operationId: getGoogleMapsTimezoneFromCoordinates
       parameters: []
       responses:
         '200':
@@ -51,6 +55,8 @@ paths:
       summary: Get timezone from latitude and longitude coordinates
       tags:
       - Google Maps
+      x-operation-id-source: normalized
+      x-operation-id-original: t_value
 components:
   securitySchemes:
     access-token:

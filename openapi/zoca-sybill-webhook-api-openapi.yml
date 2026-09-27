@@ -36,7 +36,7 @@ paths:
   /tasks/api/v1/sybill/migrate-to-fireflies:
     post:
       description: Triggers a one-time migration job to transfer Sybill meeting data from sales.meeting_data to sales.fireflies_meeting table
-      operationId: t_value
+      operationId: postTasksApiV1SybillMigrateToFireflies
       parameters: []
       responses:
         '201':
@@ -57,6 +57,8 @@ paths:
       summary: Migrate Sybill data to Fireflies
       tags:
       - Sybill Webhook
+      x-operation-id-source: normalized
+      x-operation-id-original: t_value
 components:
   schemas:
     Object:

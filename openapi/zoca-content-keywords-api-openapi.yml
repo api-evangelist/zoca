@@ -30,7 +30,7 @@ paths:
       description: Production
   /content-keywords/{entityId}/counts:
     get:
-      operationId: t_value
+      operationId: getContentKeywordsByEntityIdCounts
       parameters: []
       responses:
         '200':
@@ -39,12 +39,14 @@ paths:
       - Content Keywords
       summary: T value
       x-summary-source: derived
+      x-operation-id-source: normalized
+      x-operation-id-original: t_value
     servers:
     - url: https://api.zoca.ai
       description: Production
   /content-keywords/{entityId}/items:
     get:
-      operationId: t_value
+      operationId: getContentKeywordsByEntityIdItems
       parameters: []
       responses:
         '200':
@@ -53,12 +55,14 @@ paths:
       - Content Keywords
       summary: T value
       x-summary-source: derived
+      x-operation-id-source: normalized
+      x-operation-id-original: t_value
     servers:
     - url: https://api.zoca.ai
       description: Production
   /tasks/api/v1/content-keywords/{entityId}:
     get:
-      operationId: t_value
+      operationId: getTasksApiV1ContentKeywordsByEntityId
       parameters: []
       responses:
         '200':
@@ -69,12 +73,14 @@ paths:
       - access-token: []
       summary: T value
       x-summary-source: derived
+      x-operation-id-source: normalized
+      x-operation-id-original: t_value
     servers:
     - url: https://tasks.zoca.ai
       description: Production
   /tasks/api/v1/content-keywords/{entityId}/counts:
     get:
-      operationId: t_value
+      operationId: getTasksApiV1ContentKeywordsByEntityIdCounts
       parameters: []
       responses:
         '200':
@@ -85,12 +91,14 @@ paths:
       - access-token: []
       summary: T value
       x-summary-source: derived
+      x-operation-id-source: normalized
+      x-operation-id-original: t_value
     servers:
     - url: https://tasks.zoca.ai
       description: Production
   /tasks/api/v1/content-keywords/{entityId}/items:
     get:
-      operationId: t_value
+      operationId: getTasksApiV1ContentKeywordsByEntityIdItems
       parameters: []
       responses:
         '200':
@@ -101,6 +109,8 @@ paths:
       - access-token: []
       summary: T value
       x-summary-source: derived
+      x-operation-id-source: normalized
+      x-operation-id-original: t_value
     servers:
     - url: https://tasks.zoca.ai
       description: Production

@@ -36,7 +36,7 @@ paths:
   /tasks/api/v1/instantly/sdr/score-decay:
     post:
       description: Dispatches the sdr:score-decay job to apply time-based decay to all lead scores
-      operationId: t_value
+      operationId: postTasksApiV1InstantlySdrScoreDecay
       parameters: []
       responses:
         '202':
@@ -44,10 +44,12 @@ paths:
       summary: Trigger SDR score decay
       tags:
       - Instantly Webhook
+      x-operation-id-source: normalized
+      x-operation-id-original: t_value
   /tasks/api/v1/instantly/sdr/sod-flush:
     post:
       description: Dispatches the sdr:sod-flush job to assign warm unassigned leads to SDRs and create HubSpot tasks
-      operationId: t_value
+      operationId: postTasksApiV1InstantlySdrSodFlush
       parameters: []
       responses:
         '202':
@@ -55,6 +57,8 @@ paths:
       summary: Trigger SOD warm lead flush
       tags:
       - Instantly Webhook
+      x-operation-id-source: normalized
+      x-operation-id-original: t_value
 components:
   schemas:
     Object:

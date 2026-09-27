@@ -29,7 +29,7 @@ paths:
   /tasks/api/v1/callhippo/template-message:
     get:
       description: Retrieves the template message for a given locationEntityId
-      operationId: t_value
+      operationId: getTasksApiV1CallhippoTemplateMessage
       parameters: []
       responses:
         '200':
@@ -37,10 +37,12 @@ paths:
       summary: Get template message for a given locationEntityId
       tags:
       - Callhippo
+      x-operation-id-source: normalized
+      x-operation-id-original: t_value
   /tasks/api/v1/callhippo/save-sms-data:
     post:
       description: Saves SMS data to the database
-      operationId: t_value
+      operationId: postTasksApiV1CallhippoSaveSmsData
       parameters: []
       responses:
         '201':
@@ -48,10 +50,12 @@ paths:
       summary: Save SMS data
       tags:
       - Callhippo
+      x-operation-id-source: normalized
+      x-operation-id-original: t_value
   /tasks/api/v1/callhippo/send-sms:
     post:
       description: Sends an SMS message using the CallHippo API
-      operationId: t_value
+      operationId: postTasksApiV1CallhippoSendSms
       parameters: []
       responses:
         '201':
@@ -59,10 +63,12 @@ paths:
       summary: Send SMS using CallHippo API
       tags:
       - Callhippo
+      x-operation-id-source: normalized
+      x-operation-id-original: t_value
   /tasks/api/v1/callhippo/sync-transcripts:
     post:
       description: Refetch and analyze CallHippo transcripts for calls within a date range and matching query filters
-      operationId: t_value
+      operationId: postTasksApiV1CallhippoSyncTranscripts
       parameters: []
       responses:
         '201':
@@ -72,6 +78,8 @@ paths:
       summary: Sync and analyze CallHippo transcripts
       tags:
       - Callhippo
+      x-operation-id-source: normalized
+      x-operation-id-original: t_value
 components:
   securitySchemes:
     access-token:

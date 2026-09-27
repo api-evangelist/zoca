@@ -26,7 +26,7 @@ paths:
       - bulk-sms
   /tasks/api/v1/bulk-sms:
     get:
-      operationId: t_value
+      operationId: getTasksApiV1BulkSms
       parameters: []
       responses:
         '200':
@@ -34,8 +34,10 @@ paths:
       summary: Get all bulk SMS campaigns
       tags:
       - bulk-sms
+      x-operation-id-source: normalized
+      x-operation-id-original: t_value
     post:
-      operationId: t_value
+      operationId: postTasksApiV1BulkSms
       parameters: []
       responses:
         '201':
@@ -43,9 +45,11 @@ paths:
       summary: Create bulk SMS job
       tags:
       - bulk-sms
+      x-operation-id-source: normalized
+      x-operation-id-original: t_value
   /tasks/api/v1/bulk-sms/cancel:
     patch:
-      operationId: t_value
+      operationId: patchTasksApiV1BulkSmsCancel
       parameters: []
       responses:
         '200':
@@ -53,6 +57,8 @@ paths:
       summary: Cancel bulk SMS campaign
       tags:
       - bulk-sms
+      x-operation-id-source: normalized
+      x-operation-id-original: t_value
 components:
   securitySchemes:
     access-token:

@@ -26,7 +26,7 @@ paths:
       tags:
       - Inventory Stock Movements
     get:
-      operationId: t_value
+      operationId: getInventoryStockMovementsEntityByEntityId
       parameters:
       - name: limit
         required: false
@@ -67,9 +67,11 @@ paths:
       summary: List movement history for a variant (paginated)
       tags:
       - Inventory Stock Movements
+      x-operation-id-source: normalized
+      x-operation-id-original: t_value
   /inventory/stock-movements/entity/{entityId}/stock-on-hand:
     get:
-      operationId: t_value
+      operationId: getInventoryStockMovementsEntityByEntityIdStockOnHand
       parameters:
       - name: limit
         required: false
@@ -93,6 +95,8 @@ paths:
       summary: List stock-on-hand rows for the entity (paginated)
       tags:
       - Inventory Stock Movements
+      x-operation-id-source: normalized
+      x-operation-id-original: t_value
 components:
   securitySchemes:
     access-token:

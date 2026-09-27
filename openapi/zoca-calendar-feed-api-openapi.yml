@@ -23,7 +23,7 @@ paths:
       - Calendar Feed
   /scheduling/calendar/location/{locationEntityId}/feed:
     get:
-      operationId: t_value
+      operationId: getSchedulingCalendarLocationByLocationEntityIdFeed
       parameters: []
       responses:
         '200':
@@ -31,9 +31,11 @@ paths:
       summary: View a location's calendar feed (owner)
       tags:
       - Calendar Feed
+      x-operation-id-source: normalized
+      x-operation-id-original: t_value
   /scheduling/calendar/location/{locationEntityId}/feed/rotate:
     post:
-      operationId: t_value
+      operationId: postSchedulingCalendarLocationByLocationEntityIdFeedRotate
       parameters: []
       responses:
         '201':
@@ -41,9 +43,11 @@ paths:
       summary: Generate or rotate a location's feed URL (owner)
       tags:
       - Calendar Feed
+      x-operation-id-source: normalized
+      x-operation-id-original: t_value
   /scheduling/calendar/location/{locationEntityId}/feed/revoke:
     post:
-      operationId: t_value
+      operationId: postSchedulingCalendarLocationByLocationEntityIdFeedRevoke
       parameters: []
       responses:
         '201':
@@ -51,9 +55,11 @@ paths:
       summary: Revoke a location's feed URL (owner)
       tags:
       - Calendar Feed
+      x-operation-id-source: normalized
+      x-operation-id-original: t_value
   /scheduling/calendar/location/{locationEntityId}/feed/settings:
     patch:
-      operationId: t_value
+      operationId: patchSchedulingCalendarLocationByLocationEntityIdFeedSettings
       parameters: []
       responses:
         '200':
@@ -61,9 +67,11 @@ paths:
       summary: Toggle client-name suppression on a location feed (owner)
       tags:
       - Calendar Feed
+      x-operation-id-source: normalized
+      x-operation-id-original: t_value
   /scheduling/calendar/me/feed:
     get:
-      operationId: t_value
+      operationId: getSchedulingCalendarMeFeed
       parameters: []
       responses:
         '200':
@@ -71,9 +79,11 @@ paths:
       summary: View my personal calendar feed (staff)
       tags:
       - Calendar Feed
+      x-operation-id-source: normalized
+      x-operation-id-original: t_value
   /scheduling/calendar/me/feed/rotate:
     post:
-      operationId: t_value
+      operationId: postSchedulingCalendarMeFeedRotate
       parameters: []
       responses:
         '201':
@@ -81,9 +91,11 @@ paths:
       summary: Generate or rotate my personal feed URL (staff)
       tags:
       - Calendar Feed
+      x-operation-id-source: normalized
+      x-operation-id-original: t_value
   /scheduling/calendar/me/feed/revoke:
     post:
-      operationId: t_value
+      operationId: postSchedulingCalendarMeFeedRevoke
       parameters: []
       responses:
         '201':
@@ -91,9 +103,11 @@ paths:
       summary: Revoke my personal feed URL (staff)
       tags:
       - Calendar Feed
+      x-operation-id-source: normalized
+      x-operation-id-original: t_value
   /scheduling/calendar/me/feed/settings:
     patch:
-      operationId: t_value
+      operationId: patchSchedulingCalendarMeFeedSettings
       parameters: []
       responses:
         '200':
@@ -101,6 +115,8 @@ paths:
       summary: Toggle client-name suppression on my personal feed (staff)
       tags:
       - Calendar Feed
+      x-operation-id-source: normalized
+      x-operation-id-original: t_value
 components:
   securitySchemes:
     access-token:

@@ -29,7 +29,7 @@ paths:
       - Local SEO Map Grid
   /tasks/api/v1/local-seo/map/keyword-options:
     get:
-      operationId: t_value
+      operationId: getTasksApiV1LocalSeoMapKeywordOptions
       parameters: []
       responses:
         '200':
@@ -41,9 +41,11 @@ paths:
       summary: Keyword dropdown options for the Map view
       tags:
       - Local SEO Map Grid
+      x-operation-id-source: normalized
+      x-operation-id-original: t_value
   /tasks/api/v1/local-seo/map/heatmap:
     get:
-      operationId: t_value
+      operationId: getTasksApiV1LocalSeoMapHeatmap
       parameters: []
       responses:
         '200':
@@ -55,9 +57,11 @@ paths:
       summary: 5-point heatmap + hero metrics + trend
       tags:
       - Local SEO Map Grid
+      x-operation-id-source: normalized
+      x-operation-id-original: t_value
   /tasks/api/v1/local-seo/map/competitors:
     get:
-      operationId: t_value
+      operationId: getTasksApiV1LocalSeoMapCompetitors
       parameters: []
       responses:
         '200':
@@ -69,9 +73,11 @@ paths:
       summary: Top competitors per point for the Map view
       tags:
       - Local SEO Map Grid
+      x-operation-id-source: normalized
+      x-operation-id-original: t_value
   /tasks/api/v1/local-seo/grid/request:
     post:
-      operationId: t_value
+      operationId: postTasksApiV1LocalSeoGridRequest
       parameters: []
       responses:
         '201':
@@ -87,9 +93,11 @@ paths:
       summary: Enqueue an on-demand 7×7 grid scan
       tags:
       - Local SEO Map Grid
+      x-operation-id-source: normalized
+      x-operation-id-original: t_value
   /tasks/api/v1/local-seo/grid/requests:
     get:
-      operationId: t_value
+      operationId: getTasksApiV1LocalSeoGridRequests
       parameters: []
       responses:
         '200':
@@ -101,9 +109,11 @@ paths:
       summary: List 7×7 grid scans for an entity + daily cap state
       tags:
       - Local SEO Map Grid
+      x-operation-id-source: normalized
+      x-operation-id-original: t_value
   /tasks/api/v1/local-seo/grid/scan/{scanId}:
     get:
-      operationId: t_value
+      operationId: getTasksApiV1LocalSeoGridScanByScanId
       parameters: []
       responses:
         '200':
@@ -119,6 +129,8 @@ paths:
       summary: 7×7 scan detail (49-point heatmap + hero metrics)
       tags:
       - Local SEO Map Grid
+      x-operation-id-source: normalized
+      x-operation-id-original: t_value
 components:
   schemas:
     e:

@@ -25,7 +25,7 @@ paths:
       - Local SEO
   /tasks/api/v1/local-seo/keyword-gen/trigger:
     post:
-      operationId: t_value
+      operationId: postTasksApiV1LocalSeoKeywordGenTrigger
       parameters:
       - name: source
         required: false
@@ -37,9 +37,11 @@ paths:
       summary: Trigger keyword-gen state machine (generate-keywords)
       tags:
       - Local SEO
+      x-operation-id-source: normalized
+      x-operation-id-original: t_value
   /tasks/api/v1/local-seo/keyword-gen/custom-keyword-requests:
     post:
-      operationId: t_value
+      operationId: postTasksApiV1LocalSeoKeywordGenCustomKeywordRequests
       parameters: []
       responses:
         '201':
@@ -47,8 +49,10 @@ paths:
       summary: Create custom keyword requests for future keyword-gen runs
       tags:
       - Local SEO
+      x-operation-id-source: normalized
+      x-operation-id-original: t_value
     get:
-      operationId: t_value
+      operationId: getTasksApiV1LocalSeoKeywordGenCustomKeywordRequests
       parameters: []
       responses:
         '200':
@@ -56,9 +60,11 @@ paths:
       summary: List custom keyword requests for an entity
       tags:
       - Local SEO
+      x-operation-id-source: normalized
+      x-operation-id-original: t_value
   /tasks/api/v1/local-seo/keyword-gen/custom-keyword-requests/{requestId}/archive:
     put:
-      operationId: t_value
+      operationId: putTasksApiV1LocalSeoKeywordGenCustomKeywordRequestsByRequestIdArchive
       parameters: []
       responses:
         '200':
@@ -66,9 +72,11 @@ paths:
       summary: Archive a custom keyword request
       tags:
       - Local SEO
+      x-operation-id-source: normalized
+      x-operation-id-original: t_value
   /tasks/api/v1/local-seo/keyword-gen/custom-keyword-requests/{requestId}/unarchive:
     put:
-      operationId: t_value
+      operationId: putTasksApiV1LocalSeoKeywordGenCustomKeywordRequestsByRequestIdUnarchive
       parameters: []
       responses:
         '200':
@@ -76,9 +84,11 @@ paths:
       summary: Unarchive a custom keyword request
       tags:
       - Local SEO
+      x-operation-id-source: normalized
+      x-operation-id-original: t_value
   /tasks/api/v1/local-seo/keyword-gen/run-step:
     post:
-      operationId: t_value
+      operationId: postTasksApiV1LocalSeoKeywordGenRunStep
       parameters: []
       responses:
         '202':
@@ -86,9 +96,11 @@ paths:
       summary: Resume keyword-gen state machine from a step (run-step)
       tags:
       - Local SEO
+      x-operation-id-source: normalized
+      x-operation-id-original: t_value
   /tasks/api/v1/local-seo/rank-extraction/{jobId}:
     get:
-      operationId: t_value
+      operationId: getTasksApiV1LocalSeoRankExtractionByJobId
       parameters: []
       responses:
         '200':
@@ -96,9 +108,11 @@ paths:
       summary: Get rank extraction results
       tags:
       - Local SEO
+      x-operation-id-source: normalized
+      x-operation-id-original: t_value
   /tasks/api/v1/local-seo/keywords/by-service:
     get:
-      operationId: t_value
+      operationId: getTasksApiV1LocalSeoKeywordsByService
       parameters:
       - name: mappedId
         required: false
@@ -131,9 +145,11 @@ paths:
       summary: Get keywords associated to a mapped keyword group
       tags:
       - Local SEO
+      x-operation-id-source: normalized
+      x-operation-id-original: t_value
   /tasks/api/v1/local-seo/keywords/services/buckets:
     get:
-      operationId: t_value
+      operationId: getTasksApiV1LocalSeoKeywordsServicesBuckets
       parameters:
       - name: page
         required: false
@@ -165,10 +181,12 @@ paths:
       summary: Get keyword mapped-type buckets (high/medium/low) ordered by demand percentile
       tags:
       - Local SEO
+      x-operation-id-source: normalized
+      x-operation-id-original: t_value
   /tasks/api/v1/local-seo/keywords/relevance:
     put:
       description: 'Bulk update is_deleted for matching keywords. Use isDeleted: true to soft-delete or false to restore. Omit processId to update ALL rows for the (entityId, keyword) pair across every pipeline execution.'
-      operationId: t_value
+      operationId: putTasksApiV1LocalSeoKeywordsRelevance
       parameters: []
       requestBody:
         required: true
@@ -186,10 +204,12 @@ paths:
       summary: Set is_deleted on keyword_relevance rows
       tags:
       - Local SEO
+      x-operation-id-source: normalized
+      x-operation-id-original: t_value
   /tasks/api/v1/local-seo/keywords/active-relevance:
     get:
       description: Returns paginated unique keywords from the latest completed RANK_EXTRACTION pipeline execution for the given entity, ordered by demand desc.
-      operationId: t_value
+      operationId: getTasksApiV1LocalSeoKeywordsActiveRelevance
       parameters:
       - name: pageSize
         required: false
@@ -216,10 +236,12 @@ paths:
       summary: Get unique active relevance keywords with pagination
       tags:
       - Local SEO
+      x-operation-id-source: normalized
+      x-operation-id-original: t_value
   /tasks/api/v1/local-seo/keywords/archived:
     get:
       description: Returns paginated keywords where is_deleted = true from keyword_relevance. Omit processId to use the latest completed DUPLICATE_DEMAND_ADJ execution for the entity.
-      operationId: t_value
+      operationId: getTasksApiV1LocalSeoKeywordsArchived
       parameters:
       - name: pageSize
         required: false
@@ -249,9 +271,11 @@ paths:
       summary: Get archived (soft-deleted) keywords with pagination
       tags:
       - Local SEO
+      x-operation-id-source: normalized
+      x-operation-id-original: t_value
   /tasks/api/v1/local-seo/{entityId}/keyword-impressions/monthly:
     get:
-      operationId: t_value
+      operationId: getTasksApiV1LocalSeoByEntityIdKeywordImpressionsMonthly
       parameters:
       - name: limit
         required: false
@@ -271,9 +295,11 @@ paths:
       summary: Get monthly keyword impressions by entityId (paginated)
       tags:
       - Local SEO
+      x-operation-id-source: normalized
+      x-operation-id-original: t_value
   /tasks/api/v1/local-seo/keywords/selected-keywords:
     post:
-      operationId: t_value
+      operationId: postTasksApiV1LocalSeoKeywordsSelectedKeywords
       parameters: []
       responses:
         '201':
@@ -282,8 +308,10 @@ paths:
       - Local SEO
       summary: T value
       x-summary-source: derived
+      x-operation-id-source: normalized
+      x-operation-id-original: t_value
     get:
-      operationId: t_value
+      operationId: getTasksApiV1LocalSeoKeywordsSelectedKeywords
       parameters: []
       responses:
         '200':
@@ -292,8 +320,10 @@ paths:
       - Local SEO
       summary: T value
       x-summary-source: derived
+      x-operation-id-source: normalized
+      x-operation-id-original: t_value
     put:
-      operationId: t_value
+      operationId: putTasksApiV1LocalSeoKeywordsSelectedKeywords
       parameters: []
       responses:
         '200':
@@ -302,9 +332,11 @@ paths:
       - Local SEO
       summary: T value
       x-summary-source: derived
+      x-operation-id-source: normalized
+      x-operation-id-original: t_value
   /tasks/api/v1/local-seo/keywords/selected-keywords-by-entity-id:
     get:
-      operationId: t_value
+      operationId: getTasksApiV1LocalSeoKeywordsSelectedKeywordsByEntityId
       parameters:
       - name: entityId
         required: true
@@ -323,9 +355,11 @@ paths:
       summary: Get selected keywords by entityId
       tags:
       - Local SEO
+      x-operation-id-source: normalized
+      x-operation-id-original: t_value
   /tasks/api/v1/local-seo/fallback-services:
     get:
-      operationId: t_value
+      operationId: getTasksApiV1LocalSeoFallbackServices
       parameters:
       - name: placeId
         required: true
@@ -340,9 +374,11 @@ paths:
       summary: Get fallback services for a place
       tags:
       - Local SEO
+      x-operation-id-source: normalized
+      x-operation-id-original: t_value
   /tasks/api/v1/local-seo/keyword-gen-execution:
     post:
-      operationId: t_value
+      operationId: postTasksApiV1LocalSeoKeywordGenExecution
       parameters:
       - name: payload
         required: true
@@ -359,9 +395,11 @@ paths:
       summary: Upsert keyword gen execution
       tags:
       - Local SEO
+      x-operation-id-source: normalized
+      x-operation-id-original: t_value
   /tasks/api/v1/local-seo/keyword-ranks:
     post:
-      operationId: t_value
+      operationId: postTasksApiV1LocalSeoKeywordRanks
       parameters:
       - name: payload
         required: true
@@ -378,9 +416,11 @@ paths:
       summary: Insert keyword ranks
       tags:
       - Local SEO
+      x-operation-id-source: normalized
+      x-operation-id-original: t_value
   /tasks/api/v1/local-seo/google-ads-keywords/bulk:
     post:
-      operationId: t_value
+      operationId: postTasksApiV1LocalSeoGoogleAdsKeywordsBulk
       parameters: []
       responses:
         '201':
@@ -398,10 +438,12 @@ paths:
       summary: Bulk create or update Google Ads keywords
       tags:
       - Local SEO
+      x-operation-id-source: normalized
+      x-operation-id-original: t_value
   /tasks/api/v1/local-seo/semrush/fetch-keyword-data:
     post:
       description: Fetches keyword metrics (search volume, CPC, competition, etc.) from Semrush API for the provided keywords. Automatically handles batching for lists larger than 100 keywords. Stores all data in the semrushAttributes JSONB column.
-      operationId: t_value
+      operationId: postTasksApiV1LocalSeoSemrushFetchKeywordData
       parameters: []
       responses:
         '201':
@@ -455,10 +497,12 @@ paths:
       summary: Fetch keyword data from Semrush API and store in database
       tags:
       - Local SEO
+      x-operation-id-source: normalized
+      x-operation-id-original: t_value
   /tasks/api/v1/local-seo/duplicate-keyword-sets:
     post:
       description: Create or retrieve a duplicate keyword set and update associated keywords with the set ID
-      operationId: t_value
+      operationId: postTasksApiV1LocalSeoDuplicateKeywordSets
       parameters: []
       responses:
         '201':
@@ -489,10 +533,12 @@ paths:
       summary: Create duplicate keyword set
       tags:
       - Local SEO
+      x-operation-id-source: normalized
+      x-operation-id-original: t_value
   /tasks/api/v1/local-seo/duplicate-keyword-sets/with-data:
     post:
       description: Create or retrieve a duplicate keyword set and insert keywords with their complete data including Semrush attributes
-      operationId: t_value
+      operationId: postTasksApiV1LocalSeoDuplicateKeywordSetsWithData
       parameters: []
       responses:
         '201':
@@ -523,10 +569,12 @@ paths:
       summary: Create duplicate keyword set with keyword data
       tags:
       - Local SEO
+      x-operation-id-source: normalized
+      x-operation-id-original: t_value
   /tasks/api/v1/local-seo/duplicate-keyword-sets/all-keywords-by-keyword:
     get:
       description: Retrieve all keywords that belong to the same duplicate set as the provided keyword, including complete data and Semrush attributes
-      operationId: t_value
+      operationId: getTasksApiV1LocalSeoDuplicateKeywordSetsAllKeywordsByKeyword
       parameters:
       - name: keyword
         required: true
@@ -615,6 +663,8 @@ paths:
       summary: Get all keywords in duplicate set by keyword
       tags:
       - Local SEO
+      x-operation-id-source: normalized
+      x-operation-id-original: t_value
   /tasks/api/v1/local-seo/bucketing/upload-csv:
     post:
       description: 'Upload a CSV file to bulk import categories, themes, and keywords for the bucketing system.
@@ -680,7 +730,7 @@ paths:
         parent_category,bucket,bucket_description,keyword,cluster_id,centroid,description
 
         "hair_coloring_and_treatments","highlights_and_balayage","Highlighting techniques","hair highlights near me",0,"[0.031, -0.032, 0.005]","Comprehensive description"'
-      operationId: t_value
+      operationId: postTasksApiV1LocalSeoBucketingUploadCsv
       parameters: []
       requestBody:
         required: true
@@ -752,6 +802,8 @@ paths:
       summary: Upload CSV file with categories, themes, and keywords
       tags:
       - Local SEO
+      x-operation-id-source: normalized
+      x-operation-id-original: t_value
   /tasks/api/v1/local-seo/bucketing/map-keywords:
     post:
       description: 'Maps an array of keywords to their existing buckets and categories.
@@ -759,7 +811,7 @@ paths:
         Returns a key-value mapping where each keyword is mapped to its bucket and category information.
 
         Unmapped keywords will have a null value in the mapping.'
-      operationId: t_value
+      operationId: postTasksApiV1LocalSeoBucketingMapKeywords
       parameters: []
       requestBody:
         required: true
@@ -826,10 +878,12 @@ paths:
       summary: Map keywords to existing buckets and categories
       tags:
       - Local SEO
+      x-operation-id-source: normalized
+      x-operation-id-original: t_value
   /tasks/api/v1/local-seo/place-details:
     post:
       description: Handles both single and bulk inserts/updates of place details. For single insert, pass the place details object directly. For bulk insert, pass an array in placeDetails field. Maximum 100 records per request.
-      operationId: t_value
+      operationId: postTasksApiV1LocalSeoPlaceDetails
       parameters: []
       requestBody:
         required: true
@@ -908,10 +962,12 @@ paths:
       summary: Create or update place details from Lambda scraper
       tags:
       - Local SEO
+      x-operation-id-source: normalized
+      x-operation-id-original: t_value
   /tasks/api/v1/local-seo/keywords/final:
     get:
       description: Fetches keyword ideas, themes, and maximum total demand from the keywords database for a given place_id
-      operationId: t_value
+      operationId: getTasksApiV1LocalSeoKeywordsFinal
       parameters:
       - name: placeId
         required: true
@@ -941,10 +997,12 @@ paths:
       summary: Get final keyword ideas and themes
       tags:
       - Local SEO
+      x-operation-id-source: normalized
+      x-operation-id-original: t_value
   /tasks/api/v1/local-seo/census-data/bulk-create:
     post:
       description: Uploads a CSV file (.csv), brotli-compressed CSV file (.br), or accepts a JSON array and upserts data into census tables in batches. Supports country_data, state_data, city_data, and block_data tables. Default batch size is 100.
-      operationId: t_value
+      operationId: postTasksApiV1LocalSeoCensusDataBulkCreate
       parameters: []
       requestBody:
         required: true
@@ -1012,10 +1070,12 @@ paths:
       summary: Bulk create census data from CSV, brotli-compressed CSV, or JSON array
       tags:
       - Local SEO
+      x-operation-id-source: normalized
+      x-operation-id-original: t_value
   /tasks/api/v1/local-seo/keywords-demand/calculate:
     post:
       description: Calculates keyword demand synchronously. US and Canada use the existing block/city spatial radius path. India uses city/state/country density data with radiusKm, defaulting to 5 km. Returns success response with demand count. Process ID is auto-generated if not provided.
-      operationId: t_value
+      operationId: postTasksApiV1LocalSeoKeywordsDemandCalculate
       parameters: []
       responses:
         '200':
@@ -1057,6 +1117,8 @@ paths:
       summary: Calculate keywords demand for a location (synchronous)
       tags:
       - Local SEO
+      x-operation-id-source: normalized
+      x-operation-id-original: t_value
   /tasks/api/v1/local-seo/keywords-demand:
     get:
       description: 'Retrieves keyword demand records with pagination support.
@@ -1064,7 +1126,7 @@ paths:
         Filter by either coordinates (latitude + longitude) or processId.
 
         Results are ordered by creation date (newest first).'
-      operationId: t_value
+      operationId: getTasksApiV1LocalSeoKeywordsDemand
       parameters: []
       responses:
         '200':
@@ -1134,10 +1196,12 @@ paths:
       summary: Get paginated keyword demand data
       tags:
       - Local SEO
+      x-operation-id-source: normalized
+      x-operation-id-original: t_value
   /tasks/api/v1/local-seo/{entityId}/website-audit:
     post:
       description: Runs PageSpeed Insights and Schema Markup audits for the specified entity and stores results in the database.
-      operationId: t_value
+      operationId: postTasksApiV1LocalSeoByEntityIdWebsiteAudit
       parameters: []
       requestBody:
         required: true
@@ -1173,9 +1237,11 @@ paths:
       summary: Trigger website audit for an entity
       tags:
       - Local SEO
+      x-operation-id-source: normalized
+      x-operation-id-original: t_value
     get:
       description: Retrieves the latest PageSpeed Insights and/or Schema Markup audit results for the specified entity. Can filter by month (YYYY-MM format).
-      operationId: t_value
+      operationId: getTasksApiV1LocalSeoByEntityIdWebsiteAudit
       parameters:
       - name: month
         required: false
@@ -1216,10 +1282,12 @@ paths:
       summary: Get website audit results for an entity
       tags:
       - Local SEO
+      x-operation-id-source: normalized
+      x-operation-id-original: t_value
   /tasks/api/v1/local-seo/{entityId}/gbp-audit:
     post:
       description: Runs GBP insights audit (Zoca score and insights) for the specified entity and stores results in the database.
-      operationId: t_value
+      operationId: postTasksApiV1LocalSeoByEntityIdGbpAudit
       parameters: []
       responses:
         '200':
@@ -1246,9 +1314,11 @@ paths:
       summary: Trigger GBP insights audit for an entity
       tags:
       - Local SEO
+      x-operation-id-source: normalized
+      x-operation-id-original: t_value
     get:
       description: Retrieves the latest GBP insights audit result for the specified entity, optionally filtered by month.
-      operationId: t_value
+      operationId: getTasksApiV1LocalSeoByEntityIdGbpAudit
       parameters:
       - name: month
         required: false
@@ -1285,9 +1355,11 @@ paths:
       summary: Get GBP insights audit results for an entity
       tags:
       - Local SEO
+      x-operation-id-source: normalized
+      x-operation-id-original: t_value
   /tasks/api/v1/local-seo/rca/health:
     get:
-      operationId: t_value
+      operationId: getTasksApiV1LocalSeoRcaHealth
       parameters: []
       responses:
         '200':
@@ -1299,9 +1371,11 @@ paths:
       summary: Health check for RCA service
       tags:
       - Local SEO
+      x-operation-id-source: normalized
+      x-operation-id-original: t_value
   /tasks/api/v1/local-seo/rca/status/{entityId}:
     get:
-      operationId: t_value
+      operationId: getTasksApiV1LocalSeoRcaStatusByEntityId
       parameters: []
       responses:
         '200':
@@ -1311,10 +1385,12 @@ paths:
       summary: Get RCA analysis status for entity
       tags:
       - Local SEO
+      x-operation-id-source: normalized
+      x-operation-id-original: t_value
   /tasks/api/v1/local-seo/rca/analyze-comprehensive:
     post:
       description: Analyzes all funnels comprehensively and provides detailed insights with priority-grouped problems. This is the enhanced version that evaluates all rules regardless of trigger status.
-      operationId: t_value
+      operationId: postTasksApiV1LocalSeoRcaAnalyzeComprehensive
       parameters: []
       requestBody:
         required: true
@@ -1338,9 +1414,11 @@ paths:
       summary: Comprehensive funnel-based RCA analysis
       tags:
       - Local SEO
+      x-operation-id-source: normalized
+      x-operation-id-original: t_value
   /tasks/api/v1/local-seo/google-ad-api/key:
     get:
-      operationId: t_value
+      operationId: getTasksApiV1LocalSeoGoogleAdApiKey
       parameters: []
       responses:
         '200':
@@ -1348,11 +1426,10 @@ paths:
       summary: Get rotated Google Ad API key
       tags:
       - Local SEO
+      x-operation-id-source: normalized
+      x-operation-id-original: t_value
 components:
   schemas:
-    Object:
-      type: object
-      properties: {}
     e:
       type: object
       properties:
@@ -1378,6 +1455,9 @@ components:
       - businessLng
       - points
       - heroMetrics
+    Object:
+      type: object
+      properties: {}
   securitySchemes:
     access-token:
       scheme: bearer

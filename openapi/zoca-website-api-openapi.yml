@@ -67,7 +67,7 @@ paths:
       - Website
   /website/forms:
     post:
-      operationId: t_value
+      operationId: postWebsiteForms
       parameters: []
       responses:
         '201':
@@ -75,8 +75,10 @@ paths:
       summary: Create a new form
       tags:
       - Website
+      x-operation-id-source: normalized
+      x-operation-id-original: t_value
     get:
-      operationId: t_value
+      operationId: getWebsiteForms
       parameters:
       - name: pageSize
         required: false
@@ -96,9 +98,11 @@ paths:
       summary: Get all forms (paginated)
       tags:
       - Website
+      x-operation-id-source: normalized
+      x-operation-id-original: t_value
   /website/forms/{id}:
     get:
-      operationId: t_value
+      operationId: getWebsiteFormsById
       parameters: []
       responses:
         '200':
@@ -106,8 +110,10 @@ paths:
       summary: Get form by ID
       tags:
       - Website
+      x-operation-id-source: normalized
+      x-operation-id-original: t_value
     patch:
-      operationId: t_value
+      operationId: patchWebsiteFormsById
       parameters: []
       responses:
         '200':
@@ -115,8 +121,10 @@ paths:
       summary: Update a form
       tags:
       - Website
+      x-operation-id-source: normalized
+      x-operation-id-original: t_value
     delete:
-      operationId: t_value
+      operationId: deleteWebsiteFormsById
       parameters: []
       responses:
         '200':
@@ -124,9 +132,11 @@ paths:
       summary: Delete a form (soft delete)
       tags:
       - Website
+      x-operation-id-source: normalized
+      x-operation-id-original: t_value
   /website/{websiteId}/generate-metadata:
     get:
-      operationId: t_value
+      operationId: getWebsiteByWebsiteIdGenerateMetadata
       parameters:
       - name: websiteId
         required: true
@@ -143,10 +153,12 @@ paths:
       summary: Generate metadata for a website
       tags:
       - Website
+      x-operation-id-source: normalized
+      x-operation-id-original: t_value
   /website/generate-fonts:
     post:
       description: Describe the font style you want and AI returns matching Google Font heading/body pairs.
-      operationId: t_value
+      operationId: postWebsiteGenerateFonts
       parameters: []
       responses:
         '200':
@@ -156,9 +168,11 @@ paths:
       summary: Generate AI font pair suggestions
       tags:
       - Website
+      x-operation-id-source: normalized
+      x-operation-id-original: t_value
   /website/{websiteId}/website-forms:
     get:
-      operationId: t_value
+      operationId: getWebsiteByWebsiteIdWebsiteForms
       parameters: []
       responses:
         '200':
@@ -166,8 +180,10 @@ paths:
       summary: Get all formIds mapped to a websiteId
       tags:
       - Website
+      x-operation-id-source: normalized
+      x-operation-id-original: t_value
     post:
-      operationId: t_value
+      operationId: postWebsiteByWebsiteIdWebsiteForms
       parameters: []
       responses:
         '201':
@@ -175,9 +191,11 @@ paths:
       summary: Create website-form mapping
       tags:
       - Website
+      x-operation-id-source: normalized
+      x-operation-id-original: t_value
   /website/{websiteId}/website-forms/{id}:
     patch:
-      operationId: t_value
+      operationId: patchWebsiteByWebsiteIdWebsiteFormsById
       parameters: []
       responses:
         '200':
@@ -185,8 +203,10 @@ paths:
       summary: Update website-form mapping by ID
       tags:
       - Website
+      x-operation-id-source: normalized
+      x-operation-id-original: t_value
     delete:
-      operationId: t_value
+      operationId: deleteWebsiteByWebsiteIdWebsiteFormsById
       parameters: []
       responses:
         '200':
@@ -194,9 +214,11 @@ paths:
       summary: Delete a website-form mapping
       tags:
       - Website
+      x-operation-id-source: normalized
+      x-operation-id-original: t_value
   /website/global-pages:
     get:
-      operationId: t_value
+      operationId: getWebsiteGlobalPages
       parameters:
       - name: search
         required: false
@@ -224,9 +246,11 @@ paths:
       summary: Get paginated list of global pages
       tags:
       - Website
+      x-operation-id-source: normalized
+      x-operation-id-original: t_value
   /website/sections/{sectionId}/colors:
     get:
-      operationId: t_value
+      operationId: getWebsiteSectionsBySectionIdColors
       parameters: []
       responses:
         '200':
@@ -234,8 +258,10 @@ paths:
       summary: Get all colors for a section
       tags:
       - Website
+      x-operation-id-source: normalized
+      x-operation-id-original: t_value
     patch:
-      operationId: t_value
+      operationId: patchWebsiteSectionsBySectionIdColors
       parameters:
       - name: sectionId
         required: true
@@ -255,9 +281,11 @@ paths:
       summary: Update color for a section
       tags:
       - Website
+      x-operation-id-source: normalized
+      x-operation-id-original: t_value
   /website/{websiteId}/products:
     post:
-      operationId: t_value
+      operationId: postWebsiteByWebsiteIdProducts
       parameters: []
       requestBody:
         required: true
@@ -273,8 +301,10 @@ paths:
       summary: Create a new product for a website
       tags:
       - Website
+      x-operation-id-source: normalized
+      x-operation-id-original: t_value
     get:
-      operationId: t_value
+      operationId: getWebsiteByWebsiteIdProducts
       parameters: []
       responses:
         '200':
@@ -282,9 +312,11 @@ paths:
       summary: Get all products for a website
       tags:
       - Website
+      x-operation-id-source: normalized
+      x-operation-id-original: t_value
   /website/{websiteId}/products/{productId}:
     get:
-      operationId: t_value
+      operationId: getWebsiteByWebsiteIdProductsByProductId
       parameters:
       - name: productId
         required: true
@@ -302,8 +334,10 @@ paths:
       summary: Get a product by ID for a website
       tags:
       - Website
+      x-operation-id-source: normalized
+      x-operation-id-original: t_value
     patch:
-      operationId: t_value
+      operationId: patchWebsiteByWebsiteIdProductsByProductId
       parameters:
       - name: productId
         required: true
@@ -321,8 +355,10 @@ paths:
       summary: Update a product for a website
       tags:
       - Website
+      x-operation-id-source: normalized
+      x-operation-id-original: t_value
     delete:
-      operationId: t_value
+      operationId: deleteWebsiteByWebsiteIdProductsByProductId
       parameters:
       - name: productId
         required: true
@@ -340,9 +376,11 @@ paths:
       summary: Delete a product for a website
       tags:
       - Website
+      x-operation-id-source: normalized
+      x-operation-id-original: t_value
   /website/{websiteId}/products/reorder:
     patch:
-      operationId: t_value
+      operationId: patchWebsiteByWebsiteIdProductsReorder
       parameters:
       - name: websiteId
         required: true
@@ -366,9 +404,11 @@ paths:
       summary: Reorder products for a website
       tags:
       - Website
+      x-operation-id-source: normalized
+      x-operation-id-original: t_value
   /website/navigation-links:
     post:
-      operationId: t_value
+      operationId: postWebsiteNavigationLinks
       parameters: []
       responses:
         '201':
@@ -376,8 +416,10 @@ paths:
       summary: Create a navigation link
       tags:
       - Website
+      x-operation-id-source: normalized
+      x-operation-id-original: t_value
     get:
-      operationId: t_value
+      operationId: getWebsiteNavigationLinks
       parameters:
       - name: isActive
         required: false
@@ -397,9 +439,11 @@ paths:
       summary: Get navigation links by parent ID
       tags:
       - Website
+      x-operation-id-source: normalized
+      x-operation-id-original: t_value
   /website/navigation-links/{id}:
     patch:
-      operationId: t_value
+      operationId: patchWebsiteNavigationLinksById
       parameters:
       - name: id
         required: true
@@ -412,8 +456,10 @@ paths:
       summary: Update a navigation link
       tags:
       - Website
+      x-operation-id-source: normalized
+      x-operation-id-original: t_value
     delete:
-      operationId: t_value
+      operationId: deleteWebsiteNavigationLinksById
       parameters:
       - name: id
         required: true
@@ -426,9 +472,11 @@ paths:
       summary: Delete a navigation link
       tags:
       - Website
+      x-operation-id-source: normalized
+      x-operation-id-original: t_value
   /website/navigation-links/reorder/{parentId}:
     patch:
-      operationId: t_value
+      operationId: patchWebsiteNavigationLinksReorderByParentId
       parameters: []
       responses:
         '200':
@@ -436,10 +484,12 @@ paths:
       summary: Reorder navigation links
       tags:
       - Website
+      x-operation-id-source: normalized
+      x-operation-id-original: t_value
   /website/navigation-links/reset/{parentId}:
     post:
       description: Clears the page's stored navigation links so the next website generation rebuilds them from the page's sections. Does not itself regenerate the site — until it runs, the page has no stored navigation.
-      operationId: t_value
+      operationId: postWebsiteNavigationLinksResetByParentId
       parameters:
       - name: parentId
         required: true
@@ -452,9 +502,11 @@ paths:
       summary: Reset a page's navigation links to the generated list
       tags:
       - Website
+      x-operation-id-source: normalized
+      x-operation-id-original: t_value
   /website/website-font:
     post:
-      operationId: t_value
+      operationId: postWebsiteWebsiteFont
       parameters: []
       responses:
         '201':
@@ -462,9 +514,11 @@ paths:
       summary: Create website font configuration
       tags:
       - Website
+      x-operation-id-source: normalized
+      x-operation-id-original: t_value
   /website/website-font/{websiteId}:
     get:
-      operationId: t_value
+      operationId: getWebsiteWebsiteFontByWebsiteId
       parameters: []
       responses:
         '200':
@@ -472,9 +526,11 @@ paths:
       summary: Get website font configuration
       tags:
       - Website
+      x-operation-id-source: normalized
+      x-operation-id-original: t_value
   /website/website-font/{websiteId}/{fontType}:
     patch:
-      operationId: t_value
+      operationId: patchWebsiteWebsiteFontByWebsiteIdByFontType
       parameters: []
       responses:
         '200':
@@ -482,9 +538,11 @@ paths:
       summary: Update website font configuration
       tags:
       - Website
+      x-operation-id-source: normalized
+      x-operation-id-original: t_value
   /website/website-font/{websiteId}/{fontId}/{fontType}:
     delete:
-      operationId: t_value
+      operationId: deleteWebsiteWebsiteFontByWebsiteIdByFontIdByFontType
       parameters: []
       responses:
         '200':
@@ -492,10 +550,12 @@ paths:
       summary: Delete website font configuration
       tags:
       - Website
+      x-operation-id-source: normalized
+      x-operation-id-original: t_value
   /website/{websiteId}/add/font:
     post:
       description: Checks if the font exists in website.fonts by name and URL. If it exists, reuses the ID. If not, creates the font first. Then creates the website_fonts association.
-      operationId: t_value
+      operationId: postWebsiteByWebsiteIdAddFont
       parameters:
       - name: websiteId
         required: true
@@ -508,9 +568,11 @@ paths:
       summary: Add a font to a website by name and URL
       tags:
       - Website
+      x-operation-id-source: normalized
+      x-operation-id-original: t_value
   /website/font:
     post:
-      operationId: t_value
+      operationId: postWebsiteFont
       parameters: []
       responses:
         '201':
@@ -518,8 +580,10 @@ paths:
       summary: Create a new font
       tags:
       - Website
+      x-operation-id-source: normalized
+      x-operation-id-original: t_value
     get:
-      operationId: t_value
+      operationId: getWebsiteFont
       parameters:
       - name: pageSize
         required: false
@@ -539,9 +603,11 @@ paths:
       summary: Get paginated list of fonts with optional filtering
       tags:
       - Website
+      x-operation-id-source: normalized
+      x-operation-id-original: t_value
   /website/font/{id}:
     patch:
-      operationId: t_value
+      operationId: patchWebsiteFontById
       parameters: []
       responses:
         '200':
@@ -549,8 +615,10 @@ paths:
       summary: Update a font by ID
       tags:
       - Website
+      x-operation-id-source: normalized
+      x-operation-id-original: t_value
     delete:
-      operationId: t_value
+      operationId: deleteWebsiteFontById
       parameters: []
       responses:
         '200':
@@ -558,9 +626,11 @@ paths:
       summary: Delete a font by ID
       tags:
       - Website
+      x-operation-id-source: normalized
+      x-operation-id-original: t_value
   /website/font/{id}/websites:
     get:
-      operationId: t_value
+      operationId: getWebsiteFontByIdWebsites
       parameters:
       - name: id
         required: true
@@ -610,9 +680,11 @@ paths:
       summary: Get all websites associated with a specific font
       tags:
       - Website
+      x-operation-id-source: normalized
+      x-operation-id-original: t_value
   /website/create-website-v2:
     post:
-      operationId: t_value
+      operationId: postWebsiteCreateWebsiteV2
       parameters: []
       responses:
         '201':
@@ -620,9 +692,11 @@ paths:
       summary: Create website V2 from location payload
       tags:
       - Website
+      x-operation-id-source: normalized
+      x-operation-id-original: t_value
   /website/create-website-v3:
     post:
-      operationId: t_value
+      operationId: postWebsiteCreateWebsiteV3
       parameters: []
       responses:
         '201':
@@ -630,9 +704,11 @@ paths:
       summary: Create website V3 with booking link
       tags:
       - Website
+      x-operation-id-source: normalized
+      x-operation-id-original: t_value
   /website/scrape-theme:
     post:
-      operationId: t_value
+      operationId: postWebsiteScrapeTheme
       parameters: []
       responses:
         '201':
@@ -640,9 +716,11 @@ paths:
       summary: Queue a website-theme scrape (colors + fonts) from reference_website_url
       tags:
       - Website
+      x-operation-id-source: normalized
+      x-operation-id-original: t_value
   /website/scrape-theme-preview:
     post:
-      operationId: t_value
+      operationId: postWebsiteScrapeThemePreview
       parameters: []
       responses:
         '201':
@@ -650,9 +728,11 @@ paths:
       summary: Queue a URL-only theme scrape (colors + fonts); no DB writes — poll for the…
       tags:
       - Website
+      x-operation-id-source: normalized
+      x-operation-id-original: t_value
   /website/scrape-theme-preview/{jobId}:
     get:
-      operationId: t_value
+      operationId: getWebsiteScrapeThemePreviewByJobId
       parameters: []
       responses:
         '200':
@@ -660,9 +740,11 @@ paths:
       summary: Poll a URL-only theme-preview job for its scraped colors + fonts
       tags:
       - Website
+      x-operation-id-source: normalized
+      x-operation-id-original: t_value
   /website/scrape-data:
     post:
-      operationId: t_value
+      operationId: postWebsiteScrapeData
       parameters: []
       responses:
         '201':
@@ -670,9 +752,11 @@ paths:
       summary: Scrape business data from booking link
       tags:
       - Website
+      x-operation-id-source: normalized
+      x-operation-id-original: t_value
   /website/collect-website-data:
     post:
-      operationId: t_value
+      operationId: postWebsiteCollectWebsiteData
       parameters: []
       responses:
         '201':
@@ -680,9 +764,11 @@ paths:
       summary: 'Mode B Phase 1: Collect raw website data for frontend review (no DB writes)'
       tags:
       - Website
+      x-operation-id-source: normalized
+      x-operation-id-original: t_value
   /website/create-from-confirmed-data:
     post:
-      operationId: t_value
+      operationId: postWebsiteCreateFromConfirmedData
       parameters: []
       responses:
         '201':
@@ -690,10 +776,12 @@ paths:
       summary: 'Mode B Phase 2: Create website from user-confirmed data'
       tags:
       - Website
+      x-operation-id-source: normalized
+      x-operation-id-original: t_value
   /website/sync-services-from-booking:
     post:
       description: Scrapes services from a booking platform URL (fast — skips media, reviews, etc.), categorizes them into website-friendly groups via LLM, replaces all existing services for the entity, and returns the full categories → services → variations tree with prices, durations, and all details.
-      operationId: t_value
+      operationId: postWebsiteSyncServicesFromBooking
       parameters: []
       responses:
         '200':
@@ -705,9 +793,11 @@ paths:
       summary: Sync services from a booking platform into the database
       tags:
       - Website
+      x-operation-id-source: normalized
+      x-operation-id-original: t_value
   /website/booking-link-data:
     get:
-      operationId: t_value
+      operationId: getWebsiteBookingLinkData
       parameters: []
       responses:
         '200':
@@ -715,9 +805,11 @@ paths:
       summary: Get business details from booking link
       tags:
       - Website
+      x-operation-id-source: normalized
+      x-operation-id-original: t_value
   /website/get-new-website-id:
     post:
-      operationId: t_value
+      operationId: postWebsiteGetNewWebsiteId
       parameters: []
       responses:
         '201':
@@ -725,9 +817,11 @@ paths:
       summary: Get or create new website ID for location
       tags:
       - Website
+      x-operation-id-source: normalized
+      x-operation-id-original: t_value
   /website/add-booking-link:
     post:
-      operationId: t_value
+      operationId: postWebsiteAddBookingLink
       parameters: []
       responses:
         '201':
@@ -735,10 +829,12 @@ paths:
       summary: Add booking link and trigger website creation
       tags:
       - Website
+      x-operation-id-source: normalized
+      x-operation-id-original: t_value
   /website/onboarding-creation-status:
     get:
       description: 'Returns status for the two onboarding flows tracked in website.processes: WEBSITE_CREATION_ONBOARDING (Orca user.onboarded path) and WEBSITE_CREATION_ONBOARDING_WITH_BOOKING_LINK (add-booking-link path). Either websiteId or locationEntityId must be provided.'
-      operationId: t_value
+      operationId: getWebsiteOnboardingCreationStatus
       parameters:
       - name: locationEntityId
         required: false
@@ -758,9 +854,11 @@ paths:
       summary: Get onboarding website-creation status
       tags:
       - Website
+      x-operation-id-source: normalized
+      x-operation-id-original: t_value
   /website/generate-website:
     get:
-      operationId: t_value
+      operationId: getWebsiteGenerateWebsite
       parameters: []
       responses:
         '200':
@@ -768,9 +866,11 @@ paths:
       summary: Generate website for a location
       tags:
       - Website
+      x-operation-id-source: normalized
+      x-operation-id-original: t_value
   /website/generate-subdomains:
     get:
-      operationId: t_value
+      operationId: getWebsiteGenerateSubdomains
       parameters: []
       responses:
         '200':
@@ -778,9 +878,11 @@ paths:
       summary: Generate subdomain suggestions
       tags:
       - Website
+      x-operation-id-source: normalized
+      x-operation-id-original: t_value
   /website/platforms:
     get:
-      operationId: t_value
+      operationId: getWebsitePlatforms
       parameters: []
       responses:
         '200':
@@ -788,9 +890,11 @@ paths:
       summary: Get available booking platforms
       tags:
       - Website
+      x-operation-id-source: normalized
+      x-operation-id-original: t_value
   /website/get-website-id/{locationEntityId}:
     get:
-      operationId: t_value
+      operationId: getWebsiteGetWebsiteIdByLocationEntityId
       parameters: []
       responses:
         '200':
@@ -798,9 +902,11 @@ paths:
       summary: Get website ID by location entity ID
       tags:
       - Website
+      x-operation-id-source: normalized
+      x-operation-id-original: t_value
   /website/{websiteId}:
     get:
-      operationId: t_value
+      operationId: getWebsiteByWebsiteId
       parameters: []
       responses:
         '200':
@@ -808,9 +914,11 @@ paths:
       summary: Get website data by ID
       tags:
       - Website
+      x-operation-id-source: normalized
+      x-operation-id-original: t_value
   /website/{websiteId}/v2:
     get:
-      operationId: t_value
+      operationId: getWebsiteByWebsiteIdV2
       parameters: []
       responses:
         '200':
@@ -818,9 +926,11 @@ paths:
       summary: Get website data V2 with sections
       tags:
       - Website
+      x-operation-id-source: normalized
+      x-operation-id-original: t_value
   /website/{websiteId}/v2/pages/{pageId}/sections:
     get:
-      operationId: t_value
+      operationId: getWebsiteByWebsiteIdV2PagesByPageIdSections
       parameters: []
       responses:
         '200':
@@ -828,9 +938,11 @@ paths:
       summary: Hydrate a single page's sections (metadata-mode companion)
       tags:
       - Website
+      x-operation-id-source: normalized
+      x-operation-id-original: t_value
   /website/{websiteId}/check-website-live-on-gbp:
     post:
-      operationId: t_value
+      operationId: postWebsiteByWebsiteIdCheckWebsiteLiveOnGbp
       parameters: []
       responses:
         '201':
@@ -838,9 +950,11 @@ paths:
       summary: Check if website is live on GBP
       tags:
       - Website
+      x-operation-id-source: normalized
+      x-operation-id-original: t_value
   /website/{websiteId}/editor/publish:
     post:
-      operationId: t_value
+      operationId: postWebsiteByWebsiteIdEditorPublish
       parameters: []
       responses:
         '201':
@@ -848,9 +962,11 @@ paths:
       summary: Batch publish editor changes for website sections
       tags:
       - Website
+      x-operation-id-source: normalized
+      x-operation-id-original: t_value
   /website/{websiteId}/ctas:
     post:
-      operationId: t_value
+      operationId: postWebsiteByWebsiteIdCtas
       parameters: []
       responses:
         '201':
@@ -858,8 +974,10 @@ paths:
       summary: Create a call-to-action for website
       tags:
       - Website
+      x-operation-id-source: normalized
+      x-operation-id-original: t_value
     get:
-      operationId: t_value
+      operationId: getWebsiteByWebsiteIdCtas
       parameters:
       - name: parentType
         required: true
@@ -886,9 +1004,11 @@ paths:
       summary: Get CTAs filtered by parent entity
       tags:
       - Website
+      x-operation-id-source: normalized
+      x-operation-id-original: t_value
   /website/{websiteId}/ctas/{ctaId}:
     get:
-      operationId: t_value
+      operationId: getWebsiteByWebsiteIdCtasByCtaId
       parameters: []
       responses:
         '200':
@@ -896,8 +1016,10 @@ paths:
       summary: Get a CTA by ID
       tags:
       - Website
+      x-operation-id-source: normalized
+      x-operation-id-original: t_value
     put:
-      operationId: t_value
+      operationId: putWebsiteByWebsiteIdCtasByCtaId
       parameters: []
       responses:
         '200':
@@ -905,8 +1027,10 @@ paths:
       summary: Update a CTA by ID
       tags:
       - Website
+      x-operation-id-source: normalized
+      x-operation-id-original: t_value
     delete:
-      operationId: t_value
+      operationId: deleteWebsiteByWebsiteIdCtasByCtaId
       parameters: []
       responses:
         '200':
@@ -914,9 +1038,11 @@ paths:
       summary: Delete a CTA by ID
       tags:
       - Website
+      x-operation-id-source: normalized
+      x-operation-id-original: t_value
   /website/{websiteId}/working-hours:
     get:
-      operationId: t_value
+      operationId: getWebsiteByWebsiteIdWorkingHours
       parameters: []
       responses:
         '200':
@@ -924,8 +1050,10 @@ paths:
       summary: Get website working hours
       tags:
       - Website
+      x-operation-id-source: normalized
+      x-operation-id-original: t_value
     post:
-      operationId: t_value
+      operationId: postWebsiteByWebsiteIdWorkingHours
       parameters: []
       responses:
         '201':
@@ -933,9 +1061,11 @@ paths:
       summary: Update website working hours
       tags:
       - Website
+      x-operation-id-source: normalized
+      x-operation-id-original: t_value
   /website/{websiteId}/reviews:
     get:
-      operationId: t_value
+      operationId: getWebsiteByWebsiteIdReviews
       parameters: []
       responses:
         '200':
@@ -943,10 +1073,12 @@ paths:
       summary: Get website reviews
       tags:
       - Website
+      x-operation-id-source: normalized
+      x-operation-id-original: t_value
   /website/{parentId}/{parentType}/attributes:
     get:
       description: Retrieve attributes for a specific parent entity (website, component, etc.)
-      operationId: t_value
+      operationId: getWebsiteByParentIdByParentTypeAttributes
       parameters:
       - name: attributeName
         required: false
@@ -988,10 +1120,12 @@ paths:
       summary: Get website attributes
       tags:
       - Website
+      x-operation-id-source: normalized
+      x-operation-id-original: t_value
   /website/{parentId}/{parentType}/attributes/{attributeId}:
     patch:
       description: Update a specific attribute by ID
-      operationId: t_value
+      operationId: patchWebsiteByParentIdByParentTypeAttributesByAttributeId
       parameters:
       - name: attributeId
         required: true
@@ -1032,9 +1166,11 @@ paths:
       summary: Update website attribute
       tags:
       - Website
+      x-operation-id-source: normalized
+      x-operation-id-original: t_value
     delete:
       description: Delete a specific attribute by ID
-      operationId: t_value
+      operationId: deleteWebsiteByParentIdByParentTypeAttributesByAttributeId
       parameters:
       - name: attributeId
         required: true
@@ -1075,9 +1211,11 @@ paths:
       summary: Delete website attribute
       tags:
       - Website
+      x-operation-id-source: normalized
+      x-operation-id-original: t_value
   /website/{websiteId}/themes:
     get:
-      operationId: t_value
+      operationId: getWebsiteByWebsiteIdThemes
       parameters: []
       responses:
         '200':
@@ -1085,8 +1223,10 @@ paths:
       summary: Get all themes for a website
       tags:
       - Website
+      x-operation-id-source: normalized
+      x-operation-id-original: t_value
     post:
-      operationId: t_value
+      operationId: postWebsiteByWebsiteIdThemes
       parameters: []
       responses:
         '201':
@@ -1094,9 +1234,11 @@ paths:
       summary: Create a theme for website
       tags:
       - Website
+      x-operation-id-source: normalized
+      x-operation-id-original: t_value
   /website/{websiteId}/themes/v2:
     get:
-      operationId: t_value
+      operationId: getWebsiteByWebsiteIdThemesV2
       parameters: []
       responses:
         '200':
@@ -1104,9 +1246,11 @@ paths:
       summary: Get website themes V2
       tags:
       - Website
+      x-operation-id-source: normalized
+      x-operation-id-original: t_value
   /website/{websiteId}/themes/{themeId}:
     get:
-      operationId: t_value
+      operationId: getWebsiteByWebsiteIdThemesByThemeId
       parameters:
       - name: themeId
         required: true
@@ -1124,8 +1268,10 @@ paths:
       summary: Delete a theme for a website
       tags:
       - Website
+      x-operation-id-source: normalized
+      x-operation-id-original: t_value
     patch:
-      operationId: t_value
+      operationId: patchWebsiteByWebsiteIdThemesByThemeId
       parameters: []
       responses:
         '200':
@@ -1133,8 +1279,10 @@ paths:
       summary: Update a website theme
       tags:
       - Website
+      x-operation-id-source: normalized
+      x-operation-id-original: t_value
     delete:
-      operationId: t_value
+      operationId: deleteWebsiteByWebsiteIdThemesByThemeId
       parameters: []
       responses:
         '200':
@@ -1142,9 +1290,11 @@ paths:
       summary: Delete a website theme
       tags:
       - Website
+      x-operation-id-source: normalized
+      x-operation-id-original: t_value
   /website/themes/{themeId}:
     delete:
-      operationId: t_value
+      operationId: deleteWebsiteThemesByThemeId
       parameters:
       - name: themeId
         required: true
@@ -1157,8 +1307,10 @@ paths:
       summary: Delete a global theme by ID
       tags:
       - Website
+      x-operation-id-source: normalized
+      x-operation-id-original: t_value
     get:
-      operationId: t_value
+      operationId: getWebsiteThemesByThemeId
       parameters: []
       responses:
         '200':
@@ -1166,9 +1318,11 @@ paths:
       summary: Get theme by ID
       tags:
       - Website
+      x-operation-id-source: normalized
+      x-operation-id-original: t_value
   /website/{websiteId}/pages:
     get:
-      operationId: t_value
+      operationId: getWebsiteByWebsiteIdPages
       parameters:
       - name: websiteId
         required: true
@@ -1181,8 +1335,10 @@ paths:
       summary: Get website pages mapping
       tags:
       - Website
+      x-operation-id-source: normalized
+      x-operation-id-original: t_value
     post:
-      operationId: t_value
+      operationId: postWebsiteByWebsiteIdPages
       parameters: []
       requestBody:
         required: true
@@ -1196,9 +1352,11 @@ paths:
       summary: Create a website page
       tags:
       - Website
+      x-operation-id-source: normalized
+      x-operation-id-original: t_value
   /website/{websiteId}/website-pages:
     get:
-      operationId: t_value
+      operationId: getWebsiteByWebsiteIdWebsitePages
       parameters:
       - name: websiteId
         required: true
@@ -1211,9 +1369,11 @@ paths:
       summary: List website_pages rows for a website (per-row name/path/metadata)
       tags:
       - Website
+      x-operation-id-source: normalized
+      x-operation-id-original: t_value
   /website/{websiteId}/pages/{pageId}:
     get:
-      operationId: t_value
+      operationId: getWebsiteByWebsiteIdPagesByPageId
       parameters:
       - name: pageId
         required: true
@@ -1233,8 +1393,10 @@ paths:
       summary: Get website page by page ID
       tags:
       - Website
+      x-operation-id-source: normalized
+      x-operation-id-original: t_value
     patch:
-      operationId: t_value
+      operationId: patchWebsiteByWebsiteIdPagesByPageId
       parameters: []
       requestBody:
         required: true
@@ -1248,9 +1410,11 @@ paths:
       summary: Update a website page
       tags:
       - Website
+      x-operation-id-source: normalized
+      x-operation-id-original: t_value
   /website/{websiteId}/pages/{id}:
     delete:
-      operationId: t_value
+      operationId: deleteWebsiteByWebsiteIdPagesById
       parameters:
       - name: id
         required: true
@@ -1269,9 +1433,11 @@ paths:
       summary: Delete a website page
       tags:
       - Website
+      x-operation-id-source: normalized
+      x-operation-id-original: t_value
   /website/{websiteId}/pages/{pageId}/attributes:
     get:
-      operationId: t_value
+      operationId: getWebsiteByWebsiteIdPagesByPageIdAttributes
       parameters: []
       responses:
         '200':
@@ -1279,8 +1445,10 @@ paths:
       summary: Get page attributes
       tags:
       - Website
+      x-operation-id-source: normalized
+      x-operation-id-original: t_value
     post:
-      operationId: t_value
+      operationId: postWebsiteByWebsiteIdPagesByPageIdAttributes
       parameters: []
       responses:
         '201':
@@ -1288,9 +1456,11 @@ paths:
       summary: Create a page attribute
       tags:
       - Website
+      x-operation-id-source: normalized
+      x-operation-id-original: t_value
   /website/{websiteId}/pages/{pageId}/attributes/{attributeId}:
     patch:
-      operationId: t_value
+      operationId: patchWebsiteByWebsiteIdPagesByPageIdAttributesByAttributeId
       parameters: []
       responses:
         '200':
@@ -1298,8 +1468,10 @@ paths:
       summary: Update a page attribute
       tags:
       - Website
+      x-operation-id-source: normalized
+      x-operation-id-original: t_value
     delete:
-      operationId: t_value
+      operationId: deleteWebsiteByWebsiteIdPagesByPageIdAttributesByAttributeId
       parameters: []
       responses:
         '200':
@@ -1307,9 +1479,11 @@ paths:
       summary: Delete a page attribute
       tags:
       - Website
+      x-operation-id-source: normalized
+      x-operation-id-original: t_value
   /website/{templateId}/template-sections:
     get:
-      operationId: t_value
+      operationId: getWebsiteByTemplateIdTemplateSections
       parameters: []
       responses:
         '200':
@@ -1317,9 +1491,11 @@ paths:
       summary: Get template sections
       tags:
       - Website
+      x-operation-id-source: normalized
+      x-operation-id-original: t_value
   /website/{websiteId}/pages/{pageId}/sections:
     get:
-      operationId: t_value
+      operationId: getWebsiteByWebsiteIdPagesByPageIdSections
       parameters: []
       responses:
         '200':
@@ -1327,8 +1503,10 @@ paths:
       summary: Get page sections
       tags:
       - Website
+      x-operation-id-source: normalized
+      x-operation-id-original: t_value
     post:
-      operationId: t_value
+      operationId: postWebsiteByWebsiteIdPagesByPageIdSections
       parameters: []
       responses:
         '201':
@@ -1336,9 +1514,11 @@ paths:
       summary: Create a page section
       tags:
       - Website
+      x-operation-id-source: normalized
+      x-operation-id-original: t_value
   /website/{websiteId}/pages/{pageId}/sections/reorder:
     patch:
-      operationId: t_value
+      operationId: patchWebsiteByWebsiteIdPagesByPageIdSectionsReorder
       parameters: []
       responses:
         '200':
@@ -1346,9 +1526,11 @@ paths:
       summary: Reorder page sections
       tags:
       - Website
+      x-operation-id-source: normalized
+      x-operation-id-original: t_value
   /website/{websiteId}/pages/{pageId}/sections/{sectionId}:
     patch:
-      operationId: t_value
+      operationId: patchWebsiteByWebsiteIdPagesByPageIdSectionsBySectionId
       parameters: []
       responses:
         '200':
@@ -1356,8 +1538,10 @@ paths:
       summary: Update a page section
       tags:
       - Website
+      x-operation-id-source: normalized
+      x-operation-id-original: t_value
     delete:
-      operationId: t_value
+      operationId: deleteWebsiteByWebsiteIdPagesByPageIdSectionsBySectionId
       parameters: []
       responses:
         '200':
@@ -1365,9 +1549,11 @@ paths:
       summary: Delete a page section
       tags:
       - Website
+      x-operation-id-source: normalized
+      x-operation-id-original: t_value
   /website/{websiteId}/pages/{pageId}/sections/{sectionId}/attributes:
     get:
-      operationId: t_value
+      operationId: getWebsiteByWebsiteIdPagesByPageIdSectionsBySectionIdAttributes
       parameters: []
       responses:
         '200':
@@ -1375,8 +1561,10 @@ paths:
       summary: Get section attributes
       tags:
       - Website
+      x-operation-id-source: normalized
+      x-operation-id-original: t_value
     post:
-      operationId: t_value
+      operationId: postWebsiteByWebsiteIdPagesByPageIdSectionsBySectionIdAttributes
       parameters: []
       responses:
         '201':
@@ -1384,9 +1572,11 @@ paths:
       summary: Create a section attribute
       tags:
       - Website
+      x-operation-id-source: normalized
+      x-operation-id-original: t_value
   /website/{websiteId}/pages/{pageId}/sections/{sectionId}/attributes/{attributeId}:
     delete:
-      operationId: t_value
+      operationId: deleteWebsiteByWebsiteIdPagesByPageIdSectionsBySectionIdAttributesByAttributeId
       parameters: []
       responses:
         '200':
@@ -1394,9 +1584,11 @@ paths:
       summary: Delete a section attribute
       tags:
       - Website
+      x-operation-id-source: normalized
+      x-operation-id-original: t_value
   /website/{websiteId}/pages/{pageId}/sections/{sectionId}/contents:
     get:
-      operationId: t_value
+      operationId: getWebsiteByWebsiteIdPagesByPageIdSectionsBySectionIdContents
       parameters: []
       responses:
         '200':
@@ -1404,8 +1596,10 @@ paths:
       summary: Get section contents
       tags:
       - Website
+      x-operation-id-source: normalized
+      x-operation-id-original: t_value
     post:
-      operationId: t_value
+      operationId: postWebsiteByWebsiteIdPagesByPageIdSectionsBySectionIdContents
       parameters: []
       responses:
         '201':
@@ -1413,9 +1607,11 @@ paths:
       summary: Create section content
       tags:
       - Website
+      x-operation-id-source: normalized
+      x-operation-id-original: t_value
   /website/{websiteId}/pages/{pageId}/sections/{sectionId}/contents/{contentId}:
     get:
-      operationId: t_value
+      operationId: getWebsiteByWebsiteIdPagesByPageIdSectionsBySectionIdContentsByContentId
       parameters: []
       responses:
         '200':
@@ -1423,8 +1619,10 @@ paths:
       summary: Get section content by ID
       tags:
       - Website
+      x-operation-id-source: normalized
+      x-operation-id-original: t_value
     patch:
-      operationId: t_value
+      operationId: patchWebsiteByWebsiteIdPagesByPageIdSectionsBySectionIdContentsByContentId
       parameters: []
       responses:
         '200':
@@ -1432,8 +1630,10 @@ paths:
       summary: Update section content
       tags:
       - Website
+      x-operation-id-source: normalized
+      x-operation-id-original: t_value
     delete:
-      operationId: t_value
+      operationId: deleteWebsiteByWebsiteIdPagesByPageIdSectionsBySectionIdContentsByContentId
       parameters: []
       responses:
         '200':
@@ -1441,9 +1641,11 @@ paths:
       summary: Delete section content
       tags:
       - Website
+      x-operation-id-source: normalized
+      x-operation-id-original: t_value
   /website/{websiteId}/pages/{pageId}/sections/{sectionId}/contents/{contentId}/attributes:
     get:
-      operationId: t_value
+      operationId: getWebsiteByWebsiteIdPagesByPageIdSectionsBySectionIdContentsByContentIdAttributes
       parameters: []
       responses:
         '200':
@@ -1451,8 +1653,10 @@ paths:
       summary: Get content attributes
       tags:
       - Website
+      x-operation-id-source: normalized
+      x-operation-id-original: t_value
     post:
-      operationId: t_value
+      operationId: postWebsiteByWebsiteIdPagesByPageIdSectionsBySectionIdContentsByContentIdAttributes
       parameters: []
       responses:
         '201':
@@ -1460,9 +1664,11 @@ paths:
       summary: Create content attribute
       tags:
       - Website
+      x-operation-id-source: normalized
+      x-operation-id-original: t_value
   /website/{websiteId}/pages/{pageId}/sections/{sectionId}/contents/{contentId}/attributes/{attributeId}:
     patch:
-      operationId: t_value
+      operationId: patchWebsiteByWebsiteIdPagesByPageIdSectionsBySectionIdContentsByContentIdAttributesByAttributeId
       parameters: []
       responses:
         '200':
@@ -1470,8 +1676,10 @@ paths:
       summary: Update content attribute
       tags:
       - Website
+      x-operation-id-source: normalized
+      x-operation-id-original: t_value
     delete:
-      operationId: t_value
+      operationId: deleteWebsiteByWebsiteIdPagesByPageIdSectionsBySectionIdContentsByContentIdAttributesByAttributeId
       parameters: []
       responses:
         '200':
@@ -1479,9 +1687,11 @@ paths:
       summary: Delete content attribute
       tags:
       - Website
+      x-operation-id-source: normalized
+      x-operation-id-original: t_value
   /website/{websiteId}/pages/{pageId}/sections/{sectionId}/contents/{contentId}/media:
     get:
-      operationId: t_value
+      operationId: getWebsiteByWebsiteIdPagesByPageIdSectionsBySectionIdContentsByContentIdMedia
       parameters: []
       responses:
         '200':
@@ -1489,8 +1699,10 @@ paths:
       summary: Get content media
       tags:
       - Website
+      x-operation-id-source: normalized
+      x-operation-id-original: t_value
     post:
-      operationId: t_value
+      operationId: postWebsiteByWebsiteIdPagesByPageIdSectionsBySectionIdContentsByContentIdMedia
       parameters: []
       responses:
         '201':
@@ -1498,9 +1710,11 @@ paths:
       summary: Create content media
       tags:
       - Website
+      x-operation-id-source: normalized
+      x-operation-id-original: t_value
   /website/{websiteId}/pages/{pageId}/sections/{sectionId}/contents/{contentId}/media/{mediaId}:
     patch:
-      operationId: t_value
+      operationId: patchWebsiteByWebsiteIdPagesByPageIdSectionsBySectionIdContentsByContentIdMediaByMediaId
       parameters: []
       responses:
         '200':
@@ -1508,8 +1722,10 @@ paths:
       summary: Update content media
       tags:
       - Website
+      x-operation-id-source: normalized
+      x-operation-id-original: t_value
     delete:
-      operationId: t_value
+      operationId: deleteWebsiteByWebsiteIdPagesByPageIdSectionsBySectionIdContentsByContentIdMediaByMediaId
       parameters: []
       responses:
         '200':
@@ -1517,9 +1733,11 @@ paths:
       summary: Delete content media
       tags:
       - Website
+      x-operation-id-source: normalized
+      x-operation-id-original: t_value
   /website/themes:
     post:
-      operationId: t_value
+      operationId: postWebsiteThemes
       parameters: []
       responses:
         '201':
@@ -1527,9 +1745,11 @@ paths:
       summary: Upload themes
       tags:
       - Website
+      x-operation-id-source: normalized
+      x-operation-id-original: t_value
   /website/themes/v2:
     post:
-      operationId: t_value
+      operationId: postWebsiteThemesV2
       parameters: []
       responses:
         '201':
@@ -1537,9 +1757,11 @@ paths:
       summary: Upload themes V2 without template-theme link
       tags:
       - Website
+      x-operation-id-source: normalized
+      x-operation-id-original: t_value
   /website/themes/list:
     get:
-      operationId: t_value
+      operationId: getWebsiteThemesList
       parameters:
       - name: pageSize
         required: false
@@ -1559,9 +1781,11 @@ paths:
       summary: Get paginated list of themes with optional filtering
       tags:
       - Website
+      x-operation-id-source: normalized
+      x-operation-id-original: t_value
   /website/templates:
     get:
-      operationId: t_value
+      operationId: getWebsiteTemplates
       parameters: []
       responses:
         '200':
@@ -1569,9 +1793,11 @@ paths:
       summary: Get templates, optionally filtered by website ID
       tags:
       - Website
+      x-operation-id-source: normalized
+      x-operation-id-original: t_value
   /website/section-media:
     get:
-      operationId: t_value
+      operationId: getWebsiteSectionMedia
       parameters: []
       responses:
         '200':
@@ -1579,9 +1805,11 @@ paths:
       summary: Get section media data
       tags:
       - Website
+      x-operation-id-source: normalized
+      x-operation-id-original: t_value
   /website/category-media:
     get:
-      operationId: t_value
+      operationId: getWebsiteCategoryMedia
       parameters: []
       responses:
         '200':
@@ -1589,9 +1817,11 @@ paths:
       summary: Get category media data
       tags:
       - Website
+      x-operation-id-source: normalized
+      x-operation-id-original: t_value
   /website/single-section-media:
     get:
-      operationId: t_value
+      operationId: getWebsiteSingleSectionMedia
       parameters: []
       responses:
         '200':
@@ -1599,9 +1829,11 @@ paths:
       summary: Get single section media
       tags:
       - Website
+      x-operation-id-source: normalized
+      x-operation-id-original: t_value
   /website/replace-media-in-section:
     post:
-      operationId: t_value
+      operationId: postWebsiteReplaceMediaInSection
       parameters: []
       responses:
         '201':
@@ -1609,9 +1841,11 @@ paths:
       summary: Replace media in section
       tags:
       - Website
+      x-operation-id-source: normalized
+      x-operation-id-original: t_value
   /website/save-theme-template:
     post:
-      operationId: t_value
+      operationId: postWebsiteSaveThemeTemplate
       parameters: []
       responses:
         '201':
@@ -1619,9 +1853,11 @@ paths:
       summary: Save selected theme and template
       tags:
       - Website
+      x-operation-id-source: normalized
+      x-operation-id-original: t_value
   /website/{websiteId}/themes/generate-palette:
     post:
-      operationId: t_value
+      operationId: postWebsiteByWebsiteIdThemesGeneratePalette
       parameters: []
       responses:
         '201':
@@ -1629,9 +1865,11 @@ paths:
       summary: Generate AI color palettes from a prompt
       tags:
       - Website
+      x-operation-id-source: normalized
+      x-operation-id-original: t_value
   /website/{websiteId}/ai-colors:
     get:
-      operationId: t_value
+      operationId: getWebsiteByWebsiteIdAiColors
       parameters: []
       responses:
         '200':
@@ -1639,9 +1877,11 @@ paths:
       summary: List a website's AI-generated color palettes
       tags:
       - Website
+      x-operation-id-source: normalized
+      x-operation-id-original: t_value
   /website/{websiteId}/ai-colors/{id}:
     delete:
-      operationId: t_value
+      operationId: deleteWebsiteByWebsiteIdAiColorsById
       parameters: []
       responses:
         '200':
@@ -1649,9 +1889,11 @@ paths:
       summary: Delete an AI-generated color palette
       tags:
       - Website
+      x-operation-id-source: normalized
+      x-operation-id-original: t_value
   /website/{websiteId}/ai-colors/{id}/persist:
     post:
-      operationId: t_value
+      operationId: postWebsiteByWebsiteIdAiColorsByIdPersist
       parameters: []
       responses:
         '201':
@@ -1659,9 +1901,11 @@ paths:
       summary: Persist a stored AI palette as a theme (returns themeId)
       tags:
       - Website
+      x-operation-id-source: normalized
+      x-operation-id-original: t_value
   /website/{websiteId}/ai-colors/{id}/apply:
     post:
-      operationId: t_value
+      operationId: postWebsiteByWebsiteIdAiColorsByIdApply
       parameters: []
       responses:
         '201':
@@ -1669,9 +1913,11 @@ paths:
       summary: Apply a stored AI palette to the website and publish
       tags:
       - Website
+      x-operation-id-source: normalized
+      x-operation-id-original: t_value
   /website/{websiteId}/theme-template:
     get:
-      operationId: t_value
+      operationId: getWebsiteByWebsiteIdThemeTemplate
       parameters: []
       responses:
         '200':
@@ -1679,9 +1925,11 @@ paths:
       summary: Get theme and template for website
       tags:
       - Website
+      x-operation-id-source: normalized
+      x-operation-id-original: t_value
   /website/reorder-media-in-section:
     post:
-      operationId: t_value
+      operationId: postWebsiteReorderMediaInSection
       parameters: []
       responses:
         '201':
@@ -1689,9 +1937,11 @@ paths:
       summary: Reorder media in section
       tags:
       - Website
+      x-operation-id-source: normalized
+      x-operation-id-original: t_value
   /website/update-website-status:
     post:
-      operationId: t_value
+      operationId: postWebsiteUpdateWebsiteStatus
       parameters: []
       responses:
         '201':
@@ -1699,9 +1949,11 @@ paths:
       summary: Update website status
       tags:
       - Website
+      x-operation-id-source: normalized
+      x-operation-id-original: t_value
   /website/get-website-status:
     get:
-      operationId: t_value
+      operationId: getWebsiteGetWebsiteStatus
       parameters: []
       responses:
         '200':
@@ -1709,9 +1961,11 @@ paths:
       summary: Get website status and preferences
       tags:
       - Website
+      x-operation-id-source: normalized
+      x-operation-id-original: t_value
   /website/subdomain:
     get:
-      operationId: t_value
+      operationId: getWebsiteSubdomain
       parameters: []
       responses:
         '200':
@@ -1719,8 +1973,10 @@ paths:
       summary: Get website subdomain
       tags:
       - Website
+      x-operation-id-source: normalized
+      x-operation-id-original: t_value
     put:
-      operationId: t_value
+      operationId: putWebsiteSubdomain
       parameters: []
       responses:
         '200':
@@ -1728,9 +1984,11 @@ paths:
       summary: Update website subdomain (preserves current domain)
       tags:
       - Website
+      x-operation-id-source: normalized
+      x-operation-id-original: t_value
   /website/subdomain-validate:
     get:
-      operationId: t_value
+      operationId: getWebsiteSubdomainValidate
       parameters: []
       responses:
         '200':
@@ -1738,9 +1996,11 @@ paths:
       summary: Validate subdomain availability
       tags:
       - Website
+      x-operation-id-source: normalized
+      x-operation-id-original: t_value
   /website/domain:
     put:
-      operationId: t_value
+      operationId: putWebsiteDomain
       parameters: []
       responses:
         '200':
@@ -1752,10 +2012,12 @@ paths:
       summary: Update website domain (preserves current subdomain)
       tags:
       - Website
+      x-operation-id-source: normalized
+      x-operation-id-original: t_value
   /website/{websiteId}/pipeline:
     patch:
       description: Toggle between old (v1) and new (v2) website generation and publishing pipelines
-      operationId: t_value
+      operationId: patchWebsiteByWebsiteIdPipeline
       parameters:
       - name: websiteId
         required: true
@@ -1797,9 +2059,11 @@ paths:
       summary: Update website pipeline version
       tags:
       - Website
+      x-operation-id-source: normalized
+      x-operation-id-original: t_value
   /website/get-system-category:
     get:
-      operationId: t_value
+      operationId: getWebsiteGetSystemCategory
       parameters: []
       responses:
         '200':
@@ -1807,9 +2071,11 @@ paths:
       summary: Get system category by name
       tags:
       - Website
+      x-operation-id-source: normalized
+      x-operation-id-original: t_value
   /website/default-category-images:
     get:
-      operationId: t_value
+      operationId: getWebsiteDefaultCategoryImages
       parameters: []
       responses:
         '200':
@@ -1817,9 +2083,11 @@ paths:
       summary: Get default images for a category
       tags:
       - Website
+      x-operation-id-source: normalized
+      x-operation-id-original: t_value
   /website/add-user-preferences:
     post:
-      operationId: t_value
+      operationId: postWebsiteAddUserPreferences
       parameters: []
       responses:
         '201':
@@ -1827,9 +2095,11 @@ paths:
       summary: Add user preferences
       tags:
       - Website
+      x-operation-id-source: normalized
+      x-operation-id-original: t_value
   /website/get-ip-details:
     get:
-      operationId: t_value
+      operationId: getWebsiteGetIpDetails
       parameters: []
       responses:
         '200':
@@ -1837,9 +2107,11 @@ paths:
       summary: Get IP details from request
       tags:
       - Website
+      x-operation-id-source: normalized
+      x-operation-id-original: t_value
   /website/create-website-from-location:
     post:
-      operationId: t_value
+      operationId: postWebsiteCreateWebsiteFromLocation
       parameters: []
       responses:
         '201':
@@ -1847,9 +2119,11 @@ paths:
       summary: Create website from location data
       tags:
       - Website
+      x-operation-id-source: normalized
+      x-operation-id-original: t_value
   /website/{websiteId}/location:
     get:
-      operationId: t_value
+      operationId: getWebsiteByWebsiteIdLocation
       parameters: []
       responses:
         '200':
@@ -1857,8 +2131,10 @@ paths:
       summary: Get location for website
       tags:
       - Website
+      x-operation-id-source: normalized
+      x-operation-id-original: t_value
     put:
-      operationId: t_value
+      operationId: putWebsiteByWebsiteIdLocation
       parameters: []
       responses:
         '200':
@@ -1866,9 +2142,11 @@ paths:
       summary: Update website location details
       tags:
       - Website
+      x-operation-id-source: normalized
+      x-operation-id-original: t_value
   /website/{websiteId}/location/canonical:
     get:
-      operationId: t_value
+      operationId: getWebsiteByWebsiteIdLocationCanonical
       parameters: []
       responses:
         '200':
@@ -1876,9 +2154,11 @@ paths:
       summary: Get canonical website location NAP and contact data
       tags:
       - Website
+      x-operation-id-source: normalized
+      x-operation-id-original: t_value
   /website/list:
     get:
-      operationId: t_value
+      operationId: getWebsiteList
       parameters:
       - name: isLeadWidgetActive
         required: false
@@ -2032,9 +2312,11 @@ paths:
       summary: Get paginated list of websites with optional filtering
       tags:
       - Website
+      x-operation-id-source: normalized
+      x-operation-id-original: t_value
   /website/get-websites/{websiteId}:
     get:
-      operationId: t_value
+      operationId: getWebsiteGetWebsitesByWebsiteId
       parameters: []
       responses:
         '200':
@@ -2042,9 +2324,11 @@ paths:
       summary: Get website by ID
       tags:
       - Website
+      x-operation-id-source: normalized
+      x-operation-id-original: t_value
   /website/{websiteId}/{sectionId}/section:
     patch:
-      operationId: t_value
+      operationId: patchWebsiteByWebsiteIdBySectionIdSection
       parameters: []
       responses:
         '200':
@@ -2052,9 +2336,11 @@ paths:
       summary: Update section
       tags:
       - Website
+      x-operation-id-source: normalized
+      x-operation-id-original: t_value
   /website/chrone-services:
     get:
-      operationId: t_value
+      operationId: getWebsiteChroneServices
       parameters: []
       responses:
         '200':
@@ -2062,9 +2348,11 @@ paths:
       summary: Get chrone services for a location
       tags:
       - Website
+      x-operation-id-source: normalized
+      x-operation-id-original: t_value
   /website/gallery-media:
     get:
-      operationId: t_value
+      operationId: getWebsiteGalleryMedia
       parameters: []
       responses:
         '200':
@@ -2072,9 +2360,11 @@ paths:
       summary: Get website gallery media for a location
       tags:
       - Website
+      x-operation-id-source: normalized
+      x-operation-id-original: t_value
   /website/set-external-domain/{externalDomain}/{subDomain}:
     post:
-      operationId: t_value
+      operationId: postWebsiteSetExternalDomainByExternalDomainBySubDomain
       parameters: []
       responses:
         '201':
@@ -2082,9 +2372,11 @@ paths:
       summary: Set external domain for website
       tags:
       - Website
+      x-operation-id-source: normalized
+      x-operation-id-original: t_value
   /website/kill/{websiteName}:
     delete:
-      operationId: t_value
+      operationId: deleteWebsiteKillByWebsiteName
       parameters: []
       responses:
         '200':
@@ -2092,9 +2384,11 @@ paths:
       summary: Delete website by name
       tags:
       - Website
+      x-operation-id-source: normalized
+      x-operation-id-original: t_value
   /website/respawn/{websiteName}:
     get:
-      operationId: t_value
+      operationId: getWebsiteRespawnByWebsiteName
       parameters: []
       responses:
         '200':
@@ -2102,9 +2396,11 @@ paths:
       summary: Respawn website by name
       tags:
       - Website
+      x-operation-id-source: normalized
+      x-operation-id-original: t_value
   /website/{websiteId}/build:
     post:
-      operationId: t_value
+      operationId: postWebsiteByWebsiteIdBuild
       parameters: []
       responses:
         '201':
@@ -2112,9 +2408,11 @@ paths:
       summary: Build website
       tags:
       - Website
+      x-operation-id-source: normalized
+      x-operation-id-original: t_value
   /website/build/all:
     post:
-      operationId: t_value
+      operationId: postWebsiteBuildAll
       parameters: []
       responses:
         '201':
@@ -2122,9 +2420,11 @@ paths:
       summary: Build all published websites
       tags:
       - Website
+      x-operation-id-source: normalized
+      x-operation-id-original: t_value
   /website/{websiteId}/build-status/{buildStatus}:
     patch:
-      operationId: t_value
+      operationId: patchWebsiteByWebsiteIdBuildStatusByBuildStatus
       parameters: []
       responses:
         '200':
@@ -2132,9 +2432,11 @@ paths:
       summary: Update website build status
       tags:
       - Website
+      x-operation-id-source: normalized
+      x-operation-id-original: t_value
   /website/{websiteId}/page/{pageId}/metadata:
     get:
-      operationId: t_value
+      operationId: getWebsiteByWebsiteIdPageByPageIdMetadata
       parameters: []
       responses:
         '200':
@@ -2142,8 +2444,10 @@ paths:
       summary: Get page metadata
       tags:
       - Website
+      x-operation-id-source: normalized
+      x-operation-id-original: t_value
     delete:
-      operationId: t_value
+      operationId: deleteWebsiteByWebsiteIdPageByPageIdMetadata
       parameters: []
       responses:
         '200':
@@ -2151,8 +2455,10 @@ paths:
       summary: Delete page metadata
       tags:
       - Website
+      x-operation-id-source: normalized
+      x-operation-id-original: t_value
     patch:
-      operationId: t_value
+      operationId: patchWebsiteByWebsiteIdPageByPageIdMetadata
       parameters: []
       responses:
         '200':
@@ -2160,9 +2466,11 @@ paths:
       summary: Update page metadata
       tags:
       - Website
+      x-operation-id-source: normalized
+      x-operation-id-original: t_value
   /website/{websiteId}/schema-markup:
     patch:
-      operationId: t_value
+      operationId: patchWebsiteByWebsiteIdSchemaMarkup
       parameters: []
       responses:
         '200':
@@ -2170,8 +2478,10 @@ paths:
       summary: Update schema markup
       tags:
       - Website
+      x-operation-id-source: normalized
+      x-operation-id-original: t_value
     delete:
-      operationId: t_value
+      operationId: deleteWebsiteByWebsiteIdSchemaMarkup
       parameters: []
       responses:
         '200':
@@ -2179,8 +2489,10 @@ paths:
       summary: Delete schema markup
       tags:
       - Website
+      x-operation-id-source: normalized
+      x-operation-id-original: t_value
     get:
-      operationId: t_value
+      operationId: getWebsiteByWebsiteIdSchemaMarkup
       parameters: []
       responses:
         '200':
@@ -2188,9 +2500,11 @@ paths:
       summary: Get schema markup
       tags:
       - Website
+      x-operation-id-source: normalized
+      x-operation-id-original: t_value
   /website/{websiteId}/analytics:
     post:
-      operationId: t_value
+      operationId: postWebsiteByWebsiteIdAnalytics
       parameters:
       - name: websiteId
         required: true
@@ -2214,8 +2528,10 @@ paths:
       summary: Create website analytics tracking codes in bulk
       tags:
       - Website
+      x-operation-id-source: normalized
+      x-operation-id-original: t_value
     patch:
-      operationId: t_value
+      operationId: patchWebsiteByWebsiteIdAnalytics
       parameters:
       - name: websiteId
         required: true
@@ -2240,8 +2556,10 @@ paths:
       summary: Update website analytics tracking codes in bulk
       tags:
       - Website
+      x-operation-id-source: normalized
+      x-operation-id-original: t_value
     delete:
-      operationId: t_value
+      operationId: deleteWebsiteByWebsiteIdAnalytics
       parameters:
       - name: trackingType
         required: true
@@ -2274,8 +2592,10 @@ paths:
       summary: Delete website analytics tracking code
       tags:
       - Website
+      x-operation-id-source: normalized
+      x-operation-id-original: t_value
     get:
-      operationId: t_value
+      operationId: getWebsiteByWebsiteIdAnalytics
       parameters:
       - name: websiteId
         required: true
@@ -2290,9 +2610,11 @@ paths:
       summary: Get website analytics tracking codes
       tags:
       - Website
+      x-operation-id-source: normalized
+      x-operation-id-original: t_value
   /website/book-now-clicks:
     get:
-      operationId: t_value
+      operationId: getWebsiteBookNowClicks
       parameters: []
       responses:
         '200':
@@ -2308,9 +2630,11 @@ paths:
       summary: Get book now clicks breakdown by page type
       tags:
       - Website
+      x-operation-id-source: normalized
+      x-operation-id-original: t_value
   /website/website-funnel:
     get:
-      operationId: t_value
+      operationId: getWebsiteWebsiteFunnel
       parameters: []
       responses:
         '200':
@@ -2326,9 +2650,11 @@ paths:
       summary: Get website funnel data with conversion rates
       tags:
       - Website
+      x-operation-id-source: normalized
+      x-operation-id-original: t_value
   /website/website-mixpanel-funnel:
     get:
-      operationId: t_value
+      operationId: getWebsiteWebsiteMixpanelFunnel
       parameters: []
       responses:
         '200':
@@ -2344,9 +2670,11 @@ paths:
       summary: Get Mixpanel-only website funnel data (visitors + book-now clicks)
       tags:
       - Website
+      x-operation-id-source: normalized
+      x-operation-id-original: t_value
   /website/page-views-trend:
     get:
-      operationId: t_value
+      operationId: getWebsitePageViewsTrend
       parameters: []
       responses:
         '200':
@@ -2362,9 +2690,11 @@ paths:
       summary: Get website page views trend over time
       tags:
       - Website
+      x-operation-id-source: normalized
+      x-operation-id-original: t_value
   /website/location-details:
     get:
-      operationId: t_value
+      operationId: getWebsiteLocationDetails
       parameters: []
       responses:
         '200':
@@ -2374,9 +2704,11 @@ paths:
       summary: Get lightweight location and website details
       tags:
       - Website
+      x-operation-id-source: normalized
+      x-operation-id-original: t_value
   /website/top-pages:
     get:
-      operationId: t_value
+      operationId: getWebsiteTopPages
       parameters: []
       responses:
         '200':
@@ -2390,9 +2722,11 @@ paths:
       summary: Get top pages by page views for a website
       tags:
       - Website
+      x-operation-id-source: normalized
+      x-operation-id-original: t_value
   /website/traffic-sources:
     get:
-      operationId: t_value
+      operationId: getWebsiteTrafficSources
       parameters: []
       responses:
         '200':
@@ -2406,10 +2740,12 @@ paths:
       summary: Get traffic sources breakdown for a website
       tags:
       - Website
+      x-operation-id-source: normalized
+      x-operation-id-original: t_value
   /website/{websiteId}/description/generate:
     post:
       description: Generates AI-powered copy for a website section. `type` is the section name; `field` is "title" for short headlines or "description" for body copy (default).
-      operationId: t_value
+      operationId: postWebsiteByWebsiteIdDescriptionGenerate
       parameters:
       - name: websiteId
         required: true
@@ -2424,9 +2760,11 @@ paths:
       summary: Generate AI copy (title or description) for a website section
       tags:
       - Website
+      x-operation-id-source: normalized
+      x-operation-id-original: t_value
   /website/template-theme:
     post:
-      operationId: t_value
+      operationId: postWebsiteTemplateTheme
       parameters: []
       responses:
         '201':
@@ -2436,8 +2774,10 @@ paths:
       summary: Create a template-theme mapping
       tags:
       - Website
+      x-operation-id-source: normalized
+      x-operation-id-original: t_value
     get:
-      operationId: t_value
+      operationId: getWebsiteTemplateTheme
       parameters: []
       responses:
         '200':
@@ -2445,9 +2785,11 @@ paths:
       summary: List template-theme mappings with optional filters + pagination
       tags:
       - Website
+      x-operation-id-source: normalized
+      x-operation-id-original: t_value
   /website/template-theme/{id}:
     get:
-      operationId: t_value
+      operationId: getWebsiteTemplateThemeById
       parameters:
       - name: id
         required: true
@@ -2462,8 +2804,10 @@ paths:
       summary: Get a single template-theme mapping by id
       tags:
       - Website
+      x-operation-id-source: normalized
+      x-operation-id-original: t_value
     patch:
-      operationId: t_value
+      operationId: patchWebsiteTemplateThemeById
       parameters:
       - name: id
         required: true
@@ -2480,8 +2824,10 @@ paths:
       summary: Update a template-theme mapping
       tags:
       - Website
+      x-operation-id-source: normalized
+      x-operation-id-original: t_value
     delete:
-      operationId: t_value
+      operationId: deleteWebsiteTemplateThemeById
       parameters:
       - name: id
         required: true
@@ -2496,10 +2842,12 @@ paths:
       summary: Delete a template-theme mapping
       tags:
       - Website
+      x-operation-id-source: normalized
+      x-operation-id-original: t_value
   /website/generation-status/{generationId}:
     get:
       description: JWT-authed via the global guard. No additional ownership check — the generationId UUID itself is the authorisation token (128-bit unguessable, issued by the frontend per publish click).
-      operationId: t_value
+      operationId: getWebsiteGenerationStatusByGenerationId
       parameters: []
       responses:
         '200':
@@ -2507,9 +2855,11 @@ paths:
       summary: Get the status of a website generation run
       tags:
       - Website
+      x-operation-id-source: normalized
+      x-operation-id-original: t_value
     post:
       description: '@Public() endpoint mirroring scrape-data. Lambda POSTs terminal status. UPDATE-only (insert-before-respond means the row always exists). Terminal-state-sticky + websiteId safety AND-clause: writes to a row already in COMPLETED/FAILED, or with a mismatched websiteId, are no-ops.'
-      operationId: t_value
+      operationId: postWebsiteGenerationStatusByGenerationId
       parameters: []
       responses:
         '201':
@@ -2517,6 +2867,8 @@ paths:
       summary: Update website generation status (called by prism lambda)
       tags:
       - Website
+      x-operation-id-source: normalized
+      x-operation-id-original: t_value
 components:
   schemas:
     e:

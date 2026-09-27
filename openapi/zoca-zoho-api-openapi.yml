@@ -25,7 +25,7 @@ paths:
       - zoho
   /tasks/api/v1/zoho/templates/{id}:
     patch:
-      operationId: t_value
+      operationId: patchTasksApiV1ZohoTemplatesById
       parameters: []
       responses:
         '200':
@@ -35,6 +35,8 @@ paths:
       summary: Update fields on an existing Zoho Sign template row by id
       tags:
       - zoho
+      x-operation-id-source: normalized
+      x-operation-id-original: t_value
 components:
   securitySchemes:
     access-token:

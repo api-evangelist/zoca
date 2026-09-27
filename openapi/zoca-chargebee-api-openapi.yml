@@ -29,7 +29,7 @@ paths:
       description: Production
   /chargebee/update/payment/method/{entityId}:
     get:
-      operationId: t_value
+      operationId: getChargebeeUpdatePaymentMethodByEntityId
       parameters: []
       responses:
         '200':
@@ -37,12 +37,14 @@ paths:
       summary: Update payment method redirect
       tags:
       - Chargebee
+      x-operation-id-source: normalized
+      x-operation-id-original: t_value
     servers:
     - url: https://public.zoca.com
       description: Production
   /chargebee/contract/pay/{contractId}:
     get:
-      operationId: t_value
+      operationId: getChargebeeContractPayByContractId
       parameters: []
       responses:
         '200':
@@ -50,12 +52,14 @@ paths:
       summary: Handle contract payment redirect
       tags:
       - Chargebee
+      x-operation-id-source: normalized
+      x-operation-id-original: t_value
     servers:
     - url: https://public.zoca.com
       description: Production
   /chargebee/generate/invoice/{invoiceId}:
     get:
-      operationId: t_value
+      operationId: getChargebeeGenerateInvoiceByInvoiceId
       parameters: []
       responses:
         '200':
@@ -63,13 +67,15 @@ paths:
       summary: Generate and redirect to invoice PDF
       tags:
       - Chargebee
+      x-operation-id-source: normalized
+      x-operation-id-original: t_value
     servers:
     - url: https://public.zoca.com
       description: Production
   /tasks/api/v1/chargebee/webhooks:
     post:
       description: Unified webhook endpoint that queues all Chargebee webhook events for background processing. Supports subscription_created, payment_succeeded, invoice_generated, and other Chargebee events.
-      operationId: t_value
+      operationId: postTasksApiV1ChargebeeWebhooks
       parameters: []
       requestBody:
         required: true
@@ -100,13 +106,15 @@ paths:
       summary: Handle all Chargebee webhooks
       tags:
       - Chargebee
+      x-operation-id-source: normalized
+      x-operation-id-original: t_value
     servers:
     - url: https://tasks.zoca.ai
       description: Production
   /tasks/api/v1/chargebee/ignore-payments/upsert:
     post:
       description: Creates or updates the ignore payments status for a given entity in the chargebee.ignore_payments table. If the entity already has a status, it will be updated. Otherwise, a new record will be created.
-      operationId: t_value
+      operationId: postTasksApiV1ChargebeeIgnorePaymentsUpsert
       parameters: []
       responses:
         '200':
@@ -164,13 +172,15 @@ paths:
       summary: Upsert ignore payments status for an entity
       tags:
       - Chargebee
+      x-operation-id-source: normalized
+      x-operation-id-original: t_value
     servers:
     - url: https://tasks.zoca.ai
       description: Production
   /tasks/api/v1/chargebee/auto-collection-status/upsert:
     post:
       description: Creates or updates the auto-collection status for a given Chargebee customer or subscription in the chargebee.auto_collection_status table. If the entity already has a status, it will be updated. Otherwise, a new record will be created.
-      operationId: t_value
+      operationId: postTasksApiV1ChargebeeAutoCollectionStatusUpsert
       parameters: []
       responses:
         '200':
@@ -234,13 +244,15 @@ paths:
       summary: Upsert auto-collection status for a Chargebee entity
       tags:
       - Chargebee
+      x-operation-id-source: normalized
+      x-operation-id-original: t_value
     servers:
     - url: https://tasks.zoca.ai
       description: Production
   /tasks/api/v1/chargebee/webhook:
     post:
       description: Unified webhook endpoint that routes Chargebee events to appropriate handlers
-      operationId: t_value
+      operationId: postTasksApiV1ChargebeeWebhook
       parameters: []
       responses:
         '200':
@@ -250,13 +262,15 @@ paths:
       summary: Handle all Chargebee webhooks
       tags:
       - Chargebee
+      x-operation-id-source: normalized
+      x-operation-id-original: t_value
     servers:
     - url: https://tasks.zoca.ai
       description: Production
   /tasks/api/v1/chargebee/trigger-missed-payment-job:
     post:
       description: Trigger missed payment detection jobs manually for testing or emergency use. Detection jobs automatically queue processing jobs (process-discovery-missed-payment and process-win-missed-payment) when missed payments are found. Supports detect-missed-payments, detect-win-missed-payments, and test jobs.
-      operationId: t_value
+      operationId: postTasksApiV1ChargebeeTriggerMissedPaymentJob
       parameters: []
       requestBody:
         required: true
@@ -297,13 +311,15 @@ paths:
       summary: Manually trigger missed payment detection jobs
       tags:
       - Chargebee
+      x-operation-id-source: normalized
+      x-operation-id-original: t_value
     servers:
     - url: https://tasks.zoca.ai
       description: Production
   /tasks/api/v1/chargebee/line-item-overrides:
     post:
       description: Creates a rule in chargebee.line_item_overrides that excludes or modifies matched invoice line items.
-      operationId: t_value
+      operationId: postTasksApiV1ChargebeeLineItemOverrides
       parameters: []
       responses:
         '201':
@@ -313,9 +329,11 @@ paths:
       - Chargebee
       security:
       - access-token: []
+      x-operation-id-source: normalized
+      x-operation-id-original: t_value
     get:
       description: Returns line item override rules (newest first), optionally filtered.
-      operationId: t_value
+      operationId: getTasksApiV1ChargebeeLineItemOverrides
       parameters: []
       responses:
         '200':
@@ -325,12 +343,14 @@ paths:
       - Chargebee
       security:
       - access-token: []
+      x-operation-id-source: normalized
+      x-operation-id-original: t_value
     servers:
     - url: https://tasks.zoca.ai
       description: Production
   /tasks/api/v1/chargebee/line-item-overrides/{id}:
     get:
-      operationId: t_value
+      operationId: getTasksApiV1ChargebeeLineItemOverridesById
       parameters:
       - name: id
         required: true
@@ -348,8 +368,10 @@ paths:
       - Chargebee
       security:
       - access-token: []
+      x-operation-id-source: normalized
+      x-operation-id-original: t_value
     patch:
-      operationId: t_value
+      operationId: patchTasksApiV1ChargebeeLineItemOverridesById
       parameters:
       - name: id
         required: true
@@ -367,9 +389,11 @@ paths:
       - Chargebee
       security:
       - access-token: []
+      x-operation-id-source: normalized
+      x-operation-id-original: t_value
     delete:
       description: Soft-deletes the override by setting is_active=false; the row is retained.
-      operationId: t_value
+      operationId: deleteTasksApiV1ChargebeeLineItemOverridesById
       parameters:
       - name: id
         required: true
@@ -387,6 +411,8 @@ paths:
       - Chargebee
       security:
       - access-token: []
+      x-operation-id-source: normalized
+      x-operation-id-original: t_value
     servers:
     - url: https://tasks.zoca.ai
       description: Production

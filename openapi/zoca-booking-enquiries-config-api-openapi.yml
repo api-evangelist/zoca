@@ -31,7 +31,7 @@ paths:
       - booking-enquiries-config
   /booking-enquiries-config/preferences/bulk:
     post:
-      operationId: t_value
+      operationId: postBookingEnquiriesConfigPreferencesBulk
       parameters: []
       responses:
         '200':
@@ -47,9 +47,11 @@ paths:
       summary: Bulk upsert multiple preferences for a single entity
       tags:
       - booking-enquiries-config
+      x-operation-id-source: normalized
+      x-operation-id-original: t_value
   /booking-enquiries-config/preferences/{entityId}:
     get:
-      operationId: t_value
+      operationId: getBookingEnquiriesConfigPreferencesByEntityId
       parameters:
       - name: entityId
         required: true
@@ -69,9 +71,11 @@ paths:
       summary: Get all preferences for an entity
       tags:
       - booking-enquiries-config
+      x-operation-id-source: normalized
+      x-operation-id-original: t_value
   /booking-enquiries-config/preferences/{entityId}/by-pattern:
     get:
-      operationId: t_value
+      operationId: getBookingEnquiriesConfigPreferencesByEntityIdByPattern
       parameters:
       - name: excludeAttributes
         required: false
@@ -109,9 +113,11 @@ paths:
       summary: Get preferences by attribute pattern or filters
       tags:
       - booking-enquiries-config
+      x-operation-id-source: normalized
+      x-operation-id-original: t_value
   /booking-enquiries-config/preferences/{entityId}/booking-enquiry:
     get:
-      operationId: t_value
+      operationId: getBookingEnquiriesConfigPreferencesByEntityIdBookingEnquiry
       parameters:
       - name: entityId
         required: true
@@ -131,9 +137,11 @@ paths:
       summary: Get booking enquiry specific preferences for an entity
       tags:
       - booking-enquiries-config
+      x-operation-id-source: normalized
+      x-operation-id-original: t_value
   /booking-enquiries-config/preferences/{entityId}/value:
     get:
-      operationId: t_value
+      operationId: getBookingEnquiriesConfigPreferencesByEntityIdValue
       parameters:
       - name: attribute
         required: true
@@ -157,9 +165,11 @@ paths:
       summary: Get a single preference value by attribute
       tags:
       - booking-enquiries-config
+      x-operation-id-source: normalized
+      x-operation-id-original: t_value
   /booking-enquiries-config/preferences/{entityId}/{attribute}:
     delete:
-      operationId: t_value
+      operationId: deleteBookingEnquiriesConfigPreferencesByEntityIdByAttribute
       parameters:
       - name: attribute
         required: true
@@ -179,9 +189,11 @@ paths:
       summary: Delete a preference by setting it to empty
       tags:
       - booking-enquiries-config
+      x-operation-id-source: normalized
+      x-operation-id-original: t_value
   /booking-enquiries-config/preferences/{entityId}/with-metadata:
     put:
-      operationId: t_value
+      operationId: putBookingEnquiriesConfigPreferencesByEntityIdWithMetadata
       parameters:
       - name: entityId
         required: true
@@ -199,9 +211,11 @@ paths:
       summary: Update preferences with tracking metadata
       tags:
       - booking-enquiries-config
+      x-operation-id-source: normalized
+      x-operation-id-original: t_value
   /booking-enquiries-config/preferences/{entityId}/exists:
     get:
-      operationId: t_value
+      operationId: getBookingEnquiriesConfigPreferencesByEntityIdExists
       parameters:
       - name: attribute
         required: true
@@ -221,9 +235,11 @@ paths:
       summary: Check if a preference exists for an entity
       tags:
       - booking-enquiries-config
+      x-operation-id-source: normalized
+      x-operation-id-original: t_value
   /booking-enquiries-config/preferences/available:
     get:
-      operationId: t_value
+      operationId: getBookingEnquiriesConfigPreferencesAvailable
       parameters: []
       responses:
         '200':
@@ -237,6 +253,8 @@ paths:
       summary: Get all available booking enquiry preferences with their metadata
       tags:
       - booking-enquiries-config
+      x-operation-id-source: normalized
+      x-operation-id-original: t_value
 components:
   schemas:
     e:

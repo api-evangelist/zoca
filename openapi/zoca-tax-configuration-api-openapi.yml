@@ -28,7 +28,7 @@ paths:
       tags:
       - Tax Configuration
     post:
-      operationId: t_value
+      operationId: postSchedulingTaxRates
       parameters: []
       responses:
         '201':
@@ -36,9 +36,11 @@ paths:
       summary: Create a new tax rate
       tags:
       - Tax Configuration
+      x-operation-id-source: normalized
+      x-operation-id-original: t_value
   /scheduling/tax-rates/default:
     get:
-      operationId: t_value
+      operationId: getSchedulingTaxRatesDefault
       parameters:
       - name: scope
         required: false
@@ -61,9 +63,11 @@ paths:
       summary: Get current default tax rate for an entity
       tags:
       - Tax Configuration
+      x-operation-id-source: normalized
+      x-operation-id-original: t_value
   /scheduling/tax-rates/{id}:
     patch:
-      operationId: t_value
+      operationId: patchSchedulingTaxRatesById
       parameters:
       - name: id
         required: true
@@ -77,8 +81,10 @@ paths:
       summary: Update an existing tax rate
       tags:
       - Tax Configuration
+      x-operation-id-source: normalized
+      x-operation-id-original: t_value
     delete:
-      operationId: t_value
+      operationId: deleteSchedulingTaxRatesById
       parameters:
       - name: id
         required: true
@@ -92,9 +98,11 @@ paths:
       summary: Soft-delete a tax rate
       tags:
       - Tax Configuration
+      x-operation-id-source: normalized
+      x-operation-id-original: t_value
   /scheduling/service-tax-mappings:
     get:
-      operationId: t_value
+      operationId: getSchedulingServiceTaxMappings
       parameters:
       - name: entityId
         required: true
@@ -108,9 +116,11 @@ paths:
       summary: List all service tax mappings for an entity
       tags:
       - Tax Configuration
+      x-operation-id-source: normalized
+      x-operation-id-original: t_value
   /scheduling/service-tax-mappings/{serviceVariationId}/tax:
     patch:
-      operationId: t_value
+      operationId: patchSchedulingServiceTaxMappingsByServiceVariationIdTax
       parameters:
       - name: serviceVariationId
         required: true
@@ -124,9 +134,11 @@ paths:
       summary: Toggle tax enabled status for a service variation
       tags:
       - Tax Configuration
+      x-operation-id-source: normalized
+      x-operation-id-original: t_value
   /scheduling/service-tax-mappings/bulk-update:
     post:
-      operationId: t_value
+      operationId: postSchedulingServiceTaxMappingsBulkUpdate
       parameters: []
       responses:
         '201':
@@ -134,6 +146,8 @@ paths:
       summary: Bulk update tax status for multiple service variations
       tags:
       - Tax Configuration
+      x-operation-id-source: normalized
+      x-operation-id-original: t_value
 components:
   securitySchemes:
     access-token:

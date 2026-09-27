@@ -22,7 +22,7 @@ paths:
       tags:
       - GBP Media
     post:
-      operationId: t_value
+      operationId: postGbpMediaById
       parameters: []
       responses:
         '201':
@@ -30,9 +30,11 @@ paths:
       summary: Create GBP media
       tags:
       - GBP Media
+      x-operation-id-source: normalized
+      x-operation-id-original: t_value
   /gbp-media/{id}/sync:
     get:
-      operationId: t_value
+      operationId: getGbpMediaByIdSync
       parameters: []
       responses:
         '200':
@@ -40,9 +42,11 @@ paths:
       summary: Sync GBP media from Google
       tags:
       - GBP Media
+      x-operation-id-source: normalized
+      x-operation-id-original: t_value
   /gbp-media/{entity_id}/{media_name}:
     delete:
-      operationId: t_value
+      operationId: deleteGbpMediaByEntityIdByMediaName
       parameters: []
       responses:
         '200':
@@ -50,9 +54,11 @@ paths:
       summary: Delete GBP media by entity ID and media name
       tags:
       - GBP Media
+      x-operation-id-source: normalized
+      x-operation-id-original: t_value
   /gbp-media/sync:
     post:
-      operationId: t_value
+      operationId: postGbpMediaSync
       parameters: []
       responses:
         '201':
@@ -60,6 +66,8 @@ paths:
       summary: Upload and sync GBP media
       tags:
       - GBP Media
+      x-operation-id-source: normalized
+      x-operation-id-original: t_value
 components:
   securitySchemes:
     access-token:

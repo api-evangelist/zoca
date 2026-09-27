@@ -30,7 +30,7 @@ paths:
   /updates/backfill-gbp-posts:
     post:
       description: Finds posts that were successfully published on GBP but do not have corresponding updates, and creates the missing updates with createdAt set to the original executedAt timestamp.
-      operationId: t_value
+      operationId: postUpdatesBackfillGbpPosts
       parameters: []
       requestBody:
         required: true
@@ -64,9 +64,11 @@ paths:
       summary: Backfill missing GBP post updates for a specific date
       tags:
       - Updates
+      x-operation-id-source: normalized
+      x-operation-id-original: t_value
   /updates/{id}:
     patch:
-      operationId: t_value
+      operationId: patchUpdatesById
       parameters: []
       responses:
         '200':
@@ -74,8 +76,10 @@ paths:
       summary: Patch an update record
       tags:
       - Updates
+      x-operation-id-source: normalized
+      x-operation-id-original: t_value
     get:
-      operationId: t_value
+      operationId: getUpdatesById
       parameters:
       - name: id
         required: true
@@ -88,9 +92,11 @@ paths:
       summary: Get a single update by its ID
       tags:
       - Updates
+      x-operation-id-source: normalized
+      x-operation-id-original: t_value
   /updates/entity/{entityId}:
     get:
-      operationId: t_value
+      operationId: getUpdatesEntityByEntityId
       parameters:
       - name: isApproved
         required: false
@@ -136,8 +142,10 @@ paths:
       summary: Get all updates for a specific entity
       tags:
       - Updates
+      x-operation-id-source: normalized
+      x-operation-id-original: t_value
     patch:
-      operationId: t_value
+      operationId: patchUpdatesEntityByEntityId
       parameters:
       - name: entityId
         required: true
@@ -150,9 +158,11 @@ paths:
       summary: Mark all updates as read for a specific entity
       tags:
       - Updates
+      x-operation-id-source: normalized
+      x-operation-id-original: t_value
   /updates/count/{entityId}:
     get:
-      operationId: t_value
+      operationId: getUpdatesCountByEntityId
       parameters:
       - name: updateType
         required: false
@@ -174,9 +184,11 @@ paths:
       summary: Get the count of updates for a specific entity
       tags:
       - Updates
+      x-operation-id-source: normalized
+      x-operation-id-original: t_value
   /updates/highlights/entity/{entityId}:
     get:
-      operationId: t_value
+      operationId: getUpdatesHighlightsEntityByEntityId
       parameters:
       - name: entityId
         required: true
@@ -189,9 +201,11 @@ paths:
       summary: Get the highlights for a specific entity
       tags:
       - Updates
+      x-operation-id-source: normalized
+      x-operation-id-original: t_value
   /updates/templates:
     post:
-      operationId: t_value
+      operationId: postUpdatesTemplates
       parameters: []
       requestBody:
         required: true
@@ -205,8 +219,10 @@ paths:
       summary: Create a new update template
       tags:
       - Updates
+      x-operation-id-source: normalized
+      x-operation-id-original: t_value
     get:
-      operationId: t_value
+      operationId: getUpdatesTemplates
       parameters: []
       responses:
         '200':
@@ -214,9 +230,11 @@ paths:
       summary: Get all update templates
       tags:
       - Updates
+      x-operation-id-source: normalized
+      x-operation-id-original: t_value
   /updates/templates/{key}:
     get:
-      operationId: t_value
+      operationId: getUpdatesTemplatesByKey
       parameters:
       - name: key
         required: true
@@ -229,8 +247,10 @@ paths:
       summary: Get a single update template by key
       tags:
       - Updates
+      x-operation-id-source: normalized
+      x-operation-id-original: t_value
     patch:
-      operationId: t_value
+      operationId: patchUpdatesTemplatesByKey
       parameters:
       - name: key
         required: true
@@ -249,6 +269,8 @@ paths:
       summary: Update an existing update template
       tags:
       - Updates
+      x-operation-id-source: normalized
+      x-operation-id-original: t_value
 components:
   schemas:
     e:

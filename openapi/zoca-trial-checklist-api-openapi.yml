@@ -26,7 +26,7 @@ paths:
       tags:
       - trial-checklist
     get:
-      operationId: t_value
+      operationId: getTrialChecklist
       parameters: []
       responses:
         '200':
@@ -38,9 +38,11 @@ paths:
       summary: List checklist entries (paginated)
       tags:
       - trial-checklist
+      x-operation-id-source: normalized
+      x-operation-id-original: t_value
   /trial/checklist/{id}:
     get:
-      operationId: t_value
+      operationId: getTrialChecklistById
       parameters: []
       responses:
         '200':
@@ -52,8 +54,10 @@ paths:
       summary: Get a checklist entry by id
       tags:
       - trial-checklist
+      x-operation-id-source: normalized
+      x-operation-id-original: t_value
     delete:
-      operationId: t_value
+      operationId: deleteTrialChecklistById
       parameters: []
       responses:
         '200':
@@ -61,6 +65,8 @@ paths:
       summary: Delete a checklist entry
       tags:
       - trial-checklist
+      x-operation-id-source: normalized
+      x-operation-id-original: t_value
 components:
   schemas:
     e:

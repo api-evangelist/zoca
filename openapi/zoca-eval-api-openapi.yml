@@ -26,7 +26,7 @@ paths:
       x-summary-source: derived
   /tasks/api/v1/eval/scenarios/summary:
     get:
-      operationId: t_value
+      operationId: getTasksApiV1EvalScenariosSummary
       parameters: []
       responses:
         '200':
@@ -35,9 +35,11 @@ paths:
       - Eval
       summary: T value
       x-summary-source: derived
+      x-operation-id-source: normalized
+      x-operation-id-original: t_value
   /tasks/api/v1/eval/run:
     post:
-      operationId: t_value
+      operationId: postTasksApiV1EvalRun
       parameters: []
       responses:
         '201':
@@ -46,6 +48,8 @@ paths:
       - Eval
       summary: T value
       x-summary-source: derived
+      x-operation-id-source: normalized
+      x-operation-id-original: t_value
 components:
   securitySchemes:
     access-token:

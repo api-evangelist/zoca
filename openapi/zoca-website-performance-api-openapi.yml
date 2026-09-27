@@ -24,7 +24,7 @@ paths:
       tags:
       - website-performance
     get:
-      operationId: t_value
+      operationId: getTasksApiV1WebsitePerformance
       parameters: []
       responses:
         '200':
@@ -32,9 +32,11 @@ paths:
       summary: Get paginated website performance data
       tags:
       - website-performance
+      x-operation-id-source: normalized
+      x-operation-id-original: t_value
   /tasks/api/v1/website-performance/website/{websiteId}:
     get:
-      operationId: t_value
+      operationId: getTasksApiV1WebsitePerformanceWebsiteByWebsiteId
       parameters: []
       responses:
         '200':
@@ -42,9 +44,11 @@ paths:
       summary: Get performance data by website ID
       tags:
       - website-performance
+      x-operation-id-source: normalized
+      x-operation-id-original: t_value
   /tasks/api/v1/website-performance/{id}:
     get:
-      operationId: t_value
+      operationId: getTasksApiV1WebsitePerformanceById
       parameters: []
       responses:
         '200':
@@ -52,9 +56,11 @@ paths:
       summary: Get website performance data by websiteID
       tags:
       - website-performance
+      x-operation-id-source: normalized
+      x-operation-id-original: t_value
   /tasks/api/v1/website-performance/trigger-scan/{websiteId}:
     post:
-      operationId: t_value
+      operationId: postTasksApiV1WebsitePerformanceTriggerScanByWebsiteId
       parameters: []
       responses:
         '201':
@@ -62,9 +68,11 @@ paths:
       summary: Trigger a Lighthouse scan for a specific website
       tags:
       - website-performance
+      x-operation-id-source: normalized
+      x-operation-id-original: t_value
   /tasks/api/v1/website-performance/trigger-scan-url:
     post:
-      operationId: t_value
+      operationId: postTasksApiV1WebsitePerformanceTriggerScanUrl
       parameters: []
       responses:
         '200':
@@ -72,9 +80,11 @@ paths:
       summary: Trigger a Lighthouse scan for a specific URL
       tags:
       - website-performance
+      x-operation-id-source: normalized
+      x-operation-id-original: t_value
   /tasks/api/v1/website-performance/trigger-scan-by-id:
     post:
-      operationId: t_value
+      operationId: postTasksApiV1WebsitePerformanceTriggerScanById
       parameters: []
       responses:
         '200':
@@ -82,9 +92,11 @@ paths:
       summary: Trigger a Lighthouse scan for a website ID without checking published status
       tags:
       - website-performance
+      x-operation-id-source: normalized
+      x-operation-id-original: t_value
   /tasks/api/v1/website-performance/trigger-scans:
     post:
-      operationId: t_value
+      operationId: postTasksApiV1WebsitePerformanceTriggerScans
       parameters: []
       responses:
         '201':
@@ -92,9 +104,11 @@ paths:
       summary: Trigger Lighthouse scans for all published websites
       tags:
       - website-performance
+      x-operation-id-source: normalized
+      x-operation-id-original: t_value
   /tasks/api/v1/website-performance/dashboard/stats:
     get:
-      operationId: t_value
+      operationId: getTasksApiV1WebsitePerformanceDashboardStats
       parameters: []
       responses:
         '200':
@@ -102,9 +116,11 @@ paths:
       summary: Get overall performance dashboard statistics
       tags:
       - website-performance
+      x-operation-id-source: normalized
+      x-operation-id-original: t_value
   /tasks/api/v1/website-performance/dashboard/average-scores:
     get:
-      operationId: t_value
+      operationId: getTasksApiV1WebsitePerformanceDashboardAverageScores
       parameters: []
       responses:
         '200':
@@ -112,9 +128,11 @@ paths:
       summary: Get average scores over time
       tags:
       - website-performance
+      x-operation-id-source: normalized
+      x-operation-id-original: t_value
   /tasks/api/v1/website-performance/dashboard/performance-trends:
     get:
-      operationId: t_value
+      operationId: getTasksApiV1WebsitePerformanceDashboardPerformanceTrends
       parameters: []
       responses:
         '200':
@@ -122,9 +140,11 @@ paths:
       summary: Get performance metrics trends over time
       tags:
       - website-performance
+      x-operation-id-source: normalized
+      x-operation-id-original: t_value
   /tasks/api/v1/website-performance/dashboard/top-websites:
     get:
-      operationId: t_value
+      operationId: getTasksApiV1WebsitePerformanceDashboardTopWebsites
       parameters: []
       responses:
         '200':
@@ -132,9 +152,11 @@ paths:
       summary: Get top-performing and worst-performing websites
       tags:
       - website-performance
+      x-operation-id-source: normalized
+      x-operation-id-original: t_value
   /tasks/api/v1/website-performance/dashboard/monthly-score-comparison:
     get:
-      operationId: t_value
+      operationId: getTasksApiV1WebsitePerformanceDashboardMonthlyScoreComparison
       parameters: []
       responses:
         '200':
@@ -142,6 +164,8 @@ paths:
       summary: Compare average performance scores between two months
       tags:
       - website-performance
+      x-operation-id-source: normalized
+      x-operation-id-original: t_value
 components:
   securitySchemes:
     access-token:

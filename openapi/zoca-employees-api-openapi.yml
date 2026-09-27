@@ -123,7 +123,7 @@ paths:
   /tasks/api/v1/employees/add:
     post:
       description: Creates a new employee with the specified details including name, email, and employee type
-      operationId: t_value
+      operationId: postTasksApiV1EmployeesAdd
       parameters: []
       requestBody:
         required: true
@@ -258,10 +258,12 @@ paths:
       summary: Add a new employee
       tags:
       - Employees
+      x-operation-id-source: normalized
+      x-operation-id-original: t_value
   /tasks/api/v1/employees/internal-emails:
     post:
       description: Adds a new internal email address associated with an entity
-      operationId: t_value
+      operationId: postTasksApiV1EmployeesInternalEmails
       parameters: []
       requestBody:
         required: true
@@ -286,10 +288,12 @@ paths:
       summary: Add an internal email
       tags:
       - Employees
+      x-operation-id-source: normalized
+      x-operation-id-original: t_value
   /tasks/api/v1/employees/internal-emails/{entityId}:
     patch:
       description: Updates the isActive status of an internal email by entity ID
-      operationId: t_value
+      operationId: patchTasksApiV1EmployeesInternalEmailsByEntityId
       parameters: []
       requestBody:
         required: true
@@ -315,10 +319,12 @@ paths:
       summary: Update internal email active status
       tags:
       - Employees
+      x-operation-id-source: normalized
+      x-operation-id-original: t_value
   /tasks/api/v1/employees/{entityId}:
     patch:
       description: Updates employee information including regular columns, complete attributes, or specific attribute keys. All fields are optional.
-      operationId: t_value
+      operationId: patchTasksApiV1EmployeesByEntityId
       parameters: []
       requestBody:
         required: true
@@ -496,6 +502,8 @@ paths:
       summary: Update an existing employee
       tags:
       - Employees
+      x-operation-id-source: normalized
+      x-operation-id-original: t_value
 components:
   schemas:
     e:

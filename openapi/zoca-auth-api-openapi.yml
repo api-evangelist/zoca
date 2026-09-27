@@ -31,7 +31,7 @@ paths:
       description: Production
   /auth:
     get:
-      operationId: t_value
+      operationId: getAuth
       parameters: []
       responses:
         '200':
@@ -39,12 +39,14 @@ paths:
       summary: Health check for auth service
       tags:
       - Auth
+      x-operation-id-source: normalized
+      x-operation-id-original: t_value
     servers:
     - url: https://api.zoca.ai
       description: Production
   /auth/check:
     get:
-      operationId: t_value
+      operationId: getAuthCheck
       parameters: []
       responses:
         '200':
@@ -57,13 +59,15 @@ paths:
       summary: Check authentication status
       tags:
       - Auth
+      x-operation-id-source: normalized
+      x-operation-id-original: t_value
     servers:
     - url: https://api.zoca.ai
       description: Production
   /auth/google-token-exchange:
     post:
       description: Validates a Google ID token from client-side sign-in and creates a session. Use this for mobile/SPA apps where the client handles the OAuth flow.
-      operationId: t_value
+      operationId: postAuthGoogleTokenExchange
       parameters: []
       responses:
         '201':
@@ -71,12 +75,14 @@ paths:
       summary: Exchange Google token (client-side flow)
       tags:
       - Auth
+      x-operation-id-source: normalized
+      x-operation-id-original: t_value
     servers:
     - url: https://api.zoca.ai
       description: Production
   /auth/google-callback:
     get:
-      operationId: t_value
+      operationId: getAuthGoogleCallback
       parameters: []
       responses:
         '200':
@@ -91,12 +97,14 @@ paths:
       summary: Google Authentication callback
       tags:
       - Auth
+      x-operation-id-source: normalized
+      x-operation-id-original: t_value
     servers:
     - url: https://api.zoca.ai
       description: Production
   /auth/google-auth-url:
     get:
-      operationId: t_value
+      operationId: getAuthGoogleAuthUrl
       parameters:
       - name: redirectUrl
         required: false
@@ -119,12 +127,14 @@ paths:
       summary: Google Authentication URL
       tags:
       - Auth
+      x-operation-id-source: normalized
+      x-operation-id-original: t_value
     servers:
     - url: https://api.zoca.ai
       description: Production
   /auth/gmail-auth-url:
     get:
-      operationId: t_value
+      operationId: getAuthGmailAuthUrl
       parameters:
       - name: clientId
         required: false
@@ -142,12 +152,14 @@ paths:
       summary: Gmail Authentication URL
       tags:
       - Auth
+      x-operation-id-source: normalized
+      x-operation-id-original: t_value
     servers:
     - url: https://api.zoca.ai
       description: Production
   /auth/win/authorize:
     get:
-      operationId: t_value
+      operationId: getAuthWinAuthorize
       parameters:
       - name: redirectUrl
         required: false
@@ -170,12 +182,14 @@ paths:
       summary: Win Standalone Authentication URL
       tags:
       - Auth
+      x-operation-id-source: normalized
+      x-operation-id-original: t_value
     servers:
     - url: https://api.zoca.ai
       description: Production
   /auth/win/google-callback:
     get:
-      operationId: t_value
+      operationId: getAuthWinGoogleCallback
       parameters: []
       responses:
         '200':
@@ -190,12 +204,14 @@ paths:
       summary: Win Standalone Google Authentication callback
       tags:
       - Auth
+      x-operation-id-source: normalized
+      x-operation-id-original: t_value
     servers:
     - url: https://api.zoca.ai
       description: Production
   /auth/google-dummyurl:
     get:
-      operationId: t_value
+      operationId: getAuthGoogleDummyurl
       parameters: []
       responses:
         '200':
@@ -203,12 +219,14 @@ paths:
       summary: Get Google dummy URL for testing
       tags:
       - Auth
+      x-operation-id-source: normalized
+      x-operation-id-original: t_value
     servers:
     - url: https://api.zoca.ai
       description: Production
   /auth/google-browser-simulator:
     get:
-      operationId: t_value
+      operationId: getAuthGoogleBrowserSimulator
       parameters: []
       responses:
         '200':
@@ -216,13 +234,15 @@ paths:
       summary: Simulate Google browser authentication
       tags:
       - Auth
+      x-operation-id-source: normalized
+      x-operation-id-original: t_value
     servers:
     - url: https://api.zoca.ai
       description: Production
   /auth/square/authorize:
     get:
       description: Generates the Square OAuth authorization URL for entity integration. Use isWinAgent=true to request Win Agent specific permissions.
-      operationId: t_value
+      operationId: getAuthSquareAuthorize
       parameters: []
       responses:
         '200':
@@ -244,12 +264,14 @@ paths:
       summary: Square OAuth Authorization URL
       tags:
       - Auth
+      x-operation-id-source: normalized
+      x-operation-id-original: t_value
     servers:
     - url: https://api.zoca.ai
       description: Production
   /auth/square/callback:
     get:
-      operationId: t_value
+      operationId: getAuthSquareCallback
       parameters: []
       responses:
         '200':
@@ -257,12 +279,14 @@ paths:
       summary: Square OAuth callback
       tags:
       - Auth
+      x-operation-id-source: normalized
+      x-operation-id-original: t_value
     servers:
     - url: https://api.zoca.ai
       description: Production
   /auth/square/refresh/{entityId}:
     post:
-      operationId: t_value
+      operationId: postAuthSquareRefreshByEntityId
       parameters: []
       responses:
         '201':
@@ -270,12 +294,14 @@ paths:
       summary: Refresh Square access token
       tags:
       - Auth
+      x-operation-id-source: normalized
+      x-operation-id-original: t_value
     servers:
     - url: https://api.zoca.ai
       description: Production
   /auth/square/revoke:
     post:
-      operationId: t_value
+      operationId: postAuthSquareRevoke
       parameters: []
       responses:
         '201':
@@ -283,12 +309,14 @@ paths:
       summary: Revoke Square access token
       tags:
       - Auth
+      x-operation-id-source: normalized
+      x-operation-id-original: t_value
     servers:
     - url: https://api.zoca.ai
       description: Production
   /auth/google-auth-status:
     get:
-      operationId: t_value
+      operationId: getAuthGoogleAuthStatus
       parameters: []
       responses:
         '200':
@@ -304,12 +332,14 @@ paths:
       summary: Get Google Business Profile authentication status
       tags:
       - Auth
+      x-operation-id-source: normalized
+      x-operation-id-original: t_value
     servers:
     - url: https://api.zoca.ai
       description: Production
   /auth/refresh-jwt:
     post:
-      operationId: t_value
+      operationId: postAuthRefreshJwt
       parameters: []
       responses:
         '201':
@@ -317,12 +347,14 @@ paths:
       summary: Refresh JWT token
       tags:
       - Auth
+      x-operation-id-source: normalized
+      x-operation-id-original: t_value
     servers:
     - url: https://api.zoca.ai
       description: Production
   /auth/refresh-token:
     post:
-      operationId: t_value
+      operationId: postAuthRefreshToken
       parameters: []
       responses:
         '201':
@@ -330,12 +362,14 @@ paths:
       summary: Refresh authentication token
       tags:
       - Auth
+      x-operation-id-source: normalized
+      x-operation-id-original: t_value
     servers:
     - url: https://api.zoca.ai
       description: Production
   /auth/validate:
     get:
-      operationId: t_value
+      operationId: getAuthValidate
       parameters: []
       responses:
         '200':
@@ -343,12 +377,14 @@ paths:
       summary: Validate JWT token
       tags:
       - Auth
+      x-operation-id-source: normalized
+      x-operation-id-original: t_value
     servers:
     - url: https://api.zoca.ai
       description: Production
   /auth/meta/authorize:
     get:
-      operationId: t_value
+      operationId: getAuthMetaAuthorize
       parameters: []
       responses:
         '200':
@@ -356,12 +392,14 @@ paths:
       summary: Get Meta OAuth authorization URL
       tags:
       - Auth
+      x-operation-id-source: normalized
+      x-operation-id-original: t_value
     servers:
     - url: https://api.zoca.ai
       description: Production
   /auth/meta/callback:
     get:
-      operationId: t_value
+      operationId: getAuthMetaCallback
       parameters: []
       responses:
         '200':
@@ -369,12 +407,14 @@ paths:
       summary: Meta OAuth callback
       tags:
       - Auth
+      x-operation-id-source: normalized
+      x-operation-id-original: t_value
     servers:
     - url: https://api.zoca.ai
       description: Production
   /auth/instagram/authorize:
     get:
-      operationId: t_value
+      operationId: getAuthInstagramAuthorize
       parameters: []
       responses:
         '200':
@@ -387,12 +427,14 @@ paths:
       summary: Instagram OAuth Authorization URL
       tags:
       - Auth
+      x-operation-id-source: normalized
+      x-operation-id-original: t_value
     servers:
     - url: https://api.zoca.ai
       description: Production
   /auth/instagram/callback:
     get:
-      operationId: t_value
+      operationId: getAuthInstagramCallback
       parameters: []
       responses:
         '302':
@@ -400,12 +442,14 @@ paths:
       summary: Instagram OAuth Callback
       tags:
       - Auth
+      x-operation-id-source: normalized
+      x-operation-id-original: t_value
     servers:
     - url: https://api.zoca.ai
       description: Production
   /auth/tiktok/authorize:
     get:
-      operationId: t_value
+      operationId: getAuthTiktokAuthorize
       parameters: []
       responses:
         '200':
@@ -418,12 +462,14 @@ paths:
       summary: TikTok OAuth Authorization URL
       tags:
       - Auth
+      x-operation-id-source: normalized
+      x-operation-id-original: t_value
     servers:
     - url: https://api.zoca.ai
       description: Production
   /auth/tiktok/callback:
     get:
-      operationId: t_value
+      operationId: getAuthTiktokCallback
       parameters: []
       responses:
         '302':
@@ -431,12 +477,14 @@ paths:
       summary: TikTok OAuth Callback
       tags:
       - Auth
+      x-operation-id-source: normalized
+      x-operation-id-original: t_value
     servers:
     - url: https://api.zoca.ai
       description: Production
   /auth/acuity/authorize:
     get:
-      operationId: t_value
+      operationId: getAuthAcuityAuthorize
       parameters: []
       responses:
         '200':
@@ -448,12 +496,14 @@ paths:
       summary: Get Acuity OAuth authorization URL
       tags:
       - Auth
+      x-operation-id-source: normalized
+      x-operation-id-original: t_value
     servers:
     - url: https://api.zoca.ai
       description: Production
   /auth/acuity/callback:
     get:
-      operationId: t_value
+      operationId: getAuthAcuityCallback
       parameters: []
       responses:
         '200':
@@ -461,12 +511,14 @@ paths:
       summary: Acuity OAuth callback
       tags:
       - Auth
+      x-operation-id-source: normalized
+      x-operation-id-original: t_value
     servers:
     - url: https://api.zoca.ai
       description: Production
   /auth/mindbody/register:
     post:
-      operationId: t_value
+      operationId: postAuthMindbodyRegister
       parameters: []
       responses:
         '201':
@@ -474,12 +526,14 @@ paths:
       summary: Register Mindbody site and connect
       tags:
       - Auth
+      x-operation-id-source: normalized
+      x-operation-id-original: t_value
     servers:
     - url: https://api.zoca.ai
       description: Production
   /auth/meevo/locations:
     get:
-      operationId: t_value
+      operationId: getAuthMeevoLocations
       parameters: []
       responses:
         '200':
@@ -487,12 +541,14 @@ paths:
       summary: List Meevo tenant locations
       tags:
       - Auth
+      x-operation-id-source: normalized
+      x-operation-id-original: t_value
     servers:
     - url: https://api.zoca.ai
       description: Production
   /auth/meevo/register:
     post:
-      operationId: t_value
+      operationId: postAuthMeevoRegister
       parameters: []
       responses:
         '201':
@@ -500,13 +556,15 @@ paths:
       summary: Register Meevo location and connect
       tags:
       - Auth
+      x-operation-id-source: normalized
+      x-operation-id-original: t_value
     servers:
     - url: https://api.zoca.ai
       description: Production
   /auth/mindbody/activation-status:
     get:
       description: After /mindbody/register returns activation_required, the dashboard polls this endpoint while the studio activates Zoca inside Mindbody. It only re-attempts token issuance — it never regenerates the activation code — so polling does not hammer Mindbody. Returns activation_pending until activated, then the connected result (is_valid flipped, single location auto-bound).
-      operationId: t_value
+      operationId: getAuthMindbodyActivationStatus
       parameters: []
       responses:
         '200':
@@ -514,12 +572,14 @@ paths:
       summary: Poll-safe Mindbody activation status
       tags:
       - Auth
+      x-operation-id-source: normalized
+      x-operation-id-original: t_value
     servers:
     - url: https://api.zoca.ai
       description: Production
   /auth/mindbody/connect:
     get:
-      operationId: t_value
+      operationId: getAuthMindbodyConnect
       parameters: []
       responses:
         '200':
@@ -527,13 +587,15 @@ paths:
       summary: Connect existing Mindbody site
       tags:
       - Auth
+      x-operation-id-source: normalized
+      x-operation-id-original: t_value
     servers:
     - url: https://api.zoca.ai
       description: Production
   /auth/magic-link/request:
     post:
       description: Sends a magic link to the provided email address. The link expires in 15 minutes and can only be used once. Rate limited to 5 requests per email per 5-minute window.
-      operationId: t_value
+      operationId: postAuthMagicLinkRequest
       parameters: []
       responses:
         '200':
@@ -554,13 +616,15 @@ paths:
       summary: Request a magic link for passwordless login
       tags:
       - Auth
+      x-operation-id-source: normalized
+      x-operation-id-original: t_value
     servers:
     - url: https://api.zoca.ai
       description: Production
   /auth/magic-link/verify:
     post:
       description: Validates the magic link token and returns JWT access token and refresh token. Tokens are single-use - the magic link cannot be used again after verification.
-      operationId: t_value
+      operationId: postAuthMagicLinkVerify
       parameters: []
       responses:
         '200':
@@ -581,13 +645,15 @@ paths:
       summary: Verify a magic link token and get auth tokens
       tags:
       - Auth
+      x-operation-id-source: normalized
+      x-operation-id-original: t_value
     servers:
     - url: https://api.zoca.ai
       description: Production
   /tasks/api/v1/auth/google/url:
     get:
       description: Generates a Google OAuth authorization URL for employee authentication
-      operationId: t_value
+      operationId: getTasksApiV1AuthGoogleUrl
       parameters:
       - name: clientId
         required: false
@@ -616,13 +682,15 @@ paths:
       - Auth
       security:
       - access-token: []
+      x-operation-id-source: normalized
+      x-operation-id-original: t_value
     servers:
     - url: https://tasks.zoca.ai
       description: Production
   /tasks/api/v1/auth/google/callback:
     get:
       description: Handles the Google OAuth callback and creates a session. If redirectUrl was provided, redirects with tokens. Otherwise returns JSON response.
-      operationId: t_value
+      operationId: getTasksApiV1AuthGoogleCallback
       parameters: []
       responses:
         '200':
@@ -648,12 +716,14 @@ paths:
       - Auth
       security:
       - access-token: []
+      x-operation-id-source: normalized
+      x-operation-id-original: t_value
     servers:
     - url: https://tasks.zoca.ai
       description: Production
   /tasks/api/v1/auth/me:
     get:
-      operationId: t_value
+      operationId: getTasksApiV1AuthMe
       parameters: []
       responses:
         '200':
@@ -665,13 +735,15 @@ paths:
       summary: Get current user profile
       tags:
       - Auth
+      x-operation-id-source: normalized
+      x-operation-id-original: t_value
     servers:
     - url: https://tasks.zoca.ai
       description: Production
   /tasks/api/v1/auth/refresh:
     post:
       description: Exchanges a refresh token for new access and refresh tokens. Implements token rotation.
-      operationId: t_value
+      operationId: postTasksApiV1AuthRefresh
       parameters: []
       responses:
         '200':
@@ -692,12 +764,14 @@ paths:
       - Auth
       security:
       - access-token: []
+      x-operation-id-source: normalized
+      x-operation-id-original: t_value
     servers:
     - url: https://tasks.zoca.ai
       description: Production
   /tasks/api/v1/auth/logout:
     post:
-      operationId: t_value
+      operationId: postTasksApiV1AuthLogout
       parameters: []
       responses:
         '200':
@@ -707,12 +781,14 @@ paths:
       summary: Logout and invalidate session
       tags:
       - Auth
+      x-operation-id-source: normalized
+      x-operation-id-original: t_value
     servers:
     - url: https://tasks.zoca.ai
       description: Production
   /tasks/api/v1/auth/sessions:
     get:
-      operationId: t_value
+      operationId: getTasksApiV1AuthSessions
       parameters: []
       responses:
         '200':
@@ -722,12 +798,14 @@ paths:
       summary: Get all active sessions for the current user
       tags:
       - Auth
+      x-operation-id-source: normalized
+      x-operation-id-original: t_value
     servers:
     - url: https://tasks.zoca.ai
       description: Production
   /tasks/api/v1/auth/sessions/revoke-all:
     post:
-      operationId: t_value
+      operationId: postTasksApiV1AuthSessionsRevokeAll
       parameters: []
       responses:
         '200':
@@ -737,6 +815,8 @@ paths:
       summary: Revoke all sessions for the current user
       tags:
       - Auth
+      x-operation-id-source: normalized
+      x-operation-id-original: t_value
     servers:
     - url: https://tasks.zoca.ai
       description: Production

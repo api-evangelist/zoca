@@ -27,7 +27,7 @@ paths:
   /tasks/api/v1/queues/pending:
     get:
       description: Retrieves all pending tasks across all queues (waiting, delayed, and active states)
-      operationId: t_value
+      operationId: getTasksApiV1QueuesPending
       parameters:
       - name: includeDatabase
         required: false
@@ -116,10 +116,12 @@ paths:
       summary: Get all pending tasks
       tags:
       - Queues
+      x-operation-id-source: normalized
+      x-operation-id-original: t_value
   /tasks/api/v1/queues/add-jobs:
     post:
       description: Adds multiple jobs to their respective queues. Accepts the response format from GET /queues/pending
-      operationId: t_value
+      operationId: postTasksApiV1QueuesAddJobs
       parameters: []
       requestBody:
         required: true
@@ -195,10 +197,12 @@ paths:
       summary: Add multiple jobs to queues
       tags:
       - Queues
+      x-operation-id-source: normalized
+      x-operation-id-original: t_value
   /tasks/api/v1/queues/{name}/counts:
     get:
       description: Retrieves job counts by state for a specific queue
-      operationId: t_value
+      operationId: getTasksApiV1QueuesByNameCounts
       parameters:
       - name: name
         required: true
@@ -211,10 +215,12 @@ paths:
       summary: Get job counts
       tags:
       - Queues
+      x-operation-id-source: normalized
+      x-operation-id-original: t_value
   /tasks/api/v1/queues/{name}/metrics:
     get:
       description: Retrieves metrics for a specific queue
-      operationId: t_value
+      operationId: getTasksApiV1QueuesByNameMetrics
       parameters:
       - name: name
         required: true
@@ -227,10 +233,12 @@ paths:
       summary: Get queue metrics
       tags:
       - Queues
+      x-operation-id-source: normalized
+      x-operation-id-original: t_value
   /tasks/api/v1/queues/{name}/jobs:
     post:
       description: Adds a single job to the specified queue
-      operationId: t_value
+      operationId: postTasksApiV1QueuesByNameJobs
       parameters:
       - name: name
         required: true
@@ -279,10 +287,12 @@ paths:
       summary: Add a job to a queue
       tags:
       - Queues
+      x-operation-id-source: normalized
+      x-operation-id-original: t_value
   /tasks/api/v1/queues/{name}/jobs/{state}:
     delete:
       description: Removes all jobs in a specific state from a queue
-      operationId: t_value
+      operationId: deleteTasksApiV1QueuesByNameJobsByState
       parameters:
       - name: state
         required: true
@@ -307,6 +317,8 @@ paths:
       summary: Remove jobs by state
       tags:
       - Queues
+      x-operation-id-source: normalized
+      x-operation-id-original: t_value
 components:
   securitySchemes:
     access-token:

@@ -23,7 +23,7 @@ paths:
       - misc/google-mock
   /misc/google-mock/update-location:
     post:
-      operationId: t_value
+      operationId: postMiscGoogleMockUpdateLocation
       parameters: []
       requestBody:
         required: true
@@ -63,9 +63,11 @@ paths:
       summary: Test updateLocationData
       tags:
       - misc/google-mock
+      x-operation-id-source: normalized
+      x-operation-id-original: t_value
   /misc/google-mock/create-media:
     post:
-      operationId: t_value
+      operationId: postMiscGoogleMockCreateMedia
       parameters: []
       requestBody:
         required: true
@@ -105,9 +107,11 @@ paths:
       summary: Test createMedia
       tags:
       - misc/google-mock
+      x-operation-id-source: normalized
+      x-operation-id-original: t_value
   /misc/google-mock/delete-media:
     delete:
-      operationId: t_value
+      operationId: deleteMiscGoogleMockDeleteMedia
       parameters: []
       requestBody:
         required: true
@@ -131,9 +135,11 @@ paths:
       summary: Test deleteMedia
       tags:
       - misc/google-mock
+      x-operation-id-source: normalized
+      x-operation-id-original: t_value
   /misc/google-mock/update-notifications:
     post:
-      operationId: t_value
+      operationId: postMiscGoogleMockUpdateNotifications
       parameters: []
       requestBody:
         required: true
@@ -167,9 +173,11 @@ paths:
       summary: Test updateNotifications
       tags:
       - misc/google-mock
+      x-operation-id-source: normalized
+      x-operation-id-original: t_value
   /misc/google-mock/update-attributes:
     post:
-      operationId: t_value
+      operationId: postMiscGoogleMockUpdateAttributes
       parameters: []
       requestBody:
         required: true
@@ -208,9 +216,11 @@ paths:
       summary: Test updateAttributes
       tags:
       - misc/google-mock
+      x-operation-id-source: normalized
+      x-operation-id-original: t_value
   /misc/google-mock/create-post:
     post:
-      operationId: t_value
+      operationId: postMiscGoogleMockCreatePost
       parameters: []
       requestBody:
         required: true
@@ -249,9 +259,11 @@ paths:
       summary: Test createPost
       tags:
       - misc/google-mock
+      x-operation-id-source: normalized
+      x-operation-id-original: t_value
   /misc/google-mock/update-post:
     put:
-      operationId: t_value
+      operationId: putMiscGoogleMockUpdatePost
       parameters: []
       requestBody:
         required: true
@@ -291,9 +303,11 @@ paths:
       summary: Test updatePost
       tags:
       - misc/google-mock
+      x-operation-id-source: normalized
+      x-operation-id-original: t_value
   /misc/google-mock/delete-post:
     delete:
-      operationId: t_value
+      operationId: deleteMiscGoogleMockDeletePost
       parameters: []
       requestBody:
         required: true
@@ -323,9 +337,11 @@ paths:
       summary: Test deletePost
       tags:
       - misc/google-mock
+      x-operation-id-source: normalized
+      x-operation-id-original: t_value
   /misc/google-mock/create-review-reply:
     post:
-      operationId: t_value
+      operationId: postMiscGoogleMockCreateReviewReply
       parameters: []
       requestBody:
         required: true
@@ -353,9 +369,11 @@ paths:
       summary: Test createReviewReply
       tags:
       - misc/google-mock
+      x-operation-id-source: normalized
+      x-operation-id-original: t_value
   /misc/google-mock/delete-review-reply:
     delete:
-      operationId: t_value
+      operationId: deleteMiscGoogleMockDeleteReviewReply
       parameters: []
       requestBody:
         required: true
@@ -379,9 +397,11 @@ paths:
       summary: Test deleteReviewReply
       tags:
       - misc/google-mock
+      x-operation-id-source: normalized
+      x-operation-id-original: t_value
   /misc/google-mock/create-admin:
     post:
-      operationId: t_value
+      operationId: postMiscGoogleMockCreateAdmin
       parameters: []
       requestBody:
         required: true
@@ -411,9 +431,11 @@ paths:
       summary: Test createLocationAdmin
       tags:
       - misc/google-mock
+      x-operation-id-source: normalized
+      x-operation-id-original: t_value
   /misc/google-mock/delete-admin:
     delete:
-      operationId: t_value
+      operationId: deleteMiscGoogleMockDeleteAdmin
       parameters: []
       requestBody:
         required: true
@@ -437,9 +459,11 @@ paths:
       summary: Test deleteLocationAdmin
       tags:
       - misc/google-mock
+      x-operation-id-source: normalized
+      x-operation-id-original: t_value
   /misc/google-mock/create-place-action-link:
     post:
-      operationId: t_value
+      operationId: postMiscGoogleMockCreatePlaceActionLink
       parameters: []
       requestBody:
         required: true
@@ -478,9 +502,11 @@ paths:
       summary: Test createPlaceActionLink
       tags:
       - misc/google-mock
+      x-operation-id-source: normalized
+      x-operation-id-original: t_value
   /misc/google-mock/update-place-action-link:
     put:
-      operationId: t_value
+      operationId: putMiscGoogleMockUpdatePlaceActionLink
       parameters: []
       requestBody:
         required: true
@@ -516,9 +542,11 @@ paths:
       summary: Test updatePlaceActionLink
       tags:
       - misc/google-mock
+      x-operation-id-source: normalized
+      x-operation-id-original: t_value
   /misc/google-mock/delete-place-action-link:
     delete:
-      operationId: t_value
+      operationId: deleteMiscGoogleMockDeletePlaceActionLink
       parameters: []
       requestBody:
         required: true
@@ -542,9 +570,11 @@ paths:
       summary: Test deletePlaceActionLink
       tags:
       - misc/google-mock
+      x-operation-id-source: normalized
+      x-operation-id-original: t_value
   /misc/google-mock/create-question:
     post:
-      operationId: t_value
+      operationId: postMiscGoogleMockCreateQuestion
       parameters: []
       requestBody:
         required: true
@@ -577,9 +607,11 @@ paths:
       summary: Test createQuestion (Q&A API)
       tags:
       - misc/google-mock
+      x-operation-id-source: normalized
+      x-operation-id-original: t_value
   /misc/google-mock/update-question:
     put:
-      operationId: t_value
+      operationId: putMiscGoogleMockUpdateQuestion
       parameters: []
       requestBody:
         required: true
@@ -610,9 +642,11 @@ paths:
       summary: Test patchQuestion (Q&A API)
       tags:
       - misc/google-mock
+      x-operation-id-source: normalized
+      x-operation-id-original: t_value
   /misc/google-mock/delete-question:
     delete:
-      operationId: t_value
+      operationId: deleteMiscGoogleMockDeleteQuestion
       parameters: []
       requestBody:
         required: true
@@ -636,9 +670,11 @@ paths:
       summary: Test deleteQuestion (Q&A API)
       tags:
       - misc/google-mock
+      x-operation-id-source: normalized
+      x-operation-id-original: t_value
   /misc/google-mock/upsert-answer:
     post:
-      operationId: t_value
+      operationId: postMiscGoogleMockUpsertAnswer
       parameters: []
       requestBody:
         required: true
@@ -669,9 +705,11 @@ paths:
       summary: Test upsertAnswer (Q&A API)
       tags:
       - misc/google-mock
+      x-operation-id-source: normalized
+      x-operation-id-original: t_value
   /misc/google-mock/delete-answer:
     delete:
-      operationId: t_value
+      operationId: deleteMiscGoogleMockDeleteAnswer
       parameters: []
       requestBody:
         required: true
@@ -695,6 +733,8 @@ paths:
       summary: Test deleteAnswer (Q&A API)
       tags:
       - misc/google-mock
+      x-operation-id-source: normalized
+      x-operation-id-original: t_value
 components:
   securitySchemes:
     access-token:

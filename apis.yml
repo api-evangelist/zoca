@@ -65,7 +65,7 @@ tags:
 - Booking
 - Local SEO
 - Google Business Profile
-- Social-Media
+- Social Media
 - Salon Software
 - Spa
 - Software-as-a-Service
@@ -91,6 +91,7 @@ tags_raw:
 - Lead Generation
 - Customer Retention
 - Small Business
+- Social-Media
 apis:
 - aid: zoca:zoca-acm-api
   name: Zoca ACM API
@@ -1117,9 +1118,10 @@ apis:
   humanURL: https://app.zoca.com/
   baseURL: https://api.zoca.ai
   tags:
-  - Image-Generation
+  - Image Generation
   tags_raw:
   - Image Generation
+  - Image-Generation
   properties:
   - type: OpenAPI
     url: openapi/zoca-image-generation-api-openapi.yml
@@ -2040,9 +2042,10 @@ apis:
   humanURL: https://app.zoca.com/
   baseURL: https://api.zoca.ai
   tags:
-  - Social-Media
+  - Social Media
   tags_raw:
   - Social Media
+  - Social-Media
   properties:
   - type: OpenAPI
     url: openapi/zoca-social-media-api-openapi.yml
@@ -2490,8 +2493,6 @@ apis:
   humanURL: https://app.zoca.com/
   baseURL: https://api.zoca.ai
   tags:
-  - Addons
-  tags_raw:
   - Add Ons
   properties:
   - type: OpenAPI

@@ -25,7 +25,7 @@ paths:
   /reviews/review-id:
     get:
       description: Retrieves a specific review by its ID along with reply status
-      operationId: t_value
+      operationId: getReviewsReviewId
       parameters: []
       responses:
         '200':
@@ -33,10 +33,12 @@ paths:
       summary: Get review by ID
       tags:
       - Reviews
+      x-operation-id-source: normalized
+      x-operation-id-original: t_value
   /reviews/{entityId}/review-tags:
     get:
       description: Retrieves review tags with their associated review counts for a specific entity
-      operationId: t_value
+      operationId: getReviewsByEntityIdReviewTags
       parameters: []
       responses:
         '200':
@@ -44,10 +46,12 @@ paths:
       summary: Get review tags for an entity
       tags:
       - Reviews
+      x-operation-id-source: normalized
+      x-operation-id-original: t_value
   /reviews/{reviewId}/reply/ai-generated:
     get:
       description: Generates an AI-powered reply for a specific review, supports both streaming and non-streaming modes
-      operationId: t_value
+      operationId: getReviewsByReviewIdReplyAiGenerated
       parameters: []
       responses:
         '200':
@@ -55,10 +59,12 @@ paths:
       summary: Generate AI reply for a review
       tags:
       - Reviews
+      x-operation-id-source: normalized
+      x-operation-id-original: t_value
   /reviews/{reviewId}/reply:
     post:
       description: Creates a reply to a specific review, can be AI-generated or manual
-      operationId: t_value
+      operationId: postReviewsByReviewIdReply
       parameters: []
       responses:
         '201':
@@ -66,9 +72,11 @@ paths:
       summary: Create a reply to a review
       tags:
       - Reviews
+      x-operation-id-source: normalized
+      x-operation-id-original: t_value
     put:
       description: Updates an existing reply to a review with new content or AI-generated status
-      operationId: t_value
+      operationId: putReviewsByReviewIdReply
       parameters: []
       responses:
         '200':
@@ -76,9 +84,11 @@ paths:
       summary: Update a review reply
       tags:
       - Reviews
+      x-operation-id-source: normalized
+      x-operation-id-original: t_value
     delete:
       description: Deletes an existing reply to a review
-      operationId: t_value
+      operationId: deleteReviewsByReviewIdReply
       parameters: []
       responses:
         '204':
@@ -86,10 +96,12 @@ paths:
       summary: Delete a review reply
       tags:
       - Reviews
+      x-operation-id-source: normalized
+      x-operation-id-original: t_value
   /reviews/stats:
     get:
       description: Retrieves statistical data about reviews for a specific entity
-      operationId: t_value
+      operationId: getReviewsStats
       parameters: []
       responses:
         '200':
@@ -97,10 +109,12 @@ paths:
       summary: Get review statistics
       tags:
       - Reviews
+      x-operation-id-source: normalized
+      x-operation-id-original: t_value
   /reviews/qr-poster-design:
     get:
       description: Generates a QR poster design for review collection for a specific entity
-      operationId: t_value
+      operationId: getReviewsQrPosterDesign
       parameters: []
       responses:
         '200':
@@ -108,10 +122,12 @@ paths:
       summary: Get QR poster design
       tags:
       - Reviews
+      x-operation-id-source: normalized
+      x-operation-id-original: t_value
   /reviews/{entityId}/preferences:
     post:
       description: Updates review preferences for a specific entity including reply settings and templates
-      operationId: t_value
+      operationId: postReviewsByEntityIdPreferences
       parameters: []
       responses:
         '201':
@@ -119,9 +135,11 @@ paths:
       summary: Set review preferences
       tags:
       - Reviews
+      x-operation-id-source: normalized
+      x-operation-id-original: t_value
     get:
       description: Retrieves review preferences for a specific entity including reply settings and templates
-      operationId: t_value
+      operationId: getReviewsByEntityIdPreferences
       parameters: []
       responses:
         '200':
@@ -129,10 +147,12 @@ paths:
       summary: Get review preferences
       tags:
       - Reviews
+      x-operation-id-source: normalized
+      x-operation-id-original: t_value
   /reviews/{entityId}/add-default-text-template:
     post:
       description: Adds default review text templates for a specific entity with service provider and business names
-      operationId: t_value
+      operationId: postReviewsByEntityIdAddDefaultTextTemplate
       parameters: []
       responses:
         '201':
@@ -140,10 +160,12 @@ paths:
       summary: Add default text template
       tags:
       - Reviews
+      x-operation-id-source: normalized
+      x-operation-id-original: t_value
   /reviews/{reviewId}/share-templates:
     get:
       description: Retrieves sharing templates for a specific review to encourage review sharing
-      operationId: t_value
+      operationId: getReviewsByReviewIdShareTemplates
       parameters: []
       responses:
         '200':
@@ -151,10 +173,12 @@ paths:
       summary: Get share templates for a review
       tags:
       - Reviews
+      x-operation-id-source: normalized
+      x-operation-id-original: t_value
   /reviews/{entityId}/app/gbp-component:
     get:
       description: Retrieves component data for Google Business Profile reviews display in the app
-      operationId: t_value
+      operationId: getReviewsByEntityIdAppGbpComponent
       parameters: []
       responses:
         '200':
@@ -162,10 +186,12 @@ paths:
       summary: Get Google Business Profile component data
       tags:
       - Reviews
+      x-operation-id-source: normalized
+      x-operation-id-original: t_value
   /reviews/{entityId}/app/card:
     get:
       description: Retrieves review-related cards data for display in the app dashboard based on review metrics
-      operationId: t_value
+      operationId: getReviewsByEntityIdAppCard
       parameters: []
       responses:
         '200':
@@ -173,10 +199,12 @@ paths:
       summary: Get review cards for app dashboard
       tags:
       - Reviews
+      x-operation-id-source: normalized
+      x-operation-id-original: t_value
   /reviews/zoca-reply:
     post:
       description: Creates a scheduled reply to a review through the Zoca platform integration
-      operationId: t_value
+      operationId: postReviewsZocaReply
       parameters: []
       responses:
         '201':
@@ -184,10 +212,12 @@ paths:
       summary: Create scheduled Zoca reply
       tags:
       - Reviews
+      x-operation-id-source: normalized
+      x-operation-id-original: t_value
   /reviews/consistency-metrics:
     get:
       description: Returns weekly 5-star review consistency metrics with RAG status for a specific date range. Requires entityId, startDate, and endDate as mandatory query parameters.
-      operationId: t_value
+      operationId: getReviewsConsistencyMetrics
       parameters: []
       responses:
         '200':
@@ -201,6 +231,8 @@ paths:
       summary: Get 5-star review consistency metrics
       tags:
       - Reviews
+      x-operation-id-source: normalized
+      x-operation-id-original: t_value
 components:
   schemas:
     e:

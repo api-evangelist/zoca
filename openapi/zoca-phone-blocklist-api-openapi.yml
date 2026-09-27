@@ -24,7 +24,7 @@ paths:
       tags:
       - phone-blocklist
     get:
-      operationId: t_value
+      operationId: getTasksApiV1PhoneBlocklist
       parameters:
       - name: sortOrder
         required: false
@@ -96,9 +96,11 @@ paths:
       summary: List blocked phone numbers with pagination, search, and filters
       tags:
       - phone-blocklist
+      x-operation-id-source: normalized
+      x-operation-id-original: t_value
   /tasks/api/v1/phone-blocklist/reasons:
     get:
-      operationId: t_value
+      operationId: getTasksApiV1PhoneBlocklistReasons
       parameters: []
       responses:
         '200':
@@ -106,9 +108,11 @@ paths:
       summary: Get distinct blocklist reasons for filter dropdown
       tags:
       - phone-blocklist
+      x-operation-id-source: normalized
+      x-operation-id-original: t_value
   /tasks/api/v1/phone-blocklist/status:
     get:
-      operationId: t_value
+      operationId: getTasksApiV1PhoneBlocklistStatus
       parameters:
       - name: phoneNumber
         required: true
@@ -130,9 +134,11 @@ paths:
       summary: Get block status for a single phone number (exact match)
       tags:
       - phone-blocklist
+      x-operation-id-source: normalized
+      x-operation-id-original: t_value
   /tasks/api/v1/phone-blocklist/{id}:
     patch:
-      operationId: t_value
+      operationId: patchTasksApiV1PhoneBlocklistById
       parameters:
       - name: id
         required: true
@@ -148,8 +154,10 @@ paths:
       summary: Update blocked status of a phone number
       tags:
       - phone-blocklist
+      x-operation-id-source: normalized
+      x-operation-id-original: t_value
     delete:
-      operationId: t_value
+      operationId: deleteTasksApiV1PhoneBlocklistById
       parameters:
       - name: id
         required: true
@@ -165,6 +173,8 @@ paths:
       summary: Remove a phone number from the blocklist
       tags:
       - phone-blocklist
+      x-operation-id-source: normalized
+      x-operation-id-original: t_value
 components:
   schemas:
     e:

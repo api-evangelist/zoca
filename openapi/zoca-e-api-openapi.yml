@@ -26,7 +26,7 @@ paths:
       x-summary-source: derived
   /tasks/api/v1/learning-center/attempts/{id}:
     get:
-      operationId: e_value
+      operationId: getTasksApiV1LearningCenterAttemptsById
       parameters: []
       responses:
         '200':
@@ -35,9 +35,11 @@ paths:
       - e
       summary: E value
       x-summary-source: derived
+      x-operation-id-source: normalized
+      x-operation-id-original: e_value
   /tasks/api/v1/learning-center/attempts/{id}/answers:
     put:
-      operationId: e_value
+      operationId: putTasksApiV1LearningCenterAttemptsByIdAnswers
       parameters: []
       responses:
         '200':
@@ -46,9 +48,11 @@ paths:
       - e
       summary: E value
       x-summary-source: derived
+      x-operation-id-source: normalized
+      x-operation-id-original: e_value
   /tasks/api/v1/learning-center/attempts/{id}/submit:
     post:
-      operationId: e_value
+      operationId: postTasksApiV1LearningCenterAttemptsByIdSubmit
       parameters: []
       responses:
         '201':
@@ -57,9 +61,11 @@ paths:
       - e
       summary: E value
       x-summary-source: derived
+      x-operation-id-source: normalized
+      x-operation-id-original: e_value
   /tasks/api/v1/learning-center/users/{userId}/attempts:
     get:
-      operationId: e_value
+      operationId: getTasksApiV1LearningCenterUsersByUserIdAttempts
       parameters: []
       responses:
         '200':
@@ -68,9 +74,11 @@ paths:
       - e
       summary: E value
       x-summary-source: derived
+      x-operation-id-source: normalized
+      x-operation-id-original: e_value
   /tasks/api/v1/learning-center/certifications:
     get:
-      operationId: e_value
+      operationId: getTasksApiV1LearningCenterCertifications
       parameters: []
       responses:
         '200':
@@ -79,9 +87,11 @@ paths:
       - e
       summary: E value
       x-summary-source: derived
+      x-operation-id-source: normalized
+      x-operation-id-original: e_value
   /tasks/api/v1/learning-center/users/{userId}/certifications:
     get:
-      operationId: e_value
+      operationId: getTasksApiV1LearningCenterUsersByUserIdCertifications
       parameters: []
       responses:
         '200':
@@ -90,6 +100,8 @@ paths:
       - e
       summary: E value
       x-summary-source: derived
+      x-operation-id-source: normalized
+      x-operation-id-original: e_value
 components:
   securitySchemes:
     access-token:

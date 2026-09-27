@@ -55,7 +55,7 @@ paths:
         - Assign specific providers
 
         - Add bundle images'
-      operationId: t_value
+      operationId: postBundlesByEntityId
       parameters:
       - name: entityId
         required: true
@@ -102,10 +102,12 @@ paths:
       summary: Create a new bundle
       tags:
       - Bundles
+      x-operation-id-source: normalized
+      x-operation-id-original: t_value
   /bundles/{entityId}/{bundleId}:
     get:
       description: Retrieves detailed information about a specific bundle including services
-      operationId: t_value
+      operationId: getBundlesByEntityIdByBundleId
       parameters:
       - name: bundleId
         required: true
@@ -135,9 +137,11 @@ paths:
       summary: Get bundle by ID
       tags:
       - Bundles
+      x-operation-id-source: normalized
+      x-operation-id-original: t_value
     put:
       description: Updates an existing bundle
-      operationId: t_value
+      operationId: putBundlesByEntityIdByBundleId
       parameters:
       - name: bundleId
         required: true
@@ -173,9 +177,11 @@ paths:
       summary: Update bundle
       tags:
       - Bundles
+      x-operation-id-source: normalized
+      x-operation-id-original: t_value
     delete:
       description: Soft deletes a bundle and all its associated data
-      operationId: t_value
+      operationId: deleteBundlesByEntityIdByBundleId
       parameters:
       - name: bundleId
         required: true
@@ -209,10 +215,12 @@ paths:
       summary: Delete bundle
       tags:
       - Bundles
+      x-operation-id-source: normalized
+      x-operation-id-original: t_value
   /bundles/{entityId}/{bundleId}/services:
     post:
       description: Associates multiple services with a bundle with optional ordering
-      operationId: t_value
+      operationId: postBundlesByEntityIdByBundleIdServices
       parameters:
       - name: bundleId
         required: true
@@ -252,10 +260,12 @@ paths:
       summary: Add services to bundle
       tags:
       - Bundles
+      x-operation-id-source: normalized
+      x-operation-id-original: t_value
   /bundles/{entityId}/{bundleId}/services/{serviceVariationId}:
     delete:
       description: Removes a service association from a bundle
-      operationId: t_value
+      operationId: deleteBundlesByEntityIdByBundleIdServicesByServiceVariationId
       parameters:
       - name: serviceVariationId
         required: true
@@ -296,10 +306,12 @@ paths:
       summary: Remove service from bundle
       tags:
       - Bundles
+      x-operation-id-source: normalized
+      x-operation-id-original: t_value
   /bundles/{entityId}/{bundleId}/services/order:
     put:
       description: Updates the display order of services within a bundle
-      operationId: t_value
+      operationId: putBundlesByEntityIdByBundleIdServicesOrder
       parameters:
       - name: bundleId
         required: true
@@ -350,10 +362,12 @@ paths:
       summary: Update service order in bundle
       tags:
       - Bundles
+      x-operation-id-source: normalized
+      x-operation-id-original: t_value
   /bundles/{entityId}/{bundleId}/providers:
     post:
       description: Associates multiple providers with a bundle
-      operationId: t_value
+      operationId: postBundlesByEntityIdByBundleIdProviders
       parameters:
       - name: bundleId
         required: true
@@ -393,9 +407,11 @@ paths:
       summary: Add providers to bundle
       tags:
       - Bundles
+      x-operation-id-source: normalized
+      x-operation-id-original: t_value
     get:
       description: Retrieves all enabled provider IDs for a bundle
-      operationId: t_value
+      operationId: getBundlesByEntityIdByBundleIdProviders
       parameters:
       - name: bundleId
         required: true
@@ -431,10 +447,12 @@ paths:
       summary: Get enabled providers for bundle
       tags:
       - Bundles
+      x-operation-id-source: normalized
+      x-operation-id-original: t_value
   /bundles/{entityId}/{bundleId}/providers/{providerId}:
     delete:
       description: Removes a provider association from a bundle
-      operationId: t_value
+      operationId: deleteBundlesByEntityIdByBundleIdProvidersByProviderId
       parameters:
       - name: providerId
         required: true
@@ -475,10 +493,12 @@ paths:
       summary: Remove provider from bundle
       tags:
       - Bundles
+      x-operation-id-source: normalized
+      x-operation-id-original: t_value
   /bundles/{entityId}/{bundleId}/providers/{providerId}/toggle:
     put:
       description: Enables or disables a provider for a bundle
-      operationId: t_value
+      operationId: putBundlesByEntityIdByBundleIdProvidersByProviderIdToggle
       parameters:
       - name: providerId
         required: true
@@ -525,10 +545,12 @@ paths:
       summary: Toggle provider enabled status
       tags:
       - Bundles
+      x-operation-id-source: normalized
+      x-operation-id-original: t_value
   /bundles/{entityId}/{bundleId}/images:
     post:
       description: Associates an image with a bundle
-      operationId: t_value
+      operationId: postBundlesByEntityIdByBundleIdImages
       parameters:
       - name: bundleId
         required: true
@@ -574,9 +596,11 @@ paths:
       summary: Add image to bundle
       tags:
       - Bundles
+      x-operation-id-source: normalized
+      x-operation-id-original: t_value
     get:
       description: Retrieves all images for a bundle
-      operationId: t_value
+      operationId: getBundlesByEntityIdByBundleIdImages
       parameters:
       - name: bundleId
         required: true
@@ -616,10 +640,12 @@ paths:
       summary: Get bundle images
       tags:
       - Bundles
+      x-operation-id-source: normalized
+      x-operation-id-original: t_value
   /bundles/{entityId}/{bundleId}/images/{mediaId}:
     delete:
       description: Removes an image association from a bundle
-      operationId: t_value
+      operationId: deleteBundlesByEntityIdByBundleIdImagesByMediaId
       parameters:
       - name: mediaId
         required: true
@@ -659,10 +685,12 @@ paths:
       summary: Remove image from bundle
       tags:
       - Bundles
+      x-operation-id-source: normalized
+      x-operation-id-original: t_value
   /bundles/by-service/{serviceVariationId}:
     get:
       description: Retrieves all bundles that include a specific service variation
-      operationId: t_value
+      operationId: getBundlesByServiceByServiceVariationId
       parameters:
       - name: serviceVariationId
         required: true
@@ -689,10 +717,12 @@ paths:
       summary: Get bundles by service variation
       tags:
       - Bundles
+      x-operation-id-source: normalized
+      x-operation-id-original: t_value
   /bundles/by-provider/{providerId}:
     get:
       description: Retrieves all bundles available for a specific provider
-      operationId: t_value
+      operationId: getBundlesByProviderByProviderId
       parameters:
       - name: entityId
         required: true
@@ -722,33 +752,10 @@ paths:
       summary: Get bundles by provider
       tags:
       - Bundles
+      x-operation-id-source: normalized
+      x-operation-id-original: t_value
 components:
   schemas:
-    e:
-      type: object
-      properties:
-        id:
-          type: number
-        entityId:
-          type: string
-        attribute:
-          type: string
-        value:
-          type:
-          - object
-          - 'null'
-        metadata:
-          type:
-          - object
-          - 'null'
-        createdAt:
-          type:
-          - object
-          - 'null'
-      required:
-      - id
-      - entityId
-      - attribute
     t:
       type: object
       properties:
@@ -808,6 +815,31 @@ components:
       - trialEnd
       - addonPricingId
       - unitPriceCents
+    e:
+      type: object
+      properties:
+        id:
+          type: number
+        entityId:
+          type: string
+        attribute:
+          type: string
+        value:
+          type:
+          - object
+          - 'null'
+        metadata:
+          type:
+          - object
+          - 'null'
+        createdAt:
+          type:
+          - object
+          - 'null'
+      required:
+      - id
+      - entityId
+      - attribute
   securitySchemes:
     access-token:
       scheme: bearer

@@ -26,7 +26,7 @@ paths:
       tags:
       - Scheduling Policies
     get:
-      operationId: t_value
+      operationId: getSchedulingPoliciesFee
       parameters:
       - name: policyType
         required: false
@@ -50,9 +50,11 @@ paths:
       summary: List all fee policies
       tags:
       - Scheduling Policies
+      x-operation-id-source: normalized
+      x-operation-id-original: t_value
   /scheduling/policies/fee/{id}:
     get:
-      operationId: t_value
+      operationId: getSchedulingPoliciesFeeById
       parameters:
       - name: id
         required: true
@@ -71,8 +73,10 @@ paths:
       summary: Get a fee policy by ID
       tags:
       - Scheduling Policies
+      x-operation-id-source: normalized
+      x-operation-id-original: t_value
     put:
-      operationId: t_value
+      operationId: putSchedulingPoliciesFeeById
       parameters:
       - name: id
         required: true
@@ -91,8 +95,10 @@ paths:
       summary: Update a fee policy
       tags:
       - Scheduling Policies
+      x-operation-id-source: normalized
+      x-operation-id-original: t_value
     delete:
-      operationId: t_value
+      operationId: deleteSchedulingPoliciesFeeById
       parameters:
       - name: id
         required: true
@@ -107,9 +113,11 @@ paths:
       summary: Delete a fee policy (soft delete)
       tags:
       - Scheduling Policies
+      x-operation-id-source: normalized
+      x-operation-id-original: t_value
   /scheduling/policies/fee/entity/{entityId}:
     get:
-      operationId: t_value
+      operationId: getSchedulingPoliciesFeeEntityByEntityId
       parameters:
       - name: policyType
         required: false
@@ -149,9 +157,11 @@ paths:
       summary: Get fee policies for an entity
       tags:
       - Scheduling Policies
+      x-operation-id-source: normalized
+      x-operation-id-original: t_value
   /scheduling/policies/fee/effective:
     get:
-      operationId: t_value
+      operationId: getSchedulingPoliciesFeeEffective
       parameters:
       - name: serviceId
         required: false
@@ -193,9 +203,11 @@ paths:
       summary: Get effective fee policy with inheritance
       tags:
       - Scheduling Policies
+      x-operation-id-source: normalized
+      x-operation-id-original: t_value
   /scheduling/policies/fee/deposit/preview:
     post:
-      operationId: t_value
+      operationId: postSchedulingPoliciesFeeDepositPreview
       parameters: []
       responses:
         '200':
@@ -207,9 +219,11 @@ paths:
       summary: Preview service variations cheaper than a proposed fixed deposit
       tags:
       - Scheduling Policies
+      x-operation-id-source: normalized
+      x-operation-id-original: t_value
   /scheduling/policies/effective-preference:
     get:
-      operationId: t_value
+      operationId: getSchedulingPoliciesEffectivePreference
       parameters:
       - name: clientId
         required: false
@@ -242,10 +256,12 @@ paths:
       summary: Get the effective fee-policies preference for a specific client (F2 exemptions)
       tags:
       - Scheduling Policies
+      x-operation-id-source: normalized
+      x-operation-id-original: t_value
   /scheduling/policies/fee/acknowledgment-text:
     get:
       description: Returns formatted acknowledgment text for fee policies (cancellation and no-show) applicable to an entity, including a combined text for display
-      operationId: t_value
+      operationId: getSchedulingPoliciesFeeAcknowledgmentText
       parameters:
       - name: entityType
         required: true
@@ -273,9 +289,11 @@ paths:
       summary: Get policy acknowledgment texts
       tags:
       - Scheduling Policies
+      x-operation-id-source: normalized
+      x-operation-id-original: t_value
   /scheduling/policies/payment:
     post:
-      operationId: t_value
+      operationId: postSchedulingPoliciesPayment
       parameters: []
       responses:
         '201':
@@ -287,8 +305,10 @@ paths:
       summary: Create a new payment policy
       tags:
       - Scheduling Policies
+      x-operation-id-source: normalized
+      x-operation-id-original: t_value
     get:
-      operationId: t_value
+      operationId: getSchedulingPoliciesPayment
       parameters: []
       responses:
         '200':
@@ -302,9 +322,11 @@ paths:
       summary: List all payment policies
       tags:
       - Scheduling Policies
+      x-operation-id-source: normalized
+      x-operation-id-original: t_value
   /scheduling/policies/payment/{id}:
     get:
-      operationId: t_value
+      operationId: getSchedulingPoliciesPaymentById
       parameters:
       - name: id
         required: true
@@ -323,8 +345,10 @@ paths:
       summary: Get a payment policy by ID
       tags:
       - Scheduling Policies
+      x-operation-id-source: normalized
+      x-operation-id-original: t_value
     put:
-      operationId: t_value
+      operationId: putSchedulingPoliciesPaymentById
       parameters:
       - name: id
         required: true
@@ -343,8 +367,10 @@ paths:
       summary: Update a payment policy
       tags:
       - Scheduling Policies
+      x-operation-id-source: normalized
+      x-operation-id-original: t_value
     delete:
-      operationId: t_value
+      operationId: deleteSchedulingPoliciesPaymentById
       parameters:
       - name: id
         required: true
@@ -359,9 +385,11 @@ paths:
       summary: Delete a payment policy (soft delete)
       tags:
       - Scheduling Policies
+      x-operation-id-source: normalized
+      x-operation-id-original: t_value
   /scheduling/policies/payment/entity/{entityId}:
     get:
-      operationId: t_value
+      operationId: getSchedulingPoliciesPaymentEntityByEntityId
       parameters:
       - name: entityType
         required: true
@@ -391,9 +419,11 @@ paths:
       summary: Get payment policies for an entity
       tags:
       - Scheduling Policies
+      x-operation-id-source: normalized
+      x-operation-id-original: t_value
   /scheduling/policies/booking:
     post:
-      operationId: t_value
+      operationId: postSchedulingPoliciesBooking
       parameters: []
       responses:
         '201':
@@ -405,8 +435,10 @@ paths:
       summary: Create a new booking policy (advanced restrictions)
       tags:
       - Scheduling Policies
+      x-operation-id-source: normalized
+      x-operation-id-original: t_value
     get:
-      operationId: t_value
+      operationId: getSchedulingPoliciesBooking
       parameters:
       - name: intent
         required: false
@@ -429,9 +461,11 @@ paths:
       summary: List all booking policies
       tags:
       - Scheduling Policies
+      x-operation-id-source: normalized
+      x-operation-id-original: t_value
   /scheduling/policies/booking/{id}:
     get:
-      operationId: t_value
+      operationId: getSchedulingPoliciesBookingById
       parameters:
       - name: id
         required: true
@@ -450,8 +484,10 @@ paths:
       summary: Get a booking policy by ID
       tags:
       - Scheduling Policies
+      x-operation-id-source: normalized
+      x-operation-id-original: t_value
     put:
-      operationId: t_value
+      operationId: putSchedulingPoliciesBookingById
       parameters:
       - name: id
         required: true
@@ -470,8 +506,10 @@ paths:
       summary: Update a booking policy
       tags:
       - Scheduling Policies
+      x-operation-id-source: normalized
+      x-operation-id-original: t_value
     delete:
-      operationId: t_value
+      operationId: deleteSchedulingPoliciesBookingById
       parameters:
       - name: id
         required: true
@@ -486,9 +524,11 @@ paths:
       summary: Delete a booking policy (soft delete)
       tags:
       - Scheduling Policies
+      x-operation-id-source: normalized
+      x-operation-id-original: t_value
   /scheduling/policies/booking/entity/{entityId}:
     get:
-      operationId: t_value
+      operationId: getSchedulingPoliciesBookingEntityByEntityId
       parameters:
       - name: entityType
         required: true
@@ -518,9 +558,11 @@ paths:
       summary: Get booking policies for an entity
       tags:
       - Scheduling Policies
+      x-operation-id-source: normalized
+      x-operation-id-original: t_value
   /scheduling/policies/map:
     post:
-      operationId: t_value
+      operationId: postSchedulingPoliciesMap
       parameters: []
       responses:
         '201':
@@ -532,9 +574,11 @@ paths:
       summary: Map a policy to an entity
       tags:
       - Scheduling Policies
+      x-operation-id-source: normalized
+      x-operation-id-original: t_value
   /scheduling/policies/map/{mappingId}:
     delete:
-      operationId: t_value
+      operationId: deleteSchedulingPoliciesMapByMappingId
       parameters:
       - name: mappingId
         required: true
@@ -547,9 +591,11 @@ paths:
       summary: Remove a policy mapping
       tags:
       - Scheduling Policies
+      x-operation-id-source: normalized
+      x-operation-id-original: t_value
   /scheduling/policies/map/{mappingId}/default:
     put:
-      operationId: t_value
+      operationId: putSchedulingPoliciesMapByMappingIdDefault
       parameters:
       - name: mappingId
         required: true
@@ -566,9 +612,11 @@ paths:
       summary: Set a policy mapping as default
       tags:
       - Scheduling Policies
+      x-operation-id-source: normalized
+      x-operation-id-original: t_value
   /scheduling/policies/map/policy/{policyId}:
     get:
-      operationId: t_value
+      operationId: getSchedulingPoliciesMapPolicyByPolicyId
       parameters:
       - name: policyTable
         required: true
@@ -597,9 +645,11 @@ paths:
       summary: Get all mappings for a policy
       tags:
       - Scheduling Policies
+      x-operation-id-source: normalized
+      x-operation-id-original: t_value
   /scheduling/policies/map/entity/{entityId}:
     get:
-      operationId: t_value
+      operationId: getSchedulingPoliciesMapEntityByEntityId
       parameters:
       - name: policyTable
         required: false
@@ -639,6 +689,8 @@ paths:
       summary: Get all policy mappings for an entity
       tags:
       - Scheduling Policies
+      x-operation-id-source: normalized
+      x-operation-id-original: t_value
 components:
   schemas:
     e:

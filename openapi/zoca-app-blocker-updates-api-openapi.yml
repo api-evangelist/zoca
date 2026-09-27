@@ -33,7 +33,7 @@ paths:
       - App Blocker Updates
   /app-blocker/updates/location-entity/{locationEntityId}:
     get:
-      operationId: t_value
+      operationId: getAppBlockerUpdatesLocationEntityByLocationEntityId
       parameters: []
       responses:
         '200':
@@ -47,9 +47,11 @@ paths:
       summary: Get updates for a specific location entity
       tags:
       - App Blocker Updates
+      x-operation-id-source: normalized
+      x-operation-id-original: t_value
   /app-blocker/updates/{id}:
     get:
-      operationId: t_value
+      operationId: getAppBlockerUpdatesById
       parameters: []
       responses:
         '200':
@@ -65,8 +67,10 @@ paths:
       summary: Get update by ID
       tags:
       - App Blocker Updates
+      x-operation-id-source: normalized
+      x-operation-id-original: t_value
     delete:
-      operationId: t_value
+      operationId: deleteAppBlockerUpdatesById
       parameters: []
       responses:
         '204':
@@ -78,9 +82,11 @@ paths:
       summary: Delete an app blocker update
       tags:
       - App Blocker Updates
+      x-operation-id-source: normalized
+      x-operation-id-original: t_value
   /app-blocker/updates/location-entity/{locationEntityId}/count:
     get:
-      operationId: t_value
+      operationId: getAppBlockerUpdatesLocationEntityByLocationEntityIdCount
       parameters: []
       responses:
         '200':
@@ -97,6 +103,8 @@ paths:
       summary: Get update counts for location entity
       tags:
       - App Blocker Updates
+      x-operation-id-source: normalized
+      x-operation-id-original: t_value
 components:
   schemas:
     e:

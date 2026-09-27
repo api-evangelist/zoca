@@ -29,7 +29,7 @@ paths:
       description: Production
   /tasks/api/v1/moengage/webhook:
     post:
-      operationId: t_value
+      operationId: postTasksApiV1MoengageWebhook
       parameters: []
       responses:
         '200':
@@ -41,6 +41,8 @@ paths:
       - Moengage
       security:
       - access-token: []
+      x-operation-id-source: normalized
+      x-operation-id-original: t_value
     servers:
     - url: https://tasks.zoca.ai
       description: Production

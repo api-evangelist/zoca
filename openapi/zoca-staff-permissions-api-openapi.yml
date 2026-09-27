@@ -33,7 +33,7 @@ paths:
   /staff/permissions/users/{userEntityId}/apply:
     post:
       description: Routes through the cascade engine. Body supports `toggleOn` / `toggleOff` (incremental) OR `setExact` (declarative). FC-AZ-11 — non-owner actors cannot grant scopes outside their own effective set; 403 is the rejection path.
-      operationId: t_value
+      operationId: postStaffPermissionsUsersByUserEntityIdApply
       parameters: []
       responses:
         '200':
@@ -51,6 +51,8 @@ paths:
       summary: Apply per-business permission overrides for a user
       tags:
       - Staff Permissions
+      x-operation-id-source: normalized
+      x-operation-id-original: t_value
 components:
   securitySchemes:
     access-token:

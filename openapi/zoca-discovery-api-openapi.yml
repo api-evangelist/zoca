@@ -29,7 +29,7 @@ paths:
       - Discovery
   /discovery/aeo-reports:
     post:
-      operationId: t_value
+      operationId: postDiscoveryAeoReports
       parameters: []
       responses:
         '200':
@@ -37,9 +37,11 @@ paths:
       summary: Create an AEO/GEO visibility report audit run
       tags:
       - Discovery
+      x-operation-id-source: normalized
+      x-operation-id-original: t_value
   /discovery/aeo-reports/latest:
     get:
-      operationId: t_value
+      operationId: getDiscoveryAeoReportsLatest
       parameters: []
       responses:
         '200':
@@ -47,9 +49,11 @@ paths:
       summary: Get the latest AEO/GEO visibility audit data for a location
       tags:
       - Discovery
+      x-operation-id-source: normalized
+      x-operation-id-original: t_value
   /discovery/aeo-reports/{auditRunId}:
     get:
-      operationId: t_value
+      operationId: getDiscoveryAeoReportsByAuditRunId
       parameters: []
       responses:
         '200':
@@ -57,9 +61,11 @@ paths:
       summary: Get report-ready AEO/GEO visibility audit data
       tags:
       - Discovery
+      x-operation-id-source: normalized
+      x-operation-id-original: t_value
   /discovery/aeo-reports/{auditRunId}/raw:
     get:
-      operationId: t_value
+      operationId: getDiscoveryAeoReportsByAuditRunIdRaw
       parameters: []
       responses:
         '200':
@@ -67,9 +73,11 @@ paths:
       summary: Get raw AEO/GEO visibility audit data and artifact references
       tags:
       - Discovery
+      x-operation-id-source: normalized
+      x-operation-id-original: t_value
   /discovery/aeo-reports/{auditRunId}/custom-prompts:
     post:
-      operationId: t_value
+      operationId: postDiscoveryAeoReportsByAuditRunIdCustomPrompts
       parameters: []
       responses:
         '202':
@@ -77,10 +85,12 @@ paths:
       summary: Add a user custom prompt to an existing AEO report
       tags:
       - Discovery
+      x-operation-id-source: normalized
+      x-operation-id-original: t_value
   /discovery/multilocation/{businessEntityId}/overview:
     get:
       description: Resolves every location of the business and aggregates funnel steps, Google/AI visibility, and content totals across the network.
-      operationId: t_value
+      operationId: getDiscoveryMultilocationByBusinessEntityIdOverview
       parameters:
       - name: businessEntityId
         required: true
@@ -98,10 +108,12 @@ paths:
       summary: Get network-wide Discovery overview for a multi-location business
       tags:
       - Discovery
+      x-operation-id-source: normalized
+      x-operation-id-original: t_value
   /discovery/multilocation/{businessEntityId}/keywords:
     get:
       description: Unions tracked keywords across every location, with per-keyword average position, volume, delta, and top-3 location counts.
-      operationId: t_value
+      operationId: getDiscoveryMultilocationByBusinessEntityIdKeywords
       parameters:
       - name: businessEntityId
         required: true
@@ -119,10 +131,12 @@ paths:
       summary: Get network keywords & rankings for a multi-location business
       tags:
       - Discovery
+      x-operation-id-source: normalized
+      x-operation-id-original: t_value
   /discovery/multilocation/{businessEntityId}/reviews-by-region:
     get:
       description: Groups locations by region (state / administrative area) with new reviews this period and a review-count-weighted average rating.
-      operationId: t_value
+      operationId: getDiscoveryMultilocationByBusinessEntityIdReviewsByRegion
       parameters:
       - name: businessEntityId
         required: true
@@ -140,10 +154,12 @@ paths:
       summary: Get reviews velocity by region for a multi-location business
       tags:
       - Discovery
+      x-operation-id-source: normalized
+      x-operation-id-original: t_value
   /discovery/multilocation/{businessEntityId}/location-health:
     get:
       description: One row per location with GBP completeness, reviews, keyword rankings, AI mention rate, and most-recent Google post.
-      operationId: t_value
+      operationId: getDiscoveryMultilocationByBusinessEntityIdLocationHealth
       parameters:
       - name: businessEntityId
         required: true
@@ -161,9 +177,11 @@ paths:
       summary: Get per-location Discovery health for a multi-location business
       tags:
       - Discovery
+      x-operation-id-source: normalized
+      x-operation-id-original: t_value
   /discovery/{locationEntityId}/impact-nudges:
     get:
-      operationId: t_value
+      operationId: getDiscoveryByLocationEntityIdImpactNudges
       parameters: []
       responses:
         '200':
@@ -171,10 +189,12 @@ paths:
       summary: Get impact nudges for a location entity
       tags:
       - Discovery
+      x-operation-id-source: normalized
+      x-operation-id-original: t_value
   /discovery/{locationEntityId}/gbp/metrics:
     get:
       description: Retrieves comprehensive GBP metrics including profile views, search appearances, direction requests, and phone calls with time series data and period-over-period comparisons.
-      operationId: t_value
+      operationId: getDiscoveryByLocationEntityIdGbpMetrics
       parameters:
       - name: locationEntityId
         required: true
@@ -252,10 +272,12 @@ paths:
       summary: Get GBP analytics metrics for a location
       tags:
       - Discovery
+      x-operation-id-source: normalized
+      x-operation-id-original: t_value
   /discovery/{locationEntityId}/gbp/optimization-score:
     get:
       description: Retrieves the GBP optimization score (zocaScore) indicating how well the Google Business Profile is optimized (0-100). The score is calculated dynamically using insights data.
-      operationId: t_value
+      operationId: getDiscoveryByLocationEntityIdGbpOptimizationScore
       parameters:
       - name: locationEntityId
         required: true
@@ -283,10 +305,12 @@ paths:
       summary: Get GBP Optimization Score for a location
       tags:
       - Discovery
+      x-operation-id-source: normalized
+      x-operation-id-original: t_value
   /discovery/{locationEntityId}/website/metrics:
     get:
       description: Retrieves comprehensive website metrics including visitors, page views, average time on site, and leads with period-over-period comparisons.
-      operationId: t_value
+      operationId: getDiscoveryByLocationEntityIdWebsiteMetrics
       parameters:
       - name: locationEntityId
         required: true
@@ -378,10 +402,12 @@ paths:
       summary: Get website metrics for a location
       tags:
       - Discovery
+      x-operation-id-source: normalized
+      x-operation-id-original: t_value
   /discovery/{locationEntityId}/keyword/performance/metrics:
     get:
       description: Returns KPI counts for the zocaweb keyword performance cards.
-      operationId: t_value
+      operationId: getDiscoveryByLocationEntityIdKeywordPerformanceMetrics
       parameters: []
       responses:
         '200':
@@ -389,10 +415,12 @@ paths:
       summary: Get zocaweb keyword performance KPI metrics
       tags:
       - Discovery
+      x-operation-id-source: normalized
+      x-operation-id-original: t_value
   /discovery/{locationEntityId}/keyword/performance/keywords:
     get:
       description: Returns backend-paginated keyword rows for a selected KPI bucket.
-      operationId: t_value
+      operationId: getDiscoveryByLocationEntityIdKeywordPerformanceKeywords
       parameters: []
       responses:
         '200':
@@ -400,10 +428,12 @@ paths:
       summary: Get zocaweb paginated keyword performance rows
       tags:
       - Discovery
+      x-operation-id-source: normalized
+      x-operation-id-original: t_value
   /discovery/{locationEntityId}/keyword/performance:
     get:
       description: Retrieves comprehensive keyword ranking performance metrics
-      operationId: t_value
+      operationId: getDiscoveryByLocationEntityIdKeywordPerformance
       parameters:
       - name: limit
         required: false
@@ -453,10 +483,12 @@ paths:
       summary: Get keyword performance for a location
       tags:
       - Discovery
+      x-operation-id-source: normalized
+      x-operation-id-original: t_value
   /discovery/{locationEntityId}/website/optimization-score:
     get:
       description: Retrieves the Website optimization score indicating how well the Website is optimized (0-100).
-      operationId: t_value
+      operationId: getDiscoveryByLocationEntityIdWebsiteOptimizationScore
       parameters:
       - name: locationEntityId
         required: true
@@ -487,10 +519,12 @@ paths:
       summary: Get Website Optimization Score for a location
       tags:
       - Discovery
+      x-operation-id-source: normalized
+      x-operation-id-original: t_value
   /discovery/{locationEntityId}/review/metrics:
     get:
       description: Retrieves comprehensive review performance metrics including reviews received, automated invites, app invites, and QR scans with period-over-period comparisons.
-      operationId: t_value
+      operationId: getDiscoveryByLocationEntityIdReviewMetrics
       parameters:
       - name: locationEntityId
         required: true
@@ -550,10 +584,12 @@ paths:
       summary: Get review metrics for a location
       tags:
       - Discovery
+      x-operation-id-source: normalized
+      x-operation-id-original: t_value
   /discovery/{locationEntityId}/agent-journey/metrics:
     get:
       description: Retrieves comprehensive agent journey metrics including hours saved, tasks done, task categories, and key achievements with period-over-period comparisons.
-      operationId: t_value
+      operationId: getDiscoveryByLocationEntityIdAgentJourneyMetrics
       parameters:
       - name: locationEntityId
         required: true
@@ -597,10 +633,12 @@ paths:
       summary: Get agent journey metrics for a location
       tags:
       - Discovery
+      x-operation-id-source: normalized
+      x-operation-id-original: t_value
   /discovery/insights/new:
     get:
       description: Retrieves insights for a placeId using cached data. Rank extraction must be completed first via extractPrimaryCategoryRank endpoint. This endpoint directly computes insights without triggering rank extraction.
-      operationId: t_value
+      operationId: getDiscoveryInsightsNew
       parameters:
       - name: processId
         required: false
@@ -633,10 +671,12 @@ paths:
       summary: Get insights for a place (new version)
       tags:
       - Discovery
+      x-operation-id-source: normalized
+      x-operation-id-original: t_value
   /discovery/{locationEntityId}/tasks-done:
     get:
       description: Retrieves the number of tasks done last week for a location
-      operationId: t_value
+      operationId: getDiscoveryByLocationEntityIdTasksDone
       parameters:
       - name: locationEntityId
         required: true
@@ -661,10 +701,12 @@ paths:
       summary: Get tasks done last week for a location
       tags:
       - Discovery
+      x-operation-id-source: normalized
+      x-operation-id-original: t_value
   /discovery/cx-report/{locationEntityId}/profile-completion:
     get:
       description: Retrieves the CX report for a location
-      operationId: t_value
+      operationId: getDiscoveryCxReportByLocationEntityIdProfileCompletion
       parameters:
       - name: locationEntityId
         required: true
@@ -690,10 +732,12 @@ paths:
       summary: Get CX report for a location
       tags:
       - Discovery
+      x-operation-id-source: normalized
+      x-operation-id-original: t_value
   /discovery/cx-report/{locationEntityId}/monthly-impressions:
     get:
       description: Retrieves a paginated keyword impression report with hero metrics (total impressions, new search terms, growth, active terms) and a keyword list with three-month comparison (current month, last month, onboarding month).
-      operationId: t_value
+      operationId: getDiscoveryCxReportByLocationEntityIdMonthlyImpressions
       parameters:
       - name: limit
         required: false
@@ -771,10 +815,12 @@ paths:
       summary: Get keyword impression report for a location
       tags:
       - Discovery
+      x-operation-id-source: normalized
+      x-operation-id-original: t_value
   /discovery/{locationEntityId}/competitor/table:
     get:
       description: Retrieves competitor data from the local pack for creating a comparative analysis table.
-      operationId: t_value
+      operationId: getDiscoveryByLocationEntityIdCompetitorTable
       parameters:
       - name: cached
         required: false
@@ -790,10 +836,12 @@ paths:
       summary: Get competitor table data
       tags:
       - Discovery
+      x-operation-id-source: normalized
+      x-operation-id-original: t_value
   /discovery/{locationEntityId}/competitor/pie-chart:
     get:
       description: Retrieves competitor data for generating pie chart visualization with revenue share analysis.
-      operationId: t_value
+      operationId: getDiscoveryByLocationEntityIdCompetitorPieChart
       parameters:
       - name: cached
         required: false
@@ -809,10 +857,12 @@ paths:
       summary: Get competitor pie chart data
       tags:
       - Discovery
+      x-operation-id-source: normalized
+      x-operation-id-original: t_value
   /discovery/{locationEntityId}/competitor/gbp-audit:
     get:
       description: Retrieves GBP competitor audit data including competition factor score and mapped insights.
-      operationId: t_value
+      operationId: getDiscoveryByLocationEntityIdCompetitorGbpAudit
       parameters: []
       responses:
         '200':
@@ -822,10 +872,12 @@ paths:
       summary: Get GBP competitor audit
       tags:
       - Discovery
+      x-operation-id-source: normalized
+      x-operation-id-original: t_value
   /discovery/{locationEntityId}/website/dashboard-summary:
     get:
       description: 'Returns headline stats: leads (with delta), visitors (with delta), booking clicks, and pages live.'
-      operationId: t_value
+      operationId: getDiscoveryByLocationEntityIdWebsiteDashboardSummary
       parameters:
       - name: locationEntityId
         required: true
@@ -859,10 +911,12 @@ paths:
       summary: Get website dashboard summary for a location
       tags:
       - Discovery
+      x-operation-id-source: normalized
+      x-operation-id-original: t_value
   /discovery/{locationEntityId}/website/recent-activity:
     get:
       description: Returns a chronological feed of recent entity events from the updates system.
-      operationId: t_value
+      operationId: getDiscoveryByLocationEntityIdWebsiteRecentActivity
       parameters:
       - name: locationEntityId
         required: true
@@ -886,10 +940,12 @@ paths:
       summary: Get recent activity feed for a location
       tags:
       - Discovery
+      x-operation-id-source: normalized
+      x-operation-id-original: t_value
   /discovery/{locationEntityId}/website/top-pages:
     get:
       description: Returns page-type performance breakdown (services, home, other) with views, unique views, booking clicks, and trend.
-      operationId: t_value
+      operationId: getDiscoveryByLocationEntityIdWebsiteTopPages
       parameters:
       - name: locationEntityId
         required: true
@@ -926,9 +982,11 @@ paths:
       summary: Get top pages by type for a location
       tags:
       - Discovery
+      x-operation-id-source: normalized
+      x-operation-id-original: t_value
   /discovery/{locationEntityId}/gbp/update:
     put:
-      operationId: t_value
+      operationId: putDiscoveryByLocationEntityIdGbpUpdate
       parameters:
       - name: locationEntityId
         required: true
@@ -944,10 +1002,12 @@ paths:
       summary: Update GBP profile data directly (no approval)
       tags:
       - Discovery
+      x-operation-id-source: normalized
+      x-operation-id-original: t_value
   /discovery/{locationEntityId}/audit/gbp-breakdown:
     get:
       description: Returns the GBP profile snapshot, completion score, and per-item presence details so the onboarding audit can surface exactly which items are missing.
-      operationId: t_value
+      operationId: getDiscoveryByLocationEntityIdAuditGbpBreakdown
       parameters:
       - name: locationEntityId
         required: true
@@ -963,10 +1023,12 @@ paths:
       summary: Get detailed GBP completion breakdown for the audit screen
       tags:
       - Discovery
+      x-operation-id-source: normalized
+      x-operation-id-original: t_value
   /discovery/{locationEntityId}/leadership-report-v1:
     get:
       description: Composite report bundling narrative bullets, discovery metrics with deltas, keyword rank table, categorised issues, and ranked actions. Used by the Reports page (zocaweb /dashboard/reports).
-      operationId: t_value
+      operationId: getDiscoveryByLocationEntityIdLeadershipReportV1
       parameters:
       - name: locationEntityId
         required: true
@@ -984,10 +1046,12 @@ paths:
       summary: Get v1 leadership report for a location
       tags:
       - Discovery
+      x-operation-id-source: normalized
+      x-operation-id-original: t_value
   /discovery/seo-predictor/analyze:
     post:
       description: Returns predicted Google indexing time, ranking position, and AI/GEO visibility score. Uses OpenAI for signal detection with heuristic fallback.
-      operationId: t_value
+      operationId: postDiscoverySeoPredictorAnalyze
       parameters: []
       responses:
         '200':
@@ -999,10 +1063,12 @@ paths:
       summary: Analyze a URL for SEO + GEO predictions
       tags:
       - Discovery
+      x-operation-id-source: normalized
+      x-operation-id-original: t_value
   /discovery/seo-predictor/rescore:
     post:
       description: Takes an existing URL + partial signal overrides and returns updated predictions without re-running AI analysis.
-      operationId: t_value
+      operationId: postDiscoverySeoPredictorRescore
       parameters: []
       responses:
         '200':
@@ -1014,6 +1080,8 @@ paths:
       summary: Re-score with signal overrides
       tags:
       - Discovery
+      x-operation-id-source: normalized
+      x-operation-id-original: t_value
 components:
   schemas:
     e:

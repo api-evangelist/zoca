@@ -23,7 +23,7 @@ paths:
       - Places
   /places/details:
     get:
-      operationId: e_value
+      operationId: getPlacesDetails
       parameters: []
       responses:
         '200':
@@ -31,9 +31,11 @@ paths:
       summary: Get place details by place ID
       tags:
       - Places
+      x-operation-id-source: normalized
+      x-operation-id-original: e_value
   /places/search:
     get:
-      operationId: e_value
+      operationId: getPlacesSearch
       parameters: []
       responses:
         '200':
@@ -41,9 +43,11 @@ paths:
       summary: Search places
       tags:
       - Places
+      x-operation-id-source: normalized
+      x-operation-id-original: e_value
   /places/search-text:
     post:
-      operationId: e_value
+      operationId: postPlacesSearchText
       parameters: []
       responses:
         '201':
@@ -51,6 +55,8 @@ paths:
       summary: Search places using Google Places API v2
       tags:
       - Places
+      x-operation-id-source: normalized
+      x-operation-id-original: e_value
 components:
   securitySchemes:
     access-token:

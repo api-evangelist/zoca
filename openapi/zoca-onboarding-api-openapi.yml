@@ -23,7 +23,7 @@ paths:
       - Onboarding
   /onboarding/app-visitor:
     get:
-      operationId: t_value
+      operationId: getOnboardingAppVisitor
       parameters: []
       responses:
         '200':
@@ -31,9 +31,11 @@ paths:
       summary: Register app visitor
       tags:
       - Onboarding
+      x-operation-id-source: normalized
+      x-operation-id-original: t_value
   /onboarding/update-user:
     post:
-      operationId: t_value
+      operationId: postOnboardingUpdateUser
       parameters: []
       requestBody:
         required: true
@@ -100,9 +102,11 @@ paths:
       summary: Update User Profile
       tags:
       - Onboarding
+      x-operation-id-source: normalized
+      x-operation-id-original: t_value
   /onboarding/locations/{entity_id}:
     get:
-      operationId: t_value
+      operationId: getOnboardingLocationsByEntityId
       parameters: []
       responses:
         '200':
@@ -110,9 +114,11 @@ paths:
       summary: Get locations for entity
       tags:
       - Onboarding
+      x-operation-id-source: normalized
+      x-operation-id-original: t_value
   /onboarding/onboarding-state:
     get:
-      operationId: t_value
+      operationId: getOnboardingOnboardingState
       parameters: []
       responses:
         '200':
@@ -120,9 +126,11 @@ paths:
       summary: Get onboarding state for entity
       tags:
       - Onboarding
+      x-operation-id-source: normalized
+      x-operation-id-original: t_value
   /onboarding/user-profile:
     get:
-      operationId: t_value
+      operationId: getOnboardingUserProfile
       parameters: []
       responses:
         '200':
@@ -130,9 +138,11 @@ paths:
       summary: Get user profile information
       tags:
       - Onboarding
+      x-operation-id-source: normalized
+      x-operation-id-original: t_value
   /onboarding/clear-user-data:
     delete:
-      operationId: t_value
+      operationId: deleteOnboardingClearUserData
       parameters: []
       responses:
         '200':
@@ -140,9 +150,11 @@ paths:
       summary: Clear user data (admin only)
       tags:
       - Onboarding
+      x-operation-id-source: normalized
+      x-operation-id-original: t_value
   /onboarding/quick-recap:
     get:
-      operationId: t_value
+      operationId: getOnboardingQuickRecap
       parameters: []
       responses:
         '200':
@@ -159,9 +171,11 @@ paths:
       summary: Get onboarding quick recap pointers
       tags:
       - Onboarding
+      x-operation-id-source: normalized
+      x-operation-id-original: t_value
   /onboarding/business-categories:
     get:
-      operationId: t_value
+      operationId: getOnboardingBusinessCategories
       parameters: []
       responses:
         '200':
@@ -184,9 +198,11 @@ paths:
       summary: Get list of business categories
       tags:
       - Onboarding
+      x-operation-id-source: normalized
+      x-operation-id-original: t_value
   /onboarding/customer-sources:
     get:
-      operationId: t_value
+      operationId: getOnboardingCustomerSources
       parameters: []
       responses:
         '200':
@@ -203,9 +219,11 @@ paths:
       summary: Get list of customer sources
       tags:
       - Onboarding
+      x-operation-id-source: normalized
+      x-operation-id-original: t_value
   /onboarding/search-booking-link:
     get:
-      operationId: t_value
+      operationId: getOnboardingSearchBookingLink
       parameters: []
       responses:
         '200':
@@ -213,9 +231,11 @@ paths:
       summary: Search for booking platform link
       tags:
       - Onboarding
+      x-operation-id-source: normalized
+      x-operation-id-original: t_value
   /onboarding/search-all-links:
     get:
-      operationId: t_value
+      operationId: getOnboardingSearchAllLinks
       parameters: []
       responses:
         '200':
@@ -223,9 +243,11 @@ paths:
       summary: Search for all links related to entity
       tags:
       - Onboarding
+      x-operation-id-source: normalized
+      x-operation-id-original: t_value
   /onboarding/{entityId}/add-user-for-sm:
     post:
-      operationId: t_value
+      operationId: postOnboardingByEntityIdAddUserForSm
       parameters: []
       responses:
         '200':
@@ -262,9 +284,11 @@ paths:
       summary: Add user for social media onboarding
       tags:
       - Onboarding
+      x-operation-id-source: normalized
+      x-operation-id-original: t_value
   /onboarding/check-platform-selection/{locationEntityId}:
     get:
-      operationId: t_value
+      operationId: getOnboardingCheckPlatformSelectionByLocationEntityId
       parameters: []
       responses:
         '200':
@@ -284,10 +308,12 @@ paths:
       summary: Check if specific platforms were selected during onboarding within 10 hours
       tags:
       - Onboarding
+      x-operation-id-source: normalized
+      x-operation-id-original: t_value
   /onboarding/trigger-comms:
     post:
       description: Triggers onboarding communication events based on user actions during onboarding flow. For REVIEW_SCREEN_VIEW type, calculates and includes review insights data.
-      operationId: t_value
+      operationId: postOnboardingTriggerComms
       parameters: []
       responses:
         '200':
@@ -303,9 +329,11 @@ paths:
       summary: Trigger onboarding communications for MoEngage notifications
       tags:
       - Onboarding
+      x-operation-id-source: normalized
+      x-operation-id-original: t_value
   /onboarding/onboarding-record:
     get:
-      operationId: t_value
+      operationId: getOnboardingOnboardingRecord
       parameters: []
       responses:
         '200':
@@ -313,8 +341,10 @@ paths:
       summary: Get onboarding record by entity ID and version
       tags:
       - Onboarding
+      x-operation-id-source: normalized
+      x-operation-id-original: t_value
     patch:
-      operationId: t_value
+      operationId: patchOnboardingOnboardingRecord
       parameters: []
       responses:
         '200':
@@ -322,9 +352,11 @@ paths:
       summary: Update an app.onboarding record by entity and version
       tags:
       - Onboarding
+      x-operation-id-source: normalized
+      x-operation-id-original: t_value
   /onboarding/web-visitor:
     post:
-      operationId: t_value
+      operationId: postOnboardingWebVisitor
       parameters: []
       responses:
         '201':
@@ -332,6 +364,8 @@ paths:
       summary: Create a web visitor onboarding record
       tags:
       - Onboarding
+      x-operation-id-source: normalized
+      x-operation-id-original: t_value
 components:
   schemas:
     e:

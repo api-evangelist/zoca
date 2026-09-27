@@ -24,7 +24,7 @@ paths:
       tags:
       - Scheduling - Forms
     get:
-      operationId: t_value
+      operationId: getSchedulingForms
       parameters:
       - name: include
         required: false
@@ -42,9 +42,11 @@ paths:
       summary: Get form template for entity (legacy single-form)
       tags:
       - Scheduling - Forms
+      x-operation-id-source: normalized
+      x-operation-id-original: t_value
   /scheduling/forms/list:
     get:
-      operationId: t_value
+      operationId: getSchedulingFormsList
       parameters:
       - name: sendMode
         required: false
@@ -67,9 +69,11 @@ paths:
       summary: List all forms for entity (Forms V2)
       tags:
       - Scheduling - Forms
+      x-operation-id-source: normalized
+      x-operation-id-original: t_value
   /scheduling/forms/{id}:
     get:
-      operationId: t_value
+      operationId: getSchedulingFormsById
       parameters:
       - name: include
         required: false
@@ -93,8 +97,10 @@ paths:
       summary: Get a single form by ID (Forms V2)
       tags:
       - Scheduling - Forms
+      x-operation-id-source: normalized
+      x-operation-id-original: t_value
     put:
-      operationId: t_value
+      operationId: putSchedulingFormsById
       parameters:
       - name: id
         required: true
@@ -109,8 +115,10 @@ paths:
       summary: Update form properties
       tags:
       - Scheduling - Forms
+      x-operation-id-source: normalized
+      x-operation-id-original: t_value
     delete:
-      operationId: t_value
+      operationId: deleteSchedulingFormsById
       parameters:
       - name: id
         required: true
@@ -123,9 +131,11 @@ paths:
       summary: Delete form (soft delete)
       tags:
       - Scheduling - Forms
+      x-operation-id-source: normalized
+      x-operation-id-original: t_value
   /scheduling/forms/{id}/activate:
     post:
-      operationId: t_value
+      operationId: postSchedulingFormsByIdActivate
       parameters:
       - name: id
         required: true
@@ -138,9 +148,11 @@ paths:
       summary: Activate a disabled form
       tags:
       - Scheduling - Forms
+      x-operation-id-source: normalized
+      x-operation-id-original: t_value
   /scheduling/forms/{id}/disable:
     post:
-      operationId: t_value
+      operationId: postSchedulingFormsByIdDisable
       parameters:
       - name: id
         required: true
@@ -153,9 +165,11 @@ paths:
       summary: Disable an active form
       tags:
       - Scheduling - Forms
+      x-operation-id-source: normalized
+      x-operation-id-original: t_value
   /scheduling/forms/{id}/questions:
     post:
-      operationId: t_value
+      operationId: postSchedulingFormsByIdQuestions
       parameters:
       - name: id
         required: true
@@ -168,9 +182,11 @@ paths:
       summary: Add a draft question
       tags:
       - Scheduling - Forms
+      x-operation-id-source: normalized
+      x-operation-id-original: t_value
   /scheduling/forms/{id}/questions/bulk:
     post:
-      operationId: t_value
+      operationId: postSchedulingFormsByIdQuestionsBulk
       parameters:
       - name: id
         required: true
@@ -183,9 +199,11 @@ paths:
       summary: Bulk add draft questions
       tags:
       - Scheduling - Forms
+      x-operation-id-source: normalized
+      x-operation-id-original: t_value
   /scheduling/forms/{id}/questions/upsert:
     put:
-      operationId: t_value
+      operationId: putSchedulingFormsByIdQuestionsUpsert
       parameters:
       - name: id
         required: true
@@ -198,9 +216,11 @@ paths:
       summary: Bulk upsert (update/create) draft questions
       tags:
       - Scheduling - Forms
+      x-operation-id-source: normalized
+      x-operation-id-original: t_value
   /scheduling/forms/{id}/questions/{questionId}/duplicate:
     post:
-      operationId: t_value
+      operationId: postSchedulingFormsByIdQuestionsByQuestionIdDuplicate
       parameters:
       - name: questionId
         required: true
@@ -218,9 +238,11 @@ paths:
       summary: Duplicate a draft question
       tags:
       - Scheduling - Forms
+      x-operation-id-source: normalized
+      x-operation-id-original: t_value
   /scheduling/forms/{id}/questions/reorder:
     put:
-      operationId: t_value
+      operationId: putSchedulingFormsByIdQuestionsReorder
       parameters:
       - name: id
         required: true
@@ -233,9 +255,11 @@ paths:
       summary: Reorder draft questions
       tags:
       - Scheduling - Forms
+      x-operation-id-source: normalized
+      x-operation-id-original: t_value
   /scheduling/forms/{id}/questions/{questionId}:
     put:
-      operationId: t_value
+      operationId: putSchedulingFormsByIdQuestionsByQuestionId
       parameters:
       - name: questionId
         required: true
@@ -253,8 +277,10 @@ paths:
       summary: Update a draft question
       tags:
       - Scheduling - Forms
+      x-operation-id-source: normalized
+      x-operation-id-original: t_value
     delete:
-      operationId: t_value
+      operationId: deleteSchedulingFormsByIdQuestionsByQuestionId
       parameters:
       - name: questionId
         required: true
@@ -272,9 +298,11 @@ paths:
       summary: Delete a draft question
       tags:
       - Scheduling - Forms
+      x-operation-id-source: normalized
+      x-operation-id-original: t_value
   /scheduling/forms/{id}/publish:
     post:
-      operationId: t_value
+      operationId: postSchedulingFormsByIdPublish
       parameters:
       - name: id
         required: true
@@ -287,9 +315,11 @@ paths:
       summary: Publish draft form
       tags:
       - Scheduling - Forms
+      x-operation-id-source: normalized
+      x-operation-id-original: t_value
   /scheduling/forms/{id}/preview:
     get:
-      operationId: t_value
+      operationId: getSchedulingFormsByIdPreview
       parameters:
       - name: id
         required: true
@@ -302,9 +332,11 @@ paths:
       summary: Preview draft form
       tags:
       - Scheduling - Forms
+      x-operation-id-source: normalized
+      x-operation-id-original: t_value
   /scheduling/forms/{id}/services:
     put:
-      operationId: t_value
+      operationId: putSchedulingFormsByIdServices
       parameters:
       - name: id
         required: true
@@ -317,9 +349,11 @@ paths:
       summary: Update service assignments
       tags:
       - Scheduling - Forms
+      x-operation-id-source: normalized
+      x-operation-id-original: t_value
   /scheduling/forms/{id}/bundles:
     put:
-      operationId: t_value
+      operationId: putSchedulingFormsByIdBundles
       parameters:
       - name: id
         required: true
@@ -332,9 +366,11 @@ paths:
       summary: Update bundle assignments (Forms V2)
       tags:
       - Scheduling - Forms
+      x-operation-id-source: normalized
+      x-operation-id-original: t_value
   /scheduling/forms/{formId}/responses:
     get:
-      operationId: t_value
+      operationId: getSchedulingFormsByFormIdResponses
       parameters:
       - name: formId
         required: true
@@ -351,9 +387,11 @@ paths:
       summary: List all client responses for a form (SP)
       tags:
       - Scheduling - Forms
+      x-operation-id-source: normalized
+      x-operation-id-original: t_value
   /scheduling/forms/{formId}/responses/export:
     get:
-      operationId: t_value
+      operationId: getSchedulingFormsByFormIdResponsesExport
       parameters:
       - name: formId
         required: true
@@ -372,6 +410,8 @@ paths:
       summary: Export a form’s responses as CSV (SP)
       tags:
       - Scheduling - Forms
+      x-operation-id-source: normalized
+      x-operation-id-original: t_value
 components:
   securitySchemes:
     access-token:

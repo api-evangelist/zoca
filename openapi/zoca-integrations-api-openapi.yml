@@ -25,7 +25,7 @@ paths:
       - Integrations
   /integrations/{entityId}/{id}:
     get:
-      operationId: t_value
+      operationId: getIntegrationsByEntityIdById
       parameters: []
       responses:
         '200':
@@ -35,9 +35,11 @@ paths:
       summary: Get platform detail by id
       tags:
       - Integrations
+      x-operation-id-source: normalized
+      x-operation-id-original: t_value
   /integrations/website/{entityId}/status:
     patch:
-      operationId: t_value
+      operationId: patchIntegrationsWebsiteByEntityIdStatus
       parameters: []
       responses:
         '200':
@@ -47,9 +49,11 @@ paths:
       summary: Link or unlink a platform for an entity
       tags:
       - Integrations
+      x-operation-id-source: normalized
+      x-operation-id-original: t_value
   /integrations/website/{entityId}/dismissed:
     patch:
-      operationId: t_value
+      operationId: patchIntegrationsWebsiteByEntityIdDismissed
       parameters: []
       responses:
         '200':
@@ -59,9 +63,11 @@ paths:
       summary: Update dismissed state for website integrations
       tags:
       - Integrations
+      x-operation-id-source: normalized
+      x-operation-id-original: t_value
   /integrations/admin/templates:
     get:
-      operationId: t_value
+      operationId: getIntegrationsAdminTemplates
       parameters: []
       responses:
         '200':
@@ -71,8 +77,10 @@ paths:
       summary: List all templates (admin)
       tags:
       - Integrations
+      x-operation-id-source: normalized
+      x-operation-id-original: t_value
     post:
-      operationId: t_value
+      operationId: postIntegrationsAdminTemplates
       parameters: []
       responses:
         '201':
@@ -82,9 +90,11 @@ paths:
       summary: Create a new template (admin)
       tags:
       - Integrations
+      x-operation-id-source: normalized
+      x-operation-id-original: t_value
   /integrations/admin/templates/{id}:
     patch:
-      operationId: t_value
+      operationId: patchIntegrationsAdminTemplatesById
       parameters: []
       responses:
         '200':
@@ -94,6 +104,8 @@ paths:
       summary: Update a template (admin)
       tags:
       - Integrations
+      x-operation-id-source: normalized
+      x-operation-id-original: t_value
 components:
   securitySchemes:
     access-token:

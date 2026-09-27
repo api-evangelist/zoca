@@ -31,7 +31,7 @@ paths:
       - Scheduling Quick Sale
   /scheduling/quick-sale/service-lines/{lineId}/entity/{entityId}:
     put:
-      operationId: t_value
+      operationId: putSchedulingQuickSaleServiceLinesByLineIdEntityByEntityId
       parameters: []
       responses:
         '200':
@@ -45,8 +45,10 @@ paths:
       summary: Apply or remove an offer on a QS service line
       tags:
       - Scheduling Quick Sale
+      x-operation-id-source: normalized
+      x-operation-id-original: t_value
     delete:
-      operationId: t_value
+      operationId: deleteSchedulingQuickSaleServiceLinesByLineIdEntityByEntityId
       parameters: []
       responses:
         '200':
@@ -62,9 +64,11 @@ paths:
       summary: Remove a SERVICE line from a QS sale
       tags:
       - Scheduling Quick Sale
+      x-operation-id-source: normalized
+      x-operation-id-original: t_value
   /scheduling/quick-sale/{saleId}/service-lines:
     post:
-      operationId: t_value
+      operationId: postSchedulingQuickSaleBySaleIdServiceLines
       parameters: []
       responses:
         '201':
@@ -80,9 +84,11 @@ paths:
       summary: Add a SERVICE line to an OPEN Quick Sale
       tags:
       - Scheduling Quick Sale
+      x-operation-id-source: normalized
+      x-operation-id-original: t_value
   /scheduling/quick-sale/{saleId}/product-lines/entity/{entityId}:
     post:
-      operationId: t_value
+      operationId: postSchedulingQuickSaleBySaleIdProductLinesEntityByEntityId
       parameters: []
       responses:
         '201':
@@ -98,9 +104,11 @@ paths:
       summary: Add a PRODUCT line to an OPEN Quick Sale
       tags:
       - Scheduling Quick Sale
+      x-operation-id-source: normalized
+      x-operation-id-original: t_value
   /scheduling/quick-sale/product-lines/{lineId}/entity/{entityId}:
     put:
-      operationId: t_value
+      operationId: putSchedulingQuickSaleProductLinesByLineIdEntityByEntityId
       parameters: []
       responses:
         '200':
@@ -116,8 +124,10 @@ paths:
       summary: Update a QS product line
       tags:
       - Scheduling Quick Sale
+      x-operation-id-source: normalized
+      x-operation-id-original: t_value
     delete:
-      operationId: t_value
+      operationId: deleteSchedulingQuickSaleProductLinesByLineIdEntityByEntityId
       parameters: []
       responses:
         '200':
@@ -133,6 +143,8 @@ paths:
       summary: Remove a PRODUCT line from a QS sale
       tags:
       - Scheduling Quick Sale
+      x-operation-id-source: normalized
+      x-operation-id-original: t_value
 components:
   securitySchemes:
     access-token:
