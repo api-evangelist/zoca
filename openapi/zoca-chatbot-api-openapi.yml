@@ -3487,6 +3487,9 @@ components:
       - id
       - entityId
       - attribute
+    Object:
+      type: object
+      properties: {}
     e_2:
       type: object
       properties:
@@ -3512,9 +3515,6 @@ components:
       - businessLng
       - points
       - heroMetrics
-    Object:
-      type: object
-      properties: {}
   securitySchemes:
     access-token:
       scheme: bearer

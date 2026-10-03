@@ -727,6 +727,9 @@ components:
       - businessLng
       - points
       - heroMetrics
+    Object:
+      type: object
+      properties: {}
     e_3:
       type: object
       properties:
@@ -752,9 +755,6 @@ components:
       - businessLng
       - points
       - heroMetrics
-    Object:
-      type: object
-      properties: {}
   securitySchemes:
     access-token:
       scheme: bearer

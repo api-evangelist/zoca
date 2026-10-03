@@ -6965,6 +6965,9 @@ paths:
       description: Production
 components:
   schemas:
+    Object:
+      type: object
+      properties: {}
     t:
       type: object
       properties:
@@ -7049,9 +7052,6 @@ components:
       - id
       - entityId
       - attribute
-    Object:
-      type: object
-      properties: {}
     t_2:
       type: object
       properties:
