@@ -744,6 +744,8 @@ apis:
   humanURL: https://app.zoca.com/
   baseURL: https://api.zoca.ai
   tags:
+  - E
+  tags_raw:
   - e
   properties:
   - type: OpenAPI
@@ -2189,6 +2191,8 @@ apis:
   humanURL: https://app.zoca.com/
   baseURL: https://api.zoca.ai
   tags:
+  - T
+  tags_raw:
   - t
   properties:
   - type: OpenAPI
@@ -2493,6 +2497,8 @@ apis:
   humanURL: https://app.zoca.com/
   baseURL: https://api.zoca.ai
   tags:
+  - Addons
+  tags_raw:
   - Add Ons
   properties:
   - type: OpenAPI
