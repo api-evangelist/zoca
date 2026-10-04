@@ -485,9 +485,6 @@ paths:
       description: Production
 components:
   schemas:
-    Object:
-      type: object
-      properties: {}
     e:
       type: object
       properties:
@@ -513,6 +510,9 @@ components:
       - id
       - entityId
       - attribute
+    Object:
+      type: object
+      properties: {}
     e_2:
       type: object
       properties:

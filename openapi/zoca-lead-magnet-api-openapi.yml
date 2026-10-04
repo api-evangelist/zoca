@@ -554,10 +554,10 @@ paths:
       x-operation-id-original: t_value
 components:
   schemas:
-    Object:
+    e:
       type: object
       properties: {}
-    e:
+    Object:
       type: object
       properties: {}
   securitySchemes:

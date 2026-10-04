@@ -579,9 +579,6 @@ paths:
       description: Production
 components:
   schemas:
-    Object:
-      type: object
-      properties: {}
     e:
       type: object
       properties:
@@ -607,6 +604,9 @@ components:
       - businessLng
       - points
       - heroMetrics
+    Object:
+      type: object
+      properties: {}
   securitySchemes:
     access-token:
       scheme: bearer
