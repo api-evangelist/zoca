@@ -1,0 +1,12 @@
+{
+ "url": "https://public.zoca.com/swagger.json",
+ "requested_url": "https://public.zoca.com/swagger.json",
+ "status": 200,
+ "content_type": "application/json; charset=utf-8",
+ "bytes": 18287,
+ "sha256": "798c581f4d512e77324c6e0f894fc71b322f6dd8a2b4569990469807d49d0200",
+ "fetched_at": "2026-10-04",
+ "fetched_by": "APIEvangelist-Harvest/1.0 (+https://apievangelist.com)",
+ "match": "equivalent",
+ "note": "Re-fetched from the provider by verify-openapi-sources.py; the provider's current document describes the same operations (Jaccard 0.945), but the bytes differ, so the archive is an earlier or reformatted copy."
+}
