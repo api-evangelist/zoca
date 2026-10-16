@@ -2,14 +2,20 @@
   "repo": "zoca",
   "feeds": [
     {
+      "source": "https://zoca.com/blog",
+      "feed_url": "https://zoca.com/blog",
+      "title": "",
+      "saved": 0,
+      "method": "none"
+    },
+    {
       "source": "https://zoca.com/pricing",
       "feed_url": "https://zoca.com/pricing",
       "title": "",
       "saved": 0,
-      "method": "none",
-      "error": "parse_failed"
+      "method": "none"
     }
   ],
   "post_count": 0,
-  "fetched": "2026-10-03T12:15:37Z"
+  "fetched": "2026-10-10T13:15:00Z"
 }
