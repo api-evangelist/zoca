@@ -1982,6 +1982,8 @@ apis:
   humanURL: https://app.zoca.com/
   baseURL: https://api.zoca.ai
   tags:
+  - Web Scraping
+  tags_raw:
   - Scraping
   properties:
   - type: OpenAPI
@@ -2497,6 +2499,8 @@ apis:
   humanURL: https://app.zoca.com/
   baseURL: https://api.zoca.ai
   tags:
+  - Addons
+  tags_raw:
   - Add Ons
   properties:
   - type: OpenAPI
