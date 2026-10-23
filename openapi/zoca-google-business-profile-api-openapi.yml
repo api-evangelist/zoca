@@ -668,3 +668,9 @@ components:
       name: Authorization
       description: Enter JWT token in the format Bearer <token>
       in: header
+x-provenance:
+  method: harvested
+  publisher: Zoca
+  source: https://tasks.zoca.ai/swagger.json
+  note: split by refine-openapis from the provider's own published document, verified by fetch (openapi/_original/*.fetch.json);
+    stamped by stamp-openapi-provenance.py (roadmap#793)
